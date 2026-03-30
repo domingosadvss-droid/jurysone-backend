@@ -1,0 +1,366 @@
+/**
+ * ═══════════════════════════════════════════════════════════════
+ * JURYSONE — AI Copilot 2.0 (powered by Google Gemini — free tier)
+ * ═══════════════════════════════════════════════════════════════
+ */
+
+import { Injectable, Logger } from '@nestjs/common';
+import { GoogleGenerativeAI, GenerativeModel } from '@google/generative-ai';
+import { PrismaService } from '../../database/prisma.service';
+import { NotificationsGateway } from '../notifications/notifications.gateway';
+
+interface RiskAnalysis {
+  score: number;
+  nivel: 'baixo' | 'medio' | 'alto' | 'critico';
+  fatores: Array<{
+    fator: string;
+    impacto: 'positivo' | 'negativo';
+    peso: number;
+    descricao: string;
+  }>;
+  probabilidade_exito: number;
+  recomendacoes: string[];
+  proximas_acoes: Array<{
+    acao: string;
+    prioridade: 'urgente' | 'alta' | 'media' | 'baixa';
+    prazo_sugerido?: string;
+  }>;
+  jurisprudencia_relevante: Array<{
+    tribunal: string;
+    numero: string;
+    ementa: string;
+    favoravel: boolean;
+    relevancia: number;
+  }>;
+}
+
+interface PeticaoGerada {
+  tipo: string;
+  conteudo: string;
+  estrutura: Array<{ secao: string; conteudo: string }>;
+  fundamentacao_legal: string[];
+  pedidos: string[];
+  estimated_tokens: number;
+}
+
+@Injectable()
+export class AiCopilotService {
+
+  private _model: GenerativeModel | null = null;
+  private readonly logger = new Logger(AiCopilotService.name);
+
+  private readonly SYSTEM_PROMPT = `Você é o Copiloto Jurídico do Jurysone, assistente especializado em direito brasileiro.
+Capacidades: direito civil, trabalhista, previdenciário, tributário, penal.
+Diretrizes: seja preciso, cite fundamentos legais, use linguagem jurídica formal, cite jurisprudência com tribunal e número.
+Contexto: direito brasileiro vigente, 2024/2025.`;
+
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly notificationsGateway: NotificationsGateway,
+  ) {
+    const key = process.env.GEMINI_API_KEY;
+    if (key) {
+      const genAI = new GoogleGenerativeAI(key);
+      this._model = genAI.getGenerativeModel({
+        model: 'gemini-1.5-flash',
+        systemInstruction: this.SYSTEM_PROMPT,
+      });
+    } else {
+      this.logger.warn('GEMINI_API_KEY não configurada — Copiloto Jurídico indisponível.');
+    }
+  }
+
+  private get model(): GenerativeModel {
+    if (!this._model) {
+      throw new Error('GEMINI_API_KEY não configurada. Configure no Railway Dashboard.');
+    }
+    return this._model;
+  }
+
+  // Helper para parsear JSON das respostas do Gemini (remove possíveis blocos markdown)
+  private parseJson<T>(text: string): T {
+    const clean = text.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
+    return JSON.parse(clean) as T;
+  }
+
+  /* ──────────────────── CHAT CONTEXTUAL ─────────────────────── */
+
+  async chat(params: {
+    userId: string;
+    officeId: string;
+    mensagem: string;
+    processo_id?: string;
+    conversa_id?: string;
+  }) {
+    const { userId, officeId, mensagem, processo_id, conversa_id } = params;
+
+    let contexto = '';
+    if (processo_id) {
+      contexto = await this.buildProcessoContext(processo_id);
+    }
+
+    // Monta histórico no formato do Gemini
+    const historico = conversa_id
+      ? await this.getHistoricoConversa(conversa_id, 10)
+      : [];
+
+    const chat = this.model.startChat({ history: historico });
+
+    const promptFinal = contexto
+      ? `${contexto}\n\nPERGUNTA: ${mensagem}`
+      : mensagem;
+
+    const result = await chat.sendMessage(promptFinal);
+    const resposta = result.response.text();
+    const usage = result.response.usageMetadata;
+    const totalTokens = (usage?.promptTokenCount || 0) + (usage?.candidatesTokenCount || 0);
+
+    await this.salvarInteracao(userId, officeId, {
+      conversa_id,
+      processo_id,
+      pergunta: mensagem,
+      resposta,
+      tokens_usados: totalTokens,
+    });
+
+    return {
+      resposta,
+      conversa_id: conversa_id || this.generateConversaId(),
+      tokens: { total_tokens: totalTokens },
+    };
+  }
+
+  /* ──────────────────── ANÁLISE DE RISCO ────────────────────── */
+
+  async analisarRisco(processoId: string, officeId: string): Promise<RiskAnalysis> {
+    const processo = await this.prisma.process.findFirst({
+      where: { id: processoId, office: { id: officeId } },
+      include: {
+        client: true,
+        movements: { orderBy: { date: 'desc' }, take: 20 },
+        documents: true,
+        tasks: { where: { status: 'pending' } },
+      },
+    });
+
+    if (!processo) throw new Error('Processo não encontrado');
+
+    const prompt = `Analise o risco processual. Responda APENAS com JSON válido, sem markdown nem explicações fora do JSON.
+
+PROCESSO: ${processo.number} | ÁREA: ${processo.area || 'N/A'} | STATUS: ${processo.status}
+TRIBUNAL: ${processo.court || 'N/A'} | VALOR: ${processo.value ? `R$ ${processo.value}` : 'N/A'}
+CLIENTE: ${processo.client?.name}
+MOVIMENTAÇÕES: ${processo.movements.slice(0, 10).map(m => `${m.date}: ${m.description}`).join(' | ')}
+TAREFAS PENDENTES: ${processo.tasks.length}
+
+JSON esperado:
+{
+  "score": 0,
+  "nivel": "baixo|medio|alto|critico",
+  "probabilidade_exito": 0,
+  "fatores": [{ "fator": "", "impacto": "positivo|negativo", "peso": 1, "descricao": "" }],
+  "recomendacoes": [],
+  "proximas_acoes": [{ "acao": "", "prioridade": "urgente|alta|media|baixa", "prazo_sugerido": "" }],
+  "jurisprudencia_relevante": [{ "tribunal": "", "numero": "", "ementa": "", "favoravel": true, "relevancia": 0 }]
+}`;
+
+    const result = await this.model.generateContent(prompt);
+    const text = result.response.text();
+    const parsed = this.parseJson<RiskAnalysis>(text);
+    const totalTokens = (result.response.usageMetadata?.promptTokenCount || 0) +
+                        (result.response.usageMetadata?.candidatesTokenCount || 0);
+
+    await this.prisma.aiInteraction.create({
+      data: {
+        userId: '',
+        officeId,
+        type: 'risk_analysis',
+        input: prompt,
+        output: JSON.stringify(parsed),
+        processId: processoId,
+        tokens: totalTokens,
+        model: 'gemini-1.5-flash',
+      },
+    });
+
+    if (parsed.nivel === 'critico') {
+      this.logger.warn(`Risco CRÍTICO detectado no processo ${processoId}`);
+    }
+
+    return parsed;
+  }
+
+  /* ──────────────────── GERAÇÃO DE PETIÇÕES ─────────────────── */
+
+  async gerarPeticao(params: {
+    processoId: string;
+    officeId: string;
+    userId: string;
+    tipo: string;
+    instrucoes_adicionais?: string;
+    advogado_nome: string;
+    oab: string;
+  }): Promise<PeticaoGerada> {
+
+    const contexto = await this.buildProcessoContext(params.processoId);
+
+    const prompt = `Gere uma ${params.tipo} completa. Responda APENAS com JSON válido, sem markdown.
+
+${contexto}
+ADVOGADO: ${params.advogado_nome} | OAB: ${params.oab}
+${params.instrucoes_adicionais ? `INSTRUÇÕES: ${params.instrucoes_adicionais}` : ''}
+
+JSON esperado:
+{
+  "tipo": "",
+  "conteudo": "texto completo da peça",
+  "estrutura": [{ "secao": "", "conteudo": "" }],
+  "fundamentacao_legal": [],
+  "pedidos": []
+}`;
+
+    const result = await this.model.generateContent(prompt);
+    const text = result.response.text();
+    const parsed = this.parseJson<PeticaoGerada>(text);
+    parsed.estimated_tokens = (result.response.usageMetadata?.promptTokenCount || 0) +
+                               (result.response.usageMetadata?.candidatesTokenCount || 0);
+    return parsed;
+  }
+
+  /* ──────────────────── ANÁLISE DE CONTRATO ─────────────────── */
+
+  async analisarContrato(params: {
+    officeId: string;
+    userId: string;
+    documento_texto: string;
+    tipo_contrato: string;
+  }) {
+    const prompt = `Analise o contrato de ${params.tipo_contrato} sob o direito brasileiro.
+Responda APENAS com JSON válido, sem markdown.
+
+CONTRATO:
+${params.documento_texto.substring(0, 12000)}
+
+JSON esperado:
+{
+  "resumo": "",
+  "clausulas_problematicas": [{ "clausula": "", "problema": "", "lei_violada": "", "risco": "alto|medio|baixo" }],
+  "clausulas_favoraveis": [],
+  "riscos_gerais": [],
+  "pontos_negociacao": [],
+  "conformidade_lgpd": { "ok": true, "problemas": [] },
+  "score_seguranca": 0,
+  "recomendacoes": []
+}`;
+
+    const result = await this.model.generateContent(prompt);
+    return this.parseJson(result.response.text());
+  }
+
+  /* ──────────────────── PESQUISA JURISPRUDÊNCIA ──────────────── */
+
+  async pesquisarJurisprudencia(params: {
+    tese: string;
+    tribunal?: string;
+    area?: string;
+    favoravel?: boolean;
+  }) {
+    const prompt = `Pesquise jurisprudência brasileira sobre: "${params.tese}"
+${params.tribunal ? `Tribunal: ${params.tribunal}` : 'STF, STJ e tribunais superiores'}
+${params.area ? `Área: ${params.area}` : ''}
+Responda APENAS com JSON válido, sem markdown.
+
+JSON esperado:
+{
+  "total_encontrado": 0,
+  "jurisprudencia": [{ "tribunal": "", "numero": "", "relator": "", "data_julgamento": "", "ementa": "", "favoravel": true, "relevancia": 0, "trechos_relevantes": [] }],
+  "tendencia": "favoravel|desfavoravel|divergente",
+  "analise_sumaria": ""
+}`;
+
+    const result = await this.model.generateContent(prompt);
+    return this.parseJson(result.response.text());
+  }
+
+  /* ──────────────────── RESUMO AUTOMÁTICO ───────────────────── */
+
+  async resumirAndamentos(processoId: string, para: 'cliente' | 'advogado') {
+    const processo = await this.prisma.process.findUnique({
+      where: { id: processoId },
+      include: { movements: { orderBy: { date: 'desc' }, take: 30 } },
+    });
+
+    if (!processo) throw new Error('Processo não encontrado');
+
+    const tom = para === 'cliente'
+      ? 'linguagem simples e acessível, sem jargões jurídicos'
+      : 'linguagem jurídica técnica e objetiva';
+
+    const prompt = `Resuma os andamentos em ${tom}. Responda APENAS com JSON válido, sem markdown.
+
+PROCESSO: ${processo.number}
+ANDAMENTOS: ${processo.movements.map(m => `${m.date}: ${m.description}`).join(' | ')}
+
+JSON esperado:
+{ "resumo_curto": "", "resumo_detalhado": "", "situacao_atual": "", "proximas_etapas": [], "pontos_atencao": [] }`;
+
+    const result = await this.model.generateContent(prompt);
+    return this.parseJson(result.response.text());
+  }
+
+  /* ──────────────────── HELPERS PRIVADOS ────────────────────── */
+
+  private async buildProcessoContext(processoId: string): Promise<string> {
+    const processo = await this.prisma.process.findUnique({
+      where: { id: processoId },
+      include: {
+        client: true,
+        movements: { orderBy: { date: 'desc' }, take: 15 },
+        tasks: { where: { status: 'pending' }, take: 10 },
+      },
+    });
+
+    if (!processo) return '';
+
+    return `CONTEXTO DO PROCESSO:
+Número: ${processo.number} | Área: ${processo.area || 'N/A'} | Status: ${processo.status}
+Tribunal: ${processo.court || 'N/A'} | Fase: ${processo.phase || 'N/A'}
+Valor: ${processo.value ? `R$ ${processo.value}` : 'N/A'} | Cliente: ${processo.client?.name || 'N/A'}
+Movimentações: ${processo.movements.map(m => `${m.date}: ${m.description}`).join(' | ')}
+Tarefas pendentes: ${processo.tasks.map(t => t.title).join(', ') || 'Nenhuma'}`;
+  }
+
+  private async getHistoricoConversa(conversaId: string, limit: number) {
+    const interacoes = await this.prisma.aiInteraction.findMany({
+      where: { sessionId: conversaId },
+      orderBy: { createdAt: 'asc' },
+      take: limit * 2,
+    });
+
+    // Formato do Gemini: { role: 'user'|'model', parts: [{ text }] }
+    return interacoes.flatMap(i => [
+      { role: 'user' as const, parts: [{ text: i.input }] },
+      { role: 'model' as const, parts: [{ text: i.output }] },
+    ]);
+  }
+
+  private async salvarInteracao(userId: string, officeId: string, data: any) {
+    return this.prisma.aiInteraction.create({
+      data: {
+        userId,
+        officeId,
+        type: 'chat',
+        input: data.pergunta,
+        output: data.resposta,
+        processId: data.processo_id,
+        sessionId: data.conversa_id,
+        tokens: data.tokens_usados,
+        model: 'gemini-1.5-flash',
+      },
+    });
+  }
+
+  private generateConversaId(): string {
+    return `conv_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
+  }
+}

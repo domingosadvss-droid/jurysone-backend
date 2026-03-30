@@ -1,0 +1,152 @@
+// ════════════════════════════════════════════════════════════════════
+// ATENDIMENTOS MODULE — PRISMA SCHEMA ADDITIONS
+// Add these models to your existing schema.prisma file
+// ════════════════════════════════════════════════════════════════════
+
+model Atendimento {
+  id                String   @id @default(cuid())
+  escritorioId      String
+  clienteId         String
+  menorId           String?
+  processoId        String?
+
+  status            String   @default("atendendo")
+  // Statuses: atendendo, aguardando_assinatura, assinado, iniciando, ativo, encerrado
+
+  area              String   // Area de atuação: Trabalhista, Empresarial, etc
+  tipoAcao          String
+  valorAcao         Float?
+
+  // Honorários
+  tipoHonorario     String   // fixo, percentual, fixo_sucesso
+  valorHonorario    Float?   // For fixed fee
+  percentualExito   Float?   // For percentage-based fee
+
+  // Payment
+  formaPagamento    String?  // Boleto, Pix, Cartão, etc
+  parcelamento      Boolean  @default(false)
+  numParcelas       Int?
+  valorParcela      Float?
+  vencimento1Parc   DateTime?
+
+  // Questionnaire data (JSON)
+  questionario      Json?
+
+  // Documents and Signing
+  envelopeId        String?
+  documentos        Json?    // Array of document IDs and metadata
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  // Relations
+  cliente           Cliente? @relation(fields: [clienteId], references: [id])
+  processo          Processo? @relation(fields: [processoId], references: [id])
+  menor             MenorRepresentado? @relation(fields: [menorId], references: [id])
+
+  @@index([escritorioId])
+  @@index([clienteId])
+  @@index([status])
+  @@index([area])
+}
+
+model MenorRepresentado {
+  id              String   @id @default(cuid())
+  clienteId       String
+
+  nome            String
+  dataNascimento  DateTime
+  cpf             String?
+  rg              String?
+
+  tipoResponsavel String   // pai, mae, tutor
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  cliente         Cliente? @relation(fields: [clienteId], references: [id])
+  atendimentos    Atendimento[]
+
+  @@index([clienteId])
+}
+
+model LancamentoFinanceiro {
+  id            String   @id @default(cuid())
+  escritorioId  String
+  clienteId     String
+  atendimentoId String?
+
+  descricao     String
+  valor         Float
+  tipo          String   // honorario, custas, despesas, etc
+  status        String   @default("a_efetuar")
+  // Statuses: a_efetuar, pendente, pago, cancelado
+
+  formaPagamento String?  // Boleto, Pix, Cartão, Transferência, etc
+  numParcelas   Int?
+  vencimento    DateTime?
+
+  paidAt        DateTime?
+  cancelledAt   DateTime?
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  cliente       Cliente? @relation(fields: [clienteId], references: [id])
+  atendimento   Atendimento? @relation(fields: [atendimentoId], references: [id])
+
+  @@index([escritorioId])
+  @@index([clienteId])
+  @@index([status])
+  @@index([atendimentoId])
+}
+
+model EsignEnvelope {
+  id            String   @id @default(cuid())
+  processoId    String
+
+  signatario    String   // Email of signer
+  status        String   @default("enviado")
+  // Statuses: enviado, visualizado, assinado, rejeitado, expirado
+
+  mensagem      String?
+  dataLimite    DateTime
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  assinadoEm    DateTime?
+
+  // Relations
+  processo      Processo @relation(fields: [processoId], references: [id])
+
+  @@index([processoId])
+  @@index([status])
+}
+
+// ════════════════════════════════════════════════════════════════════
+// EXISTING MODELS — RELATIONS TO UPDATE
+// ════════════════════════════════════════════════════════════════════
+
+// Update Cliente model to include:
+// menoresRepresentados  MenorRepresentado[]
+// atendimentos          Atendimento[]
+// lancamentos           LancamentoFinanceiro[]
+
+// Update Processo model to include:
+// atendimento           Atendimento?
+// envelope              EsignEnvelope?
+
+// ════════════════════════════════════════════════════════════════════
+// MIGRATION EXAMPLE
+// ════════════════════════════════════════════════════════════════════
+
+/*
+npx prisma migrate dev --name add-atendimentos
+
+This will:
+1. Create tables for Atendimento, MenorRepresentado, LancamentoFinanceiro, EsignEnvelope
+2. Add foreign key relationships
+3. Create indexes for performance
+*/

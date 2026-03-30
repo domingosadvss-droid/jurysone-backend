@@ -1,0 +1,250 @@
+// ════════════════════════════════════════════════════════════════
+// JURYSONE — PRISMA SCHEMA COMPLETO
+// Passos 5, 6 e 7 — Schema additions
+//
+// Novos modelos:
+//   StatusHistory       — Trilha de todas as mudanças de status
+//   PastaCliente        — Pasta digital do cliente (Passo 6)
+//   CrmRecord           — Registro no CRM (Passo 6)
+//   PaymentLink         — Link de pagamento integrado (Passo 7)
+//   Notificacao         — Notificações internas
+//   EsignTemplate       — Templates de envelope (reutilizáveis)
+//
+// Modelos atualizados (adicionar campos):
+//   EsignEnvelope       — +escritorioId, +externalId, +signatarios, +documentoHash, etc.
+//   LancamentoFinanceiro — +externalPaymentId, +paymentLinkUrl
+// ════════════════════════════════════════════════════════════════
+
+// ─── Existing models (extend with new fields) ────────────────────
+
+// UPDATE EsignEnvelope — add these fields to existing model:
+// escritorioId      String
+// externalId        String?           // ID no ClickSign / DocuSign
+// title             String?
+// tipo              String   @default("simples")   // simples | icp_brasil
+// documentoId       String?
+// documentoUrl      String?
+// documentoHash     String?           // SHA-256 do documento assinado
+// signatarios       Json?             // Array de signatários com tokens
+// enviadoEm         DateTime?
+// motivoCancelamento String?
+
+// UPDATE LancamentoFinanceiro — add these fields:
+// externalPaymentId  String?          // ID no Asaas / Stripe / Pagar.me
+// paymentLinkUrl     String?          // Link de boleto / PIX
+// escritorioId       String
+
+// ─── NEW MODEL: StatusHistory ────────────────────────────────────
+model StatusHistory {
+  id            String   @id @default(cuid())
+
+  entidade      String   // atendimento | processo | esign_envelope | lancamento_financeiro
+  entidadeId    String
+
+  statusAnterior String
+  statusNovo     String
+  origem         String   // webhook_esign | webhook_pagamento | sistema | usuario | cron
+
+  metadata      Json?    // Dados extras do evento (IP, provider ID, etc.)
+  timestamp     DateTime @default(now())
+
+  @@index([entidade, entidadeId])
+  @@index([timestamp])
+}
+
+// ─── NEW MODEL: PastaCliente ─────────────────────────────────────
+// Passo 6 — Pasta digital do cliente criada automaticamente
+model PastaCliente {
+  id            String   @id @default(cuid())
+  clienteId     String
+  atendimentoId String?
+
+  nome          String   // "Atendimento Trabalhista — 2024"
+  status        String   @default("ativa")   // ativa | arquivada
+
+  // Storage references (S3, GDrive, etc.)
+  storageUrl    String?
+  storageId     String?
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  cliente       Cliente?     @relation(fields: [clienteId], references: [id])
+  atendimento   Atendimento? @relation(fields: [atendimentoId], references: [id])
+
+  @@index([clienteId])
+  @@index([atendimentoId])
+}
+
+// ─── NEW MODEL: CrmRecord ────────────────────────────────────────
+// Passo 6 — Registro automático no CRM ao criar atendimento
+model CrmRecord {
+  id            String   @id @default(cuid())
+  escritorioId  String
+  clienteId     String
+  atendimentoId String?
+
+  tipo          String   // atendimento | lead | oportunidade | followup
+  titulo        String
+  descricao     String?
+  status        String   @default("ativo")   // ativo | ganho | perdido | inativo
+  etapa         String   @default("novo")    // novo | contato | proposta | negociacao | fechado
+
+  valorEstimado Float?
+  dataFechamento DateTime?
+
+  tags          String[]
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  cliente       Cliente?     @relation(fields: [clienteId], references: [id])
+  atendimento   Atendimento? @relation(fields: [atendimentoId], references: [id])
+
+  @@index([escritorioId])
+  @@index([clienteId])
+  @@index([status])
+  @@index([etapa])
+}
+
+// ─── NEW MODEL: PaymentLink ──────────────────────────────────────
+// Passo 7 — Link de pagamento gerado automaticamente
+model PaymentLink {
+  id                  String   @id @default(cuid())
+  escritorioId        String
+  lancamentoFinanceiroId String
+
+  // External payment provider
+  provider            String   // asaas | stripe | pagarme | mercadopago
+  externalId          String?  // ID no provider
+  url                 String?  // URL do boleto / PIX / cartão
+  pixCopiaECola       String?  // Código PIX para copiar
+
+  tipo                String   // boleto | pix | cartao | link
+  valor               Float
+  vencimento          DateTime?
+
+  status              String   @default("ativo")   // ativo | pago | expirado | cancelado
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  paidAt              DateTime?
+
+  // Relations
+  lancamento          LancamentoFinanceiro @relation(fields: [lancamentoFinanceiroId], references: [id])
+
+  @@index([escritorioId])
+  @@index([lancamentoFinanceiroId])
+  @@index([externalId])
+  @@index([status])
+}
+
+// ─── NEW MODEL: Notificacao ──────────────────────────────────────
+// Passo 6 — Notificações internas do sistema
+model Notificacao {
+  id            String   @id @default(cuid())
+  escritorioId  String
+
+  titulo        String
+  mensagem      String
+  tipo          String   @default("info")   // success | warning | error | info
+
+  atendimentoId String?
+  processoId    String?
+
+  lida          Boolean  @default(false)
+  lidaEm        DateTime?
+
+  createdAt     DateTime @default(now())
+
+  // Relations
+  atendimento   Atendimento? @relation(fields: [atendimentoId], references: [id])
+
+  @@index([escritorioId])
+  @@index([lida])
+  @@index([createdAt])
+}
+
+// ─── NEW MODEL: EsignTemplate ────────────────────────────────────
+// Templates reutilizáveis de envelope
+model EsignTemplate {
+  id            String   @id @default(cuid())
+  escritorioId  String
+
+  nome          String
+  descricao     String?
+  tipo          String   @default("simples")
+  configuracao  Json?    // Default signatários, mensagem, etc.
+
+  ativo         Boolean  @default(true)
+  usosCount     Int      @default(0)
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([escritorioId])
+}
+
+// ════════════════════════════════════════════════════════════════
+// RELATIONS TO ADD IN EXISTING MODELS
+// ════════════════════════════════════════════════════════════════
+
+// In LancamentoFinanceiro, add:
+// paymentLinks  PaymentLink[]
+
+// In Atendimento, add:
+// pasta         PastaCliente?
+// crmRecord     CrmRecord?
+// notificacoes  Notificacao[]
+
+// In Cliente, add:
+// pastas        PastaCliente[]
+// crmRecords    CrmRecord[]
+
+// ════════════════════════════════════════════════════════════════
+// MIGRATION COMMANDS
+// ════════════════════════════════════════════════════════════════
+
+// 1. Copy new models to schema.prisma
+// 2. Run: npx prisma migrate dev --name add-status-flow-crm-payment
+// 3. Run: npx prisma generate
+
+// ════════════════════════════════════════════════════════════════
+// STATUS FLOW TABLE (for reference)
+// ════════════════════════════════════════════════════════════════
+
+/*
+ATENDIMENTO STATUS FLOW:
+  novo
+    ↓ (ao criar)
+  atendendo
+    ↓ (ao gerar envelope)
+  aguardando_assinatura
+    ↓ (webhook: signed)
+  assinado
+    ↓ (auto, 2s em demo / job em produção)
+  iniciando
+    ↓ (auto, 3s em demo / job em produção)
+  ativo
+    ↓ (ao concluir o caso)
+  encerrado
+
+PROCESSO STATUS FLOW:
+  atendendo → aguardando_assinatura → contrato_assinado → em_andamento → finalizado
+
+LANCAMENTO FINANCEIRO STATUS FLOW:
+  a_efetuar
+    ↓ (ao assinar documentos)
+  cadastrado
+    ↓ (webhook: payment confirmed)          ↓ (cron: vencido)
+  pago                                    pago_em_atraso
+
+  (cancelado em qualquer etapa antes do pagamento)
+
+ESIGN ENVELOPE STATUS FLOW:
+  draft → enviado → visualizado → assinado
+       → rejeitado
+       → expirado
+*/
