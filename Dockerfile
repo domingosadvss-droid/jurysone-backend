@@ -3,7 +3,7 @@ FROM node:20-alpine AS builder
 RUN apk add --no-cache python3 make g++ libc6-compat vips-dev
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci
+RUN npm ci --ignore-scripts
 COPY . .
 RUN npx prisma generate --schema src/database/schema.prisma
 RUN npm run build
