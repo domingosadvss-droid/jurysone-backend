@@ -18,8 +18,20 @@ async function bootstrap() {
 
   // ── Segurança ────────────────────────────────────────────────────────────
   app.use(helmet());
+  const allowedOrigins = [
+    'http://localhost:3000',
+    'https://jurysone.com.br',
+    'https://www.jurysone.com.br',
+    ...(process.env.FRONTEND_URL ? [process.env.FRONTEND_URL] : []),
+  ];
   app.enableCors({
-    origin: process.env.FRONTEND_URL ?? 'http://localhost:3000',
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
   });
 
