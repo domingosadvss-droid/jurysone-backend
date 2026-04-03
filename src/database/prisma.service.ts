@@ -13,48 +13,32 @@ import { PrismaClient } from '@prisma/client';
  * Builds a safe DATABASE_URL from individual env vars when DB_PASSWORD is set.
  * This avoids Render UI URL-decoding issues with special chars (%, ?) in passwords.
  */
-function buildDatasourceUrl(): string | undefined {
+/**
+ * If DB_PASSWORD is set, build DATABASE_URL and DIRECT_URL programmatically
+ * using encodeURIComponent so special chars (%, ?) are properly escaped.
+ * Must run before PrismaClient is instantiated since schema uses env("DATABASE_URL").
+ */
+function patchDatabaseEnvVars(): void {
   const dbPassword = process.env.DB_PASSWORD;
-  if (dbPassword) {
-    const user     = process.env.DB_USER     || 'postgres.mqzovxyexgaovqauxqrr';
-    const host     = process.env.DB_HOST     || 'aws-1-sa-east-1.pooler.supabase.com';
-    const port     = process.env.DB_PORT     || '6543';
-    const database = process.env.DB_NAME     || 'postgres';
-    const encoded  = encodeURIComponent(dbPassword);
-    return `postgresql://${user}:${encoded}@${host}:${port}/${database}?pgbouncer=true`;
-  }
-  return process.env.DATABASE_URL;
+  if (!dbPassword) return;
+
+  const user    = process.env.DB_USER  || 'postgres.mqzovxyexgaovqauxqrr';
+  const host    = process.env.DB_HOST  || 'aws-1-sa-east-1.pooler.supabase.com';
+  const portTx  = process.env.DB_PORT  || '6543';
+  const portDir = process.env.DB_PORT_DIRECT || '5432';
+  const db      = process.env.DB_NAME  || 'postgres';
+  const enc     = encodeURIComponent(dbPassword);
+
+  process.env.DATABASE_URL = `postgresql://${user}:${enc}@${host}:${portTx}/${db}?pgbouncer=true`;
+  process.env.DIRECT_URL   = `postgresql://${user}:${enc}@${host}:${portDir}/${db}`;
 }
 
-function buildDirectUrl(): string | undefined {
-  const dbPassword = process.env.DB_PASSWORD;
-  if (dbPassword) {
-    const user     = process.env.DB_USER     || 'postgres.mqzovxyexgaovqauxqrr';
-    const host     = process.env.DB_HOST_DIRECT || 'aws-1-sa-east-1.pooler.supabase.com';
-    const port     = process.env.DB_PORT_DIRECT || '5432';
-    const database = process.env.DB_NAME     || 'postgres';
-    const encoded  = encodeURIComponent(dbPassword);
-    return `postgresql://${user}:${encoded}@${host}:${port}/${database}`;
-  }
-  return process.env.DIRECT_URL;
-}
+patchDatabaseEnvVars();
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
   constructor() {
-    const url       = buildDatasourceUrl();
-    const directUrl = buildDirectUrl();
-    super({
-      datasources: {
-        db: {
-          url: url || '',
-        },
-      },
-    });
-    // Store directUrl for migrations (used via CLI, not at runtime)
-    if (directUrl) {
-      process.env.DIRECT_URL = directUrl;
-    }
+    super();
   }
 
   async onModuleInit() {
