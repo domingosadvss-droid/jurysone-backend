@@ -40,5 +40,8 @@ coverage/
 # Prisma
 prisma/migrations/.gitkeep
 
+# Secrets locais (NUNCA commitar)
+secrets.env
+
 # Railway (o .env.railway é referência, pode commitar)
 # .env.railway  ← pode commitar pois não tem valores reais

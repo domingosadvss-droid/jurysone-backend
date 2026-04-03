@@ -155,8 +155,12 @@ export class EsignService {
       },
     });
 
-    // TODO: Send emails to signatários
-    // await this.emailService.sendSignatureRequest(signingLinks, envelope.mensagem);
+    // Enviar e-mails para signatários via SMTP configurado
+    for (const sl of signingLinks) {
+      await this.enviarEmailAssinatura(sl, (envelope as any).titulo ?? 'Documento').catch(err =>
+        this.logger.warn(`[E-sign] Email falhou para ${sl.email}: ${err.message}`),
+      );
+    }
 
     this.logger.log(`Envelope ${id} enviado para ${signatarios.length} signatário(s)`);
 
@@ -188,7 +192,18 @@ export class EsignService {
       ? signatarios.filter((s: any) => signatarioIds.includes(s.id) && s.status === 'pending')
       : signatarios.filter((s: any) => s.status === 'pending');
 
-    // TODO: Resend emails
+    const envelope_titulo = (envelope as any).titulo ?? 'Documento';
+    for (const s of pending) {
+      const sl = {
+        nome: s.nome,
+        email: s.email,
+        link: `${process.env.APP_URL || 'https://jurysone.com'}/esign/assinar/${s.token}`,
+        token: s.token,
+      };
+      await this.enviarEmailAssinatura(sl, envelope_titulo).catch(err =>
+        this.logger.warn(`[E-sign] Reenvio falhou para ${s.email}: ${err.message}`),
+      );
+    }
     this.logger.log(`Reenviando para ${pending.length} signatário(s)`);
 
     return {
@@ -429,5 +444,55 @@ export class EsignService {
       pendentes,
       taxaConclusao,
     };
+  }
+
+  // ─── E-mail helper ────────────────────────────────────────────────────────
+
+  private async enviarEmailAssinatura(
+    signatario: { nome: string; email: string; link: string },
+    tituloDocumento: string,
+  ): Promise<void> {
+    const smtpHost = process.env.SMTP_HOST;
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
+
+    if (!smtpHost || !smtpUser || !smtpPass) {
+      this.logger.debug('[E-sign] SMTP não configurado — e-mail ignorado');
+      return;
+    }
+
+    let nodemailer: any;
+    try { nodemailer = require('nodemailer'); }
+    catch { this.logger.warn('[E-sign] nodemailer não instalado'); return; }
+
+    const transporter = nodemailer.createTransport({
+      host: smtpHost,
+      port: Number(process.env.SMTP_PORT ?? 587),
+      secure: process.env.SMTP_SECURE === 'true',
+      auth: { user: smtpUser, pass: smtpPass },
+    });
+
+    const corpo = `
+Olá, ${signatario.nome}!
+
+Você recebeu um documento para assinar: "${tituloDocumento}"
+
+Clique no link abaixo para acessar e assinar o documento:
+${signatario.link}
+
+Este link é pessoal e intransferível.
+
+— Enviado automaticamente pelo JurysOne
+    `.trim();
+
+    await transporter.sendMail({
+      from: process.env.SMTP_FROM ?? smtpUser,
+      to: `"${signatario.nome}" <${signatario.email}>`,
+      subject: `[JurysOne] Documento para assinar: ${tituloDocumento}`,
+      text: corpo,
+      html: `<pre style="font-family:sans-serif;white-space:pre-wrap;max-width:600px">${corpo}</pre>`,
+    });
+
+    this.logger.debug(`[E-sign] E-mail de assinatura enviado para ${signatario.email}`);
   }
 }
