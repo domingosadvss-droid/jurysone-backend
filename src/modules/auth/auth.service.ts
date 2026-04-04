@@ -16,8 +16,8 @@ interface RegisterDto {
 }
 
 interface TokenResponse {
-  accessToken: string;
-  refreshToken: string;
+  access_token: string;
+  refresh_token: string;
 }
 
 @Injectable()
@@ -45,7 +45,7 @@ export class AuthService {
     const tokens = this.generateTokens(user.id, user.email, user.roles as any);
 
     // Store refresh token hash in DB
-    const hashedRefreshToken = await argon2.hash(tokens.refreshToken);
+    const hashedRefreshToken = await argon2.hash(tokens.refresh_token);
     await this.prisma.usuario.update({
       where: { id: user.id },
       data: { refreshTokenHash: hashedRefreshToken },
@@ -98,7 +98,7 @@ export class AuthService {
     const tokens = this.generateTokens(user.id, user.email, user.roles as any);
 
     // Store refresh token hash in DB
-    const hashedRefreshToken = await argon2.hash(tokens.refreshToken);
+    const hashedRefreshToken = await argon2.hash(tokens.refresh_token);
     await this.prisma.usuario.update({
       where: { id: user.id },
       data: { refreshTokenHash: hashedRefreshToken },
@@ -142,7 +142,7 @@ export class AuthService {
       const tokens = this.generateTokens(user.id, user.email, user.roles as any);
 
       // Update stored refresh token
-      const hashedRefreshToken = await argon2.hash(tokens.refreshToken);
+      const hashedRefreshToken = await argon2.hash(tokens.refresh_token);
       await this.prisma.usuario.update({
         where: { id: user.id },
         data: { refreshTokenHash: hashedRefreshToken },
@@ -167,7 +167,7 @@ export class AuthService {
     email: string,
     roles: string[],
   ): TokenResponse {
-    const accessToken = this.jwtService.sign(
+    const access_token = this.jwtService.sign(
       {
         sub: userId,
         email,
@@ -179,7 +179,7 @@ export class AuthService {
       },
     );
 
-    const refreshToken = this.jwtService.sign(
+    const refresh_token = this.jwtService.sign(
       {
         sub: userId,
         email,
@@ -191,8 +191,8 @@ export class AuthService {
     );
 
     return {
-      accessToken,
-      refreshToken,
+      access_token,
+      refresh_token,
     };
   }
 }
