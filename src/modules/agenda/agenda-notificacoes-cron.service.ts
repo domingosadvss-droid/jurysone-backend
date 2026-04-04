@@ -2,11 +2,11 @@
  * JURYSONE — Agenda Notificações Cron Service (B-009)
  *
  * Executa a cada 5 minutos e despacha notificações de eventos
- * cuja janela de alerta (notifyAt) já chegou e ainda não foram enviadas.
+ * cuja janela de alerta (notificarEm) já chegou e ainda não foram enviadas.
  *
  * Fluxo:
- *   1. Busca eventos com notifyAt <= agora AND notificacaoEnviada = false
- *   2. Para cada evento dispara: e-mail (se notifyEmail) e WhatsApp (se notifyWhatsapp)
+ *   1. Busca eventos com notificarEm <= agora AND notificacaoEnviada = false
+ *   2. Para cada evento dispara: e-mail (se notificarEmail) e WhatsApp (se notificarWhatsapp)
  *   3. Marca notificacaoEnviada = true para não reenviar
  *
  * Dependências já no package.json:
@@ -33,20 +33,20 @@ export class AgendaNotificacoesCronService {
     const agora = new Date();
 
     // ── 1. Buscar eventos que precisam de notificação ──────────────────────
-    const eventos = await this.prisma.calendarEvent.findMany({
+    const eventos = await this.prisma.evento.findMany({
       where: {
         notificacaoEnviada: false,
-        notifyAt: { lte: agora },
+        notificarEm: { lte: agora },
         status: { not: 'CANCELADO' },
       },
       include: {
-        createdBy: { select: { id: true, name: true, email: true, phone: true } },
-        responsibles: {
-          include: { user: { select: { id: true, name: true, email: true, phone: true } } },
+        criadoPor: { select: { id: true, nome: true, email: true, telefone: true } },
+        responsaveis: {
+          include: { usuario: { select: { id: true, nome: true, email: true, telefone: true } } },
         },
-        process: { select: { number: true, tribunal: true } },
-        client: { select: { name: true } },
-        office: { select: { name: true } },
+        processo: { select: { numero: true, tribunal: true } },
+        cliente: { select: { nome: true } },
+        escritorio: { select: { nome: true } },
       },
       take: 200, // limite de segurança por ciclo
     });
@@ -61,39 +61,39 @@ export class AgendaNotificacoesCronService {
     for (const ev of eventos) {
       try {
         // Coletar destinatários únicos (criador + responsáveis)
-        const destinatariosMap = new Map<string, { name: string; email: string; phone?: string }>();
-        destinatariosMap.set(ev.createdBy.id, {
-          name: ev.createdBy.name,
-          email: ev.createdBy.email,
-          phone: ev.createdBy.phone ?? undefined,
+        const destinatariosMap = new Map<string, { nome: string; email: string; telefone?: string }>();
+        destinatariosMap.set(ev.criadoPor.id, {
+          nome: ev.criadoPor.nome,
+          email: ev.criadoPor.email,
+          telefone: ev.criadoPor.telefone ?? undefined,
         });
-        for (const resp of ev.responsibles) {
-          destinatariosMap.set(resp.user.id, {
-            name: resp.user.name,
-            email: resp.user.email,
-            phone: resp.user.phone ?? undefined,
+        for (const resp of ev.responsaveis) {
+          destinatariosMap.set(resp.usuario.id, {
+            nome: resp.usuario.nome,
+            email: resp.usuario.email,
+            telefone: resp.usuario.telefone ?? undefined,
           });
         }
 
         // Texto base da notificação
-        const dataFormatada = this.formatarData(ev.date);
-        const horaFormatada = ev.isAllDay ? 'Dia inteiro' : this.formatarHora(ev.date);
-        const processoInfo = ev.process
-          ? ` | Proc. ${ev.process.number} (${ev.process.tribunal})`
+        const dataFormatada = this.formatarData(ev.data);
+        const horaFormatada = ev.diaInteiro ? 'Dia inteiro' : this.formatarHora(ev.data);
+        const processoInfo = ev.processo
+          ? ` | Proc. ${ev.processo.numero} (${ev.processo.tribunal})`
           : '';
-        const clienteInfo = ev.client ? ` | Cliente: ${ev.client.name}` : '';
-        const localInfo = ev.location ? ` | Local: ${ev.location}` : '';
+        const clienteInfo = ev.cliente ? ` | Cliente: ${ev.cliente.nome}` : '';
+        const localInfo = ev.local ? ` | Local: ${ev.local}` : '';
 
-        const assunto = `[JurysOne] Lembrete: ${ev.title}`;
+        const assunto = `[JurysOne] Lembrete: ${ev.titulo}`;
         const corpo = [
-          `Lembrete de evento — ${ev.office.name}`,
+          `Lembrete de evento — ${ev.escritorio.nome}`,
           ``,
-          `📌 ${ev.title}`,
+          `📌 ${ev.titulo}`,
           `📅 ${dataFormatada} às ${horaFormatada}`,
           processoInfo ? `⚖️  ${processoInfo.slice(3)}` : '',
           clienteInfo ? `👤 ${clienteInfo.slice(3)}` : '',
           localInfo ? `📍 ${localInfo.slice(3)}` : '',
-          ev.description ? `\n📝 ${ev.description}` : '',
+          ev.descricao ? `\n📝 ${ev.descricao}` : '',
           ``,
           `— Enviado automaticamente pelo JurysOne`,
         ]
@@ -102,15 +102,15 @@ export class AgendaNotificacoesCronService {
 
         for (const dest of destinatariosMap.values()) {
           // ── E-mail ───────────────────────────────────────────────────
-          if (ev.notifyEmail && dest.email) {
-            await this.enviarEmail(dest.email, dest.name, assunto, corpo).catch(err =>
+          if (ev.notificarEmail && dest.email) {
+            await this.enviarEmail(dest.email, dest.nome, assunto, corpo).catch(err =>
               this.logger.warn(`[B-009] Email falhou para ${dest.email}: ${err.message}`),
             );
           }
 
           // ── WhatsApp ─────────────────────────────────────────────────
-          if (ev.notifyWhatsapp && dest.phone) {
-            const telefone = this.normalizarTelefone(dest.phone);
+          if (ev.notificarWhatsapp && dest.telefone) {
+            const telefone = this.normalizarTelefone(dest.telefone);
             if (telefone) {
               await this.enviarWhatsapp(telefone, corpo).catch(err =>
                 this.logger.warn(`[B-009] WhatsApp falhou para ${telefone}: ${err.message}`),
@@ -120,7 +120,7 @@ export class AgendaNotificacoesCronService {
         }
 
         ids.push(ev.id);
-        this.logger.debug(`[B-009] Notificado: "${ev.title}" (${ev.id})`);
+        this.logger.debug(`[B-009] Notificado: "${ev.titulo}" (${ev.id})`);
       } catch (err: any) {
         this.logger.error(`[B-009] Erro ao processar evento ${ev.id}: ${err.message}`);
         // Não adiciona a ids[] → será tentado no próximo ciclo
@@ -129,7 +129,7 @@ export class AgendaNotificacoesCronService {
 
     // ── 3. Marcar como enviado (batch) ────────────────────────────────────
     if (ids.length > 0) {
-      await this.prisma.calendarEvent.updateMany({
+      await this.prisma.evento.updateMany({
         where: { id: { in: ids } },
         data: { notificacaoEnviada: true },
       });
