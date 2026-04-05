@@ -10,6 +10,8 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe, Logger } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
+import * as express from 'express';
+import * as path from 'path';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -44,6 +46,10 @@ async function bootstrap() {
       transform: true,
     }),
   );
+
+  // ── Servir Frontend (HTML estático) ──────────────────────────────────────
+  const publicPath = path.join(__dirname, '..', 'public');
+  app.use(express.static(publicPath));
 
   // ── Prefixo global da API ────────────────────────────────────────────────
   app.setGlobalPrefix('api');
