@@ -29,7 +29,6 @@ import { NotificationsModule } from './modules/notifications/notifications.modul
 import { ParceirosModule } from './modules/parceiros/parceiros.module';
 import { PortalModule } from './modules/portal/portal.module';
 import { PrazosModule } from './modules/prazos/prazos.module';
-import { ProcessesModule } from './modules/processes/processes.module';
 import { ProcessosModule } from './modules/processos/processos.module';
 import { RelatoriosModule } from './modules/relatorios/relatorios.module';
 import { StatusFlowModule } from './modules/status-flow/status-flow.module';
@@ -73,7 +72,6 @@ import { WhatsappModule } from './modules/whatsapp/whatsapp.module';
     ParceirosModule,
     PortalModule,
     PrazosModule,
-    ProcessesModule,
     ProcessosModule,
     RelatoriosModule,
     StatusFlowModule,

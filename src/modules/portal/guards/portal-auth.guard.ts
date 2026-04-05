@@ -19,11 +19,26 @@ export class PortalAuthGuard implements CanActivate {
       throw new UnauthorizedException('Invalid auth scheme');
     }
 
+    // JWT_PORTAL_SECRET deve estar definido — não usar fallback para JWT_SECRET
+    const secret = process.env.JWT_PORTAL_SECRET;
+    if (!secret) {
+      throw new UnauthorizedException('Portal authentication is not configured. Please contact support.');
+    }
+
     try {
-      const decoded = this.jwtService.verify(token, {
-        secret: process.env.JWT_PORTAL_SECRET || process.env.JWT_SECRET,
-      });
-      request.user = decoded;
+      const decoded = this.jwtService.verify(token, { secret });
+
+      // Validar que o usuário está ativo
+      if (!decoded.ativo) {
+        throw new UnauthorizedException('User account is inactive');
+      }
+
+      // Validar que é um token de cliente (não advogado)
+      if (decoded.userType !== 'CLIENT') {
+        throw new UnauthorizedException('Invalid token type for portal access');
+      }
+
+      request.client = decoded;
       return true;
     } catch (error) {
       throw new UnauthorizedException('Invalid token');
