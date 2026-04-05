@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.\\(js|ts|json\\)$\")",
+      "Bash(node -e \"console.log\\(require\\(''crypto''\\).randomBytes\\(32\\).toString\\(''hex''\\)\\)\")",
+      "Bash(powershell -Command \":*)",
+      "Bash(while IFS= read -r line)",
+      "Bash(do echo:*)"
+    ]
+  }
+}

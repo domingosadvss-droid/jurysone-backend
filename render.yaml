@@ -1,0 +1,29 @@
+services:
+  # ─── Backend NestJS ────────────────────────────────────────────
+  - type: web
+    name: jurysone-backend
+    env: docker
+    region: oregon
+    rootDir: jurysone-backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    plan: free
+
+    # Render injeta PORT automaticamente (normalmente 10000)
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: REDIS_URL
+        fromService:
+          name: jurysone-redis
+          type: redis
+          property: connectionString
+      # ⚠️  Demais variáveis configure no Dashboard do Render
+      # (veja RENDER_ENV_VARS.md para lista completa de valores)
+
+  # ─── Redis (free tier do Render) ──────────────────────────────
+  - type: redis
+    name: jurysone-redis
+    region: oregon
+    plan: free
+    maxmemoryPolicy: allkeys-lru

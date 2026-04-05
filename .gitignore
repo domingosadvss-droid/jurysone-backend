@@ -1,0 +1,47 @@
+# ─── Dependências ────────────────────────────────────────────
+node_modules/
+.next/
+dist/
+build/
+
+# ─── Variáveis de ambiente (NUNCA versionar com chaves reais) ─
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+env/.env.*
+
+# Proxy local — arquivo com chaves reais
+proxy/.env
+
+# Dashboard — arquivo com chaves reais
+app-preview/config.js
+
+# Webhook — variáveis locais
+webhook/.env
+
+# ─── Banco de dados ───────────────────────────────────────────
+*.sqlite
+*.sqlite3
+
+# ─── Logs ─────────────────────────────────────────────────────
+*.log
+logs/
+npm-debug.log*
+
+# ─── Sistema operacional ──────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ─── IDE / Editor ─────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ─── Prisma ───────────────────────────────────────────────────
+prisma/migrations/dev.db
+
+# ─── Docker ───────────────────────────────────────────────────
+docker-compose.override.yml
