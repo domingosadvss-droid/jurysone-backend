@@ -45,3 +45,4 @@ prisma/migrations/dev.db
 
 # ─── Docker ───────────────────────────────────────────────────
 docker-compose.override.yml
+RENDER_ENV_VARS.md
