@@ -85,7 +85,12 @@ export class ProcessosService {
     };
   }
 
-  async findById(id: string): Promise<any> {
+  async findById(id: string, officeId?: string): Promise<any> {
+    const where: any = { id };
+    if (officeId) {
+      where.escritorioId = officeId;
+    }
+
     return this.prisma.processo.findUnique({
       where: { id },
       include: {
@@ -143,9 +148,13 @@ export class ProcessosService {
     });
   }
 
-  async remove(id: string, officeId?: string): Promise<any> {
+  async remove(id: string, officeId: string): Promise<any> {
+    if (!officeId) {
+      throw new BadRequestException('officeId é obrigatório');
+    }
+
     return this.prisma.processo.update({
-      where: { id },
+      where: { id, escritorioId: officeId },
       data: {
         deletedAt: new Date(),
       },
@@ -157,7 +166,7 @@ export class ProcessosService {
   }
 
   findOne(id: string, officeId: string) {
-    return this.findById(id);
+    return this.findById(id, officeId);
   }
 
   getAndamentos(id: string, query: any, officeId: string) {

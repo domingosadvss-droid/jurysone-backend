@@ -3,8 +3,10 @@ services:
   - type: web
     name: jurysone-backend
     env: docker
+    region: oregon
     dockerfilePath: ./Dockerfile
     healthCheckPath: /api/health
+    plan: free
 
     # Render injeta PORT automaticamente (normalmente 10000)
     # O Dockerfile e main.ts já leem process.env.PORT — está correto.
@@ -12,6 +14,11 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: REDIS_URL
+        fromService:
+          name: jurysone-redis
+          type: redis
+          property: connectionString
 
       # As demais variáveis configure manualmente no Dashboard do Render:
       # Database, JWT, Gemini, Supabase, etc.
@@ -20,5 +27,6 @@ services:
   # ─── Redis (free tier do Render) ──────────────────────────────
   - type: redis
     name: jurysone-redis
+    region: oregon
     plan: free
     maxmemoryPolicy: allkeys-lru

@@ -126,10 +126,20 @@ export class AuthService {
         where: { id: decoded.sub },
       });
 
-      if (!user || !user.refreshTokenHash) {
+      if (!user) {
+        throw new UnauthorizedException('Usuário não encontrado');
+      }
+
+      // Validar que o usuário está ativo
+      if (!user.ativo) {
+        throw new UnauthorizedException('Conta de usuário inativa');
+      }
+
+      if (!user.refreshTokenHash) {
         throw new UnauthorizedException('Token de refresh inválido');
       }
 
+      // Verificar que o token recebido foi hasheado corretamente
       const refreshTokenMatch = await argon2.verify(
         user.refreshTokenHash,
         token,
@@ -141,7 +151,7 @@ export class AuthService {
 
       const tokens = this.generateTokens(user.id, user.email, user.roles as any);
 
-      // Update stored refresh token
+      // Update stored refresh token with token rotation
       const hashedRefreshToken = await argon2.hash(tokens.refresh_token);
       await this.prisma.usuario.update({
         where: { id: user.id },
