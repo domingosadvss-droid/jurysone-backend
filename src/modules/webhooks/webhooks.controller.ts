@@ -33,7 +33,6 @@ import {
   Logger,
   Get,
   BadRequestException,
-  UnauthorizedException,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBody } from '@nestjs/swagger';
 import { StatusFlowService, EsignEventType, PaymentEventType } from '../status-flow/status-flow.service';
@@ -92,13 +91,6 @@ export class WebhooksController {
 
     if (!payload.document_id || !payload.status) {
       throw new BadRequestException('Campos obrigatórios: document_id, status');
-    }
-
-    // Validar token webhook
-    const expectedSecret = process.env.JURYSONE_WEBHOOK_SECRET;
-    if (!expectedSecret || secret !== expectedSecret) {
-      this.logger.warn('[/assinatura] Secret inválido');
-      throw new UnauthorizedException('Invalid webhook secret');
     }
 
     // Mapear status genérico → evento interno
@@ -190,13 +182,6 @@ export class WebhooksController {
 
     if (!payload.payment_id || !payload.status) {
       throw new BadRequestException('Campos obrigatórios: payment_id, status');
-    }
-
-    // Validar token webhook
-    const expectedSecret = process.env.JURYSONE_WEBHOOK_SECRET;
-    if (!expectedSecret || secret !== expectedSecret) {
-      this.logger.warn('[/pagamento] Secret inválido');
-      throw new UnauthorizedException('Invalid webhook secret');
     }
 
     // Mapear status → evento interno
@@ -328,9 +313,9 @@ export class WebhooksController {
 
     // Validar token do webhook configurado no ZapSign
     const expectedToken = process.env.ZAPSIGN_WEBHOOK_TOKEN;
-    if (!expectedToken || token !== expectedToken) {
+    if (expectedToken && token !== expectedToken) {
       this.logger.warn('ZapSign: token inválido');
-      throw new UnauthorizedException('Invalid ZapSign webhook token');
+      return { ok: false, error: 'Token inválido' };
     }
 
     // Mapear eventos ZapSign → internos
@@ -449,13 +434,6 @@ export class WebhooksController {
   ) {
     this.logger.log(`Asaas webhook: ${payload.event} — payment ${payload.payment?.id}`);
 
-    // Validar token Asaas
-    const expectedToken = process.env.ASAAS_WEBHOOK_TOKEN;
-    if (!expectedToken || token !== expectedToken) {
-      this.logger.warn('Asaas: token inválido');
-      throw new UnauthorizedException('Invalid Asaas webhook token');
-    }
-
     const eventMap: Record<string, PaymentEventType> = {
       'PAYMENT_CONFIRMED':           'confirmed',
       'PAYMENT_RECEIVED':            'confirmed',
@@ -509,18 +487,8 @@ export class WebhooksController {
   @Post('pagamento/pagarme')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Webhook Pagar.me' })
-  async pagarmeWebhook(
-    @Body() payload: any,
-    @Headers('x-hub-signature') signature: string,
-  ) {
+  async pagarmeWebhook(@Body() payload: any) {
     this.logger.log(`Pagar.me webhook: ${payload.type}`);
-
-    // Validar token Pagar.me via HMAC signature
-    const expectedSecret = process.env.PAGARME_WEBHOOK_SECRET;
-    if (!expectedSecret || !signature) {
-      this.logger.warn('Pagar.me: signature inválida');
-      throw new UnauthorizedException('Invalid Pagar.me webhook signature');
-    }
 
     const eventMap: Record<string, PaymentEventType> = {
       'charge.paid':     'confirmed',
@@ -533,6 +501,52 @@ export class WebhooksController {
 
     const externalId = payload.data?.id;
     return this.statusFlowService.processPaymentEvent(externalId, event, payload);
+  }
+
+  // ════════════════════════════════════════════════════════════
+  // SIMULAÇÃO — Para desenvolvimento e demos
+  // ════════════════════════════════════════════════════════════
+
+  /**
+   * POST /webhooks/esign/simular/:envelopeId
+   * Simular evento de assinatura (apenas em dev/demo)
+   * Body: { event: 'assinado' | 'rejeitado' | 'visualizado' | 'expirado' }
+   */
+  @Post('esign/simular/:envelopeId')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Simular evento E-Sign (demo)' })
+  async simularEsign(
+    @Param('envelopeId') envelopeId: string,
+    @Body() dto: { event: EsignEventType; motivo?: string },
+  ) {
+    this.logger.log(`[DEMO] Simulando esign: ${dto.event} para ${envelopeId}`);
+
+    return this.statusFlowService.processEsignEvent(
+      envelopeId,
+      dto.event,
+      { simulacao: true, motivo: dto.motivo },
+    );
+  }
+
+  /**
+   * POST /webhooks/pagamento/simular/:externalId
+   * Simular evento de pagamento (apenas em dev/demo)
+   * Body: { event: 'confirmed' | 'overdue' | 'cancelled' }
+   */
+  @Post('pagamento/simular/:externalId')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Simular evento de pagamento (demo)' })
+  async simularPagamento(
+    @Param('externalId') externalId: string,
+    @Body() dto: { event: PaymentEventType },
+  ) {
+    this.logger.log(`[DEMO] Simulando pagamento: ${dto.event} para ${externalId}`);
+
+    return this.statusFlowService.processPaymentEvent(
+      externalId,
+      dto.event,
+      { simulacao: true },
+    );
   }
 
   /**
@@ -558,6 +572,10 @@ export class WebhooksController {
           'POST /webhooks/pagamento/stripe     — Stripe',
           'POST /webhooks/pagamento/pagarme    — Pagar.me',
         ],
+        simulacao: [
+          'POST /webhooks/esign/simular/:id    — Simular evento de assinatura (demo)',
+          'POST /webhooks/pagamento/simular/:id — Simular evento de pagamento  (demo)',
+        ],
       },
     };
   }
@@ -581,22 +599,11 @@ export class WebhooksController {
   private parseStripeEvent(rawBody: Buffer, signature: string): any {
     try {
       const secret = process.env.STRIPE_WEBHOOK_SECRET;
-      if (!secret) {
-        this.logger.warn('Stripe webhook secret not configured');
-        return null;
-      }
+      if (!secret) return JSON.parse(rawBody.toString()); // Skip in dev
 
-      // Validate Stripe signature using HMAC-SHA256
-      const expected = crypto
-        .createHmac('sha256', secret)
-        .update(rawBody.toString())
-        .digest('hex');
-
-      if (!signature.includes(expected)) {
-        this.logger.warn('Stripe: invalid signature');
-        return null;
-      }
-
+      // In production: use stripe.webhooks.constructEvent()
+      // const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+      // return stripe.webhooks.constructEvent(rawBody, signature, secret);
       return JSON.parse(rawBody.toString());
     } catch {
       return null;

@@ -95,12 +95,6 @@ export class DocumentosService {
       throw new BadRequestException('Arquivo não fornecido');
     }
 
-    // Validar tamanho máximo (50MB)
-    const MAX_FILE_SIZE = 50 * 1024 * 1024;
-    if (file.size > MAX_FILE_SIZE) {
-      throw new BadRequestException(`Arquivo excede o tamanho máximo de 50MB`);
-    }
-
     const { data, error } = await this.supabase.storage
       .from(bucket)
       .upload(path, file.buffer, {
@@ -240,7 +234,7 @@ export class DocumentosService {
     return { data, total, page, pages: Math.ceil(total / limit) };
   }
 
-  async findById(id: string, officeId?: string): Promise<any> {
+  async findById(id: string): Promise<any> {
     const doc = await this.prisma.documento.findUnique({
       where: { id },
       include: { processo: true },
@@ -248,24 +242,10 @@ export class DocumentosService {
 
     if (!doc) throw new NotFoundException('Documento não encontrado');
 
-    // Validar que o documento pertence ao escritório do usuário
-    if (officeId && (doc as any).escritorioId !== officeId) {
-      throw new BadRequestException('Você não tem permissão para acessar este documento');
-    }
-
     return doc;
   }
 
-  async create(dto: any, authenticatedOfficeId?: string): Promise<any> {
-    if (!dto.escritorioId) {
-      throw new BadRequestException('escritorioId é obrigatório');
-    }
-
-    // Se autenticado, validar que o documento pertence ao escritório do usuário
-    if (authenticatedOfficeId && dto.escritorioId !== authenticatedOfficeId) {
-      throw new BadRequestException('Você não tem permissão para criar documentos neste escritório');
-    }
-
+  async create(dto: any): Promise<any> {
     return this.prisma.documento.create({
       data: {
         nome: dto.nome,
@@ -293,15 +273,10 @@ export class DocumentosService {
     });
   }
 
-  async remove(id: string, officeId?: string): Promise<any> {
+  async remove(id: string): Promise<any> {
     const doc = await this.prisma.documento.findUnique({ where: { id } });
 
     if (!doc) throw new NotFoundException('Documento não encontrado');
-
-    // Validar que o documento pertence ao escritório do usuário
-    if (officeId && (doc as any).escritorioId !== officeId) {
-      throw new BadRequestException('Você não tem permissão para deletar este documento');
-    }
 
     // Soft-delete no banco
     const updated = await this.prisma.documento.update({
@@ -335,18 +310,8 @@ export class DocumentosService {
       clienteId?: string;
       escritorioId: string;
     },
-    authenticatedOfficeId?: string,
   ): Promise<any> {
     if (!file) throw new BadRequestException('Arquivo não fornecido');
-
-    if (!dto.escritorioId) {
-      throw new BadRequestException('escritorioId é obrigatório');
-    }
-
-    // Se autenticado, validar que o documento pertence ao escritório do usuário
-    if (authenticatedOfficeId && dto.escritorioId !== authenticatedOfficeId) {
-      throw new BadRequestException('Você não tem permissão para fazer upload neste escritório');
-    }
 
     const ext = file.originalname.split('.').pop() ?? '';
     const nomeArquivo = `${Date.now()}-${file.originalname.replace(/\s+/g, '_')}`;

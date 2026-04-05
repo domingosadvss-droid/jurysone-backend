@@ -1,5 +1,4 @@
 import { Controller, Post, Get, Body, UseGuards } from '@nestjs/common';
-import { Throttle } from '@nestjs/throttler';
 import { AuthService } from './auth.service';
 import { Public } from '../../common/decorators/public.decorator';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
@@ -12,14 +11,12 @@ export class AuthController {
 
   @Post('login')
   @Public()
-  @Throttle({ default: { limit: 5, ttl: 60000 } })
   async login(@Body() body: { email: string; password: string }): Promise<any> {
     return this.authService.login(body);
   }
 
   @Post('register')
   @Public()
-  @Throttle({ default: { limit: 3, ttl: 60000 } })
   async register(
     @Body()
     body: {
@@ -34,7 +31,6 @@ export class AuthController {
 
   @Post('refresh')
   @Public()
-  @Throttle({ default: { limit: 10, ttl: 60000 } })
   async refresh(@Body() body: { token: string }): Promise<any> {
     return this.authService.refreshToken(body.token);
   }

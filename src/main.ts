@@ -18,9 +18,8 @@ async function bootstrap() {
 
   // ── Segurança ────────────────────────────────────────────────────────────
   app.use(helmet());
-  const isProduction = process.env.NODE_ENV === 'production';
   const allowedOrigins = [
-    ...(isProduction ? [] : ['http://localhost:3000']), // Remove localhost em prod
+    'http://localhost:3000',
     'https://jurysone.com.br',
     'https://www.jurysone.com.br',
     ...(process.env.FRONTEND_URL ? [process.env.FRONTEND_URL] : []),
@@ -49,18 +48,14 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   // ── Swagger (documentação) ───────────────────────────────────────────────
-  // Desabilitar Swagger em produção por segurança (não expor endpoints públicos)
-  if (!isProduction) {
-    const swaggerConfig = new DocumentBuilder()
-      .setTitle('JurysOne API')
-      .setDescription('API do sistema jurídico JurysOne')
-      .setVersion('1.0')
-      .addBearerAuth()
-      .build();
-    const document = SwaggerModule.createDocument(app, swaggerConfig);
-    SwaggerModule.setup('api/docs', app, document);
-    logger.log(`📋 Documentação em http://localhost:${process.env.PORT ?? 3001}/api/docs`);
-  }
+  const swaggerConfig = new DocumentBuilder()
+    .setTitle('JurysOne API')
+    .setDescription('API do sistema jurídico JurysOne')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  SwaggerModule.setup('api/docs', app, document);
 
   // ── Health Check (Render / Railway usam esse endpoint) ───────────────────
   const httpAdapter = app.getHttpAdapter();
@@ -73,7 +68,7 @@ async function bootstrap() {
   await app.listen(port);
 
   logger.log(`🚀 JurysOne API rodando em http://localhost:${port}/api`);
-  logger.log(`🔒 Ambiente: ${isProduction ? 'PRODUCTION (Swagger desabilited)' : 'DEVELOPMENT'}`);
+  logger.log(`📋 Documentação em http://localhost:${port}/api/docs`);
   logger.log(`⏰ Cron de notificações: ativo (a cada 5 min)`);
 }
 

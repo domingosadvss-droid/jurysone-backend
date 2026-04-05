@@ -38,15 +38,10 @@ COPY --from=builder /app/node_modules ./node_modules
 # Copy package.json (used by some packages at runtime)
 COPY package*.json ./
 
-# Copy Prisma schema and migrations so migrate deploy can run at startup
-COPY --from=builder /app/src/database/schema.prisma ./src/database/schema.prisma
-COPY --from=builder /app/src/database/migrations ./src/database/migrations
-
 ENV NODE_ENV=production
 # Força o Prisma a usar o binário para Alpine Linux com OpenSSL 3.x
 ENV PRISMA_QUERY_ENGINE_LIBRARY=/app/node_modules/.prisma/client/libquery_engine-linux-musl-openssl-3.0.x.so.node
 
 EXPOSE 3001
 
-# Executa migrations antes de iniciar a aplicação
-CMD ["sh", "-c", "./node_modules/.bin/prisma migrate deploy --schema src/database/schema.prisma && node dist/main"]
+CMD ["node", "dist/main"]
