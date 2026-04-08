@@ -5,7 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
-import { PrismaService as PrismaServiceCommon } from '../../common/prisma/prisma.service';
+import { PrismaService as PrismaServiceCommon } from '../../database/prisma.service';
 import { PrismaService as PrismaServiceDb } from '../../database/prisma.service';
 
 @Module({

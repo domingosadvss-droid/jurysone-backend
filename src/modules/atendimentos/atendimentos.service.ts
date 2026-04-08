@@ -1,5 +1,5 @@
 import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
-import { PrismaService } from '../../prisma/prisma.service';
+import { PrismaService } from '../../database/prisma.service';
 import { CreateAtendimentoDto } from './dto/create-atendimento.dto';
 
 export interface AtendimentoFilter {

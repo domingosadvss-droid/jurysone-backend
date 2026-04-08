@@ -33,7 +33,7 @@
  */
 
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
-import { PrismaService } from '../../common/prisma/prisma.service';
+import { PrismaService } from '../../database/prisma.service';
 import { NotificationsGateway } from '../notifications/notifications.gateway';
 import type { TipoGatilho, TipoAcao } from './automacoes.controller';
 

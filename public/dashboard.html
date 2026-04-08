@@ -13852,5 +13852,346 @@ Nestes termos, pede deferimento.
       </div>
     </div>
 
+    <!-- ══════════════════════════════════════════════════════════════
+         WIDGET — Juri: IA de Suporte Jurysone
+         Funções: suporte ao sistema + extração de dados WhatsApp/imagens
+         para pré-preenchimento do formulário de Novo Atendimento
+    ══════════════════════════════════════════════════════════════════ -->
+    <style>
+      #ai-support-fab {
+        position: fixed; bottom: 28px; right: 28px;
+        width: 56px; height: 56px;
+        background: linear-gradient(135deg, var(--cor-primaria), #3b82f6);
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        cursor: pointer; box-shadow: 0 4px 20px rgba(15,45,94,0.4);
+        z-index: 5000; border: none; color: white; font-size: 22px;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      #ai-support-fab:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(15,45,94,0.5); }
+      #ai-support-fab.open { background: linear-gradient(135deg, #374151, #6b7280); }
+      #ai-fab-badge {
+        position: absolute; top: -4px; right: -4px; width: 18px; height: 18px;
+        background: #ef4444; border-radius: 50%; font-size: 10px; font-weight: 700;
+        display: none; align-items: center; justify-content: center; color: white;
+      }
+
+      #ai-support-panel {
+        position: fixed; bottom: 96px; right: 28px; width: 370px;
+        max-height: 580px; background: white; border-radius: 16px;
+        box-shadow: 0 8px 40px rgba(0,0,0,0.18); z-index: 4999;
+        display: none; flex-direction: column; overflow: hidden;
+        border: 1px solid #e2e8f0;
+      }
+      #ai-support-panel.open { display: flex; animation: aiPanelIn 0.22s ease; }
+      @keyframes aiPanelIn { from { opacity:0; transform:translateY(14px) scale(.97); } to { opacity:1; transform:none; } }
+
+      .ai-ph { background: linear-gradient(135deg, var(--cor-primaria), #3b82f6); color: white; padding: 13px 15px; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+      .ai-ph-icon { width:36px; height:36px; background:rgba(255,255,255,.18); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:16px; }
+      .ai-ph-info { flex:1; }
+      .ai-ph-name { font-size:14px; font-weight:700; margin:0; }
+      .ai-ph-status { font-size:11px; opacity:.8; display:flex; align-items:center; gap:4px; }
+      .ai-ph-status::before { content:''; width:6px; height:6px; background:#22c55e; border-radius:50%; display:inline-block; }
+      .ai-ph-close { background:none; border:none; color:white; font-size:18px; cursor:pointer; opacity:.75; padding:4px; line-height:1; }
+      .ai-ph-close:hover { opacity:1; }
+
+      .ai-msgs { flex:1; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:10px; min-height:180px; max-height:320px; }
+      .ai-msg { max-width:86%; padding:9px 13px; border-radius:12px; font-size:13px; line-height:1.5; word-break:break-word; }
+      .ai-msg-bot { background:#f1f5f9; color:#334155; align-self:flex-start; border-bottom-left-radius:4px; }
+      .ai-msg-user { background:var(--cor-primaria); color:white; align-self:flex-end; border-bottom-right-radius:4px; }
+      .ai-msg-typing { background:#f1f5f9; color:#94a3b8; align-self:flex-start; font-size:12px; font-style:italic; border-bottom-left-radius:4px; }
+      .ai-fill-btn { display:block; margin-top:9px; padding:8px 12px; background:linear-gradient(135deg,#10b981,#059669); color:white; border:none; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer; width:100%; text-align:center; transition:opacity .2s; }
+      .ai-fill-btn:hover { opacity:.88; }
+
+      .ai-quick { padding:7px 12px; display:flex; gap:5px; flex-wrap:wrap; border-top:1px solid #f1f5f9; flex-shrink:0; }
+      .ai-qbtn { padding:3px 9px; border:1px solid #e2e8f0; border-radius:20px; font-size:11px; cursor:pointer; background:#f8fafc; color:#475569; transition:all .15s; white-space:nowrap; }
+      .ai-qbtn:hover { background:var(--cor-primaria); color:white; border-color:var(--cor-primaria); }
+
+      .ai-file-row { padding:0 12px 6px; display:none; align-items:center; gap:6px; }
+      .ai-file-row.show { display:flex; }
+      .ai-fname { font-size:11px; color:#64748b; max-width:160px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+      .ai-fclear { font-size:15px; cursor:pointer; color:#94a3b8; background:none; border:none; padding:0; line-height:1; }
+
+      .ai-input-area { padding:10px 12px; border-top:1px solid #e2e8f0; display:flex; flex-direction:column; gap:7px; flex-shrink:0; }
+      .ai-input-row { display:flex; gap:7px; align-items:flex-end; }
+      .ai-textarea { flex:1; border:1px solid #e2e8f0; border-radius:10px; padding:8px 11px; font-size:13px; resize:none; min-height:38px; max-height:80px; font-family:'Inter',sans-serif; outline:none; transition:border-color .2s; line-height:1.4; }
+      .ai-textarea:focus { border-color:var(--cor-primaria); }
+      .ai-send { width:38px; height:38px; background:var(--cor-primaria); color:white; border:none; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; transition:background .2s; }
+      .ai-send:hover { background:var(--cor-primaria-dark); }
+      .ai-send:disabled { opacity:.45; cursor:not-allowed; }
+      .ai-attach-lbl { padding:4px 10px; border:1px dashed #cbd5e1; border-radius:8px; font-size:11px; cursor:pointer; background:#f8fafc; color:#64748b; display:flex; align-items:center; gap:4px; transition:all .15s; }
+      .ai-attach-lbl:hover { border-color:var(--cor-primaria); color:var(--cor-primaria); }
+    </style>
+
+    <!-- Botão flutuante -->
+    <button id="ai-support-fab" onclick="aiToggle()" title="Juri — IA de Suporte">
+      🤖
+      <span id="ai-fab-badge">1</span>
+    </button>
+
+    <!-- Painel de chat -->
+    <div id="ai-support-panel">
+      <div class="ai-ph">
+        <div class="ai-ph-icon">🤖</div>
+        <div class="ai-ph-info">
+          <div class="ai-ph-name">Juri — IA de Suporte</div>
+          <div class="ai-ph-status">Online agora</div>
+        </div>
+        <button class="ai-ph-close" onclick="aiToggle()">✕</button>
+      </div>
+
+      <div class="ai-msgs" id="ai-msgs"></div>
+
+      <div class="ai-quick">
+        <button class="ai-qbtn" onclick="aiQuick('Como criar um novo atendimento?')">📋 Novo atendimento</button>
+        <button class="ai-qbtn" onclick="aiQuick('Como funciona o financeiro?')">💰 Financeiro</button>
+        <button class="ai-qbtn" onclick="aiQuick('Extraia os dados desta conversa do WhatsApp e preencha o formulário')">📱 Importar WhatsApp</button>
+        <button class="ai-qbtn" onclick="aiQuick('Como funciona a assinatura eletrônica?')">✍️ Assinatura</button>
+      </div>
+
+      <div class="ai-file-row" id="ai-file-row">
+        <span>📎</span>
+        <span class="ai-fname" id="ai-fname"></span>
+        <button class="ai-fclear" onclick="aiClearFile()">✕</button>
+      </div>
+
+      <div class="ai-input-area">
+        <div class="ai-input-row">
+          <textarea class="ai-textarea" id="ai-text" placeholder="Pergunte algo ou cole uma conversa do WhatsApp..." rows="1"
+            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();aiEnviar()}"
+            oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,80)+'px'"></textarea>
+          <button class="ai-send" id="ai-send" onclick="aiEnviar()">➤</button>
+        </div>
+        <label class="ai-attach-lbl" for="ai-file-input">
+          📎 Anexar documento ou imagem
+        </label>
+        <input type="file" id="ai-file-input" style="display:none"
+          accept="image/*,image/jpeg,image/png,image/webp,.pdf,.txt"
+          onchange="aiHandleFile(this)">
+      </div>
+    </div>
+
+    <script>
+    (function () {
+      'use strict';
+
+      let _open = false;
+      let _arquivo = null;   // { nome, mimeType, base64 }
+      let _dadosIA = null;   // dados_extraidos do último response
+
+      /* ── Toggle painel ── */
+      window.aiToggle = function () {
+        _open = !_open;
+        const fab   = document.getElementById('ai-support-fab');
+        const panel = document.getElementById('ai-support-panel');
+        fab.classList.toggle('open', _open);
+        panel.classList.toggle('open', _open);
+        document.getElementById('ai-fab-badge').style.display = 'none';
+        if (_open) {
+          if (document.getElementById('ai-msgs').children.length === 0) {
+            aiAddMsg('bot',
+              'Olá! Sou o **Juri**, assistente de suporte do Jurysone 👋\n\n' +
+              'Posso te ajudar com:\n' +
+              '• Dúvidas sobre qualquer tela do sistema\n' +
+              '• Importar dados de **conversas do WhatsApp**\n' +
+              '• Extrair dados de **documentos e imagens** e preencher o formulário de Novo Atendimento automaticamente\n\n' +
+              'Como posso ajudar?'
+            );
+          }
+          setTimeout(() => document.getElementById('ai-text').focus(), 120);
+        }
+      };
+
+      /* ── Ações rápidas ── */
+      window.aiQuick = function (txt) {
+        document.getElementById('ai-text').value = txt;
+        aiEnviar();
+      };
+
+      /* ── Enviar mensagem ── */
+      window.aiEnviar = async function () {
+        const textEl = document.getElementById('ai-text');
+        const mensagem = textEl.value.trim();
+        if (!mensagem && !_arquivo) return;
+
+        const sendBtn = document.getElementById('ai-send');
+        sendBtn.disabled = true;
+
+        if (mensagem) aiAddMsg('user', mensagem);
+        else if (_arquivo) aiAddMsg('user', '📎 ' + _arquivo.nome);
+
+        textEl.value = '';
+        textEl.style.height = 'auto';
+
+        const typingId = aiAddMsg('typing', '⏳ Processando...');
+
+        try {
+          const token = localStorage.getItem('token') || sessionStorage.getItem('token') || '';
+          const base = (window.API_URL || 'http://localhost:3001');
+          const url  = base + '/api/ai/suporte';
+
+          const payload = {
+            mensagem: mensagem || ('Analise e extraia os dados do arquivo: ' + (_arquivo?.nome || '')),
+            arquivos: _arquivo ? [_arquivo] : undefined,
+          };
+
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+            body: JSON.stringify(payload),
+          });
+
+          document.getElementById(typingId)?.remove();
+
+          if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            throw new Error(err.message || 'Erro ' + res.status);
+          }
+
+          const data = await res.json();
+          const temDados = data.dados_extraidos &&
+            Object.values(data.dados_extraidos).some(v => v && v !== '');
+
+          if (temDados) {
+            _dadosIA = data.dados_extraidos;
+            aiAddMsg('bot', data.resposta || 'Dados extraídos!', true);
+          } else {
+            aiAddMsg('bot', data.resposta || 'Sem resposta.');
+          }
+        } catch (e) {
+          document.getElementById(typingId)?.remove();
+          aiAddMsg('bot',
+            '❌ Não foi possível conectar com a IA.\n' +
+            'Verifique se o backend está rodando e se **GEMINI_API_KEY** está configurada.'
+          );
+        }
+
+        aiClearFile();
+        sendBtn.disabled = false;
+      };
+
+      /* ── Adicionar mensagem ── */
+      function aiAddMsg(tipo, texto, showFill) {
+        const list = document.getElementById('ai-msgs');
+        const id   = 'aim-' + Date.now() + Math.random().toString(36).slice(2, 5);
+        const div  = document.createElement('div');
+        div.id = id;
+
+        if (tipo === 'typing') {
+          div.className = 'ai-msg ai-msg-typing';
+          div.textContent = texto;
+        } else if (tipo === 'user') {
+          div.className = 'ai-msg ai-msg-user';
+          div.textContent = texto;
+        } else {
+          div.className = 'ai-msg ai-msg-bot';
+          div.innerHTML = texto
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\n/g, '<br>');
+          if (showFill) {
+            const btn = document.createElement('button');
+            btn.className = 'ai-fill-btn';
+            btn.textContent = '📋 Preencher Formulário de Novo Atendimento';
+            btn.onclick = aiPreencherForm;
+            div.appendChild(btn);
+          }
+        }
+
+        list.appendChild(div);
+        list.scrollTop = list.scrollHeight;
+        return id;
+      }
+
+      /* ── Handle arquivo ── */
+      window.aiHandleFile = function (input) {
+        const file = input.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const parts = e.target.result.split(',');
+          _arquivo = { nome: file.name, mimeType: file.type || 'application/octet-stream', base64: parts[1] };
+          document.getElementById('ai-fname').textContent = file.name;
+          document.getElementById('ai-file-row').classList.add('show');
+        };
+        reader.readAsDataURL(file);
+        input.value = '';
+      };
+
+      window.aiClearFile = function () {
+        _arquivo = null;
+        document.getElementById('ai-file-row').classList.remove('show');
+        document.getElementById('ai-fname').textContent = '';
+      };
+
+      /* ── Preencher formulário ── */
+      window.aiPreencherForm = function () {
+        if (!_dadosIA) return;
+        const d = _dadosIA;
+
+        // Abrir modal de Novo Atendimento
+        const modal = document.getElementById('modalNovoAtendimento');
+        if (modal) modal.classList.add('active');
+
+        // Garantir que a aba PF esteja ativa
+        if (typeof naSetTipoPessoa === 'function') naSetTipoPessoa('pf');
+
+        setTimeout(function () {
+          function set(id, val) {
+            if (!val) return;
+            const el = document.getElementById(id);
+            if (!el || el.type === 'hidden') return;
+            el.value = val;
+            el.dispatchEvent(new Event('input', { bubbles: true }));
+            el.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+
+          set('na_nome',     d.nome);
+          set('na_cpf',      d.cpf);
+          set('na_rg',       d.rg);
+          set('na_dataNasc', d.dataNasc);
+          set('na_telefone', d.telefone);
+          set('na_email',    d.email);
+          set('na_cep',      d.cep);
+          set('na_rua',      d.rua);
+          set('na_numero',   d.numero);
+          set('na_bairro',   d.bairro);
+          set('na_cidade',   d.cidade);
+          set('na_estado',   d.estado);
+
+          // Área jurídica
+          if (d.area) {
+            const areaEl = document.getElementById('na_area');
+            if (areaEl) { areaEl.value = d.area; areaEl.dispatchEvent(new Event('change', { bubbles: true })); }
+          }
+
+          // Observações / mensagem do caso
+          if (d.mensagem) {
+            ['na_mensagem', 'na_observacoes', 'na_descricao'].forEach(function (id) {
+              const el = document.getElementById(id);
+              if (el && !el.value) el.value = d.mensagem;
+            });
+          }
+
+          // Toast de confirmação
+          const toast = document.createElement('div');
+          toast.style.cssText = 'position:fixed;top:20px;right:20px;background:#10b981;color:white;' +
+            'padding:11px 18px;border-radius:9px;font-size:13px;font-weight:700;z-index:99999;' +
+            'box-shadow:0 4px 14px rgba(16,185,129,.4);';
+          toast.textContent = '✅ Dados preenchidos pela IA! Revise antes de salvar.';
+          document.body.appendChild(toast);
+          setTimeout(function () { toast.remove(); }, 3500);
+        }, 350);
+
+        // Fechar painel
+        aiToggle();
+      };
+
+      // Badge de atenção após 4s
+      setTimeout(function () {
+        if (!_open) document.getElementById('ai-fab-badge').style.display = 'flex';
+      }, 4000);
+    })();
+    </script>
+
     </body>
 </html>

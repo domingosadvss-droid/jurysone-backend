@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { PrismaService } from '../../common/prisma/prisma.service';
+import { PrismaService } from '../../database/prisma.service';
 
 // ─── Tipos ───────────────────────────────────────────────────────────────────
 

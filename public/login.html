@@ -178,6 +178,7 @@
   </div>
 </div>
 
+<script src="config.js"></script>
 <script>
 function togglePass() {
   const p = document.getElementById('password');
@@ -192,29 +193,47 @@ async function handleLogin(e) {
   const text = document.getElementById('btn-text');
   const err  = document.getElementById('error-msg');
   const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
 
-  // Loading
+  if (!email || !password) {
+    err.classList.remove('hidden');
+    err.style.display = 'flex';
+    document.getElementById('error-text').textContent = 'Preencha e-mail e senha.';
+    return;
+  }
+
   btn.disabled = true;
   btn.style.opacity = '.7';
   text.innerHTML = `<svg class="spin" style="display:inline;width:16px;height:16px;margin-right:8px;vertical-align:middle" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="4" opacity=".25"/><path fill="white" d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4z" opacity=".75"/></svg>Entrando...`;
   err.classList.add('hidden');
 
-  // Simular autenticação (demo)
-  await new Promise(r => setTimeout(r, 1500));
+  try {
+    const apiUrl = window.JURYSONE_CONFIG?.API_URL || '/api';
+    const response = await fetch(`${apiUrl}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
 
-  if (email && document.getElementById('password').value) {
-    window.location.href = 'dashboard.html';
-  } else {
+    const data = await response.json();
+
+    if (response.ok && data.access_token) {
+      localStorage.setItem('jurysone_token', data.access_token);
+      localStorage.setItem('jurysone_user', JSON.stringify(data.user || {}));
+      window.location.href = 'dashboard.html';
+    } else {
+      throw new Error(data.message || 'E-mail ou senha incorretos.');
+    }
+  } catch (error) {
     err.classList.remove('hidden');
     err.style.display = 'flex';
-    document.getElementById('error-text').textContent = 'Preencha todos os campos.';
+    document.getElementById('error-text').textContent = error.message || 'Erro ao conectar.';
     btn.disabled = false;
     btn.style.opacity = '1';
     text.textContent = 'Entrar';
   }
 }
 
-// Enter para login
 document.addEventListener('keydown', e => {
   if (e.key === 'Enter') document.querySelector('form').requestSubmit();
 });

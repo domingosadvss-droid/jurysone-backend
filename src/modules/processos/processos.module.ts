@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ProcessosController } from './processos.controller';
 import { ProcessosService } from './processos.service';
-import { PrismaService } from '../../common/prisma/prisma.service';
+import { PrismaService } from '../../database/prisma.service';
 
 @Module({
   controllers: [ProcessosController],

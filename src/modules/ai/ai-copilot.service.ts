@@ -363,4 +363,85 @@ Tarefas pendentes: ${processo.tasks.map(t => t.title).join(', ') || 'Nenhuma'}`;
   private generateConversaId(): string {
     return `conv_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
   }
+
+  /* ──────────────── ASSISTENTE DE SUPORTE ────────────────────── */
+
+  async suporteChat(params: {
+    userId: string;
+    officeId: string;
+    mensagem: string;
+    arquivos?: Array<{ nome: string; mimeType: string; base64: string }>;
+  }): Promise<{ resposta: string; dados_extraidos?: Record<string, any> }> {
+    const { mensagem, arquivos } = params;
+
+    const supportSystemPrompt = `Você é o Juri, assistente de suporte do Jurysone — sistema de gestão para escritórios de advocacia brasileiro.
+
+FUNÇÕES:
+1. SUPORTE AO SISTEMA: Responda dúvidas sobre como usar o Jurysone (dashboard, atendimentos, processos, financeiro, agenda, documentos, clientes, configurações).
+2. EXTRAÇÃO DE DADOS: Quando o usuário enviar conversa de WhatsApp, documento ou imagem com dados de um cliente, extraia as informações e retorne JSON estruturado.
+
+QUANDO DETECTAR DADOS DE CLIENTE (conversa de WhatsApp, documento, imagem com dados pessoais):
+Retorne APENAS este JSON válido, sem markdown nem texto fora do JSON:
+{
+  "resposta": "Extraí os seguintes dados do cliente. Revise e clique em 'Preencher Formulário' para usar.",
+  "dados_extraidos": {
+    "nome": "Nome completo ou vazio",
+    "cpf": "000.000.000-00 ou vazio",
+    "rg": "RG ou vazio",
+    "dataNasc": "YYYY-MM-DD ou vazio",
+    "telefone": "(00) 00000-0000 ou vazio",
+    "email": "email ou vazio",
+    "cep": "00000-000 ou vazio",
+    "rua": "logradouro ou vazio",
+    "numero": "número ou vazio",
+    "bairro": "bairro ou vazio",
+    "cidade": "cidade ou vazio",
+    "estado": "UF com 2 letras ou vazio",
+    "area": "trabalhista|familia|previdenciario|tributario|empresarial|criminal|civil ou vazio",
+    "mensagem": "Resumo do problema ou caso descrito pelo cliente ou vazio"
+  }
+}
+
+QUANDO FOR SUPORTE NORMAL (dúvidas sobre o sistema):
+Responda em texto claro e objetivo. Use **negrito** para destacar termos importantes.
+
+Sobre o Jurysone:
+- **Dashboard**: visão geral com KPIs, gráficos, atendimentos e processos recentes
+- **Novo Atendimento**: cadastrar novo cliente e caso jurídico com dados completos
+- **Processos**: gerenciar processos judiciais, movimentações, documentos e prazos
+- **Agenda**: compromissos, audiências, integração com Google Calendar
+- **Financeiro**: honorários, parcelas, lançamentos, relatórios DRE
+- **Documentos**: upload, contratos, petições, modelos, assinatura eletrônica
+- **Clientes**: CRM completo com histórico de casos
+- **WhatsApp**: enviar mensagens e notificações automáticas
+- **IA Copiloto**: análise de risco, geração de petições, pesquisa de jurisprudência`;
+
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+    const supportModel = genAI.getGenerativeModel({
+      model: 'gemini-1.5-flash',
+      systemInstruction: supportSystemPrompt,
+    });
+
+    const parts: Array<string | { inlineData: { mimeType: string; data: string } }> = [];
+    if (arquivos && arquivos.length > 0) {
+      for (const arq of arquivos) {
+        parts.push({ inlineData: { mimeType: arq.mimeType, data: arq.base64 } });
+      }
+    }
+    parts.push(mensagem || 'Analise o arquivo enviado e extraia os dados do cliente.');
+
+    const result = await supportModel.generateContent(parts);
+    const text = result.response.text();
+
+    try {
+      const parsed = this.parseJson<{ resposta: string; dados_extraidos?: Record<string, any> }>(text);
+      if (parsed && typeof parsed.resposta === 'string') {
+        return parsed;
+      }
+    } catch {
+      // Not JSON — return as plain text response
+    }
+
+    return { resposta: text };
+  }
 }

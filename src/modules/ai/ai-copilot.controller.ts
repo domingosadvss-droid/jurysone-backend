@@ -122,6 +122,27 @@ export class AiCopilotController {
   }
 
   /**
+   * POST /ai/suporte
+   * Assistente de suporte ao usuário + extração de dados de WhatsApp/documentos
+   * Body: { mensagem, arquivos?: [{ nome, mimeType, base64 }] }
+   */
+  @Post('suporte')
+  async suporteChat(
+    @Request() req: any,
+    @Body() dto: {
+      mensagem: string;
+      arquivos?: Array<{ nome: string; mimeType: string; base64: string }>;
+    },
+  ) {
+    return this.service.suporteChat({
+      userId: req.user.id,
+      officeId: req.user.officeId,
+      mensagem: dto.mensagem,
+      arquivos: dto.arquivos,
+    });
+  }
+
+  /**
    * GET /ai/historico
    * Histórico de interações com o Copiloto
    * Query: { page, per_page, tipo }

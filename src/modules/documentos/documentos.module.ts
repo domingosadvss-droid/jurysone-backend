@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { DocumentosService } from './documentos.service';
-import { PrismaService } from '../../common/prisma/prisma.service';
+import { PrismaService } from '../../database/prisma.service';
 
 @Module({
   imports: [ConfigModule],

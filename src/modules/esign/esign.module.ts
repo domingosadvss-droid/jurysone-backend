@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { EsignController } from './esign.controller';
 import { EsignService } from './esign.service';
-import { PrismaService } from '../../common/prisma/prisma.service';
+import { PrismaService } from '../../database/prisma.service';
 
 @Module({
   controllers: [EsignController],
