@@ -21,6 +21,9 @@ RUN npx prisma generate --schema src/database/schema.prisma
 # Compile TypeScript → JavaScript
 RUN npm run build
 
+# Verify build output exists
+RUN test -f /app/dist/main.js || (echo "ERROR: Build failed - main.js not found in dist folder" && exit 1)
+
 # ── Stage 2: Production ───────────────────────────────────────────────────────
 FROM node:20-alpine
 
