@@ -1,7 +1,9 @@
 node_modules
 dist
 .env
-.env.*
+.env.local
+.env.*.local
+.env.production
 *.log
 .git
 .gitignore
