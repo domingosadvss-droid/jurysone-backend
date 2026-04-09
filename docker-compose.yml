@@ -1,5 +1,9 @@
 version: '3.9'
 
+# ─── Uso local (desenvolvimento) ──────────────────────────────────────────────
+# Para produção use Render.com (render.yaml) + Supabase (banco de dados)
+# ─────────────────────────────────────────────────────────────────────────────
+
 services:
   db:
     image: pgvector/pgvector:pg16
@@ -40,12 +44,12 @@ services:
       NODE_ENV: development
       DATABASE_URL: postgresql://jurysone:${DB_PASS:-jurysone_dev}@db:5432/jurysone_db
       REDIS_URL: redis://redis:6379
-      JWT_SECRET: ${JWT_SECRET:-dev_jwt_secret_change_in_prod}
+      JWT_SECRET: ${JWT_SECRET:-dev_jwt_secret_change_in_prod_min_32_chars_required}
       JWT_EXPIRES_IN: 3600
       REFRESH_TOKEN_EXPIRES_DAYS: 30
-      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
       RESEND_API_KEY: ${RESEND_API_KEY:-}
-      FRONTEND_URL: http://localhost:3000
+      FRONTEND_URL: http://localhost:8000
     depends_on:
       db:
         condition: service_healthy
@@ -56,30 +60,11 @@ services:
       - /app/node_modules
     command: >
       sh -c "
-        echo '🔄 Aplicando migrações do banco de dados...' &&
+        echo 'Aplicando migracoes do banco de dados...' &&
         npx prisma migrate deploy --schema src/database/schema.prisma &&
-        echo '✅ Migrações aplicadas. Iniciando servidor...' &&
+        echo 'Migracoes aplicadas. Iniciando servidor...' &&
         npm run start:dev
       "
-
-  frontend:
-    build:
-      context: ./jurysone-frontend
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    ports:
-      - '3000:3000'
-    environment:
-      NEXT_PUBLIC_API_URL: http://localhost:3001
-      NEXTAUTH_URL: http://localhost:3000
-      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:-dev_nextauth_secret}
-    depends_on:
-      - backend
-    volumes:
-      - ./jurysone-frontend:/app
-      - /app/node_modules
-      - /app/.next
-    command: npm run dev
 
 volumes:
   pgdata:

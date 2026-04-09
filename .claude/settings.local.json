@@ -5,7 +5,10 @@
       "Bash(node -e \"console.log\\(require\\(''crypto''\\).randomBytes\\(32\\).toString\\(''hex''\\)\\)\")",
       "Bash(powershell -Command \":*)",
       "Bash(while IFS= read -r line)",
-      "Bash(do echo:*)"
+      "Bash(do echo:*)",
+      "Bash(npm run:*)",
+      "Bash(unzip -l app-preview.zip)",
+      "Bash(unzip -p app-preview.zip app-preview/config.js)"
     ]
   }
 }
