@@ -10,6 +10,8 @@ WORKDIR /app
 COPY package*.json ./
 # Copy Prisma schema early so the postinstall script can find it
 COPY src/database/schema.prisma ./src/database/schema.prisma
+# Copy build-time env vars for Prisma client generation
+COPY .env.build ./.env
 RUN npm ci
 
 # Copy source code
