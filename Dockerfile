@@ -23,6 +23,10 @@ RUN npx prisma generate --schema src/database/schema.prisma
 # Compile TypeScript → JavaScript
 RUN npm run build
 
+# Debug: List dist directory contents
+RUN echo "Contents of /app/dist:" && ls -la /app/dist/ 2>&1 || echo "dist/ does not exist"
+RUN echo "Contents of /app/dist (recursive):" && find /app/dist -type f 2>&1 | head -20 || echo "Error listing dist"
+
 # Verify build output exists
 RUN test -f /app/dist/main.js || (echo "ERROR: Build failed - main.js not found in dist folder" && exit 1)
 
