@@ -46,3 +46,25 @@ prisma/migrations/dev.db
 # ─── Docker ───────────────────────────────────────────────────
 docker-compose.override.yml
 RENDER_ENV_VARS.md
+
+# Documentos com dados sensiveis - NUNCA versionar
+*.docx
+*.xlsx
+JurysOne_Auditoria*.docx
+
+# Arquivos Windows locais
+*.bat
+app-preview.zip
+
+# Documentos internos / guides
+COMPLETION_SUMMARY.md
+CONFIGURAR_*.md
+GITHUB_PUSH_INSTRUCTIONS.md
+GOOGLE_CALENDAR_*.md
+GOOGLE_CALENDAR_WHATSAPP_INTEGRATION.md
+WHATSAPP_META_SETUP.md
+SAAS_LAUNCH_CHECKLIST.md
+QUICK_DEPLOY*.md
+PRE_LAUNCH_SUMMARY.txt
+ROADMAP_*.md
+INICIAR-*.bat

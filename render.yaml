@@ -1,5 +1,5 @@
 services:
-  # ─── Backend NestJS ────────────────────────────────────────────
+  # ─── Backend NestJS ────────────────────────────────────────────────────────
   - type: web
     name: jurysone-backend
     env: docker
@@ -8,8 +8,6 @@ services:
     dockerfilePath: ./Dockerfile
     healthCheckPath: /api/health
     plan: free
-
-    # Render injeta PORT automaticamente (normalmente 10000)
     envVars:
       - key: NODE_ENV
         value: production
@@ -18,10 +16,34 @@ services:
           name: jurysone-redis
           type: redis
           property: connectionString
-      # ⚠️  Demais variáveis configure no Dashboard do Render
-      # (veja RENDER_ENV_VARS.md para lista completa de valores)
+      # Configure as demais variáveis no Dashboard do Render:
+      # DATABASE_URL, DIRECT_URL, JWT_SECRET, JWT_PORTAL_SECRET,
+      # JWT_REFRESH_SECRET, FRONTEND_URL, SUPABASE_URL, SUPABASE_SERVICE_KEY,
+      # GEMINI_API_KEY, RESEND_API_KEY, EMAIL_FROM, JURYSONE_WEBHOOK_SECRET
 
-  # ─── Redis (free tier do Render) ──────────────────────────────
+  # ─── Frontend Estático ─────────────────────────────────────────────────────
+  - type: web
+    name: jurysone-frontend
+    env: static
+    region: oregon
+    rootDir: app-preview
+    staticPublishPath: .
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  # ─── Redis ─────────────────────────────────────────────────────────────────
   - type: redis
     name: jurysone-redis
     region: oregon
