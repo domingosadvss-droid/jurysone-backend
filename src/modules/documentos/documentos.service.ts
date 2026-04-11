@@ -51,7 +51,7 @@ export class DocumentosService {
    * Cliente Supabase com service_role key → acesso total ao Storage,
    * bypassando RLS. Nunca expor essa key no frontend.
    */
-  private readonly supabase: SupabaseClient;
+  private readonly supabase: SupabaseClient | null = null;
 
   constructor(
     private readonly prisma: PrismaService,
@@ -65,11 +65,12 @@ export class DocumentosService {
         'SUPABASE_URL ou SUPABASE_SERVICE_KEY não configurados. ' +
           'Upload de documentos estará indisponível.',
       );
+      // Não inicializa o cliente para evitar crash — operações de storage
+      // retornarão erro claro quando chamadas sem as envs configuradas.
+      return;
     }
 
-    // Mesmo sem credenciais, o cliente é criado (evita crash na inicialização).
-    // As operações de storage falharão com erro claro se as envs estiverem ausentes.
-    this.supabase = createClient(url ?? '', key ?? '');
+    this.supabase = createClient(url, key);
   }
 
   // ─── Storage: operações de arquivo ────────────────────────────────────────
@@ -99,6 +100,12 @@ export class DocumentosService {
     const MAX_FILE_SIZE = 50 * 1024 * 1024;
     if (file.size > MAX_FILE_SIZE) {
       throw new BadRequestException(`Arquivo excede o tamanho máximo de 50MB`);
+    }
+
+    if (!this.supabase) {
+      throw new InternalServerErrorException(
+        'Supabase Storage não configurado. Defina SUPABASE_URL e SUPABASE_SERVICE_KEY.',
+      );
     }
 
     const { data, error } = await this.supabase.storage
@@ -136,6 +143,11 @@ export class DocumentosService {
     bucket: StorageBucket = 'documentos',
     expiresInSeconds = 3600,
   ): Promise<string> {
+    if (!this.supabase) {
+      throw new InternalServerErrorException(
+        'Supabase Storage não configurado. Defina SUPABASE_URL e SUPABASE_SERVICE_KEY.',
+      );
+    }
     const { data, error } = await this.supabase.storage
       .from(bucket)
       .createSignedUrl(path, expiresInSeconds);
@@ -161,6 +173,11 @@ export class DocumentosService {
     path: string,
     bucket: StorageBucket = 'documentos',
   ): Promise<void> {
+    if (!this.supabase) {
+      throw new InternalServerErrorException(
+        'Supabase Storage não configurado. Defina SUPABASE_URL e SUPABASE_SERVICE_KEY.',
+      );
+    }
     const { error } = await this.supabase.storage
       .from(bucket)
       .remove([path]);
@@ -181,6 +198,11 @@ export class DocumentosService {
     folderPath: string,
     bucket: StorageBucket = 'documentos',
   ): Promise<{ nome: string; tamanho: number; ultimaModificacao: string }[]> {
+    if (!this.supabase) {
+      throw new InternalServerErrorException(
+        'Supabase Storage não configurado. Defina SUPABASE_URL e SUPABASE_SERVICE_KEY.',
+      );
+    }
     const { data, error } = await this.supabase.storage
       .from(bucket)
       .list(folderPath, {
