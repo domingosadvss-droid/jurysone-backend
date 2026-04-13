@@ -79,7 +79,7 @@ async function bootstrap() {
   await app.listen(port);
 
   logger.log(`🚀 JurysOne API rodando em http://localhost:${port}/api`);
-  logger.log(`🔒 Ambiente: ${isProduction ? 'PRODUCTION (Swagger desabilited)' : 'DEVELOPMENT'}`);
+  logger.log(`🔒 Ambiente: ${isProduction ? 'PRODUCTION (Swagger disabled)' : 'DEVELOPMENT'}`);
   logger.log(`⏰ Cron de notificações: ativo (a cada 5 min)`);
 }
 

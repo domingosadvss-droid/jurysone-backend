@@ -47,6 +47,8 @@ ENV NODE_ENV=production
 # Força o Prisma a usar o binário para Alpine Linux com OpenSSL 3.x
 ENV PRISMA_QUERY_ENGINE_LIBRARY=/app/node_modules/.prisma/client/libquery_engine-linux-musl-openssl-3.0.x.so.node
 
+# Nota: Render injeta PORT automaticamente via variável de ambiente (default: 10000)
+# O app lê process.env.PORT no main.ts — está configurado corretamente
 EXPOSE 3001
 
 CMD ["node", "dist/main"]
