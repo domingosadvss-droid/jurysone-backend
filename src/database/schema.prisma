@@ -771,6 +771,13 @@ model EsignEnvelope {
   enviadoEm        DateTime?
   signatario       Json?     // signatário único (uso em atendimentos)
 
+  // Zapsign webhook fields
+  zapsignDocumentId     String?  @unique
+  externalDocumentId    String?
+  urlDocumentoAssinado  String?
+  dataRejeicao          DateTime?
+  motivoRejeicao        String?
+
   escritorioId     String
   escritorio       Escritorio @relation(fields: [escritorioId], references: [id])
   documentoId      String?

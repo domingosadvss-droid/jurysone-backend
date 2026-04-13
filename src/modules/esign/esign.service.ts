@@ -495,4 +495,241 @@ Este link é pessoal e intransferível.
 
     this.logger.debug(`[E-sign] E-mail de assinatura enviado para ${signatario.email}`);
   }
+
+  /* ─────────────────── ZAPSIGN WEBHOOKS ──────────────────── */
+
+  /**
+   * Processa webhook: Documento criado no Zapsign
+   * - Registra a criação do documento
+   * - Vincula ao documento interno (se external_id fornecido)
+   */
+  async processZapsignDocumentCreated(data: {
+    zapsignDocumentId: string;
+    externalDocumentId?: string;
+    documentName: string;
+    createdAt: Date;
+    signers: Array<{ name: string; email: string }>;
+  }) {
+    try {
+      this.logger.log(`[Zapsign] Processando documento criado: ${data.zapsignDocumentId}`);
+
+      // Buscar ou criar registro de envelope relacionado ao documento Zapsign
+      const envelope = await this.prisma.esignEnvelope.findFirst({
+        where: { zapsignDocumentId: data.zapsignDocumentId },
+      });
+
+      if (!envelope) {
+        // Criar novo registro se não existir
+        await this.prisma.esignEnvelope.create({
+          data: {
+            zapsignDocumentId: data.zapsignDocumentId,
+            externalDocumentId: data.externalDocumentId,
+            titulo: data.documentName,
+            status: 'sent', // Documento já foi criado no Zapsign
+            escritorioId: '', // TODO: associar ao escritório correto
+            signatario: data.signers.map(s => s.email).join(', '),
+            createdAt: data.createdAt,
+          } as any,
+        });
+
+        this.logger.log(`[Zapsign] ✓ Novo envelope criado para documento: ${data.zapsignDocumentId}`);
+      }
+    } catch (error) {
+      this.logger.error('[Zapsign] Erro ao processar documento criado:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Processa webhook: Documento assinado no Zapsign
+   * - Atualiza status do envelope para "signed"
+   * - Busca o PDF assinado
+   * - Envia notificações
+   */
+  async processZapsignDocumentSigned(data: {
+    zapsignDocumentId: string;
+    externalDocumentId?: string;
+    signatureId: string;
+    signedAt: Date;
+    signerEmail: string;
+    signerName: string;
+    signerCpf?: string;
+    documentUrl: string;
+  }) {
+    try {
+      this.logger.log(`[Zapsign] Processando assinatura: ${data.zapsignDocumentId} por ${data.signerEmail}`);
+
+      // Buscar envelope relacionado
+      const envelope = await this.prisma.esignEnvelope.findFirst({
+        where: { zapsignDocumentId: data.zapsignDocumentId },
+      });
+
+      if (!envelope) {
+        this.logger.warn(`[Zapsign] Envelope não encontrado para documento: ${data.zapsignDocumentId}`);
+        return;
+      }
+
+      // Atualizar envelope
+      await this.prisma.esignEnvelope.update({
+        where: { id: envelope.id },
+        data: {
+          status: 'signed',
+          dataAssinatura: data.signedAt,
+          urlDocumentoAssinado: data.documentUrl,
+        } as any,
+      });
+
+      // Buscar e atualizar signatário específico
+      await this.prisma.$executeRawUnsafe(
+        `UPDATE esign_signatarios
+         SET status = 'signed', data_assinatura = $1
+         WHERE envelope_id = $2 AND email = $3`,
+        data.signedAt,
+        envelope.id,
+        data.signerEmail,
+      );
+
+      // Registrar na trilha de auditoria
+      await this.registrarAuditoria(envelope.id, {
+        acao: 'assinado',
+        usuario: data.signerName,
+        email: data.signerEmail,
+        timestamp: data.signedAt,
+        descricao: `Documento assinado por ${data.signerName}`,
+      });
+
+      // Enviar notificação (pode ser implementado com EmailService)
+      this.logger.log(`[Zapsign] ✓ Assinatura registrada: ${data.signatureId}`);
+
+      // TODO: Chamar StatusFlowService para executar ações pós-assinatura
+      // await this.statusFlowService.handleDocumentSigned(envelope.id);
+    } catch (error) {
+      this.logger.error('[Zapsign] Erro ao processar assinatura:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Processa webhook: Documento visualizado no Zapsign
+   * - Registra visualização para trilha de auditoria
+   */
+  async processZapsignDocumentViewed(data: {
+    zapsignDocumentId: string;
+    externalDocumentId?: string;
+    viewedAt: Date;
+    viewerEmail: string;
+    viewerName: string;
+  }) {
+    try {
+      this.logger.log(`[Zapsign] Registrando visualização: ${data.zapsignDocumentId} por ${data.viewerEmail}`);
+
+      // Buscar envelope
+      const envelope = await this.prisma.esignEnvelope.findFirst({
+        where: { zapsignDocumentId: data.zapsignDocumentId },
+      });
+
+      if (!envelope) {
+        this.logger.warn(`[Zapsign] Envelope não encontrado: ${data.zapsignDocumentId}`);
+        return;
+      }
+
+      // Registrar visualização na auditoria
+      await this.registrarAuditoria(envelope.id, {
+        acao: 'visualizado',
+        usuario: data.viewerName,
+        email: data.viewerEmail,
+        timestamp: data.viewedAt,
+        descricao: `Documento visualizado por ${data.viewerName}`,
+      });
+
+      this.logger.log(`[Zapsign] ✓ Visualização registrada para documento: ${data.zapsignDocumentId}`);
+    } catch (error) {
+      this.logger.error('[Zapsign] Erro ao registrar visualização:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Processa webhook: Documento rejeitado no Zapsign
+   * - Atualiza status para "rejected"
+   * - Registra motivo da rejeição
+   * - Notifica administrador
+   */
+  async processZapsignDocumentRejected(data: {
+    zapsignDocumentId: string;
+    externalDocumentId?: string;
+    rejectedAt: Date;
+    rejectorEmail: string;
+    rejectorName: string;
+    rejectionReason?: string;
+  }) {
+    try {
+      this.logger.log(`[Zapsign] Processando rejeição: ${data.zapsignDocumentId} por ${data.rejectorEmail}`);
+
+      // Buscar envelope
+      const envelope = await this.prisma.esignEnvelope.findFirst({
+        where: { zapsignDocumentId: data.zapsignDocumentId },
+      });
+
+      if (!envelope) {
+        this.logger.warn(`[Zapsign] Envelope não encontrado: ${data.zapsignDocumentId}`);
+        return;
+      }
+
+      // Atualizar envelope
+      await this.prisma.esignEnvelope.update({
+        where: { id: envelope.id },
+        data: {
+          status: 'rejected',
+          dataRejeicao: data.rejectedAt,
+          motivoRejeicao: data.rejectionReason || 'Não especificado',
+        } as any,
+      });
+
+      // Registrar na auditoria
+      await this.registrarAuditoria(envelope.id, {
+        acao: 'rejeitado',
+        usuario: data.rejectorName,
+        email: data.rejectorEmail,
+        timestamp: data.rejectedAt,
+        descricao: `Documento rejeitado. Motivo: ${data.rejectionReason || 'Não especificado'}`,
+      });
+
+      // TODO: Enviar notificação ao administrador e ao criador do envelope
+      this.logger.log(`[Zapsign] ✓ Rejeição registrada para documento: ${data.zapsignDocumentId}`);
+    } catch (error) {
+      this.logger.error('[Zapsign] Erro ao processar rejeição:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Registra ação na trilha de auditoria do envelope
+   */
+  private async registrarAuditoria(
+    envelopeId: string,
+    dados: {
+      acao: string;
+      usuario: string;
+      email: string;
+      timestamp: Date;
+      descricao: string;
+    },
+  ) {
+    try {
+      await this.prisma.$executeRawUnsafe(
+        `INSERT INTO esign_auditoria (envelope_id, acao, usuario, email, timestamp, descricao, created_at)
+         VALUES ($1, $2, $3, $4, $5, $6, NOW())`,
+        envelopeId,
+        dados.acao,
+        dados.usuario,
+        dados.email,
+        dados.timestamp,
+        dados.descricao,
+      );
+    } catch (error) {
+      this.logger.error('[Zapsign] Erro ao registrar auditoria:', error);
+      // Não lançar erro para não quebrar o fluxo principal
+    }
+  }
 }
