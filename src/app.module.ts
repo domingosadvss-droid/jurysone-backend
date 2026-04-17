@@ -5,6 +5,7 @@
  */
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { AppController } from './app.controller';
 
 // ── Módulos estruturados ───────────────────────────────────────────────────
 import { AgendaModule } from './modules/agenda/agenda.module';
@@ -31,6 +32,7 @@ import { TimetrackingModule } from './modules/timetracking/timetracking.module';
 import { WhatsappModule } from './modules/whatsapp/whatsapp.module';
 
 @Module({
+  controllers: [AppController],
   imports: [
     // Carrega variáveis de ambiente de .env automaticamente
     ConfigModule.forRoot({
