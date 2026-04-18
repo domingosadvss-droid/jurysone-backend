@@ -397,7 +397,7 @@
             <a class="nav-link" data-page="relatorios" onclick="navigate('relatorios')">📋 Relatórios</a>
             <div style="padding:14px 20px 4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,0.3)">Sistema</div>
             <a class="nav-link" data-page="configuracoes" onclick="navigate('configuracoes')">⚙️ Configurações</a>
-            <a class="nav-link" onclick="window.location='login.html'" style="margin-top:4px">🚪 Sair</a>
+            <a class="nav-link" onclick="fazerLogout()" style="margin-top:4px">🚪 Sair</a>
         </div>
         <!-- User footer -->
         <div style="position:sticky;bottom:0;padding:14px 16px;border-top:1px solid rgba(255,255,255,0.1);background:rgba(0,0,0,0.15)">
@@ -475,7 +475,7 @@
                         <div class="hdr-dd-item" onclick="closeAllDD();alert('Suporte: suporte@jurysone.com.br')">💬 &nbsp;Suporte</div>
                         <div class="hdr-dd-item" onclick="closeAllDD();alert('Link de indicação copiado!')">🔗 &nbsp;Indicar Jurysone</div>
                         <hr class="hdr-dd-divider">
-                        <div class="hdr-dd-item" style="color:#ef4444" onclick="window.location='login.html'">🚪 &nbsp;Sair</div>
+                        <div class="hdr-dd-item" style="color:#ef4444" onclick="fazerLogout()">🚪 &nbsp;Sair</div>
                     </div>
                 </div>
             </div>
@@ -6236,6 +6236,13 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           const words = str.trim().split(/\s+/).filter(Boolean);
           if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
           return (words[0][0] + words[words.length - 1][0]).toUpperCase();
+        }
+
+        // ─── Logout: limpa sessão e redireciona para login ──────────────────
+        function fazerLogout() {
+          localStorage.removeItem('jurysone_token');
+          localStorage.removeItem('jurysone_user');
+          window.location.replace('/login.html');
         }
 
         // ─── Atualiza header + sidebar com dados dinâmicos ──────────────────
