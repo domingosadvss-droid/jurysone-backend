@@ -91,7 +91,7 @@ export class EsignController {
             body: JSON.stringify(dto),
           });
           if (resp.ok) {
-            const result = await resp.json();
+            const result = await resp.json() as any;
             this.logger.log(`[ZapSign] Documento criado: ${result.token}`);
             return result; // { token, name, status_name, signers: [{token, sign_url}] }
           }
