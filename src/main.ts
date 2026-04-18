@@ -19,7 +19,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // ── Segurança ────────────────────────────────────────────────────────────
-  app.use(helmet());
+  // CSP desabilitado: os HTMLs usam scripts inline e CDNs (Tailwind, Chart.js, etc.)
+  // Os demais headers do Helmet (X-Frame, HSTS, etc.) permanecem ativos.
+  app.use(helmet({ contentSecurityPolicy: false }));
   const isProduction = process.env.NODE_ENV === 'production';
   const allowedOrigins = [
     ...(isProduction ? [] : ['http://localhost:3000']), // Remove localhost em prod
