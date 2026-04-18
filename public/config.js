@@ -9,8 +9,8 @@
  */
 window.JURYSONE_CONFIG = {
   // URL do backend NestJS (onde vivem TODAS as chaves de API)
-  // Detecta automaticamente: localhost em dev, produção em prod
+  // Usa URL relativa em produção — funciona em qualquer domínio (jurysone.com.br ou onrender.com)
   API_URL: window.location.hostname === 'localhost'
     ? 'http://localhost:3001/api'
-    : 'https://jurysone.com.br/api',
+    : window.location.origin + '/api',
 };
