@@ -6302,11 +6302,21 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         }
 
         // ─── Preenche todos os campos a partir do objeto persistido ───────
+        // Usa _cfgDadosEscritorio como fonte primária; fallback para
+        // a chave simples 'jurysone_cfg_esc' (salva sem criptografia)
         function _preencherCamposEscritorio() {
-          const d = _cfgDadosEscritorio || {};
+          let d = _cfgDadosEscritorio || {};
+          // Fallback: lê do backup simples se principal estiver vazio
+          if (!d.nome) {
+            try {
+              const bkp = localStorage.getItem('jurysone_cfg_esc');
+              if (bkp) d = JSON.parse(bkp);
+            } catch(e) {}
+          }
+          if (!d || !d.nome) return; // nada para preencher
           const set = (id, val) => { const el = document.getElementById(id); if (el && val !== undefined) el.value = val; };
           const setChk = (id, val) => { const el = document.getElementById(id); if (el) el.checked = !!val; };
-          if (d.nome)     { set('cfg-nome', d.nome);         _cfgNomeEscritorio = d.nome; }
+          set('cfg-nome', d.nome);         _cfgNomeEscritorio = d.nome;
           if (d.oab)      set('cfg-oab',     d.oab);
           if (d.email)    set('cfg-email',   d.email);
           if (d.tel)      set('cfg-tel',     d.tel);
@@ -6316,13 +6326,21 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           if (d.idioma)   set('cfg-idioma',  d.idioma);
           setChk('cfg-modo-escuro', d.modoEscuro);
           if (d.cor)      { aplicarTema(d.cor); set('cfg-cor-custom', d.cor); }
+          // Mantém _cfgDadosEscritorio sincronizado
+          _cfgDadosEscritorio = d;
         }
 
-        function saveConfigGeral() {
+        async function saveConfigGeral() {
           // Lê e persiste todos os campos do escritório
           _cfgDadosEscritorio = _lerCamposEscritorio();
           _cfgNomeEscritorio  = _cfgDadosEscritorio.nome;
-          _salvarDadosLocais();
+
+          // Backup simples imediato (sem criptografia — nunca falha)
+          try {
+            localStorage.setItem('jurysone_cfg_esc', JSON.stringify(_cfgDadosEscritorio));
+          } catch(e) {}
+
+          await _salvarDadosLocais();
           _atualizarHeaderUsuario();
           showToast(`✅ Configurações salvas — ${_cfgNomeEscritorio}`, 'success');
         }

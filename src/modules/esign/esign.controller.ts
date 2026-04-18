@@ -17,19 +17,24 @@
 import {
   Controller, Get, Post, Patch, Delete,
   Body, Param, Query, UseGuards, Request,
-  HttpCode, HttpStatus, Res,
+  HttpCode, HttpStatus, Res, Logger,
 } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { EsignService } from './esign.service';
+import { ChavesService } from '../chaves/chaves.service';
 
 @ApiTags('E-Sign — Assinatura Digital')
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
 @Controller('esign')
 export class EsignController {
+  private readonly logger = new Logger(EsignController.name);
 
-  constructor(private readonly esignService: EsignService) {}
+  constructor(
+    private readonly esignService: EsignService,
+    private readonly chavesService: ChavesService,
+  ) {}
 
   /* ──────────────────── ENVELOPES ───────────────────────────── */
 
@@ -65,24 +70,66 @@ export class EsignController {
   @Post('envelopes')
   async createEnvelope(
     @Request() req: any,
-    @Body() dto: {
-      title: string;
-      documento_id?: string;
-      documento_url?: string;
-      tipo: 'simples' | 'icp_brasil';
-      signatarios: Array<{
-        nome: string;
-        email: string;
-        cpf?: string;
-        papel: 'signatario' | 'aprovador' | 'testemunha' | 'notificado';
-        ordem: number;
-        notificacao: 'email' | 'whatsapp' | 'sms';
-      }>;
-      expira_em?: string;
-      mensagem?: string;
-    },
+    @Body() dto: Record<string, any>,
   ) {
-    return this.esignService.createEnvelope(req.user, dto);
+    const escritorioId = req.user.escritorioId ?? req.user.officeId;
+
+    // Detecta payload no formato ZapSign (enviado pelo frontend via zapsignCriarDoc)
+    const isZapSignFormat = !!dto.signers;
+
+    if (isZapSignFormat) {
+      // Tenta chamar a API real do ZapSign
+      const zapToken = await this.chavesService.getChave(escritorioId, 'zapsign');
+      if (zapToken) {
+        try {
+          const resp = await fetch('https://api.zapsign.com.br/api/v1/docs/', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${zapToken}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dto),
+          });
+          if (resp.ok) {
+            const result = await resp.json();
+            this.logger.log(`[ZapSign] Documento criado: ${result.token}`);
+            return result; // { token, name, status_name, signers: [{token, sign_url}] }
+          }
+          const err = await resp.text();
+          this.logger.warn(`[ZapSign] Erro ${resp.status}: ${err}`);
+        } catch (e) {
+          this.logger.warn(`[ZapSign] Falha na chamada: ${e.message}`);
+        }
+      } else {
+        this.logger.warn('[ZapSign] Token não configurado — usando envelope local');
+      }
+
+      // Fallback: envelope local (retorna formato compatível com ZapSign)
+      const envelope = await this.esignService.createEnvelope(req.user, {
+        title: dto.name || 'Documento para Assinatura',
+        tipo: 'simples',
+        signatarios: (dto.signers || []).map((s: any, i: number) => ({
+          nome: s.name,
+          email: s.email,
+          papel: 'signatario' as const,
+          ordem: i + 1,
+          notificacao: 'email' as const,
+        })),
+        mensagem: dto.message,
+      });
+
+      // Retorna no formato ZapSign para o frontend
+      return {
+        token: (envelope as any).id,
+        name: (envelope as any).titulo,
+        status_name: 'pending',
+        signers: [],
+        _local: true,
+      };
+    }
+
+    // Formato interno do backend
+    return this.esignService.createEnvelope(req.user, dto as any);
   }
 
   /**

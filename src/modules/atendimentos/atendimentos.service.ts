@@ -22,21 +22,34 @@ export class AtendimentosService {
     dto: CreateAtendimentoDto,
   ) {
     try {
-      // 1. Create or find client
-      const cliente = await this.prisma.cliente.upsert({
-        where: { cpf: dto.cliente.cpf } as any,
-        update: {},
-        create: {
-          nome: dto.cliente.nome,
-          cpf: dto.cliente.cpf,
-          rg: dto.cliente.rg,
-          dataNascimento: new Date(dto.cliente.dataNascimento),
-          telefone: dto.cliente.telefone,
-          email: dto.cliente.email,
-          endereco: typeof dto.cliente.endereco === 'string' ? dto.cliente.endereco : JSON.stringify(dto.cliente.endereco),
-          escritorioId,
-        },
-      });
+      // 1. Create or find client (cpf não é unique → findFirst + create)
+      let cliente = dto.cliente.cpf
+        ? await this.prisma.cliente.findFirst({
+            where: { escritorioId, cpf: dto.cliente.cpf },
+          })
+        : null;
+
+      if (!cliente) {
+        cliente = await this.prisma.cliente.create({
+          data: {
+            nome: dto.cliente.nome,
+            cpf: dto.cliente.cpf ?? null,
+            rg: dto.cliente.rg ?? null,
+            dataNascimento: dto.cliente.dataNascimento
+              ? new Date(dto.cliente.dataNascimento)
+              : null,
+            telefone: dto.cliente.telefone ?? null,
+            email: dto.cliente.email ?? null,
+            endereco:
+              typeof dto.cliente.endereco === 'string'
+                ? dto.cliente.endereco
+                : dto.cliente.endereco
+                  ? JSON.stringify(dto.cliente.endereco)
+                  : null,
+            escritorioId,
+          },
+        });
+      }
 
       // 2. Create minor if applicable
       let menorId: string = null;

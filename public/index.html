@@ -7009,6 +7009,8 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
 
         // ─── API MANAGEMENT ───────────────────────────────────────
         const API_DEFINITIONS = [
+          { id:'zapsign',     nome:'ZapSign (Assinatura Digital)', icon:'✍️', desc:'Envio e coleta de assinaturas digitais em contratos de honorários e procurações.', placeholder:'Token ZapSign (ex: eyJ...)', docsUrl:'https://app.zapsign.com.br/conta/integracoes', testEndpoint:'zapsign' },
+          { id:'asaas',       nome:'Asaas (Cobranças)',       icon:'💰', desc:'Geração automática de boletos, PIX e cartão para honorários e parcelamentos.',    placeholder:'$aact_... (Produção) ou $aasp_... (Sandbox)', docsUrl:'https://www.asaas.com/api/index', testEndpoint:'asaas' },
           { id:'openai',      nome:'OpenAI (GPT-4o)',         icon:'🤖', desc:'IA Copiloto Jurídico — análise de contratos, geração de peças e jurisprudência.', placeholder:'sk-proj-...', docsUrl:'https://platform.openai.com/api-keys', testEndpoint:'openai' },
           { id:'datajud',     nome:'DataJud / CNJ',           icon:'⚖️', desc:'Consulta e monitoramento automático de processos nos tribunais brasileiros.',    placeholder:'Bearer eyJ...', docsUrl:'https://datajud-wiki.cnj.jus.br', testEndpoint:'datajud' },
           { id:'whatsapp',    nome:'WhatsApp Business API',   icon:'💬', desc:'Envio de mensagens e notificações automáticas para clientes via WhatsApp.',      placeholder:'EAA...', docsUrl:'https://developers.facebook.com/docs/whatsapp', testEndpoint:'whatsapp' },
@@ -7127,7 +7129,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           renderApiCards();
         }
 
-        function saveApi(id) {
+        async function saveApi(id) {
           const key = document.getElementById('api-input-'+id).value.trim();
           const msg = document.getElementById('api-msg-'+id);
           if (!key) {
@@ -7135,6 +7137,23 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             msg.textContent='⚠️ Não é possível salvar uma chave vazia.'; return;
           }
           saveApiKey(id, key);
+
+          // Para ZapSign e Asaas: envia ao backend também para uso server-side
+          if (['zapsign','asaas'].includes(id)) {
+            try {
+              const apiBase = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
+              const token = _getToken();
+              await fetch(`${apiBase}/chaves`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+                },
+                body: JSON.stringify({ id, chave: key }),
+              });
+            } catch(e) { console.warn('[saveApi] Falha ao enviar chave ao backend:', e.message); }
+          }
+
           const api = API_DEFINITIONS.find(a=>a.id===id);
           msg.style.display='block'; msg.style.color='#059669';
           msg.innerHTML='💾 <strong>Chave salva!</strong> A API "'+escapeHtml(api.nome||'')+'" foi configurada. Clique em "Verificar" para testar a conexão.';
@@ -12395,7 +12414,7 @@ Nestes termos, pede deferimento.
                         ...(token ? { 'Authorization': `Bearer ${token}` } : {})
                     },
                     body:   JSON.stringify(payload),
-                    signal: AbortSignal.timeout(3000)
+                    signal: AbortSignal.timeout(15000)
                 });
 
                 if (res.ok) {

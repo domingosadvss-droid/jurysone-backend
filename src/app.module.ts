@@ -31,6 +31,7 @@ import { TarefasModule } from './modules/tarefas/tarefas.module';
 import { TimetrackingModule } from './modules/timetracking/timetracking.module';
 import { WhatsappModule } from './modules/whatsapp/whatsapp.module';
 import { DadosModule } from './modules/dados/dados.module';
+import { ChavesModule } from './modules/chaves/chaves.module';
 
 @Module({
   controllers: [AppController],
@@ -69,6 +70,7 @@ import { DadosModule } from './modules/dados/dados.module';
     TimetrackingModule,
     WhatsappModule,
     DadosModule,
+    ChavesModule,
   ],
 })
 export class AppModule {}

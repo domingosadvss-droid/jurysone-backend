@@ -3,8 +3,10 @@ import { EsignController } from './esign.controller';
 import { ZapsignWebhookController } from './zapsign-webhook.controller';
 import { EsignService } from './esign.service';
 import { PrismaService } from '../../database/prisma.service';
+import { ChavesModule } from '../chaves/chaves.module';
 
 @Module({
+  imports: [ChavesModule],
   controllers: [EsignController, ZapsignWebhookController],
   providers: [EsignService, PrismaService],
   exports: [EsignService],
