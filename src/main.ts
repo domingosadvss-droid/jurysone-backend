@@ -51,6 +51,14 @@ async function bootstrap() {
   const publicPath = path.join(__dirname, '..', 'public');
   app.use(express.static(publicPath));
 
+  // ── Middleware: Redirecionar raiz "/" para "/api/" ─────────────────────
+  app.use((req, res, next) => {
+    if (req.path === '/' && !req.path.startsWith('/api')) {
+      return res.redirect(301, '/api/');
+    }
+    next();
+  });
+
   // ── Prefixo global da API ────────────────────────────────────────────────
   app.setGlobalPrefix('api');
 
