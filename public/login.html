@@ -4,6 +4,24 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Jurysone — Login</title>
+<!-- Se já estiver autenticado, vai direto ao dashboard -->
+<script>
+(function() {
+  var token = localStorage.getItem('jurysone_token');
+  if (token) {
+    try {
+      var payload = JSON.parse(atob(token.split('.')[1]));
+      if (payload.exp && payload.exp * 1000 > Date.now()) {
+        window.location.replace('/dashboard.html');
+        return;
+      }
+    } catch(e) {}
+    // Token inválido — limpa e mostra login
+    localStorage.removeItem('jurysone_token');
+    localStorage.removeItem('jurysone_user');
+  }
+})();
+</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');

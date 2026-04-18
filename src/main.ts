@@ -49,6 +49,15 @@ async function bootstrap() {
 
   // ── Servir Frontend (HTML estático) ──────────────────────────────────────
   const publicPath = path.join(__dirname, '..', 'public');
+
+  // Redireciona a raiz "/" para o login (o cliente já logado é redirecionado ao dashboard pelo login.html)
+  app.use((req: any, res: any, next: any) => {
+    if (req.path === '/' && req.method === 'GET') {
+      return res.redirect(302, '/login.html');
+    }
+    next();
+  });
+
   app.use(express.static(publicPath));
 
   // ── Prefixo global da API ────────────────────────────────────────────────

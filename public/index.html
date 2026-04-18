@@ -21,6 +21,19 @@
                 window.location.href = '/login.html';
                 return;
             }
+            // Valida expiração do token JWT
+            try {
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                if (payload.exp && payload.exp * 1000 < Date.now()) {
+                    localStorage.removeItem('jurysone_token');
+                    localStorage.removeItem('jurysone_user');
+                    window.location.href = '/login.html';
+                }
+            } catch(e) {
+                localStorage.removeItem('jurysone_token');
+                localStorage.removeItem('jurysone_user');
+                window.location.href = '/login.html';
+            }
         })();
     </script>
     <style>
