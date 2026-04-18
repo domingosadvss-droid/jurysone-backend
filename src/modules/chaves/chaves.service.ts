@@ -42,9 +42,12 @@ export class ChavesService {
   async getChave(escritorioId: string, id: string): Promise<string | null> {
     // 1. Env var tem precedência (configuração do servidor)
     const envMap: Record<string, string> = {
-      zapsign: process.env.ZAPSIGN_TOKEN,
-      asaas: process.env.ASAAS_API_KEY,
-      openai: process.env.OPENAI_API_KEY,
+      zapsign:  process.env.ZAPSIGN_TOKEN,
+      asaas:    process.env.ASAAS_API_KEY,
+      gemini:   process.env.GEMINI_API_KEY,
+      datajud:  process.env.DATAJUD_API_KEY,
+      whatsapp: process.env.WHATSAPP_TOKEN,
+      resend:   process.env.RESEND_API_KEY,
     };
     if (envMap[id]) return envMap[id];
 
