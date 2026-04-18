@@ -7030,14 +7030,14 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
 
         // ─── API MANAGEMENT ───────────────────────────────────────
         const API_DEFINITIONS = [
-          { id:'openai',      nome:'OpenAI (GPT-4o)',         icon:'🤖', desc:'IA Copiloto Jurídico — análise de contratos, geração de peças e jurisprudência.', placeholder:'sk-proj-...', docsUrl:'https://platform.openai.com/api-keys', testEndpoint:'openai' },
-          { id:'datajud',     nome:'DataJud / CNJ',           icon:'⚖️', desc:'Consulta e monitoramento automático de processos nos tribunais brasileiros.',    placeholder:'Bearer eyJ...', docsUrl:'https://datajud-wiki.cnj.jus.br', testEndpoint:'datajud' },
-          { id:'whatsapp',    nome:'WhatsApp Business API',   icon:'💬', desc:'Envio de mensagens e notificações automáticas para clientes via WhatsApp.',      placeholder:'EAA...', docsUrl:'https://developers.facebook.com/docs/whatsapp', testEndpoint:'whatsapp' },
-          { id:'resend',      nome:'Resend (E-mail)',          icon:'📧', desc:'Envio de e-mails transacionais: prazos, assinaturas, boletos e relatórios.',     placeholder:'re_...', docsUrl:'https://resend.com/api-keys', testEndpoint:'resend' },
-          { id:'stripe',      nome:'Stripe (Pagamentos)',     icon:'💳', desc:'Processamento de pagamentos de honorários e cobrança recorrente de clientes.',    placeholder:'sk_live_...', docsUrl:'https://dashboard.stripe.com/apikeys', testEndpoint:'stripe' },
-          { id:'aws_s3',      nome:'AWS S3 (Documentos)',     icon:'☁️', desc:'Armazenamento seguro de documentos, contratos e arquivos do escritório.',        placeholder:'AKIA...', docsUrl:'https://aws.amazon.com/s3', testEndpoint:'aws' },
-          { id:'icp_brasil',  nome:'ICP-Brasil (E-Sign)',     icon:'🔐', desc:'Certificação digital ICP-Brasil para assinatura jurídica com validade legal.',   placeholder:'Chave privada PEM ou certificado A1/A3', docsUrl:'https://www.iti.gov.br', testEndpoint:'icp' },
-          { id:'pusher',      nome:'Pusher / WebSocket',      icon:'📡', desc:'Notificações em tempo real de andamentos, prazos e mensagens do sistema.',       placeholder:'app_id:key:secret:cluster', docsUrl:'https://dashboard.pusher.com', testEndpoint:'pusher' },
+          { id:'zapsign',  nome:'ZapSign (Assinatura Digital)', icon:'✍️', desc:'Envio e coleta de assinaturas digitais em contratos de honorários e procurações. Já integrado ao fluxo de atendimento.', placeholder:'Token ZapSign (ex: eyJ...)', docsUrl:'https://app.zapsign.com.br/conta/integracoes', testEndpoint:'zapsign' },
+          { id:'asaas',    nome:'Asaas (Cobranças)',            icon:'💰', desc:'Geração automática de boletos, PIX e cartão para honorários e parcelamentos. Já integrado ao financeiro.', placeholder:'$aact_... (Produção) ou $aasp_... (Sandbox)', docsUrl:'https://www.asaas.com/api/index', testEndpoint:'asaas' },
+          { id:'gemini',   nome:'Gemini (IA Jurídica)',         icon:'🤖', desc:'IA Copiloto Jurídico — análise de contratos, geração de peças e jurisprudência. Powered by Google Gemini 1.5 Flash.', placeholder:'AIza...', docsUrl:'https://aistudio.google.com/app/apikey', testEndpoint:'gemini' },
+          { id:'datajud',  nome:'DataJud / CNJ',                icon:'⚖️', desc:'Consulta e monitoramento automático de processos nos tribunais brasileiros.', placeholder:'Bearer eyJ...', docsUrl:'https://datajud-wiki.cnj.jus.br', testEndpoint:'datajud' },
+          { id:'whatsapp', nome:'WhatsApp Business API',        icon:'💬', desc:'Envio de mensagens e notificações automáticas para clientes via WhatsApp.', placeholder:'EAA...', docsUrl:'https://developers.facebook.com/docs/whatsapp', testEndpoint:'whatsapp' },
+          { id:'resend',   nome:'Resend (E-mail)',               icon:'📧', desc:'Envio de e-mails transacionais: prazos, assinaturas, boletos e relatórios.', placeholder:'re_...', docsUrl:'https://resend.com/api-keys', testEndpoint:'resend' },
+          { id:'aws_s3',   nome:'AWS S3 (Documentos)',           icon:'☁️', desc:'Armazenamento seguro de documentos, contratos e arquivos do escritório.', placeholder:'AKIA...', docsUrl:'https://aws.amazon.com/s3', testEndpoint:'aws' },
+          { id:'pusher',   nome:'Pusher / WebSocket',            icon:'📡', desc:'Notificações em tempo real de andamentos, prazos e mensagens do sistema.', placeholder:'app_id:key:secret:cluster', docsUrl:'https://dashboard.pusher.com', testEndpoint:'pusher' },
         ];
 
         // Load saved API keys from localStorage
@@ -7148,7 +7148,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           renderApiCards();
         }
 
-        function saveApi(id) {
+        async function saveApi(id) {
           const key = document.getElementById('api-input-'+id).value.trim();
           const msg = document.getElementById('api-msg-'+id);
           if (!key) {
@@ -7156,6 +7156,21 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             msg.textContent='⚠️ Não é possível salvar uma chave vazia.'; return;
           }
           saveApiKey(id, key);
+
+          // Envia ao backend para uso server-side (ZapSign, Asaas, Gemini, etc.)
+          try {
+            const apiBase = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
+            const token = localStorage.getItem('jurysone_token');
+            await fetch(`${apiBase}/chaves`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+              },
+              body: JSON.stringify({ id, chave: key }),
+            });
+          } catch(e) { console.warn('[saveApi] Falha ao enviar chave ao backend:', e.message); }
+
           const api = API_DEFINITIONS.find(a=>a.id===id);
           msg.style.display='block'; msg.style.color='#059669';
           msg.innerHTML='💾 <strong>Chave salva!</strong> A API "'+escapeHtml(api.nome||'')+'" foi configurada. Clique em "Verificar" para testar a conexão.';
