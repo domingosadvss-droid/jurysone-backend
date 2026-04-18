@@ -10335,7 +10335,7 @@ Nestes termos, pede deferimento.
           };
         }
 
-        // ─── Salva no SQLite (proxy) + localStorage como fallback ─────────
+        // ─── Salva na API NestJS + localStorage como fallback ────────────
         async function _salvarDadosLocais() {
           const _bar = document.getElementById('jus-saving-bar');
           const _pill = document.getElementById('jus-saving-pill');
@@ -10350,26 +10350,32 @@ Nestes termos, pede deferimento.
             localStorage.setItem(LS_DADOS_KEY, encrypted);
           } catch(e) { console.warn('[LS] Erro ao salvar localStorage:', e); }
 
-          // 2. Persiste no SQLite via proxy quando disponível
-          if (_proxyOnline) {
+          // 2. Persiste na API NestJS (fonte principal — sempre tenta em produção)
+          const _token = localStorage.getItem('jurysone_token');
+          if (_token) {
+            const _apiBase = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
             try {
-              const resp = await fetch(`${PROXY}/db/dados`, {
+              const resp = await fetch(`${_apiBase}/dados`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${_token}`,
+                },
                 body: JSON.stringify(payload),
               });
               if (resp.ok) {
                 const r = await resp.json();
-                console.log(`[DB] ✅ ${r.chaves_salvas} chaves salvas no SQLite`);
+                console.log(`[API] ✅ ${r.chaves_salvas} chaves salvas na API`);
+                const _ob = document.getElementById('jus-offline-banner'); if(_ob) _ob.classList.remove('active');
               } else {
-                console.warn('[DB] Resposta não-OK ao salvar:', resp.status);
+                console.warn('[API] Resposta não-OK ao salvar:', resp.status);
               }
             } catch(e) {
-              console.warn('[DB] Proxy indisponível para salvar — mantido no localStorage:', e.message);
-              _proxyOnline = false;
+              console.warn('[API] API indisponível para salvar — mantido no localStorage:', e.message);
               const _ob = document.getElementById('jus-offline-banner'); if(_ob) _ob.classList.add('active');
             }
           }
+
           if (_bar) _bar.classList.remove('active');
           if (_pill) _pill.classList.remove('active');
         }
@@ -10406,27 +10412,33 @@ Nestes termos, pede deferimento.
           return true;
         }
 
-        // ─── Carrega dados: SQLite (proxy) → fallback localStorage ────────
+        // ─── Carrega dados: API NestJS → fallback localStorage ───────────
         async function _carregarDadosLocais() {
-          // 1. Tenta carregar do SQLite via proxy (fonte primária)
-          try {
-            const resp = await fetch(`${PROXY}/db/dados`, { method: 'GET', signal: AbortSignal.timeout(1500) });
-            if (resp.ok) {
-              const r = await resp.json();
-              if (r.ok && r.dados && Object.keys(r.dados).length > 0) {
-                _aplicarDados(r.dados);
-                // Sincroniza localStorage encriptado com o que veio do banco
-                try { const enc = await _lsEncrypt(JSON.stringify(r.dados)); localStorage.setItem(LS_DADOS_KEY, enc); } catch(e) {}
-                console.log(`[DB] ✅ Dados carregados do SQLite (${r.total} chaves)`);
-                _proxyOnline = true;
-                const _ob = document.getElementById('jus-offline-banner'); if(_ob) _ob.classList.remove('active');
-                return true;
+          // 1. Tenta carregar da API NestJS (fonte principal em produção)
+          const _token = localStorage.getItem('jurysone_token');
+          if (_token) {
+            const _apiBase = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
+            try {
+              const resp = await fetch(`${_apiBase}/dados`, {
+                method: 'GET',
+                headers: { 'Authorization': `Bearer ${_token}` },
+                signal: AbortSignal.timeout(5000),
+              });
+              if (resp.ok) {
+                const r = await resp.json();
+                if (r.ok && r.dados && Object.keys(r.dados).length > 0) {
+                  _aplicarDados(r.dados);
+                  // Sincroniza localStorage encriptado com o que veio da API
+                  try { const enc = await _lsEncrypt(JSON.stringify(r.dados)); localStorage.setItem(LS_DADOS_KEY, enc); } catch(e) {}
+                  console.log(`[API] ✅ Dados carregados da API (${r.total} chaves)`);
+                  const _ob = document.getElementById('jus-offline-banner'); if(_ob) _ob.classList.remove('active');
+                  return true;
+                }
               }
+            } catch(e) {
+              console.warn('[API] API indisponível para carregar — usando localStorage:', e.message);
+              const _ob = document.getElementById('jus-offline-banner'); if(_ob) _ob.classList.add('active');
             }
-          } catch(e) {
-            console.warn('[DB] Proxy indisponível para carregar — usando localStorage:', e.message);
-            _proxyOnline = false;
-            const _ob = document.getElementById('jus-offline-banner'); if(_ob) _ob.classList.add('active');
           }
 
           // 2. Fallback: localStorage (descriptografado)
@@ -10436,7 +10448,7 @@ Nestes termos, pede deferimento.
             const decrypted = await _lsDecrypt(raw);
             const dados = JSON.parse(decrypted);
             _aplicarDados(dados);
-            console.log('[LS] ✅ Dados carregados do localStorage (proxy offline)');
+            console.log('[LS] ✅ Dados carregados do localStorage');
             return true;
           } catch(e) {
             console.warn('[LS] Erro ao carregar dados:', e);
@@ -10458,9 +10470,7 @@ Nestes termos, pede deferimento.
           _atualizarHeaderUsuario();   // ← popula header/sidebar com dados reais
           _preencherCamposEscritorio(); // ← restaura campos do escritório no DOM
           setTimeout(()=>{initCharts()},100);
-          if (!_proxyOnline) {
-            setTimeout(() => showToast('⚠️ Proxy offline — dados não serão gravados. Inicie o Jurysone pelo atalho da área de trabalho.', 'warning'), 1200);
-          }
+          // API NestJS é a fonte de verdade em produção; localStorage é fallback offline
         })();
     </script>
 
