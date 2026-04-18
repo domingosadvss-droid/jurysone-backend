@@ -43,6 +43,9 @@ COPY --from=builder /app/node_modules ./node_modules
 # Copy package.json (used by some packages at runtime)
 COPY package*.json ./
 
+# Copy public folder (HTML frontend served by express.static)
+COPY --from=builder /app/public ./public
+
 ENV NODE_ENV=production
 # Força o Prisma a usar o binário para Alpine Linux com OpenSSL 3.x
 ENV PRISMA_QUERY_ENGINE_LIBRARY=/app/node_modules/.prisma/client/libquery_engine-linux-musl-openssl-3.0.x.so.node
