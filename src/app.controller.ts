@@ -32,33 +32,43 @@ export class AppController {
   @Get('/pooler-scan')
   async poolerScan() {
     const ref = 'igeavulziixkvpldiviy';
+    const pass = process.env.DB_RAW_PASS ?? '%6L3XBuskgN9?6a';
     const regions = [
       'aws-0-us-east-1', 'aws-0-us-east-2', 'aws-0-us-west-1', 'aws-0-us-west-2',
       'aws-0-sa-east-1', 'aws-1-sa-east-1',
-      'aws-0-eu-west-1', 'aws-0-eu-west-2', 'aws-0-eu-central-1',
+      'aws-0-eu-west-1', 'aws-0-eu-central-1',
       'aws-0-ap-southeast-1', 'aws-0-ap-northeast-1',
     ];
 
-    const tcpTest = (hostname: string, port: number, timeoutMs: number): Promise<string> =>
+    // Testa conexao Postgres real em cada regiao usando o modulo pg
+    let Client: any;
+    try { Client = require('pg').Client; } catch { return { error: 'pg not available' }; }
+
+    const tryConnect = (host: string): Promise<string> =>
       new Promise(resolve => {
-        const sock = new net.Socket();
-        sock.setTimeout(timeoutMs);
-        sock.on('connect', () => { sock.destroy(); resolve('open'); });
-        sock.on('timeout', () => { sock.destroy(); resolve('timeout'); });
-        sock.on('error', (e: any) => resolve(`err:${e.code}`));
-        sock.connect(port, hostname);
+        const c = new Client({
+          host, port: 6543, database: 'postgres',
+          user: `postgres.${ref}`, password: pass,
+          ssl: { rejectUnauthorized: false },
+          connectionTimeoutMillis: 5000,
+        });
+        c.connect((err: any) => {
+          if (!err) { c.end(); resolve('CONNECTED'); return; }
+          const msg: string = err.message ?? String(err);
+          if (msg.includes('Tenant') || msg.includes('not found')) resolve('tenant-not-found');
+          else if (msg.includes('password') || msg.includes('auth')) resolve('wrong-password');
+          else if (msg.includes('timeout') || msg.includes('ECONNREFUSED')) resolve('unreachable');
+          else resolve(`err: ${msg.substring(0, 80)}`);
+          try { c.end(); } catch {}
+        });
       });
 
     const results: any[] = [];
     for (const region of regions) {
-      const host = `${region}.pooler.supabase.com`;
-      let ip = '';
-      try {
-        const addrs = await dns.resolve4(host);
-        ip = addrs[0] ?? '?';
-      } catch { ip = 'no-ipv4'; }
-      const tcp = await tcpTest(host, 6543, 3000);
-      results.push({ region, host, ip, tcp });
+      const poolerHost = `${region}.pooler.supabase.com`;
+      const result = await tryConnect(poolerHost);
+      results.push({ region, result });
+      if (result === 'CONNECTED' || result === 'wrong-password') break; // achou!
     }
     return results;
   }
