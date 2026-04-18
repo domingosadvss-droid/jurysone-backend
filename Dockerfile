@@ -46,6 +46,10 @@ COPY package*.json ./
 # Copy public folder (HTML frontend served by express.static)
 COPY --from=builder /app/public ./public
 
+# Copy Prisma schema + migrations so prisma migrate deploy works at startup
+COPY --from=builder /app/src/database/schema.prisma ./src/database/schema.prisma
+COPY --from=builder /app/src/database/migrations ./src/database/migrations
+
 ENV NODE_ENV=production
 # Força o Prisma a usar o binário para Alpine Linux com OpenSSL 3.x
 ENV PRISMA_QUERY_ENGINE_LIBRARY=/app/node_modules/.prisma/client/libquery_engine-linux-musl-openssl-3.0.x.so.node
@@ -54,4 +58,5 @@ ENV PRISMA_QUERY_ENGINE_LIBRARY=/app/node_modules/.prisma/client/libquery_engine
 # O app lê process.env.PORT no main.ts — está configurado corretamente
 EXPOSE 3001
 
-CMD ["node", "dist/main"]
+# Roda as migrations pendentes e inicia o servidor
+CMD ["sh", "-c", "./node_modules/.bin/prisma migrate deploy --schema src/database/schema.prisma && node dist/main"]
