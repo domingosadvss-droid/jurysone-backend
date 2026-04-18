@@ -6,7 +6,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
-import { PrismaService } from './database/prisma.service';
 
 // ── Módulos estruturados ───────────────────────────────────────────────────
 import { AgendaModule } from './modules/agenda/agenda.module';
@@ -34,7 +33,6 @@ import { WhatsappModule } from './modules/whatsapp/whatsapp.module';
 
 @Module({
   controllers: [AppController],
-  providers: [PrismaService],
   imports: [
     // Carrega variáveis de ambiente de .env automaticamente
     ConfigModule.forRoot({
