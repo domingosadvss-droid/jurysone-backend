@@ -9,6 +9,20 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Chaves de API e configuração local — NÃO versionar config.js com valores reais -->
     <script src="config.js"></script>
+    <!-- VERIFICAÇÃO DE AUTENTICAÇÃO -->
+    <script>
+        // Verificar se o usuário está autenticado
+        (function checkAuth() {
+            const user = localStorage.getItem('jurysone_user');
+            const token = localStorage.getItem('jurysone_token');
+
+            // Se não tiver usuário ou token, redirecionar para login
+            if (!user || !token) {
+                window.location.href = '/login.html';
+                return;
+            }
+        })();
+    </script>
     <style>
         :root {
           --cor-primaria:        #0f2d5e;
@@ -13851,6 +13865,9 @@ Nestes termos, pede deferimento.
         </div>
       </div>
     </div>
+
+    <!-- Chat Widget -->
+    <script src="chat-widget.js"></script>
 
     </body>
 </html>

@@ -12,5 +12,5 @@ window.JURYSONE_CONFIG = {
   // Detecta automaticamente: localhost em dev, produção em prod
   API_URL: window.location.hostname === 'localhost'
     ? 'http://localhost:3001/api'
-    : 'https://api.jurysone.com.br/api',
+    : 'https://jurysone.com.br/api',
 };

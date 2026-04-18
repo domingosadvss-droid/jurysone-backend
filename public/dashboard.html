@@ -9,6 +9,16 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Chaves de API e configuração local — NÃO versionar config.js com valores reais -->
     <script src="config.js"></script>
+    <script>
+        (function checkAuth() {
+            const user = localStorage.getItem('jurysone_user');
+            const token = localStorage.getItem('jurysone_token');
+            if (!user || !token) {
+                window.location.href = '/login.html';
+                return;
+            }
+        })();
+    </script>
     <style>
         :root {
           --cor-primaria:        #0f2d5e;

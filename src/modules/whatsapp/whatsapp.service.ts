@@ -161,7 +161,7 @@ export class WhatsappService {
       status?: string;
       page?: string;
     },
-  ) {
+  ): Promise<any> {
     const page = Math.max(1, Number(query.page ?? 1));
     const limit = 20;
 
@@ -190,7 +190,7 @@ export class WhatsappService {
 
   // ─── Templates ───────────────────────────────────────────────────────────
 
-  async listTemplates(officeId: string) {
+  async listTemplates(officeId: string): Promise<any> {
     const data = await this.prisma.whatsappTemplate.findMany({
       where: { escritorioId: officeId },
       orderBy: { createdAt: 'desc' },
@@ -208,7 +208,7 @@ export class WhatsappService {
       variaveis?: string[];
       botoes?: any[];
     },
-  ) {
+  ): Promise<any> {
     const template = await this.prisma.whatsappTemplate.create({
       data: {
         nome: dto.nome,
@@ -233,7 +233,7 @@ export class WhatsappService {
 
   // ─── Automações ───────────────────────────────────────────────────────────
 
-  async listAutomacoes(officeId: string) {
+  async listAutomacoes(officeId: string): Promise<any> {
     const data = await this.prisma.whatsappAutomation.findMany({
       where: { escritorioId: officeId },
       orderBy: { createdAt: 'desc' },
@@ -251,7 +251,7 @@ export class WhatsappService {
       atraso_minutos?: number;
       filtros?: Record<string, any>;
     },
-  ) {
+  ): Promise<any> {
     return this.prisma.whatsappAutomation.create({
       data: {
         nome: dto.nome,
@@ -265,7 +265,7 @@ export class WhatsappService {
     });
   }
 
-  async updateAutomacao(officeId: string, id: string, dto: any) {
+  async updateAutomacao(officeId: string, id: string, dto: any): Promise<any> {
     const existing = await this.prisma.whatsappAutomation.findFirst({
       where: { id, escritorioId: officeId },
     });
@@ -284,7 +284,7 @@ export class WhatsappService {
     });
   }
 
-  async toggleAutomacao(officeId: string, id: string) {
+  async toggleAutomacao(officeId: string, id: string): Promise<any> {
     const existing = await this.prisma.whatsappAutomation.findFirst({
       where: { id, escritorioId: officeId },
     });
@@ -407,11 +407,11 @@ export class WhatsappService {
     );
   }
 
-  getMessages(query: any, officeId: string) {
+  getMessages(query: any, officeId: string): Promise<any> {
     return this.getHistorico(officeId, query);
   }
 
-  getConversations(query: any, officeId: string) {
+  getConversations(query: any, officeId: string): Promise<any> {
     return this.getHistorico(officeId, query);
   }
 
@@ -476,7 +476,7 @@ export class WhatsappService {
       throw new Error(`WhatsApp API ${response.status}: ${err}`);
     }
 
-    const json = await response.json().catch(() => ({}));
+    const json: any = await response.json().catch(() => ({}));
     // Evolution API: json.key?.id | Z-API: json.messageId | WPPConnect: json.id
     return json?.key?.id ?? json?.messageId ?? json?.id ?? undefined;
   }
