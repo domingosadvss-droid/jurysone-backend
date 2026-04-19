@@ -5,6 +5,7 @@
 import {
   Controller, Get, Post, Body, Param,
   UseGuards, Request, Query, Sse, MessageEvent,
+  HttpException, HttpStatus, Logger,
 } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
@@ -16,6 +17,8 @@ import { Observable, from } from 'rxjs';
 @ApiBearerAuth()
 @Controller('ai')
 export class AiCopilotController {
+
+  private readonly logger = new Logger(AiCopilotController.name);
 
   constructor(private readonly service: AiCopilotService) {}
 
@@ -134,12 +137,20 @@ export class AiCopilotController {
       arquivos?: Array<{ nome: string; mimeType: string; base64: string }>;
     },
   ) {
-    return this.service.suporteChat({
-      userId: req.user.id,
-      officeId: req.user.officeId,
-      mensagem: dto.mensagem,
-      arquivos: dto.arquivos,
-    });
+    try {
+      return await this.service.suporteChat({
+        userId: req.user.id,
+        officeId: req.user.officeId,
+        mensagem: dto.mensagem,
+        arquivos: dto.arquivos,
+      });
+    } catch (err) {
+      this.logger.error('suporteChat error:', err?.message, err?.stack);
+      throw new HttpException(
+        { message: err?.message || 'Erro interno no assistente Juri.' },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 
   /**

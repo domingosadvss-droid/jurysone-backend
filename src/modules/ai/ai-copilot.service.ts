@@ -464,15 +464,16 @@ Sobre o Jurysone:
       systemInstruction: supportSystemPrompt,
     });
 
-    const parts: Array<string | { inlineData: { mimeType: string; data: string } }> = [];
+    type Part = { text: string } | { inlineData: { mimeType: string; data: string } };
+    const parts: Part[] = [];
     if (arquivos && arquivos.length > 0) {
       for (const arq of arquivos) {
         parts.push({ inlineData: { mimeType: arq.mimeType, data: arq.base64 } });
       }
     }
-    parts.push(mensagem || 'Analise o arquivo enviado e extraia os dados do cliente.');
+    parts.push({ text: mensagem || 'Analise o arquivo enviado e extraia os dados do cliente.' });
 
-    const result = await supportModel.generateContent(parts);
+    const result = await supportModel.generateContent({ contents: [{ role: 'user', parts }] });
     const text = result.response.text();
 
     try {
