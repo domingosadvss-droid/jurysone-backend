@@ -93,6 +93,29 @@ export class WhatsappController {
     return this.service.enviarLote(req.user, dto);
   }
 
+  /* ──────────────────── CONVERSAS (INBOX) ───────────────────── */
+
+  /**
+   * GET /whatsapp/conversas
+   * Lista de conversas agrupadas por telefone (inbox estilo WhatsApp)
+   */
+  @Get('conversas')
+  async listarConversas(@Request() req: any) {
+    return this.service.listarConversas(req.user.officeId);
+  }
+
+  /**
+   * GET /whatsapp/conversas/:telefone
+   * Mensagens de uma conversa específica
+   */
+  @Get('conversas/:telefone')
+  async getConversa(
+    @Request() req: any,
+    @Param('telefone') telefone: string,
+  ) {
+    return this.service.getConversa(req.user.officeId, telefone);
+  }
+
   /* ──────────────────── HISTÓRICO ───────────────────────────── */
 
   /**

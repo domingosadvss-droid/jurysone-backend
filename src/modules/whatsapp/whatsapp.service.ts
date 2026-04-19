@@ -151,6 +151,69 @@ export class WhatsappService {
     return { total: dto.destinatarios.length, enviadas, erros, resultados };
   }
 
+  // ─── Conversas (Inbox) ───────────────────────────────────────────────────
+
+  async listarConversas(escritorioId: string) {
+    // Busca última mensagem de cada telefone
+    const mensagens = await this.prisma.whatsappMessage.findMany({
+      where: { escritorioId },
+      orderBy: { createdAt: 'desc' },
+      take: 500,
+    });
+
+    // Agrupa por telefone — mantém só a última mensagem
+    const mapa = new Map<string, any>();
+    for (const m of mensagens) {
+      if (!mapa.has(m.telefone)) {
+        mapa.set(m.telefone, m);
+      }
+    }
+
+    // Conta não lidas por telefone
+    const naoLidas = await this.prisma.whatsappMessage.groupBy({
+      by: ['telefone'],
+      where: { escritorioId, status: 'recebida' },
+      _count: { id: true },
+    });
+    const naoLidasMap = Object.fromEntries(naoLidas.map(n => [n.telefone, n._count.id]));
+
+    // Tenta associar cliente pelo telefone
+    const telefones = [...mapa.keys()];
+    const clientes = await this.prisma.cliente.findMany({
+      where: { escritorioId, telefone: { in: telefones } },
+      select: { telefone: true, nome: true },
+    });
+    const clienteMap = Object.fromEntries(clientes.map(c => [c.telefone?.replace(/\D/g, ''), c.nome]));
+
+    return [...mapa.values()].map(m => {
+      const tel = m.telefone?.replace(/\D/g, '');
+      return {
+        telefone: m.telefone,
+        nome: clienteMap[tel] ?? clienteMap[m.telefone] ?? m.telefone,
+        ultima_mensagem: m.conteudo,
+        ultima_mensagem_em: m.createdAt,
+        status: m.status,
+        nao_lidas: naoLidasMap[m.telefone] ?? 0,
+      };
+    }).sort((a, b) => new Date(b.ultima_mensagem_em).getTime() - new Date(a.ultima_mensagem_em).getTime());
+  }
+
+  async getConversa(escritorioId: string, telefone: string) {
+    const msgs = await this.prisma.whatsappMessage.findMany({
+      where: { escritorioId, telefone },
+      orderBy: { createdAt: 'asc' },
+      take: 100,
+    });
+
+    // Busca nome do cliente
+    const cliente = await this.prisma.cliente.findFirst({
+      where: { escritorioId, telefone: { contains: telefone.replace(/\D/g, '').slice(-8) } },
+      select: { nome: true, id: true },
+    });
+
+    return { mensagens: msgs, cliente };
+  }
+
   // ─── Histórico ────────────────────────────────────────────────────────────
 
   async getHistorico(
