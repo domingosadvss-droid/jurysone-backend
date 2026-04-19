@@ -48,6 +48,7 @@ interface PeticaoGerada {
 export class AiCopilotService {
 
   private _model: GenerativeModel | null = null;
+  private _modelKey: string | null = null; // chave usada para criar o modelo atual
   private readonly logger = new Logger(AiCopilotService.name);
 
   private readonly SYSTEM_PROMPT = `Você é o Copiloto Jurídico do Jurysone, assistente especializado em direito brasileiro.
@@ -60,41 +61,28 @@ Contexto: direito brasileiro vigente, 2024/2025.`;
     private readonly notificationsGateway: NotificationsGateway,
     private readonly chavesService: ChavesService,
   ) {
-    const key = process.env.GEMINI_API_KEY;
-    if (key) {
-      const genAI = new GoogleGenerativeAI(key);
-      this._model = genAI.getGenerativeModel({
-        model: 'gemini-1.5-flash',
-        systemInstruction: this.SYSTEM_PROMPT,
-      });
-      this.logger.log('Gemini Copiloto inicializado via variável de ambiente.');
-    } else {
-      this.logger.warn('GEMINI_API_KEY não configurada no ambiente — tentará carregar do banco na primeira chamada.');
-    }
+    // Modelo inicializado lazily na primeira chamada para sempre usar a chave mais recente
+    this.logger.log('AiCopilotService inicializado — modelo Gemini será carregado na primeira chamada.');
   }
 
-  /** Retorna o modelo Gemini, inicializando com chave do banco se necessário */
+  /** Retorna o modelo Gemini sempre atualizado com a chave mais recente do banco/env */
   private async getModel(officeId?: string): Promise<GenerativeModel> {
-    if (this._model) return this._model;
+    const key = await this.getApiKey(officeId);
 
-    const key = officeId
-      ? await this.chavesService.getChave(officeId, 'gemini')
-      : null;
+    // Recria o modelo somente se a chave mudou (evita criar objetos desnecessários)
+    if (this._model && this._modelKey === key) return this._model;
 
-    if (key) {
-      const genAI = new GoogleGenerativeAI(key);
-      this._model = genAI.getGenerativeModel({
-        model: 'gemini-1.5-flash',
-        systemInstruction: this.SYSTEM_PROMPT,
-      });
-      this.logger.log('Gemini Copiloto inicializado via chave do banco de dados.');
-      return this._model;
-    }
-
-    throw new Error('Gemini não configurado. Acesse Configurações → Integrações e salve sua chave Gemini.');
+    const genAI = new GoogleGenerativeAI(key);
+    this._model = genAI.getGenerativeModel({
+      model: 'gemini-1.5-flash',
+      systemInstruction: this.SYSTEM_PROMPT,
+    });
+    this._modelKey = key;
+    this.logger.log('Gemini Copiloto: modelo atualizado com nova chave.');
+    return this._model;
   }
 
-  /** Retorna apenas a API key (env ou banco), sem criar modelo com system prompt padrão */
+  /** Retorna a API key mais recente (env tem precedência sobre banco) */
   private async getApiKey(officeId?: string): Promise<string> {
     const envKey = process.env.GEMINI_API_KEY;
     if (envKey) return envKey;
@@ -103,13 +91,6 @@ Contexto: direito brasileiro vigente, 2024/2025.`;
       if (dbKey) return dbKey;
     }
     throw new Error('Gemini não configurado. Acesse Configurações → Integrações e salve sua chave Gemini.');
-  }
-
-  private get model(): GenerativeModel {
-    if (!this._model) {
-      throw new Error('Gemini não configurado. Acesse Configurações → Integrações e salve sua chave Gemini.');
-    }
-    return this._model;
   }
 
   // Helper para parsear JSON das respostas do Gemini (remove possíveis blocos markdown)
