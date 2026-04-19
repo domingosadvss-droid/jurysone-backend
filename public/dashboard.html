@@ -14135,6 +14135,8 @@ Nestes termos, pede deferimento.
           const base = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
           const url  = base + '/ai/suporte';
 
+          console.log('[Juri] POST', url, 'token:', token ? token.slice(0,20)+'...' : 'AUSENTE');
+
           const payload = {
             mensagem: mensagem || ('Analise e extraia os dados do arquivo: ' + (_arquivo?.nome || '')),
             arquivos: _arquivo ? [_arquivo] : undefined,
@@ -14150,7 +14152,9 @@ Nestes termos, pede deferimento.
 
           if (!res.ok) {
             const err = await res.json().catch(() => ({}));
-            throw new Error(err.message || 'Erro ' + res.status);
+            const msg = err.message || err.error || `HTTP ${res.status}`;
+            console.error('[Juri] Erro HTTP:', res.status, msg);
+            throw new Error(msg);
           }
 
           const data = await res.json();
@@ -14165,9 +14169,11 @@ Nestes termos, pede deferimento.
           }
         } catch (e) {
           document.getElementById(typingId)?.remove();
+          console.error('[Juri] Exceção:', e);
+          const detail = e && e.message ? e.message : String(e);
           aiAddMsg('bot',
-            '❌ Não foi possível conectar com a IA.\n' +
-            'Verifique se o backend está rodando e se **GEMINI_API_KEY** está configurada.'
+            '❌ ' + detail + '\n\n' +
+            '_Se o erro for "Gemini não configurado", acesse **Configurações → Integrações** e salve sua chave Gemini._'
           );
         }
 
