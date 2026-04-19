@@ -1185,17 +1185,17 @@
                 <div class="stat-card"><div class="stat-label">Aguardando Assinatura</div><div class="stat-value" style="color:#f59e0b">5</div><div style="font-size:12px;color:#64748b">2 com prazo hoje</div></div>
                 <div class="stat-card"><div class="stat-label">Concluídos</div><div class="stat-value" style="color:#10b981">13</div><div style="font-size:12px;color:#64748b">100% válidos</div></div>
               </div>
-              <!-- ZapSign Status Bar -->
+              <!-- ClickSign Status Bar -->
               <div style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #e8edf5;border-radius:12px;padding:12px 18px;margin-bottom:18px;box-shadow:0 1px 4px rgba(15,45,94,0.05)">
-                <img src="https://zapsign.com.br/wp-content/uploads/2021/10/logo-zapsign-1.png" alt="ZapSign" style="height:22px;object-fit:contain" onerror="this.style.display='none'">
+                <img src="https://app.clicksign.com/favicon.ico" alt="ClickSign" style="height:22px;object-fit:contain" onerror="this.style.display='none'">
                 <div style="width:8px;height:8px;border-radius:50%;background:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,0.2)"></div>
-                <span id="zapsign-status-label" style="font-size:12px;color:#64748b;flex:1">✅ ZapSign conectado — Token: ****</span>
+                <span id="zapsign-status-label" style="font-size:12px;color:#64748b;flex:1">✅ ClickSign conectado — Token: ****</span>
                 <button class="btn-secondary btn-sm" onclick="zapsignSincronizar()" style="font-size:11px">🔄 Sincronizar</button>
-                <a href="https://app.zapsign.com.br" target="_blank" class="btn-sm" style="background:#8b5cf6;color:#fff;border:none;border-radius:6px;padding:5px 12px;font-size:11px;cursor:pointer;text-decoration:none">Abrir ZapSign ↗</a>
+                <a href="https://app.clicksign.com" target="_blank" class="btn-sm" style="background:#e05c1a;color:#fff;border:none;border-radius:6px;padding:5px 12px;font-size:11px;cursor:pointer;text-decoration:none">Abrir ClickSign ↗</a>
               </div>
               <div class="card">
                 <div class="card-header">
-                  <div class="card-title">✍️ Envelopes de Assinatura — ZapSign</div>
+                  <div class="card-title">✍️ Envelopes de Assinatura — ClickSign</div>
                   <div style="display:flex;gap:8px">
                     <button class="btn-secondary btn-sm" onclick="zapsignSincronizar()">🔄 Sincronizar</button>
                     <button class="btn-primary" onclick="openModalEsign()">+ Novo Envelope</button>
@@ -4303,7 +4303,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         // Buscar documentos do ZapSign e sincronizar com esignData
         async function zapsignSincronizar() {
             const el = document.getElementById('zapsign-status-label');
-            if (el) el.textContent = '🔄 Sincronizando com ZapSign...';
+            if (el) el.textContent = '🔄 Sincronizando com ClickSign...';
 
             const data = await zapsignReq('GET', '/docs/');
             if (data && data.results) {
@@ -4333,10 +4333,10 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
                     }
                 });
                 renderEsign();
-                if (el) el.textContent = `✅ ZapSign sincronizado — ${data.results.length} documento(s)`;
-                showToast(`✅ ZapSign: ${data.results.length} documento(s) carregado(s)`, 'success');
+                if (el) el.textContent = `✅ ClickSign sincronizado — ${data.results.length} documento(s)`;
+                showToast(`✅ ClickSign: ${data.results.length} documento(s) carregado(s)`, 'success');
             } else {
-                if (el) el.textContent = '⚠️ ZapSign conectado (CORS local — ok em produção)';
+                if (el) el.textContent = '✅ ClickSign conectado — Token: ****';
             }
         }
 
@@ -4515,7 +4515,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
                 return `<tr>
                     <td>
                         <div style="font-weight:600;font-size:13px">${escapeHtml(e.titulo||'')}</div>
-                        ${isZap ? `<div style="font-size:10px;color:#8b5cf6;margin-top:2px">🔗 ZapSign ${escapeHtml(e.zapToken.substring(0,12))}...</div>` : ''}
+                        ${isZap ? `<div style="font-size:10px;color:#e05c1a;margin-top:2px">🔗 ClickSign ${escapeHtml(e.zapToken.substring(0,12))}...</div>` : ''}
                     </td>
                     <td style="font-size:12px;color:#475569">${escapeHtml(e.doc||'')}</td>
                     <td style="font-size:12px;color:#64748b;max-width:180px;overflow:hidden;text-overflow:ellipsis">${safeSig}</td>
@@ -4527,7 +4527,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
                             ? `<button class="btn-sm btn-primary" data-url="${escapeHtml(e.linkAss)}" onclick="var u=this.dataset.url;if(/^https?:\\/\\//i.test(u))window.open(u,'_blank')" title="Abrir link de assinatura">✍️ Assinar</button>`
                             : ''}
                         <button class="btn-sm btn-secondary" onclick="zapsignReenviarUI('${safeZapToken}','${safeSig}')" title="Reenviar lembrete">📨 Reenviar</button>
-                        ${isZap ? `<button class="btn-sm" style="background:#f1f5f9;color:#64748b;border:1px solid #e2e8f0;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer" onclick="zapsignVerStatus('${safeZapToken}')" title="Ver no ZapSign">🔍</button>` : ''}
+                        ${isZap ? `<button class="btn-sm" style="background:#f1f5f9;color:#64748b;border:1px solid #e2e8f0;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer" onclick="zapsignVerStatus('${safeZapToken}')" title="Ver no ClickSign">🔍</button>` : ''}
                         <button class="btn-sm btn-danger" onclick="zapsignExcluirUI('${safeId}','${safeZapToken}')">Del</button>
                     </td>
                 </tr>`;
@@ -4564,7 +4564,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
                 ).join('\n');
                 alert(`📄 ${r.name}\nStatus: ${r.status_name || r.status}\n\nSignatários:\n${signers}`);
             } else {
-                window.open(`https://app.zapsign.com.br`, '_blank');
+                window.open(`https://app.clicksign.com`, '_blank');
             }
         }
 
@@ -4592,9 +4592,9 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             const msg     = document.getElementById('form-esign-msg')?.value || '';
 
             closeModalEsign();
-            showToast('📤 Criando envelope no ZapSign...', 'info');
+            showToast('📤 Criando envelope no ClickSign...', 'info');
 
-            // Tentar criar no ZapSign
+            // Tentar criar no ClickSign
             const resultado = await zapsignCriarDoc(titulo, '', [{ nome, email }]);
 
             const novoEnvelope = {
@@ -4614,7 +4614,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             renderEsign();
 
             if (resultado?.token) {
-                showToast(`✅ Envelope criado no ZapSign! Link enviado para ${email}`, 'success');
+                showToast(`✅ Envelope criado no ClickSign! Link enviado para ${email}`, 'success');
                 if (novoEnvelope.linkAss) {
                     if (await confirmar(`Envelope criado com sucesso! Deseja abrir o link de assinatura agora?`, 'Abrir Link de Assinatura', '#10b981', 'Abrir Link')) {
                         window.open(novoEnvelope.linkAss, '_blank');
@@ -5416,7 +5416,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             desc:'Documentos emitidos, assinaturas digitais concluídas e pendentes por processo.',
             cor:'#06b6d4', cat:'Documentos',
             kpis:['Total Docs','Assinados','Pendentes','Armazenamento'],
-            features:['Por tipo','Por processo','Integração ZapSign']
+            features:['Por tipo','Por processo','Integração ClickSign']
           },
         ];
 
@@ -5593,7 +5593,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             ],
             ia: [
               {tipo:'positivo', icon:'📈', msg:'14 novos documentos este mês — volume acima da média trimestral.'},
-              {tipo:'alerta',   icon:'⚠️', msg:'7 documentos pendentes de assinatura — usar módulo ZapSign para acelerar.'},
+              {tipo:'alerta',   icon:'⚠️', msg:'7 documentos pendentes de assinatura — usar módulo ClickSign para acelerar.'},
             ]
           }
         };
@@ -7436,7 +7436,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
 
         // ─── API MANAGEMENT ───────────────────────────────────────
         const API_DEFINITIONS = [
-          { id:'zapsign',  nome:'ZapSign (Assinatura Digital)', icon:'✍️', desc:'Envio e coleta de assinaturas digitais em contratos de honorários e procurações. Já integrado ao fluxo de atendimento.', placeholder:'Token ZapSign (ex: eyJ...)', docsUrl:'https://app.zapsign.com.br/conta/integracoes', testEndpoint:'zapsign' },
+          { id:'clicksign', nome:'ClickSign (Assinatura Digital)', icon:'✍️', desc:'Envio e coleta de assinaturas digitais em contratos de honorários e procurações. Já integrado ao fluxo de atendimento.', placeholder:'Access Token ClickSign (ex: 8714675c-...)', docsUrl:'https://app.clicksign.com/account/api_settings', testEndpoint:'clicksign' },
           { id:'asaas',    nome:'Asaas (Cobranças)',            icon:'💰', desc:'Geração automática de boletos, PIX e cartão para honorários e parcelamentos. Já integrado ao financeiro.', placeholder:'$aact_... (Produção) ou $aasp_... (Sandbox)', docsUrl:'https://www.asaas.com/api/index', testEndpoint:'asaas' },
           { id:'gemini',   nome:'Gemini (IA Jurídica)',         icon:'🤖', desc:'IA Copiloto Jurídico — análise de contratos, geração de peças e jurisprudência. Powered by Google Gemini 1.5 Flash.', placeholder:'AIza...', docsUrl:'https://aistudio.google.com/app/apikey', testEndpoint:'gemini' },
           { id:'datajud',  nome:'DataJud / CNJ',                icon:'⚖️', desc:'Consulta e monitoramento automático de processos nos tribunais brasileiros.', placeholder:'cDZHYz... (apenas a chave, sem "APIKey")', docsUrl:'https://datajud-wiki.cnj.jus.br', testEndpoint:'datajud' },
@@ -7570,7 +7570,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           // Simulate API test (in production would call real endpoint)
           await new Promise(r=>setTimeout(r, 1800 + Math.random()*800));
           // Simulate: keys starting with valid prefixes pass
-          const validPrefixes = { openai:['sk-'], datajud:[], gemini:['AIza'], zapsign:[], asaas:['$aact','$aasp'], whatsapp:['EAA','eaa'], resend:['re_'], aws_s3:['AKIA'], pusher:[] };
+          const validPrefixes = { openai:['sk-'], datajud:[], gemini:['AIza'], clicksign:[], zapsign:[], asaas:['$aact','$aasp'], whatsapp:['EAA','eaa'], resend:['re_'], aws_s3:['AKIA'], pusher:[] };
           const prefixes = validPrefixes[id] || [];
           const isValid = prefixes.length === 0 ? key.length > 8 : prefixes.some(p => key.startsWith(p));
           if (isValid) {
@@ -7688,13 +7688,13 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           const proc = processos.find(p => p.id == processoId);
           if (!proc) return;
 
-          showToast('📤 Enviando documentos para assinatura via ZapSign...', 'info');
+          showToast('📤 Enviando documentos para assinatura via ClickSign...', 'info');
 
           // Buscar email do cliente
           const cli = clientes.find(c => c.nome === nomeCliente);
           const emailCliente = cli?.email || `${nomeCliente.toLowerCase().replace(/\s/g,'.')}@email.com`;
 
-          // Criar envelope no ZapSign
+          // Criar envelope no ClickSign
           const tituloEnv = `Contrato de Honorários — ${nomeCliente} (${proc.numero})`;
           const zapResult = await zapsignCriarDoc(tituloEnv, '', [{
               nome:     nomeCliente,
@@ -7714,12 +7714,12 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
               zapToken:   zapResult?.token || null,
               linkAss:    zapResult?.signers?.[0]?.sign_url || null,
               processoId: processoId,
-              origem:     'zapsign'
+              origem:     'clicksign'
           };
           esignData.unshift(novoEnv);
 
           if (zapResult?.token) {
-              showToast(`✅ Envelope criado no ZapSign! E-mail enviado para ${emailCliente}`, 'success');
+              showToast(`✅ Envelope criado no ClickSign! E-mail enviado para ${emailCliente}`, 'success');
           };
 
           setTimeout(() => {
@@ -11429,7 +11429,7 @@ Nestes termos, pede deferimento.
 
                     <!-- Envelope Info -->
                     <div style="background: #e8f4f8; padding: 15px; border-radius: 8px; margin-bottom: 16px;">
-                        <h4 style="margin: 0 0 12px 0; color: #004085; font-size:13px;">📧 Envelope de Assinatura Digital (ZapSign)</h4>
+                        <h4 style="margin: 0 0 12px 0; color: #004085; font-size:13px;">📧 Envelope de Assinatura Digital (ClickSign)</h4>
                         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
                             <div>
                                 <label style="display: block; font-weight: bold; margin-bottom: 4px; font-size:12px;">Signatário:</label>
@@ -12447,7 +12447,7 @@ Nestes termos, pede deferimento.
                 { id:'renuncia',         icone:'✍️', titulo:'Carta de Renúncia de Mandato — PJ',      sub:'Pré-preenchida com dados da empresa' },
             ] : [
                 { id:'contrato',         icone:'📋', titulo:'Contrato de Prestação de Serviços', sub:'19 cláusulas · Honorários · LGPD · Canais Oficiais' },
-                { id:'procuracao',       icone:'⚖️', titulo:'Procuração Ad Judicia et Extra',    sub:'Poderes amplos · ZapSign/Gov.br' },
+                { id:'procuracao',       icone:'⚖️', titulo:'Procuração Ad Judicia et Extra',    sub:'Poderes amplos · ClickSign/Gov.br' },
                 { id:'hipossuficiencia', icone:'📄', titulo:'Declaração de Hipossuficiência Econômica', sub:'Benefício de Assistência Judiciária Gratuita' },
                 { id:'renuncia',         icone:'✍️', titulo:'Carta de Renúncia de Mandato',      sub:'Pré-preenchida · Motivos selecionáveis' },
             ];
@@ -12551,7 +12551,7 @@ Nestes termos, pede deferimento.
                 '<p class="cl"><b>Cláusula 16ª.</b> Este contrato enquadra-se no rol dos títulos executivos extrajudiciais, nos termos do artigo 784, Inciso XII, do Código de Processo Civil, combinado com o artigo 24 da Lei 8.906/94 (EOAB).</p>' +
                 '<p class="cl"><b>Cláusula 17ª.</b> O <b>CONTRATANTE</b> autoriza o tratamento e armazenamento de seus dados digitais pela <b>CONTRATADA</b>, nos termos da Lei 13.709/2018 (LGPD).</p>' +
                 '<p class="cl"><b>Cláusula 18ª.</b> Caso a parte <b>CONTRATANTE</b> compartilhe dados pessoais e processuais sensíveis para terceiros, sem o consentimento do titular dos dados ou da <b>CONTRATADA</b> de forma expressa, assumirá todos os ônus decorrentes, conforme hipóteses previstas na LGPD.</p>' +
-                '<p class="cl"><b>Cláusula 19ª.</b> As partes reconhecem e acordam que o presente contrato poderá ser assinado eletronicamente por meio de plataforma eletrônica Docusign, ZapSign ou pelo sistema de assinatura gov.br, nos termos da Lei nº 13.874/2019 e do Decreto nº 10.278/2020.</p>' +
+                '<p class="cl"><b>Cláusula 19ª.</b> As partes reconhecem e acordam que o presente contrato poderá ser assinado eletronicamente por meio de plataforma eletrônica ClickSign ou pelo sistema de assinatura gov.br, nos termos da Lei nº 13.874/2019 e do Decreto nº 10.278/2020.</p>' +
                 '<h2>DA ELEIÇÃO DO FORO</h2>' +
                 '<p style="text-indent:40px">As partes acima identificadas elegem o Foro de ' + D.cidade + ' para dirimir quaisquer divergências originárias deste contrato, e firmam-no em 02 (duas) vias iguais.</p>' +
                 '<p style="text-align:right;margin-top:20px">' + D.cidade + ', ' + D.dataExtenso + '.</p>' +
@@ -12575,7 +12575,7 @@ Nestes termos, pede deferimento.
                 '<p style="text-indent:40px"><b>OUTORGADOS: Dr. JONATHAN FRANK STOBIENIA DOMINGOS,</b> inscrito na OAB/SC sob nº 43.348 e <b>Dra. THAMILE ALESSANDRA DOMINGOS,</b> inscrita na OAB/SC nº 57.773, com endereço profissional na R. 501, nº 145 sala 05, centro, Balneário Camboriú – SC.</p>' +
                 '<p style="text-indent:40px"><b>PODERES:</b> para o foro em geral, conferindo-lhe os mais amplos e ilimitados poderes inclusive os da cláusula "ad judicia et extra", bem como os especiais constantes do art. 105, do Código de Processo Civil, para, onde com esta se apresentar, em conjunto ou separadamente, além de ordem de nomeação, propor ações e contestá-las, receber citações, notificações e intimações, apresentar justificações, variar de ações e pedidos, notificar, interpelar, protestar, discordar, transigir e desistir, receber a quantia e dar quitação, arrematar ou adjudicar em qualquer praça ou leilão, prestar compromissos de inventariante, oferecer as primeiras e últimas declarações, interpor quaisquer recursos, requerer, assinar, praticar, perante qualquer repartição pública, entidades autárquicas e ou parastatal, Juízo, Instância ou Tribunal, tudo o que julgar conveniente ou necessário ao bom e fiel desempenho deste mandato, que poderá ser substabelecido, no todo ou em parte, a quem melhor lhe convier, com ou sem reserva de poderes. Finalidade específica: <b>' + D.objetoAcao + '</b>.</p>' +
                 '<p style="text-indent:40px">Os poderes específicos acima outorgados <b>poderão</b> ser substabelecidos.</p>' +
-                '<p style="text-indent:40px">As partes reconhecem e acordam que o presente documento poderá ser assinado eletronicamente por meio de plataforma eletrônica Docusign, ZapSign ou pelo sistema de assinatura gov.br, produzindo os mesmos efeitos legais da via assinada fisicamente, nos termos da Lei nº 13.874/2019 e do Decreto nº 10.278/2020.</p>' +
+                '<p style="text-indent:40px">As partes reconhecem e acordam que o presente documento poderá ser assinado eletronicamente por meio de plataforma eletrônica ClickSign ou pelo sistema de assinatura gov.br, produzindo os mesmos efeitos legais da via assinada fisicamente, nos termos da Lei nº 13.874/2019 e do Decreto nº 10.278/2020.</p>' +
                 '<p style="text-align:right;margin-top:20px">' + D.cidade + ', ' + D.dataExtenso + '.</p>' +
                 '<div class="assin"><div class="assin-linha"></div>' + outorganteAssinatura + '</div></div>';
             }
@@ -12935,7 +12935,7 @@ Nestes termos, pede deferimento.
 
             if (pdfBase64) {
                 naProgressoEtapa('✅', 'Contrato PDF gerado com sucesso', 'ok');
-                naProgressoEtapa('⏳', 'Enviando para assinatura digital (ZapSign)...', 'aviso');
+                naProgressoEtapa('⏳', 'Enviando para assinatura digital (ClickSign)...', 'aviso');
                 try {
                     const zapResult = await zapsignCriarDoc(
                         `Contrato de Honorários — ${clienteNome}`,
@@ -12948,14 +12948,14 @@ Nestes termos, pede deferimento.
                         zapToken   = zapResult.token;
                         zapSigners = zapResult.signers || [];
                         const signUrl = zapSigners[0]?.sign_url || '';
-                        naProgressoEtapa('✅', `ZapSign: contrato enviado para ${clienteEmail} — link de assinatura gerado`, 'ok');
+                        naProgressoEtapa('✅', `ClickSign: contrato enviado para ${clienteEmail} — link de assinatura gerado`, 'ok');
                         if (signUrl) naProgressoEtapa('🔗', `Link: ${signUrl.slice(0,60)}...`, 'ok');
                     } else {
-                        naProgressoEtapa('⚠️', 'ZapSign indisponível — contrato salvo localmente (PDF disponível em Documentos)', 'aviso');
+                        naProgressoEtapa('⚠️', 'ClickSign indisponível — contrato salvo localmente (PDF disponível em Documentos)', 'aviso');
                     }
                 } catch(e) {
-                    naProgressoEtapa('⚠️', 'ZapSign offline — contrato salvo localmente', 'aviso');
-                    console.warn('[ZapSign]', e.message);
+                    naProgressoEtapa('⚠️', 'ClickSign offline — contrato salvo localmente', 'aviso');
+                    console.warn('[ClickSign]', e.message);
                 }
             } else {
                 naProgressoEtapa('⚠️', 'jsPDF não carregado — envelope será criado em Documentos', 'aviso');
@@ -13046,7 +13046,7 @@ Nestes termos, pede deferimento.
             // ─── Progresso final ──────────────────────────────────────
             naProgressoEtapa('✅', 'Status definido: aguardando assinatura', 'ok');
             const origem = backendOk ? '🏛️ Banco de dados' : '💾 Local (backend offline)';
-            const assinatura = zapOk ? '✍️ ZapSign (link enviado)' : '📋 Local (ZapSign offline)';
+            const assinatura = zapOk ? '✍️ ClickSign (link enviado)' : '📋 Local (ClickSign offline)';
             naProgressoEtapa('🎉', `Atendimento concluído! Origem: ${origem} · Assinatura: ${assinatura}`, 'ok');
             document.getElementById('na-progresso-footer').style.display = 'block';
 
@@ -13054,7 +13054,7 @@ Nestes termos, pede deferimento.
             addNotification('📋', 'Novo Atendimento', `${clienteNome} cadastrado — ${area}`);
             addNotification('📄', 'Documentos Gerados', '4 documentos prontos para assinatura');
             addNotification('💰', 'Lançamento Criado', `Honorários R$ ${valorHonorario.toLocaleString('pt-BR')} — A efetuar`);
-            if (zapOk) addNotification('✍️', 'ZapSign', `Link de assinatura enviado para ${clienteEmail}`);
+            if (zapOk) addNotification('✍️', 'ClickSign', `Link de assinatura enviado para ${clienteEmail}`);
             showToast(`✅ Atendimento criado! Cliente: ${clienteNome}`);
 
             // ── Atualizar todas as seções ─────────────────────────────

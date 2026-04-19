@@ -74,37 +74,122 @@ export class EsignController {
   ) {
     const escritorioId = req.user.escritorioId ?? req.user.officeId;
 
-    // Detecta payload no formato ZapSign (enviado pelo frontend via zapsignCriarDoc)
-    const isZapSignFormat = !!dto.signers;
+    // Detecta payload com signers (enviado pelo frontend ao criar envelope)
+    const hasSigners = !!dto.signers;
 
-    if (isZapSignFormat) {
-      // Tenta chamar a API real do ZapSign
-      const zapToken = await this.chavesService.getChave(escritorioId, 'zapsign');
-      if (zapToken) {
+    if (hasSigners) {
+      // ── ClickSign API ────────────────────────────────────────────────────
+      const clickToken = await this.chavesService.getChave(escritorioId, 'clicksign');
+      if (clickToken) {
         try {
-          const resp = await fetch('https://api.zapsign.com.br/api/v1/docs/', {
-            method: 'POST',
-            headers: {
-              'Authorization': `Bearer ${zapToken}`,
-              'Content-Type': 'application/json',
+          const base = process.env.CLICKSIGN_URL || 'https://sandbox.clicksign.com';
+          const qs   = `?access_token=${clickToken}`;
+          const deadline = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+            .toISOString().replace('Z', '-03:00');
+
+          // 1. Criar documento
+          const docBody: any = {
+            document: {
+              path: `/${Date.now()}_${(dto.name || 'contrato').replace(/[^a-z0-9]/gi,'_')}.pdf`,
+              deadline_at: deadline,
+              auto_close: true,
+              locale: 'pt-BR',
+              sequence_enabled: false,
             },
-            body: JSON.stringify(dto),
-          });
-          if (resp.ok) {
-            const result = await resp.json() as any;
-            this.logger.log(`[ZapSign] Documento criado: ${result.token}`);
-            return result; // { token, name, status_name, signers: [{token, sign_url}] }
+          };
+          if (dto.base64_pdf) {
+            docBody.document.content_base64 = `data:application/pdf;base64,${dto.base64_pdf}`;
+          } else if (dto.url_pdf) {
+            docBody.document.url_pdf = dto.url_pdf;
           }
-          const err = await resp.text();
-          this.logger.warn(`[ZapSign] Erro ${resp.status}: ${err}`);
-        } catch (e) {
-          this.logger.warn(`[ZapSign] Falha na chamada: ${e.message}`);
+
+          const docResp = await fetch(`${base}/api/v1/documents${qs}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(docBody),
+          });
+
+          if (!docResp.ok) {
+            const e = await docResp.text();
+            this.logger.warn(`[ClickSign] Erro ao criar documento ${docResp.status}: ${e}`);
+            throw new Error(`ClickSign ${docResp.status}`);
+          }
+
+          const docData  = await docResp.json() as any;
+          const docKey   = docData.document?.key;
+          this.logger.log(`[ClickSign] Documento criado: ${docKey}`);
+
+          // 2. Criar signatários e vinculá-los
+          const signersOut: any[] = [];
+          for (const s of (dto.signers || [])) {
+            // Criar signatário
+            const sigResp = await fetch(`${base}/api/v1/signers${qs}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                signer: {
+                  email: s.email,
+                  phone_number: (s.phone_number || '').replace(/\D/g, '') || undefined,
+                  auths: ['email'],
+                  name: s.name,
+                  has_documentation: false,
+                },
+              }),
+            });
+            if (!sigResp.ok) continue;
+            const sigData  = await sigResp.json() as any;
+            const sigKey   = sigData.signer?.key;
+
+            // Vincular signatário ao documento
+            const listResp = await fetch(`${base}/api/v1/lists${qs}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                list: {
+                  document_key: docKey,
+                  signer_key: sigKey,
+                  sign_as: 'sign',
+                  refusable: false,
+                  message: dto.message || 'Por favor, assine o contrato',
+                },
+              }),
+            });
+            const listData = listResp.ok ? await listResp.json() as any : {};
+            const signUrl  = listData.list?.url || `${base}/sign/${sigKey}`;
+
+            // Enviar notificação por e-mail
+            await fetch(`${base}/api/v1/notifications${qs}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                notification: {
+                  document_key: docKey,
+                  signer_key: sigKey,
+                  url: signUrl,
+                  message: dto.message || 'Por favor, assine o contrato de honorários',
+                },
+              }),
+            }).catch(() => {});
+
+            signersOut.push({ token: sigKey, sign_url: signUrl, name: s.name, email: s.email });
+          }
+
+          // Retorna formato compatível com o frontend
+          return {
+            token: docKey,
+            name: docData.document?.filename || dto.name,
+            status_name: 'pending',
+            signers: signersOut,
+            _provider: 'clicksign',
+          };
+        } catch (e: any) {
+          this.logger.warn(`[ClickSign] Falha: ${e.message}`);
         }
       } else {
-        this.logger.warn('[ZapSign] Token não configurado — usando envelope local');
+        this.logger.warn('[ClickSign] Token não configurado — usando envelope local');
       }
 
-      // Fallback: envelope local (retorna formato compatível com ZapSign)
+      // Fallback: envelope local
       const envelope = await this.esignService.createEnvelope(req.user, {
         title: dto.name || 'Documento para Assinatura',
         tipo: 'simples',
@@ -118,7 +203,6 @@ export class EsignController {
         mensagem: dto.message,
       });
 
-      // Retorna no formato ZapSign para o frontend
       return {
         token: (envelope as any).id,
         name: (envelope as any).titulo,
