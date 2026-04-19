@@ -446,18 +446,39 @@ export class WhatsappService {
       return undefined;
     }
 
-    const body: Record<string, any> = {
-      // Evolution API
-      number: telefone,
-      text: texto,
-      // Z-API (campos alternativos ignorados pela Evolution)
-      phone: telefone,
-      message: texto,
-    };
+    const isMetaApi = apiUrl.includes('graph.facebook.com');
 
-    if (arquivoUrl) {
-      body.mediaUrl = arquivoUrl;
-      body.mediaMessage = { mediaUrl: arquivoUrl, caption: texto };
+    let body: Record<string, any>;
+
+    if (isMetaApi) {
+      // ── Meta WhatsApp Cloud API ──────────────────────────────────────────
+      if (arquivoUrl) {
+        body = {
+          messaging_product: 'whatsapp',
+          to: telefone,
+          type: 'document',
+          document: { link: arquivoUrl, caption: texto },
+        };
+      } else {
+        body = {
+          messaging_product: 'whatsapp',
+          to: telefone,
+          type: 'text',
+          text: { body: texto, preview_url: false },
+        };
+      }
+    } else {
+      // ── Evolution API / Z-API / WPPConnect ───────────────────────────────
+      body = {
+        number: telefone,
+        text: texto,
+        phone: telefone,
+        message: texto,
+      };
+      if (arquivoUrl) {
+        body.mediaUrl = arquivoUrl;
+        body.mediaMessage = { mediaUrl: arquivoUrl, caption: texto };
+      }
     }
 
     const response = await fetch(apiUrl, {
@@ -465,8 +486,7 @@ export class WhatsappService {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${apiKey}`,
-        // Evolution API aceita também apikey header — tentativa com Bearer funciona
-        apikey: apiKey,
+        ...(isMetaApi ? {} : { apikey: apiKey }),
       },
       body: JSON.stringify(body),
     });
@@ -477,8 +497,8 @@ export class WhatsappService {
     }
 
     const json: any = await response.json().catch(() => ({}));
-    // Evolution API: json.key?.id | Z-API: json.messageId | WPPConnect: json.id
-    return json?.key?.id ?? json?.messageId ?? json?.id ?? undefined;
+    // Meta: json.messages[0].id | Evolution: json.key?.id | Z-API: json.messageId
+    return json?.messages?.[0]?.id ?? json?.key?.id ?? json?.messageId ?? json?.id ?? undefined;
   }
 
   /** Normaliza telefone para E.164 com DDI Brasil. */
