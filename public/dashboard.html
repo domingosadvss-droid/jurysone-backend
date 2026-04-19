@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <!-- Chaves de API e configuração local — NÃO versionar config.js com valores reais -->
     <script src="config.js"></script>
     <script>
@@ -4340,11 +4341,10 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         }
 
         // Criar documento no ZapSign
-        async function zapsignCriarDoc(titulo, urlPdf, signatarios) {
+        async function zapsignCriarDoc(titulo, urlPdf, signatarios, base64Pdf) {
             const payload = {
                 sandbox: false,
                 name: titulo,
-                url_pdf: urlPdf || '',
                 lang: 'pt-br',
                 brand_primary_color: '#0f2d5e',
                 disable_signer_emails: false,
@@ -4352,13 +4352,128 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
                     name:  s.nome,
                     email: s.email,
                     phone_country: '55',
-                    phone_number: s.telefone || '',
+                    phone_number: (s.telefone || '').replace(/\D/g,''),
                     auth_mode: 'assinaturaTela',
                     send_automatic_email: true,
                     send_automatic_whatsapp: false
                 }))
             };
+            // Prefere base64 (gerado localmente), senão usa url_pdf
+            if (base64Pdf) {
+                payload.base64_pdf = base64Pdf;
+            } else if (urlPdf) {
+                payload.url_pdf = urlPdf;
+            }
             return await zapsignReq('POST', '/docs/', payload);
+        }
+
+        // ── Gera contrato de honorários em PDF e retorna base64 ────────────
+        function gerarContratoPDF(dados) {
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+                const W = 210, M = 20;
+                let y = 22;
+
+                const txt = (text, x, size=10, bold=false, align='left') => {
+                    doc.setFontSize(size);
+                    doc.setFont('helvetica', bold ? 'bold' : 'normal');
+                    const lines = doc.splitTextToSize(text, W - M*2);
+                    if (align === 'center') doc.text(lines, W/2, y, { align:'center' });
+                    else doc.text(lines, x, y);
+                    y += lines.length * (size * 0.42) + 1;
+                };
+                const hr = () => { doc.setDrawColor(180); doc.setLineWidth(0.3); doc.line(M, y, W-M, y); y += 5; };
+                const br = (n=4) => { y += n; };
+
+                const escritorio = _cfgNomeEscritorio || 'JurysOne Advocacia';
+                const oab        = _cfgDadosEscritorio?.oab || '';
+                const hoje       = new Date().toLocaleDateString('pt-BR');
+                const numeroContrato = Date.now().toString().slice(-8);
+
+                const valorFmt = dados.valor > 0
+                    ? `R$ ${Number(dados.valor).toLocaleString('pt-BR',{minimumFractionDigits:2})}`
+                    : 'A combinar';
+                const formaPagtoFmt = {
+                    boleto:'Boleto Bancário', pix:'PIX', cartao:'Cartão de Crédito',
+                    transferencia:'Transferência Bancária', dinheiro:'Dinheiro'
+                }[dados.formaPagto] || dados.formaPagto || 'A combinar';
+
+                // Cabeçalho
+                txt(escritorio, M, 15, true, 'center'); br(1);
+                txt('CONTRATO DE PRESTAÇÃO DE SERVIÇOS ADVOCATÍCIOS', M, 11, true, 'center'); br(2);
+                hr();
+                txt(`Contrato nº ${numeroContrato}   ·   ${hoje}`, M, 9, false, 'center'); br(4);
+
+                // Partes
+                txt('1. PARTES', M, 11, true); br(1);
+                txt('CONTRATADO:', M, 10, true); br(1);
+                txt(`Escritório de Advocacia: ${escritorio}`, M+5, 10);
+                if (oab) txt(`OAB: ${oab}`, M+5, 10);
+                if (_cfgDadosEscritorio?.email) txt(`E-mail: ${_cfgDadosEscritorio.email}`, M+5, 10);
+                br(3);
+
+                txt('CONTRATANTE:', M, 10, true); br(1);
+                txt(`Nome completo: ${dados.clienteNome}`, M+5, 10);
+                txt(`CPF/CNPJ: ${dados.clienteCPF}`, M+5, 10);
+                txt(`E-mail: ${dados.clienteEmail}`, M+5, 10);
+                txt(`Telefone: ${dados.clienteTel}`, M+5, 10);
+                br(3); hr();
+
+                // Objeto
+                txt('2. OBJETO', M, 11, true); br(1);
+                txt(`Área jurídica: ${dados.area}`, M, 10);
+                if (dados.tipoAcao) txt(`Tipo de ação: ${dados.tipoAcao}`, M, 10);
+                br(1);
+                txt('O CONTRATADO se compromete a prestar serviços de assessoria e representação jurídica na área acima indicada, incluindo consultoria, elaboração de peças processuais, acompanhamento processual e demais atos necessários ao interesse do CONTRATANTE.', M, 10);
+                br(3); hr();
+
+                // Honorários
+                txt('3. HONORÁRIOS E PAGAMENTO', M, 11, true); br(1);
+                if (dados.parcelas > 1) {
+                    txt(`Honorários: ${dados.parcelas}x de ${valorFmt}`, M, 10);
+                } else {
+                    txt(`Honorários: ${valorFmt}`, M, 10);
+                }
+                txt(`Forma de pagamento: ${formaPagtoFmt}`, M, 10);
+                if (dados.vencimento) txt(`Vencimento da 1ª parcela: ${dados.vencimento}`, M, 10);
+                br(3); hr();
+
+                // Obrigações
+                txt('4. OBRIGAÇÕES DO CONTRATANTE', M, 11, true); br(1);
+                txt('O CONTRATANTE compromete-se a: (a) fornecer todos os documentos e informações necessários ao bom andamento do caso; (b) efetuar os pagamentos nas datas acordadas; (c) manter seus dados de contato atualizados.', M, 10);
+                br(3); hr();
+
+                // Vigência
+                txt('5. VIGÊNCIA', M, 11, true); br(1);
+                txt('O presente contrato vigorará pelo período necessário à conclusão dos serviços, podendo ser rescindido por qualquer das partes mediante notificação prévia de 30 (trinta) dias.', M, 10);
+                br(3); hr();
+
+                // Assinaturas
+                if (y > 230) { doc.addPage(); y = 20; }
+                br(2);
+                txt('Por serem mutuamente acordados, firmam o presente instrumento.', M, 10, false, 'center');
+                br(2);
+                txt(hoje, M, 10, false, 'center');
+                br(10);
+
+                const sigY = y;
+                doc.setDrawColor(80); doc.setLineWidth(0.4);
+                doc.line(M, sigY, M+75, sigY);
+                doc.line(W-M-75, sigY, W-M, sigY);
+                y += 4;
+                doc.setFontSize(9); doc.setFont('helvetica','normal');
+                doc.text(escritorio, M+37.5, y, {align:'center'});
+                doc.text(dados.clienteNome, W-M-37.5, y, {align:'center'});
+                y += 4;
+                doc.text('CONTRATADO', M+37.5, y, {align:'center'});
+                doc.text('CONTRATANTE', W-M-37.5, y, {align:'center'});
+
+                return doc.output('datauristring').split(',')[1]; // base64 puro
+            } catch(e) {
+                console.warn('[PDF] Erro ao gerar contrato:', e.message);
+                return null;
+            }
         }
 
         // Reenviar lembrete de assinatura
@@ -12798,15 +12913,53 @@ Nestes termos, pede deferimento.
             }
 
             // ═══════════════════════════════════════════════════════════
-            //  ETAPA 2 — ZapSign (envelope criado quando contrato for gerado)
-            //  Não enviamos PDF aqui pois o contrato ainda não foi gerado.
-            //  O envelope será criado em Documentos → Assinatura Digital.
+            //  ETAPA 2 — Gerar contrato em PDF e enviar ao ZapSign
             // ═══════════════════════════════════════════════════════════
-            let zapOk     = false;
-            let zapToken  = null;
+            let zapOk      = false;
+            let zapToken   = null;
             let zapSigners = [];
 
-            naProgressoEtapa('✅', 'Assinatura digital: envelope será criado ao gerar o contrato', 'ok');
+            naProgressoEtapa('⏳', 'Gerando contrato de honorários em PDF...', 'aviso');
+            const pdfBase64 = gerarContratoPDF({
+                clienteNome,
+                clienteCPF,
+                clienteEmail,
+                clienteTel,
+                area,
+                tipoAcao,
+                valor: valorFixo || (valorHonorario),
+                parcelas: numParcelas,
+                formaPagto,
+                vencimento: vencimento1Parc,
+            });
+
+            if (pdfBase64) {
+                naProgressoEtapa('✅', 'Contrato PDF gerado com sucesso', 'ok');
+                naProgressoEtapa('⏳', 'Enviando para assinatura digital (ZapSign)...', 'aviso');
+                try {
+                    const zapResult = await zapsignCriarDoc(
+                        `Contrato de Honorários — ${clienteNome}`,
+                        '',
+                        [{ nome: clienteNome, email: clienteEmail, telefone: clienteTel }],
+                        pdfBase64
+                    );
+                    if (zapResult && zapResult.token) {
+                        zapOk      = true;
+                        zapToken   = zapResult.token;
+                        zapSigners = zapResult.signers || [];
+                        const signUrl = zapSigners[0]?.sign_url || '';
+                        naProgressoEtapa('✅', `ZapSign: contrato enviado para ${clienteEmail} — link de assinatura gerado`, 'ok');
+                        if (signUrl) naProgressoEtapa('🔗', `Link: ${signUrl.slice(0,60)}...`, 'ok');
+                    } else {
+                        naProgressoEtapa('⚠️', 'ZapSign indisponível — contrato salvo localmente (PDF disponível em Documentos)', 'aviso');
+                    }
+                } catch(e) {
+                    naProgressoEtapa('⚠️', 'ZapSign offline — contrato salvo localmente', 'aviso');
+                    console.warn('[ZapSign]', e.message);
+                }
+            } else {
+                naProgressoEtapa('⚠️', 'jsPDF não carregado — envelope será criado em Documentos', 'aviso');
+            }
 
             // ═══════════════════════════════════════════════════════════
             //  ETAPA 3 — Atualizar arrays locais (UI)
