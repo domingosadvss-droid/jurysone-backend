@@ -12798,31 +12798,15 @@ Nestes termos, pede deferimento.
             }
 
             // ═══════════════════════════════════════════════════════════
-            //  ETAPA 2 — Chamar ZapSign (assinatura digital real)
+            //  ETAPA 2 — ZapSign (envelope criado quando contrato for gerado)
+            //  Não enviamos PDF aqui pois o contrato ainda não foi gerado.
+            //  O envelope será criado em Documentos → Assinatura Digital.
             // ═══════════════════════════════════════════════════════════
             let zapOk     = false;
             let zapToken  = null;
             let zapSigners = [];
 
-            naProgressoEtapa('⏳', 'Enviando para assinatura digital (ZapSign)...', 'aviso');
-            try {
-                const zapResult = await zapsignCriarDoc(
-                    `Contrato de Honorários — ${clienteNome}`,
-                    '',
-                    [{ nome: clienteNome, email: clienteEmail, telefone: clienteTel }]
-                );
-                if (zapResult && zapResult.token) {
-                    zapOk     = true;
-                    zapToken  = zapResult.token;
-                    zapSigners = zapResult.signers || [];
-                    naProgressoEtapa('✅', `ZapSign: envelope criado — link de assinatura enviado para ${clienteEmail}`, 'ok');
-                } else {
-                    naProgressoEtapa('⚠️', 'ZapSign: resposta inesperada — envelope local criado', 'aviso');
-                }
-            } catch (e) {
-                naProgressoEtapa('⚠️', 'ZapSign offline ou CORS (envelope salvo localmente)', 'aviso');
-                console.warn('[ZapSign]', e.message);
-            }
+            naProgressoEtapa('✅', 'Assinatura digital: envelope será criado ao gerar o contrato', 'ok');
 
             // ═══════════════════════════════════════════════════════════
             //  ETAPA 3 — Atualizar arrays locais (UI)
