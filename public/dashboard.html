@@ -12943,19 +12943,29 @@ Nestes termos, pede deferimento.
                         [{ nome: clienteNome, email: clienteEmail, telefone: clienteTel }],
                         pdfBase64
                     );
-                    if (zapResult && zapResult.token) {
+                    // Log de debug — visível no console do navegador (F12)
+                    console.log('[ClickSign] Resposta do backend:', JSON.stringify(zapResult));
+                    if (zapResult?._clicksign_error) {
+                        console.error('[ClickSign] ❌ ERRO:', zapResult._clicksign_error);
+                        naProgressoEtapa('❌', `ClickSign erro: ${zapResult._clicksign_error}`, 'aviso');
+                    }
+
+                    if (zapResult && zapResult.token && !zapResult._local) {
                         zapOk      = true;
                         zapToken   = zapResult.token;
                         zapSigners = zapResult.signers || [];
                         const signUrl = zapSigners[0]?.sign_url || '';
                         naProgressoEtapa('✅', `ClickSign: contrato enviado para ${clienteEmail} — link de assinatura gerado`, 'ok');
                         if (signUrl) naProgressoEtapa('🔗', `Link: ${signUrl.slice(0,60)}...`, 'ok');
+                    } else if (zapResult?._local) {
+                        const errMsg = zapResult._clicksign_error ? ` (erro: ${zapResult._clicksign_error.substring(0,80)})` : '';
+                        naProgressoEtapa('⚠️', `ClickSign falhou — contrato salvo localmente${errMsg}`, 'aviso');
                     } else {
-                        naProgressoEtapa('⚠️', 'ClickSign indisponível — contrato salvo localmente (PDF disponível em Documentos)', 'aviso');
+                        naProgressoEtapa('⚠️', 'ClickSign sem resposta — contrato salvo localmente', 'aviso');
                     }
                 } catch(e) {
                     naProgressoEtapa('⚠️', 'ClickSign offline — contrato salvo localmente', 'aviso');
-                    console.warn('[ClickSign]', e.message);
+                    console.error('[ClickSign] Exceção:', e.message);
                 }
             } else {
                 naProgressoEtapa('⚠️', 'jsPDF não carregado — envelope será criado em Documentos', 'aviso');

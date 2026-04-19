@@ -80,17 +80,27 @@ export class EsignController {
     if (hasSigners) {
       // ── ClickSign API ────────────────────────────────────────────────────
       const clickToken = await this.chavesService.getChave(escritorioId, 'clicksign');
+      this.logger.log(`[ClickSign] Token obtido: ${clickToken ? clickToken.substring(0,8)+'...' : 'NULO'}`);
+
       if (clickToken) {
         try {
-          const base = process.env.CLICKSIGN_URL || 'https://sandbox.clicksign.com';
+          const base = (process.env.CLICKSIGN_URL || 'https://sandbox.clicksign.com').replace(/\/$/, '');
           const qs   = `?access_token=${clickToken}`;
+          this.logger.log(`[ClickSign] Base URL: ${base}`);
+
           const deadline = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
             .toISOString().replace('Z', '-03:00');
 
           // 1. Criar documento
+          const safeName = (dto.name || 'contrato')
+            .normalize('NFD').replace(/[\u0300-\u036f]/g, '')  // remove acentos
+            .replace(/[^a-z0-9_\-]/gi, '_')
+            .substring(0, 60);
+          const docPath = `/${Date.now()}_${safeName}.pdf`;
+
           const docBody: any = {
             document: {
-              path: `/${Date.now()}_${(dto.name || 'contrato').replace(/[^a-z0-9]/gi,'_')}.pdf`,
+              path: docPath,
               deadline_at: deadline,
               auto_close: true,
               locale: 'pt-BR',
@@ -98,82 +108,103 @@ export class EsignController {
             },
           };
           if (dto.base64_pdf) {
-            docBody.document.content_base64 = `data:application/pdf;base64,${dto.base64_pdf}`;
+            // ClickSign espera: "data:application/pdf;base64,<base64_puro>"
+            const b64 = dto.base64_pdf.startsWith('data:')
+              ? dto.base64_pdf
+              : `data:application/pdf;base64,${dto.base64_pdf}`;
+            docBody.document.content_base64 = b64;
+            this.logger.log(`[ClickSign] PDF base64 size: ${Math.round(b64.length / 1024)}KB`);
           } else if (dto.url_pdf) {
-            docBody.document.url_pdf = dto.url_pdf;
+            docBody.document.content_base64 = dto.url_pdf; // campo legado
           }
 
+          this.logger.log(`[ClickSign] Criando documento: POST ${base}/api/v1/documents`);
           const docResp = await fetch(`${base}/api/v1/documents${qs}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(docBody),
           });
 
+          const docRespText = await docResp.text();
+          this.logger.log(`[ClickSign] Resposta documento: ${docResp.status} — ${docRespText.substring(0, 300)}`);
+
           if (!docResp.ok) {
-            const e = await docResp.text();
-            this.logger.warn(`[ClickSign] Erro ao criar documento ${docResp.status}: ${e}`);
-            throw new Error(`ClickSign ${docResp.status}`);
+            throw new Error(`ClickSign criar documento: ${docResp.status} — ${docRespText}`);
           }
 
-          const docData  = await docResp.json() as any;
-          const docKey   = docData.document?.key;
-          this.logger.log(`[ClickSign] Documento criado: ${docKey}`);
+          const docData = JSON.parse(docRespText) as any;
+          const docKey  = docData.document?.key;
+          this.logger.log(`[ClickSign] ✅ Documento criado: key=${docKey}`);
 
           // 2. Criar signatários e vinculá-los
           const signersOut: any[] = [];
           for (const s of (dto.signers || [])) {
-            // Criar signatário
+            const phoneRaw = (s.phone_number || s.telefone || '').replace(/\D/g, '');
+            const signerBody: any = {
+              signer: {
+                email:            s.email,
+                name:             s.name,
+                auths:            ['email'],
+                has_documentation: false,
+              },
+            };
+            if (phoneRaw.length >= 10) signerBody.signer.phone_number = phoneRaw;
+
+            this.logger.log(`[ClickSign] Criando signatário: ${s.email}`);
             const sigResp = await fetch(`${base}/api/v1/signers${qs}`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                signer: {
-                  email: s.email,
-                  phone_number: (s.phone_number || '').replace(/\D/g, '') || undefined,
-                  auths: ['email'],
-                  name: s.name,
-                  has_documentation: false,
-                },
-              }),
+              body: JSON.stringify(signerBody),
             });
-            if (!sigResp.ok) continue;
-            const sigData  = await sigResp.json() as any;
-            const sigKey   = sigData.signer?.key;
+            const sigRespText = await sigResp.text();
+            this.logger.log(`[ClickSign] Resposta signatário: ${sigResp.status} — ${sigRespText.substring(0,200)}`);
+            if (!sigResp.ok) {
+              this.logger.warn(`[ClickSign] Falha ao criar signatário ${s.email}: ${sigRespText}`);
+              continue;
+            }
+            const sigData = JSON.parse(sigRespText) as any;
+            const sigKey  = sigData.signer?.key;
 
             // Vincular signatário ao documento
+            this.logger.log(`[ClickSign] Vinculando signatário ${sigKey} ao doc ${docKey}`);
             const listResp = await fetch(`${base}/api/v1/lists${qs}`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
                 list: {
                   document_key: docKey,
-                  signer_key: sigKey,
-                  sign_as: 'sign',
-                  refusable: false,
-                  message: dto.message || 'Por favor, assine o contrato',
+                  signer_key:   sigKey,
+                  sign_as:      'sign',
+                  refusable:    false,
+                  message:      dto.message || 'Por favor, assine o contrato',
                 },
               }),
             });
-            const listData = listResp.ok ? await listResp.json() as any : {};
+            const listRespText = await listResp.text();
+            this.logger.log(`[ClickSign] Resposta list: ${listResp.status} — ${listRespText.substring(0,200)}`);
+            const listData = listResp.ok ? JSON.parse(listRespText) as any : {};
             const signUrl  = listData.list?.url || `${base}/sign/${sigKey}`;
 
             // Enviar notificação por e-mail
-            await fetch(`${base}/api/v1/notifications${qs}`, {
+            const notifResp = await fetch(`${base}/api/v1/notifications${qs}`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
                 notification: {
                   document_key: docKey,
-                  signer_key: sigKey,
-                  url: signUrl,
-                  message: dto.message || 'Por favor, assine o contrato de honorários',
+                  signer_key:   sigKey,
+                  url:          signUrl,
+                  message:      dto.message || 'Por favor, assine o contrato de honorários',
                 },
               }),
-            }).catch(() => {});
+            });
+            const notifText = await notifResp.text().catch(() => '');
+            this.logger.log(`[ClickSign] Notificação e-mail: ${notifResp.status} — ${notifText.substring(0,100)}`);
 
             signersOut.push({ token: sigKey, sign_url: signUrl, name: s.name, email: s.email });
           }
 
+          this.logger.log(`[ClickSign] ✅ Envelope criado com ${signersOut.length} signatário(s)`);
           // Retorna formato compatível com o frontend
           return {
             token: docKey,
@@ -183,7 +214,9 @@ export class EsignController {
             _provider: 'clicksign',
           };
         } catch (e: any) {
-          this.logger.warn(`[ClickSign] Falha: ${e.message}`);
+          this.logger.error(`[ClickSign] ❌ Falha: ${e.message}`);
+          // Expõe o erro no response para debug (não bloqueia o fallback)
+          (dto as any)._clicksign_error = e.message;
         }
       } else {
         this.logger.warn('[ClickSign] Token não configurado — usando envelope local');
@@ -209,6 +242,7 @@ export class EsignController {
         status_name: 'pending',
         signers: [],
         _local: true,
+        _clicksign_error: (dto as any)._clicksign_error ?? null,
       };
     }
 
