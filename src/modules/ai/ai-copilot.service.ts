@@ -74,7 +74,7 @@ Contexto: direito brasileiro vigente, 2024/2025.`;
 
     const genAI = new GoogleGenerativeAI(key);
     this._model = genAI.getGenerativeModel({
-      model: 'gemini-1.5-flash',
+      model: 'gemini-2.0-flash',
       systemInstruction: this.SYSTEM_PROMPT,
     });
     this._modelKey = key;
@@ -197,7 +197,7 @@ JSON esperado:
         output: JSON.stringify(parsed),
         processId: processoId,
         tokens: totalTokens,
-        model: 'gemini-1.5-flash',
+        model: 'gemini-2.0-flash',
       },
     });
 
@@ -377,7 +377,7 @@ Tarefas pendentes: ${processo.tasks.map(t => t.title).join(', ') || 'Nenhuma'}`;
         processId: data.processo_id,
         sessionId: data.conversa_id,
         tokens: data.tokens_usados,
-        model: 'gemini-1.5-flash',
+        model: 'gemini-2.0-flash',
       },
     });
   }
@@ -441,7 +441,7 @@ Sobre o Jurysone:
     const apiKey = await this.getApiKey(params.officeId);
     const genAI = new GoogleGenerativeAI(apiKey);
     const supportModel = genAI.getGenerativeModel({
-      model: 'gemini-1.5-flash',
+      model: 'gemini-2.0-flash',
       systemInstruction: supportSystemPrompt,
     });
 
