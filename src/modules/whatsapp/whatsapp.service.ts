@@ -323,25 +323,91 @@ export class WhatsappService {
   // ─── Webhook ──────────────────────────────────────────────────────────────
 
   async processarWebhook(payload: any) {
-    // Suporte a webhooks de status (Evolution API / Z-API / WPPConnect)
     try {
-      // Evolution API: payload.data.key.id + payload.data.status
+      // ── Meta WhatsApp Cloud API ──────────────────────────────────────────
+      if (payload?.object === 'whatsapp_business_account') {
+        for (const entry of payload?.entry ?? []) {
+          for (const change of entry?.changes ?? []) {
+            if (change?.field !== 'messages') continue;
+            const value = change?.value;
+
+            // 1. Status de mensagens enviadas pelo escritório (delivered/read/failed)
+            for (const st of value?.statuses ?? []) {
+              const statusMap: Record<string, string> = {
+                sent:      'enviada',
+                delivered: 'entregue',
+                read:      'lida',
+                failed:    'erro',
+              };
+              const novoStatus = statusMap[st.status];
+              if (novoStatus && st.id) {
+                await this.prisma.whatsappMessage.updateMany({
+                  where: { whatsappMsgId: st.id },
+                  data: {
+                    status: novoStatus,
+                    ...(novoStatus === 'lida' ? { lidaEm: new Date() } : {}),
+                  },
+                });
+                this.logger.debug(`[WhatsApp] Meta status: ${st.id} → ${novoStatus}`);
+              }
+            }
+
+            // 2. Mensagens recebidas de clientes
+            const contatos: Record<string, string> = {};
+            for (const c of value?.contacts ?? []) {
+              contatos[c.wa_id] = c.profile?.name ?? c.wa_id;
+            }
+
+            for (const msg of value?.messages ?? []) {
+              const telefone = msg.from;
+              const nomeContato = contatos[telefone] ?? telefone;
+              let conteudo = '';
+
+              if (msg.type === 'text') {
+                conteudo = msg.text?.body ?? '';
+              } else if (msg.type === 'image') {
+                conteudo = `[Imagem recebida] ${msg.image?.caption ?? ''}`.trim();
+              } else if (msg.type === 'document') {
+                conteudo = `[Documento: ${msg.document?.filename ?? 'arquivo'}]`;
+              } else if (msg.type === 'audio') {
+                conteudo = '[Áudio recebido]';
+              } else if (msg.type === 'video') {
+                conteudo = `[Vídeo recebido] ${msg.video?.caption ?? ''}`.trim();
+              } else if (msg.type === 'location') {
+                conteudo = `[Localização: lat ${msg.location?.latitude}, lng ${msg.location?.longitude}]`;
+              } else {
+                conteudo = `[Mensagem tipo: ${msg.type}]`;
+              }
+
+              this.logger.log(`[WhatsApp] Mensagem recebida de ${nomeContato} (${telefone}): ${conteudo.slice(0, 80)}`);
+
+              // Salva como mensagem recebida (escritorioId null — será associado manualmente)
+              await this.prisma.whatsappMessage.create({
+                data: {
+                  telefone,
+                  tipo: 'texto',
+                  conteudo,
+                  status: 'recebida',
+                  whatsappMsgId: msg.id,
+                  escritorioId: value?.metadata?.phone_number_id ?? 'meta',
+                  enviadoPorId: null as any,
+                },
+              }).catch(() => {}); // ignora duplicatas
+            }
+          }
+        }
+        return { received: true };
+      }
+
+      // ── Evolution API / Z-API / WPPConnect ────────────────────────────────
       const msgId = payload?.data?.key?.id ?? payload?.messageId ?? payload?.id;
       const status = payload?.data?.status ?? payload?.status ?? payload?.event;
 
       if (msgId && status) {
         const statusMap: Record<string, string> = {
-          DELIVERY_ACK: 'entregue',
-          READ: 'lida',
-          PLAYED: 'lida',
-          FAILED: 'erro',
-          // Z-API
-          received: 'entregue',
-          read: 'lida',
-          failed: 'erro',
-          // WPPConnect
-          ACK_RECEIVED: 'entregue',
-          ACK_READ: 'lida',
+          DELIVERY_ACK: 'entregue', READ: 'lida', PLAYED: 'lida', FAILED: 'erro',
+          received: 'entregue', read: 'lida', failed: 'erro',
+          ACK_RECEIVED: 'entregue', ACK_READ: 'lida',
         };
         const novoStatus = statusMap[status as string];
         if (novoStatus) {
@@ -361,12 +427,22 @@ export class WhatsappService {
     return { received: true };
   }
 
-  verificarWebhook(query: { 'hub.verify_token'?: string; 'hub.challenge'?: string }) {
+  /** Verificação de webhook Meta (retorna hub.challenge como string pura) */
+  verificarWebhook(query: {
+    'hub.verify_token'?: string;
+    'hub.challenge'?: string;
+    'hub.mode'?: string;
+  }): string | object {
     const verifyToken = process.env.WHATSAPP_VERIFY_TOKEN ?? 'jurysone-webhook';
-    if (query['hub.verify_token'] === verifyToken) {
-      return query['hub.challenge'];
+    if (
+      query['hub.mode'] === 'subscribe' &&
+      query['hub.verify_token'] === verifyToken
+    ) {
+      this.logger.log('[WhatsApp] Webhook Meta verificado com sucesso.');
+      return query['hub.challenge'] ?? '';
     }
-    return { verified: true }; // Evolution API / outros não usam challenge
+    // Outros provedores não usam challenge
+    return { verified: true };
   }
 
   // ─── Stats ────────────────────────────────────────────────────────────────

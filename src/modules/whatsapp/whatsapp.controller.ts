@@ -18,8 +18,9 @@
 import {
   Controller, Get, Post, Patch, Delete,
   Body, Param, Query, UseGuards, Request,
-  HttpCode, HttpStatus,
+  HttpCode, HttpStatus, Res,
 } from '@nestjs/common';
+import { Response } from 'express';
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { WhatsappService } from './whatsapp.service';
@@ -235,11 +236,20 @@ export class WhatsappController {
 
   /**
    * GET /whatsapp/webhook
-   * Verificação do webhook (Meta challenge)
+   * Verificação do webhook (Meta challenge — responde com número puro)
    */
   @Get('webhook')
-  verificarWebhook(@Query() query: { 'hub.verify_token': string; 'hub.challenge': string }) {
-    return this.service.verificarWebhook(query);
+  verificarWebhook(
+    @Query() query: { 'hub.verify_token': string; 'hub.challenge': string; 'hub.mode': string },
+    @Res() res: Response,
+  ) {
+    const result = this.service.verificarWebhook(query);
+    if (typeof result === 'string') {
+      // Meta espera o challenge como texto puro, não JSON
+      res.setHeader('Content-Type', 'text/plain');
+      return res.send(result);
+    }
+    return res.json(result);
   }
 
   /* ──────────────────── STATS ────────────────────────────────── */
