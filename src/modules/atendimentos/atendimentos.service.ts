@@ -20,6 +20,7 @@ export class AtendimentosService {
   async createCompleteAtendimento(
     escritorioId: string,
     dto: CreateAtendimentoDto,
+    userId?: string,
   ) {
     try {
       // 1. Create or find client (cpf não é unique → findFirst + create)
@@ -139,14 +140,21 @@ export class AtendimentosService {
       const dataLimite = new Date();
       dataLimite.setDate(dataLimite.getDate() + 7);
 
+      // Busca um usuário válido do escritório para o criadoPorId (FK obrigatória)
+      let criadoPorId = userId;
+      if (!criadoPorId) {
+        const usuario = await this.prisma.usuario.findFirst({ where: { escritorioId } });
+        criadoPorId = usuario?.id ?? escritorioId;
+      }
+
       const envelope = await this.prisma.esignEnvelope.create({
         data: {
-          titulo: 'Documentos para Assinatura',
+          titulo: 'Contrato de Honorários — ' + dto.cliente.nome,
           escritorioId,
-          criadoPorId: escritorioId,
+          criadoPorId,
           signatario: cliente.email as any,
-          status: 'enviado',
-          mensagem: dto.mensagem || 'Segue em anexo os documentos para assinatura',
+          status: 'aguardando',
+          mensagem: dto.mensagem || 'Segue o contrato de honorários para sua assinatura',
           dataLimite,
         } as any,
       });

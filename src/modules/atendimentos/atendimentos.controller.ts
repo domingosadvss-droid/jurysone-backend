@@ -31,10 +31,12 @@ export class AtendimentosController {
     @Request() req,
     @Body() createAtendimentoDto: CreateAtendimentoDto,
   ) {
-    const escritorioId = req.user.escritorioId;
+    const escritorioId = req.user.escritorioId ?? req.user.officeId;
+    const userId = req.user.id ?? req.user.sub;
     return this.atendimentosService.createCompleteAtendimento(
       escritorioId,
       createAtendimentoDto,
+      userId,
     );
   }
 
