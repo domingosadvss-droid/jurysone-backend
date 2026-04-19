@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { ChavesService } from './chaves.service';
@@ -7,6 +7,15 @@ import { ChavesService } from './chaves.service';
 @Controller('chaves')
 export class ChavesController {
   constructor(private readonly chaves: ChavesService) {}
+
+  /** GET /api/chaves — carrega todas as chaves de API do escritório */
+  @Get()
+  async carregar(@CurrentUser() user: any) {
+    const keys = await this.chaves.carregar(user.escritorioId);
+    // Retorna objeto com chaves mascaradas para exibição (mostra que estão configuradas)
+    // e as chaves reais para preencher os inputs do usuário autenticado
+    return { keys };
+  }
 
   /** POST /api/chaves — salva chave de API para o escritório */
   @Post()

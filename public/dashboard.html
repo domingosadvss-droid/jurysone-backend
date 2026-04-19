@@ -6218,7 +6218,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
               btn.style.borderBottomColor = t === tab ? '#0f2d5e' : 'transparent';
             }
           });
-          if (tab === 'apis')       renderApiCards();
+          if (tab === 'apis')       initApiTab();
           if (tab === 'equipe')     renderEquipe();
           if (tab === 'perms')      renderPermissoes();
           if (tab === 'notif')      renderNotifPrefs();
@@ -7056,6 +7056,39 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             const st = JSON.parse(localStorage.getItem('jurysone_api_status') || '{}');
             st[id] = status; localStorage.setItem('jurysone_api_status', JSON.stringify(st));
           } catch(e) {}
+        }
+
+        /** Carrega chaves do banco (funciona em qualquer navegador) e então renderiza */
+        async function initApiTab() {
+          try {
+            const apiBase = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
+            const token = localStorage.getItem('jurysone_token');
+            const resp = await fetch(`${apiBase}/chaves`, {
+              headers: token ? { 'Authorization': `Bearer ${token}` } : {},
+            });
+            if (resp.ok) {
+              const data = await resp.json();
+              if (data && data.keys) {
+                // Mescla chaves do banco no localStorage para uso local
+                const localKeys = getApiKeys();
+                for (const [id, val] of Object.entries(data.keys)) {
+                  if (val && !localKeys[id]) {
+                    saveApiKey(id, val);
+                  } else if (val) {
+                    // Banco tem precedência (garante sincronismo entre navegadores)
+                    saveApiKey(id, val);
+                  }
+                }
+                // Marca como verificada toda chave que veio do banco
+                for (const [id, val] of Object.entries(data.keys)) {
+                  if (val) saveApiStatus(id, 'ok');
+                }
+              }
+            }
+          } catch(e) {
+            console.warn('[initApiTab] Não foi possível carregar chaves do servidor:', e.message);
+          }
+          renderApiCards();
         }
 
         function renderApiCards() {
