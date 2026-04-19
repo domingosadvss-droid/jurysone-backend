@@ -8,6 +8,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { GoogleGenerativeAI, GenerativeModel } from '@google/generative-ai';
 import { PrismaService } from '../../database/prisma.service';
 import { NotificationsGateway } from '../notifications/notifications.gateway';
+import { ChavesService } from '../chaves/chaves.service';
 
 interface RiskAnalysis {
   score: number;
@@ -57,6 +58,7 @@ Contexto: direito brasileiro vigente, 2024/2025.`;
   constructor(
     private readonly prisma: PrismaService,
     private readonly notificationsGateway: NotificationsGateway,
+    private readonly chavesService: ChavesService,
   ) {
     const key = process.env.GEMINI_API_KEY;
     if (key) {
@@ -65,14 +67,47 @@ Contexto: direito brasileiro vigente, 2024/2025.`;
         model: 'gemini-1.5-flash',
         systemInstruction: this.SYSTEM_PROMPT,
       });
+      this.logger.log('Gemini Copiloto inicializado via variável de ambiente.');
     } else {
-      this.logger.warn('GEMINI_API_KEY não configurada — Copiloto Jurídico indisponível.');
+      this.logger.warn('GEMINI_API_KEY não configurada no ambiente — tentará carregar do banco na primeira chamada.');
     }
+  }
+
+  /** Retorna o modelo Gemini, inicializando com chave do banco se necessário */
+  private async getModel(officeId?: string): Promise<GenerativeModel> {
+    if (this._model) return this._model;
+
+    const key = officeId
+      ? await this.chavesService.getChave(officeId, 'gemini')
+      : null;
+
+    if (key) {
+      const genAI = new GoogleGenerativeAI(key);
+      this._model = genAI.getGenerativeModel({
+        model: 'gemini-1.5-flash',
+        systemInstruction: this.SYSTEM_PROMPT,
+      });
+      this.logger.log('Gemini Copiloto inicializado via chave do banco de dados.');
+      return this._model;
+    }
+
+    throw new Error('Gemini não configurado. Acesse Configurações → Integrações e salve sua chave Gemini.');
+  }
+
+  /** Retorna apenas a API key (env ou banco), sem criar modelo com system prompt padrão */
+  private async getApiKey(officeId?: string): Promise<string> {
+    const envKey = process.env.GEMINI_API_KEY;
+    if (envKey) return envKey;
+    if (officeId) {
+      const dbKey = await this.chavesService.getChave(officeId, 'gemini');
+      if (dbKey) return dbKey;
+    }
+    throw new Error('Gemini não configurado. Acesse Configurações → Integrações e salve sua chave Gemini.');
   }
 
   private get model(): GenerativeModel {
     if (!this._model) {
-      throw new Error('GEMINI_API_KEY não configurada. Configure no Railway Dashboard.');
+      throw new Error('Gemini não configurado. Acesse Configurações → Integrações e salve sua chave Gemini.');
     }
     return this._model;
   }
@@ -104,7 +139,8 @@ Contexto: direito brasileiro vigente, 2024/2025.`;
       ? await this.getHistoricoConversa(conversa_id, 10)
       : [];
 
-    const chat = this.model.startChat({ history: historico });
+    const geminiModel = await this.getModel(officeId);
+    const chat = geminiModel.startChat({ history: historico });
 
     const promptFinal = contexto
       ? `${contexto}\n\nPERGUNTA: ${mensagem}`
@@ -164,7 +200,8 @@ JSON esperado:
   "jurisprudencia_relevante": [{ "tribunal": "", "numero": "", "ementa": "", "favoravel": true, "relevancia": 0 }]
 }`;
 
-    const result = await this.model.generateContent(prompt);
+    const geminiModel = await this.getModel(officeId);
+    const result = await geminiModel.generateContent(prompt);
     const text = result.response.text();
     const parsed = this.parseJson<RiskAnalysis>(text);
     const totalTokens = (result.response.usageMetadata?.promptTokenCount || 0) +
@@ -219,7 +256,8 @@ JSON esperado:
   "pedidos": []
 }`;
 
-    const result = await this.model.generateContent(prompt);
+    const geminiModel = await this.getModel(params.officeId);
+    const result = await geminiModel.generateContent(prompt);
     const text = result.response.text();
     const parsed = this.parseJson<PeticaoGerada>(text);
     parsed.estimated_tokens = (result.response.usageMetadata?.promptTokenCount || 0) +
@@ -253,7 +291,8 @@ JSON esperado:
   "recomendacoes": []
 }`;
 
-    const result = await this.model.generateContent(prompt);
+    const geminiModel = await this.getModel(params.officeId);
+    const result = await geminiModel.generateContent(prompt);
     return this.parseJson(result.response.text());
   }
 
@@ -278,7 +317,8 @@ JSON esperado:
   "analise_sumaria": ""
 }`;
 
-    const result = await this.model.generateContent(prompt);
+    const geminiModel = await this.getModel();
+    const result = await geminiModel.generateContent(prompt);
     return this.parseJson(result.response.text());
   }
 
@@ -304,7 +344,8 @@ ANDAMENTOS: ${processo.movements.map(m => `${m.date}: ${m.description}`).join(' 
 JSON esperado:
 { "resumo_curto": "", "resumo_detalhado": "", "situacao_atual": "", "proximas_etapas": [], "pontos_atencao": [] }`;
 
-    const result = await this.model.generateContent(prompt);
+    const geminiModel = await this.getModel();
+    const result = await geminiModel.generateContent(prompt);
     return this.parseJson(result.response.text());
   }
 
@@ -416,7 +457,8 @@ Sobre o Jurysone:
 - **WhatsApp**: enviar mensagens e notificações automáticas
 - **IA Copiloto**: análise de risco, geração de petições, pesquisa de jurisprudência`;
 
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+    const apiKey = await this.getApiKey(params.officeId);
+    const genAI = new GoogleGenerativeAI(apiKey);
     const supportModel = genAI.getGenerativeModel({
       model: 'gemini-1.5-flash',
       systemInstruction: supportSystemPrompt,
