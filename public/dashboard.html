@@ -14131,9 +14131,9 @@ Nestes termos, pede deferimento.
         const typingId = aiAddMsg('typing', '⏳ Processando...');
 
         try {
-          const token = localStorage.getItem('token') || sessionStorage.getItem('token') || '';
-          const base = (window.API_URL || 'http://localhost:3001');
-          const url  = base + '/api/ai/suporte';
+          const token = localStorage.getItem('jurysone_token') || localStorage.getItem('token') || sessionStorage.getItem('token') || '';
+          const base = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
+          const url  = base + '/ai/suporte';
 
           const payload = {
             mensagem: mensagem || ('Analise e extraia os dados do arquivo: ' + (_arquivo?.nome || '')),
