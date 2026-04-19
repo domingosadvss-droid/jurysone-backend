@@ -4280,10 +4280,18 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             }
 
             try {
-                const opts = { method, headers: { 'Content-Type': 'application/json' } };
+                // Sempre inclui o JWT para rotas protegidas
+                const token = localStorage.getItem('jurysone_token');
+                const headers = { 'Content-Type': 'application/json' };
+                if (token) headers['Authorization'] = `Bearer ${token}`;
+
+                const opts = { method, headers };
                 if (body) opts.body = JSON.stringify(body);
                 const res = await fetch(`${BACKEND_URL}${backendPath}`, opts);
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                if (!res.ok) {
+                    const errText = await res.text().catch(() => '');
+                    throw new Error(`HTTP ${res.status}: ${errText}`);
+                }
                 return await res.json();
             } catch (err) {
                 console.warn('[ZapSign→Backend]', backendPath, err.message);
@@ -12763,7 +12771,7 @@ Nestes termos, pede deferimento.
                         ...(token ? { 'Authorization': `Bearer ${token}` } : {})
                     },
                     body:   JSON.stringify(payload),
-                    signal: AbortSignal.timeout(3000)
+                    signal: AbortSignal.timeout(15000)
                 });
 
                 if (res.ok) {
@@ -12774,14 +12782,15 @@ Nestes termos, pede deferimento.
                     naProgressoEtapa('✅', 'Lançamento financeiro registrado', 'ok');
                     naProgressoEtapa('✅', 'Documentos gerados pelo backend', 'ok');
                 } else if (res.status === 401) {
-                    naProgressoEtapa('⚠️', 'Backend: sessão expirada (salvo localmente)', 'aviso');
+                    naProgressoEtapa('⚠️', 'Sessão expirada — faça login novamente', 'aviso');
+                    setTimeout(() => { window.location.href = '/login.html'; }, 2000);
                 } else {
                     const err = await res.json().catch(() => ({}));
                     naProgressoEtapa('⚠️', `Backend: ${err.message || 'erro ' + res.status} — salvo localmente`, 'aviso');
                 }
             } catch (e) {
                 if (e.name === 'TimeoutError' || e.name === 'AbortError') {
-                    naProgressoEtapa('⚠️', 'Backend offline — dados salvos localmente', 'aviso');
+                    naProgressoEtapa('⚠️', 'Servidor demorando (Render cold start) — aguarde e tente novamente', 'aviso');
                 } else {
                     naProgressoEtapa('⚠️', 'Servidor não encontrado — salvo localmente', 'aviso');
                 }
