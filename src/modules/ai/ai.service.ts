@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { GoogleGenerativeAI, GenerativeModel } from '@google/generative-ai';
 import { PrismaService } from '../../database/prisma.service';
+import { ChavesService } from '../chaves/chaves.service';
 
 @Injectable()
 export class AiService {
@@ -11,19 +12,39 @@ export class AiService {
   constructor(
     private config: ConfigService,
     private prisma: PrismaService,
+    private chavesService: ChavesService,
   ) {
     const key = this.config.get<string>('GEMINI_API_KEY');
     if (key) {
       const genAI = new GoogleGenerativeAI(key);
       this._model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+      this.logger.log('Gemini inicializado via variável de ambiente.');
     } else {
-      this.logger.warn('GEMINI_API_KEY não configurada — funcionalidades de IA estarão indisponíveis.');
+      this.logger.warn('GEMINI_API_KEY não configurada no ambiente — tentará carregar do banco de dados na primeira chamada.');
     }
+  }
+
+  /** Retorna o modelo Gemini, inicializando com chave do banco se necessário */
+  private async getModel(escritorioId?: string): Promise<GenerativeModel> {
+    if (this._model) return this._model;
+
+    // Tenta carregar chave do banco de dados (configurada pelo usuário na aba Integrações)
+    if (escritorioId) {
+      const key = await this.chavesService.getChave(escritorioId, 'gemini');
+      if (key) {
+        const genAI = new GoogleGenerativeAI(key);
+        this._model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+        this.logger.log('Gemini inicializado via chave do banco de dados.');
+        return this._model;
+      }
+    }
+
+    throw new Error('GEMINI_API_KEY não configurada. Acesse Configurações → Integrações e salve sua chave Gemini.');
   }
 
   private get model(): GenerativeModel {
     if (!this._model) {
-      throw new Error('GEMINI_API_KEY não configurada. Configure a variável de ambiente no Railway Dashboard.');
+      throw new Error('GEMINI_API_KEY não configurada. Acesse Configurações → Integrações e salve sua chave Gemini.');
     }
     return this._model;
   }
@@ -56,7 +77,8 @@ ${movimentsText || 'Nenhum andamento registrado.'}
 
 PERGUNTA: ${question}`;
 
-    const result = await this.model.generateContent(prompt);
+    const model = await this.getModel(officeId);
+    const result = await model.generateContent(prompt);
     const answer = result.response.text();
     const usage = result.response.usageMetadata;
     const totalTokens = (usage?.promptTokenCount || 0) + (usage?.candidatesTokenCount || 0);
@@ -86,7 +108,8 @@ ${JSON.stringify(processData, null, 2)}
 Inclua: qualificação das partes, fundamentos de direito, pedidos claros.
 Seções: I - DOS FATOS, II - DO DIREITO, III - DOS PEDIDOS`;
 
-    const result = await this.model.generateContent(prompt);
+    const model = await this.getModel(officeId);
+    const result = await model.generateContent(prompt);
     return result.response.text();
   }
 
@@ -104,7 +127,8 @@ Movimentações: ${process.movements.map((m) => m.description).join(' | ')}
 
 JSON esperado: { "riskLevel": "ALTO|MEDIO|BAIXO", "score": 0-100, "mainRisks": ["string"], "recommendations": ["string"] }`;
 
-    const result = await this.model.generateContent(prompt);
+    const model = await this.getModel(officeId);
+    const result = await model.generateContent(prompt);
     const text = result.response.text().replace(/```json|```/g, '').trim();
     return JSON.parse(text);
   }
