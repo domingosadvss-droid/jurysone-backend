@@ -7012,7 +7012,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           { id:'zapsign',  nome:'ZapSign (Assinatura Digital)', icon:'✍️', desc:'Envio e coleta de assinaturas digitais em contratos de honorários e procurações. Já integrado ao fluxo de atendimento.', placeholder:'Token ZapSign (ex: eyJ...)', docsUrl:'https://app.zapsign.com.br/conta/integracoes', testEndpoint:'zapsign' },
           { id:'asaas',    nome:'Asaas (Cobranças)',            icon:'💰', desc:'Geração automática de boletos, PIX e cartão para honorários e parcelamentos. Já integrado ao financeiro.', placeholder:'$aact_... (Produção) ou $aasp_... (Sandbox)', docsUrl:'https://www.asaas.com/api/index', testEndpoint:'asaas' },
           { id:'gemini',   nome:'Gemini (IA Jurídica)',         icon:'🤖', desc:'IA Copiloto Jurídico — análise de contratos, geração de peças e jurisprudência. Powered by Google Gemini 1.5 Flash.', placeholder:'AIza...', docsUrl:'https://aistudio.google.com/app/apikey', testEndpoint:'gemini' },
-          { id:'datajud',  nome:'DataJud / CNJ',                icon:'⚖️', desc:'Consulta e monitoramento automático de processos nos tribunais brasileiros.', placeholder:'Bearer eyJ...', docsUrl:'https://datajud-wiki.cnj.jus.br', testEndpoint:'datajud' },
+          { id:'datajud',  nome:'DataJud / CNJ',                icon:'⚖️', desc:'Consulta e monitoramento automático de processos nos tribunais brasileiros.', placeholder:'cDZHYz... (apenas a chave, sem "APIKey")', docsUrl:'https://datajud-wiki.cnj.jus.br', testEndpoint:'datajud' },
           { id:'whatsapp', nome:'WhatsApp Business API',        icon:'💬', desc:'Envio de mensagens e notificações automáticas para clientes via WhatsApp.', placeholder:'EAA...', docsUrl:'https://developers.facebook.com/docs/whatsapp', testEndpoint:'whatsapp' },
           { id:'resend',   nome:'Resend (E-mail)',               icon:'📧', desc:'Envio de e-mails transacionais: prazos, assinaturas, boletos e relatórios.', placeholder:'re_...', docsUrl:'https://resend.com/api-keys', testEndpoint:'resend' },
           { id:'aws_s3',   nome:'AWS S3 (Documentos)',           icon:'☁️', desc:'Armazenamento seguro de documentos, contratos e arquivos do escritório.', placeholder:'AKIA...', docsUrl:'https://aws.amazon.com/s3', testEndpoint:'aws' },
@@ -7110,7 +7110,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           // Simulate API test (in production would call real endpoint)
           await new Promise(r=>setTimeout(r, 1800 + Math.random()*800));
           // Simulate: keys starting with valid prefixes pass
-          const validPrefixes = { openai:['sk-'], datajud:['Bearer','eyJ'], whatsapp:['EAA','eaa'], resend:['re_'], stripe:['sk_'], aws_s3:['AKIA'], icp_brasil:['-----','MII'], pusher:[] };
+          const validPrefixes = { openai:['sk-'], datajud:[], gemini:['AIza'], zapsign:[], asaas:['$aact','$aasp'], whatsapp:['EAA','eaa'], resend:['re_'], aws_s3:['AKIA'], pusher:[] };
           const prefixes = validPrefixes[id] || [];
           const isValid = prefixes.length === 0 ? key.length > 8 : prefixes.some(p => key.startsWith(p));
           if (isValid) {
