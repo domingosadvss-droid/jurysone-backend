@@ -18,9 +18,11 @@
 import {
   Controller, Get, Post, Patch, Delete,
   Body, Param, Query, UseGuards, Request,
-  HttpCode, HttpStatus, Res,
+  HttpCode, HttpStatus, Res, Headers, RawBodyRequest,
+  BadRequestException, Logger,
 } from '@nestjs/common';
 import { Response } from 'express';
+import * as crypto from 'crypto';
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { WhatsappService } from './whatsapp.service';
@@ -31,7 +33,23 @@ import { WhatsappService } from './whatsapp.service';
 @Controller('whatsapp')
 export class WhatsappController {
 
+  private readonly logger = new Logger(WhatsappController.name);
+
   constructor(private readonly service: WhatsappService) {}
+
+  /** Valida assinatura HMAC-SHA256 do Meta (X-Hub-Signature-256) */
+  private validarAssinaturaMeta(rawBody: Buffer, signature: string): boolean {
+    const appSecret = process.env.WHATSAPP_APP_SECRET;
+    if (!appSecret) return true; // sem segredo configurado, aceita (modo desenvolvimento)
+    if (!signature) return false;
+
+    const expected = 'sha256=' + crypto
+      .createHmac('sha256', appSecret)
+      .update(rawBody)
+      .digest('hex');
+
+    return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(signature));
+  }
 
   /* ──────────────────── MENSAGENS DIRETAS ───────────────────── */
 
@@ -225,13 +243,29 @@ export class WhatsappController {
 
   /**
    * POST /whatsapp/webhook
-   * Webhook para receber mensagens do WhatsApp Business API
-   * (chamado pelo Meta/WhatsApp)
+   * Webhook para receber mensagens do WhatsApp Business API (Meta)
+   * Valida assinatura HMAC-SHA256 via X-Hub-Signature-256
    */
   @Post('webhook')
   @HttpCode(HttpStatus.OK)
-  async receberWebhook(@Body() payload: any) {
-    return this.service.processarWebhook(payload);
+  async receberWebhook(
+    @Request() req: RawBodyRequest<any>,
+    @Body() payload: any,
+    @Headers('x-hub-signature-256') signature: string,
+    @Res() res: Response,
+  ) {
+    // Validação de assinatura Meta
+    const rawBody = req.rawBody;
+    if (rawBody && signature) {
+      const valido = this.validarAssinaturaMeta(rawBody, signature);
+      if (!valido) {
+        this.logger.warn('[WhatsApp] Webhook com assinatura inválida rejeitado.');
+        return res.status(400).json({ error: 'Assinatura inválida' });
+      }
+    }
+
+    const result = await this.service.processarWebhook(payload);
+    return res.status(200).json(result);
   }
 
   /**

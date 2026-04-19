@@ -16,7 +16,8 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
-  const app = await NestFactory.create(AppModule);
+  // rawBody: true — necessário para validação HMAC-SHA256 do webhook Meta/WhatsApp
+  const app = await NestFactory.create(AppModule, { rawBody: true });
 
   // ── Segurança ────────────────────────────────────────────────────────────
   // CSP desabilitado: os HTMLs usam scripts inline e CDNs (Tailwind, Chart.js, etc.)

@@ -528,20 +528,26 @@ export class WhatsappService {
 
     if (isMetaApi) {
       // ── Meta WhatsApp Cloud API ──────────────────────────────────────────
+      const base = { messaging_product: 'whatsapp', recipient_type: 'individual', to: telefone };
+
       if (arquivoUrl) {
-        body = {
-          messaging_product: 'whatsapp',
-          to: telefone,
-          type: 'document',
-          document: { link: arquivoUrl, caption: texto },
-        };
+        // Detecta tipo pelo mime/extensão da URL
+        const ext = arquivoUrl.split('?')[0].split('.').pop()?.toLowerCase() ?? '';
+        const isImage = ['jpg','jpeg','png','gif','webp'].includes(ext);
+        const isVideo = ['mp4','mov','avi','3gp'].includes(ext);
+        const isAudio = ['mp3','ogg','oga','amr','aac','m4a'].includes(ext);
+
+        if (isImage) {
+          body = { ...base, type: 'image', image: { link: arquivoUrl, caption: texto } };
+        } else if (isVideo) {
+          body = { ...base, type: 'video', video: { link: arquivoUrl, caption: texto } };
+        } else if (isAudio) {
+          body = { ...base, type: 'audio', audio: { link: arquivoUrl } };
+        } else {
+          body = { ...base, type: 'document', document: { link: arquivoUrl, caption: texto, filename: arquivoUrl.split('/').pop() } };
+        }
       } else {
-        body = {
-          messaging_product: 'whatsapp',
-          to: telefone,
-          type: 'text',
-          text: { body: texto, preview_url: false },
-        };
+        body = { ...base, type: 'text', text: { body: texto, preview_url: true } };
       }
     } else {
       // ── Evolution API / Z-API / WPPConnect ───────────────────────────────
