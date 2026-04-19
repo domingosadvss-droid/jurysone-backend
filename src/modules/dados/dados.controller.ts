@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { DadosService } from './dados.service';
@@ -14,9 +14,14 @@ export class DadosController {
     return this.dados.carregar(user.escritorioId);
   }
 
-  /** POST /api/dados — persiste payload completo do dashboard */
+  /**
+   * POST /api/dados — persiste payload completo do dashboard
+   * ValidationPipe desabilitado aqui: o body é um objeto livre (Record<string,any>)
+   * e o whitelist global apagaria todas as propriedades sem decorators.
+   */
   @Post()
-  async salvar(@CurrentUser() user: any, @Body() body: Record<string, any>) {
+  @UsePipes(new ValidationPipe({ whitelist: false, transform: false }))
+  async salvar(@CurrentUser() user: any, @Body() body: any) {
     return this.dados.salvar(user.escritorioId, body);
   }
 }

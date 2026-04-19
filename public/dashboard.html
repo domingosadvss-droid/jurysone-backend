@@ -10724,7 +10724,13 @@ Nestes termos, pede deferimento.
                 console.log(`[API] ✅ ${r.chaves_salvas} chaves salvas na API`);
                 const _ob = document.getElementById('jus-offline-banner'); if(_ob) _ob.classList.remove('active');
               } else {
-                console.warn('[API] Resposta não-OK ao salvar:', resp.status);
+                const errText = await resp.text().catch(()=>'');
+                console.warn(`[API] Erro ao salvar (${resp.status}):`, errText);
+                // Token expirado → relogin silencioso
+                if (resp.status === 401) {
+                  console.warn('[API] Token expirado — dados mantidos no localStorage até próximo login.');
+                }
+                const _ob = document.getElementById('jus-offline-banner'); if(_ob) _ob.classList.add('active');
               }
             } catch(e) {
               console.warn('[API] API indisponível para salvar — mantido no localStorage:', e.message);
