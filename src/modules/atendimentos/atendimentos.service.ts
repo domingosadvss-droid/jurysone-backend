@@ -1,6 +1,7 @@
-import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
+import { Injectable, BadRequestException, NotFoundException, Logger } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { CreateAtendimentoDto } from './dto/create-atendimento.dto';
+import { AsaasService } from '../asaas/asaas.service';
 
 export interface AtendimentoFilter {
   status?: string;
@@ -11,7 +12,12 @@ export interface AtendimentoFilter {
 
 @Injectable()
 export class AtendimentosService {
-  constructor(private readonly prisma: PrismaService) {}
+  private readonly logger = new Logger(AtendimentosService.name);
+
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly asaasService: AsaasService,
+  ) {}
 
   /**
    * Create a complete atendimento with all related records
@@ -113,6 +119,57 @@ export class AtendimentosService {
         },
       });
 
+      // 5b. Enviar cobrança ao Asaas (boleto/PIX) — não bloqueia se falhar
+      let asaasPaymentId: string | null = null;
+      let asaasInvoiceUrl: string | null = null;
+      try {
+        const valorCobranca = dto.tipoHonorario === 'percentual'
+          ? dto.valorAcao * (dto.percentualExito / 100)
+          : dto.valorFixo || 0;
+
+        if (valorCobranca > 0 && cliente.email) {
+          const vencimento = dto.vencimento1Parc
+            ? new Date(dto.vencimento1Parc).toISOString().split('T')[0]
+            : new Date(Date.now() + 7 * 86400000).toISOString().split('T')[0]; // +7 dias
+
+          const billingType = (dto.formaPagamento || 'PIX').toUpperCase() as any;
+
+          const resultado = await this.asaasService.criarClienteECobranca(
+            escritorioId,
+            {
+              nome:              cliente.nome,
+              cpfCnpj:          cliente.cpf  || undefined,
+              email:            cliente.email || undefined,
+              fone:             cliente.telefone || undefined,
+              externalReference: cliente.id,
+            },
+            {
+              valor:             valorCobranca,
+              vencimento,
+              descricao:        `Honorários - ${dto.area} | ${dto.tipoAcao || ''}`,
+              billingType:      ['BOLETO','PIX','CREDIT_CARD'].includes(billingType) ? billingType : 'PIX',
+              externalReference: lancamento.id,
+            },
+          );
+
+          asaasPaymentId  = resultado.pagamento?.id   || null;
+          asaasInvoiceUrl = resultado.pagamento?.invoiceUrl || resultado.pagamento?.bankSlipUrl || null;
+          this.logger.log(`[Asaas] ✅ Cobrança criada: ${asaasPaymentId} | ${asaasInvoiceUrl}`);
+
+          // Atualiza lançamento com ID e status do Asaas
+          await this.prisma.lancamentoFinanceiro.update({
+            where: { id: lancamento.id },
+            data: {
+              status: 'pendente',
+              asaasId: asaasPaymentId,
+            } as any,
+          });
+        }
+      } catch (asaasErr) {
+        // Não falha o atendimento — só loga o erro
+        this.logger.warn(`[Asaas] Cobrança não enviada: ${asaasErr.message}`);
+      }
+
       // 6. Create 4 documents
       const documentTypes = [
         'Contrato de Honorários',
@@ -199,6 +256,9 @@ export class AtendimentosService {
         lancamento,
         documentos: docs,
         envelope,
+        asaas: asaasPaymentId
+          ? { paymentId: asaasPaymentId, invoiceUrl: asaasInvoiceUrl }
+          : null,
         message: 'Atendimento criado com sucesso! Aguardando assinatura dos documentos.',
       };
     } catch (error) {

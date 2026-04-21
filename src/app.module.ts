@@ -9,6 +9,7 @@ import { AppController } from './app.controller';
 
 // ── Módulos estruturados ───────────────────────────────────────────────────
 import { AgendaModule } from './modules/agenda/agenda.module';
+import { AsaasModule } from './modules/asaas/asaas.module';
 import { AiModule } from './modules/ai/ai.module';
 import { AnalyticsModule } from './modules/analytics/analytics.module';
 import { AtendimentosModule } from './modules/atendimentos/atendimentos.module';
@@ -52,6 +53,7 @@ import { ChavesModule } from './modules/chaves/chaves.module';
     // ── Módulos de funcionalidade ─────────────────────────────────────────
     AiModule,
     AnalyticsModule,
+    AsaasModule,
     AtendimentosModule,
     AutomacoesModule,
     ClientesModule,
