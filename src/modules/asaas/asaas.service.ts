@@ -46,10 +46,10 @@ export class AsaasService {
 
   private baseUrl(): string {
     // sandbox: https://sandbox.asaas.com/api/v3
-    // produção: https://api.asaas.com/api/v3
+    // produção: https://api.asaas.com/v3  (sem /api — conforme docs.asaas.com)
     return process.env.ASAAS_ENV === 'sandbox'
       ? 'https://sandbox.asaas.com/api/v3'
-      : 'https://api.asaas.com/api/v3';
+      : 'https://api.asaas.com/v3';
   }
 
   private async fetch(escritorioId: string, path: string, method = 'GET', body?: any) {
