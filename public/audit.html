@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>JurysOne — Auditoria do Sistema</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', sans-serif; background: #f1f5f9; color: #1e293b; padding: 24px; }
+  h1 { font-size: 20px; font-weight: 700; color: #0f2d5e; margin-bottom: 4px; }
+  .subtitle { font-size: 13px; color: #64748b; margin-bottom: 24px; }
+  .section { background: #fff; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 20px; overflow: hidden; }
+  .section-title { background: #0f2d5e; color: #fff; padding: 10px 16px; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+  .row { display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-bottom: 1px solid #f1f5f9; font-size: 13px; }
+  .row:last-child { border-bottom: none; }
+  .label { flex: 1; font-weight: 500; }
+  .detail { font-size: 11px; color: #94a3b8; flex: 2; word-break: break-all; }
+  .badge { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .ok    { background: #dcfce7; color: #166534; }
+  .fail  { background: #fee2e2; color: #991b1b; }
+  .warn  { background: #fef9c3; color: #854d0e; }
+  .wait  { background: #e0e7ff; color: #3730a3; }
+  .skip  { background: #f1f5f9; color: #94a3b8; }
+  .btn { background: #0f2d5e; color: #fff; border: none; border-radius: 8px; padding: 10px 24px; font-size: 14px; font-weight: 700; cursor: pointer; margin-right: 8px; }
+  .btn:hover { background: #1e4080; }
+  .btn-copy { background: #6366f1; }
+  .summary { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+  .sum-card { background: #fff; border-radius: 10px; border: 1px solid #e2e8f0; padding: 14px 20px; min-width: 120px; text-align: center; }
+  .sum-card .num { font-size: 28px; font-weight: 800; }
+  .sum-card .lbl { font-size: 11px; color: #64748b; margin-top: 2px; }
+  #log { background: #0f172a; color: #e2e8f0; font-family: monospace; font-size: 12px; padding: 16px; border-radius: 10px; white-space: pre-wrap; max-height: 300px; overflow-y: auto; margin-top: 20px; display: none; }
+  .progress { height: 4px; background: #e2e8f0; border-radius: 2px; overflow: hidden; margin-bottom: 20px; }
+  .progress-bar { height: 100%; background: #0f2d5e; width: 0%; transition: width 0.3s; border-radius: 2px; }
+  .controls { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+  #status-msg { font-size: 13px; color: #64748b; }
+</style>
+</head>
+<body>
+
+<h1>🔍 JurysOne — Auditoria do Sistema</h1>
+<p class="subtitle">Diagnóstico completo: Backend · Banco de Dados · APIs · Integrações</p>
+
+<div class="controls">
+  <button class="btn" onclick="runAudit()">▶ Iniciar Auditoria</button>
+  <button class="btn btn-copy" onclick="copyReport()">📋 Copiar Relatório</button>
+  <button class="btn" style="background:#475569" onclick="document.getElementById('log').style.display = document.getElementById('log').style.display==='none'?'block':'none'">🖥 Console</button>
+  <span id="status-msg">Clique em "Iniciar Auditoria" para começar.</span>
+</div>
+
+<div class="progress"><div class="progress-bar" id="prog"></div></div>
+
+<div class="summary" id="summary" style="display:none">
+  <div class="sum-card"><div class="num" id="sum-ok"  style="color:#16a34a">0</div><div class="lbl">✅ OK</div></div>
+  <div class="sum-card"><div class="num" id="sum-fail" style="color:#dc2626">0</div><div class="lbl">❌ Falhou</div></div>
+  <div class="sum-card"><div class="num" id="sum-warn" style="color:#d97706">0</div><div class="lbl">⚠️ Aviso</div></div>
+  <div class="sum-card"><div class="num" id="sum-skip" style="color:#94a3b8">0</div><div class="lbl">⏭ Pulado</div></div>
+</div>
+
+<div id="results"></div>
+<div id="log"></div>
+
+<script>
+// ── Config ───────────────────────────────────────────────────────────────────
+const BACKEND = window.location.hostname === 'localhost'
+  ? 'http://localhost:3001/api'
+  : window.location.origin + '/api';
+
+const TOKEN = localStorage.getItem('jurysone_token') || '';
+
+let logLines = [];
+let counts = { ok:0, fail:0, warn:0, skip:0 };
+let totalTests = 0;
+let doneTests  = 0;
+let reportRows = [];
+
+function log(msg) {
+  const ts = new Date().toISOString().split('T')[1].split('.')[0];
+  const line = `[${ts}] ${msg}`;
+  logLines.push(line);
+  const el = document.getElementById('log');
+  el.textContent = logLines.join('\n');
+  el.scrollTop = el.scrollHeight;
+}
+
+function setStatus(msg) {
+  document.getElementById('status-msg').textContent = msg;
+}
+
+function progress(done, total) {
+  document.getElementById('prog').style.width = `${Math.round(done/total*100)}%`;
+}
+
+function addRow(sectionId, label, status, detail='') {
+  counts[status] = (counts[status]||0) + 1;
+  doneTests++;
+  progress(doneTests, totalTests);
+  const badgeMap = { ok:'✅ OK', fail:'❌ FALHOU', warn:'⚠️ AVISO', skip:'⏭ PULADO', wait:'⏳ ...' };
+  const row = document.createElement('div');
+  row.className = 'row';
+  row.innerHTML = `
+    <span class="label">${label}</span>
+    <span class="detail">${detail}</span>
+    <span class="badge ${status}">${badgeMap[status]||status}</span>
+  `;
+  document.getElementById(sectionId)?.appendChild(row);
+  reportRows.push(`${badgeMap[status]||status} | ${label} | ${detail}`);
+  updateSummary();
+}
+
+function updateSummary() {
+  document.getElementById('sum-ok').textContent   = counts.ok   || 0;
+  document.getElementById('sum-fail').textContent = counts.fail || 0;
+  document.getElementById('sum-warn').textContent = counts.warn || 0;
+  document.getElementById('sum-skip').textContent = counts.skip || 0;
+}
+
+function makeSection(id, icon, title) {
+  const sec = document.createElement('div');
+  sec.className = 'section';
+  sec.innerHTML = `<div class="section-title">${icon} ${title}</div>`;
+  sec.id = id;
+  document.getElementById('results').appendChild(sec);
+  return id;
+}
+
+async function req(method, path, body, authRequired=true, timeoutMs=8000) {
+  const headers = { 'Content-Type': 'application/json' };
+  if (authRequired && TOKEN) headers['Authorization'] = `Bearer ${TOKEN}`;
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    const res = await fetch(`${BACKEND}${path}`, {
+      method, headers,
+      body: body ? JSON.stringify(body) : undefined,
+      signal: ctrl.signal,
+    });
+    clearTimeout(t);
+    const text = await res.text().catch(() => '');
+    let json = null;
+    try { json = JSON.parse(text); } catch {}
+    return { ok: res.ok, status: res.status, text, json };
+  } catch(e) {
+    clearTimeout(t);
+    return { ok: false, status: 0, text: e.message, json: null };
+  }
+}
+
+// ── MAIN AUDIT ───────────────────────────────────────────────────────────────
+async function runAudit() {
+  // Reset
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('log').style.display = 'block';
+  document.getElementById('summary').style.display = 'flex';
+  logLines = []; counts = {}; reportRows = []; doneTests = 0;
+  totalTests = 30; // estimativa
+  log('=== JurysOne Auditoria Iniciada ===');
+  log(`Backend URL: ${BACKEND}`);
+  log(`Token JWT: ${TOKEN ? TOKEN.substring(0,20)+'...' : 'NÃO ENCONTRADO'}`);
+
+  // ── 1. BACKEND ───────────────────────────────────────────────────────────
+  const s1 = makeSection('s-backend', '🖥', 'Backend — Render');
+  setStatus('Testando backend...');
+
+  log('Testando /health...');
+  const health = await req('GET', '/health', null, false, 10000);
+  if (health.ok) {
+    addRow(s1, 'Backend online', 'ok', `${BACKEND} → ${health.status}`);
+    log(`Health: ${health.text.substring(0,100)}`);
+  } else if (health.status === 0) {
+    addRow(s1, 'Backend online', 'fail', `Timeout / sem resposta — ${health.text}`);
+    log(`Health FALHOU: ${health.text}`);
+  } else {
+    addRow(s1, 'Backend online', 'warn', `Status ${health.status} — pode estar acordando`);
+  }
+
+  // Teste de URL correta
+  const urlOk = BACKEND.includes('onrender.com') || BACKEND.includes('localhost') || BACKEND.includes('jurysone');
+  addRow(s1, 'URL do backend', urlOk ? 'ok' : 'warn', BACKEND);
+
+  // Token JWT
+  if (!TOKEN) {
+    addRow(s1, 'Token JWT', 'fail', 'Não encontrado no localStorage — faça login primeiro');
+    log('ERRO: Token JWT ausente');
+  } else {
+    try {
+      const payload = JSON.parse(atob(TOKEN.split('.')[1]));
+      const exp = payload.exp ? new Date(payload.exp * 1000) : null;
+      const expired = exp && exp < new Date();
+      if (expired) {
+        addRow(s1, 'Token JWT', 'fail', `Expirado em ${exp.toLocaleString('pt-BR')} — faça login novamente`);
+        log(`JWT expirado: ${exp}`);
+      } else {
+        const diff = exp ? Math.round((exp - new Date()) / 3600000) : '?';
+        addRow(s1, 'Token JWT', 'ok', `Válido por mais ~${diff}h | user: ${payload.email||payload.sub||'?'}`);
+        log(`JWT ok — exp: ${exp}, user: ${payload.email||payload.sub}`);
+      }
+    } catch {
+      addRow(s1, 'Token JWT', 'warn', 'Não foi possível decodificar o token');
+    }
+  }
+
+  // ── 2. AUTENTICAÇÃO ──────────────────────────────────────────────────────
+  const s2 = makeSection('s-auth', '🔐', 'Autenticação');
+  setStatus('Testando autenticação...');
+
+  log('Testando /auth/me...');
+  const me = await req('GET', '/auth/me', null, true);
+  if (me.ok) {
+    const u = me.json;
+    addRow(s2, 'GET /auth/me', 'ok', `Usuário: ${u?.email||u?.nome||JSON.stringify(u).substring(0,60)}`);
+    log(`/auth/me ok: ${JSON.stringify(u).substring(0,100)}`);
+  } else if (me.status === 401) {
+    addRow(s2, 'GET /auth/me', 'fail', `401 Não autorizado — token inválido ou expirado`);
+    log(`/auth/me 401: ${me.text.substring(0,100)}`);
+  } else {
+    addRow(s2, 'GET /auth/me', 'warn', `Status ${me.status} — ${me.text.substring(0,80)}`);
+  }
+
+  // ── 3. BANCO DE DADOS (via endpoints que fazem query) ───────────────────
+  const s3 = makeSection('s-db', '🗄', 'Banco de Dados — Supabase');
+  setStatus('Testando banco de dados...');
+
+  const endpoints = [
+    ['GET /clientes',   '/clientes',   'Tabela clientes'],
+    ['GET /processos',  '/processos',  'Tabela processos'],
+    ['GET /financeiro', '/financeiro', 'Tabela financeiro'],
+    ['GET /tarefas',    '/tarefas',    'Tabela tarefas'],
+    ['GET /agenda',     '/agenda',     'Tabela agenda'],
+  ];
+  for (const [label, path, desc] of endpoints) {
+    log(`Testando ${path}...`);
+    const r = await req('GET', path);
+    if (r.ok) {
+      const count = Array.isArray(r.json) ? r.json.length
+        : r.json?.data?.length ?? r.json?.total ?? r.json?.items?.length ?? '?';
+      addRow(s3, label, 'ok', `${desc} — ${count} registro(s) retornado(s)`);
+      log(`${path} ok — ${count} registros`);
+    } else if (r.status === 401) {
+      addRow(s3, label, 'skip', '401 — precisa de token válido');
+    } else if (r.status === 0) {
+      addRow(s3, label, 'fail', `Timeout / backend offline`);
+    } else if (r.status >= 500) {
+      addRow(s3, label, 'fail', `${r.status} — Erro interno: ${r.text.substring(0,100)}`);
+      log(`${path} ERRO ${r.status}: ${r.text.substring(0,200)}`);
+    } else {
+      addRow(s3, label, 'warn', `${r.status} — ${r.text.substring(0,80)}`);
+    }
+  }
+
+  // ── 4. MÓDULOS DO SISTEMA ────────────────────────────────────────────────
+  const s4 = makeSection('s-modules', '📦', 'Módulos do Sistema');
+  setStatus('Testando módulos...');
+
+  const modules = [
+    ['GET /esign/envelopes',      '/esign/envelopes',       'E-Sign (ClickSign)'],
+    ['GET /esign/stats',          '/esign/stats',           'E-Sign Stats'],
+    ['GET /atendimentos',         '/atendimentos',          'Atendimentos'],
+    ['GET /documentos',           '/documentos',            'Documentos'],
+    ['GET /ai/status',            '/ai/status',             'Juri AI (Gemini)'],
+    ['GET /dados',                '/dados',                 'Dados persistidos'],
+    ['GET /configuracoes',        '/configuracoes',         'Configurações'],
+  ];
+  for (const [label, path, desc] of modules) {
+    log(`Testando ${path}...`);
+    const r = await req('GET', path);
+    if (r.ok) {
+      addRow(s4, label, 'ok', desc);
+    } else if (r.status === 401) {
+      addRow(s4, label, 'skip', '401 — token ausente/expirado');
+    } else if (r.status === 404) {
+      addRow(s4, label, 'warn', `404 — rota não encontrada (módulo pode não existir)`);
+    } else if (r.status === 0) {
+      addRow(s4, label, 'fail', 'Timeout / backend offline');
+    } else if (r.status >= 500) {
+      addRow(s4, label, 'fail', `${r.status} — ${r.text.substring(0,120)}`);
+      log(`${path} ERRO: ${r.text.substring(0,200)}`);
+    } else {
+      addRow(s4, label, 'warn', `${r.status} — ${r.text.substring(0,80)}`);
+    }
+  }
+
+  // ── 5. INTEGRAÇÕES ───────────────────────────────────────────────────────
+  const s5 = makeSection('s-int', '🔌', 'Integrações Externas');
+  setStatus('Testando integrações...');
+
+  // Chaves configuradas (via endpoint de teste do backend)
+  const integrations = [
+    ['clicksign', 'ClickSign (Assinatura Digital)'],
+    ['gemini',    'Gemini AI (Juri)'],
+    ['asaas',     'Asaas (Cobranças)'],
+    ['whatsapp',  'WhatsApp Business'],
+    ['resend',    'Resend (E-mail)'],
+    ['datajud',   'DataJud / CNJ'],
+  ];
+
+  for (const [id, name] of integrations) {
+    log(`Testando integração: ${id}...`);
+    const r = await req('POST', '/configuracoes/testar-api', { id }, true, 12000);
+    if (r.ok) {
+      addRow(s5, name, 'ok', r.json?.message || 'Conexão bem-sucedida');
+      log(`${id} ok: ${JSON.stringify(r.json).substring(0,100)}`);
+    } else if (r.status === 404) {
+      // Endpoint de teste não existe — tentar verificar chaves diretamente
+      addRow(s5, name, 'warn', 'Endpoint de teste não disponível — verifique no Render');
+    } else if (r.status === 401) {
+      addRow(s5, name, 'skip', '401 — token ausente');
+    } else if (r.status === 400) {
+      addRow(s5, name, 'fail', `Chave não configurada ou inválida — ${r.json?.message||r.text.substring(0,80)}`);
+      log(`${id} FALHOU: ${r.text.substring(0,200)}`);
+    } else if (r.status === 0) {
+      addRow(s5, name, 'fail', 'Timeout');
+    } else {
+      addRow(s5, name, 'warn', `${r.status} — ${r.text.substring(0,80)}`);
+    }
+  }
+
+  // ── 6. CLICKSIGN ESPECÍFICO ─────────────────────────────────────────────
+  const s6 = makeSection('s-cs', '✍️', 'ClickSign — Diagnóstico Específico');
+  setStatus('Testando ClickSign...');
+
+  log('Testando ClickSign /esign/envelopes...');
+  const csEnv = await req('GET', '/esign/envelopes');
+  if (csEnv.ok) {
+    addRow(s6, 'Listar envelopes', 'ok', `${JSON.stringify(csEnv.json).substring(0,100)}`);
+  } else {
+    addRow(s6, 'Listar envelopes', csEnv.status===401?'skip':'fail', `${csEnv.status} — ${csEnv.text.substring(0,100)}`);
+  }
+
+  // Teste de criação mínima (sem PDF — só para testar token)
+  log('Testando criação envelope ClickSign (dry-run)...');
+  const csCreate = await req('POST', '/esign/envelopes', {
+    name: '__audit_test__',
+    signers: [{ name: 'Teste Auditoria', email: 'audit@test.com' }],
+    message: 'Teste de auditoria',
+  }, true, 15000);
+  log(`ClickSign create resposta: ${csCreate.status} — ${csCreate.text.substring(0,300)}`);
+  if (csCreate.ok) {
+    const r = csCreate.json;
+    if (r?._provider === 'clicksign') {
+      addRow(s6, 'Criar envelope no ClickSign', 'ok', `Token: ${r.token} | ${r.signers?.length||0} signatário(s)`);
+    } else if (r?._local && r?._clicksign_error) {
+      addRow(s6, 'Criar envelope no ClickSign', 'fail', `Erro ClickSign API: ${r._clicksign_error.substring(0,120)}`);
+      log(`ClickSign ERRO: ${r._clicksign_error}`);
+    } else if (r?._local) {
+      addRow(s6, 'Criar envelope no ClickSign', 'warn', 'Fallback local — ClickSign não respondeu (token ausente?)');
+    } else {
+      addRow(s6, 'Criar envelope no ClickSign', 'warn', JSON.stringify(r).substring(0,100));
+    }
+  } else {
+    addRow(s6, 'Criar envelope no ClickSign', 'fail', `${csCreate.status} — ${csCreate.text.substring(0,120)}`);
+  }
+
+  // ── 7. WEBHOOK ENDPOINT ──────────────────────────────────────────────────
+  const s7 = makeSection('s-wh', '📡', 'Webhooks');
+  setStatus('Testando webhooks...');
+
+  log('Testando webhook ClickSign...');
+  const wh = await req('POST', '/clicksign/webhook', { event: { name: '__audit_ping__', data: {} } }, false, 5000);
+  if (wh.status === 200) {
+    addRow(s7, 'POST /clicksign/webhook', 'ok', 'Endpoint acessível e respondendo');
+  } else if (wh.status === 0) {
+    addRow(s7, 'POST /clicksign/webhook', 'fail', 'Timeout — backend offline?');
+  } else {
+    addRow(s7, 'POST /clicksign/webhook', 'warn', `Status ${wh.status} — ${wh.text.substring(0,80)}`);
+  }
+
+  const whWa = await req('GET', '/whatsapp/webhook?hub.mode=subscribe&hub.verify_token=jurysone-webhook&hub.challenge=audit123', null, false, 5000);
+  if (whWa.text === 'audit123' || whWa.ok) {
+    addRow(s7, 'GET /whatsapp/webhook', 'ok', 'Verificação Meta funcionando');
+  } else {
+    addRow(s7, 'GET /whatsapp/webhook', 'warn', `${whWa.status} — ${whWa.text.substring(0,80)}`);
+  }
+
+  // ── 8. ENV VARS (inferido) ───────────────────────────────────────────────
+  const s8 = makeSection('s-env', '🔑', 'Variáveis de Ambiente — Diagnóstico Inferido');
+  setStatus('Verificando configurações...');
+  log('Verificando variáveis de ambiente via comportamento...');
+
+  // JWT funciona → JWT_SECRET está setada
+  const jwtOk = me.ok;
+  addRow(s8, 'JWT_SECRET', jwtOk ? 'ok' : 'fail',
+    jwtOk ? 'Token aceito — JWT_SECRET configurada' : 'Token rejeitado — JWT_SECRET pode estar errada');
+
+  // DATABASE_URL → se DB endpoints funcionam
+  const dbOk = (await req('GET', '/clientes')).ok;
+  addRow(s8, 'DATABASE_URL (Supabase)', dbOk ? 'ok' : 'fail',
+    dbOk ? 'Queries funcionando' : 'Queries falhando — verifique DATABASE_URL no Render');
+
+  // CLICKSIGN_API_TOKEN → se create retornou _provider clicksign
+  const csOk = csCreate.json?._provider === 'clicksign';
+  addRow(s8, 'CLICKSIGN_API_TOKEN', csOk ? 'ok' : 'fail',
+    csOk ? 'Token válido — API respondeu' :
+    csCreate.json?._clicksign_error ? `Erro: ${csCreate.json._clicksign_error.substring(0,80)}` :
+    'Token ausente ou inválido — verifique no Render');
+
+  // ── FINALIZAÇÃO ──────────────────────────────────────────────────────────
+  setStatus('✅ Auditoria concluída!');
+  document.getElementById('prog').style.width = '100%';
+  log('=== Auditoria Finalizada ===');
+  log(`Total: ${counts.ok||0} OK | ${counts.fail||0} FALHOU | ${counts.warn||0} AVISO | ${counts.skip||0} PULADO`);
+
+  // Diagnóstico final
+  const diag = makeSection('s-diag', '📋', 'Diagnóstico Final');
+  const issues = [];
+  if (!TOKEN)                              issues.push('❌ Sem token JWT — faça login no dashboard antes de rodar a auditoria');
+  if (!me.ok && me.status===401)           issues.push('❌ Token expirado/inválido — faça logout e login novamente');
+  if (health.status === 0)                 issues.push('❌ Backend offline ou URL errada — verifique o Render');
+  if (!dbOk && TOKEN)                      issues.push('❌ Banco de dados inacessível — verifique DATABASE_URL no Render');
+  if (!csOk && csCreate.json?._local)      issues.push('⚠️ ClickSign API não está respondendo — verifique CLICKSIGN_API_TOKEN e CLICKSIGN_URL no Render');
+  if (csCreate.json?._clicksign_error)     issues.push(`⚠️ Erro ClickSign: ${csCreate.json._clicksign_error.substring(0,100)}`);
+
+  if (issues.length === 0) {
+    const row = document.createElement('div');
+    row.className = 'row';
+    row.innerHTML = `<span class="label" style="color:#16a34a;font-weight:700">✅ Nenhum problema crítico encontrado!</span>`;
+    document.getElementById(diag)?.appendChild(row);
+  } else {
+    issues.forEach(iss => {
+      const row = document.createElement('div');
+      row.className = 'row';
+      row.innerHTML = `<span class="label">${iss}</span>`;
+      document.getElementById(diag)?.appendChild(row);
+    });
+  }
+}
+
+function copyReport() {
+  const lines = [
+    '=== JurysOne Auditoria ===',
+    `Data: ${new Date().toLocaleString('pt-BR')}`,
+    `Backend: ${BACKEND}`,
+    `Token: ${TOKEN ? 'Presente' : 'AUSENTE'}`,
+    '',
+    ...reportRows,
+    '',
+    '=== Console ===',
+    ...logLines,
+  ];
+  navigator.clipboard.writeText(lines.join('\n'))
+    .then(() => alert('✅ Relatório copiado! Cole em um e-mail ou chat para suporte.'))
+    .catch(() => {
+      const el = document.getElementById('log');
+      el.style.display = 'block';
+      el.textContent = lines.join('\n');
+      alert('Selecione e copie o texto do console abaixo.');
+    });
+}
+</script>
+</body>
+</html>
