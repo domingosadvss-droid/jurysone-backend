@@ -156,13 +156,13 @@ export class AtendimentosService {
           asaasInvoiceUrl = resultado.pagamento?.invoiceUrl || resultado.pagamento?.bankSlipUrl || null;
           this.logger.log(`[Asaas] ✅ Cobrança criada: ${asaasPaymentId} | ${asaasInvoiceUrl}`);
 
-          // Atualiza lançamento com ID e status do Asaas
+          // Atualiza lançamento com ID externo do Asaas
           await this.prisma.lancamentoFinanceiro.update({
             where: { id: lancamento.id },
             data: {
-              status: 'pendente',
-              asaasId: asaasPaymentId,
-            } as any,
+              status:            'pendente',
+              externalPaymentId: asaasPaymentId,
+            },
           });
         }
       } catch (asaasErr) {

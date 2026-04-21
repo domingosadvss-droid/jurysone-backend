@@ -220,11 +220,11 @@ async function runAudit() {
   setStatus('Testando banco de dados...');
 
   const endpoints = [
-    ['GET /clientes',   '/clientes',   'Tabela clientes'],
-    ['GET /processos',  '/processos',  'Tabela processos'],
-    ['GET /financeiro', '/financeiro', 'Tabela financeiro'],
-    ['GET /tarefas',    '/tarefas',    'Tabela tarefas'],
-    ['GET /agenda',     '/agenda',     'Tabela agenda'],
+    ['GET /clientes',              '/clientes',              'Tabela clientes'],
+    ['GET /processos',             '/processos',             'Tabela processos'],
+    ['GET /financeiro/lancamentos','/financeiro/lancamentos','Tabela financeiro'],
+    ['GET /tarefas',               '/tarefas',               'Tabela tarefas'],
+    ['GET /agenda',                '/agenda',                'Tabela agenda'],
   ];
   for (const [label, path, desc] of endpoints) {
     log(`Testando ${path}...`);
@@ -251,13 +251,13 @@ async function runAudit() {
   setStatus('Testando módulos...');
 
   const modules = [
-    ['GET /esign/envelopes',      '/esign/envelopes',       'E-Sign (ClickSign)'],
-    ['GET /esign/stats',          '/esign/stats',           'E-Sign Stats'],
-    ['GET /atendimentos',         '/atendimentos',          'Atendimentos'],
-    ['GET /documentos',           '/documentos',            'Documentos'],
-    ['GET /ai/status',            '/ai/status',             'Juri AI (Gemini)'],
-    ['GET /dados',                '/dados',                 'Dados persistidos'],
-    ['GET /configuracoes',        '/configuracoes',         'Configurações'],
+    ['GET /esign/envelopes',      '/esign/envelopes',           'E-Sign (ClickSign)'],
+    ['GET /esign/stats',          '/esign/stats',               'E-Sign Stats'],
+    ['GET /atendimentos',         '/atendimentos',              'Atendimentos'],
+    ['GET /documentos',           '/documentos',                'Documentos'],
+    ['GET /ai/copilot/status',    '/ai/copilot/status',         'Juri AI (Gemini)'],
+    ['GET /dados',                '/dados',                     'Dados persistidos'],
+    ['GET /financeiro/overview',  '/financeiro/overview',       'Financeiro Overview'],
   ];
   for (const [label, path, desc] of modules) {
     log(`Testando ${path}...`);
