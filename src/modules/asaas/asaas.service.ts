@@ -127,15 +127,27 @@ export class AsaasService {
    * Retorna o objeto completo da cobrança.
    */
   async criarCobranca(escritorioId: string, dados: AsaasCobranca) {
+    const isParcelado = dados.parcelas && dados.parcelas > 1;
+
     const payload: any = {
-      customer:          dados.clienteAsaasId,
-      billingType:       dados.billingType || 'PIX',
-      value:             dados.valor,
-      dueDate:           dados.vencimento,
-      description:       dados.descricao,
+      customer:    dados.clienteAsaasId,
+      // UNDEFINED = cliente escolhe a forma de pagamento (PIX, boleto, cartão)
+      // conforme docs Asaas — não misturar dois billingTypes na mesma cobrança
+      billingType: dados.billingType || 'UNDEFINED',
+      dueDate:     dados.vencimento,
+      description: dados.descricao,
     };
+
+    if (isParcelado) {
+      // Cobrança parcelada: usa installmentCount + totalValue (não value)
+      payload.installmentCount = dados.parcelas;
+      payload.totalValue       = dados.valor;
+    } else {
+      // Cobrança avulsa: usa apenas value
+      payload.value = dados.valor;
+    }
+
     if (dados.externalReference) payload.externalReference = dados.externalReference;
-    if (dados.mensagemPix)       payload.pixAddressKeyType  = 'EMAIL';
 
     const cobranca = await this.fetch(escritorioId, '/payments', 'POST', payload);
     this.logger.log(`[Asaas] ✅ Cobrança criada: id=${cobranca.id} | invoiceUrl=${cobranca.invoiceUrl}`);
