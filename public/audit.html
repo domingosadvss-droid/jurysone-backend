@@ -370,6 +370,32 @@ async function runAudit() {
     addRow(s7, 'GET /whatsapp/webhook', 'warn', `${whWa.status} — ${whWa.text.substring(0,80)}`);
   }
 
+  // Asaas webhook
+  log('Testando webhook Asaas...');
+  const whAsaas = await req('POST', '/asaas/webhook', { event: '__audit_ping__', payment: { id: 'pay_audit' } }, false, 5000);
+  if (whAsaas.status === 200) {
+    addRow(s7, 'POST /asaas/webhook', 'ok', 'Endpoint acessível — aguardará eventos de pagamento do Asaas');
+  } else if (whAsaas.status === 0) {
+    addRow(s7, 'POST /asaas/webhook', 'fail', 'Timeout — backend offline?');
+  } else {
+    addRow(s7, 'POST /asaas/webhook', 'warn', `Status ${whAsaas.status} — ${whAsaas.text.substring(0,80)}`);
+  }
+
+  // SSE endpoint
+  log('Testando endpoint SSE...');
+  try {
+    const sseUrl = BASE + '/sse';
+    const sseResp = await fetch(sseUrl, { signal: AbortSignal.timeout(3000) });
+    if (sseResp.ok && (sseResp.headers.get('content-type') || '').includes('text/event-stream')) {
+      addRow(s7, 'GET /sse (EventStream)', 'ok', 'Endpoint SSE ativo — dashboard receberá eventos em tempo real');
+      sseResp.body?.cancel();
+    } else {
+      addRow(s7, 'GET /sse (EventStream)', 'warn', `Status ${sseResp.status} — Content-Type: ${sseResp.headers.get('content-type')}`);
+    }
+  } catch (sseErr) {
+    addRow(s7, 'GET /sse (EventStream)', 'fail', `Erro: ${sseErr.message}`);
+  }
+
   // ── 8. ENV VARS (inferido) ───────────────────────────────────────────────
   const s8 = makeSection('s-env', '🔑', 'Variáveis de Ambiente — Diagnóstico Inferido');
   setStatus('Verificando configurações...');

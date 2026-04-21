@@ -7,9 +7,9 @@ import { PrismaService } from '../../database/prisma.service';
 import { ChavesModule } from '../chaves/chaves.module';
 
 @Module({
-  imports: [ChavesModule],
+  imports:     [ChavesModule],
   controllers: [EsignController, ZapsignWebhookController, ClicksignWebhookController],
-  providers: [EsignService, PrismaService],
-  exports: [EsignService],
+  providers:   [EsignService, PrismaService],
+  exports:     [EsignService],
 })
 export class EsignModule {}

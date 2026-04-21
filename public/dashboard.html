@@ -8038,8 +8038,8 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         // ── Backend NestJS (localhost em dev, URL real em produção) ───
         // DATAJUD_KEY e DATAJUD_BASE foram removidos do frontend.
         // Todas as chamadas DataJud passam pelo backend que injeta a chave server-side.
-        const BACKEND_URL  = (window.JURYSONE_CONFIG || {}).API_URL || 'http://localhost:3001';
-        const PROXY_URL    = (window.JURYSONE_CONFIG || {}).PROXY_URL || 'http://localhost:3002';
+        const BACKEND_URL  = (window.JURYSONE_CONFIG || {}).API_URL || 'http://localhost:3001/api';
+        const PROXY_URL    = (window.JURYSONE_CONFIG || {}).PROXY_URL || BACKEND_URL;
 
         // Advogado responsável — OAB 43348/SC
         const ADVOGADO = { nome: 'Jonathan', oab: '43348', oabUF: 'SC', email: 'domingos.advss@gmail.com' };
@@ -8084,7 +8084,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           // ── Verificação rápida ──────────────────────────────────────
           async function checkStatus() {
             try {
-              const r = await fetch(`${PROXY_URL}/status`, {
+              const r = await fetch(`${BACKEND_URL}/health`, {
                 signal: AbortSignal.timeout(3000), cache: 'no-store'
               });
               return r.ok;
@@ -13489,7 +13489,7 @@ Nestes termos, pede deferimento.
         if (sseSource) { sseSource.close(); sseSource = null; }
 
         const dot = document.getElementById('wh-status-dot');
-        const WEBHOOK_URL = 'http://localhost:3001/sse';
+        const WEBHOOK_URL = ((window.JURYSONE_CONFIG || {}).API_URL || 'http://localhost:3001/api') + '/sse';
 
         sseSource = new EventSource(WEBHOOK_URL);
 

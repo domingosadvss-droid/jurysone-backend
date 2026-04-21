@@ -26,13 +26,17 @@ import {
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { createHmac } from 'crypto';
 import { EsignService } from './esign.service';
+import { SseService } from '../sse/sse.service';
 
 @ApiTags('Webhooks — ClickSign')
 @Controller('clicksign/webhook')
 export class ClicksignWebhookController {
   private readonly logger = new Logger(ClicksignWebhookController.name);
 
-  constructor(private readonly esignService: EsignService) {}
+  constructor(
+    private readonly esignService: EsignService,
+    private readonly sseService:   SseService,
+  ) {}
 
   /**
    * POST /api/clicksign/webhook
@@ -153,11 +157,68 @@ export class ClicksignWebhookController {
           this.logger.warn(`[ClickSign Webhook] Evento desconhecido: ${eventName}`);
       }
 
+      // ── Broadcast SSE para o dashboard ─────────────────────────────────────
+      const sseData = {
+        evento:    eventName,
+        docToken:  document.key,
+        docNome:   document.filename ?? null,
+        status:    this._clicksignEventToStatus(eventName),
+        signerNome:  signer.name  ?? null,
+        signerEmail: signer.email ?? null,
+        signedAt:    signer.signed_at ?? null,
+        signedFileUrl: document.signed_file_url ?? null,
+        toast: this._clicksignEventToToast(eventName, signer.name),
+      };
+
+      // Evento genérico de atualização
+      this.sseService.emit('zapsign_update', sseData);
+
+      // Evento especial quando todos assinaram
+      if (eventName === 'auto_close' || eventName === 'document_closed') {
+        this.sseService.emit('zapsign_doc_signed', sseData);
+      }
+
+      // Evento especial de recusa
+      if (eventName === 'refusal' || eventName === 'refused') {
+        this.sseService.emit('zapsign_refused', sseData);
+      }
+
       return { success: true, event: eventName };
     } catch (error) {
       this.logger.error('[ClickSign Webhook] Erro:', error.message);
       // Retorna 200 mesmo com erro para o ClickSign não reenviar indefinidamente
       return { success: false, error: error.message };
     }
+  }
+
+  // ── helpers ──────────────────────────────────────────────────────────────
+
+  private _clicksignEventToStatus(event: string): string {
+    const map: Record<string, string> = {
+      sign:            'parcialmente_assinado',
+      auto_close:      'assinado',
+      document_closed: 'assinado',
+      cancel:          'cancelado',
+      close:           'cancelado',
+      refusal:         'recusado',
+      refused:         'recusado',
+      deadline:        'expirado',
+    };
+    return map[event] ?? event;
+  }
+
+  private _clicksignEventToToast(event: string, signerName?: string): string {
+    const who = signerName ? ` — ${signerName}` : '';
+    const map: Record<string, string> = {
+      sign:            `Assinatura recebida${who}`,
+      auto_close:      'Documento totalmente assinado',
+      document_closed: 'Documento totalmente assinado',
+      cancel:          'Documento cancelado',
+      close:           'Documento cancelado',
+      refusal:         `Assinatura recusada${who}`,
+      refused:         `Assinatura recusada${who}`,
+      deadline:        'Documento expirado',
+    };
+    return map[event] ?? event;
   }
 }

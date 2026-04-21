@@ -33,6 +33,7 @@ import { TimetrackingModule } from './modules/timetracking/timetracking.module';
 import { WhatsappModule } from './modules/whatsapp/whatsapp.module';
 import { DadosModule } from './modules/dados/dados.module';
 import { ChavesModule } from './modules/chaves/chaves.module';
+import { SseModule } from './modules/sse/sse.module';
 
 @Module({
   controllers: [AppController],
@@ -46,6 +47,7 @@ import { ChavesModule } from './modules/chaves/chaves.module';
     // ── Infraestrutura / Auth ─────────────────────────────────────────────
     AuthModule,
     NotificationsModule,
+    SseModule,
 
     // ── Módulos com cron / agendamento ────────────────────────────────────
     AgendaModule,
