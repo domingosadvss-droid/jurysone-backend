@@ -43,12 +43,12 @@ export class ChavesService {
     // 1. Env var tem precedência (configuração do servidor)
     const envMap: Record<string, string> = {
       clicksign: process.env.CLICKSIGN_API_TOKEN,
-      zapsign:   process.env.ZAPSIGN_TOKEN, // mantido por retrocompatibilidade
-      asaas:    process.env.ASAAS_API_KEY,
-      gemini:   process.env.GEMINI_API_KEY,
-      datajud:  process.env.DATAJUD_API_KEY,
-      whatsapp: process.env.WHATSAPP_TOKEN,
-      resend:   process.env.RESEND_API_KEY,
+      zapsign:   process.env.ZAPSIGN_TOKEN,    // retrocompatibilidade
+      asaas:     process.env.ASAAS_API_KEY,
+      gemini:    process.env.GEMINI_API_KEY,
+      datajud:   process.env.DATAJUD_API_KEY,
+      whatsapp:  process.env.WHATSAPP_API_KEY, // corrigido: era WHATSAPP_TOKEN
+      resend:    process.env.RESEND_API_KEY,
     };
     if (envMap[id]) return envMap[id];
 
