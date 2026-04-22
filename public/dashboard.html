@@ -4476,6 +4476,218 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             }
         }
 
+        /**
+         * Gera os 4 documentos jurídicos (Contrato, Procuração, Hipossuficiência, Renúncia)
+         * em um único PDF multi-página para envio ao ClickSign.
+         * Retorna base64 puro (sem prefixo data:...).
+         */
+        function gerarTodosDocsPDF() {
+            try {
+                const { jsPDF } = window.jspdf;
+                if (!jsPDF) return null;
+
+                const D = naColetarDadosDoc();
+                const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+                const W = 210, M = 20, maxW = 170;
+                let y = 22;
+
+                // ── Helpers ──────────────────────────────────────────────
+                const txt = (text, x, size = 10, bold = false, align = 'left') => {
+                    if (!text) return;
+                    doc.setFontSize(size);
+                    doc.setFont('helvetica', bold ? 'bold' : 'normal');
+                    const lw = maxW - (x - M);
+                    const lines = doc.splitTextToSize(String(text), lw > 20 ? lw : maxW);
+                    if (y + lines.length * (size * 0.42) > 278) { doc.addPage(); y = 22; }
+                    if (align === 'center') doc.text(lines, W / 2, y, { align: 'center' });
+                    else doc.text(lines, x, y);
+                    y += lines.length * (size * 0.42) + 1;
+                };
+                const hr = () => {
+                    if (y > 275) { doc.addPage(); y = 22; }
+                    doc.setDrawColor(180); doc.setLineWidth(0.3); doc.line(M, y, W - M, y); y += 5;
+                };
+                const br = (n = 4) => { y += n; };
+                const newDoc = () => { doc.addPage(); y = 22; };
+                const sigLine = (label, cx) => {
+                    if (y > 265) { doc.addPage(); y = 22; }
+                    doc.setDrawColor(80); doc.setLineWidth(0.4);
+                    doc.line(cx - 55, y, cx + 55, y); y += 4;
+                    doc.setFontSize(9); doc.setFont('helvetica', 'normal');
+                    doc.text(label.substring(0, 40), cx, y, { align: 'center' }); y += 4;
+                };
+
+                const hoje = new Date().toLocaleDateString('pt-BR');
+                const numDoc = Date.now().toString().slice(-8);
+                const nomeSig = D.isPJ
+                    ? D.pj_razaoSocial || '[empresa]'
+                    : D.clienteNome || '[cliente]';
+                const cpfSig = D.isPJ ? D.socioCPF : D.clienteCPF;
+
+                // ═══════════════════════════════════════════════════════
+                // DOC 1 — CONTRATO DE PRESTAÇÃO DE SERVIÇOS
+                // ═══════════════════════════════════════════════════════
+                txt('DOMINGOS ADVOCACIA E ASSESSORIA JURÍDICA', M, 13, true, 'center'); br(1);
+                txt('CONTRATO DE PRESTAÇÃO DE SERVIÇOS ADVOCATÍCIOS', M, 11, true, 'center'); br(2);
+                hr();
+                txt(`Contrato nº ${numDoc}   ·   ${hoje}`, M, 9, false, 'center'); br(5);
+
+                txt('1. PARTES', M, 11, true); br(1);
+                txt('CONTRATADO:', M, 10, true); br(1);
+                txt('Domingos Advocacia e Assessoria Jurídica — Dr. Jonathan Frank Stobienia Domingos OAB/SC 43.348 e Dra. Thamile Alessandra Domingos OAB/SC 57.773, R. 501, nº 145, sala 05, centro, Balneário Camboriú/SC.', M + 5, 10);
+                br(3);
+
+                if (D.isPJ) {
+                    txt('CONTRATANTE (PJ):', M, 10, true); br(1);
+                    txt(`Razão Social: ${D.pj_razaoSocial}`, M + 5, 10);
+                    txt(`CNPJ: ${D.pj_cnpj}`, M + 5, 10);
+                    txt(`Representante: ${D.socioNome} (${D.socioCargoLabel}) — CPF: ${D.socioCPF}`, M + 5, 10);
+                } else {
+                    txt('CONTRATANTE:', M, 10, true); br(1);
+                    txt(`Nome: ${D.clienteNome}`, M + 5, 10);
+                    txt(`CPF: ${D.clienteCPF}`, M + 5, 10);
+                    if (D.clienteEmail) txt(`E-mail: ${D.clienteEmail}`, M + 5, 10);
+                    if (D.clienteTel)   txt(`Telefone: ${D.clienteTel}`, M + 5, 10);
+                }
+                br(3); hr();
+
+                txt('2. OBJETO', M, 11, true); br(1);
+                txt(`Área jurídica: ${D.area || '[área]'}`, M, 10);
+                if (D.tipoAcao) txt(`Tipo de ação: ${D.tipoAcao}`, M, 10);
+                txt('O CONTRATADO compromete-se a prestar serviços de assessoria e representação jurídica, incluindo consultoria, elaboração de peças processuais e acompanhamento processual.', M, 10);
+                br(3); hr();
+
+                txt('3. HONORÁRIOS', M, 11, true); br(1);
+                if (D.tipoHonorario === 'exito') {
+                    txt(`Honorários: ${D.percHonorarios || '–'}% do valor obtido ao êxito da ação.`, M, 10);
+                } else {
+                    const vFmt = D.valorHonorarios ? `R$ ${D.valorHonorarios}` : 'A combinar';
+                    const pFmt = D.parcelas > 1 ? `, parcelados em ${D.parcelas}x` : '';
+                    txt(`Honorários: ${vFmt}${pFmt}`, M, 10);
+                }
+                txt('Pagamentos via boleto bancário emitido pela plataforma ASAAS, notificados por e-mail e WhatsApp cadastrados.', M, 10);
+                br(3); hr();
+
+                txt('4. CLÁUSULAS GERAIS (resumo)', M, 11, true); br(1);
+                [
+                    'O CONTRATANTE compromete-se a fornecer todos os documentos necessários ao andamento do caso.',
+                    'Em caso de desistência ou revogação, os honorários pactuados permanecem exigíveis.',
+                    'Os honorários de sucumbência pertencem exclusivamente à CONTRATADA.',
+                    'Canais oficiais: WhatsApp (47) 99915-9178 / (47) 99624-9295 e e-mail @domingosadvocacia.com.br.',
+                    'O CONTRATANTE autoriza o tratamento de seus dados (LGPD — Lei 13.709/2018).',
+                    'Este contrato pode ser assinado eletronicamente via ClickSign ou Gov.br (Lei 13.874/2019).',
+                    `Foro: ${D.cidade || 'Balneário Camboriú/SC'}.`,
+                ].forEach((c, i) => { txt(`Cláusula ${i + 1}ª: ${c}`, M, 10); br(1); });
+                br(3);
+                txt(`${D.cidade || 'Balneário Camboriú'}, ${hoje}`, M, 10, false, 'center'); br(12);
+                sigLine('DOMINGOS ADVOCACIA E ASS. JURÍDICA', M + 37.5);
+                y -= 4;
+                sigLine(nomeSig.substring(0, 30), W - M - 37.5);
+                y += 4;
+                doc.setFontSize(9); doc.setFont('helvetica', 'normal');
+                doc.text('CONTRATADO', M + 37.5, y, { align: 'center' });
+                doc.text('CONTRATANTE', W - M - 37.5, y, { align: 'center' });
+
+                // ═══════════════════════════════════════════════════════
+                // DOC 2 — PROCURAÇÃO AD JUDICIA ET EXTRA
+                // ═══════════════════════════════════════════════════════
+                newDoc();
+                txt('DOMINGOS ADVOCACIA E ASSESSORIA JURÍDICA', M, 13, true, 'center'); br(1);
+                txt('PROCURAÇÃO AD JUDICIA ET EXTRA', M, 12, true, 'center'); br(2);
+                hr();
+
+                txt('OUTORGANTE:', M, 10, true); br(1);
+                if (D.isPJ) {
+                    txt(`${D.pj_razaoSocial.toUpperCase()}, pessoa jurídica, CNPJ nº ${D.pj_cnpj}, representada por ${D.socioCargoLabel} ${D.socioNome.toUpperCase()}, CPF nº ${D.socioCPF}.`, M + 5, 10);
+                } else {
+                    txt(`${D.clienteNome.toUpperCase()}, ${D.clienteNaciona || 'brasileiro(a)'}, ${D.clienteEstadoCivil || ''}, ${D.clienteProfissao || ''}, RG nº ${D.clienteRG || '–'}, CPF nº ${D.clienteCPF}.`, M + 5, 10);
+                }
+                br(3);
+                txt('OUTORGADOS:', M, 10, true); br(1);
+                txt('Dr. JONATHAN FRANK STOBIENIA DOMINGOS, OAB/SC 43.348, e Dra. THAMILE ALESSANDRA DOMINGOS, OAB/SC 57.773, com endereço na R. 501, nº 145, sala 05, centro, Balneário Camboriú/SC.', M + 5, 10);
+                br(3);
+                txt('PODERES:', M, 10, true); br(1);
+                txt('Para o foro em geral, com os mais amplos e ilimitados poderes "ad judicia et extra" e os especiais do art. 105 do CPC, para propor e contestar ações, receber citações, transigir, desistir, receber e dar quitação, interpor recursos e praticar todos os atos necessários ao bom andamento do mandato, podendo substabelecer.', M + 5, 10);
+                br(2);
+                txt(`Finalidade específica: ${D.objetoAcao || '[objeto da ação]'}.`, M + 5, 10);
+                br(3);
+                txt('As partes reconhecem que este instrumento poderá ser assinado eletronicamente via ClickSign ou Gov.br (Lei 13.874/2019).', M, 10);
+                br(3);
+                txt(`${D.cidade || 'Balneário Camboriú'}, ${hoje}`, M, 10, false, 'center'); br(15);
+                sigLine(nomeSig.substring(0, 40), W / 2);
+                doc.setFontSize(9); doc.setFont('helvetica', 'normal');
+                doc.text('OUTORGANTE', W / 2, y, { align: 'center' });
+
+                // ═══════════════════════════════════════════════════════
+                // DOC 3 — DECLARAÇÃO DE HIPOSSUFICIÊNCIA ECONÔMICA
+                // ═══════════════════════════════════════════════════════
+                newDoc();
+                txt('DOMINGOS ADVOCACIA E ASSESSORIA JURÍDICA', M, 13, true, 'center'); br(1);
+                txt('DECLARAÇÃO DE HIPOSSUFICIÊNCIA ECONÔMICA', M, 12, true, 'center'); br(1);
+                txt('(Art. 99, § 3º, CPC — Benefício de Assistência Judiciária Gratuita)', M, 9, false, 'center'); br(2);
+                hr();
+
+                if (D.isPJ) {
+                    txt(`Eu, ${D.socioNome.toUpperCase()}, ${D.socioCargoLabel} da empresa ${D.pj_razaoSocial.toUpperCase()}, CNPJ nº ${D.pj_cnpj}, CPF nº ${D.socioCPF}, na qualidade de representante da parte no processo proposto pelo escritório DOMINGOS ADVOCACIA E ASSESSORIA JURÍDICA, DECLARO, sob as penas da lei:`, M, 10);
+                } else {
+                    txt(`Eu, ${D.clienteNome.toUpperCase()}, ${D.clienteNaciona || 'brasileiro(a)'}, ${D.clienteEstadoCivil || ''}, RG nº ${D.clienteRG || '–'}, CPF nº ${D.clienteCPF}, na qualidade de parte no processo proposto pelo escritório DOMINGOS ADVOCACIA E ASSESSORIA JURÍDICA, DECLARO, sob as penas da lei:`, M, 10);
+                }
+                br(3);
+                [
+                    'Que não possuo condições financeiras de arcar com as custas do processo e honorários advocatícios sem prejuízo do sustento próprio ou familiar, requerendo o benefício da Assistência Judiciária Gratuita (art. 98 e ss. do CPC e Lei 1.060/50).',
+                    'Que minha renda mensal é insuficiente para custear as despesas processuais.',
+                    'Que estou ciente de que a falsidade desta declaração configura crime de falsidade ideológica (art. 299 do CP), além do pagamento de custas em dobro (art. 100 do CPC).',
+                    'Que, caso minha situação financeira melhore significativamente, comprometendo-me a informar imediatamente ao(à) advogado(a) responsável.',
+                ].forEach((item, i) => { txt(`${i + 1}. ${item}`, M, 10); br(2); });
+                br(3);
+                txt(`${D.cidade || 'Balneário Camboriú'}, ${hoje}`, M, 10, false, 'center'); br(15);
+                const hipoLabel = D.isPJ
+                    ? `${D.socioNome.substring(0, 30)} — ${D.socioCargoLabel}`
+                    : nomeSig.substring(0, 40);
+                sigLine(hipoLabel, W / 2);
+                doc.setFontSize(9); doc.setFont('helvetica', 'normal');
+                doc.text(`CPF: ${cpfSig || ''}`, W / 2, y, { align: 'center' });
+
+                // ═══════════════════════════════════════════════════════
+                // DOC 4 — CARTA DE RENÚNCIA DE MANDATO
+                // ═══════════════════════════════════════════════════════
+                newDoc();
+                txt('DOMINGOS ADVOCACIA E ASSESSORIA JURÍDICA', M, 13, true, 'center'); br(1);
+                txt('CARTA DE RENÚNCIA DE MANDATO', M, 12, true, 'center'); br(2);
+                hr();
+
+                if (D.isPJ) {
+                    txt(`Prezada empresa ${D.pj_razaoSocial}, CNPJ nº ${D.pj_cnpj}, representada por ${D.socioCargoLabel} ${D.socioNome}, CPF nº ${D.socioCPF}.`, M, 10);
+                } else {
+                    txt(`Prezado(a) senhor(a) ${D.clienteNome}, RG nº ${D.clienteRG || '–'}, CPF nº ${D.clienteCPF}.`, M, 10);
+                }
+                br(3);
+                txt('Serve a presente para notificar que os advogados Dr. JONATHAN FRANK STOBIENIA DOMINGOS OAB/SC 43.348 e THAMILE ALESSANDRA DOMINGOS OAB/SC 57.773 RENUNCIAM AO MANDATO que lhes foi outorgado por Procuração Ad Judicia, conforme já notificado via WhatsApp.', M, 10);
+                br(2);
+                txt('A partir do recebimento desta, o(a) cliente tem o prazo legal de 10 (dez) dias, nos termos do art. 45 do CPC, para constituir novo patrono para o processo.', M, 10);
+                br(2);
+                txt('Atenciosamente, Jonathan Domingos OAB/SC 43.348.', M, 10);
+                br(3);
+                txt(`Balneário Camboriú, ${hoje}`, M, 10);
+                br(14);
+                if (y > 240) { doc.addPage(); y = 22; }
+                doc.setDrawColor(80); doc.setLineWidth(0.4);
+                doc.line(W / 2 - 70, y, W / 2 + 70, y); y += 4;
+                doc.setFontSize(9); doc.setFont('helvetica', 'normal');
+                doc.text('Dr. Jonathan Frank Stobienia Domingos / Thamile Alessandra Domingos', W / 2, y, { align: 'center' }); y += 4;
+                doc.text('OAB/SC 43.348                                          OAB/SC 57.773', W / 2, y, { align: 'center' });
+                br(12);
+                txt('ASSINATURA DE RECEBIMENTO', M, 10, true); br(8);
+                doc.line(M, y, M + 100, y); y += 4;
+                doc.text(nomeSig.substring(0, 40), M + 50, y, { align: 'center' });
+
+                return doc.output('datauristring').split(',')[1]; // base64 puro
+            } catch (e) {
+                console.warn('[PDF] Erro ao gerar documentos:', e.message);
+                return null;
+            }
+        }
+
         // Reenviar lembrete de assinatura
         async function zapsignReenviar(zapToken, signerToken) {
             if (signerToken) {
@@ -12919,26 +13131,15 @@ Nestes termos, pede deferimento.
             let zapToken   = null;
             let zapSigners = [];
 
-            naProgressoEtapa('⏳', 'Gerando contrato de honorários em PDF...', 'aviso');
-            const pdfBase64 = gerarContratoPDF({
-                clienteNome,
-                clienteCPF,
-                clienteEmail,
-                clienteTel,
-                area,
-                tipoAcao,
-                valor: valorFixo || (valorHonorario),
-                parcelas: numParcelas,
-                formaPagto,
-                vencimento: vencimento1Parc,
-            });
+            naProgressoEtapa('⏳', 'Gerando os 4 documentos jurídicos em PDF (Contrato, Procuração, Hipossuficiência, Renúncia)...', 'aviso');
+            const pdfBase64 = gerarTodosDocsPDF();
 
             if (pdfBase64) {
-                naProgressoEtapa('✅', 'Contrato PDF gerado com sucesso', 'ok');
+                naProgressoEtapa('✅', '4 documentos PDF gerados com sucesso', 'ok');
                 naProgressoEtapa('⏳', 'Enviando para assinatura digital (ClickSign)...', 'aviso');
                 try {
                     const zapResult = await zapsignCriarDoc(
-                        `Contrato de Honorários — ${clienteNome}`,
+                        `Documentos Jurídicos — ${clienteNome}`,
                         '',
                         [{ nome: clienteNome, email: clienteEmail, telefone: clienteTel }],
                         pdfBase64
@@ -12955,7 +13156,7 @@ Nestes termos, pede deferimento.
                         zapToken   = zapResult.token;
                         zapSigners = zapResult.signers || [];
                         const signUrl = zapSigners[0]?.sign_url || '';
-                        naProgressoEtapa('✅', `ClickSign: contrato enviado para ${clienteEmail} — link de assinatura gerado`, 'ok');
+                        naProgressoEtapa('✅', `ClickSign: 4 documentos enviados para ${clienteEmail} — link de assinatura gerado`, 'ok');
                         if (signUrl) naProgressoEtapa('🔗', `Link: ${signUrl.slice(0,60)}...`, 'ok');
                     } else if (zapResult?._local) {
                         const errMsg = zapResult._clicksign_error ? ` (erro: ${zapResult._clicksign_error.substring(0,80)})` : '';
