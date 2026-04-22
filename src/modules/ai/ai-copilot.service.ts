@@ -1,14 +1,16 @@
 /**
  * ═══════════════════════════════════════════════════════════════
- * JURYSONE — AI Copilot 2.0 (powered by Google Gemini — free tier)
+ * JURYSONE — AI Copilot 2.0 (powered by Google Gemini 2.5 Flash)
  * ═══════════════════════════════════════════════════════════════
  */
 
 import { Injectable, Logger } from '@nestjs/common';
-import { GoogleGenerativeAI, GenerativeModel } from '@google/generative-ai';
+import { GoogleGenAI } from '@google/genai';
 import { PrismaService } from '../../database/prisma.service';
 import { NotificationsGateway } from '../notifications/notifications.gateway';
 import { ChavesService } from '../chaves/chaves.service';
+
+const GEMINI_MODEL = 'gemini-2.5-flash';
 
 interface RiskAnalysis {
   score: number;
@@ -47,8 +49,8 @@ interface PeticaoGerada {
 @Injectable()
 export class AiCopilotService {
 
-  private _model: GenerativeModel | null = null;
-  private _modelKey: string | null = null; // chave usada para criar o modelo atual
+  private _client: GoogleGenAI | null = null;
+  private _clientKey: string | null = null;
   private readonly logger = new Logger(AiCopilotService.name);
 
   private readonly SYSTEM_PROMPT = `Você é o Copiloto Jurídico do Jurysone, assistente especializado em direito brasileiro.
@@ -61,25 +63,20 @@ Contexto: direito brasileiro vigente, 2024/2025.`;
     private readonly notificationsGateway: NotificationsGateway,
     private readonly chavesService: ChavesService,
   ) {
-    // Modelo inicializado lazily na primeira chamada para sempre usar a chave mais recente
-    this.logger.log('AiCopilotService inicializado — modelo Gemini será carregado na primeira chamada.');
+    this.logger.log(`AiCopilotService inicializado — modelo ${GEMINI_MODEL} será carregado na primeira chamada.`);
   }
 
-  /** Retorna o modelo Gemini sempre atualizado com a chave mais recente do banco/env */
-  private async getModel(officeId?: string): Promise<GenerativeModel> {
+  /** Retorna o cliente Gemini sempre atualizado com a chave mais recente */
+  private async getClient(officeId?: string): Promise<GoogleGenAI> {
     const key = await this.getApiKey(officeId);
 
-    // Recria o modelo somente se a chave mudou (evita criar objetos desnecessários)
-    if (this._model && this._modelKey === key) return this._model;
+    // Recria o cliente somente se a chave mudou
+    if (this._client && this._clientKey === key) return this._client;
 
-    const genAI = new GoogleGenerativeAI(key);
-    this._model = genAI.getGenerativeModel({
-      model: 'gemini-1.5-flash',
-      systemInstruction: this.SYSTEM_PROMPT,
-    });
-    this._modelKey = key;
-    this.logger.log('Gemini Copiloto: modelo atualizado com nova chave.');
-    return this._model;
+    this._client    = new GoogleGenAI({ apiKey: key });
+    this._clientKey = key;
+    this.logger.log('Gemini Copiloto: cliente atualizado com nova chave.');
+    return this._client;
   }
 
   /** Retorna a API key mais recente (env tem precedência sobre banco) */
@@ -93,7 +90,7 @@ Contexto: direito brasileiro vigente, 2024/2025.`;
     throw new Error('Gemini não configurado. Acesse Configurações → Integrações e salve sua chave Gemini.');
   }
 
-  // Helper para parsear JSON das respostas do Gemini (remove possíveis blocos markdown)
+  /** Remove blocos markdown do JSON retornado pelo modelo */
   private parseJson<T>(text: string): T {
     const clean = text.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
     return JSON.parse(clean) as T;
@@ -115,22 +112,24 @@ Contexto: direito brasileiro vigente, 2024/2025.`;
       contexto = await this.buildProcessoContext(processo_id);
     }
 
-    // Monta histórico no formato do Gemini
     const historico = conversa_id
       ? await this.getHistoricoConversa(conversa_id, 10)
       : [];
 
-    const geminiModel = await this.getModel(officeId);
-    const chat = geminiModel.startChat({ history: historico });
+    const ai   = await this.getClient(officeId);
+    const chat = ai.chats.create({
+      model:   GEMINI_MODEL,
+      config:  { systemInstruction: this.SYSTEM_PROMPT },
+      history: historico,
+    });
 
     const promptFinal = contexto
       ? `${contexto}\n\nPERGUNTA: ${mensagem}`
       : mensagem;
 
-    const result = await chat.sendMessage(promptFinal);
-    const resposta = result.response.text();
-    const usage = result.response.usageMetadata;
-    const totalTokens = (usage?.promptTokenCount || 0) + (usage?.candidatesTokenCount || 0);
+    const result  = await chat.sendMessage({ message: promptFinal });
+    const resposta    = result.text ?? '';
+    const totalTokens = result.usageMetadata?.totalTokenCount ?? 0;
 
     await this.salvarInteracao(userId, officeId, {
       conversa_id,
@@ -153,10 +152,10 @@ Contexto: direito brasileiro vigente, 2024/2025.`;
     const processo = await this.prisma.process.findFirst({
       where: { id: processoId, office: { id: officeId } },
       include: {
-        client: true,
+        client:    true,
         movements: { orderBy: { date: 'desc' }, take: 20 },
         documents: true,
-        tasks: { where: { status: 'pending' } },
+        tasks:     { where: { status: 'pending' } },
       },
     });
 
@@ -181,23 +180,26 @@ JSON esperado:
   "jurisprudencia_relevante": [{ "tribunal": "", "numero": "", "ementa": "", "favoravel": true, "relevancia": 0 }]
 }`;
 
-    const geminiModel = await this.getModel(officeId);
-    const result = await geminiModel.generateContent(prompt);
-    const text = result.response.text();
-    const parsed = this.parseJson<RiskAnalysis>(text);
-    const totalTokens = (result.response.usageMetadata?.promptTokenCount || 0) +
-                        (result.response.usageMetadata?.candidatesTokenCount || 0);
+    const ai     = await this.getClient(officeId);
+    const result = await ai.models.generateContent({
+      model:    GEMINI_MODEL,
+      contents: prompt,
+      config:   { systemInstruction: this.SYSTEM_PROMPT },
+    });
+    const text        = result.text ?? '';
+    const parsed      = this.parseJson<RiskAnalysis>(text);
+    const totalTokens = result.usageMetadata?.totalTokenCount ?? 0;
 
     await this.prisma.aiInteraction.create({
       data: {
-        userId: '',
+        userId:    '',
         officeId,
-        type: 'risk_analysis',
-        input: prompt,
-        output: JSON.stringify(parsed),
+        type:      'risk_analysis',
+        input:     prompt,
+        output:    JSON.stringify(parsed),
         processId: processoId,
-        tokens: totalTokens,
-        model: 'gemini-1.5-flash',
+        tokens:    totalTokens,
+        model:     GEMINI_MODEL,
       },
     });
 
@@ -237,12 +239,15 @@ JSON esperado:
   "pedidos": []
 }`;
 
-    const geminiModel = await this.getModel(params.officeId);
-    const result = await geminiModel.generateContent(prompt);
-    const text = result.response.text();
+    const ai     = await this.getClient(params.officeId);
+    const result = await ai.models.generateContent({
+      model:    GEMINI_MODEL,
+      contents: prompt,
+      config:   { systemInstruction: this.SYSTEM_PROMPT },
+    });
+    const text   = result.text ?? '';
     const parsed = this.parseJson<PeticaoGerada>(text);
-    parsed.estimated_tokens = (result.response.usageMetadata?.promptTokenCount || 0) +
-                               (result.response.usageMetadata?.candidatesTokenCount || 0);
+    parsed.estimated_tokens = result.usageMetadata?.totalTokenCount ?? 0;
     return parsed;
   }
 
@@ -272,9 +277,13 @@ JSON esperado:
   "recomendacoes": []
 }`;
 
-    const geminiModel = await this.getModel(params.officeId);
-    const result = await geminiModel.generateContent(prompt);
-    return this.parseJson(result.response.text());
+    const ai     = await this.getClient(params.officeId);
+    const result = await ai.models.generateContent({
+      model:    GEMINI_MODEL,
+      contents: prompt,
+      config:   { systemInstruction: this.SYSTEM_PROMPT },
+    });
+    return this.parseJson(result.text ?? '');
   }
 
   /* ──────────────────── PESQUISA JURISPRUDÊNCIA ──────────────── */
@@ -298,16 +307,20 @@ JSON esperado:
   "analise_sumaria": ""
 }`;
 
-    const geminiModel = await this.getModel();
-    const result = await geminiModel.generateContent(prompt);
-    return this.parseJson(result.response.text());
+    const ai     = await this.getClient();
+    const result = await ai.models.generateContent({
+      model:    GEMINI_MODEL,
+      contents: prompt,
+      config:   { systemInstruction: this.SYSTEM_PROMPT },
+    });
+    return this.parseJson(result.text ?? '');
   }
 
   /* ──────────────────── RESUMO AUTOMÁTICO ───────────────────── */
 
   async resumirAndamentos(processoId: string, para: 'cliente' | 'advogado') {
     const processo = await this.prisma.process.findUnique({
-      where: { id: processoId },
+      where:   { id: processoId },
       include: { movements: { orderBy: { date: 'desc' }, take: 30 } },
     });
 
@@ -325,20 +338,24 @@ ANDAMENTOS: ${processo.movements.map(m => `${m.date}: ${m.description}`).join(' 
 JSON esperado:
 { "resumo_curto": "", "resumo_detalhado": "", "situacao_atual": "", "proximas_etapas": [], "pontos_atencao": [] }`;
 
-    const geminiModel = await this.getModel();
-    const result = await geminiModel.generateContent(prompt);
-    return this.parseJson(result.response.text());
+    const ai     = await this.getClient();
+    const result = await ai.models.generateContent({
+      model:    GEMINI_MODEL,
+      contents: prompt,
+      config:   { systemInstruction: this.SYSTEM_PROMPT },
+    });
+    return this.parseJson(result.text ?? '');
   }
 
   /* ──────────────────── HELPERS PRIVADOS ────────────────────── */
 
   private async buildProcessoContext(processoId: string): Promise<string> {
     const processo = await this.prisma.process.findUnique({
-      where: { id: processoId },
+      where:   { id: processoId },
       include: {
-        client: true,
+        client:    true,
         movements: { orderBy: { date: 'desc' }, take: 15 },
-        tasks: { where: { status: 'pending' }, take: 10 },
+        tasks:     { where: { status: 'pending' }, take: 10 },
       },
     });
 
@@ -354,14 +371,14 @@ Tarefas pendentes: ${processo.tasks.map(t => t.title).join(', ') || 'Nenhuma'}`;
 
   private async getHistoricoConversa(conversaId: string, limit: number) {
     const interacoes = await this.prisma.aiInteraction.findMany({
-      where: { sessionId: conversaId },
+      where:   { sessionId: conversaId },
       orderBy: { createdAt: 'asc' },
-      take: limit * 2,
+      take:    limit * 2,
     });
 
     // Formato do Gemini: { role: 'user'|'model', parts: [{ text }] }
     return interacoes.flatMap(i => [
-      { role: 'user' as const, parts: [{ text: i.input }] },
+      { role: 'user'  as const, parts: [{ text: i.input  }] },
       { role: 'model' as const, parts: [{ text: i.output }] },
     ]);
   }
@@ -371,13 +388,13 @@ Tarefas pendentes: ${processo.tasks.map(t => t.title).join(', ') || 'Nenhuma'}`;
       data: {
         userId,
         officeId,
-        type: 'chat',
-        input: data.pergunta,
-        output: data.resposta,
+        type:      'chat',
+        input:     data.pergunta,
+        output:    data.resposta,
         processId: data.processo_id,
         sessionId: data.conversa_id,
-        tokens: data.tokens_usados,
-        model: 'gemini-1.5-flash',
+        tokens:    data.tokens_usados,
+        model:     GEMINI_MODEL,
       },
     });
   }
@@ -438,13 +455,6 @@ Sobre o Jurysone:
 - **WhatsApp**: enviar mensagens e notificações automáticas
 - **IA Copiloto**: análise de risco, geração de petições, pesquisa de jurisprudência`;
 
-    const apiKey = await this.getApiKey(params.officeId);
-    const genAI = new GoogleGenerativeAI(apiKey);
-    const supportModel = genAI.getGenerativeModel({
-      model: 'gemini-1.5-flash',
-      systemInstruction: supportSystemPrompt,
-    });
-
     type Part = { text: string } | { inlineData: { mimeType: string; data: string } };
     const parts: Part[] = [];
     if (arquivos && arquivos.length > 0) {
@@ -454,8 +464,13 @@ Sobre o Jurysone:
     }
     parts.push({ text: mensagem || 'Analise o arquivo enviado e extraia os dados do cliente.' });
 
-    const result = await supportModel.generateContent({ contents: [{ role: 'user', parts }] });
-    const text = result.response.text();
+    const ai     = await this.getClient(params.officeId);
+    const result = await ai.models.generateContent({
+      model:    GEMINI_MODEL,
+      contents: [{ role: 'user', parts }],
+      config:   { systemInstruction: supportSystemPrompt },
+    });
+    const text = result.text ?? '';
 
     try {
       const parsed = this.parseJson<{ resposta: string; dados_extraidos?: Record<string, any> }>(text);
