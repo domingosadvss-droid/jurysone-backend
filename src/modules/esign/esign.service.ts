@@ -24,6 +24,7 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
+import { NotificationsGateway, NotificationType } from '../notifications/notifications.gateway';
 import * as crypto from 'crypto';
 
 export interface CreateEnvelopeInput {
@@ -47,7 +48,10 @@ export interface CreateEnvelopeInput {
 export class EsignService {
   private readonly logger = new Logger(EsignService.name);
 
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly notifications: NotificationsGateway,
+  ) {}
 
   // ════════════════════════════════════════════════════════════
   // ENVELOPES
@@ -519,14 +523,29 @@ Este link é pessoal e intransferível.
       });
 
       if (!envelope) {
+        // Resolver escritórioId a partir do documento interno referenciado
+        let escritorioId = '';
+        if (data.externalDocumentId) {
+          const ref = await this.prisma.esignEnvelope.findFirst({
+            where: { documentoId: data.externalDocumentId },
+            select: { escritorioId: true },
+          });
+          escritorioId = ref?.escritorioId ?? '';
+        }
+        if (!escritorioId) {
+          this.logger.warn(
+            `[Zapsign] Não foi possível determinar escritorioId para ${data.zapsignDocumentId} — envelope criado sem vínculo de escritório`,
+          );
+        }
+
         // Criar novo registro se não existir
         await this.prisma.esignEnvelope.create({
           data: {
             zapsignDocumentId: data.zapsignDocumentId,
             externalDocumentId: data.externalDocumentId,
             titulo: data.documentName,
-            status: 'sent', // Documento já foi criado no Zapsign
-            escritorioId: '', // TODO: associar ao escritório correto
+            status: 'sent',
+            escritorioId,
             signatario: data.signers.map(s => s.email).join(', '),
             createdAt: data.createdAt,
           } as any,
@@ -598,11 +617,54 @@ Este link é pessoal e intransferível.
         descricao: `Documento assinado por ${data.signerName}`,
       });
 
-      // Enviar notificação (pode ser implementado com EmailService)
       this.logger.log(`[Zapsign] ✓ Assinatura registrada: ${data.signatureId}`);
 
-      // TODO: Chamar StatusFlowService para executar ações pós-assinatura
-      // await this.statusFlowService.handleDocumentSigned(envelope.id);
+      // Notificar escritório via WebSocket
+      if (envelope.escritorioId) {
+        this.notifications.notifyOffice(envelope.escritorioId, {
+          id: crypto.randomUUID(),
+          type: NotificationType.ESIGN_ASSINADO,
+          title: 'Documento assinado',
+          message: `${data.signerName} assinou "${envelope.titulo ?? 'documento'}"`,
+          data: { envelopeId: envelope.id, signerEmail: data.signerEmail },
+          link: `/esign/${envelope.id}`,
+          priority: 'normal',
+          created_at: new Date().toISOString(),
+          read: false,
+        });
+
+        // Se o envelope foi totalmente assinado, emitir evento específico
+        const updatedEnvelope = await this.prisma.esignEnvelope.findUnique({ where: { id: envelope.id } });
+        if (updatedEnvelope?.status === 'signed') {
+          this.notifications.notifyOffice(envelope.escritorioId, {
+            id: crypto.randomUUID(),
+            type: NotificationType.ESIGN_TODOS_ASSINARAM,
+            title: 'Todos assinaram!',
+            message: `O documento "${envelope.titulo ?? 'documento'}" foi assinado por todos os signatários`,
+            data: { envelopeId: envelope.id },
+            link: `/esign/${envelope.id}`,
+            priority: 'high',
+            created_at: new Date().toISOString(),
+            read: false,
+          });
+        }
+
+        // Notificar criador individualmente
+        const criadoPorId = (envelope as any).criadoPorId;
+        if (criadoPorId) {
+          this.notifications.notifyUser(criadoPorId, {
+            id: crypto.randomUUID(),
+            type: NotificationType.ESIGN_ASSINADO,
+            title: 'Assinatura recebida',
+            message: `${data.signerName} assinou "${envelope.titulo ?? 'documento'}"`,
+            data: { envelopeId: envelope.id },
+            link: `/esign/${envelope.id}`,
+            priority: 'normal',
+            created_at: new Date().toISOString(),
+            read: false,
+          });
+        }
+      }
     } catch (error) {
       this.logger.error('[Zapsign] Erro ao processar assinatura:', error);
       throw error;
@@ -695,7 +757,38 @@ Este link é pessoal e intransferível.
         descricao: `Documento rejeitado. Motivo: ${data.rejectionReason || 'Não especificado'}`,
       });
 
-      // TODO: Enviar notificação ao administrador e ao criador do envelope
+      // Notificar escritório e criador do envelope sobre a rejeição
+      if (envelope.escritorioId) {
+        const motivo = data.rejectionReason || 'Não especificado';
+
+        this.notifications.notifyOffice(envelope.escritorioId, {
+          id: crypto.randomUUID(),
+          type: NotificationType.ESIGN_RECUSADO,
+          title: 'Assinatura recusada',
+          message: `${data.rejectorName} recusou assinar "${envelope.titulo ?? 'documento'}". Motivo: ${motivo}`,
+          data: { envelopeId: envelope.id, rejectorEmail: data.rejectorEmail, motivo },
+          link: `/esign/${envelope.id}`,
+          priority: 'high',
+          created_at: new Date().toISOString(),
+          read: false,
+        });
+
+        const criadoPorId = (envelope as any).criadoPorId;
+        if (criadoPorId) {
+          this.notifications.notifyUser(criadoPorId, {
+            id: crypto.randomUUID(),
+            type: NotificationType.ESIGN_RECUSADO,
+            title: 'Assinatura recusada',
+            message: `${data.rejectorName} recusou assinar "${envelope.titulo ?? 'documento'}". Motivo: ${motivo}`,
+            data: { envelopeId: envelope.id, motivo },
+            link: `/esign/${envelope.id}`,
+            priority: 'high',
+            created_at: new Date().toISOString(),
+            read: false,
+          });
+        }
+      }
+
       this.logger.log(`[Zapsign] ✓ Rejeição registrada para documento: ${data.zapsignDocumentId}`);
     } catch (error) {
       this.logger.error('[Zapsign] Erro ao processar rejeição:', error);
