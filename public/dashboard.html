@@ -691,6 +691,16 @@
                  ══════════════════════════════════════════════════════════ -->
             <div id="page-processos" class="page">
 
+              <!-- ── Tab Nav Processos ───────────────────────────────────── -->
+              <div style="display:flex;gap:0;margin-bottom:20px;border-bottom:2px solid #e2e8f0;overflow-x:auto">
+                <button onclick="procTab('lista')" id="proc-tab-btn-lista" style="padding:10px 20px;border:none;background:none;cursor:pointer;font-size:13.5px;font-weight:700;color:#0f2d5e;border-bottom:2.5px solid #0f2d5e;margin-bottom:-2px;display:flex;align-items:center;gap:6px;white-space:nowrap">⚖️ Meus Processos</button>
+                <button onclick="procTab('painel')" id="proc-tab-btn-painel" style="padding:10px 20px;border:none;background:none;cursor:pointer;font-size:13.5px;font-weight:600;color:#64748b;border-bottom:2.5px solid transparent;margin-bottom:-2px;display:flex;align-items:center;gap:6px;white-space:nowrap">🏛️ Painel do Advogado <span style="font-size:10px;background:#0f2d5e;color:#fff;border-radius:4px;padding:2px 7px;font-weight:700;margin-left:4px">ePROC</span></button>
+                <button onclick="procTab('consulta')" id="proc-tab-btn-consulta" style="padding:10px 20px;border:none;background:none;cursor:pointer;font-size:13.5px;font-weight:600;color:#64748b;border-bottom:2.5px solid transparent;margin-bottom:-2px;display:flex;align-items:center;gap:6px;white-space:nowrap">🔍 Consultar Processo <span style="font-size:10px;background:#0f2d5e;color:#fff;border-radius:4px;padding:2px 7px;font-weight:700;margin-left:4px">ePROC</span></button>
+              </div>
+
+              <!-- ── Tab: Meus Processos ─────────────────────────────────── -->
+              <div id="proc-tab-lista">
+
               <!-- ── KPI Strip (4 cards) ────────────────────────────────── -->
               <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px">
 
@@ -839,6 +849,65 @@
                 <div id="proc-pagination" style="display:none;padding:12px 20px;border-top:1px solid #f1f5f9;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:#64748b">
                   <span id="proc-pag-info"></span>
                   <div id="proc-pag-btns" style="display:flex;gap:5px"></div>
+                </div>
+              </div>
+
+              </div><!-- /proc-tab-lista -->
+
+              <!-- ── Tab: Painel do Advogado (eProc) ───────────────────── -->
+              <div id="proc-tab-painel" style="display:none">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px">
+                  <div>
+                    <div style="font-size:16px;font-weight:700;color:#1e293b">🏛️ Painel do Advogado — eProc TJSC</div>
+                    <div style="font-size:12px;color:#94a3b8;margin-top:3px">Dados ao vivo do eProc · requer sessão ativa no navegador</div>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center">
+                    <button onclick="recarregarEprocPainel()" style="padding:7px 14px;background:#f0f6ff;border:1.5px solid #0f2d5e;border-radius:8px;font-size:12px;color:#0f2d5e;cursor:pointer;font-weight:600">🔄 Recarregar</button>
+                    <a href="https://eproc1g.tjsc.jus.br/eproc/controlador.php?acao=painel_adv_listar&acao_origem=principal" target="_blank" style="padding:7px 14px;background:#0f2d5e;border:none;border-radius:8px;font-size:12px;color:#fff;cursor:pointer;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:5px">↗ Abrir em nova aba</a>
+                  </div>
+                </div>
+                <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(15,45,94,.05);position:relative">
+                  <div id="eproc-painel-loading" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#f8fafc;z-index:2;gap:14px;padding:40px">
+                    <div style="font-size:40px">🏛️</div>
+                    <div style="font-size:14px;font-weight:600;color:#1e293b">Carregando Painel do Advogado...</div>
+                    <div style="font-size:12px;color:#94a3b8;text-align:center">Se o painel não carregar, o eProc pode estar bloqueando incorporação.<br>Use o botão <strong>"Abrir em nova aba"</strong> acima.</div>
+                  </div>
+                  <iframe id="iframe-eproc-painel"
+                    src="about:blank"
+                    data-src="https://eproc1g.tjsc.jus.br/eproc/controlador.php?acao=painel_adv_listar&acao_origem=principal"
+                    style="width:100%;height:calc(100vh - 240px);border:none;display:block;min-height:600px"
+                    onload="if(this.src!=='about:blank')document.getElementById('eproc-painel-loading').style.display='none'"
+                    title="eProc TJSC — Painel do Advogado">
+                  </iframe>
+                </div>
+              </div>
+
+              <!-- ── Tab: Consultar Processo (eProc) ────────────────────── -->
+              <div id="proc-tab-consulta" style="display:none">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px">
+                  <div>
+                    <div style="font-size:16px;font-weight:700;color:#1e293b">🔍 Consultar Processo — eProc TJSC</div>
+                    <div style="font-size:12px;color:#94a3b8;margin-top:3px">Busca de processos direto no eProc · requer sessão ativa no navegador</div>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center">
+                    <button onclick="recarregarEprocConsulta()" style="padding:7px 14px;background:#f0f6ff;border:1.5px solid #0f2d5e;border-radius:8px;font-size:12px;color:#0f2d5e;cursor:pointer;font-weight:600">🔄 Recarregar</button>
+                    <button onclick="abrirBuscaDatajud()" style="padding:7px 14px;background:#10b981;border:none;border-radius:8px;font-size:12px;color:#fff;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:5px">🏛️ Busca DataJud (todos os tribunais)</button>
+                    <a href="https://eproc1g.tjsc.jus.br/eproc/controlador.php?acao=processo_consultar" target="_blank" style="padding:7px 14px;background:#0f2d5e;border:none;border-radius:8px;font-size:12px;color:#fff;cursor:pointer;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:5px">↗ Abrir em nova aba</a>
+                  </div>
+                </div>
+                <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(15,45,94,.05);position:relative">
+                  <div id="eproc-consulta-loading" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#f8fafc;z-index:2;gap:14px;padding:40px">
+                    <div style="font-size:40px">🔍</div>
+                    <div style="font-size:14px;font-weight:600;color:#1e293b">Carregando Consultar Processo...</div>
+                    <div style="font-size:12px;color:#94a3b8;text-align:center">Se não carregar, o eProc pode estar bloqueando incorporação.<br>Use <strong>"Abrir em nova aba"</strong> ou <strong>"Busca DataJud"</strong> acima.</div>
+                  </div>
+                  <iframe id="iframe-eproc-consulta"
+                    src="about:blank"
+                    data-src="https://eproc1g.tjsc.jus.br/eproc/controlador.php?acao=processo_consultar"
+                    style="width:100%;height:calc(100vh - 240px);border:none;display:block;min-height:600px"
+                    onload="if(this.src!=='about:blank')document.getElementById('eproc-consulta-loading').style.display='none'"
+                    title="eProc TJSC — Consultar Processo">
+                  </iframe>
                 </div>
               </div>
 
@@ -8717,6 +8786,44 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           if (tribRow)     tribRow.style.display     = todosChecked ? 'none' : 'block';
           if (mainTribRow) mainTribRow.style.display  = todosChecked ? 'none' : 'block';
         }
+
+        // ── Tabs da página Processos ──────────────────────────────────────────
+        function procTab(tab) {
+          ['lista', 'painel', 'consulta'].forEach(function(t) {
+            var el  = document.getElementById('proc-tab-' + t);
+            var btn = document.getElementById('proc-tab-btn-' + t);
+            if (!el || !btn) return;
+            var active = (t === tab);
+            el.style.display      = active ? '' : 'none';
+            btn.style.color       = active ? '#0f2d5e' : '#64748b';
+            btn.style.fontWeight  = active ? '700' : '600';
+            btn.style.borderBottom = active ? '2.5px solid #0f2d5e' : '2.5px solid transparent';
+          });
+          // Lazy-load iframes ao clicar pela primeira vez
+          if (tab === 'painel') {
+            var fr = document.getElementById('iframe-eproc-painel');
+            if (fr && fr.src === 'about:blank') fr.src = fr.dataset.src;
+          }
+          if (tab === 'consulta') {
+            var fr = document.getElementById('iframe-eproc-consulta');
+            if (fr && fr.src === 'about:blank') fr.src = fr.dataset.src;
+          }
+        }
+
+        function recarregarEprocPainel() {
+          var fr = document.getElementById('iframe-eproc-painel');
+          var ld = document.getElementById('eproc-painel-loading');
+          if (ld) ld.style.display = 'flex';
+          if (fr) fr.src = fr.dataset.src;
+        }
+
+        function recarregarEprocConsulta() {
+          var fr = document.getElementById('iframe-eproc-consulta');
+          var ld = document.getElementById('eproc-consulta-loading');
+          if (ld) ld.style.display = 'flex';
+          if (fr) fr.src = fr.dataset.src;
+        }
+        // ─────────────────────────────────────────────────────────────────────
 
         function abrirBuscaDatajud() {
           document.getElementById('modal-datajud-busca').classList.add('active');
