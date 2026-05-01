@@ -34,6 +34,7 @@ import { WhatsappModule } from './modules/whatsapp/whatsapp.module';
 import { DadosModule } from './modules/dados/dados.module';
 import { ChavesModule } from './modules/chaves/chaves.module';
 import { SseModule } from './modules/sse/sse.module';
+import { PeticionamentoModule } from './modules/peticionamento/peticionamento.module';
 
 @Module({
   controllers: [AppController],
@@ -75,6 +76,7 @@ import { SseModule } from './modules/sse/sse.module';
     WhatsappModule,
     DadosModule,
     ChavesModule,
+    PeticionamentoModule,
   ],
 })
 export class AppModule {}

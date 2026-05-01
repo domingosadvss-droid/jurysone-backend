@@ -49,6 +49,7 @@ model Usuario {
   mensagensWhatsapp          WhatsappMessage[]
   automacoes                 Automacao[]
   dashboardsAnalytics        DashboardAnalytics[]
+  protocolosAdvogado         Protocolo[]            @relation("ProtocolosAdvogado")
 
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @updatedAt
@@ -96,6 +97,7 @@ model Escritorio {
   prazos                 Prazo[]
   registrosCrm           RegistroCrm[]
   historicoStatus        HistoricoStatus[]
+  protocolos             Protocolo[]
 
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
@@ -254,6 +256,7 @@ model Processo {
   intimacoes            Intimacao[]
   atendimentos          Atendimento[]
   prazos                Prazo[]
+  protocolos            Protocolo[]
 
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
@@ -1256,6 +1259,35 @@ enum TipoMonitoramento {
   CPF_CNPJ
   NUMERO_PROCESSO
   PALAVRA_CHAVE
+}
+
+// ─── Peticionamento Eletrônico ────────────────────────────────────────────────
+
+model Protocolo {
+  id                String     @id @default(uuid())
+  escritorioId      String
+  escritorio        Escritorio @relation(fields: [escritorioId], references: [id])
+  processoId        String?
+  processo          Processo?  @relation(fields: [processoId], references: [id])
+  advogadoId        String
+  advogado          Usuario    @relation("ProtocolosAdvogado", fields: [advogadoId], references: [id])
+
+  tribunal          String
+  tipoPeticao       String                // 'inicial', 'intermediaria', 'recurso', etc.
+  arquivoUrl        String?
+  numeroProtocolo   String?
+  status            String     @default("pendente") // pendente | enviado | protocolado | erro
+  respostaTribunal  Json?
+  dataProtocolo     DateTime?
+  erroMensagem      String?
+  deletedAt         DateTime?
+
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+
+  @@index([escritorioId])
+  @@index([processoId])
+  @@map("protocolos")
 }
 
 // ─── Parceiros ────────────────────────────────────────────────────────────────

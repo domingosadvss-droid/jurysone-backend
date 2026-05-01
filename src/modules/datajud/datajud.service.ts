@@ -479,30 +479,333 @@ export class DatajudService {
     return this.buscarPorNumero(numero, tribunal);
   }
 
-  buscarPorOab(query: any) {
+  /**
+   * Busca processos por número de OAB dentro dos advogados de cada parte.
+   * Pesquisa os tribunais mais relevantes quando nenhum é especificado.
+   */
+  async buscarPorOab(query: any): Promise<any> {
+    const { numero_oab, estado, tribunal, page = '1' } = query;
+
+    if (!numero_oab) {
+      return { erro: 'numero_oab é obrigatório' };
+    }
+
+    const pagina   = Math.max(1, parseInt(page, 10));
+    const from     = (pagina - 1) * 10;
+
+    const tribunaisAlvo: string[] = tribunal
+      ? [tribunal.toUpperCase()]
+      : ['TJSP', 'TJRJ', 'TJMG', 'TJRS', 'TJPR', 'STJ', 'STF', 'TRF1', 'TRF2', 'TRF3'];
+
+    const resultados: any[] = [];
+    let totalGeral = 0;
+
+    for (const trib of tribunaisAlvo) {
+      const indice = TRIBUNAL_INDEX[trib];
+      if (!indice) continue;
+
+      try {
+        const mustClauses: any[] = [
+          { term: { 'partes.advogados.numeroOAB': numero_oab } },
+        ];
+        if (estado) {
+          mustClauses.push({ term: { 'partes.advogados.estadoOAB': estado.toUpperCase() } });
+        }
+
+        const { data } = await this.http.post(`/${indice}/_search`, {
+          from,
+          size: 10,
+          query: {
+            nested: {
+              path: 'partes',
+              query: {
+                nested: {
+                  path: 'partes.advogados',
+                  query: { bool: { must: mustClauses } },
+                },
+              },
+            },
+          },
+          sort: [{ dataHoraUltimaAtualizacao: { order: 'desc' } }],
+        });
+
+        const hits = data?.hits?.hits ?? [];
+        const total = data?.hits?.total?.value ?? 0;
+        totalGeral += total;
+        resultados.push(
+          ...hits.map((h: any) => ({ tribunal: trib, ...this.formatarProcesso(h._source) })),
+        );
+      } catch (err: any) {
+        this.logger.warn(`buscarPorOab [${trib}]: ${err.message}`);
+      }
+
+      // Pausa curta para respeitar rate limit
+      await new Promise((r) => setTimeout(r, 150));
+    }
+
     return {
-      mensagem: 'Busca por OAB em desenvolvimento — use buscarPorParte com nome completo por enquanto.',
-      query,
+      oab: numero_oab,
+      estado: estado ?? 'todos',
+      pagina,
+      total: totalGeral,
+      resultados: resultados.length,
+      processos: resultados,
     };
   }
 
-  buscarPorCpfCnpj(query: any) {
+  /**
+   * Busca processos por CPF ou CNPJ de uma das partes.
+   */
+  async buscarPorCpfCnpj(query: any): Promise<any> {
+    const { cpf_cnpj, tribunal, page = '1' } = query;
+
+    if (!cpf_cnpj) {
+      return { erro: 'cpf_cnpj é obrigatório' };
+    }
+
+    const pagina  = Math.max(1, parseInt(page, 10));
+    const from    = (pagina - 1) * 10;
+    const docLimpo = cpf_cnpj.replace(/\D/g, '');
+
+    const tribunaisAlvo: string[] = tribunal
+      ? [tribunal.toUpperCase()]
+      : ['TJSP', 'TJRJ', 'TJMG', 'TJRS', 'STJ', 'STF', 'TRF1', 'TRF2', 'TRF3'];
+
+    const resultados: any[] = [];
+    let totalGeral = 0;
+
+    for (const trib of tribunaisAlvo) {
+      const indice = TRIBUNAL_INDEX[trib];
+      if (!indice) continue;
+
+      try {
+        const { data } = await this.http.post(`/${indice}/_search`, {
+          from,
+          size: 10,
+          query: {
+            nested: {
+              path: 'partes',
+              query: {
+                bool: {
+                  should: [
+                    { term: { 'partes.cpf':  docLimpo } },
+                    { term: { 'partes.cnpj': docLimpo } },
+                    { match: { 'partes.nome': { query: docLimpo } } },
+                  ],
+                  minimum_should_match: 1,
+                },
+              },
+            },
+          },
+          sort: [{ dataHoraUltimaAtualizacao: { order: 'desc' } }],
+        });
+
+        const hits = data?.hits?.hits ?? [];
+        totalGeral += data?.hits?.total?.value ?? 0;
+        resultados.push(
+          ...hits.map((h: any) => ({ tribunal: trib, ...this.formatarProcesso(h._source) })),
+        );
+      } catch (err: any) {
+        this.logger.warn(`buscarPorCpfCnpj [${trib}]: ${err.message}`);
+      }
+
+      await new Promise((r) => setTimeout(r, 150));
+    }
+
     return {
-      mensagem: 'Busca por CPF/CNPJ em desenvolvimento — use buscarPorParte com nome completo.',
-      query,
+      cpf_cnpj,
+      pagina,
+      total: totalGeral,
+      resultados: resultados.length,
+      processos: resultados,
     };
   }
 
-  importarProcesso(user: any, dto: any) {
-    return { message: 'Processo importado', dto };
+  /**
+   * Importa um processo do DataJud para o banco do JurysOne.
+   * Cria o Processo, importa movimentações e ativa monitoramento automático.
+   */
+  async importarProcesso(user: any, dto: any): Promise<any> {
+    const {
+      numero_processo,
+      cliente_id,
+      advogado_responsavel_id,
+      criar_cliente = false,
+      tribunal: tribunalParam,
+    } = dto;
+
+    if (!numero_processo) {
+      return { erro: 'numero_processo é obrigatório' };
+    }
+
+    // Tenta inferir tribunal pelo número CNJ
+    const digitos        = numero_processo.replace(/\D/g, '');
+    const codigoJustica  = digitos.slice(13, 14);
+    const codigoOrgao    = digitos.slice(14, 18);
+    let tribunal         = tribunalParam?.toUpperCase()
+                        ?? this.inferirTribunalPorCodigo(codigoJustica, codigoOrgao);
+
+    if (!tribunal) {
+      return {
+        importado: false,
+        motivo:    'Informe o campo tribunal (ex: TJSP) — não foi possível inferir.',
+        numero_processo,
+      };
+    }
+
+    // Busca dados no DataJud
+    const resultado = await this.buscarPorNumero(numero_processo, tribunal);
+    if (!resultado.encontrado) {
+      return { importado: false, motivo: 'Processo não encontrado no DataJud.', numero_processo, tribunal };
+    }
+    const dados = resultado.dados;
+
+    const escritorioId = user.officeId;
+    let clienteId: string | null = cliente_id ?? null;
+
+    // Cria cliente automaticamente a partir da parte ativa (polo ativo)
+    if (!clienteId && criar_cliente && (dados.partes ?? []).length > 0) {
+      const parteAtiva = dados.partes.find((p: any) => p.polo?.toUpperCase() === 'ATIVO')
+                      ?? dados.partes[0];
+      const novoCliente = await this.prisma.cliente.create({
+        data: { nome: parteAtiva.nome ?? 'Cliente importado', escritorioId },
+      });
+      clienteId = novoCliente.id;
+    }
+
+    if (!clienteId) {
+      return {
+        importado: false,
+        motivo:    'Informe cliente_id ou use criar_cliente: true para criar automaticamente.',
+        dados,
+      };
+    }
+
+    // Verifica se já existe para evitar duplicata
+    const existente = await this.prisma.processo.findFirst({
+      where: { numero: numero_processo, escritorioId, deletedAt: null },
+    });
+
+    let processo: any;
+    if (existente) {
+      processo = existente;
+      this.logger.log(`Processo ${numero_processo} já existe — atualizando monitoramento.`);
+    } else {
+      processo = await this.prisma.processo.create({
+        data: {
+          numero:        numero_processo,
+          tribunal,
+          titulo:        `${dados.classe ?? 'Processo'} — ${numero_processo}`,
+          status:        'ATIVO',
+          area:          dados.assuntos?.[0] ?? null,
+          clienteId,
+          escritorioId,
+          responsavelId: advogado_responsavel_id ?? user.id ?? null,
+          dataInicio:    dados.dataAjuizamento ? new Date(dados.dataAjuizamento) : new Date(),
+          camposCustom:  { partes: dados.partes ?? [] },
+        },
+      });
+    }
+
+    // Importa movimentações novas
+    const movimentos = (dados.movimentos ?? []) as any[];
+    let movimentacoesImportadas = 0;
+    for (const mov of movimentos) {
+      try {
+        await this.prisma.movimentacao.create({
+          data: {
+            processoId: processo.id,
+            data:       new Date(mov.data),
+            descricao:  mov.descricao ?? 'Movimentação importada',
+            fonte:      'datajud',
+          },
+        });
+        movimentacoesImportadas++;
+      } catch {
+        // duplicata ignorada
+      }
+    }
+
+    // Ativa monitoramento automático
+    await this.prisma.datajudMonitoramento.upsert({
+      where: {
+        escritorioId_processoId: { escritorioId, processoId: processo.id },
+      },
+      create: {
+        escritorioId,
+        processoId:          processo.id,
+        alertarMovimentacao: true,
+        alertarPrazo:        true,
+        ultimaSync:          new Date(),
+        totalAndamentos:     movimentacoesImportadas,
+      },
+      update: { ativo: true, ultimaSync: new Date() },
+    });
+
+    this.logger.log(`Processo ${numero_processo} importado com ${movimentacoesImportadas} movimentações.`);
+
+    return {
+      importado:            true,
+      criado:               !existente,
+      processo,
+      movimentacoesImportadas,
+      monitoramentoAtivado: true,
+    };
   }
 
-  importarLote(user: any, dto: any) {
-    return { message: 'Lote importado', dto };
+  /**
+   * Importa múltiplos processos sequencialmente (evita sobrecarga na API).
+   */
+  async importarLote(user: any, dto: any): Promise<any> {
+    const { processos: lista = [], cliente_id, advogado_id } = dto;
+
+    if (!lista.length) {
+      return { erro: 'Informe ao menos um número de processo em processos[]' };
+    }
+
+    const resultados: any[] = [];
+
+    for (const numero of lista) {
+      const r = await this.importarProcesso(user, {
+        numero_processo: numero,
+        cliente_id,
+        advogado_responsavel_id: advogado_id,
+      });
+      resultados.push({ numero, ...r });
+      await new Promise((res) => setTimeout(res, 500)); // pausa entre chamadas
+    }
+
+    const importados = resultados.filter((r) => r.importado).length;
+    const erros      = resultados.length - importados;
+
+    return { total: lista.length, importados, erros, resultados };
   }
 
-  importarPorOab(user: any, dto: any) {
-    return { message: 'OAB importado', dto };
+  /**
+   * Importa todos os processos de um OAB (busca + importa em lote).
+   */
+  async importarPorOab(user: any, dto: any): Promise<any> {
+    const { numero_oab, estado, filtros } = dto;
+
+    if (!numero_oab || !estado) {
+      return { erro: 'numero_oab e estado são obrigatórios' };
+    }
+
+    // Busca todos os processos do OAB (primeiros 50 resultados)
+    const buscaResult = await this.buscarPorOab({ numero_oab, estado });
+    const numeros: string[] = (buscaResult.processos ?? [])
+      .map((p: any) => p.numeroProcesso)
+      .filter(Boolean);
+
+    if (!numeros.length) {
+      return { importados: 0, mensagem: 'Nenhum processo encontrado para este OAB.' };
+    }
+
+    return this.importarLote(user, {
+      processos:    numeros,
+      cliente_id:   dto.cliente_id,
+      advogado_id:  dto.advogado_id,
+    });
   }
 
   getJobStatus(officeId: string, id: string) {
