@@ -7648,14 +7648,16 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
 
         // ─── API MANAGEMENT ───────────────────────────────────────
         const API_DEFINITIONS = [
-          { id:'clicksign', nome:'ClickSign (Assinatura Digital)', icon:'✍️', desc:'Envio e coleta de assinaturas digitais em contratos de honorários e procurações. Já integrado ao fluxo de atendimento.', placeholder:'Access Token ClickSign (ex: 8714675c-...)', docsUrl:'https://app.clicksign.com/account/api_settings', testEndpoint:'clicksign' },
-          { id:'asaas',    nome:'Asaas (Cobranças)',            icon:'💰', desc:'Geração automática de boletos, PIX e cartão para honorários e parcelamentos. Já integrado ao financeiro.', placeholder:'$aact_... (Produção) ou $aasp_... (Sandbox)', docsUrl:'https://www.asaas.com/api/index', testEndpoint:'asaas' },
-          { id:'gemini',   nome:'Gemini (IA Jurídica)',         icon:'🤖', desc:'IA Copiloto Jurídico — análise de contratos, geração de peças e jurisprudência. Powered by Google Gemini 1.5 Flash.', placeholder:'AIza...', docsUrl:'https://aistudio.google.com/app/apikey', testEndpoint:'gemini' },
-          { id:'datajud',  nome:'DataJud / CNJ',                icon:'⚖️', desc:'Consulta e monitoramento automático de processos nos tribunais brasileiros.', placeholder:'cDZHYz... (apenas a chave, sem "APIKey")', docsUrl:'https://datajud-wiki.cnj.jus.br', testEndpoint:'datajud' },
-          { id:'whatsapp', nome:'WhatsApp Business API',        icon:'💬', desc:'Envio de mensagens e notificações automáticas para clientes via WhatsApp.', placeholder:'EAA...', docsUrl:'https://developers.facebook.com/docs/whatsapp', testEndpoint:'whatsapp' },
-          { id:'resend',   nome:'Resend (E-mail)',               icon:'📧', desc:'Envio de e-mails transacionais: prazos, assinaturas, boletos e relatórios.', placeholder:'re_...', docsUrl:'https://resend.com/api-keys', testEndpoint:'resend' },
-          { id:'aws_s3',   nome:'AWS S3 (Documentos)',           icon:'☁️', desc:'Armazenamento seguro de documentos, contratos e arquivos do escritório.', placeholder:'AKIA...', docsUrl:'https://aws.amazon.com/s3', testEndpoint:'aws' },
-          { id:'pusher',   nome:'Pusher / WebSocket',            icon:'📡', desc:'Notificações em tempo real de andamentos, prazos e mensagens do sistema.', placeholder:'app_id:key:secret:cluster', docsUrl:'https://dashboard.pusher.com', testEndpoint:'pusher' },
+          { id:'clicksign',       nome:'ClickSign (Assinatura Digital)',  icon:'✍️', desc:'Envio e coleta de assinaturas digitais em contratos de honorários e procurações. Já integrado ao fluxo de atendimento.', placeholder:'Access Token ClickSign (ex: 8714675c-...)', docsUrl:'https://app.clicksign.com/account/api_settings', testEndpoint:'clicksign' },
+          { id:'zapsign',         nome:'ZapSign (Assinatura Digital)',    icon:'🖊️', desc:'Assinatura digital via ZapSign — alternativa ao ClickSign, suportado pelo módulo E-Sign para envio de documentos.', placeholder:'Token ZapSign (ex: 3fa85f64-5718-...)', docsUrl:'https://app.zapsign.com.br/conta/integracao', testEndpoint:'zapsign' },
+          { id:'asaas',           nome:'Asaas (Cobranças)',               icon:'💰', desc:'Geração automática de boletos, PIX e cartão para honorários e parcelamentos. Já integrado ao financeiro.', placeholder:'$aact_... (Produção) ou $aasp_... (Sandbox)', docsUrl:'https://www.asaas.com/api/index', testEndpoint:'asaas' },
+          { id:'gemini',          nome:'Gemini (IA Jurídica)',            icon:'🤖', desc:'IA Copiloto Jurídico — análise de contratos, geração de peças e jurisprudência. Powered by Google Gemini 1.5 Flash.', placeholder:'AIza...', docsUrl:'https://aistudio.google.com/app/apikey', testEndpoint:'gemini' },
+          { id:'datajud',         nome:'DataJud / CNJ',                  icon:'⚖️', desc:'Consulta e monitoramento automático de processos nos tribunais brasileiros (todos os tribunais via API CNJ).', placeholder:'cDZHYz... (apenas a chave, sem "APIKey")', docsUrl:'https://datajud-wiki.cnj.jus.br', testEndpoint:'datajud' },
+          { id:'pje',             nome:'PJe / Peticionamento Eletrônico', icon:'📋', desc:'Integração com o PJe (Processo Judicial Eletrônico) para peticionamento e consulta de processos nos tribunais.', placeholder:'Chave de API PJe (PJE_API_KEY)', docsUrl:'https://pje.jus.br/wiki/index.php/API_PJe', testEndpoint:'pje' },
+          { id:'whatsapp',        nome:'WhatsApp Business API',          icon:'💬', desc:'Envio de mensagens e notificações automáticas para clientes via WhatsApp.', placeholder:'EAA...', docsUrl:'https://developers.facebook.com/docs/whatsapp', testEndpoint:'whatsapp' },
+          { id:'resend',          nome:'Resend (E-mail)',                 icon:'📧', desc:'Envio de e-mails transacionais: prazos, assinaturas, boletos e relatórios.', placeholder:'re_...', docsUrl:'https://resend.com/api-keys', testEndpoint:'resend' },
+          { id:'supabase',        nome:'Supabase (Armazenamento)',       icon:'🗄️', desc:'Armazenamento de documentos, contratos e arquivos do escritório. Usado pelo módulo de Documentos. Formato: URL:service_key', placeholder:'https://xxx.supabase.co:eyJhbGciOiJIUzI1NiJ9...', docsUrl:'https://supabase.com/dashboard/project/_/settings/api', testEndpoint:'supabase' },
+          { id:'google_calendar', nome:'Google Calendar',                icon:'📅', desc:'Sincronização de audiências, reuniões e prazos com o Google Calendar via OAuth 2.0. Formato: client_id:client_secret', placeholder:'client_id:client_secret (Google Cloud Console)', docsUrl:'https://console.cloud.google.com/apis/credentials', testEndpoint:'google_calendar' },
         ];
 
         // Load saved API keys from localStorage
@@ -7782,7 +7784,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           // Simulate API test (in production would call real endpoint)
           await new Promise(r=>setTimeout(r, 1800 + Math.random()*800));
           // Simulate: keys starting with valid prefixes pass
-          const validPrefixes = { openai:['sk-'], datajud:[], gemini:['AIza'], clicksign:[], zapsign:[], asaas:['$aact','$aasp'], whatsapp:['EAA','eaa'], resend:['re_'], aws_s3:['AKIA'], pusher:[] };
+          const validPrefixes = { datajud:[], gemini:['AIza'], clicksign:[], zapsign:[], asaas:['$aact','$aasp'], whatsapp:['EAA','eaa'], resend:['re_'], pje:[], supabase:['https://'], google_calendar:[] };
           const prefixes = validPrefixes[id] || [];
           const isValid = prefixes.length === 0 ? key.length > 8 : prefixes.some(p => key.startsWith(p));
           if (isValid) {

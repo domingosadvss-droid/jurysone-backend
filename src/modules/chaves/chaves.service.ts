@@ -42,13 +42,20 @@ export class ChavesService {
   async getChave(escritorioId: string, id: string): Promise<string | null> {
     // 1. Env var tem precedência (configuração do servidor)
     const envMap: Record<string, string> = {
-      clicksign: process.env.CLICKSIGN_API_TOKEN,
-      zapsign:   process.env.ZAPSIGN_TOKEN,    // retrocompatibilidade
-      asaas:     process.env.ASAAS_API_KEY,
-      gemini:    process.env.GEMINI_API_KEY,
-      datajud:   process.env.DATAJUD_API_KEY,
-      whatsapp:  process.env.WHATSAPP_API_KEY, // corrigido: era WHATSAPP_TOKEN
-      resend:    process.env.RESEND_API_KEY,
+      clicksign:       process.env.CLICKSIGN_API_TOKEN,
+      zapsign:         process.env.ZAPSIGN_TOKEN,
+      asaas:           process.env.ASAAS_API_KEY,
+      gemini:          process.env.GEMINI_API_KEY,
+      datajud:         process.env.DATAJUD_API_KEY,
+      whatsapp:        process.env.WHATSAPP_API_KEY,
+      resend:          process.env.RESEND_API_KEY,
+      pje:             process.env.PJE_API_KEY,
+      supabase:        process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_KEY
+                         ? `${process.env.SUPABASE_URL}:${process.env.SUPABASE_SERVICE_KEY}`
+                         : undefined,
+      google_calendar: process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET
+                         ? `${process.env.GOOGLE_CLIENT_ID}:${process.env.GOOGLE_CLIENT_SECRET}`
+                         : undefined,
     };
     if (envMap[id]) return envMap[id];
 
