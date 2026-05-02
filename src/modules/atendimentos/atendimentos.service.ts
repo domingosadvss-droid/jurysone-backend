@@ -2,6 +2,7 @@ import { Injectable, BadRequestException, NotFoundException, Logger } from '@nes
 import { PrismaService } from '../../database/prisma.service';
 import { CreateAtendimentoDto } from './dto/create-atendimento.dto';
 import { AsaasService } from '../asaas/asaas.service';
+import { EsignService } from '../esign/esign.service';
 
 export interface AtendimentoFilter {
   status?: string;
@@ -17,6 +18,7 @@ export class AtendimentosService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly asaasService: AsaasService,
+    private readonly esignService: EsignService,
   ) {}
 
   /**
@@ -216,6 +218,30 @@ export class AtendimentosService {
         } as any,
       });
 
+      // 7b. Enviar envelope para o cliente assinar (ZapSign → fallback SMTP)
+      let esignProvider: string | null = null;
+      try {
+        if (cliente.email) {
+          const envio = await this.esignService.enviarEnvelopeParaCliente(
+            escritorioId,
+            envelope.id,
+            {
+              nome: cliente.nome,
+              email: cliente.email,
+              telefone: cliente.telefone ?? undefined,
+            },
+            envelope.titulo as string,
+            (envelope as any).mensagem || 'Segue o contrato de honorários para sua assinatura',
+          );
+          esignProvider = envio.provider;
+          this.logger.log(`[Esign] Envio via ${envio.provider}`);
+        } else {
+          this.logger.warn(`[Esign] Cliente sem e-mail — envio ignorado`);
+        }
+      } catch (esignErr) {
+        this.logger.warn(`[Esign] Falha no envio ao cliente: ${esignErr.message}`);
+      }
+
       // 8. Create atendimento record
       const atendimento = await this.prisma.atendimento.create({
         data: {
@@ -259,6 +285,7 @@ export class AtendimentosService {
         asaas: asaasPaymentId
           ? { paymentId: asaasPaymentId, invoiceUrl: asaasInvoiceUrl }
           : null,
+        esign: { provider: esignProvider },
         message: 'Atendimento criado com sucesso! Aguardando assinatura dos documentos.',
       };
     } catch (error) {
