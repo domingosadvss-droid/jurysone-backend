@@ -662,14 +662,14 @@ Este link é pessoal e intransferível.
       ? signatario.nome.trim()
       : `${signatario.nome.trim()} Signatário`;
 
-    // Canal de notificação: whatsapp se tiver telefone, senão email
-    const sigReqChannel = signatario.telefone ? 'whatsapp' : 'email';
-
+    // Sempre usar email no ClickSign — WhatsApp via ClickSign requer
+    // configuração adicional na conta. Notificamos via WhatsApp pela
+    // nossa própria integração (após o envio).
     const signerAttributes: Record<string, any> = {
       name:  nomeNormalizado,
       email: signatario.email,
       communicate_events: {
-        signature_request:  sigReqChannel,
+        signature_request:  'email',
         signature_reminder: 'email',
         document_signed:    'email',
       },
@@ -687,12 +687,11 @@ Este link é pessoal e intransferível.
       signerAttributes.birthday = signatario.birthday; // YYYY-MM-DD
     }
 
-    // phone_number obrigatório quando notificação via whatsapp/sms
     if (signatario.telefone) {
       signerAttributes.phone_number = signatario.telefone.replace(/\D/g, '');
     }
 
-    this.logger.log(`[ClickSign v3] Criando signatário: ${signatario.email} via ${sigReqChannel}`);
+    this.logger.log(`[ClickSign v3] Criando signatário: ${signatario.email}`);
     const sigResp = await fetch(`${baseV3}/envelopes/${envelopeId}/signers`, {
       method: 'POST', headers,
       body: JSON.stringify({
@@ -700,10 +699,15 @@ Este link é pessoal e intransferível.
       }),
     });
     const sigText = await sigResp.text();
-    this.logger.log(`[ClickSign v3] Signatário: ${sigResp.status} — ${sigText.substring(0, 300)}`);
+    this.logger.log(`[ClickSign v3] Signatário: ${sigResp.status} — ${sigText.substring(0, 400)}`);
+
+    if (!sigResp.ok) {
+      throw new Error(`ClickSign: signatário rejeitado ${sigResp.status} — ${sigText.substring(0, 300)}`);
+    }
+
     const sigData  = JSON.parse(sigText);
     const signerId = sigData?.data?.id;
-    if (!signerId) throw new Error(`ClickSign: signatário não criado — ${sigText.substring(0, 200)}`);
+    if (!signerId) throw new Error(`ClickSign: signatário sem ID — ${sigText.substring(0, 200)}`);
 
     const reqRels = {
       document: { data: { type: 'documents', id: documentId } },
@@ -711,7 +715,7 @@ Este link é pessoal e intransferível.
     };
 
     // ── 4a. Requisito de Qualificação (obrigatório) ────────────────────────
-    // action: 'agree', role: qualificação do signatário (sign = Assinar)
+    // action: 'agree' + role: 'sign' (Assinar)
     this.logger.log(`[ClickSign v3] Criando requisito de qualificação`);
     const qualResp = await fetch(`${baseV3}/envelopes/${envelopeId}/requirements`, {
       method: 'POST', headers,
@@ -724,24 +728,29 @@ Este link é pessoal e intransferível.
       }),
     });
     const qualText = await qualResp.text();
-    this.logger.log(`[ClickSign v3] Qualificação: ${qualResp.status} — ${qualText.substring(0, 300)}`);
+    this.logger.log(`[ClickSign v3] Qualificação: ${qualResp.status} — ${qualText.substring(0, 400)}`);
+    if (!qualResp.ok) {
+      throw new Error(`ClickSign: requisito de qualificação rejeitado ${qualResp.status} — ${qualText.substring(0, 200)}`);
+    }
 
     // ── 4b. Requisito de Autenticação (obrigatório) ────────────────────────
-    // action: 'provide_evidence', auth: método de autenticação (email = token)
-    const authMethod = signatario.telefone ? 'whatsapp' : 'email';
-    this.logger.log(`[ClickSign v3] Criando requisito de autenticação: ${authMethod}`);
+    // action: 'provide_evidence' + auth: 'email' (token por email — padrão seguro)
+    this.logger.log(`[ClickSign v3] Criando requisito de autenticação: email`);
     const authResp = await fetch(`${baseV3}/envelopes/${envelopeId}/requirements`, {
       method: 'POST', headers,
       body: JSON.stringify({
         data: {
           type: 'requirements',
-          attributes: { action: 'provide_evidence', auth: authMethod },
+          attributes: { action: 'provide_evidence', auth: 'email' },
           relationships: reqRels,
         },
       }),
     });
     const authText = await authResp.text();
-    this.logger.log(`[ClickSign v3] Autenticação: ${authResp.status} — ${authText.substring(0, 300)}`);
+    this.logger.log(`[ClickSign v3] Autenticação: ${authResp.status} — ${authText.substring(0, 400)}`);
+    if (!authResp.ok) {
+      throw new Error(`ClickSign: requisito de autenticação rejeitado ${authResp.status} — ${authText.substring(0, 200)}`);
+    }
 
     // ── 5. Ativar envelope (draft → running) ──────────────────────────────
     this.logger.log(`[ClickSign v3] Ativando envelope ${envelopeId}`);
