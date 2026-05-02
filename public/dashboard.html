@@ -4857,6 +4857,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             }
             esignData = esignData.filter(e => String(e.id) !== String(id));
             renderEsign();
+            _salvarDadosLocais();
             showToast('🗑️ Envelope removido', 'info');
         }
 
@@ -4893,6 +4894,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
 
             esignData.unshift(novoEnvelope);
             renderEsign();
+            _salvarDadosLocais();
 
             if (resultado?.token) {
                 showToast(`✅ Envelope criado no ClickSign! Link enviado para ${email}`, 'success');
@@ -4917,17 +4919,17 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         let timerInterval=null,timerSeconds=0,timerRunning=false;
         function formatTimer(s){const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0')}
         function startTimer(){if(timerRunning)return;timerRunning=true;document.getElementById('btn-timer-start').disabled=true;document.getElementById('btn-timer-stop').disabled=false;timerInterval=setInterval(()=>{timerSeconds++;document.getElementById('timer-display').textContent=formatTimer(timerSeconds)},1000)}
-        function stopTimer(){if(!timerRunning)return;clearInterval(timerInterval);timerRunning=false;const hrs=timerSeconds/3600;if(hrs<0.01){timerSeconds=0;document.getElementById('timer-display').textContent='00:00:00';document.getElementById('btn-timer-start').disabled=false;document.getElementById('btn-timer-stop').disabled=true;return}const desc=document.getElementById('timer-atividade').value||'Atividade sem descrição';const proc=document.getElementById('timer-processo').value;horasData.unshift({id:Date.now(),data:new Date().toISOString().split('T')[0],processo:proc,desc,duracao:Math.round(hrs*4)/4,faturavel:document.getElementById('timer-faturavel').checked});timerSeconds=0;document.getElementById('timer-display').textContent='00:00:00';document.getElementById('btn-timer-start').disabled=false;document.getElementById('btn-timer-stop').disabled=true;document.getElementById('timer-atividade').value='';renderHoras();updateHorasStats()}
+        function stopTimer(){if(!timerRunning)return;clearInterval(timerInterval);timerRunning=false;const hrs=timerSeconds/3600;if(hrs<0.01){timerSeconds=0;document.getElementById('timer-display').textContent='00:00:00';document.getElementById('btn-timer-start').disabled=false;document.getElementById('btn-timer-stop').disabled=true;return}const desc=document.getElementById('timer-atividade').value||'Atividade sem descrição';const proc=document.getElementById('timer-processo').value;horasData.unshift({id:Date.now(),data:new Date().toISOString().split('T')[0],processo:proc,desc,duracao:Math.round(hrs*4)/4,faturavel:document.getElementById('timer-faturavel').checked});timerSeconds=0;document.getElementById('timer-display').textContent='00:00:00';document.getElementById('btn-timer-start').disabled=false;document.getElementById('btn-timer-stop').disabled=true;document.getElementById('timer-atividade').value='';renderHoras();updateHorasStats();_salvarDadosLocais();}
         function updateHorasStats(){const fat=horasData.filter(h=>h.faturavel).reduce((a,h)=>a+h.duracao,0);const nao=horasData.filter(h=>!h.faturavel).reduce((a,h)=>a+h.duracao,0);const tot=fat+nao;const h=Math.floor(tot),m=Math.round((tot%1)*60);document.getElementById('stat-horas-semana').textContent=h+'h '+m+'min';document.getElementById('stat-horas-fat').textContent=fat.toFixed(1)+'h';document.getElementById('stat-horas-nao').textContent=nao.toFixed(1)+'h'}
         function renderHoras(){const t=document.getElementById('table-horas');if(!t)return;t.innerHTML=horasData.map(h=>`<tr>
           <td>${h.data}</td><td style="font-size:12px">${h.processo||'—'}</td><td>${h.desc}</td>
           <td style="font-weight:600;color:#0f2d5e">${h.duracao}h</td>
           <td><span class="badge ${h.faturavel?'badge-success':'badge-danger'}">${h.faturavel?'Sim':'Não'}</span></td>
-          <td><button class="btn-sm btn-danger" onclick="horasData=horasData.filter(x=>x.id!==${h.id});renderHoras();updateHorasStats()">Del</button></td>
+          <td><button class="btn-sm btn-danger" onclick="horasData=horasData.filter(x=>x.id!==${h.id});renderHoras();updateHorasStats();_salvarDadosLocais()">Del</button></td>
         </tr>`).join('');updateHorasStats()}
         function openModalHoras(){document.getElementById('modal-horas').classList.add('active')}
         function closeModalHoras(){document.getElementById('modal-horas').classList.remove('active')}
-        function saveHoras(e){e.preventDefault();horasData.unshift({id:Date.now(),data:document.getElementById('form-horas-data').value,processo:document.getElementById('form-horas-processo').value,desc:document.getElementById('form-horas-desc').value,duracao:parseFloat(document.getElementById('form-horas-duracao').value),faturavel:document.getElementById('form-horas-fat').checked});closeModalHoras();renderHoras()}
+        function saveHoras(e){e.preventDefault();horasData.unshift({id:Date.now(),data:document.getElementById('form-horas-data').value,processo:document.getElementById('form-horas-processo').value,desc:document.getElementById('form-horas-desc').value,duracao:parseFloat(document.getElementById('form-horas-duracao').value),faturavel:document.getElementById('form-horas-fat').checked});closeModalHoras();renderHoras();_salvarDadosLocais();}
 
         // ─── AUTOMAÇÕES — ULTRA-ADVANCED MODULE ─────────────────────
 
@@ -11114,6 +11116,9 @@ Nestes termos, pede deferimento.
         // ─── Monta o payload completo de dados do app ─────────────────────
         function _montarPayload() {
           return {
+            processos,
+            esignData,
+            horasData,
             agendaEventos,
             parceirosData,
             financeiro,
@@ -11189,6 +11194,9 @@ Nestes termos, pede deferimento.
         // ─── Aplica um objeto de dados nas variáveis globais ──────────────
         function _aplicarDados(dados) {
           if (!dados || typeof dados !== 'object') return false;
+          if (dados.processos      && Array.isArray(dados.processos))      processos      = dados.processos;
+          if (dados.esignData      && Array.isArray(dados.esignData))      esignData      = dados.esignData;
+          if (dados.horasData      && Array.isArray(dados.horasData))      horasData      = dados.horasData;
           if (dados.agendaEventos  && Array.isArray(dados.agendaEventos))  agendaEventos  = dados.agendaEventos;
           if (dados.parceirosData  && Array.isArray(dados.parceirosData))  parceirosData  = dados.parceirosData;
           if (dados.financeiro     && Array.isArray(dados.financeiro))     financeiro     = dados.financeiro;
@@ -11264,10 +11272,10 @@ Nestes termos, pede deferimento.
 
         // ─── INIT ALL (com carregamento assíncrono do banco) ──────────
         (async () => {
-          // Carrega dados persistidos ANTES de renderizar (SQLite → localStorage)
+          // 1. Proxy local (SQLite) — fonte de dados offline/local
+          await _dbCarregarProcessos();
+          // 2. API NestJS (PostgreSQL) — fonte de verdade cross-browser; sobrescreve proxy
           await _carregarDadosLocais();
-
-          await _dbCarregarProcessos();   // carrega processos do SQLite via proxy
           renderProcessos();
           renderClientes();renderTarefas();renderDocumentos();renderFinanceiro();
           renderEsign();renderHoras();renderAutomacoes();renderRelatorios();
@@ -11276,6 +11284,9 @@ Nestes termos, pede deferimento.
           _atualizarHeaderUsuario();   // ← popula header/sidebar com dados reais
           _preencherCamposEscritorio(); // ← restaura campos do escritório no DOM
           setTimeout(()=>{initCharts()},100);
+          // Sincroniza estado completo (incluindo processos/esignData/horasData) com a API
+          // garante migração de dados que estavam apenas no proxy local ou localStorage
+          _salvarDadosLocais();
           // API NestJS é a fonte de verdade em produção; localStorage é fallback offline
         })();
     </script>
