@@ -657,34 +657,46 @@ Este link é pessoal e intransferível.
     if (!documentId) throw new Error(`ClickSign: documento não criado — ${docText.substring(0, 200)}`);
 
     // ── 3. Criar signatário no envelope ───────────────────────────────────
-    this.logger.log(`[ClickSign v3] Criando signatário: ${signatario.email}`);
+    // Nome precisa de ao menos 2 palavras — complementa se vier só 1
+    const nomeNormalizado = signatario.nome.trim().includes(' ')
+      ? signatario.nome.trim()
+      : `${signatario.nome.trim()} Signatário`;
 
-    // Determina canal de envio: whatsapp se tiver telefone, senão email
-    const delivery = signatario.telefone ? 'whatsapp' : 'email';
+    // Canal de notificação: whatsapp se tiver telefone, senão email
+    const sigReqChannel = signatario.telefone ? 'whatsapp' : 'email';
 
     const signerAttributes: Record<string, any> = {
-      name:     signatario.nome,
-      email:    signatario.email,
-      delivery,
-      auths:    ['email'], // autenticação por token via e-mail
+      name:  nomeNormalizado,
+      email: signatario.email,
+      communicate_events: {
+        signature_request:  sigReqChannel,
+        signature_reminder: 'email',
+        document_signed:    'email',
+      },
     };
+
+    // CPF formatado (xxx.xxx.xxx-xx)
     if (signatario.cpf) {
-      signerAttributes.cpf = signatario.cpf.replace(/\D/g, ''); // somente dígitos
+      const digits = signatario.cpf.replace(/\D/g, '');
+      if (digits.length === 11) {
+        signerAttributes.documentation = digits.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+      }
     }
+
     if (signatario.birthday) {
       signerAttributes.birthday = signatario.birthday; // YYYY-MM-DD
     }
-    if (signatario.telefone && delivery === 'whatsapp') {
+
+    // phone_number obrigatório quando notificação via whatsapp/sms
+    if (signatario.telefone) {
       signerAttributes.phone_number = signatario.telefone.replace(/\D/g, '');
     }
 
+    this.logger.log(`[ClickSign v3] Criando signatário: ${signatario.email} via ${sigReqChannel}`);
     const sigResp = await fetch(`${baseV3}/envelopes/${envelopeId}/signers`, {
       method: 'POST', headers,
       body: JSON.stringify({
-        data: {
-          type: 'signers',
-          attributes: signerAttributes,
-        },
+        data: { type: 'signers', attributes: signerAttributes },
       }),
     });
     const sigText = await sigResp.text();
@@ -693,23 +705,43 @@ Este link é pessoal e intransferível.
     const signerId = sigData?.data?.id;
     if (!signerId) throw new Error(`ClickSign: signatário não criado — ${sigText.substring(0, 200)}`);
 
-    // ── 4. Criar requirement (liga signatário ao documento) ────────────────
-    this.logger.log(`[ClickSign v3] Criando requirement: signer ${signerId} → doc ${documentId}`);
-    const reqResp = await fetch(`${baseV3}/envelopes/${envelopeId}/requirements`, {
+    const reqRels = {
+      document: { data: { type: 'documents', id: documentId } },
+      signer:   { data: { type: 'signers',   id: signerId   } },
+    };
+
+    // ── 4a. Requisito de Qualificação (obrigatório) ────────────────────────
+    // action: 'agree', role: qualificação do signatário (sign = Assinar)
+    this.logger.log(`[ClickSign v3] Criando requisito de qualificação`);
+    const qualResp = await fetch(`${baseV3}/envelopes/${envelopeId}/requirements`, {
       method: 'POST', headers,
       body: JSON.stringify({
         data: {
           type: 'requirements',
-          attributes: { action: 'sign' },
-          relationships: {
-            document: { data: { type: 'documents', id: documentId } },
-            signer:   { data: { type: 'signers',   id: signerId   } },
-          },
+          attributes: { action: 'agree', role: 'sign' },
+          relationships: reqRels,
         },
       }),
     });
-    const reqText = await reqResp.text();
-    this.logger.log(`[ClickSign v3] Requirement: ${reqResp.status} — ${reqText.substring(0, 300)}`);
+    const qualText = await qualResp.text();
+    this.logger.log(`[ClickSign v3] Qualificação: ${qualResp.status} — ${qualText.substring(0, 300)}`);
+
+    // ── 4b. Requisito de Autenticação (obrigatório) ────────────────────────
+    // action: 'provide_evidence', auth: método de autenticação (email = token)
+    const authMethod = signatario.telefone ? 'whatsapp' : 'email';
+    this.logger.log(`[ClickSign v3] Criando requisito de autenticação: ${authMethod}`);
+    const authResp = await fetch(`${baseV3}/envelopes/${envelopeId}/requirements`, {
+      method: 'POST', headers,
+      body: JSON.stringify({
+        data: {
+          type: 'requirements',
+          attributes: { action: 'provide_evidence', auth: authMethod },
+          relationships: reqRels,
+        },
+      }),
+    });
+    const authText = await authResp.text();
+    this.logger.log(`[ClickSign v3] Autenticação: ${authResp.status} — ${authText.substring(0, 300)}`);
 
     // ── 5. Ativar envelope (draft → running) ──────────────────────────────
     this.logger.log(`[ClickSign v3] Ativando envelope ${envelopeId}`);
