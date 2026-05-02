@@ -566,6 +566,33 @@ export class WhatsappService {
     return this.getConfig(officeId);
   }
 
+  // ─── Envio interno (sistema, sem usuário logado) ──────────────────────────
+
+  /**
+   * Envia mensagem de texto sem depender de usuário logado.
+   * Usado por outros serviços (ex: EsignService) para notificações automáticas.
+   * Retorna true se enviado com sucesso.
+   */
+  async enviarTextoSimples(telefone: string, texto: string): Promise<boolean> {
+    if (!process.env.WHATSAPP_API_URL || !process.env.WHATSAPP_API_KEY) {
+      this.logger.debug('[WhatsApp] API não configurada — mensagem ignorada');
+      return false;
+    }
+    try {
+      const tel = this.normalizarTelefone(telefone);
+      if (!tel) {
+        this.logger.warn(`[WhatsApp] Telefone inválido: ${telefone}`);
+        return false;
+      }
+      await this.chamarApiWhatsapp(tel, texto);
+      this.logger.log(`[WhatsApp] ✅ Mensagem enviada para ${tel}`);
+      return true;
+    } catch (err) {
+      this.logger.warn(`[WhatsApp] Falha ao enviar: ${err.message}`);
+      return false;
+    }
+  }
+
   // ─── Helpers privados ─────────────────────────────────────────────────────
 
   /**

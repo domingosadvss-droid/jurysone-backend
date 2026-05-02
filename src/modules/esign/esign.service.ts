@@ -26,6 +26,7 @@ import {
 import { PrismaService } from '../../database/prisma.service';
 import { NotificationsGateway, NotificationType } from '../notifications/notifications.gateway';
 import { ChavesService } from '../chaves/chaves.service';
+import { WhatsappService } from '../whatsapp/whatsapp.service';
 import * as crypto from 'crypto';
 
 export interface CreateEnvelopeInput {
@@ -53,6 +54,7 @@ export class EsignService {
     private readonly prisma: PrismaService,
     private readonly notifications: NotificationsGateway,
     private readonly chaves: ChavesService,
+    private readonly whatsapp: WhatsappService,
   ) {}
 
   // ════════════════════════════════════════════════════════════
@@ -564,6 +566,13 @@ Este link é pessoal e intransferível.
       this.logger.warn(`[Esign] SMTP também falhou: ${smtpErr.message}`);
     }
 
+    // 3. WhatsApp direto (independente do ZapSign/SMTP, se telefone disponível)
+    if (signatario.telefone) {
+      const signingLink = `${process.env.APP_URL || 'https://jurysone.com'}/esign/assinar/${envelopeId}`;
+      const msgWhatsapp = `Olá, ${signatario.nome}!\n\nVocê recebeu documentos para assinar referentes ao seu processo jurídico.\n\nAcesse o link abaixo para visualizar e assinar:\n${signingLink}\n\n— JurysOne`;
+      await this.whatsapp.enviarTextoSimples(signatario.telefone, msgWhatsapp).catch(() => null);
+    }
+
     return { provider: 'none' };
   }
 
@@ -590,7 +599,7 @@ Este link é pessoal e intransferível.
           phone_number: signatario.telefone?.replace(/\D/g, '') || '',
           auth_mode: 'assinaturaTela',
           send_automatic_email: true,
-          send_automatic_whatsapp: false,
+          send_automatic_whatsapp: !!(signatario.telefone?.replace(/\D/g, '')),
         },
       ],
     };
