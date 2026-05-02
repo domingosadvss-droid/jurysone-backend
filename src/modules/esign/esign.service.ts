@@ -460,24 +460,28 @@ export class EsignService {
     signatario: { nome: string; email: string; link: string },
     tituloDocumento: string,
   ): Promise<void> {
-    const smtpHost = process.env.SMTP_HOST;
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
+    let nodemailer: any;
+    try { nodemailer = require('nodemailer'); }
+    catch { this.logger.warn('[E-sign] nodemailer não instalado'); return; }
+
+    // Resend SMTP tem prioridade se RESEND_API_KEY estiver configurado
+    const resendKey = process.env.RESEND_API_KEY;
+    const smtpHost  = resendKey ? 'smtp.resend.com'  : process.env.SMTP_HOST;
+    const smtpPort  = resendKey ? 587                : Number(process.env.SMTP_PORT ?? 587);
+    const smtpUser  = resendKey ? 'resend'           : process.env.SMTP_USER;
+    const smtpPass  = resendKey ? resendKey          : process.env.SMTP_PASS;
+    const smtpFrom  = process.env.RESEND_FROM || process.env.SMTP_FROM || smtpUser;
 
     if (!smtpHost || !smtpUser || !smtpPass) {
       this.logger.debug('[E-sign] SMTP não configurado — e-mail ignorado');
       return;
     }
 
-    let nodemailer: any;
-    try { nodemailer = require('nodemailer'); }
-    catch { this.logger.warn('[E-sign] nodemailer não instalado'); return; }
-
     const transporter = nodemailer.createTransport({
-      host: smtpHost,
-      port: Number(process.env.SMTP_PORT ?? 587),
-      secure: process.env.SMTP_SECURE === 'true',
-      auth: { user: smtpUser, pass: smtpPass },
+      host:   smtpHost,
+      port:   smtpPort,
+      secure: false,
+      auth:   { user: smtpUser, pass: smtpPass },
     });
 
     const corpo = `
@@ -494,7 +498,7 @@ Este link é pessoal e intransferível.
     `.trim();
 
     await transporter.sendMail({
-      from: process.env.SMTP_FROM ?? smtpUser,
+      from: smtpFrom,
       to: `"${signatario.nome}" <${signatario.email}>`,
       subject: `[JurysOne] Documento para assinar: ${tituloDocumento}`,
       text: corpo,
