@@ -516,7 +516,7 @@ Este link é pessoal e intransferível.
   async enviarEnvelopeParaCliente(
     escritorioId: string,
     envelopeId: string,
-    signatario: { nome: string; email: string; telefone?: string },
+    signatario: { nome: string; email: string; telefone?: string; cpf?: string; birthday?: string },
     titulo: string,
     mensagem: string,
   ): Promise<{ provider: 'clicksign' | 'smtp' | 'none' }> {
@@ -599,7 +599,7 @@ Este link é pessoal e intransferível.
     externalId: string,
     nome: string,
     mensagem: string,
-    signatario: { nome: string; email: string; telefone?: string },
+    signatario: { nome: string; email: string; telefone?: string; cpf?: string; birthday?: string },
   ): Promise<{ docKey: string; signUrl: string } | null> {
     const base    = (process.env.CLICKSIGN_URL || 'https://app.clicksign.com').replace(/\/$/, '');
     const baseV3  = `${base}/api/v3`;
@@ -658,15 +658,32 @@ Este link é pessoal e intransferível.
 
     // ── 3. Criar signatário no envelope ───────────────────────────────────
     this.logger.log(`[ClickSign v3] Criando signatário: ${signatario.email}`);
+
+    // Determina canal de envio: whatsapp se tiver telefone, senão email
+    const delivery = signatario.telefone ? 'whatsapp' : 'email';
+
+    const signerAttributes: Record<string, any> = {
+      name:     signatario.nome,
+      email:    signatario.email,
+      delivery,
+      auths:    ['email'], // autenticação por token via e-mail
+    };
+    if (signatario.cpf) {
+      signerAttributes.cpf = signatario.cpf.replace(/\D/g, ''); // somente dígitos
+    }
+    if (signatario.birthday) {
+      signerAttributes.birthday = signatario.birthday; // YYYY-MM-DD
+    }
+    if (signatario.telefone && delivery === 'whatsapp') {
+      signerAttributes.phone_number = signatario.telefone.replace(/\D/g, '');
+    }
+
     const sigResp = await fetch(`${baseV3}/envelopes/${envelopeId}/signers`, {
       method: 'POST', headers,
       body: JSON.stringify({
         data: {
           type: 'signers',
-          attributes: {
-            name:  signatario.nome,
-            email: signatario.email,
-          },
+          attributes: signerAttributes,
         },
       }),
     });
@@ -683,7 +700,7 @@ Este link é pessoal e intransferível.
       body: JSON.stringify({
         data: {
           type: 'requirements',
-          attributes: { action: 'agree', role: 'sign' },
+          attributes: { action: 'sign' },
           relationships: {
             document: { data: { type: 'documents', id: documentId } },
             signer:   { data: { type: 'signers',   id: signerId   } },

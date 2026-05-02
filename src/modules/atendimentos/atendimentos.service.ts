@@ -229,6 +229,7 @@ export class AtendimentosService {
               nome: cliente.nome,
               email: cliente.email,
               telefone: cliente.telefone ?? undefined,
+              cpf: cliente.cpf ?? undefined,
             },
             envelope.titulo as string,
             (envelope as any).mensagem || 'Segue o contrato de honorários para sua assinatura',
