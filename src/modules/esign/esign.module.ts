@@ -6,9 +6,10 @@ import { EsignService } from './esign.service';
 import { PrismaService } from '../../database/prisma.service';
 import { ChavesModule } from '../chaves/chaves.module';
 import { NotificationsModule } from '../notifications/notifications.module';
+import { WhatsappModule } from '../whatsapp/whatsapp.module';
 
 @Module({
-  imports:     [ChavesModule, NotificationsModule],
+  imports:     [ChavesModule, NotificationsModule, WhatsappModule],
   controllers: [EsignController, ZapsignWebhookController, ClicksignWebhookController],
   providers:   [EsignService, PrismaService],
   exports:     [EsignService],
