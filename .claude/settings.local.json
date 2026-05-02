@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(npx tsc *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git checkout *)",
+      "Bash(git merge claude/confident-hodgkin-9eb360 --no-ff -m ' *)",
+      "Bash(xargs grep *)"
     ]
   }
 }

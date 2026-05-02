@@ -505,13 +505,13 @@ Este link é pessoal e intransferível.
   }
 
   // ════════════════════════════════════════════════════════════
-  // ENVIO AO CLIENTE (ZapSign → fallback SMTP)
+  // ENVIO AO CLIENTE (ClickSign → fallback SMTP + WhatsApp)
   // ════════════════════════════════════════════════════════════
 
   /**
-   * Envia o envelope para o cliente assinar.
-   * Tenta ZapSign API primeiro; se não estiver configurado, envia por SMTP.
-   * Retorna { provider: 'zapsign' | 'smtp' | 'none' }
+   * Envia o envelope para o cliente assinar via ClickSign.
+   * Fallback para SMTP se ClickSign não estiver configurado.
+   * Envia WhatsApp em paralelo se telefone disponível.
    */
   async enviarEnvelopeParaCliente(
     escritorioId: string,
@@ -519,35 +519,42 @@ Este link é pessoal e intransferível.
     signatario: { nome: string; email: string; telefone?: string },
     titulo: string,
     mensagem: string,
-  ): Promise<{ provider: 'zapsign' | 'smtp' | 'none'; zapsignToken?: string }> {
-    // 1. Tenta ZapSign
+  ): Promise<{ provider: 'clicksign' | 'smtp' | 'none' }> {
+    // 1. Tenta ClickSign
     try {
-      const zapsignToken = await this.chaves.getChave(escritorioId, 'zapsign');
-      if (zapsignToken && signatario.email) {
-        const resultado = await this.criarDocumentoZapsign(
-          zapsignToken,
+      const clickToken = await this.chaves.getChave(escritorioId, 'clicksign');
+      if (clickToken && signatario.email) {
+        const resultado = await this.criarDocumentoClicksign(
+          clickToken,
           envelopeId,
           titulo,
           mensagem,
           signatario,
         );
 
-        if (resultado?.token) {
+        if (resultado?.docKey) {
           await this.prisma.esignEnvelope.update({
             where: { id: envelopeId },
             data: {
-              zapsignDocumentId: resultado.token,
+              zapsignDocumentId: resultado.docKey,
               status: 'enviado',
               enviadoEm: new Date(),
             } as any,
           });
 
-          this.logger.log(`[Esign] ✅ ZapSign: documento ${resultado.token} criado para ${signatario.email}`);
-          return { provider: 'zapsign', zapsignToken: resultado.token };
+          this.logger.log(`[Esign] ✅ ClickSign: documento ${resultado.docKey} criado para ${signatario.email}`);
+
+          // WhatsApp em paralelo
+          if (signatario.telefone && resultado.signUrl) {
+            const msgWpp = `Olá, ${signatario.nome}!\n\nVocê recebeu documentos para assinar referentes ao seu processo jurídico.\n\nAssine pelo link:\n${resultado.signUrl}\n\n— JurysOne`;
+            this.whatsapp.enviarTextoSimples(signatario.telefone, msgWpp).catch(() => null);
+          }
+
+          return { provider: 'clicksign' };
         }
       }
     } catch (err) {
-      this.logger.warn(`[Esign] ZapSign falhou, tentando SMTP: ${err.message}`);
+      this.logger.warn(`[Esign] ClickSign falhou, tentando SMTP: ${err.message}`);
     }
 
     // 2. Fallback SMTP
@@ -560,116 +567,132 @@ Este link é pessoal e intransferível.
         data: { status: 'enviado', enviadoEm: new Date() } as any,
       });
 
-      this.logger.log(`[Esign] ✅ SMTP: email de assinatura enviado para ${signatario.email}`);
+      this.logger.log(`[Esign] ✅ SMTP: email enviado para ${signatario.email}`);
+
+      // WhatsApp em paralelo
+      if (signatario.telefone) {
+        const signingLink2 = `${process.env.APP_URL || 'https://jurysone.com'}/esign/assinar/${envelopeId}`;
+        const msgWpp = `Olá, ${signatario.nome}!\n\nVocê recebeu documentos para assinar referentes ao seu processo jurídico.\n\nAssine pelo link:\n${signingLink2}\n\n— JurysOne`;
+        this.whatsapp.enviarTextoSimples(signatario.telefone, msgWpp).catch(() => null);
+      }
+
       return { provider: 'smtp' };
     } catch (smtpErr) {
       this.logger.warn(`[Esign] SMTP também falhou: ${smtpErr.message}`);
     }
 
-    // 3. WhatsApp direto (independente do ZapSign/SMTP, se telefone disponível)
+    // WhatsApp como último recurso
     if (signatario.telefone) {
       const signingLink = `${process.env.APP_URL || 'https://jurysone.com'}/esign/assinar/${envelopeId}`;
-      const msgWhatsapp = `Olá, ${signatario.nome}!\n\nVocê recebeu documentos para assinar referentes ao seu processo jurídico.\n\nAcesse o link abaixo para visualizar e assinar:\n${signingLink}\n\n— JurysOne`;
-      await this.whatsapp.enviarTextoSimples(signatario.telefone, msgWhatsapp).catch(() => null);
+      const msgWpp = `Olá, ${signatario.nome}!\n\nVocê recebeu documentos para assinar referentes ao seu processo jurídico.\n\nAssine pelo link:\n${signingLink}\n\n— JurysOne`;
+      await this.whatsapp.enviarTextoSimples(signatario.telefone, msgWpp).catch(() => null);
     }
 
     return { provider: 'none' };
   }
 
-  private async criarDocumentoZapsign(
+  private async criarDocumentoClicksign(
     apiToken: string,
     externalId: string,
     nome: string,
     mensagem: string,
     signatario: { nome: string; email: string; telefone?: string },
-  ) {
-    let axios: any;
-    try { axios = require('axios'); }
-    catch { this.logger.warn('[ZapSign] axios não disponível'); return null; }
+  ): Promise<{ docKey: string; signUrl: string } | null> {
+    const base = (process.env.CLICKSIGN_URL || 'https://app.clicksign.com').replace(/\/$/, '');
+    const qs   = `?access_token=${apiToken}`;
 
-    const payload = {
-      name: nome,
-      external_id: externalId,
-      message: mensagem,
-      signers: [
-        {
-          name: signatario.nome,
-          email: signatario.email,
-          phone_country: '55',
-          phone_number: signatario.telefone?.replace(/\D/g, '') || '',
-          auth_mode: 'assinaturaTela',
-          send_automatic_email: true,
-          send_automatic_whatsapp: !!(signatario.telefone?.replace(/\D/g, '')),
+    const deadline = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+      .toISOString().replace('Z', '-03:00');
+
+    const safeName = nome
+      .normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/[^a-z0-9_\-]/gi, '_')
+      .substring(0, 60);
+
+    // 1. Criar documento
+    const docResp = await fetch(`${base}/api/v1/documents${qs}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        document: {
+          path: `/${Date.now()}_${safeName}.pdf`,
+          deadline_at: deadline,
+          auto_close: true,
+          locale: 'pt-BR',
+          sequence_enabled: false,
         },
-      ],
-    };
+      }),
+    });
 
-    const resp = await axios.post(
-      'https://api.zapsign.com.br/api/v1/docs/',
-      payload,
-      { headers: { Authorization: `Bearer ${apiToken}`, 'Content-Type': 'application/json' } },
-    );
-
-    return resp.data as { token: string; open_id: number; signers: any[] };
-  }
-
-  /* ─────────────────── ZAPSIGN WEBHOOKS ──────────────────── */
-
-  /**
-   * Processa webhook: Documento criado no Zapsign
-   * - Registra a criação do documento
-   * - Vincula ao documento interno (se external_id fornecido)
-   */
-  async processZapsignDocumentCreated(data: {
-    zapsignDocumentId: string;
-    externalDocumentId?: string;
-    documentName: string;
-    createdAt: Date;
-    signers: Array<{ name: string; email: string }>;
-  }) {
-    try {
-      this.logger.log(`[Zapsign] Processando documento criado: ${data.zapsignDocumentId}`);
-
-      // Buscar ou criar registro de envelope relacionado ao documento Zapsign
-      const envelope = await this.prisma.esignEnvelope.findFirst({
-        where: { zapsignDocumentId: data.zapsignDocumentId },
-      });
-
-      if (!envelope) {
-        // Resolver escritórioId a partir do documento interno referenciado
-        let escritorioId = '';
-        if (data.externalDocumentId) {
-          const ref = await this.prisma.esignEnvelope.findFirst({
-            where: { documentoId: data.externalDocumentId },
-            select: { escritorioId: true },
-          });
-          escritorioId = ref?.escritorioId ?? '';
-        }
-        if (!escritorioId) {
-          this.logger.warn(
-            `[Zapsign] Não foi possível determinar escritorioId para ${data.zapsignDocumentId} — envelope criado sem vínculo de escritório`,
-          );
-        }
-
-        // Criar novo registro se não existir
-        await this.prisma.esignEnvelope.create({
-          data: {
-            zapsignDocumentId: data.zapsignDocumentId,
-            externalDocumentId: data.externalDocumentId,
-            titulo: data.documentName,
-            status: 'sent',
-            escritorioId,
-            signatario: data.signers.map(s => s.email).join(', '),
-            createdAt: data.createdAt,
-          } as any,
-        });
-
-        this.logger.log(`[Zapsign] ✓ Novo envelope criado para documento: ${data.zapsignDocumentId}`);
-      }
-    } catch (error) {
-      this.logger.error('[Zapsign] Erro ao processar documento criado:', error);
-      throw error;
+    if (!docResp.ok) {
+      const err = await docResp.text();
+      throw new Error(`ClickSign criar documento: ${docResp.status} — ${err}`);
     }
+
+    const docData = await docResp.json() as any;
+    const docKey  = docData.document?.key;
+    if (!docKey) throw new Error('ClickSign: chave do documento não retornada');
+
+    // 2. Criar signatário
+    const phoneRaw = (signatario.telefone || '').replace(/\D/g, '');
+    const signerBody: any = {
+      signer: {
+        email:             signatario.email,
+        name:              signatario.nome,
+        auths:             ['email'],
+        has_documentation: false,
+      },
+    };
+    if (phoneRaw.length >= 10) signerBody.signer.phone_number = phoneRaw;
+
+    const sigResp = await fetch(`${base}/api/v1/signers${qs}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(signerBody),
+    });
+
+    if (!sigResp.ok) {
+      const err = await sigResp.text();
+      throw new Error(`ClickSign criar signatário: ${sigResp.status} — ${err}`);
+    }
+
+    const sigData = await sigResp.json() as any;
+    const sigKey  = sigData.signer?.key;
+
+    // 3. Vincular signatário ao documento
+    const listResp = await fetch(`${base}/api/v1/lists${qs}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        list: {
+          document_key: docKey,
+          signer_key:   sigKey,
+          sign_as:      'sign',
+          refusable:    false,
+          message:      mensagem,
+        },
+      }),
+    });
+
+    const listData = listResp.ok ? await listResp.json() as any : {};
+    const signUrl  = listData.list?.url || `${base}/sign/${sigKey}`;
+
+    // 4. Enviar notificação por e-mail via ClickSign
+    await fetch(`${base}/api/v1/notifications${qs}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        notification: {
+          document_key: docKey,
+          signer_key:   sigKey,
+          url:          signUrl,
+          message:      mensagem,
+        },
+      }),
+    }).catch(e => this.logger.warn(`[ClickSign] Notificação email falhou: ${e.message}`));
+
+    this.logger.log(`[ClickSign] ✅ Documento ${docKey} | signatário ${sigKey} | link ${signUrl}`);
+    return { docKey, signUrl };
   }
 
   /**
@@ -785,47 +808,7 @@ Este link é pessoal e intransferível.
   }
 
   /**
-   * Processa webhook: Documento visualizado no Zapsign
-   * - Registra visualização para trilha de auditoria
-   */
-  async processZapsignDocumentViewed(data: {
-    zapsignDocumentId: string;
-    externalDocumentId?: string;
-    viewedAt: Date;
-    viewerEmail: string;
-    viewerName: string;
-  }) {
-    try {
-      this.logger.log(`[Zapsign] Registrando visualização: ${data.zapsignDocumentId} por ${data.viewerEmail}`);
-
-      // Buscar envelope
-      const envelope = await this.prisma.esignEnvelope.findFirst({
-        where: { zapsignDocumentId: data.zapsignDocumentId },
-      });
-
-      if (!envelope) {
-        this.logger.warn(`[Zapsign] Envelope não encontrado: ${data.zapsignDocumentId}`);
-        return;
-      }
-
-      // Registrar visualização na auditoria
-      await this.registrarAuditoria(envelope.id, {
-        acao: 'visualizado',
-        usuario: data.viewerName,
-        email: data.viewerEmail,
-        timestamp: data.viewedAt,
-        descricao: `Documento visualizado por ${data.viewerName}`,
-      });
-
-      this.logger.log(`[Zapsign] ✓ Visualização registrada para documento: ${data.zapsignDocumentId}`);
-    } catch (error) {
-      this.logger.error('[Zapsign] Erro ao registrar visualização:', error);
-      throw error;
-    }
-  }
-
-  /**
-   * Processa webhook: Documento rejeitado no Zapsign
+   * Processa webhook: Documento rejeitado no ClickSign
    * - Atualiza status para "rejected"
    * - Registra motivo da rejeição
    * - Notifica administrador

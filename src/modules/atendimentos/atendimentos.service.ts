@@ -234,7 +234,7 @@ export class AtendimentosService {
             (envelope as any).mensagem || 'Segue o contrato de honorários para sua assinatura',
           );
           esignProvider = envio.provider;
-          this.logger.log(`[Esign] Envio via ${envio.provider}`);
+          this.logger.log(`[Esign] Envio via ${String(envio.provider)}`);
         } else {
           this.logger.warn(`[Esign] Cliente sem e-mail — envio ignorado`);
         }

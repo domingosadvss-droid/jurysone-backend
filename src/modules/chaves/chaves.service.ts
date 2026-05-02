@@ -43,7 +43,6 @@ export class ChavesService {
     // 1. Env var tem precedência (configuração do servidor)
     const envMap: Record<string, string> = {
       clicksign:       process.env.CLICKSIGN_API_TOKEN,
-      zapsign:         process.env.ZAPSIGN_TOKEN,
       asaas:           process.env.ASAAS_API_KEY,
       gemini:          process.env.GEMINI_API_KEY,
       datajud:         process.env.DATAJUD_API_KEY,
