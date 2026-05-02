@@ -619,7 +619,7 @@ Este link é pessoal e intransferível.
       body: JSON.stringify({
         data: {
           type: 'envelopes',
-          attributes: { name: nome, due_date: deadline },
+          attributes: { name: nome, deadline_at: deadline },
         },
       }),
     });
