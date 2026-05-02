@@ -25,6 +25,7 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { NotificationsGateway, NotificationType } from '../notifications/notifications.gateway';
+import { ChavesService } from '../chaves/chaves.service';
 import * as crypto from 'crypto';
 
 export interface CreateEnvelopeInput {
@@ -51,6 +52,7 @@ export class EsignService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly notifications: NotificationsGateway,
+    private readonly chaves: ChavesService,
   ) {}
 
   // ════════════════════════════════════════════════════════════
@@ -498,6 +500,108 @@ Este link é pessoal e intransferível.
     });
 
     this.logger.debug(`[E-sign] E-mail de assinatura enviado para ${signatario.email}`);
+  }
+
+  // ════════════════════════════════════════════════════════════
+  // ENVIO AO CLIENTE (ZapSign → fallback SMTP)
+  // ════════════════════════════════════════════════════════════
+
+  /**
+   * Envia o envelope para o cliente assinar.
+   * Tenta ZapSign API primeiro; se não estiver configurado, envia por SMTP.
+   * Retorna { provider: 'zapsign' | 'smtp' | 'none' }
+   */
+  async enviarEnvelopeParaCliente(
+    escritorioId: string,
+    envelopeId: string,
+    signatario: { nome: string; email: string; telefone?: string },
+    titulo: string,
+    mensagem: string,
+  ): Promise<{ provider: 'zapsign' | 'smtp' | 'none'; zapsignToken?: string }> {
+    // 1. Tenta ZapSign
+    try {
+      const zapsignToken = await this.chaves.getChave(escritorioId, 'zapsign');
+      if (zapsignToken && signatario.email) {
+        const resultado = await this.criarDocumentoZapsign(
+          zapsignToken,
+          envelopeId,
+          titulo,
+          mensagem,
+          signatario,
+        );
+
+        if (resultado?.token) {
+          await this.prisma.esignEnvelope.update({
+            where: { id: envelopeId },
+            data: {
+              zapsignDocumentId: resultado.token,
+              status: 'enviado',
+              enviadoEm: new Date(),
+            } as any,
+          });
+
+          this.logger.log(`[Esign] ✅ ZapSign: documento ${resultado.token} criado para ${signatario.email}`);
+          return { provider: 'zapsign', zapsignToken: resultado.token };
+        }
+      }
+    } catch (err) {
+      this.logger.warn(`[Esign] ZapSign falhou, tentando SMTP: ${err.message}`);
+    }
+
+    // 2. Fallback SMTP
+    try {
+      const signingLink = `${process.env.APP_URL || 'https://jurysone.com'}/esign/assinar/${envelopeId}`;
+      await this.enviarEmailAssinatura({ nome: signatario.nome, email: signatario.email, link: signingLink }, titulo);
+
+      await this.prisma.esignEnvelope.update({
+        where: { id: envelopeId },
+        data: { status: 'enviado', enviadoEm: new Date() } as any,
+      });
+
+      this.logger.log(`[Esign] ✅ SMTP: email de assinatura enviado para ${signatario.email}`);
+      return { provider: 'smtp' };
+    } catch (smtpErr) {
+      this.logger.warn(`[Esign] SMTP também falhou: ${smtpErr.message}`);
+    }
+
+    return { provider: 'none' };
+  }
+
+  private async criarDocumentoZapsign(
+    apiToken: string,
+    externalId: string,
+    nome: string,
+    mensagem: string,
+    signatario: { nome: string; email: string; telefone?: string },
+  ) {
+    let axios: any;
+    try { axios = require('axios'); }
+    catch { this.logger.warn('[ZapSign] axios não disponível'); return null; }
+
+    const payload = {
+      name: nome,
+      external_id: externalId,
+      message: mensagem,
+      signers: [
+        {
+          name: signatario.nome,
+          email: signatario.email,
+          phone_country: '55',
+          phone_number: signatario.telefone?.replace(/\D/g, '') || '',
+          auth_mode: 'assinaturaTela',
+          send_automatic_email: true,
+          send_automatic_whatsapp: false,
+        },
+      ],
+    };
+
+    const resp = await axios.post(
+      'https://api.zapsign.com.br/api/v1/docs/',
+      payload,
+      { headers: { Authorization: `Bearer ${apiToken}`, 'Content-Type': 'application/json' } },
+    );
+
+    return resp.data as { token: string; open_id: number; signers: any[] };
   }
 
   /* ─────────────────── ZAPSIGN WEBHOOKS ──────────────────── */
