@@ -460,30 +460,6 @@ export class EsignService {
     signatario: { nome: string; email: string; link: string },
     tituloDocumento: string,
   ): Promise<void> {
-    let nodemailer: any;
-    try { nodemailer = require('nodemailer'); }
-    catch { this.logger.warn('[E-sign] nodemailer não instalado'); return; }
-
-    // Resend SMTP tem prioridade se RESEND_API_KEY estiver configurado
-    const resendKey = process.env.RESEND_API_KEY;
-    const smtpHost  = resendKey ? 'smtp.resend.com'  : process.env.SMTP_HOST;
-    const smtpPort  = resendKey ? 587                : Number(process.env.SMTP_PORT ?? 587);
-    const smtpUser  = resendKey ? 'resend'           : process.env.SMTP_USER;
-    const smtpPass  = resendKey ? resendKey          : process.env.SMTP_PASS;
-    const smtpFrom  = process.env.RESEND_FROM || process.env.SMTP_FROM || smtpUser;
-
-    if (!smtpHost || !smtpUser || !smtpPass) {
-      this.logger.debug('[E-sign] SMTP não configurado — e-mail ignorado');
-      return;
-    }
-
-    const transporter = nodemailer.createTransport({
-      host:   smtpHost,
-      port:   smtpPort,
-      secure: false,
-      auth:   { user: smtpUser, pass: smtpPass },
-    });
-
     const corpo = `
 Olá, ${signatario.nome}!
 
@@ -497,15 +473,77 @@ Este link é pessoal e intransferível.
 — Enviado automaticamente pelo JurysOne
     `.trim();
 
-    await transporter.sendMail({
-      from: smtpFrom,
-      to: `"${signatario.nome}" <${signatario.email}>`,
-      subject: `[JurysOne] Documento para assinar: ${tituloDocumento}`,
-      text: corpo,
-      html: `<pre style="font-family:sans-serif;white-space:pre-wrap;max-width:600px">${corpo}</pre>`,
+    const htmlBody = `
+<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:24px">
+  <h2 style="color:#1a1a2e">Documento para assinar</h2>
+  <p>Olá, <strong>${signatario.nome}</strong>!</p>
+  <p>Você recebeu um documento para assinar: <strong>${tituloDocumento}</strong></p>
+  <p style="margin:24px 0">
+    <a href="${signatario.link}"
+       style="background:#e85d00;color:#fff;padding:12px 24px;border-radius:6px;text-decoration:none;font-weight:bold">
+      Assinar documento
+    </a>
+  </p>
+  <p style="font-size:12px;color:#666">Este link é pessoal e intransferível.</p>
+  <hr style="border:none;border-top:1px solid #eee;margin:24px 0"/>
+  <p style="font-size:12px;color:#999">Enviado automaticamente pelo JurysOne</p>
+</div>`.trim();
+
+    const assunto = `[JurysOne] Documento para assinar: ${tituloDocumento}`;
+
+    // 1. Resend SDK (preferencial)
+    const resendKey = process.env.RESEND_API_KEY;
+    if (resendKey) {
+      try {
+        const { Resend } = require('resend');
+        const resendClient = new Resend(resendKey);
+        const from = process.env.RESEND_FROM || 'JurysOne <noreply@jurysone.com>';
+        const { error } = await resendClient.emails.send({
+          from,
+          to:      signatario.email,
+          subject: assunto,
+          text:    corpo,
+          html:    htmlBody,
+        });
+        if (error) throw new Error(JSON.stringify(error));
+        this.logger.log(`[E-sign] ✅ Resend: email enviado para ${signatario.email}`);
+        return;
+      } catch (err) {
+        this.logger.warn(`[E-sign] Resend falhou: ${err.message}`);
+        // continua para fallback SMTP
+      }
+    }
+
+    // 2. Fallback: SMTP customizado
+    const smtpHost = process.env.SMTP_HOST;
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
+
+    if (!smtpHost || !smtpUser || !smtpPass) {
+      this.logger.debug('[E-sign] Nenhum provedor de email configurado — envio ignorado');
+      return;
+    }
+
+    let nodemailer: any;
+    try { nodemailer = require('nodemailer'); }
+    catch { this.logger.warn('[E-sign] nodemailer não instalado'); return; }
+
+    const transporter = nodemailer.createTransport({
+      host:   smtpHost,
+      port:   Number(process.env.SMTP_PORT ?? 587),
+      secure: process.env.SMTP_SECURE === 'true',
+      auth:   { user: smtpUser, pass: smtpPass },
     });
 
-    this.logger.debug(`[E-sign] E-mail de assinatura enviado para ${signatario.email}`);
+    await transporter.sendMail({
+      from:    process.env.SMTP_FROM ?? smtpUser,
+      to:      `"${signatario.nome}" <${signatario.email}>`,
+      subject: assunto,
+      text:    corpo,
+      html:    htmlBody,
+    });
+
+    this.logger.log(`[E-sign] ✅ SMTP: email enviado para ${signatario.email}`);
   }
 
   // ════════════════════════════════════════════════════════════
