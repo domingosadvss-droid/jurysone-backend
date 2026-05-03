@@ -547,6 +547,137 @@ Este link é pessoal e intransferível.
   }
 
   // ════════════════════════════════════════════════════════════
+  // MODELOS DE DOCUMENTOS (PDF próprio do escritório)
+  // ════════════════════════════════════════════════════════════
+
+  private readonly TIPOS_DOCUMENTO = [
+    'contrato_honorarios',
+    'procuracao',
+    'declaracao_hipossuficiencia',
+    'questionario_juridico',
+  ] as const;
+
+  /**
+   * Salva o PDF do modelo no Supabase Storage e registra a URL na configuracao.
+   */
+  async uploadTemplate(
+    escritorioId: string,
+    tipo: string,
+    buffer: Buffer,
+    originalname: string,
+  ): Promise<{ tipo: string; url: string; filename: string }> {
+    const { createClient } = require('@supabase/supabase-js');
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
+
+    if (!supabaseUrl || !supabaseKey) {
+      throw new Error('Supabase não configurado (SUPABASE_URL / SUPABASE_SERVICE_KEY)');
+    }
+
+    const supabase = createClient(supabaseUrl, supabaseKey);
+    const path     = `templates/${escritorioId}/${tipo}.pdf`;
+
+    const { error: uploadError } = await supabase.storage
+      .from('documentos')
+      .upload(path, buffer, {
+        contentType:  'application/pdf',
+        upsert:       true,
+      });
+
+    if (uploadError) throw new Error(`Supabase upload falhou: ${uploadError.message}`);
+
+    const { data: urlData } = supabase.storage.from('documentos').getPublicUrl(path);
+    const url = urlData?.publicUrl ?? '';
+
+    // Salva referência na configuracao
+    await this.prisma.configuracao.upsert({
+      where:  { escritorioId_chave: { escritorioId, chave: `template_${tipo}` } },
+      create: {
+        id:          `${escritorioId}_template_${tipo}`,
+        escritorioId,
+        chave:       `template_${tipo}`,
+        valor:       { url, filename: originalname, updatedAt: new Date().toISOString() },
+        tipo:        'doc_template',
+      },
+      update: { valor: { url, filename: originalname, updatedAt: new Date().toISOString() } },
+    });
+
+    this.logger.log(`[Templates] PDF '${tipo}' salvo: ${url}`);
+    return { tipo, url, filename: originalname };
+  }
+
+  /** Lista os modelos cadastrados pelo escritório */
+  async getTemplates(escritorioId: string): Promise<Array<{ tipo: string; label: string; url: string | null; filename: string | null }>> {
+    const labels: Record<string, string> = {
+      contrato_honorarios:       'Contrato de Honorários',
+      procuracao:                'Procuração Ad Judicia',
+      declaracao_hipossuficiencia: 'Declaração de Hipossuficiência',
+      questionario_juridico:     'Questionário Jurídico',
+    };
+
+    const rows = await this.prisma.configuracao.findMany({
+      where: {
+        escritorioId,
+        chave: { in: this.TIPOS_DOCUMENTO.map(t => `template_${t}`) },
+      },
+    });
+
+    return this.TIPOS_DOCUMENTO.map(tipo => {
+      const row  = rows.find(r => r.chave === `template_${tipo}`);
+      const val  = row?.valor as any;
+      return {
+        tipo,
+        label:    labels[tipo] ?? tipo,
+        url:      val?.url      ?? null,
+        filename: val?.filename ?? null,
+      };
+    });
+  }
+
+  /** Remove um modelo do escritório */
+  async deleteTemplate(escritorioId: string, tipo: string): Promise<void> {
+    const { createClient } = require('@supabase/supabase-js');
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
+
+    if (supabaseUrl && supabaseKey) {
+      const supabase = createClient(supabaseUrl, supabaseKey);
+      await supabase.storage
+        .from('documentos')
+        .remove([`templates/${escritorioId}/${tipo}.pdf`]);
+    }
+
+    await this.prisma.configuracao.deleteMany({
+      where: { escritorioId, chave: `template_${tipo}` },
+    });
+
+    this.logger.log(`[Templates] PDF '${tipo}' removido para escritório ${escritorioId}`);
+  }
+
+  /**
+   * Baixa o PDF de um modelo customizado e retorna como base64.
+   * Retorna null se não houver modelo cadastrado.
+   */
+  private async getTemplateBase64(escritorioId: string, tipo: string): Promise<string | null> {
+    const row = await this.prisma.configuracao.findFirst({
+      where: { escritorioId, chave: `template_${tipo}` },
+    });
+
+    const val = row?.valor as any;
+    if (!val?.url) return null;
+
+    try {
+      const resp = await fetch(val.url);
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      const buffer = await resp.arrayBuffer();
+      return Buffer.from(buffer).toString('base64');
+    } catch (err) {
+      this.logger.warn(`[Templates] Falha ao baixar template '${tipo}': ${err.message}`);
+      return null;
+    }
+  }
+
+  // ════════════════════════════════════════════════════════════
   // ENVIO AO CLIENTE (ClickSign → fallback SMTP + WhatsApp)
   // ════════════════════════════════════════════════════════════
 
@@ -683,7 +814,14 @@ Este link é pessoal e intransferível.
       include: { cliente: true },
     }).catch(() => null);
 
-    const pdfBase64 = await this.gerarContratoBase64(nome, {
+    const escritorioId = atendimento?.escritorioId ?? '';
+
+    // Usa PDF customizado do escritório se disponível; senão gera o padrão
+    const templateB64 = escritorioId
+      ? await this.getTemplateBase64(escritorioId, 'contrato_honorarios')
+      : null;
+
+    const pdfBase64 = templateB64 ?? await this.gerarContratoBase64(nome, {
       clienteNome:     signatario.nome,
       clienteCpf:      signatario.cpf ?? atendimento?.cliente?.cpf ?? undefined,
       clienteEndereco: atendimento?.cliente
