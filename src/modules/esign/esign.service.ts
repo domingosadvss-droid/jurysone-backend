@@ -460,36 +460,71 @@ export class EsignService {
     signatario: { nome: string; email: string; link: string },
     tituloDocumento: string,
   ): Promise<void> {
-    const corpo = `
-Olá, ${signatario.nome}!
+    const corpo = [
+      `Olá, ${signatario.nome}!`,
+      ``,
+      `Você recebeu um documento para assinar: "${tituloDocumento}"`,
+      ``,
+      `Clique no link abaixo para acessar e assinar o documento:`,
+      `${signatario.link}`,
+      ``,
+      `Este link é pessoal e intransferível.`,
+      ``,
+      `— JurysOne`,
+    ].join('\n');
 
-Você recebeu um documento para assinar: "${tituloDocumento}"
+    const htmlBody = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f4f4f4">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f4;padding:32px 0">
+    <tr><td align="center">
+      <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08)">
+        <tr>
+          <td style="background:#1a1a2e;padding:24px 32px">
+            <h1 style="margin:0;color:#ffffff;font-family:Arial,sans-serif;font-size:22px">JurysOne</h1>
+            <p style="margin:4px 0 0;color:#aaa;font-size:13px;font-family:Arial,sans-serif">Gestão Jurídica</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:32px;font-family:Arial,sans-serif;color:#333">
+            <h2 style="margin:0 0 16px;font-size:20px;color:#1a1a2e">Documento para assinar</h2>
+            <p style="margin:0 0 8px;font-size:15px">Olá, <strong>${signatario.nome}</strong>!</p>
+            <p style="margin:0 0 24px;font-size:15px">
+              Você recebeu o documento <strong>${tituloDocumento}</strong> para assinatura digital.
+            </p>
+            <table cellpadding="0" cellspacing="0" style="margin:0 0 24px">
+              <tr>
+                <td style="background:#e85d00;border-radius:6px;padding:14px 28px">
+                  <a href="${signatario.link}"
+                     style="color:#ffffff;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;text-decoration:none;display:block">
+                    ✍ Assinar documento
+                  </a>
+                </td>
+              </tr>
+            </table>
+            <p style="margin:0 0 8px;font-size:13px;color:#666">
+              Se o botão não funcionar, copie e cole o link abaixo no navegador:
+            </p>
+            <p style="margin:0 0 24px;font-size:12px;color:#999;word-break:break-all">${signatario.link}</p>
+            <hr style="border:none;border-top:1px solid #eee;margin:0 0 16px">
+            <p style="margin:0;font-size:12px;color:#aaa">
+              Este link é pessoal e intransferível. Não compartilhe com terceiros.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td style="background:#f8f8f8;padding:16px 32px;font-family:Arial,sans-serif;font-size:12px;color:#aaa;text-align:center">
+            Enviado automaticamente pelo JurysOne · jurysone.com.br
+          </td>
+        </tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
 
-Clique no link abaixo para acessar e assinar o documento:
-${signatario.link}
-
-Este link é pessoal e intransferível.
-
-— Enviado automaticamente pelo JurysOne
-    `.trim();
-
-    const htmlBody = `
-<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:24px">
-  <h2 style="color:#1a1a2e">Documento para assinar</h2>
-  <p>Olá, <strong>${signatario.nome}</strong>!</p>
-  <p>Você recebeu um documento para assinar: <strong>${tituloDocumento}</strong></p>
-  <p style="margin:24px 0">
-    <a href="${signatario.link}"
-       style="background:#e85d00;color:#fff;padding:12px 24px;border-radius:6px;text-decoration:none;font-weight:bold">
-      Assinar documento
-    </a>
-  </p>
-  <p style="font-size:12px;color:#666">Este link é pessoal e intransferível.</p>
-  <hr style="border:none;border-top:1px solid #eee;margin:24px 0"/>
-  <p style="font-size:12px;color:#999">Enviado automaticamente pelo JurysOne</p>
-</div>`.trim();
-
-    const assunto = `[JurysOne] Documento para assinar: ${tituloDocumento}`;
+    const assunto = `[JurysOne] Assinar: ${tituloDocumento}`;
 
     // 1. Resend SDK (preferencial)
     const resendKey = process.env.RESEND_API_KEY;
@@ -498,15 +533,16 @@ Este link é pessoal e intransferível.
         const { Resend } = require('resend');
         const resendClient = new Resend(resendKey);
         const from = process.env.RESEND_FROM || 'JurysOne <noreply@jurysone.com>';
-        const { error } = await resendClient.emails.send({
+        this.logger.log(`[E-sign] Resend: enviando para ${signatario.email} | from=${from} | link=${signatario.link.substring(0, 60)}`);
+        const { data, error } = await resendClient.emails.send({
           from,
-          to:      signatario.email,
+          to:      [signatario.email],
           subject: assunto,
           text:    corpo,
           html:    htmlBody,
         });
         if (error) throw new Error(JSON.stringify(error));
-        this.logger.log(`[E-sign] ✅ Resend: email enviado para ${signatario.email}`);
+        this.logger.log(`[E-sign] ✅ Resend OK: id=${data?.id} → ${signatario.email}`);
         return;
       } catch (err) {
         this.logger.warn(`[E-sign] Resend falhou: ${err.message}`);
