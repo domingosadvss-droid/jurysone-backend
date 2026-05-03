@@ -638,7 +638,7 @@ Este link é pessoal e intransferível.
 
   private async criarDocumentoClicksign(
     apiToken: string,
-    externalId: string,
+    envelopeLocalId: string,
     nome: string,
     mensagem: string,
     signatario: { nome: string; email: string; telefone?: string; cpf?: string; birthday?: string },
@@ -669,15 +669,38 @@ Este link é pessoal e intransferível.
     this.logger.log(`[ClickSign v3] Envelope: ${envResp.status} — ${envText.substring(0, 300)}`);
     const envData   = JSON.parse(envText);
     const envelopeId = envData?.data?.id;
-    if (!envelopeId) throw new Error(`ClickSign: envelope não criado — ${envText.substring(0, 200)}`);
+    if (!envelopeId) throw new Error(`ClickSign: envelope nao criado — ${envText.substring(0, 200)}`);
 
-    // ── 2. Upload do documento (PDF placeholder) ──────────────────────────
+    // ── 2. Gerar PDF real com dados do atendimento ────────────────────────
     const safeName = (nome || 'Contrato')
       .normalize('NFD').replace(/[̀-ͯ]/g, '')
       .replace(/[^a-z0-9_\-]/gi, '_')
       .substring(0, 50);
 
-    const pdfBase64 = this.gerarPdfBase64(nome);
+    // Busca dados reais do atendimento vinculado ao envelope
+    const atendimento = await this.prisma.atendimento.findFirst({
+      where:   { envelopeId: envelopeLocalId },
+      include: { cliente: true },
+    }).catch(() => null);
+
+    const pdfBase64 = await this.gerarContratoBase64(nome, {
+      clienteNome:     signatario.nome,
+      clienteCpf:      signatario.cpf ?? atendimento?.cliente?.cpf ?? undefined,
+      clienteEndereco: atendimento?.cliente
+        ? (typeof atendimento.cliente.endereco === 'string'
+            ? atendimento.cliente.endereco
+            : JSON.stringify(atendimento.cliente.endereco ?? ''))
+        : undefined,
+      area:            atendimento?.area            ?? '',
+      tipoAcao:        atendimento?.tipoAcao        ?? '',
+      valorAcao:       atendimento?.valorAcao       ?? 0,
+      tipoHonorario:   atendimento?.tipoHonorario   ?? '',
+      valorHonorario:  atendimento?.valorHonorario  ?? 0,
+      percentualExito: atendimento?.percentualExito ?? 0,
+      formaPagamento:  atendimento?.formaPagamento  ?? '',
+      numParcelas:     atendimento?.numParcelas     ?? 1,
+      vencimento1Parc: atendimento?.vencimento1Parc ?? null,
+    });
 
     this.logger.log(`[ClickSign v3] Upload documento: ${safeName}.pdf`);
     const docResp = await fetch(`${baseV3}/envelopes/${envelopeId}/documents`, {
@@ -825,32 +848,214 @@ Este link é pessoal e intransferível.
     return { docKey: envelopeId, signUrl };
   }
 
-  private gerarPdfBase64(titulo: string): string {
-    const title = (titulo || 'Documento Juridico')
-      .substring(0, 60)
-      .replace(/[()\\]/g, ' ');
+  /**
+   * Gera o PDF do Contrato de Honorários usando pdf-lib.
+   * Preenche com dados reais do atendimento (cliente, área, honorários).
+   */
+  private async gerarContratoBase64(
+    titulo: string,
+    dados: {
+      clienteNome:     string;
+      clienteCpf?:     string;
+      clienteEndereco?: string;
+      area:            string;
+      tipoAcao?:       string;
+      valorAcao?:      number;
+      tipoHonorario?:  string;
+      valorHonorario?: number;
+      percentualExito?: number;
+      formaPagamento?: string;
+      numParcelas?:    number;
+      vencimento1Parc?: Date | null;
+    },
+  ): Promise<string> {
+    const { PDFDocument, StandardFonts, rgb } = require('pdf-lib') as typeof import('pdf-lib');
 
-    const stream = `BT /F1 14 Tf 72 720 Td (${title}) Tj 0 -24 Td /F1 11 Tf (Documento enviado para assinatura eletronica via JurysOne.) Tj ET`;
+    const pdfDoc  = await PDFDocument.create();
+    const regular = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    const bold    = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
-    const obj1 = `1 0 obj\n<</Type/Catalog/Pages 2 0 R>>\nendobj\n`;
-    const obj2 = `2 0 obj\n<</Type/Pages/Kids[3 0 R]/Count 1>>\nendobj\n`;
-    const obj4 = `4 0 obj\n<</Length ${stream.length}>>\nstream\n${stream}\nendstream\nendobj\n`;
-    const obj3 = `3 0 obj\n<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Contents 4 0 R/Resources<</Font<</F1 5 0 R>>>>>>\nendobj\n`;
-    const obj5 = `5 0 obj\n<</Type/Font/Subtype/Type1/BaseFont/Helvetica>>\nendobj\n`;
+    // A4 em pontos (595 × 842)
+    const page   = pdfDoc.addPage([595, 842]);
+    const margin = 50;
+    const W      = 595 - margin * 2;
 
-    const header   = '%PDF-1.4\n';
-    const off1     = header.length;
-    const off2     = off1 + obj1.length;
-    const off3     = off2 + obj2.length;
-    const off4     = off3 + obj3.length;
-    const off5     = off4 + obj4.length;
-    const xrefOff  = off5 + obj5.length;
+    let y = 800;
+    const LINE = 15;
 
-    const pad = (n: number) => String(n).padStart(10, '0');
-    const xref = `xref\n0 6\n0000000000 65535 f \n${pad(off1)} 00000 n \n${pad(off2)} 00000 n \n${pad(off3)} 00000 n \n${pad(off4)} 00000 n \n${pad(off5)} 00000 n \ntrailer<</Root 1 0 R/Size 6>>\nstartxref\n${xrefOff}\n%%EOF`;
+    // ── helpers ──────────────────────────────────────────────────────────────
+    const nl  = (n = 1) => { y -= LINE * n; };
+    const sep = () => {
+      page.drawLine({
+        start: { x: margin, y },
+        end:   { x: margin + W, y },
+        thickness: 0.5,
+        color: rgb(0.6, 0.6, 0.6),
+      });
+      nl();
+    };
 
-    const pdf = header + obj1 + obj2 + obj3 + obj4 + obj5 + xref;
-    return Buffer.from(pdf, 'latin1').toString('base64');
+    /** Escreve texto com quebra automática de linha */
+    const text = (
+      str: string,
+      opts: { size?: number; font?: typeof regular; indent?: number; center?: boolean } = {},
+    ) => {
+      const { size = 10, font = regular, indent = 0, center = false } = opts;
+      const maxW = W - indent;
+      const words = str.split(' ');
+      let line = '';
+
+      for (const word of words) {
+        const test = line ? `${line} ${word}` : word;
+        if (font.widthOfTextAtSize(test, size) > maxW && line) {
+          const x = center
+            ? margin + (W - font.widthOfTextAtSize(line, size)) / 2
+            : margin + indent;
+          page.drawText(line, { x, y, font, size, color: rgb(0, 0, 0) });
+          nl();
+          line = word;
+        } else {
+          line = test;
+        }
+      }
+      if (line) {
+        const x = center
+          ? margin + (W - font.widthOfTextAtSize(line, size)) / 2
+          : margin + indent;
+        page.drawText(line, { x, y, font, size, color: rgb(0, 0, 0) });
+        nl();
+      }
+    };
+
+    // Formata valor em reais
+    const brl = (v: number) =>
+      v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+    // Data longa em pt-BR
+    const dataLonga = (d: Date) =>
+      d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+
+    // ── Cabeçalho ─────────────────────────────────────────────────────────────
+    text('JURYSONE - GESTAO JURIDICA', { font: bold, size: 10, center: true });
+    nl(0.5);
+    text('CONTRATO DE HONORARIOS ADVOCATICIOS', { font: bold, size: 13, center: true });
+    nl();
+    sep();
+
+    // ── Partes ────────────────────────────────────────────────────────────────
+    text('PARTES', { font: bold, size: 11 });
+    nl(0.3);
+    text(`CONTRATANTE: ${dados.clienteNome}`, { indent: 10 });
+    if (dados.clienteCpf) {
+      const cpfFmt = dados.clienteCpf.replace(/\D/g, '')
+        .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+      text(`CPF: ${cpfFmt}`, { indent: 10 });
+    }
+    if (dados.clienteEndereco && dados.clienteEndereco !== '""') {
+      text(`Endereco: ${dados.clienteEndereco}`, { indent: 10 });
+    }
+    nl(0.5);
+    text('CONTRATADO(A): Escritorio de Advocacia / Advogado(a) Responsavel', { indent: 10 });
+    nl();
+    sep();
+
+    // ── Objeto ────────────────────────────────────────────────────────────────
+    text('CLAUSULA 1 - DO OBJETO', { font: bold, size: 11 });
+    nl(0.3);
+
+    const areaTexto   = dados.area     || 'Direito';
+    const acaoTexto   = dados.tipoAcao || 'acao judicial';
+    const valorCausa  = dados.valorAcao && dados.valorAcao > 0
+      ? `, com valor estimado de causa de ${brl(dados.valorAcao)}`
+      : '';
+
+    text(
+      `O(A) CONTRATADO(A) compromete-se a prestar servicos advocaticios ao CONTRATANTE ` +
+      `na area de ${areaTexto}, referente a ${acaoTexto}${valorCausa}, ` +
+      `realizando todos os atos necessarios para a defesa dos direitos do contratante ` +
+      `em juizo e fora dele.`,
+    );
+    nl();
+    sep();
+
+    // ── Honorários ────────────────────────────────────────────────────────────
+    text('CLAUSULA 2 - DOS HONORARIOS', { font: bold, size: 11 });
+    nl(0.3);
+
+    if (dados.tipoHonorario === 'percentual' && dados.percentualExito) {
+      text(
+        `A titulo de honorarios advocaticios, o CONTRATANTE pagara ao CONTRATADO(A) ` +
+        `${dados.percentualExito}% (${dados.percentualExito} por cento) sobre o valor ` +
+        `efetivamente obtido em caso de exito na demanda, incluindo eventuais acordos.`,
+      );
+    } else if (dados.valorHonorario && dados.valorHonorario > 0) {
+      const parcelas = dados.numParcelas || 1;
+      const vencto   = dados.vencimento1Parc ? dataLonga(new Date(dados.vencimento1Parc)) : '';
+      const pagFmt   = dados.formaPagamento?.toUpperCase() || 'A COMBINAR';
+
+      text(
+        `A titulo de honorarios advocaticios, o CONTRATANTE pagara ao CONTRATADO(A) ` +
+        `o valor de ${brl(dados.valorHonorario)}, ` +
+        (parcelas > 1
+          ? `parcelado em ${parcelas}x${vencto ? `, com vencimento da 1a parcela em ${vencto}` : ''}, `
+          : vencto ? `com vencimento em ${vencto}, ` : '') +
+        `mediante pagamento via ${pagFmt}.`,
+      );
+    } else {
+      text('Os honorarios serao definidos conforme acordo entre as partes.');
+    }
+    nl();
+    sep();
+
+    // ── Prazo ─────────────────────────────────────────────────────────────────
+    text('CLAUSULA 3 - DO PRAZO', { font: bold, size: 11 });
+    nl(0.3);
+    text(
+      'O presente contrato vigorara pelo prazo necessario para a conclusao da ' +
+      'acao judicial ou extrajudicial objeto deste instrumento, podendo ser ' +
+      'rescindido mediante comunicacao previa de 30 (trinta) dias.',
+    );
+    nl();
+    sep();
+
+    // ── Disposições gerais ────────────────────────────────────────────────────
+    text('CLAUSULA 4 - DISPOSICOES GERAIS', { font: bold, size: 11 });
+    nl(0.3);
+    text(
+      'Em caso de desistencia unilateral pelo CONTRATANTE, os honorarios ' +
+      'correspondentes aos servicos ja realizados serao devidos integralmente, ' +
+      'sem prejuizo de eventuais indenizacoes previstas em lei. O CONTRATADO(A) ' +
+      'compromete-se a manter sigilo absoluto sobre as informacoes recebidas ' +
+      'em razao deste contrato.',
+    );
+    nl();
+    sep();
+
+    // ── Assinaturas ──────────────────────────────────────────────────────────
+    const hoje = dataLonga(new Date());
+    text(`Local e data: ____________, ${hoje}.`);
+    nl(2);
+
+    // Linha contratante
+    const midX = margin + W / 2;
+    page.drawLine({ start: { x: margin, y }, end: { x: midX - 10, y }, thickness: 0.5, color: rgb(0, 0, 0) });
+    page.drawLine({ start: { x: midX + 10, y }, end: { x: margin + W, y }, thickness: 0.5, color: rgb(0, 0, 0) });
+    nl();
+    text('CONTRATANTE', { center: false, indent: 30 });
+    page.drawText('CONTRATADO(A)', { x: midX + 30, y, font: regular, size: 10, color: rgb(0, 0, 0) });
+    nl();
+    text(dados.clienteNome, { indent: 30 });
+    nl(2);
+
+    text(
+      'Este documento foi gerado e enviado eletronicamente pelo sistema JurysOne. ' +
+      'A assinatura eletronica tem validade juridica nos termos da Lei n. 14.063/2020.',
+      { size: 8 },
+    );
+
+    // ── Salva e converte para base64 ──────────────────────────────────────────
+    const pdfBytes = await pdfDoc.save();
+    return Buffer.from(pdfBytes).toString('base64');
   }
 
   /**
