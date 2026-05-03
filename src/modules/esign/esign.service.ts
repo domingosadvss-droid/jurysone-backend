@@ -767,6 +767,11 @@ Este link é pessoal e intransferível.
   // ── ClickSign API v3 ─────────────────────────────────────────────────────
   // Fluxo: Envelope → Documento → Signatário → Requirement → Ativar → Notificar
 
+  /** Aguarda `ms` milissegundos — usado para evitar 429 no rate limit da ClickSign */
+  private sleep(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   private async criarDocumentoClicksign(
     apiToken: string,
     envelopeLocalId: string,
@@ -866,11 +871,16 @@ Este link é pessoal e intransferível.
 
       if (!dResp.ok) {
         this.logger.warn(`[ClickSign v3] Documento '${label}' rejeitado — continuando`);
+        // Delay mesmo em erro para evitar burst de 429
+        await this.sleep(800);
         continue;
       }
 
       const docId = JSON.parse(dText)?.data?.id;
       if (docId) documentIds.push(docId);
+
+      // Aguarda entre uploads para não ultrapassar o rate limit da ClickSign
+      await this.sleep(800);
     }
 
     if (documentIds.length === 0) {
@@ -878,6 +888,7 @@ Este link é pessoal e intransferível.
     }
 
     // ── 4. Criar signatário no envelope ───────────────────────────────────
+    await this.sleep(800);
     const nomeNormalizado = signatario.nome.trim().includes(' ')
       ? signatario.nome.trim()
       : `${signatario.nome.trim()} Signatario`;
@@ -917,6 +928,7 @@ Este link é pessoal e intransferível.
     // Cada documento recebe:
     //   a) agree + role:sign      → assinatura do documento
     //   b) provide_evidence + email → autenticação individual por token
+    await this.sleep(800);
     for (const docId of documentIds) {
       const rels = {
         document: { data: { type: 'documents', id: docId   } },
@@ -938,6 +950,8 @@ Este link é pessoal e intransferível.
       this.logger.log(`[ClickSign v3] Req assinatura [${docId}]: ${qResp.status} — ${qText.substring(0, 150)}`);
       if (!qResp.ok) this.logger.warn(`[ClickSign v3] Req assinatura rejeitada: ${qText.substring(0, 200)}`);
 
+      await this.sleep(600);
+
       // 5b. Autenticação individual por email
       const aResp = await fetch(`${baseV3}/envelopes/${envelopeId}/requirements`, {
         method: 'POST', headers,
@@ -952,9 +966,12 @@ Este link é pessoal e intransferível.
       const aText = await aResp.text();
       this.logger.log(`[ClickSign v3] Req autenticação [${docId}]: ${aResp.status} — ${aText.substring(0, 150)}`);
       if (!aResp.ok) this.logger.warn(`[ClickSign v3] Req autenticação rejeitada: ${aText.substring(0, 200)}`);
+
+      await this.sleep(600);
     }
 
     // ── 5. Ativar envelope (draft → running) ──────────────────────────────
+    await this.sleep(800);
     this.logger.log(`[ClickSign v3] Ativando envelope ${envelopeId}`);
     const activResp = await fetch(`${baseV3}/envelopes/${envelopeId}`, {
       method: 'PATCH', headers,
