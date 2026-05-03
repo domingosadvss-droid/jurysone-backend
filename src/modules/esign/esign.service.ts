@@ -772,6 +772,37 @@ Este link é pessoal e intransferível.
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
+  /**
+   * Wrapper de fetch com retry automático para 429 (Too Many Requests).
+   * Respeita o header Retry-After se presente; caso contrário usa backoff exponencial.
+   * Máximo de 4 tentativas (1 original + 3 retries).
+   */
+  private async fetchWithRetry(
+    url: string,
+    options: RequestInit,
+    maxRetries = 3,
+  ): Promise<Response> {
+    let attempt = 0;
+    while (true) {
+      const resp = await fetch(url, options);
+
+      if (resp.status !== 429 || attempt >= maxRetries) {
+        return resp;
+      }
+
+      attempt++;
+      const retryAfter = resp.headers.get('Retry-After');
+      const waitMs = retryAfter
+        ? parseInt(retryAfter, 10) * 1000
+        : Math.min(2000 * Math.pow(2, attempt - 1), 16000); // 2s → 4s → 8s → 16s
+
+      this.logger.warn(
+        `[ClickSign v3] 429 recebido — aguardando ${waitMs}ms antes da tentativa ${attempt + 1}/${maxRetries + 1}`,
+      );
+      await this.sleep(waitMs);
+    }
+  }
+
   private async criarDocumentoClicksign(
     apiToken: string,
     envelopeLocalId: string,
@@ -792,7 +823,7 @@ Este link é pessoal e intransferível.
 
     // ── 1. Criar envelope (draft) ────────────────────────────────────────
     this.logger.log(`[ClickSign v3] Criando envelope: "${nome}"`);
-    const envResp = await fetch(`${baseV3}/envelopes`, {
+    const envResp = await this.fetchWithRetry(`${baseV3}/envelopes`, {
       method: 'POST', headers,
       body: JSON.stringify({
         data: {
@@ -854,7 +885,7 @@ Este link é pessoal e intransferível.
       const pdfBase64 = templateB64 ?? await this.gerarDocumentoPdf(tipo, dadosPdf);
 
       this.logger.log(`[ClickSign v3] Upload: ${label}.pdf`);
-      const dResp = await fetch(`${baseV3}/envelopes/${envelopeId}/documents`, {
+      const dResp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/documents`, {
         method: 'POST', headers,
         body: JSON.stringify({
           data: {
@@ -913,7 +944,7 @@ Este link é pessoal e intransferível.
     if (signatario.telefone)  signerAttributes.phone_number = signatario.telefone.replace(/\D/g, '');
 
     this.logger.log(`[ClickSign v3] Criando signatário: ${signatario.email}`);
-    const sigResp = await fetch(`${baseV3}/envelopes/${envelopeId}/signers`, {
+    const sigResp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/signers`, {
       method: 'POST', headers,
       body: JSON.stringify({ data: { type: 'signers', attributes: signerAttributes } }),
     });
@@ -936,7 +967,7 @@ Este link é pessoal e intransferível.
       };
 
       // 5a. Assinatura
-      const qResp = await fetch(`${baseV3}/envelopes/${envelopeId}/requirements`, {
+      const qResp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/requirements`, {
         method: 'POST', headers,
         body: JSON.stringify({
           data: {
@@ -953,7 +984,7 @@ Este link é pessoal e intransferível.
       await this.sleep(600);
 
       // 5b. Autenticação individual por email
-      const aResp = await fetch(`${baseV3}/envelopes/${envelopeId}/requirements`, {
+      const aResp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/requirements`, {
         method: 'POST', headers,
         body: JSON.stringify({
           data: {
@@ -973,7 +1004,7 @@ Este link é pessoal e intransferível.
     // ── 5. Ativar envelope (draft → running) ──────────────────────────────
     await this.sleep(800);
     this.logger.log(`[ClickSign v3] Ativando envelope ${envelopeId}`);
-    const activResp = await fetch(`${baseV3}/envelopes/${envelopeId}`, {
+    const activResp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}`, {
       method: 'PATCH', headers,
       body: JSON.stringify({
         data: {
@@ -988,7 +1019,7 @@ Este link é pessoal e intransferível.
 
     // ── 6. Enviar notificação por e-mail ──────────────────────────────────
     this.logger.log(`[ClickSign v3] Enviando notificação email`);
-    const notifResp = await fetch(`${baseV3}/envelopes/${envelopeId}/notifications`, {
+    const notifResp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/notifications`, {
       method: 'POST', headers,
       body: JSON.stringify({
         data: { type: 'notifications', attributes: {} },
