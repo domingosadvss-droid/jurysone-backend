@@ -18,7 +18,10 @@ import {
   Controller, Get, Post, Patch, Delete,
   Body, Param, Query, UseGuards, Request,
   HttpCode, HttpStatus, Res, Logger,
+  UseInterceptors, UploadedFile, BadRequestException,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { memoryStorage } from 'multer';
 import { ApiTags, ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { EsignService } from './esign.service';
@@ -417,12 +420,69 @@ export class EsignController {
     return this.esignService.usarTemplate(req.user, id, dto);
   }
 
+  /* ──────────────────── MODELOS DE DOCUMENTOS (PDF próprio) ─── */
+
+  /**
+   * GET /esign/modelos
+   * Lista modelos de PDF cadastrados pelo escritório
+   */
+  @Get('modelos')
+  async listarModelos(@Request() req: any) {
+    return this.esignService.getTemplates(req.user.officeId);
+  }
+
+  /**
+   * POST /esign/modelos/upload
+   * Faz upload de um PDF como modelo de documento
+   * Form-data: { tipo: string, arquivo: File }
+   * Tipos válidos: contrato_honorarios | procuracao | declaracao_hipossuficiencia | questionario_juridico
+   */
+  @Post('modelos/upload')
+  @UseInterceptors(FileInterceptor('arquivo', { storage: memoryStorage() }))
+  async uploadModelo(
+    @Request() req: any,
+    @UploadedFile() file: Express.Multer.File,
+    @Body('tipo') tipo: string,
+  ) {
+    if (!file) throw new BadRequestException('Nenhum arquivo enviado');
+    if (file.mimetype !== 'application/pdf') {
+      throw new BadRequestException('Apenas arquivos PDF são aceitos');
+    }
+    const tiposValidos = [
+      'contrato_honorarios',
+      'procuracao',
+      'declaracao_hipossuficiencia',
+      'questionario_juridico',
+    ];
+    if (!tiposValidos.includes(tipo)) {
+      throw new BadRequestException(`Tipo inválido. Use: ${tiposValidos.join(', ')}`);
+    }
+    return this.esignService.uploadTemplate(
+      req.user.officeId,
+      tipo,
+      file.buffer,
+      file.originalname,
+    );
+  }
+
+  /**
+   * DELETE /esign/modelos/:tipo
+   * Remove modelo de PDF de um tipo específico
+   */
+  @Delete('modelos/:tipo')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async removerModelo(
+    @Request() req: any,
+    @Param('tipo') tipo: string,
+  ) {
+    return this.esignService.deleteTemplate(req.user.officeId, tipo);
+  }
+
   /* ──────────────────── DASHBOARD ───────────────────────────── */
 
   /**
    * GET /esign/stats
    * Estatísticas de assinaturas: pendentes, concluídos, expirados, taxa de conclusão
-   * NOVA FUNCIONALIDADE
    */
   @Get('stats')
   async getStats(@Request() req: any) {
