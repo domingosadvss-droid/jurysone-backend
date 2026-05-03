@@ -838,13 +838,12 @@ Este link é pessoal e intransferível.
     const envelopeId = envData?.data?.id;
     if (!envelopeId) throw new Error(`ClickSign: envelope nao criado — ${envText.substring(0, 200)}`);
 
-    // ── 2. Buscar dados do atendimento ───────────────────────────────────
+    // ── 2. Buscar dados do atendimento para gerar o PDF real ─────────────
     const atendimento = await this.prisma.atendimento.findFirst({
       where:   { envelopeId: envelopeLocalId },
       include: { cliente: true },
     }).catch(() => null);
 
-    const escritorioId   = atendimento?.escritorioId ?? '';
     const clienteEndereco = atendimento?.cliente
       ? (typeof atendimento.cliente.endereco === 'string'
           ? atendimento.cliente.endereco
@@ -866,60 +865,30 @@ Este link é pessoal e intransferível.
       vencimento1Parc: atendimento?.vencimento1Parc ?? null,
     };
 
-    // ── 3. Upload dos 4 documentos no envelope ────────────────────────────
-    // Cada documento usa o PDF próprio do escritório (se enviado) ou gera o padrão.
-    const TIPOS_DOC = [
-      { tipo: 'contrato_honorarios',         label: 'Contrato_de_Honorarios'        },
-      { tipo: 'procuracao',                  label: 'Procuracao_Ad_Judicia'          },
-      { tipo: 'declaracao_hipossuficiencia', label: 'Declaracao_de_Hipossuficiencia' },
-      { tipo: 'questionario_juridico',       label: 'Questionario_Juridico'          },
-    ] as const;
+    // ── 3. Upload do Contrato de Honorários (documento principal) ─────────
+    // Os demais documentos (Procuração, Declaração, Questionário) serão
+    // adicionados após a estabilização do canal com a ClickSign.
+    const pdfBase64 = await this.gerarContratoBase64('Contrato de Honorarios', dadosPdf);
 
-    const documentIds: string[] = [];
-
-    for (const { tipo, label } of TIPOS_DOC) {
-      const templateB64 = escritorioId
-        ? await this.getTemplateBase64(escritorioId, tipo)
-        : null;
-
-      const pdfBase64 = templateB64 ?? await this.gerarDocumentoPdf(tipo, dadosPdf);
-
-      this.logger.log(`[ClickSign v3] Upload: ${label}.pdf`);
-      const dResp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/documents`, {
-        method: 'POST', headers,
-        body: JSON.stringify({
-          data: {
-            type: 'documents',
-            attributes: {
-              filename:       `${label}.pdf`,
-              content_base64: `data:application/pdf;base64,${pdfBase64}`,
-            },
+    this.logger.log(`[ClickSign v3] Upload: Contrato_de_Honorarios.pdf`);
+    const docResp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/documents`, {
+      method: 'POST', headers,
+      body: JSON.stringify({
+        data: {
+          type: 'documents',
+          attributes: {
+            filename:       'Contrato_de_Honorarios.pdf',
+            content_base64: `data:application/pdf;base64,${pdfBase64}`,
           },
-        }),
-      });
-      const dText = await dResp.text();
-      this.logger.log(`[ClickSign v3] ${label}: ${dResp.status} — ${dText.substring(0, 200)}`);
-
-      if (!dResp.ok) {
-        this.logger.warn(`[ClickSign v3] Documento '${label}' rejeitado — continuando`);
-        // Delay mesmo em erro para evitar burst de 429
-        await this.sleep(800);
-        continue;
-      }
-
-      const docId = JSON.parse(dText)?.data?.id;
-      if (docId) documentIds.push(docId);
-
-      // Aguarda entre uploads para não ultrapassar o rate limit da ClickSign
-      await this.sleep(800);
-    }
-
-    if (documentIds.length === 0) {
-      throw new Error('ClickSign: nenhum documento aceito pelo servidor');
-    }
+        },
+      }),
+    });
+    const docText = await docResp.text();
+    this.logger.log(`[ClickSign v3] Contrato: ${docResp.status} — ${docText.substring(0, 300)}`);
+    const documentId = JSON.parse(docText)?.data?.id;
+    if (!documentId) throw new Error(`ClickSign: documento nao criado — ${docText.substring(0, 200)}`);
 
     // ── 4. Criar signatário no envelope ───────────────────────────────────
-    await this.sleep(800);
     const nomeNormalizado = signatario.nome.trim().includes(' ')
       ? signatario.nome.trim()
       : `${signatario.nome.trim()} Signatario`;
@@ -949,60 +918,50 @@ Este link é pessoal e intransferível.
       body: JSON.stringify({ data: { type: 'signers', attributes: signerAttributes } }),
     });
     const sigText = await sigResp.text();
-    this.logger.log(`[ClickSign v3] Signatário: ${sigResp.status} — ${sigText.substring(0, 300)}`);
-    if (!sigResp.ok) throw new Error(`ClickSign: signatário rejeitado ${sigResp.status} — ${sigText.substring(0, 200)}`);
+    this.logger.log(`[ClickSign v3] Signatário: ${sigResp.status} — ${sigText.substring(0, 400)}`);
+    if (!sigResp.ok) throw new Error(`ClickSign: signatário rejeitado ${sigResp.status} — ${sigText.substring(0, 300)}`);
 
     const signerId = JSON.parse(sigText)?.data?.id;
     if (!signerId) throw new Error(`ClickSign: signatário sem ID — ${sigText.substring(0, 200)}`);
 
-    // ── 5. Requisitos por documento (assinatura + autenticação individual) ─
-    // Cada documento recebe:
-    //   a) agree + role:sign      → assinatura do documento
-    //   b) provide_evidence + email → autenticação individual por token
-    await this.sleep(800);
-    for (const docId of documentIds) {
-      const rels = {
-        document: { data: { type: 'documents', id: docId   } },
-        signer:   { data: { type: 'signers',   id: signerId } },
-      };
+    const reqRels = {
+      document: { data: { type: 'documents', id: documentId } },
+      signer:   { data: { type: 'signers',   id: signerId   } },
+    };
 
-      // 5a. Assinatura
-      const qResp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/requirements`, {
-        method: 'POST', headers,
-        body: JSON.stringify({
-          data: {
-            type: 'requirements',
-            attributes: { action: 'agree', role: 'sign' },
-            relationships: rels,
-          },
-        }),
-      });
-      const qText = await qResp.text();
-      this.logger.log(`[ClickSign v3] Req assinatura [${docId}]: ${qResp.status} — ${qText.substring(0, 150)}`);
-      if (!qResp.ok) this.logger.warn(`[ClickSign v3] Req assinatura rejeitada: ${qText.substring(0, 200)}`);
+    // ── 5a. Requisito de assinatura (agree + sign) ─────────────────────────
+    this.logger.log(`[ClickSign v3] Criando requisito de assinatura`);
+    const qualResp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/requirements`, {
+      method: 'POST', headers,
+      body: JSON.stringify({
+        data: {
+          type: 'requirements',
+          attributes: { action: 'agree', role: 'sign' },
+          relationships: reqRels,
+        },
+      }),
+    });
+    const qualText = await qualResp.text();
+    this.logger.log(`[ClickSign v3] Req assinatura: ${qualResp.status} — ${qualText.substring(0, 400)}`);
+    if (!qualResp.ok) throw new Error(`ClickSign: req assinatura rejeitada ${qualResp.status} — ${qualText.substring(0, 200)}`);
 
-      await this.sleep(600);
+    // ── 5b. Requisito de autenticação (provide_evidence + email) ──────────
+    this.logger.log(`[ClickSign v3] Criando requisito de autenticação: email`);
+    const authResp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/requirements`, {
+      method: 'POST', headers,
+      body: JSON.stringify({
+        data: {
+          type: 'requirements',
+          attributes: { action: 'provide_evidence', auth: 'email' },
+          relationships: reqRels,
+        },
+      }),
+    });
+    const authText = await authResp.text();
+    this.logger.log(`[ClickSign v3] Req autenticação: ${authResp.status} — ${authText.substring(0, 400)}`);
+    if (!authResp.ok) throw new Error(`ClickSign: req autenticação rejeitada ${authResp.status} — ${authText.substring(0, 200)}`);
 
-      // 5b. Autenticação individual por email
-      const aResp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/requirements`, {
-        method: 'POST', headers,
-        body: JSON.stringify({
-          data: {
-            type: 'requirements',
-            attributes: { action: 'provide_evidence', auth: 'email' },
-            relationships: rels,
-          },
-        }),
-      });
-      const aText = await aResp.text();
-      this.logger.log(`[ClickSign v3] Req autenticação [${docId}]: ${aResp.status} — ${aText.substring(0, 150)}`);
-      if (!aResp.ok) this.logger.warn(`[ClickSign v3] Req autenticação rejeitada: ${aText.substring(0, 200)}`);
-
-      await this.sleep(600);
-    }
-
-    // ── 5. Ativar envelope (draft → running) ──────────────────────────────
-    await this.sleep(800);
+    // ── 6. Ativar envelope (draft → running) ──────────────────────────────
     this.logger.log(`[ClickSign v3] Ativando envelope ${envelopeId}`);
     const activResp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}`, {
       method: 'PATCH', headers,
