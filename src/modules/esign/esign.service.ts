@@ -150,7 +150,7 @@ export class EsignService {
     const signingLinks = signatarios.map((s: any) => ({
       nome: s.nome,
       email: s.email,
-      link: `${process.env.APP_URL || 'https://jurysone.com'}/esign/assinar/${s.token}`,
+      link: `${process.env.FRONTEND_URL || process.env.APP_URL || 'https://jurysone.com'}/esign/assinar/${s.token}`,
       token: s.token,
     }));
 
@@ -205,7 +205,7 @@ export class EsignService {
       const sl = {
         nome: s.nome,
         email: s.email,
-        link: `${process.env.APP_URL || 'https://jurysone.com'}/esign/assinar/${s.token}`,
+        link: `${process.env.FRONTEND_URL || process.env.APP_URL || 'https://jurysone.com'}/esign/assinar/${s.token}`,
         token: s.token,
       };
       await this.enviarEmailAssinatura(sl, envelope_titulo).catch(err =>
@@ -732,7 +732,7 @@ Este link é pessoal e intransferível.
 
     // 2. Fallback SMTP
     try {
-      const signingLink = `${process.env.APP_URL || 'https://jurysone.com'}/esign/assinar/${envelopeId}`;
+      const signingLink = `${process.env.FRONTEND_URL || process.env.APP_URL || 'https://jurysone.com'}/esign/assinar/${envelopeId}`;
       await this.enviarEmailAssinatura({ nome: signatario.nome, email: signatario.email, link: signingLink }, titulo);
 
       await this.prisma.esignEnvelope.update({
@@ -744,7 +744,7 @@ Este link é pessoal e intransferível.
 
       // WhatsApp em paralelo
       if (signatario.telefone) {
-        const signingLink2 = `${process.env.APP_URL || 'https://jurysone.com'}/esign/assinar/${envelopeId}`;
+        const signingLink2 = `${process.env.FRONTEND_URL || process.env.APP_URL || 'https://jurysone.com'}/esign/assinar/${envelopeId}`;
         const msgWpp = `Olá, ${signatario.nome}!\n\nVocê recebeu documentos para assinar referentes ao seu processo jurídico.\n\nAssine pelo link:\n${signingLink2}\n\n— JurysOne`;
         this.whatsapp.enviarTextoSimples(signatario.telefone, msgWpp).catch(() => null);
       }
@@ -756,7 +756,7 @@ Este link é pessoal e intransferível.
 
     // WhatsApp como último recurso
     if (signatario.telefone) {
-      const signingLink = `${process.env.APP_URL || 'https://jurysone.com'}/esign/assinar/${envelopeId}`;
+      const signingLink = `${process.env.FRONTEND_URL || process.env.APP_URL || 'https://jurysone.com'}/esign/assinar/${envelopeId}`;
       const msgWpp = `Olá, ${signatario.nome}!\n\nVocê recebeu documentos para assinar referentes ao seu processo jurídico.\n\nAssine pelo link:\n${signingLink}\n\n— JurysOne`;
       await this.whatsapp.enviarTextoSimples(signatario.telefone, msgWpp).catch(() => null);
     }
