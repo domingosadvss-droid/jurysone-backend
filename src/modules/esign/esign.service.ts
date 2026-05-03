@@ -802,33 +802,23 @@ Este link é pessoal e intransferível.
     const envelopeId = envData?.data?.id;
     if (!envelopeId) throw new Error(`ClickSign: envelope nao criado — ${envText.substring(0, 200)}`);
 
-    // ── 2. Gerar PDF real com dados do atendimento ────────────────────────
-    const safeName = (nome || 'Contrato')
-      .normalize('NFD').replace(/[̀-ͯ]/g, '')
-      .replace(/[^a-z0-9_\-]/gi, '_')
-      .substring(0, 50);
-
-    // Busca dados reais do atendimento vinculado ao envelope
+    // ── 2. Buscar dados do atendimento ───────────────────────────────────
     const atendimento = await this.prisma.atendimento.findFirst({
       where:   { envelopeId: envelopeLocalId },
       include: { cliente: true },
     }).catch(() => null);
 
-    const escritorioId = atendimento?.escritorioId ?? '';
+    const escritorioId   = atendimento?.escritorioId ?? '';
+    const clienteEndereco = atendimento?.cliente
+      ? (typeof atendimento.cliente.endereco === 'string'
+          ? atendimento.cliente.endereco
+          : JSON.stringify(atendimento.cliente.endereco ?? ''))
+      : '';
 
-    // Usa PDF customizado do escritório se disponível; senão gera o padrão
-    const templateB64 = escritorioId
-      ? await this.getTemplateBase64(escritorioId, 'contrato_honorarios')
-      : null;
-
-    const pdfBase64 = templateB64 ?? await this.gerarContratoBase64(nome, {
+    const dadosPdf = {
       clienteNome:     signatario.nome,
       clienteCpf:      signatario.cpf ?? atendimento?.cliente?.cpf ?? undefined,
-      clienteEndereco: atendimento?.cliente
-        ? (typeof atendimento.cliente.endereco === 'string'
-            ? atendimento.cliente.endereco
-            : JSON.stringify(atendimento.cliente.endereco ?? ''))
-        : undefined,
+      clienteEndereco: clienteEndereco || undefined,
       area:            atendimento?.area            ?? '',
       tipoAcao:        atendimento?.tipoAcao        ?? '',
       valorAcao:       atendimento?.valorAcao       ?? 0,
@@ -838,36 +828,60 @@ Este link é pessoal e intransferível.
       formaPagamento:  atendimento?.formaPagamento  ?? '',
       numParcelas:     atendimento?.numParcelas     ?? 1,
       vencimento1Parc: atendimento?.vencimento1Parc ?? null,
-    });
+    };
 
-    this.logger.log(`[ClickSign v3] Upload documento: ${safeName}.pdf`);
-    const docResp = await fetch(`${baseV3}/envelopes/${envelopeId}/documents`, {
-      method: 'POST', headers,
-      body: JSON.stringify({
-        data: {
-          type: 'documents',
-          attributes: {
-            filename:       `${safeName}.pdf`,
-            content_base64: `data:application/pdf;base64,${pdfBase64}`,
+    // ── 3. Upload dos 4 documentos no envelope ────────────────────────────
+    // Cada documento usa o PDF próprio do escritório (se enviado) ou gera o padrão.
+    const TIPOS_DOC = [
+      { tipo: 'contrato_honorarios',         label: 'Contrato_de_Honorarios'        },
+      { tipo: 'procuracao',                  label: 'Procuracao_Ad_Judicia'          },
+      { tipo: 'declaracao_hipossuficiencia', label: 'Declaracao_de_Hipossuficiencia' },
+      { tipo: 'questionario_juridico',       label: 'Questionario_Juridico'          },
+    ] as const;
+
+    const documentIds: string[] = [];
+
+    for (const { tipo, label } of TIPOS_DOC) {
+      const templateB64 = escritorioId
+        ? await this.getTemplateBase64(escritorioId, tipo)
+        : null;
+
+      const pdfBase64 = templateB64 ?? await this.gerarDocumentoPdf(tipo, dadosPdf);
+
+      this.logger.log(`[ClickSign v3] Upload: ${label}.pdf`);
+      const dResp = await fetch(`${baseV3}/envelopes/${envelopeId}/documents`, {
+        method: 'POST', headers,
+        body: JSON.stringify({
+          data: {
+            type: 'documents',
+            attributes: {
+              filename:       `${label}.pdf`,
+              content_base64: `data:application/pdf;base64,${pdfBase64}`,
+            },
           },
-        },
-      }),
-    });
-    const docText = await docResp.text();
-    this.logger.log(`[ClickSign v3] Documento: ${docResp.status} — ${docText.substring(0, 300)}`);
-    const docData   = JSON.parse(docText);
-    const documentId = docData?.data?.id;
-    if (!documentId) throw new Error(`ClickSign: documento não criado — ${docText.substring(0, 200)}`);
+        }),
+      });
+      const dText = await dResp.text();
+      this.logger.log(`[ClickSign v3] ${label}: ${dResp.status} — ${dText.substring(0, 200)}`);
 
-    // ── 3. Criar signatário no envelope ───────────────────────────────────
-    // Nome precisa de ao menos 2 palavras — complementa se vier só 1
+      if (!dResp.ok) {
+        this.logger.warn(`[ClickSign v3] Documento '${label}' rejeitado — continuando`);
+        continue;
+      }
+
+      const docId = JSON.parse(dText)?.data?.id;
+      if (docId) documentIds.push(docId);
+    }
+
+    if (documentIds.length === 0) {
+      throw new Error('ClickSign: nenhum documento aceito pelo servidor');
+    }
+
+    // ── 4. Criar signatário no envelope ───────────────────────────────────
     const nomeNormalizado = signatario.nome.trim().includes(' ')
       ? signatario.nome.trim()
-      : `${signatario.nome.trim()} Signatário`;
+      : `${signatario.nome.trim()} Signatario`;
 
-    // Sempre usar email no ClickSign — WhatsApp via ClickSign requer
-    // configuração adicional na conta. Notificamos via WhatsApp pela
-    // nossa própria integração (após o envio).
     const signerAttributes: Record<string, any> = {
       name:  nomeNormalizado,
       email: signatario.email,
@@ -878,81 +892,66 @@ Este link é pessoal e intransferível.
       },
     };
 
-    // CPF formatado (xxx.xxx.xxx-xx)
     if (signatario.cpf) {
       const digits = signatario.cpf.replace(/\D/g, '');
       if (digits.length === 11) {
         signerAttributes.documentation = digits.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
       }
     }
-
-    if (signatario.birthday) {
-      signerAttributes.birthday = signatario.birthday; // YYYY-MM-DD
-    }
-
-    if (signatario.telefone) {
-      signerAttributes.phone_number = signatario.telefone.replace(/\D/g, '');
-    }
+    if (signatario.birthday)  signerAttributes.birthday     = signatario.birthday;
+    if (signatario.telefone)  signerAttributes.phone_number = signatario.telefone.replace(/\D/g, '');
 
     this.logger.log(`[ClickSign v3] Criando signatário: ${signatario.email}`);
     const sigResp = await fetch(`${baseV3}/envelopes/${envelopeId}/signers`, {
       method: 'POST', headers,
-      body: JSON.stringify({
-        data: { type: 'signers', attributes: signerAttributes },
-      }),
+      body: JSON.stringify({ data: { type: 'signers', attributes: signerAttributes } }),
     });
     const sigText = await sigResp.text();
-    this.logger.log(`[ClickSign v3] Signatário: ${sigResp.status} — ${sigText.substring(0, 400)}`);
+    this.logger.log(`[ClickSign v3] Signatário: ${sigResp.status} — ${sigText.substring(0, 300)}`);
+    if (!sigResp.ok) throw new Error(`ClickSign: signatário rejeitado ${sigResp.status} — ${sigText.substring(0, 200)}`);
 
-    if (!sigResp.ok) {
-      throw new Error(`ClickSign: signatário rejeitado ${sigResp.status} — ${sigText.substring(0, 300)}`);
-    }
-
-    const sigData  = JSON.parse(sigText);
-    const signerId = sigData?.data?.id;
+    const signerId = JSON.parse(sigText)?.data?.id;
     if (!signerId) throw new Error(`ClickSign: signatário sem ID — ${sigText.substring(0, 200)}`);
 
-    const reqRels = {
-      document: { data: { type: 'documents', id: documentId } },
-      signer:   { data: { type: 'signers',   id: signerId   } },
-    };
+    // ── 5. Requisitos por documento (assinatura + autenticação individual) ─
+    // Cada documento recebe:
+    //   a) agree + role:sign      → assinatura do documento
+    //   b) provide_evidence + email → autenticação individual por token
+    for (const docId of documentIds) {
+      const rels = {
+        document: { data: { type: 'documents', id: docId   } },
+        signer:   { data: { type: 'signers',   id: signerId } },
+      };
 
-    // ── 4a. Requisito de Qualificação (obrigatório) ────────────────────────
-    // action: 'agree' + role: 'sign' (Assinar)
-    this.logger.log(`[ClickSign v3] Criando requisito de qualificação`);
-    const qualResp = await fetch(`${baseV3}/envelopes/${envelopeId}/requirements`, {
-      method: 'POST', headers,
-      body: JSON.stringify({
-        data: {
-          type: 'requirements',
-          attributes: { action: 'agree', role: 'sign' },
-          relationships: reqRels,
-        },
-      }),
-    });
-    const qualText = await qualResp.text();
-    this.logger.log(`[ClickSign v3] Qualificação: ${qualResp.status} — ${qualText.substring(0, 400)}`);
-    if (!qualResp.ok) {
-      throw new Error(`ClickSign: requisito de qualificação rejeitado ${qualResp.status} — ${qualText.substring(0, 200)}`);
-    }
+      // 5a. Assinatura
+      const qResp = await fetch(`${baseV3}/envelopes/${envelopeId}/requirements`, {
+        method: 'POST', headers,
+        body: JSON.stringify({
+          data: {
+            type: 'requirements',
+            attributes: { action: 'agree', role: 'sign' },
+            relationships: rels,
+          },
+        }),
+      });
+      const qText = await qResp.text();
+      this.logger.log(`[ClickSign v3] Req assinatura [${docId}]: ${qResp.status} — ${qText.substring(0, 150)}`);
+      if (!qResp.ok) this.logger.warn(`[ClickSign v3] Req assinatura rejeitada: ${qText.substring(0, 200)}`);
 
-    // ── 4b. Requisito de Autenticação (obrigatório) ────────────────────────
-    // action: 'provide_evidence' + auth: 'email' (token por email — padrão seguro)
-    this.logger.log(`[ClickSign v3] Criando requisito de autenticação: email`);
-    const authResp = await fetch(`${baseV3}/envelopes/${envelopeId}/requirements`, {
-      method: 'POST', headers,
-      body: JSON.stringify({
-        data: {
-          type: 'requirements',
-          attributes: { action: 'provide_evidence', auth: 'email' },
-          relationships: reqRels,
-        },
-      }),
-    });
-    const authText = await authResp.text();
-    this.logger.log(`[ClickSign v3] Autenticação: ${authResp.status} — ${authText.substring(0, 400)}`);
-    if (!authResp.ok) {
-      throw new Error(`ClickSign: requisito de autenticação rejeitado ${authResp.status} — ${authText.substring(0, 200)}`);
+      // 5b. Autenticação individual por email
+      const aResp = await fetch(`${baseV3}/envelopes/${envelopeId}/requirements`, {
+        method: 'POST', headers,
+        body: JSON.stringify({
+          data: {
+            type: 'requirements',
+            attributes: { action: 'provide_evidence', auth: 'email' },
+            relationships: rels,
+          },
+        }),
+      });
+      const aText = await aResp.text();
+      this.logger.log(`[ClickSign v3] Req autenticação [${docId}]: ${aResp.status} — ${aText.substring(0, 150)}`);
+      if (!aResp.ok) this.logger.warn(`[ClickSign v3] Req autenticação rejeitada: ${aText.substring(0, 200)}`);
     }
 
     // ── 5. Ativar envelope (draft → running) ──────────────────────────────
@@ -984,6 +983,181 @@ Este link é pessoal e intransferível.
     const signUrl = `${base}/sign/${signerId}`;
     this.logger.log(`[ClickSign v3] ✅ Envelope ${envelopeId} | signatário ${signerId}`);
     return { docKey: envelopeId, signUrl };
+  }
+
+  /** Delega a geração de PDF para o método correto conforme o tipo */
+  private async gerarDocumentoPdf(
+    tipo: string,
+    dados: Parameters<typeof this.gerarContratoBase64>[1],
+  ): Promise<string> {
+    switch (tipo) {
+      case 'contrato_honorarios':         return this.gerarContratoBase64('Contrato de Honorarios', dados);
+      case 'procuracao':                  return this.gerarProcuracaoBase64(dados);
+      case 'declaracao_hipossuficiencia': return this.gerarDeclaracaoBase64(dados);
+      case 'questionario_juridico':       return this.gerarQuestionarioBase64(dados);
+      default:                            return this.gerarContratoBase64('Documento Juridico', dados);
+    }
+  }
+
+  /** Procuração Ad Judicia */
+  private async gerarProcuracaoBase64(dados: {
+    clienteNome: string; clienteCpf?: string; clienteEndereco?: string; area?: string; tipoAcao?: string;
+  }): Promise<string> {
+    const { PDFDocument, StandardFonts, rgb } = require('pdf-lib') as typeof import('pdf-lib');
+    const pdfDoc  = await PDFDocument.create();
+    const regular = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    const bold    = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+    const page    = pdfDoc.addPage([595, 842]);
+    const margin  = 50; const W = 595 - margin * 2;
+    let y = 800; const LINE = 15;
+    const nl  = (n = 1) => { y -= LINE * n; };
+    const sep = () => { page.drawLine({ start: { x: margin, y }, end: { x: margin + W, y }, thickness: 0.5, color: rgb(0.6, 0.6, 0.6) }); nl(); };
+    const text = (str: string, opts: { size?: number; font?: any; indent?: number; center?: boolean } = {}) => {
+      const { size = 10, font = regular, indent = 0, center = false } = opts;
+      const maxW = W - indent; const words = str.split(' '); let line = '';
+      for (const word of words) {
+        const test = line ? `${line} ${word}` : word;
+        if (font.widthOfTextAtSize(test, size) > maxW && line) {
+          const x = center ? margin + (W - font.widthOfTextAtSize(line, size)) / 2 : margin + indent;
+          page.drawText(line, { x, y, font, size, color: rgb(0, 0, 0) }); nl(); line = word;
+        } else { line = test; }
+      }
+      if (line) { const x = center ? margin + (W - font.widthOfTextAtSize(line, size)) / 2 : margin + indent; page.drawText(line, { x, y, font, size, color: rgb(0, 0, 0) }); nl(); }
+    };
+
+    text('PROCURACAO AD JUDICIA ET EXTRA', { font: bold, size: 13, center: true });
+    nl(0.5); sep();
+    text('OUTORGANTE', { font: bold, size: 11 }); nl(0.3);
+    text(`Nome: ${dados.clienteNome}`, { indent: 10 });
+    if (dados.clienteCpf) { const d = dados.clienteCpf.replace(/\D/g, ''); text(`CPF: ${d.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')}`, { indent: 10 }); }
+    if (dados.clienteEndereco && dados.clienteEndereco !== '""') text(`Endereco: ${dados.clienteEndereco}`, { indent: 10 });
+    nl(); sep();
+    text('OUTORGADO(A)', { font: bold, size: 11 }); nl(0.3);
+    text('Advogado(a) / Escritorio de Advocacia responsavel pelo atendimento.', { indent: 10 });
+    nl(); sep();
+    text('PODERES', { font: bold, size: 11 }); nl(0.3);
+    text('Pelo presente instrumento, o(a) OUTORGANTE nomeia e constitui seu bastante procurador o(a) OUTORGADO(A), a quem confere amplos poderes para o foro em geral, em qualquer juizo, instancia ou tribunal, podendo propor as acoes que forem necessarias e defender-se das que forem propostas, seguindo-as ate final decisao, usando todos os recursos ordinarios e extraordinarios.');
+    nl(0.5);
+    text('Fica ainda o(a) outorgado(a) autorizado(a) a confessar, desistir, transigir, firmar compromissos ou acordos, receber e dar quitacao, e praticar todos os demais atos necessarios ao fiel cumprimento deste mandato, inclusive para os fins do art. 105 do CPC.');
+    nl(); sep();
+    if (dados.area) { text(`Area: ${dados.area}`, { indent: 10 }); }
+    if (dados.tipoAcao) { text(`Objeto: ${dados.tipoAcao}`, { indent: 10 }); nl(); }
+    sep();
+    text(`Local e data: ____________, ${new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}.`);
+    nl(2);
+    page.drawLine({ start: { x: margin, y }, end: { x: margin + W, y }, thickness: 0.5, color: rgb(0, 0, 0) }); nl();
+    text('Assinatura do Outorgante', { indent: 10 }); nl(0.3);
+    text(dados.clienteNome, { indent: 10 });
+    nl(2);
+    text('Este documento foi gerado eletronicamente pelo JurysOne — Lei n. 14.063/2020.', { size: 8 });
+    return Buffer.from(await pdfDoc.save()).toString('base64');
+  }
+
+  /** Declaração de Hipossuficiência */
+  private async gerarDeclaracaoBase64(dados: {
+    clienteNome: string; clienteCpf?: string; clienteEndereco?: string;
+  }): Promise<string> {
+    const { PDFDocument, StandardFonts, rgb } = require('pdf-lib') as typeof import('pdf-lib');
+    const pdfDoc  = await PDFDocument.create();
+    const regular = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    const bold    = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+    const page    = pdfDoc.addPage([595, 842]);
+    const margin  = 50; const W = 595 - margin * 2;
+    let y = 800; const LINE = 15;
+    const nl  = (n = 1) => { y -= LINE * n; };
+    const sep = () => { page.drawLine({ start: { x: margin, y }, end: { x: margin + W, y }, thickness: 0.5, color: rgb(0.6, 0.6, 0.6) }); nl(); };
+    const text = (str: string, opts: { size?: number; font?: any; indent?: number; center?: boolean } = {}) => {
+      const { size = 10, font = regular, indent = 0, center = false } = opts;
+      const maxW = W - indent; const words = str.split(' '); let line = '';
+      for (const word of words) {
+        const test = line ? `${line} ${word}` : word;
+        if (font.widthOfTextAtSize(test, size) > maxW && line) {
+          const x = center ? margin + (W - font.widthOfTextAtSize(line, size)) / 2 : margin + indent;
+          page.drawText(line, { x, y, font, size, color: rgb(0, 0, 0) }); nl(); line = word;
+        } else { line = test; }
+      }
+      if (line) { const x = center ? margin + (W - font.widthOfTextAtSize(line, size)) / 2 : margin + indent; page.drawText(line, { x, y, font, size, color: rgb(0, 0, 0) }); nl(); }
+    };
+
+    text('DECLARACAO DE HIPOSSUFICIENCIA', { font: bold, size: 13, center: true });
+    nl(0.5); sep();
+    const cpfFmt = dados.clienteCpf ? dados.clienteCpf.replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4') : '___.___.___-__';
+    text(`Eu, ${dados.clienteNome}, portador(a) do CPF n. ${cpfFmt}${dados.clienteEndereco && dados.clienteEndereco !== '""' ? `, residente em ${dados.clienteEndereco}` : ''}, DECLARO, sob as penas da lei, que nao possuo condicoes financeiras de arcar com o pagamento das custas processuais e honorarios advocaticios sem prejuizo do meu proprio sustento e de minha familia.`);
+    nl();
+    text('Declaro ainda estar ciente de que a falsidade desta declaracao configura o crime previsto no art. 299 do Codigo Penal Brasileiro (falsidade ideologica), sujeitando-me as respectivas penalidades.');
+    nl();
+    text('Por ser expressao da verdade, firmo a presente declaracao.');
+    nl(); sep();
+    text(`Local e data: ____________, ${new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}.`);
+    nl(3);
+    page.drawLine({ start: { x: margin + W / 4, y }, end: { x: margin + (W * 3) / 4, y }, thickness: 0.5, color: rgb(0, 0, 0) }); nl();
+    text(dados.clienteNome, { center: true }); nl(0.3);
+    text(`CPF: ${cpfFmt}`, { center: true });
+    nl(2);
+    text('Este documento foi gerado eletronicamente pelo JurysOne — Lei n. 14.063/2020.', { size: 8 });
+    return Buffer.from(await pdfDoc.save()).toString('base64');
+  }
+
+  /** Questionário Jurídico */
+  private async gerarQuestionarioBase64(dados: {
+    clienteNome: string; clienteCpf?: string; area?: string; tipoAcao?: string;
+  }): Promise<string> {
+    const { PDFDocument, StandardFonts, rgb } = require('pdf-lib') as typeof import('pdf-lib');
+    const pdfDoc  = await PDFDocument.create();
+    const regular = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    const bold    = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+    const page    = pdfDoc.addPage([595, 842]);
+    const margin  = 50; const W = 595 - margin * 2;
+    let y = 800; const LINE = 15;
+    const nl  = (n = 1) => { y -= LINE * n; };
+    const sep = () => { page.drawLine({ start: { x: margin, y }, end: { x: margin + W, y }, thickness: 0.5, color: rgb(0.6, 0.6, 0.6) }); nl(); };
+    const text = (str: string, opts: { size?: number; font?: any; indent?: number; center?: boolean } = {}) => {
+      const { size = 10, font = regular, indent = 0, center = false } = opts;
+      const maxW = W - indent; const words = str.split(' '); let line = '';
+      for (const word of words) {
+        const test = line ? `${line} ${word}` : word;
+        if (font.widthOfTextAtSize(test, size) > maxW && line) {
+          const x = center ? margin + (W - font.widthOfTextAtSize(line, size)) / 2 : margin + indent;
+          page.drawText(line, { x, y, font, size, color: rgb(0, 0, 0) }); nl(); line = word;
+        } else { line = test; }
+      }
+      if (line) { const x = center ? margin + (W - font.widthOfTextAtSize(line, size)) / 2 : margin + indent; page.drawText(line, { x, y, font, size, color: rgb(0, 0, 0) }); nl(); }
+    };
+    const linha = (label: string, linhas = 1) => {
+      text(label, { font: bold, size: 9 }); nl(0.2);
+      for (let i = 0; i < linhas; i++) {
+        page.drawLine({ start: { x: margin, y }, end: { x: margin + W, y }, thickness: 0.4, color: rgb(0.75, 0.75, 0.75) }); nl(1.4);
+      }
+    };
+
+    text('QUESTIONARIO JURIDICO', { font: bold, size: 13, center: true });
+    nl(0.5); sep();
+    text('IDENTIFICACAO DO CLIENTE', { font: bold, size: 11 }); nl(0.3);
+    text(`Nome: ${dados.clienteNome}`, { indent: 10 });
+    if (dados.clienteCpf) { const d = dados.clienteCpf.replace(/\D/g, ''); text(`CPF: ${d.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')}`, { indent: 10 }); }
+    if (dados.area) text(`Area Juridica: ${dados.area}`, { indent: 10 });
+    if (dados.tipoAcao) text(`Tipo de Acao: ${dados.tipoAcao}`, { indent: 10 });
+    nl(); sep();
+    text('HISTORICO DO CASO', { font: bold, size: 11 }); nl(0.3);
+    text('Descreva brevemente os fatos que motivaram a busca pelo servico juridico:'); nl(0.3);
+    linha('', 4);
+    sep();
+    text('DOCUMENTOS DISPONIVEIS', { font: bold, size: 11 }); nl(0.3);
+    const checks = ['Contratos / acordos', 'Recibos / comprovantes de pagamento', 'Correspondencias / mensagens', 'Fotografias / videos', 'Boletim de ocorrencia', 'Laudos / pericias', 'Outros documentos'];
+    for (const c of checks) { page.drawRectangle({ x: margin + 10, y: y - 1, width: 10, height: 10, borderColor: rgb(0.4, 0.4, 0.4), borderWidth: 0.5 }); text(`    ${c}`, { indent: 28 }); nl(-0.3); }
+    nl(0.5); sep();
+    text('INFORMACOES ADICIONAIS', { font: bold, size: 11 }); nl(0.3);
+    linha('Ja houve tentativas anteriores de resolver este caso?', 2);
+    linha('Existem prazos urgentes a serem observados?', 2);
+    nl(); sep();
+    text('Declaro que as informacoes prestadas neste questionario sao verdadeiras.');
+    nl(2);
+    page.drawLine({ start: { x: margin, y }, end: { x: margin + W, y }, thickness: 0.5, color: rgb(0, 0, 0) }); nl();
+    text('Assinatura do Cliente', { indent: 10 }); nl(0.3);
+    text(dados.clienteNome, { indent: 10 });
+    nl(2);
+    text('Este documento foi gerado eletronicamente pelo JurysOne — Lei n. 14.063/2020.', { size: 8 });
+    return Buffer.from(await pdfDoc.save()).toString('base64');
   }
 
   /**
