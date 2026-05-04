@@ -901,19 +901,26 @@ export class EsignService {
       vencimento1Parc: atendimento?.vencimento1Parc ?? null,
     };
 
-    // ── 3. Upload do Contrato de Honorários (documento principal) ─────────
-    // Os demais documentos (Procuração, Declaração, Questionário) serão
-    // adicionados após a estabilização do canal com a ClickSign.
-    const pdfBase64 = await this.gerarContratoBase64('Contrato de Honorarios', dadosPdf);
+    // ── 3. Upload do contrato (documento principal) ───────────────────────
+    // Prioridade: template "contrato_honorarios" salvo pelo escritório
+    // (ex.: Contrato de Prestação de Serviço carregado na área de Modelos).
+    // Fallback: PDF gerado automaticamente com os dados do atendimento.
+    const escritorioId = atendimento?.escritorioId ?? '';
+    const templateB64  = escritorioId
+      ? await this.getTemplateBase64(escritorioId, 'contrato_honorarios').catch(() => null)
+      : null;
 
-    this.logger.log(`[ClickSign v3] Upload: Contrato_de_Honorarios.pdf`);
+    const pdfBase64  = templateB64 ?? await this.gerarContratoBase64('Contrato de Prestacao de Servico', dadosPdf);
+    const nomeArquivo = 'Contrato_de_Prestacao_de_Servico.pdf';
+
+    this.logger.log(`[ClickSign v3] Upload: ${nomeArquivo} (template=${!!templateB64})`);
     const docResp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/documents`, {
       method: 'POST', headers,
       body: JSON.stringify({
         data: {
           type: 'documents',
           attributes: {
-            filename:       'Contrato_de_Honorarios.pdf',
+            filename:       nomeArquivo,
             content_base64: `data:application/pdf;base64,${pdfBase64}`,
           },
         },
