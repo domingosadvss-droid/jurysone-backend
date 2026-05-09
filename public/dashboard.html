@@ -4426,7 +4426,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         }
 
         // Criar documento no ZapSign
-        async function zapsignCriarDoc(titulo, urlPdf, signatarios, base64Pdf) {
+        async function zapsignCriarDoc(titulo, urlPdf, signatarios, base64Pdf, dadosCliente) {
             const payload = {
                 sandbox: false,
                 name: titulo,
@@ -4443,7 +4443,11 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
                     send_automatic_whatsapp: false
                 }))
             };
-            // Prefere base64 (gerado localmente), senão usa url_pdf
+            // Inclui dados do cliente para o backend gerar os .docx preenchidos
+            if (dadosCliente) {
+                payload.dados_cliente = dadosCliente;
+            }
+            // Fallback: base64 gerado localmente ou url_pdf
             if (base64Pdf) {
                 payload.base64_pdf = base64Pdf;
             } else if (urlPdf) {
@@ -13349,18 +13353,20 @@ Nestes termos, pede deferimento.
             let zapToken   = null;
             let zapSigners = [];
 
-            naProgressoEtapa('⏳', 'Gerando os 4 documentos jurídicos em PDF (Contrato, Procuração, Hipossuficiência, Renúncia)...', 'aviso');
+            naProgressoEtapa('⏳', 'Gerando os 4 documentos jurídicos (.docx) para envio ao ClickSign...', 'aviso');
+            const dadosCliente = naColetarDadosDoc();
             const pdfBase64 = gerarTodosDocsPDF();
 
-            if (pdfBase64) {
-                naProgressoEtapa('✅', '4 documentos PDF gerados com sucesso', 'ok');
+            {
+                naProgressoEtapa('✅', 'Dados do cliente coletados — enviando ao ClickSign para gerar .docx', 'ok');
                 naProgressoEtapa('⏳', 'Enviando para assinatura digital (ClickSign)...', 'aviso');
                 try {
                     const zapResult = await zapsignCriarDoc(
                         `Documentos Jurídicos — ${clienteNome}`,
                         '',
                         [{ nome: clienteNome, email: clienteEmail, telefone: clienteTel }],
-                        pdfBase64
+                        pdfBase64,
+                        dadosCliente
                     );
                     // Log de debug — visível no console do navegador (F12)
                     console.log('[ClickSign] Resposta do backend:', JSON.stringify(zapResult));
@@ -13386,8 +13392,6 @@ Nestes termos, pede deferimento.
                     naProgressoEtapa('⚠️', 'ClickSign offline — contrato salvo localmente', 'aviso');
                     console.error('[ClickSign] Exceção:', e.message);
                 }
-            } else {
-                naProgressoEtapa('⚠️', 'jsPDF não carregado — envelope será criado em Documentos', 'aviso');
             }
 
             // ═══════════════════════════════════════════════════════════
