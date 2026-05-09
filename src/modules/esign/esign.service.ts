@@ -28,6 +28,8 @@ import { NotificationsGateway, NotificationType } from '../notifications/notific
 import { ChavesService } from '../chaves/chaves.service';
 import { WhatsappService } from '../whatsapp/whatsapp.service';
 import * as crypto from 'crypto';
+import * as fs   from 'fs';
+import * as path from 'path';
 
 export interface CreateEnvelopeInput {
   title: string;
@@ -931,7 +933,7 @@ export class EsignService {
       uploadDoc('contrato_honorarios',        'Contrato_de_Prestacao_de_Servico.pdf', () => this.gerarContratoBase64('Contrato de Prestacao de Servico', dadosPdf)),
       uploadDoc('procuracao',                 'Procuracao_Ad_Judicia.pdf',            () => this.gerarProcuracaoBase64(dadosPdf)),
       uploadDoc('declaracao_hipossuficiencia','Declaracao_de_Hipossuficiencia.pdf',   () => this.gerarDeclaracaoBase64(dadosPdf)),
-      uploadDoc('questionario_juridico',      'Questionario_Juridico.pdf',            () => this.gerarQuestionarioBase64(dadosPdf)),
+      uploadDoc('renuncia',                   'Carta_de_Renuncia.pdf',               () => this.gerarRenunciaBase64(dadosPdf)),
     ]);
 
     // ── 4. Criar signatário no envelope ───────────────────────────────────
@@ -1062,30 +1064,44 @@ export class EsignService {
    * Retorna array de { nome, base64 } para envio ao ClickSign.
    */
   async gerarTodosDocumentosPdf(dados: {
-    clienteNome: string;
-    clienteCpf?: string;
-    clienteEndereco?: string;
-    area: string;
-    tipoAcao?: string;
-    valorAcao?: number;
-    tipoHonorario?: string;
-    valorHonorario?: number;
-    percentualExito?: number;
-    formaPagamento?: string;
-    numParcelas?: number;
-    vencimento1Parc?: Date | null;
+    clienteNome:         string;
+    clienteCpf?:         string;
+    clienteRG?:          string;
+    clienteRGOrgao?:     string;
+    clienteNaciona?:     string;
+    clienteEstadoCivil?: string;
+    clienteProfissao?:   string;
+    clienteTelefone?:    string;
+    clienteEmail?:       string;
+    clienteEndereco?:    string;
+    clienteNum?:         string;
+    clienteCompl?:       string;
+    clienteBairro?:      string;
+    clienteCidade?:      string;
+    clienteEstado?:      string;
+    clienteCEP?:         string;
+    area:                string;
+    tipoAcao?:           string;
+    valorAcao?:          number;
+    tipoHonorario?:      string;
+    valorHonorario?:     number;
+    percentualExito?:    number;
+    formaPagamento?:     string;
+    numParcelas?:        number;
+    vencimento1Parc?:    Date | null;
+    cidade?:             string;
   }): Promise<Array<{ nome: string; base64: string }>> {
-    const [contrato, procuracao, declaracao, questionario] = await Promise.all([
-      this.gerarContratoBase64('Contrato de Honorarios', dados),
+    const [contrato, procuracao, declaracao, renuncia] = await Promise.all([
+      this.gerarContratoBase64('Contrato de Prestacao de Servicos', dados),
       this.gerarProcuracaoBase64(dados),
       this.gerarDeclaracaoBase64(dados),
-      this.gerarQuestionarioBase64(dados),
+      this.gerarRenunciaBase64(dados),
     ]);
     return [
-      { nome: 'Contrato_de_Honorarios',          base64: contrato     },
-      { nome: 'Procuracao_Ad_Judicia',            base64: procuracao   },
-      { nome: 'Declaracao_de_Hipossuficiencia',   base64: declaracao   },
-      { nome: 'Questionario_Juridico',            base64: questionario },
+      { nome: 'Contrato_de_Prestacao_de_Servicos', base64: contrato   },
+      { nome: 'Procuracao_Ad_Judicia',             base64: procuracao },
+      { nome: 'Declaracao_de_Hipossuficiencia',    base64: declaracao },
+      { nome: 'Carta_de_Renuncia',                 base64: renuncia   },
     ];
   }
 
@@ -1098,380 +1114,494 @@ export class EsignService {
       case 'contrato_honorarios':         return this.gerarContratoBase64('Contrato de Honorarios', dados);
       case 'procuracao':                  return this.gerarProcuracaoBase64(dados);
       case 'declaracao_hipossuficiencia': return this.gerarDeclaracaoBase64(dados);
-      case 'questionario_juridico':       return this.gerarQuestionarioBase64(dados);
+      case 'renuncia':                    return this.gerarRenunciaBase64(dados);
       default:                            return this.gerarContratoBase64('Documento Juridico', dados);
     }
   }
 
-  /** Procuração Ad Judicia */
+  /** Procuracao Ad Judicia et Extra — completa */
   private async gerarProcuracaoBase64(dados: {
-    clienteNome: string; clienteCpf?: string; clienteEndereco?: string; area?: string; tipoAcao?: string;
+    clienteNome: string; clienteCpf?: string; clienteRG?: string; clienteRGOrgao?: string;
+    clienteNaciona?: string; clienteEstadoCivil?: string; clienteProfissao?: string;
+    clienteEndereco?: string; clienteNum?: string; clienteCompl?: string;
+    clienteBairro?: string; clienteCidade?: string; clienteEstado?: string; clienteCEP?: string;
+    tipoAcao?: string; cidade?: string; area?: string;
   }): Promise<string> {
     const { PDFDocument, StandardFonts, rgb } = require('pdf-lib') as typeof import('pdf-lib');
     const pdfDoc  = await PDFDocument.create();
     const regular = await pdfDoc.embedFont(StandardFonts.Helvetica);
     const bold    = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
-    const page    = pdfDoc.addPage([595, 842]);
-    const margin  = 50; const W = 595 - margin * 2;
-    let y = 800; const LINE = 15;
-    const nl  = (n = 1) => { y -= LINE * n; };
-    const sep = () => { page.drawLine({ start: { x: margin, y }, end: { x: margin + W, y }, thickness: 0.5, color: rgb(0.6, 0.6, 0.6) }); nl(); };
-    const text = (str: string, opts: { size?: number; font?: any; indent?: number; center?: boolean } = {}) => {
-      const { size = 10, font = regular, indent = 0, center = false } = opts;
-      const maxW = W - indent; const words = str.split(' '); let line = '';
-      for (const word of words) {
-        const test = line ? `${line} ${word}` : word;
-        if (font.widthOfTextAtSize(test, size) > maxW && line) {
-          const x = center ? margin + (W - font.widthOfTextAtSize(line, size)) / 2 : margin + indent;
-          page.drawText(line, { x, y, font, size, color: rgb(0, 0, 0) }); nl(); line = word;
-        } else { line = test; }
+    const M = 50; const W = 595 - M * 2; const LINE = 14;
+    const AZUL = rgb(0.06, 0.18, 0.37); const CINZA = rgb(0.33, 0.33, 0.33);
+    let page: any = pdfDoc.addPage([595, 842]); let y = 790;
+    const logoPath = path.join(process.cwd(), 'public', 'logo-domingos.png');
+    const logoImg  = fs.existsSync(logoPath) ? await pdfDoc.embedPng(fs.readFileSync(logoPath)) : null;
+    const hdr = (pg: any) => {
+      if (logoImg) {
+        const lh = 46; const lw = logoImg.width * (lh / logoImg.height);
+        const gap = 14;
+        const t1 = 'DOMINGOS'; const t2 = 'ADVOCACIA E ASSESSORIA EMPRESARIAL';
+        const tw = Math.max(bold.widthOfTextAtSize(t1, 20), regular.widthOfTextAtSize(t2, 7.5));
+        const totalW = lw + gap + tw;
+        const startX = M + (W - totalW) / 2;
+        pg.drawImage(logoImg, { x: startX, y: 806, width: lw, height: lh });
+        const tx = startX + lw + gap;
+        pg.drawText(t1, { x: tx, y: 832, font: bold, size: 20, color: rgb(0.23, 0.23, 0.23) });
+        pg.drawText(t2, { x: tx, y: 818, font: regular, size: 7.5, color: rgb(0.4, 0.4, 0.4) });
+      } else {
+        const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
+        pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
+        const t2 = 'ADVOCACIA E ASSESSORIA EMPRESARIAL'; const t2w = regular.widthOfTextAtSize(t2, 8);
+        pg.drawText(t2, { x: M + (W - t2w) / 2, y: 809, font: regular, size: 8, color: rgb(0.45, 0.45, 0.45) });
       }
-      if (line) { const x = center ? margin + (W - font.widthOfTextAtSize(line, size)) / 2 : margin + indent; page.drawText(line, { x, y, font, size, color: rgb(0, 0, 0) }); nl(); }
+      pg.drawLine({ start: { x: M, y: 803 }, end: { x: M + W, y: 803 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
     };
+    const ftr = (pg: any) => {
+      pg.drawLine({ start: { x: M, y: 48 }, end: { x: M + W, y: 48 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
+      const f1 = 'R. 501, no 145, Sl. 05, centro, Balneario Camboriu'; const f1w = regular.widthOfTextAtSize(f1, 8);
+      pg.drawText(f1, { x: M + (W - f1w) / 2, y: 37, font: regular, size: 8, color: rgb(0.3, 0.3, 0.3) });
+      const f2 = 'jonathan@domingosadvocacia.com.br     47 -999159178'; const f2w = regular.widthOfTextAtSize(f2, 8);
+      pg.drawText(f2, { x: M + (W - f2w) / 2, y: 26, font: regular, size: 8, color: rgb(0.3, 0.3, 0.3) });
+    };
+    const np  = () => { ftr(page); page = pdfDoc.addPage([595, 842]); hdr(page); y = 795; };
+    const nl  = (n = 1) => { y -= LINE * n; };
+    const chk = () => { if (y < 70) np(); };
+    const sep = () => { chk(); page.drawLine({ start: { x: M, y }, end: { x: M + W, y }, thickness: 0.5, color: rgb(0.7, 0.7, 0.7) }); nl(); };
+    const text = (str: string, opts: { sz?: number; f?: any; ind?: number; ctr?: boolean } = {}) => {
+      const { sz = 10, f = regular, ind = 0, ctr = false } = opts;
+      const maxW = W - ind; const words = str.split(' '); let ln = '';
+      for (const w of words) {
+        const t = ln ? `${ln} ${w}` : w;
+        if (f.widthOfTextAtSize(t, sz) > maxW && ln) {
+          chk(); page.drawText(ln, { x: ctr ? M + (W - f.widthOfTextAtSize(ln, sz)) / 2 : M + ind, y, font: f, size: sz, color: rgb(0, 0, 0) }); nl(); ln = w;
+        } else { ln = t; }
+      }
+      if (ln) { chk(); page.drawText(ln, { x: ctr ? M + (W - f.widthOfTextAtSize(ln, sz)) / 2 : M + ind, y, font: f, size: sz, color: rgb(0, 0, 0) }); nl(); }
+    };
+    const hoje = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+    hdr(page);
 
-    text('PROCURACAO AD JUDICIA ET EXTRA', { font: bold, size: 13, center: true });
-    nl(0.5); sep();
-    text('OUTORGANTE', { font: bold, size: 11 }); nl(0.3);
-    text(`Nome: ${dados.clienteNome}`, { indent: 10 });
-    if (dados.clienteCpf) { const d = dados.clienteCpf.replace(/\D/g, ''); text(`CPF: ${d.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')}`, { indent: 10 }); }
-    if (dados.clienteEndereco && dados.clienteEndereco !== '""') text(`Endereco: ${dados.clienteEndereco}`, { indent: 10 });
+    const cpfFmt  = dados.clienteCpf ? dados.clienteCpf.replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4') : '[CPF]';
+    const rg      = dados.clienteRG || '[RG]';
+    const rgOrgao = dados.clienteRGOrgao || 'SSP/SC';
+    const nac     = dados.clienteNaciona || 'brasileiro(a)';
+    const ec      = dados.clienteEstadoCivil || '';
+    const prof    = dados.clienteProfissao || '';
+    const cidade  = dados.cidade || dados.clienteCidade || 'Balneario Camboriu';
+    const endCli  = (() => {
+      const rua    = dados.clienteEndereco || '[ENDERECO]';
+      const num    = dados.clienteNum    ? `, no ${dados.clienteNum}`           : '';
+      const compl  = dados.clienteCompl  ? `, ${dados.clienteCompl}`            : '';
+      const bairro = dados.clienteBairro ? `, bairro ${dados.clienteBairro}`    : '';
+      const cid    = dados.clienteCidade ? ` na cidade de ${dados.clienteCidade}` : '';
+      const uf     = dados.clienteEstado ? ` - ${dados.clienteEstado}`          : '';
+      const cep    = dados.clienteCEP    ? `, CEP ${dados.clienteCEP}`          : '';
+      return `${rua}${num}${compl}${bairro}${cid}${uf}${cep}`;
+    })();
+
+    text('PROCURACAO', { f: bold, sz: 14, ctr: true }); nl(0.5); sep(); nl(0.5);
+    text(`OUTORGANTE: ${dados.clienteNome.toUpperCase()}, ${nac}${ec ? ', ' + ec : ''}${prof ? ', ' + prof : ''}, portador(a) do RG no ${rg} ${rgOrgao} e CPF no ${cpfFmt}, residente e domiciliado(a) na ${endCli}.`, { ind: 20 });
+    nl();
+    text('OUTORGADOS: Dr. JONATHAN FRANK STOBIENIA DOMINGOS, inscrito na OAB/SC sob no 43.348, e Dra. THAMILE ALESSANDRA DOMINGOS, inscrita na OAB/SC no 57.773, com endereco profissional subscrito no rodape.', { ind: 20 });
     nl(); sep();
-    text('OUTORGADO(A)', { font: bold, size: 11 }); nl(0.3);
-    text('Advogado(a) / Escritorio de Advocacia responsavel pelo atendimento.', { indent: 10 });
-    nl(); sep();
-    text('PODERES', { font: bold, size: 11 }); nl(0.3);
-    text('Pelo presente instrumento, o(a) OUTORGANTE nomeia e constitui seu bastante procurador o(a) OUTORGADO(A), a quem confere amplos poderes para o foro em geral, em qualquer juizo, instancia ou tribunal, podendo propor as acoes que forem necessarias e defender-se das que forem propostas, seguindo-as ate final decisao, usando todos os recursos ordinarios e extraordinarios.');
+    text('PODERES:', { f: bold, sz: 11 }); nl(0.3);
+    text('Para o foro em geral, conferindo-lhes os mais amplos e ilimitados poderes inclusive os da clausula "ad judicia et extra", bem como os especiais constantes do art. 105, do Codigo de Processo Civil, para, onde com esta se apresentarem, em conjunto ou separadamente, alem de ordem de nomeacao, propor acoes e contesta-las, receber citacoes, notificacoes e intimacoes, apresentar justificacoes, variar de acoes e pedidos, notificar, interpelar, protestar, discordar, transigir e desistir, receber a quantia e dar quitacao, arrematar ou adjudicar em qualquer praca ou leilao, prestar compromissos de inventariante, oferecer as primeiras e ultimas declaracoes, interpor quaisquer recursos, requerer, assinar, praticar, perante qualquer reparticao publica, entidades autarquicas e ou parastatal, Juizo, Instancia ou Tribunal, tudo o que julgar conveniente ou necessario ao bom e fiel desempenho deste mandato, que podera ser substabelecido, no todo ou em parte, a quem melhor lhes convier, com ou sem reserva de poderes.', { ind: 10 });
     nl(0.5);
-    text('Fica ainda o(a) outorgado(a) autorizado(a) a confessar, desistir, transigir, firmar compromissos ou acordos, receber e dar quitacao, e praticar todos os demais atos necessarios ao fiel cumprimento deste mandato, inclusive para os fins do art. 105 do CPC.');
+    if (dados.tipoAcao || dados.area) { text(`Finalidade especifica: ${dados.tipoAcao || dados.area}.`, { ind: 10 }); nl(0.5); }
+    text('Os poderes especificos acima outorgados poderao ser substabelecidos.', { ind: 10 });
     nl(); sep();
-    if (dados.area) { text(`Area: ${dados.area}`, { indent: 10 }); }
-    if (dados.tipoAcao) { text(`Objeto: ${dados.tipoAcao}`, { indent: 10 }); nl(); }
-    sep();
-    text(`Local e data: ____________, ${new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}.`);
+    text('As partes reconhecem e acordam que o presente documento podera ser assinado eletronicamente por meio de plataforma eletronica Docusign, ZapSign ou pelo sistema de assinatura gov.br, produzindo os mesmos efeitos legais da via assinada fisicamente, nos termos da Lei no 13.874/2019 e do Decreto no 10.278/2020 e acordam ainda em nao contestar a sua validade, conteudo, autenticidade e integridade.', { ind: 10 });
     nl(2);
-    page.drawLine({ start: { x: margin, y }, end: { x: margin + W, y }, thickness: 0.5, color: rgb(0, 0, 0) }); nl();
-    text('Assinatura do Outorgante', { indent: 10 }); nl(0.3);
-    text(dados.clienteNome, { indent: 10 });
-    nl(2);
-    text('Este documento foi gerado eletronicamente pelo JurysOne — Lei n. 14.063/2020.', { size: 8 });
+    text(`${cidade}, ${hoje}.`, { ctr: true }); nl(2);
+    page.drawLine({ start: { x: M + W / 4, y }, end: { x: M + (W * 3) / 4, y }, thickness: 0.5, color: rgb(0, 0, 0) }); nl();
+    text(dados.clienteNome.toUpperCase(), { ctr: true });
+    text(`CPF: ${cpfFmt}`, { ctr: true, sz: 9 });
+
+    ftr(page);
     return Buffer.from(await pdfDoc.save()).toString('base64');
   }
 
-  /** Declaração de Hipossuficiência */
+  /** Declaracao de Hipossuficiencia Economica — completa */
   private async gerarDeclaracaoBase64(dados: {
-    clienteNome: string; clienteCpf?: string; clienteEndereco?: string;
+    clienteNome: string; clienteCpf?: string; clienteRG?: string; clienteRGOrgao?: string;
+    clienteNaciona?: string; clienteEstadoCivil?: string; clienteProfissao?: string;
+    clienteEndereco?: string; clienteNum?: string; clienteCompl?: string;
+    clienteBairro?: string; clienteCidade?: string; clienteEstado?: string; clienteCEP?: string;
+    cidade?: string;
   }): Promise<string> {
     const { PDFDocument, StandardFonts, rgb } = require('pdf-lib') as typeof import('pdf-lib');
     const pdfDoc  = await PDFDocument.create();
     const regular = await pdfDoc.embedFont(StandardFonts.Helvetica);
     const bold    = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
-    const page    = pdfDoc.addPage([595, 842]);
-    const margin  = 50; const W = 595 - margin * 2;
-    let y = 800; const LINE = 15;
-    const nl  = (n = 1) => { y -= LINE * n; };
-    const sep = () => { page.drawLine({ start: { x: margin, y }, end: { x: margin + W, y }, thickness: 0.5, color: rgb(0.6, 0.6, 0.6) }); nl(); };
-    const text = (str: string, opts: { size?: number; font?: any; indent?: number; center?: boolean } = {}) => {
-      const { size = 10, font = regular, indent = 0, center = false } = opts;
-      const maxW = W - indent; const words = str.split(' '); let line = '';
-      for (const word of words) {
-        const test = line ? `${line} ${word}` : word;
-        if (font.widthOfTextAtSize(test, size) > maxW && line) {
-          const x = center ? margin + (W - font.widthOfTextAtSize(line, size)) / 2 : margin + indent;
-          page.drawText(line, { x, y, font, size, color: rgb(0, 0, 0) }); nl(); line = word;
-        } else { line = test; }
+    const M = 50; const W = 595 - M * 2; const LINE = 14;
+    const AZUL = rgb(0.06, 0.18, 0.37); const CINZA = rgb(0.33, 0.33, 0.33);
+    let page: any = pdfDoc.addPage([595, 842]); let y = 790;
+    const logoPath = path.join(process.cwd(), 'public', 'logo-domingos.png');
+    const logoImg  = fs.existsSync(logoPath) ? await pdfDoc.embedPng(fs.readFileSync(logoPath)) : null;
+    const hdr = (pg: any) => {
+      if (logoImg) {
+        const lh = 46; const lw = logoImg.width * (lh / logoImg.height);
+        const gap = 14;
+        const t1 = 'DOMINGOS'; const t2 = 'ADVOCACIA E ASSESSORIA EMPRESARIAL';
+        const tw = Math.max(bold.widthOfTextAtSize(t1, 20), regular.widthOfTextAtSize(t2, 7.5));
+        const totalW = lw + gap + tw;
+        const startX = M + (W - totalW) / 2;
+        pg.drawImage(logoImg, { x: startX, y: 806, width: lw, height: lh });
+        const tx = startX + lw + gap;
+        pg.drawText(t1, { x: tx, y: 832, font: bold, size: 20, color: rgb(0.23, 0.23, 0.23) });
+        pg.drawText(t2, { x: tx, y: 818, font: regular, size: 7.5, color: rgb(0.4, 0.4, 0.4) });
+      } else {
+        const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
+        pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
+        const t2 = 'ADVOCACIA E ASSESSORIA EMPRESARIAL'; const t2w = regular.widthOfTextAtSize(t2, 8);
+        pg.drawText(t2, { x: M + (W - t2w) / 2, y: 809, font: regular, size: 8, color: rgb(0.45, 0.45, 0.45) });
       }
-      if (line) { const x = center ? margin + (W - font.widthOfTextAtSize(line, size)) / 2 : margin + indent; page.drawText(line, { x, y, font, size, color: rgb(0, 0, 0) }); nl(); }
+      pg.drawLine({ start: { x: M, y: 803 }, end: { x: M + W, y: 803 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
     };
+    const ftr = (pg: any) => {
+      pg.drawLine({ start: { x: M, y: 48 }, end: { x: M + W, y: 48 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
+      const f1 = 'R. 501, no 145, Sl. 05, centro, Balneario Camboriu'; const f1w = regular.widthOfTextAtSize(f1, 8);
+      pg.drawText(f1, { x: M + (W - f1w) / 2, y: 37, font: regular, size: 8, color: rgb(0.3, 0.3, 0.3) });
+      const f2 = 'jonathan@domingosadvocacia.com.br     47 -999159178'; const f2w = regular.widthOfTextAtSize(f2, 8);
+      pg.drawText(f2, { x: M + (W - f2w) / 2, y: 26, font: regular, size: 8, color: rgb(0.3, 0.3, 0.3) });
+    };
+    const np  = () => { ftr(page); page = pdfDoc.addPage([595, 842]); hdr(page); y = 795; };
+    const nl  = (n = 1) => { y -= LINE * n; };
+    const chk = () => { if (y < 70) np(); };
+    const sep = () => { chk(); page.drawLine({ start: { x: M, y }, end: { x: M + W, y }, thickness: 0.5, color: rgb(0.7, 0.7, 0.7) }); nl(); };
+    const text = (str: string, opts: { sz?: number; f?: any; ind?: number; ctr?: boolean } = {}) => {
+      const { sz = 10, f = regular, ind = 0, ctr = false } = opts;
+      const maxW = W - ind; const words = str.split(' '); let ln = '';
+      for (const w of words) {
+        const t = ln ? `${ln} ${w}` : w;
+        if (f.widthOfTextAtSize(t, sz) > maxW && ln) {
+          chk(); page.drawText(ln, { x: ctr ? M + (W - f.widthOfTextAtSize(ln, sz)) / 2 : M + ind, y, font: f, size: sz, color: rgb(0, 0, 0) }); nl(); ln = w;
+        } else { ln = t; }
+      }
+      if (ln) { chk(); page.drawText(ln, { x: ctr ? M + (W - f.widthOfTextAtSize(ln, sz)) / 2 : M + ind, y, font: f, size: sz, color: rgb(0, 0, 0) }); nl(); }
+    };
+    const hoje = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+    hdr(page);
 
-    text('DECLARACAO DE HIPOSSUFICIENCIA', { font: bold, size: 13, center: true });
-    nl(0.5); sep();
-    const cpfFmt = dados.clienteCpf ? dados.clienteCpf.replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4') : '___.___.___-__';
-    text(`Eu, ${dados.clienteNome}, portador(a) do CPF n. ${cpfFmt}${dados.clienteEndereco && dados.clienteEndereco !== '""' ? `, residente em ${dados.clienteEndereco}` : ''}, DECLARO, sob as penas da lei, que nao possuo condicoes financeiras de arcar com o pagamento das custas processuais e honorarios advocaticios sem prejuizo do meu proprio sustento e de minha familia.`);
+    const cpfFmt  = dados.clienteCpf ? dados.clienteCpf.replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4') : '[CPF]';
+    const rg      = dados.clienteRG || '[RG]';
+    const rgOrgao = dados.clienteRGOrgao || 'SSP/SC';
+    const nac     = dados.clienteNaciona || 'brasileiro(a)';
+    const ec      = dados.clienteEstadoCivil || '';
+    const prof    = dados.clienteProfissao || '';
+    const cidade  = dados.cidade || dados.clienteCidade || 'Balneario Camboriu';
+    const endCli  = (() => {
+      const rua    = dados.clienteEndereco || '[ENDERECO]';
+      const num    = dados.clienteNum    ? `, no ${dados.clienteNum}`           : '';
+      const compl  = dados.clienteCompl  ? `, ${dados.clienteCompl}`            : '';
+      const bairro = dados.clienteBairro ? `, bairro ${dados.clienteBairro}`    : '';
+      const cid    = dados.clienteCidade ? ` na cidade de ${dados.clienteCidade}` : '';
+      const uf     = dados.clienteEstado ? ` - ${dados.clienteEstado}`          : '';
+      const cep    = dados.clienteCEP    ? `, CEP ${dados.clienteCEP}`          : '';
+      return `${rua}${num}${compl}${bairro}${cid}${uf}${cep}`;
+    })();
+
+    text('DECLARACAO DE HIPOSSUFICIENCIA ECONOMICA', { f: bold, sz: 13, ctr: true }); nl(0.3);
+    text('(Para fins de concessao do beneficio de Assistencia Judiciaria Gratuita - Art. 99, §3o, CPC)', { sz: 9, ctr: true }); nl(0.5);
+    sep(); nl(0.5);
+    text(`Eu, ${dados.clienteNome.toUpperCase()}, ${nac}${ec ? ', ' + ec : ''}${prof ? ', ' + prof : ''}, portador(a) do RG no ${rg} ${rgOrgao} e inscrito(a) no CPF no ${cpfFmt}, residente e domiciliado(a) na ${endCli}, na qualidade de parte no processo judicial em andamento ou a ser proposto pelo escritorio DOMINGOS ADVOCACIA E ASSESSORIA EMPRESARIAL, DECLARO, sob as penas da lei, o que segue:`, { ind: 20 });
     nl();
-    text('Declaro ainda estar ciente de que a falsidade desta declaracao configura o crime previsto no art. 299 do Codigo Penal Brasileiro (falsidade ideologica), sujeitando-me as respectivas penalidades.');
+    text('1. Que nao possuo condicoes financeiras de arcar com as custas do processo e honorarios advocaticios sem prejuizo do sustento proprio ou de minha familia, razao pela qual requeiro a concessao do beneficio da Assistencia Judiciaria Gratuita, nos termos do art. 98 e seguintes do Codigo de Processo Civil e da Lei no 1.060/50.');
+    nl(0.5);
+    text('2. Que minha renda mensal e insuficiente para custear as despesas processuais, conforme declarado a seguir:');
     nl();
-    text('Por ser expressao da verdade, firmo a presente declaracao.');
-    nl(); sep();
-    text(`Local e data: ____________, ${new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}.`);
-    nl(3);
-    page.drawLine({ start: { x: margin + W / 4, y }, end: { x: margin + (W * 3) / 4, y }, thickness: 0.5, color: rgb(0, 0, 0) }); nl();
-    text(dados.clienteNome, { center: true }); nl(0.3);
-    text(`CPF: ${cpfFmt}`, { center: true });
+    text('Renda mensal bruta: R$ ________________________________________________', { ind: 20 }); nl(0.5);
+    text('Numero de dependentes: ________________', { ind: 20 }); nl(0.5);
+    text('Despesas mensais aproximadas: R$ ________________________________________', { ind: 20 }); nl();
+    text('3. Que estou ciente de que a falsidade desta declaracao configura crime de falsidade ideologica (art. 299 do Codigo Penal Brasileiro), sujeitando-me as respectivas penalidades, bem como ao pagamento das custas em dobro (art. 100 do CPC).');
+    nl(0.5);
+    text('4. Que caso minha situacao financeira se altere de forma significativa, comprometo-me a informar imediatamente ao(a) advogado(a) responsavel, para que seja avaliada a manutencao ou revogacao do beneficio.');
     nl(2);
-    text('Este documento foi gerado eletronicamente pelo JurysOne — Lei n. 14.063/2020.', { size: 8 });
+    text(`${cidade}, ${hoje}.`, { ctr: true }); nl(2);
+    page.drawLine({ start: { x: M + W / 4, y }, end: { x: M + (W * 3) / 4, y }, thickness: 0.5, color: rgb(0, 0, 0) }); nl();
+    text(dados.clienteNome.toUpperCase(), { ctr: true });
+    text(`CPF: ${cpfFmt}`, { ctr: true, sz: 9 });
+
+    ftr(page);
     return Buffer.from(await pdfDoc.save()).toString('base64');
   }
 
-  /** Questionário Jurídico */
-  private async gerarQuestionarioBase64(dados: {
-    clienteNome: string; clienteCpf?: string; area?: string; tipoAcao?: string;
+  /** Carta de Renuncia de Mandato — completa */
+  private async gerarRenunciaBase64(dados: {
+    clienteNome: string; clienteCpf?: string; clienteRG?: string;
+    cidade?: string; clienteCidade?: string;
   }): Promise<string> {
     const { PDFDocument, StandardFonts, rgb } = require('pdf-lib') as typeof import('pdf-lib');
     const pdfDoc  = await PDFDocument.create();
     const regular = await pdfDoc.embedFont(StandardFonts.Helvetica);
     const bold    = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
-    const page    = pdfDoc.addPage([595, 842]);
-    const margin  = 50; const W = 595 - margin * 2;
-    let y = 800; const LINE = 15;
+    const M = 50; const W = 595 - M * 2; const LINE = 14;
+    const AZUL = rgb(0.06, 0.18, 0.37); const CINZA = rgb(0.33, 0.33, 0.33);
+    let page: any = pdfDoc.addPage([595, 842]); let y = 790;
+    const logoPath = path.join(process.cwd(), 'public', 'logo-domingos.png');
+    const logoImg  = fs.existsSync(logoPath) ? await pdfDoc.embedPng(fs.readFileSync(logoPath)) : null;
+    const hdr = (pg: any) => {
+      if (logoImg) {
+        const lh = 46; const lw = logoImg.width * (lh / logoImg.height);
+        const gap = 14;
+        const t1 = 'DOMINGOS'; const t2 = 'ADVOCACIA E ASSESSORIA EMPRESARIAL';
+        const tw = Math.max(bold.widthOfTextAtSize(t1, 20), regular.widthOfTextAtSize(t2, 7.5));
+        const totalW = lw + gap + tw;
+        const startX = M + (W - totalW) / 2;
+        pg.drawImage(logoImg, { x: startX, y: 806, width: lw, height: lh });
+        const tx = startX + lw + gap;
+        pg.drawText(t1, { x: tx, y: 832, font: bold, size: 20, color: rgb(0.23, 0.23, 0.23) });
+        pg.drawText(t2, { x: tx, y: 818, font: regular, size: 7.5, color: rgb(0.4, 0.4, 0.4) });
+      } else {
+        const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
+        pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
+        const t2 = 'ADVOCACIA E ASSESSORIA EMPRESARIAL'; const t2w = regular.widthOfTextAtSize(t2, 8);
+        pg.drawText(t2, { x: M + (W - t2w) / 2, y: 809, font: regular, size: 8, color: rgb(0.45, 0.45, 0.45) });
+      }
+      pg.drawLine({ start: { x: M, y: 803 }, end: { x: M + W, y: 803 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
+    };
+    const ftr = (pg: any) => {
+      pg.drawLine({ start: { x: M, y: 48 }, end: { x: M + W, y: 48 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
+      const f1 = 'R. 501, no 145, Sl. 05, centro, Balneario Camboriu'; const f1w = regular.widthOfTextAtSize(f1, 8);
+      pg.drawText(f1, { x: M + (W - f1w) / 2, y: 37, font: regular, size: 8, color: rgb(0.3, 0.3, 0.3) });
+      const f2 = 'jonathan@domingosadvocacia.com.br     47 -999159178'; const f2w = regular.widthOfTextAtSize(f2, 8);
+      pg.drawText(f2, { x: M + (W - f2w) / 2, y: 26, font: regular, size: 8, color: rgb(0.3, 0.3, 0.3) });
+    };
+    const np  = () => { ftr(page); page = pdfDoc.addPage([595, 842]); hdr(page); y = 795; };
     const nl  = (n = 1) => { y -= LINE * n; };
-    const sep = () => { page.drawLine({ start: { x: margin, y }, end: { x: margin + W, y }, thickness: 0.5, color: rgb(0.6, 0.6, 0.6) }); nl(); };
-    const text = (str: string, opts: { size?: number; font?: any; indent?: number; center?: boolean } = {}) => {
-      const { size = 10, font = regular, indent = 0, center = false } = opts;
-      const maxW = W - indent; const words = str.split(' '); let line = '';
-      for (const word of words) {
-        const test = line ? `${line} ${word}` : word;
-        if (font.widthOfTextAtSize(test, size) > maxW && line) {
-          const x = center ? margin + (W - font.widthOfTextAtSize(line, size)) / 2 : margin + indent;
-          page.drawText(line, { x, y, font, size, color: rgb(0, 0, 0) }); nl(); line = word;
-        } else { line = test; }
+    const chk = () => { if (y < 70) np(); };
+    const sep = () => { chk(); page.drawLine({ start: { x: M, y }, end: { x: M + W, y }, thickness: 0.5, color: rgb(0.7, 0.7, 0.7) }); nl(); };
+    const text = (str: string, opts: { sz?: number; f?: any; ind?: number; ctr?: boolean } = {}) => {
+      const { sz = 10, f = regular, ind = 0, ctr = false } = opts;
+      const maxW = W - ind; const words = str.split(' '); let ln = '';
+      for (const w of words) {
+        const t = ln ? `${ln} ${w}` : w;
+        if (f.widthOfTextAtSize(t, sz) > maxW && ln) {
+          chk(); page.drawText(ln, { x: ctr ? M + (W - f.widthOfTextAtSize(ln, sz)) / 2 : M + ind, y, font: f, size: sz, color: rgb(0, 0, 0) }); nl(); ln = w;
+        } else { ln = t; }
       }
-      if (line) { const x = center ? margin + (W - font.widthOfTextAtSize(line, size)) / 2 : margin + indent; page.drawText(line, { x, y, font, size, color: rgb(0, 0, 0) }); nl(); }
+      if (ln) { chk(); page.drawText(ln, { x: ctr ? M + (W - f.widthOfTextAtSize(ln, sz)) / 2 : M + ind, y, font: f, size: sz, color: rgb(0, 0, 0) }); nl(); }
     };
-    const linha = (label: string, linhas = 1) => {
-      text(label, { font: bold, size: 9 }); nl(0.2);
-      for (let i = 0; i < linhas; i++) {
-        page.drawLine({ start: { x: margin, y }, end: { x: margin + W, y }, thickness: 0.4, color: rgb(0.75, 0.75, 0.75) }); nl(1.4);
-      }
-    };
+    hdr(page);
 
-    text('QUESTIONARIO JURIDICO', { font: bold, size: 13, center: true });
-    nl(0.5); sep();
-    text('IDENTIFICACAO DO CLIENTE', { font: bold, size: 11 }); nl(0.3);
-    text(`Nome: ${dados.clienteNome}`, { indent: 10 });
-    if (dados.clienteCpf) { const d = dados.clienteCpf.replace(/\D/g, ''); text(`CPF: ${d.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')}`, { indent: 10 }); }
-    if (dados.area) text(`Area Juridica: ${dados.area}`, { indent: 10 });
-    if (dados.tipoAcao) text(`Tipo de Acao: ${dados.tipoAcao}`, { indent: 10 });
-    nl(); sep();
-    text('HISTORICO DO CASO', { font: bold, size: 11 }); nl(0.3);
-    text('Descreva brevemente os fatos que motivaram a busca pelo servico juridico:'); nl(0.3);
-    linha('', 4);
-    sep();
-    text('DOCUMENTOS DISPONIVEIS', { font: bold, size: 11 }); nl(0.3);
-    const checks = ['Contratos / acordos', 'Recibos / comprovantes de pagamento', 'Correspondencias / mensagens', 'Fotografias / videos', 'Boletim de ocorrencia', 'Laudos / pericias', 'Outros documentos'];
-    for (const c of checks) { page.drawRectangle({ x: margin + 10, y: y - 1, width: 10, height: 10, borderColor: rgb(0.4, 0.4, 0.4), borderWidth: 0.5 }); text(`    ${c}`, { indent: 28 }); nl(-0.3); }
-    nl(0.5); sep();
-    text('INFORMACOES ADICIONAIS', { font: bold, size: 11 }); nl(0.3);
-    linha('Ja houve tentativas anteriores de resolver este caso?', 2);
-    linha('Existem prazos urgentes a serem observados?', 2);
-    nl(); sep();
-    text('Declaro que as informacoes prestadas neste questionario sao verdadeiras.');
+    const cpfFmt = dados.clienteCpf ? dados.clienteCpf.replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4') : '[CPF]';
+    const rg     = dados.clienteRG || '[RG]';
+
+    text('CARTA DE RENUNCIA DE MANDATO', { f: bold, sz: 14, ctr: true }); nl(0.5); sep(); nl();
+    text(`Prezado senhor(a) ${dados.clienteNome}, portador(a) do RG no ${rg} e CPF no ${cpfFmt}.`, { ind: 20 });
+    nl();
+    text('Serve a presente, para notificar de que os subscritores desta RENUNCIAM AO MANDATO QUE LHES FOI OUTORGADO POR PROCURACAO AD JUDICIA OS ADVOGADOS DR. JONATHAN FRANK STOBIENIA DOMINGOS OAB/SC 43.348 E THAMILE ALESSANDRA DOMINGOS OAB/SC 57.773, como ja foi devidamente notificado, ficando o(a) senhor(a) notificado(a) da renuncia acima expressa, sendo certo que, a partir do recebimento desta, tem o prazo legal de 10 (dez) dias, para, nos termos do art. 45 do CPC, constituir novo patrono para o referido processo assinando ao final o canhoto do recebimento.', { ind: 20 });
+    nl();
+    text('Atenciosamente Jonathan Domingos OAB/SC 43.348.', { ind: 20 });
     nl(2);
-    page.drawLine({ start: { x: margin, y }, end: { x: margin + W, y }, thickness: 0.5, color: rgb(0, 0, 0) }); nl();
-    text('Assinatura do Cliente', { indent: 10 }); nl(0.3);
-    text(dados.clienteNome, { indent: 10 });
-    nl(2);
-    text('Este documento foi gerado eletronicamente pelo JurysOne — Lei n. 14.063/2020.', { size: 8 });
+    const midX = M + W / 2;
+    page.drawLine({ start: { x: M + 20, y }, end: { x: midX - 20, y }, thickness: 0.5, color: rgb(0, 0, 0) });
+    page.drawLine({ start: { x: midX + 20, y }, end: { x: M + W - 20, y }, thickness: 0.5, color: rgb(0, 0, 0) });
+    nl();
+    page.drawText('Dr. Jonathan F. S. Domingos', { x: M + 20, y, font: regular, size: 9, color: rgb(0, 0, 0) });
+    page.drawText('Thamile Alessandra Domingos', { x: midX + 20, y, font: regular, size: 9, color: rgb(0, 0, 0) });
+    nl();
+    page.drawText('OAB/SC 43.348', { x: M + 20, y, font: regular, size: 9, color: rgb(0, 0, 0) });
+    page.drawText('OAB/SC 57.773', { x: midX + 20, y, font: regular, size: 9, color: rgb(0, 0, 0) });
+    nl(3); sep();
+    text('ASSINATURA DE RECEBIMENTO', { f: bold, sz: 11 }); nl(2);
+    page.drawLine({ start: { x: M + W / 4, y }, end: { x: M + (W * 3) / 4, y }, thickness: 0.5, color: rgb(0, 0, 0) }); nl();
+    text(dados.clienteNome.toUpperCase(), { ctr: true });
+
+    ftr(page);
     return Buffer.from(await pdfDoc.save()).toString('base64');
   }
 
-  /**
-   * Gera o PDF do Contrato de Honorários usando pdf-lib.
-   * Preenche com dados reais do atendimento (cliente, área, honorários).
-   */
+  /** Contrato de Prestacao de Servicos Advocaticios — 19 clausulas completas */
   private async gerarContratoBase64(
     titulo: string,
     dados: {
-      clienteNome:     string;
-      clienteCpf?:     string;
-      clienteEndereco?: string;
-      area:            string;
-      tipoAcao?:       string;
-      valorAcao?:      number;
-      tipoHonorario?:  string;
-      valorHonorario?: number;
+      clienteNome:         string;
+      clienteCpf?:         string;
+      clienteRG?:          string;
+      clienteRGOrgao?:     string;
+      clienteNaciona?:     string;
+      clienteEstadoCivil?: string;
+      clienteProfissao?:   string;
+      clienteTelefone?:    string;
+      clienteEmail?:       string;
+      clienteEndereco?:    string;
+      clienteNum?:         string;
+      clienteCompl?:       string;
+      clienteBairro?:      string;
+      clienteCidade?:      string;
+      clienteEstado?:      string;
+      clienteCEP?:         string;
+      area:                string;
+      tipoAcao?:           string;
+      valorAcao?:          number;
+      tipoHonorario?:      string;
+      valorHonorario?:     number;
       percentualExito?: number;
-      formaPagamento?: string;
-      numParcelas?:    number;
+      formaPagamento?:  string;
+      numParcelas?:     number;
       vencimento1Parc?: Date | null;
+      cidade?:          string;
     },
   ): Promise<string> {
     const { PDFDocument, StandardFonts, rgb } = require('pdf-lib') as typeof import('pdf-lib');
-
     const pdfDoc  = await PDFDocument.create();
     const regular = await pdfDoc.embedFont(StandardFonts.Helvetica);
     const bold    = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
-
-    // A4 em pontos (595 × 842)
-    const page   = pdfDoc.addPage([595, 842]);
-    const margin = 50;
-    const W      = 595 - margin * 2;
-
-    let y = 800;
-    const LINE = 15;
-
-    // ── helpers ──────────────────────────────────────────────────────────────
-    const nl  = (n = 1) => { y -= LINE * n; };
-    const sep = () => {
-      page.drawLine({
-        start: { x: margin, y },
-        end:   { x: margin + W, y },
-        thickness: 0.5,
-        color: rgb(0.6, 0.6, 0.6),
-      });
-      nl();
+    const M = 50; const W = 595 - M * 2; const LINE = 14;
+    const AZUL = rgb(0.06, 0.18, 0.37); const CINZA = rgb(0.33, 0.33, 0.33);
+    let page: any = pdfDoc.addPage([595, 842]); let y = 790;
+    const hdr = (pg: any) => {
+      pg.drawText('DOMINGOS ADVOCACIA & ASSESSORIA JURIDICA', { x: M, y: 820, font: bold, size: 9, color: AZUL });
+      pg.drawLine({ start: { x: M, y: 815 }, end: { x: M + W, y: 815 }, thickness: 0.5, color: AZUL });
+      pg.drawText('R. 501, no 145 sala 05, centro, Balneario Camboriu  |  (47) 99915-9178  |  jonathan@domingosadvocacia.com.br', { x: M, y: 807, font: regular, size: 7, color: CINZA });
     };
-
-    /** Escreve texto com quebra automática de linha */
-    const text = (
-      str: string,
-      opts: { size?: number; font?: typeof regular; indent?: number; center?: boolean } = {},
-    ) => {
-      const { size = 10, font = regular, indent = 0, center = false } = opts;
-      const maxW = W - indent;
-      const words = str.split(' ');
-      let line = '';
-
-      for (const word of words) {
-        const test = line ? `${line} ${word}` : word;
-        if (font.widthOfTextAtSize(test, size) > maxW && line) {
-          const x = center
-            ? margin + (W - font.widthOfTextAtSize(line, size)) / 2
-            : margin + indent;
-          page.drawText(line, { x, y, font, size, color: rgb(0, 0, 0) });
-          nl();
-          line = word;
-        } else {
-          line = test;
-        }
-      }
-      if (line) {
-        const x = center
-          ? margin + (W - font.widthOfTextAtSize(line, size)) / 2
-          : margin + indent;
-        page.drawText(line, { x, y, font, size, color: rgb(0, 0, 0) });
-        nl();
-      }
+    const ftr = (pg: any) => {
+      pg.drawLine({ start: { x: M, y: 40 }, end: { x: M + W, y: 40 }, thickness: 0.5, color: AZUL });
+      pg.drawText('R. 501, no 145 sala 05, Balneario Camboriu  |  47 99915-9178  |  jonathan@domingosadvocacia.com.br', { x: M, y: 28, font: regular, size: 7, color: CINZA });
     };
-
-    // Formata valor em reais
-    const brl = (v: number) =>
-      v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-
-    // Data longa em pt-BR
-    const dataLonga = (d: Date) =>
-      d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
-
-    // ── Cabeçalho ─────────────────────────────────────────────────────────────
-    text('JURYSONE - GESTAO JURIDICA', { font: bold, size: 10, center: true });
-    nl(0.5);
-    text('CONTRATO DE HONORARIOS ADVOCATICIOS', { font: bold, size: 13, center: true });
-    nl();
-    sep();
-
-    // ── Partes ────────────────────────────────────────────────────────────────
-    text('PARTES', { font: bold, size: 11 });
-    nl(0.3);
-    text(`CONTRATANTE: ${dados.clienteNome}`, { indent: 10 });
-    if (dados.clienteCpf) {
-      const cpfFmt = dados.clienteCpf.replace(/\D/g, '')
-        .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-      text(`CPF: ${cpfFmt}`, { indent: 10 });
-    }
-    if (dados.clienteEndereco && dados.clienteEndereco !== '""') {
-      text(`Endereco: ${dados.clienteEndereco}`, { indent: 10 });
-    }
-    nl(0.5);
-    text('CONTRATADO(A): Escritorio de Advocacia / Advogado(a) Responsavel', { indent: 10 });
-    nl();
-    sep();
-
-    // ── Objeto ────────────────────────────────────────────────────────────────
-    text('CLAUSULA 1 - DO OBJETO', { font: bold, size: 11 });
-    nl(0.3);
-
-    const areaTexto   = dados.area     || 'Direito';
-    const acaoTexto   = dados.tipoAcao || 'acao judicial';
-    const valorCausa  = dados.valorAcao && dados.valorAcao > 0
-      ? `, com valor estimado de causa de ${brl(dados.valorAcao)}`
-      : '';
-
-    text(
-      `O(A) CONTRATADO(A) compromete-se a prestar servicos advocaticios ao CONTRATANTE ` +
-      `na area de ${areaTexto}, referente a ${acaoTexto}${valorCausa}, ` +
-      `realizando todos os atos necessarios para a defesa dos direitos do contratante ` +
-      `em juizo e fora dele.`,
-    );
-    nl();
-    sep();
-
-    // ── Honorários ────────────────────────────────────────────────────────────
-    text('CLAUSULA 2 - DOS HONORARIOS', { font: bold, size: 11 });
-    nl(0.3);
-
-    if (dados.tipoHonorario === 'percentual' && dados.percentualExito) {
-      text(
-        `A titulo de honorarios advocaticios, o CONTRATANTE pagara ao CONTRATADO(A) ` +
-        `${dados.percentualExito}% (${dados.percentualExito} por cento) sobre o valor ` +
-        `efetivamente obtido em caso de exito na demanda, incluindo eventuais acordos.`,
-      );
-    } else if (dados.valorHonorario && dados.valorHonorario > 0) {
-      const parcelas = dados.numParcelas || 1;
-      const vencto   = dados.vencimento1Parc ? dataLonga(new Date(dados.vencimento1Parc)) : '';
-      const pagFmt   = dados.formaPagamento?.toUpperCase() || 'A COMBINAR';
-
-      text(
-        `A titulo de honorarios advocaticios, o CONTRATANTE pagara ao CONTRATADO(A) ` +
-        `o valor de ${brl(dados.valorHonorario)}, ` +
-        (parcelas > 1
-          ? `parcelado em ${parcelas}x${vencto ? `, com vencimento da 1a parcela em ${vencto}` : ''}, `
-          : vencto ? `com vencimento em ${vencto}, ` : '') +
-        `mediante pagamento via ${pagFmt}.`,
-      );
-    } else {
-      text('Os honorarios serao definidos conforme acordo entre as partes.');
-    }
-    nl();
-    sep();
-
-    // ── Prazo ─────────────────────────────────────────────────────────────────
-    text('CLAUSULA 3 - DO PRAZO', { font: bold, size: 11 });
-    nl(0.3);
-    text(
-      'O presente contrato vigorara pelo prazo necessario para a conclusao da ' +
-      'acao judicial ou extrajudicial objeto deste instrumento, podendo ser ' +
-      'rescindido mediante comunicacao previa de 30 (trinta) dias.',
-    );
-    nl();
-    sep();
-
-    // ── Disposições gerais ────────────────────────────────────────────────────
-    text('CLAUSULA 4 - DISPOSICOES GERAIS', { font: bold, size: 11 });
-    nl(0.3);
-    text(
-      'Em caso de desistencia unilateral pelo CONTRATANTE, os honorarios ' +
-      'correspondentes aos servicos ja realizados serao devidos integralmente, ' +
-      'sem prejuizo de eventuais indenizacoes previstas em lei. O CONTRATADO(A) ' +
-      'compromete-se a manter sigilo absoluto sobre as informacoes recebidas ' +
-      'em razao deste contrato.',
-    );
-    nl();
-    sep();
-
-    // ── Assinaturas ──────────────────────────────────────────────────────────
+    const np = () => { ftr(page); page = pdfDoc.addPage([595, 842]); hdr(page); y = 790; };
+    const nl = (n = 1) => { y -= LINE * n; };
+    const chk = () => { if (y < 70) np(); };
+    const sep = () => { chk(); page.drawLine({ start: { x: M, y }, end: { x: M + W, y }, thickness: 0.5, color: rgb(0.7, 0.7, 0.7) }); nl(); };
+    const text = (str: string, opts: { sz?: number; f?: any; ind?: number; ctr?: boolean } = {}) => {
+      const { sz = 10, f = regular, ind = 0, ctr = false } = opts;
+      const maxW = W - ind; const words = str.split(' '); let ln = '';
+      for (const w of words) {
+        const t = ln ? `${ln} ${w}` : w;
+        if (f.widthOfTextAtSize(t, sz) > maxW && ln) {
+          chk(); page.drawText(ln, { x: ctr ? M + (W - f.widthOfTextAtSize(ln, sz)) / 2 : M + ind, y, font: f, size: sz, color: rgb(0, 0, 0) }); nl(); ln = w;
+        } else { ln = t; }
+      }
+      if (ln) { chk(); page.drawText(ln, { x: ctr ? M + (W - f.widthOfTextAtSize(ln, sz)) / 2 : M + ind, y, font: f, size: sz, color: rgb(0, 0, 0) }); nl(); }
+    };
+    const par = (label: string, corpo: string) => { text(`${label} ${corpo}`, { ind: 10 }); nl(0.3); };
+    const cl  = (num: string, corpo: string)  => { text(`${num} ${corpo}`, { ind: 10 }); nl(0.3); };
+    const brl = (v: number) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const dataLonga = (d: Date) => d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
     const hoje = dataLonga(new Date());
-    text(`Local e data: ____________, ${hoje}.`);
-    nl(2);
+    hdr(page);
 
-    // Linha contratante
-    const midX = margin + W / 2;
-    page.drawLine({ start: { x: margin, y }, end: { x: midX - 10, y }, thickness: 0.5, color: rgb(0, 0, 0) });
-    page.drawLine({ start: { x: midX + 10, y }, end: { x: margin + W, y }, thickness: 0.5, color: rgb(0, 0, 0) });
+    const cpfFmt  = dados.clienteCpf ? dados.clienteCpf.replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4') : '[CPF]';
+    const rg      = dados.clienteRG || '[RG]';
+    const rgOrgao = dados.clienteRGOrgao || 'SSP/SC';
+    const nac     = dados.clienteNaciona || 'brasileiro(a)';
+    const ec      = dados.clienteEstadoCivil || '';
+    const prof    = dados.clienteProfissao || '';
+    const cidade  = dados.cidade || dados.clienteCidade || 'Balneario Camboriu';
+    const endCli  = (() => {
+      const rua    = dados.clienteEndereco || '[ENDERECO]';
+      const num    = dados.clienteNum    ? `, no ${dados.clienteNum}`             : '';
+      const compl  = dados.clienteCompl  ? `, ${dados.clienteCompl}`              : '';
+      const bairro = dados.clienteBairro ? `, bairro ${dados.clienteBairro}`      : '';
+      const cid    = dados.clienteCidade ? ` na cidade de ${dados.clienteCidade}` : '';
+      const uf     = dados.clienteEstado ? ` - ${dados.clienteEstado}`            : '';
+      const cep    = dados.clienteCEP    ? `, CEP ${dados.clienteCEP}`            : '';
+      return `${rua}${num}${compl}${bairro}${cid}${uf}${cep}`;
+    })();
+    const honTxt  = (() => {
+      const tipo    = (dados.tipoHonorario || 'exito').toLowerCase();
+      const parcStr = dados.numParcelas && dados.numParcelas > 1 ? `, parcelados em ${dados.numParcelas}x` : '';
+      const vencStr = dados.vencimento1Parc ? `, com vencimento da 1a parcela em ${dataLonga(new Date(dados.vencimento1Parc))}` : '';
+      const pagFmt  = (dados.formaPagamento || 'PIX').toUpperCase();
+      if (tipo === 'fixo' || tipo === 'valor') {
+        return `honorarios advocaticios no valor fixo de ${brl(dados.valorHonorario || 0)}${parcStr}${vencStr}, mediante pagamento via ${pagFmt}`;
+      } else if (tipo === 'misto') {
+        return `honorarios advocaticios no valor de ${brl(dados.valorHonorario || 0)} (honorarios fixos) mais ${dados.percentualExito || 30}% do valor obtido em caso de exito na acao`;
+      } else {
+        return `honorarios advocaticios em ${dados.percentualExito || 30}% do valor obtido do exito na acao`;
+      }
+    })();
+    const objeto = dados.tipoAcao || dados.area || '[OBJETO DA ACAO]';
+
+    text('CONTRATO DE PRESTACAO DE SERVICOS ADVOCATICIOS', { f: bold, sz: 13, ctr: true }); nl(0.3); sep(); nl(0.5);
+    const tel   = dados.clienteTelefone || '';
+    const email = dados.clienteEmail    || '';
+    const contatoStr = [tel ? `telefone ${tel}` : '', email ? `e-mail ${email}` : ''].filter(Boolean).join(', ');
+    text(`Pelo presente instrumento particular, que entre si fazem, de um lado como cliente/contratante e assim doravante indicado, ${dados.clienteNome.toUpperCase()}, ${nac}${ec ? ', ' + ec : ''}${prof ? ', ' + prof : ''}, portador(a) do RG no ${rg} ${rgOrgao}, inscrito(a) no CPF no ${cpfFmt}, com endereco na ${endCli}${contatoStr ? ', ' + contatoStr : ''}.`, { ind: 20 });
+    nl(0.5);
+    text('CONTRATADA: DOMINGOS ADVOCACIA E ASSESSORIA EMPRESARIAL, composta por Dr. JONATHAN FRANK STOBIENIA DOMINGOS, brasileiro, solteiro, advogado, inscrito na OAB-SC sob no 43.348, CPF no 055.993.629-06, e Dra. THAMILE ALESSANDRA DOMINGOS, brasileira, casada, CPF no 090.222.009-81, inscrita na OAB-SC sob no 57.773, ambos com endereco subscrito no rodape.', { ind: 20 });
+    nl(0.5);
+    text('Por este instrumento particular, o(a) CONTRATANTE e a CONTRATADA, tem, entre si, justo e contratado, o presente contrato de prestacao de servicos profissionais de advocacia que se regera pelos seguintes termos.', { ind: 20 });
     nl();
-    text('CONTRATANTE', { center: false, indent: 30 });
-    page.drawText('CONTRATADO(A)', { x: midX + 30, y, font: regular, size: 10, color: rgb(0, 0, 0) });
-    nl();
-    text(dados.clienteNome, { indent: 30 });
+
+    text('DO OBJETO', { f: bold, sz: 11, ctr: true }); nl(0.3); sep();
+    cl('CLAUSULA 1a:', `O Contratado compromete-se, em cumprimento ao mandato recebido, a ${objeto}, representando o(a) contratante perante os orgaos competentes.`);
+    par('Paragrafo Primeiro:', 'As atividades inclusas na prestacao de servico, objeto deste instrumento, sao todas aquelas inerentes ao exercicio da advocacia, as constantes no Estatuto da Ordem dos Advogados do Brasil, bem como as especificadas no Instrumento Procuratorio.');
+    par('Paragrafo Segundo:', 'O Contratante, que reconhece ja haver recebido a orientacao preventiva comportamental e juridica para a consecucao dos servicos, fornecera aos Contratados os documentos e meios necessarios a comprovacao processual do seu pretendido direito.');
+    nl(0.5);
+
+    text('DOS HONORARIOS ADVOCATICIOS', { f: bold, sz: 11, ctr: true }); nl(0.3); sep();
+    cl('CLAUSULA 2a:', `Fica acordado entre as partes que a CONTRATADA cobrara ${honTxt}.`);
+    par('Paragrafo Primeiro:', 'Havendo mora no pagamento dos honorarios aqui contratados, apos o quinto dia de atraso, sera cobrada multa de 2% sobre a prestacao vencida, com acrescimo de juros moratorios de 1% ao mes, alem de correcao monetaria pelo INPC ou qualquer indice oficial.');
+    par('Paragrafo Segundo:', 'A CONTRATADA fica autorizada desde ja a fazer a retencao de seus honorarios quando do recebimento de valores diretamente em sua conta bancaria, ou em caso de pagamento de acordo em seu escritorio, bem como os advindos de exito no recebimento do objeto e/ou na demanda, ainda que parcial.');
+    par('Paragrafo Terceiro:', 'Em caso de desistencia da acao ou constituicao de outro advogado (com revogacao dos poderes outorgados a CONTRATADA), os honorarios pactuados permaneceram exigiveis na forma ja estipulada, sendo que caso convencionado honorarios a titulo de exito, os honorarios serao calculados pelo valor da causa, ou, caso publicada sentenca ou acordao, pelo valor da condenacao, ou, ainda, acaso liquidado o processo, pelo valor arbitrado em sentenca de liquidacao.');
+    par('Paragrafo Quarto:', 'O Contratante nao podera entabular qualquer acordo ou tratativas sem a anuencia ou acompanhamento da CONTRATADA, sob pena de multa contratual no valor correspondente a 20% sobre o valor atribuido a causa, ou da transacao, caso seja na esfera extrajudicial, os quais se tornam imediatamente exigiveis, independente do pagamento dos honorarios advocaticios acordados.');
+    par('Paragrafo Quinto:', 'Os honorarios contratuais aqui estipulados nao se confundem com os honorarios de sucumbencia, que pertencem exclusivamente a CONTRATADA, sem prejuizo do pagamento dos honorarios contratuais acima pactuados.');
+    par('Paragrafo Sexto:', 'O CONTRATANTE declara ter plena e absoluta ciencia de que o servico prestado pela CONTRATADA e uma obrigacao de meio, nao de resultado, haja vista depender de variaveis que nao sao por esta controladas, nao havendo direito a reparacao de qualquer natureza caso aconteca deslinde diverso do que se deseja.');
+    par('Paragrafo Setimo:', 'A CONTRATADA obriga-se a prestar os seus servicos profissionais com todo o zelo e total diligencia na defesa dos direitos e interesses do CONTRATANTE, relativamente ao objeto contratado.');
+    par('Paragrafo Oitavo:', 'Os boletos referentes as obrigacoes financeiras do CONTRATANTE perante a CONTRATADA serao emitidos exclusivamente por meio da plataforma bancaria ASAAS e notificados ao CONTRATANTE atraves do e-mail e WhatsApp devidamente cadastrados no escritorio.');
+    nl(0.5);
+
+    text('DOS CANAIS OFICIAIS DE ATENDIMENTO E COMUNICACAO', { f: bold, sz: 11, ctr: true }); nl(0.3); sep();
+    cl('CLAUSULA 3a:', 'Os canais oficiais de atendimento da CONTRATADA sao exclusivamente: (a) WhatsApp (47) 99915-9178 e (47) 99624-9295; e (b) e-mail com dominio @domingosadvocacia.com.br.');
+    par('Paragrafo Unico:', 'O CONTRATANTE declara ter ciencia de que nao deve receber, aceitar ou corresponder a qualquer contato que se apresente em nome da CONTRATADA por canais ou numeros distintos dos indicados nesta clausula. Caso o CONTRATANTE venha a interagir, fornecer documentos, realizar pagamentos ou tomar decisoes com base em contatos feitos por canais nao oficiais, assumira exclusivamente todos os onus, perdas e danos decorrentes de tal conduta, isentando integralmente a CONTRATADA de qualquer responsabilidade.');
+    nl(0.5);
+
+    text('DAS DESPESAS E DO FORNECIMENTO DE DOCUMENTOS', { f: bold, sz: 11, ctr: true }); nl(0.3); sep();
+    cl('CLAUSULA 4a:', 'Ao CONTRATANTE cabera o pagamento das custas processuais, despesas judiciais e extrajudiciais, emolumentos, tributos e demais despesas que forem necessarias ao bom andamento de processos, bem como ao pagamento/ressarcimento de despesas de viagens e deslocamentos interurbanos, e ainda, ao fornecimento de documentos e informacoes que a CONTRATADA solicitar, nao sendo esta responsabilizada em caso do nao cumprimento parcial ou integral desta clausula.');
+    par('Paragrafo unico:', 'O CONTRATANTE devera reembolsar todas as despesas apresentadas pela CONTRATADA que sejam relacionadas a seus processos ou procedimentos, como por exemplo: deslocamento, alimentacao, copias, guias judiciais, consulta CPF, emissao de declaracoes ou certidoes, diligencias de advogados correspondentes etc., sendo que a falta do pagamento importara na rescisao do presente contrato.');
+    nl(0.5);
+
+    text('DA RESCISAO DO CONTRATO', { f: bold, sz: 11, ctr: true }); nl(0.3); sep();
+    cl('Clausula 5a.', 'Em caso de rescisao do presente contrato por interesse do CONTRATANTE, este ficara obrigado pelo pagamento dos honorarios advocaticios descritos neste contrato, ocasiao em que devera constituir novo procurador afim de salvaguardar seus direitos, isentando a CONTRATADA de toda e qualquer responsabilidade, que fica desobrigada de patrocinar a(s) demanda(s) do CONTRATANTE, ainda que os honorarios pactuados estejam pagos.');
+    cl('Clausula 6a.', 'Em caso de inadimplemento pelo(a) CONTRATANTE, por prazo superior a 30 (trinta) dias, em qualquer pagamento, ficara a CONTRATADA isenta de qualquer obrigacao, podendo rescindir o contrato e cessar a prestacao de servicos, assumindo o CONTRATANTE o onus desta conduta, para todos os efeitos legais.');
+    cl('Clausula 7a.', 'O presente contrato podera ser revogado, mediante comunicacao escrita por qualquer das partes com antecedencia minima de 15 (quinze) dias, mantendo-se devidos honorarios ate o termo da notificacao, bem como multa de 20% sobre o valor total das parcelas restantes.');
+    cl('Clausula 8a.', 'Agindo o CONTRATANTE prejudicialmente, de forma dolosa ou culposa, em face da CONTRATADA, ou, ainda, na hipotese de pratica de qualquer ato que gere desequilibrio ou quebra de confianca na relacao advogado-cliente, restara facultado a este rescindir o contrato, se exonerando de todas as obrigacoes, com reserva de honorarios previstos na forma do presente instrumento.');
+    cl('Clausula 9a.', 'Caso o CONTRATANTE falte com o pagamento de honorarios, taxas ou despesas pactuadas neste contrato, estara sujeito a emissao de boleto e protesto em cartorio, e consequente inscricao nos orgaos de protecao ao credito SPC e SERASA e demais sancoes cabiveis, nos termos da lei.');
+    nl(0.5);
+
+    text('DAS DISPOSICOES GERAIS', { f: bold, sz: 11, ctr: true }); nl(0.3); sep();
+    cl('Clausula 10a.', 'E obrigacao do(a) CONTRATANTE informar imediatamente qualquer mudanca de endereco, numero de telefone, e-mail ou demais dados cadastrais, nao podendo alegar qualquer responsabilidade da CONTRATADA em eventual falta de sua intimacao, notificacao de cobranca ou a sua nao localizacao.');
+    cl('Clausula 11a.', 'O CONTRATANTE fica ciente de que acaso falte com a verdade ou omita qualquer documento ou informacao, visando obter indevidamente o beneficio da justica gratuita, podera vir a ser condenado ao pagamento de multa por litigancia de ma-fe, alem das sancoes civis e criminais. Fica o CONTRATANTE ciente, ainda, de que o beneficio da justica gratuita depende unica e exclusivamente do livre convencimento do juiz/tribunal, concordando que em nenhuma hipotese sera o advogado responsabilizado pelo onus de decisao desfavoravel.');
+    cl('Clausula 12a.', 'O CONTRATANTE fica expressamente ciente de que o sucesso da acao depende diretamente da producao probatoria e que este encargo e integralmente e intransferivelmente seu. A CONTRATADA se compromete a requisitar as provas, documentos e/ou testemunhas que se facam necessarios ao sucesso da acao, restringindo-se sua atuacao a orientacao do(a) CONTRATANTE sobre a forma de obtencao das mesmas.');
+    cl('Clausula 13a.', 'A CONTRATADA nao se compromete a diligenciar na busca de provas, documentos e/ou testemunhas, estando a parte CONTRATANTE ciente de que devera empenhar os maximos esforcos na busca dos elementos que amparem o seu pretenso direito, de modo que o atraso injustificado no fornecimento de tais informacoes/documentos isentara a CONTRATADA de toda e qualquer obrigacao.');
+    cl('Clausula 14a.', 'O CONTRATANTE fica ciente de que o seu nao comparecimento aos atos do processo em que seja indispensavel sua presenca, tais como audiencias, pericias, inspecoes e outros, podera acarretar no arquivamento, extincao do processo ou na improcedencia da acao. Nos casos de arquivamento, extincao ou improcedencia em que o(a) CONTRATANTE tenha dado causa por nao comparecimento sem motivo justificado, serao cobrados honorarios integrais pela tabela da OAB/SC, ficando a CONTRATADA desobrigada de quaisquer deveres e obrigacoes.');
+    cl('Clausula 15a.', 'Se porventura a CONTRATADA depender do CONTRATANTE para promover algum ato extrajudicial ou judicial, e este nao o corresponder tempestivamente, a responsabilidade recaira exclusivamente sobre o CONTRATANTE, nao podendo argui-la em seu favor posteriormente, restando, da mesma forma, isenta a CONTRATADA de qualquer responsabilidade.');
+    cl('Clausula 16a.', 'Este contrato enquadra-se no rol dos titulos executivos extrajudiciais, nos termos do artigo 784, Inciso XII, do Codigo de Processo Civil, combinado com o artigo 24 da Lei 8.906/94 (EOAB).');
+    cl('Clausula 17a.', 'O CONTRATANTE autoriza o tratamento e armazenamento de seus dados digitais pela CONTRATADA, tais como documentos, midias e informacoes privadas, para o exercicio regular de seus direitos no processo judicial ou administrativo, objetos do presente contrato, ficando vedado para qualquer outro fim. Conforme Lei 13.709 de 2018 (LGPD).');
+    cl('Clausula 18a.', 'Caso a parte CONTRATANTE compartilhe dados pessoais e processuais sensiveis para terceiros, sem o consentimento do titular dos dados ou da CONTRATADA de forma expressa, assumira todos os onus decorrentes do referido compartilhamento, conforme hipoteses previstas na LGPD.');
+    cl('Clausula 19a.', 'As partes reconhecem e acordam que o presente contrato podera ser assinado eletronicamente por meio de plataforma eletronica Docusign, ZapSign ou pelo sistema de assinatura gov.br, produzindo os mesmos efeitos legais da via assinada fisicamente, nos termos da Lei no 13.874/2019 e do Decreto no 10.278/2020 e acordam ainda em nao contestar a sua validade, conteudo, autenticidade e integridade.');
+    nl(0.5);
+
+    text('DA ELEICAO DO FORO', { f: bold, sz: 11, ctr: true }); nl(0.3); sep();
+    text(`As partes acima identificadas elegem o Foro de ${cidade} para dirimir quaisquer divergencias originarias deste contrato, e firmam-no em 02 (duas) vias iguais.`, { ind: 20 });
     nl(2);
+    text(`${cidade}, ${hoje}.`, { ctr: true }); nl(2);
 
-    text(
-      'Este documento foi gerado e enviado eletronicamente pelo sistema JurysOne. ' +
-      'A assinatura eletronica tem validade juridica nos termos da Lei n. 14.063/2020.',
-      { size: 8 },
-    );
+    const midX = M + W / 2;
+    chk();
+    page.drawLine({ start: { x: M + 10, y }, end: { x: midX - 20, y }, thickness: 0.5, color: rgb(0, 0, 0) });
+    page.drawLine({ start: { x: midX + 20, y }, end: { x: M + W - 10, y }, thickness: 0.5, color: rgb(0, 0, 0) });
+    nl();
+    page.drawText('CONTRATANTE', { x: M + 10, y, font: bold, size: 9, color: rgb(0, 0, 0) });
+    page.drawText('CONTRATADA', { x: midX + 20, y, font: bold, size: 9, color: rgb(0, 0, 0) });
+    nl();
+    page.drawText(dados.clienteNome.toUpperCase(), { x: M + 10, y, font: regular, size: 9, color: rgb(0, 0, 0) });
+    page.drawText('DOMINGOS ADVOCACIA E ASSESSORIA EMPRESARIAL', { x: midX + 20, y, font: regular, size: 8, color: rgb(0, 0, 0) });
+    nl(3);
+    text('TESTEMUNHAS:', { f: bold }); nl(2);
+    page.drawLine({ start: { x: M, y }, end: { x: midX - 20, y }, thickness: 0.5, color: rgb(0, 0, 0) });
+    page.drawLine({ start: { x: midX + 20, y }, end: { x: M + W, y }, thickness: 0.5, color: rgb(0, 0, 0) });
+    nl(); nl(0.3);
+    page.drawText('Nome:', { x: M, y, font: bold, size: 9, color: rgb(0, 0, 0) });
+    page.drawText('Nome:', { x: midX + 20, y, font: bold, size: 9, color: rgb(0, 0, 0) });
+    nl(); nl(0.3);
+    page.drawText('CPF:', { x: M, y, font: bold, size: 9, color: rgb(0, 0, 0) });
+    page.drawText('CPF:', { x: midX + 20, y, font: bold, size: 9, color: rgb(0, 0, 0) });
 
-    // ── Salva e converte para base64 ──────────────────────────────────────────
-    const pdfBytes = await pdfDoc.save();
-    return Buffer.from(pdfBytes).toString('base64');
+    ftr(page);
+    return Buffer.from(await pdfDoc.save()).toString('base64');
   }
 
   /**
