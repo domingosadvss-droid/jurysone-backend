@@ -1134,12 +1134,15 @@ export class EsignService {
     const M = 50; const W = 595 - M * 2; const LINE = 14;
     const AZUL = rgb(0.06, 0.18, 0.37); const CINZA = rgb(0.33, 0.33, 0.33);
     let page: any = pdfDoc.addPage([595, 842]); let y = 790;
-    const logoPath = path.join(process.cwd(), 'public', 'logo domingos.png');
+    const logoPath = path.join(process.cwd(), 'public', 'logo-domingos.png');
     const logoImg  = fs.existsSync(logoPath) ? await pdfDoc.embedPng(fs.readFileSync(logoPath)) : null;
     const hdr = (pg: any) => {
       if (logoImg) {
-        const lh = 48; const lw = logoImg.width * (lh / logoImg.height);
-        pg.drawImage(logoImg, { x: M + (W - lw) / 2, y: 806, width: lw, height: lh });
+        const lh = 46; const lw = logoImg.width * (lh / logoImg.height);
+        pg.drawImage(logoImg, { x: M, y: 806, width: lw, height: lh });
+        const tx = M + lw + 10;
+        pg.drawText('DOMINGOS', { x: tx, y: 832, font: bold, size: 20, color: rgb(0.23, 0.23, 0.23) });
+        pg.drawText('ADVOCACIA E ASSESSORIA JURIDICA', { x: tx, y: 818, font: regular, size: 7.5, color: rgb(0.4, 0.4, 0.4) });
       } else {
         const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
         pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
@@ -1228,12 +1231,15 @@ export class EsignService {
     const M = 50; const W = 595 - M * 2; const LINE = 14;
     const AZUL = rgb(0.06, 0.18, 0.37); const CINZA = rgb(0.33, 0.33, 0.33);
     let page: any = pdfDoc.addPage([595, 842]); let y = 790;
-    const logoPath = path.join(process.cwd(), 'public', 'logo domingos.png');
+    const logoPath = path.join(process.cwd(), 'public', 'logo-domingos.png');
     const logoImg  = fs.existsSync(logoPath) ? await pdfDoc.embedPng(fs.readFileSync(logoPath)) : null;
     const hdr = (pg: any) => {
       if (logoImg) {
-        const lh = 48; const lw = logoImg.width * (lh / logoImg.height);
-        pg.drawImage(logoImg, { x: M + (W - lw) / 2, y: 806, width: lw, height: lh });
+        const lh = 46; const lw = logoImg.width * (lh / logoImg.height);
+        pg.drawImage(logoImg, { x: M, y: 806, width: lw, height: lh });
+        const tx = M + lw + 10;
+        pg.drawText('DOMINGOS', { x: tx, y: 832, font: bold, size: 20, color: rgb(0.23, 0.23, 0.23) });
+        pg.drawText('ADVOCACIA E ASSESSORIA JURIDICA', { x: tx, y: 818, font: regular, size: 7.5, color: rgb(0.4, 0.4, 0.4) });
       } else {
         const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
         pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
@@ -1322,12 +1328,15 @@ export class EsignService {
     const M = 50; const W = 595 - M * 2; const LINE = 14;
     const AZUL = rgb(0.06, 0.18, 0.37); const CINZA = rgb(0.33, 0.33, 0.33);
     let page: any = pdfDoc.addPage([595, 842]); let y = 790;
-    const logoPath = path.join(process.cwd(), 'public', 'logo domingos.png');
+    const logoPath = path.join(process.cwd(), 'public', 'logo-domingos.png');
     const logoImg  = fs.existsSync(logoPath) ? await pdfDoc.embedPng(fs.readFileSync(logoPath)) : null;
     const hdr = (pg: any) => {
       if (logoImg) {
-        const lh = 48; const lw = logoImg.width * (lh / logoImg.height);
-        pg.drawImage(logoImg, { x: M + (W - lw) / 2, y: 806, width: lw, height: lh });
+        const lh = 46; const lw = logoImg.width * (lh / logoImg.height);
+        pg.drawImage(logoImg, { x: M, y: 806, width: lw, height: lh });
+        const tx = M + lw + 10;
+        pg.drawText('DOMINGOS', { x: tx, y: 832, font: bold, size: 20, color: rgb(0.23, 0.23, 0.23) });
+        pg.drawText('ADVOCACIA E ASSESSORIA JURIDICA', { x: tx, y: 818, font: regular, size: 7.5, color: rgb(0.4, 0.4, 0.4) });
       } else {
         const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
         pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
