@@ -911,11 +911,8 @@ export class EsignService {
     const escritorioId = atendimento?.escritorioId ?? '';
 
     const uploadDoc = async (tipo: string, filename: string, pdfFallback: () => Promise<string>): Promise<string> => {
-      const templateB64 = escritorioId
-        ? await this.getTemplateBase64(escritorioId, tipo).catch(() => null)
-        : null;
-      const b64 = templateB64 ?? await pdfFallback();
-      this.logger.log(`[ClickSign v3] Upload: ${filename} (template=${!!templateB64})`);
+      const b64 = await pdfFallback();
+      this.logger.log(`[ClickSign v3] Upload: ${filename} (gerador pdf-lib)`);
       const resp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/documents`, {
         method: 'POST', headers,
         body: JSON.stringify({
