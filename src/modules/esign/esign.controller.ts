@@ -110,15 +110,21 @@ export class EsignController {
               sequence_enabled: false,
             },
           };
-          if (dto.base64_pdf) {
-            // ClickSign espera: "data:application/pdf;base64,<base64_puro>"
+          // Tenta buscar template configurado pelo escritório; usa base64_pdf do frontend como fallback
+          const tipoDocumento = dto.tipo_documento || 'contrato_honorarios';
+          const templateB64 = await this.esignService.getTemplateBase64(escritorioId, tipoDocumento).catch(() => null);
+
+          if (templateB64) {
+            docBody.document.content_base64 = `data:application/pdf;base64,${templateB64}`;
+            this.logger.log(`[ClickSign] PDF template '${tipoDocumento}' carregado do banco`);
+          } else if (dto.base64_pdf) {
             const b64 = dto.base64_pdf.startsWith('data:')
               ? dto.base64_pdf
               : `data:application/pdf;base64,${dto.base64_pdf}`;
             docBody.document.content_base64 = b64;
-            this.logger.log(`[ClickSign] PDF base64 size: ${Math.round(b64.length / 1024)}KB`);
+            this.logger.log(`[ClickSign] PDF base64 do frontend: ${Math.round(b64.length / 1024)}KB`);
           } else if (dto.url_pdf) {
-            docBody.document.content_base64 = dto.url_pdf; // campo legado
+            docBody.document.content_base64 = dto.url_pdf;
           }
 
           this.logger.log(`[ClickSign] Criando documento: POST ${base}/api/v1/documents`);
@@ -143,10 +149,18 @@ export class EsignController {
           const signersOut: any[] = [];
           for (const s of (dto.signers || [])) {
             const phoneRaw = (s.phone_number || s.telefone || '').replace(/\D/g, '');
+            // ClickSign v1 exige nome com pelo menos duas palavras, sem números
+            const cleanedName = (s.name || '')
+              .replace(/[^a-zA-ZÀ-ÿ\s]/g, '')  // remove números e caracteres especiais
+              .trim();
+            const nameWords = cleanedName.split(/\s+/).filter(w => w.length > 0);
+            const signerName = nameWords.length >= 2
+              ? nameWords.join(' ')
+              : nameWords.length === 1 ? `${nameWords[0]} Signatario` : 'Cliente Signatario';
             const signerBody: any = {
               signer: {
                 email:            s.email,
-                name:             s.name,
+                name:             signerName,
                 auths:            ['email'],
                 has_documentation: false,
               },

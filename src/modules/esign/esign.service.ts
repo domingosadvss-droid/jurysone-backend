@@ -694,7 +694,7 @@ export class EsignService {
    * Baixa o PDF de um modelo customizado e retorna como base64.
    * Retorna null se não houver modelo cadastrado.
    */
-  private async getTemplateBase64(escritorioId: string, tipo: string): Promise<string | null> {
+  async getTemplateBase64(escritorioId: string, tipo: string): Promise<string | null> {
     const row = await this.prisma.configuracao.findFirst({
       where: { escritorioId, chave: `template_${tipo}` },
     });
