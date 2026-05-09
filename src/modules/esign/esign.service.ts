@@ -1069,6 +1069,8 @@ export class EsignService {
     clienteNaciona?:     string;
     clienteEstadoCivil?: string;
     clienteProfissao?:   string;
+    clienteTelefone?:    string;
+    clienteEmail?:       string;
     clienteEndereco?:    string;
     clienteNum?:         string;
     clienteCompl?:       string;
@@ -1359,6 +1361,8 @@ export class EsignService {
       clienteNaciona?:     string;
       clienteEstadoCivil?: string;
       clienteProfissao?:   string;
+      clienteTelefone?:    string;
+      clienteEmail?:       string;
       clienteEndereco?:    string;
       clienteNum?:         string;
       clienteCompl?:       string;
@@ -1449,7 +1453,10 @@ export class EsignService {
     const objeto = dados.tipoAcao || dados.area || '[OBJETO DA ACAO]';
 
     text('CONTRATO DE PRESTACAO DE SERVICOS ADVOCATICIOS', { f: bold, sz: 13, ctr: true }); nl(0.3); sep(); nl(0.5);
-    text(`Pelo presente instrumento particular, que entre si fazem, de um lado como cliente/contratante e assim doravante indicado, ${dados.clienteNome.toUpperCase()}, ${nac}${ec ? ', ' + ec : ''}${prof ? ', ' + prof : ''}, portador(a) do RG no ${rg} ${rgOrgao}, inscrito(a) no CPF no ${cpfFmt}, com endereco na ${endCli}.`, { ind: 20 });
+    const tel   = dados.clienteTelefone || '';
+    const email = dados.clienteEmail    || '';
+    const contatoStr = [tel ? `telefone ${tel}` : '', email ? `e-mail ${email}` : ''].filter(Boolean).join(', ');
+    text(`Pelo presente instrumento particular, que entre si fazem, de um lado como cliente/contratante e assim doravante indicado, ${dados.clienteNome.toUpperCase()}, ${nac}${ec ? ', ' + ec : ''}${prof ? ', ' + prof : ''}, portador(a) do RG no ${rg} ${rgOrgao}, inscrito(a) no CPF no ${cpfFmt}, com endereco na ${endCli}${contatoStr ? ', ' + contatoStr : ''}.`, { ind: 20 });
     nl(0.5);
     text('CONTRATADA: DOMINGOS ADVOCACIA E ASSESSORIA JURIDICA, composta por Dr. JONATHAN FRANK STOBIENIA DOMINGOS, brasileiro, solteiro, advogado, inscrito na OAB-SC sob no 43.348, CPF no 055.993.629-06, e Dra. THAMILE ALESSANDRA DOMINGOS, brasileira, casada, CPF no 090.222.009-81, inscrita na OAB-SC sob no 57.773, ambos com endereco subscrito no rodape.', { ind: 20 });
     nl(0.5);

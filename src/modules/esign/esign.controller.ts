@@ -126,6 +126,8 @@ export class EsignController {
                 clienteNaciona:     dc.clienteNaciona || dc.clienteNacionalidade || 'brasileiro(a)',
                 clienteEstadoCivil: dc.clienteEstadoCivil || '',
                 clienteProfissao:   dc.clienteProfissao || '',
+                clienteTelefone:    dc.clienteTelefone || dc.telefone || '',
+                clienteEmail:       dc.clienteEmail || dc.email || '',
                 clienteEndereco:    dc.clienteRua || dc.clienteEndereco || '',
                 clienteNum:         dc.clienteNum || '',
                 clienteCompl:       dc.clienteCompl || '',

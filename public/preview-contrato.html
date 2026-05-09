@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Preview — Documentos enviados ao ClickSign</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #d0d0d0; font-family: Arial, sans-serif; padding: 0; }
+
+  .toolbar {
+    background: #1a237e; color: #fff; padding: 8px 14px;
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 11px; font-weight: bold;
+    position: sticky; top: 0; z-index: 10;
+  }
+  .badge { background: #43a047; border-radius: 4px; padding: 2px 8px; font-size: 10px; }
+  .tabs { display: flex; gap: 3px; }
+  .tab {
+    padding: 5px 12px; border-radius: 4px 4px 0 0; cursor: pointer;
+    font-size: 10px; background: #283593; color: #ccc; border: none; font-weight: bold;
+  }
+  .tab.active { background: #fff; color: #1a237e; }
+
+  .page {
+    background: #fff; width: 595px; min-height: 842px;
+    margin: 0 auto; padding: 20px 50px 60px;
+    font-size: 9pt; line-height: 1.55; display: none;
+  }
+  .page.active { display: block; }
+
+  .doc-header {
+    text-align: right; border-bottom: 1.5px solid #0F2D5E;
+    padding-bottom: 3px; margin-bottom: 3px;
+  }
+  .doc-header .n { font-weight: bold; color: #0F2D5E; font-size: 8.5pt; }
+  .doc-header .a { font-size: 6.5pt; color: #555; }
+  .doc-footer {
+    border-top: 1.5px solid #0F2D5E; margin-top: 24px;
+    padding-top: 3px; font-size: 6.5pt; color: #555; text-align: center;
+  }
+
+  .titulo { font-size: 11.5pt; font-weight: bold; text-align: center; margin: 10px 0 3px; text-transform: uppercase; }
+  .subtit { font-size: 8pt; text-align: center; color: #333; margin-bottom: 6px; }
+  hr { border: none; border-top: 0.5px solid #bbb; margin: 6px 0; }
+  .secao { font-size: 9.5pt; font-weight: bold; text-align: center; text-transform: uppercase; margin: 10px 0 4px; }
+  .cl { text-align: justify; margin-bottom: 4px; padding-left: 10px; font-size: 8.8pt; }
+  .pg { text-align: justify; margin-bottom: 3px; padding-left: 20px; font-size: 8.5pt; color: #222; }
+  .pre { text-align: justify; text-indent: 18px; margin-bottom: 7px; font-size: 8.8pt; }
+  .assin-wrap { display: flex; justify-content: space-between; margin-top: 30px; }
+  .assin { width: 46%; text-align: center; }
+  .assin .ln { border-top: 1px solid #000; padding-top: 3px; font-size: 8.5pt; }
+  .test-wrap { display: flex; justify-content: space-between; margin-top: 20px; }
+  .test { width: 46%; }
+  .test .ln { border-top: 1px solid #000; font-size: 8.5pt; padding-top: 3px; }
+  .campo { margin: 4px 0 4px 20px; font-size: 8.5pt; }
+  .campo span { display: inline-block; width: 220px; border-bottom: 1px solid #666; }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <span>📄 Preview dos documentos enviados ao ClickSign</span>
+  <span class="badge">✅ VERSÃO COMPLETA — Domingos Advocacia</span>
+  <div class="tabs">
+    <button class="tab active" onclick="m(0)">1. Contrato (19 cláusulas)</button>
+    <button class="tab" onclick="m(1)">2. Procuração</button>
+    <button class="tab" onclick="m(2)">3. Hipossuficiência</button>
+    <button class="tab" onclick="m(3)">4. Renúncia</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ DOC 1 — CONTRATO ════ -->
+<div class="page active" id="d0">
+  <div class="doc-header">
+    <div class="n">DOMINGOS ADVOCACIA &amp; ASSESSORIA JURÍDICA</div>
+    <div class="a">R. 501, nº 145 sala 05, centro, Balneário Camboriú &nbsp;|&nbsp; (47) 99915-9178 &nbsp;|&nbsp; jonathan@domingosadvocacia.com.br</div>
+  </div>
+
+  <div class="titulo">Contrato de Prestação de Serviços Advocatícios</div><hr>
+
+  <p class="pre">Pelo presente instrumento particular, que entre si fazem, de um lado como cliente/contratante e assim doravante indicado, <strong>[NOME DO CLIENTE]</strong>, brasileiro(a), [estado civil], [profissão], portador(a) do RG nº [RG] SSP/SC, inscrito(a) no CPF nº [CPF], com endereço na [endereço, nº, bairro, cidade – SC, CEP], telefone [telefone], e-mail [e-mail].</p>
+  <p class="pre"><strong>CONTRATADA: DOMINGOS ADVOCACIA E ASSESSORIA JURÍDICA</strong>, composta por <strong>Dr. JONATHAN FRANK STOBIENIA DOMINGOS</strong>, brasileiro, solteiro, advogado, inscrito na OAB-SC sob nº 43.348, CPF nº 055.993.629-06, e <strong>Dra. THAMILE ALESSANDRA DOMINGOS</strong>, brasileira, casada, CPF nº 090.222.009-81, inscrita na OAB-SC sob nº 57.773, ambos com endereço subscrito no rodapé.</p>
+  <p class="pre">Por este instrumento particular, o(a) <strong>CONTRATANTE</strong> e a <strong>CONTRATADA</strong>, têm, entre si, justo e contratado, o presente contrato de prestação de serviços profissionais de advocacia que se regerá pelos seguintes termos.</p>
+
+  <div class="secao">Do Objeto</div><hr>
+  <p class="cl"><strong>CLÁUSULA 1ª:</strong> O Contratado compromete-se, em cumprimento ao mandato recebido, a <em>[objeto da ação]</em>, representando o(a) contratante perante os órgãos competentes.</p>
+  <p class="pg"><strong>Parágrafo Primeiro:</strong> As atividades inclusas na prestação de serviço, objeto deste instrumento, são todas aquelas inerentes ao exercício da advocacia, as constantes no Estatuto da Ordem dos Advogados do Brasil, bem como as especificadas no Instrumento Procuratório.</p>
+  <p class="pg"><strong>Parágrafo Segundo:</strong> O Contratante, que reconhece já haver recebido a orientação preventiva comportamental e jurídica para a consecução dos serviços, fornecerá aos Contratados os documentos e meios necessários à comprovação processual do seu pretendido direito.</p>
+
+  <div class="secao">Dos Honorários Advocatícios</div><hr>
+  <p class="cl"><strong>CLÁUSULA 2ª:</strong> Fica acordado entre as partes que a CONTRATADA cobrará <em>[honorários advocatícios em X% do êxito / ou valor fixo de R$ X]</em>.</p>
+  <p class="pg"><strong>Parágrafo Primeiro:</strong> Havendo mora no pagamento dos honorários aqui contratados, após o quinto dia de atraso, será cobrada multa de 2% sobre a prestação vencida, com acréscimo de juros moratórios de 1% ao mês, além de correção monetária pelo INPC ou qualquer índice oficial.</p>
+  <p class="pg"><strong>Parágrafo Segundo:</strong> A CONTRATADA fica autorizada desde já a fazer a retenção de seus honorários quando do recebimento de valores diretamente em sua conta bancária, ou em caso de pagamento de acordo em seu escritório, bem como os advindos de êxito no recebimento do objeto e/ou na demanda, ainda que parcial.</p>
+  <p class="pg"><strong>Parágrafo Terceiro:</strong> Em caso de desistência da ação ou constituição de outro advogado (com revogação dos poderes outorgados à CONTRATADA), os honorários pactuados permanecerão exigíveis na forma já estipulada, sendo que caso convencionado honorários a título de êxito, os honorários serão calculados pelo valor da causa, ou, caso publicada sentença ou acórdão, pelo valor da condenação, ou, ainda, acaso liquidado o processo, pelo valor arbitrado em sentença de liquidação.</p>
+  <p class="pg"><strong>Parágrafo Quarto:</strong> O Contratante não poderá entabular qualquer acordo ou tratativas sem a anuência ou acompanhamento da CONTRATADA, sob pena de multa contratual no valor correspondente a 20% sobre o valor atribuído à causa, ou da transação, caso seja na esfera extrajudicial, os quais se tornam imediatamente exigíveis, independente do pagamento dos honorários advocatícios acordados.</p>
+  <p class="pg"><strong>Parágrafo Quinto:</strong> Os honorários contratuais aqui estipulados não se confundem com os honorários de sucumbência, que pertencem exclusivamente à CONTRATADA, sem prejuízo do pagamento dos honorários contratuais acima pactuados.</p>
+  <p class="pg"><strong>Parágrafo Sexto:</strong> O CONTRATANTE declara ter plena e absoluta ciência de que o serviço prestado pela CONTRATADA é uma obrigação de meio, não de resultado, haja vista depender de variáveis que não são por esta controladas, não havendo direito à reparação de qualquer natureza caso aconteça deslinde diverso do que se deseja.</p>
+  <p class="pg"><strong>Parágrafo Sétimo:</strong> A CONTRATADA obriga-se a prestar os seus serviços profissionais com todo o zelo e total diligência na defesa dos direitos e interesses do CONTRATANTE, relativamente ao objeto contratado.</p>
+  <p class="pg"><strong>Parágrafo Oitavo:</strong> Os boletos referentes às obrigações financeiras do CONTRATANTE perante a CONTRATADA serão emitidos exclusivamente por meio da plataforma bancária ASAAS e notificados ao CONTRATANTE através do e-mail e WhatsApp devidamente cadastrados no escritório.</p>
+
+  <div class="secao">Dos Canais Oficiais de Atendimento e Comunicação</div><hr>
+  <p class="cl"><strong>CLÁUSULA 3ª:</strong> Os canais oficiais de atendimento da CONTRATADA são exclusivamente: (a) WhatsApp (47) 99915-9178 e (47) 99624-9295; e (b) e-mail com domínio @domingosadvocacia.com.br.</p>
+  <p class="pg"><strong>Parágrafo Único:</strong> O CONTRATANTE declara ter ciência de que não deve receber, aceitar ou corresponder a qualquer contato que se apresente em nome da CONTRATADA por canais ou números distintos dos indicados nesta cláusula. Caso o CONTRATANTE venha a interagir, fornecer documentos, realizar pagamentos ou tomar decisões com base em contatos feitos por canais não oficiais, assumirá exclusivamente todos os ônus, perdas e danos decorrentes de tal conduta, isentando integralmente a CONTRATADA de qualquer responsabilidade.</p>
+
+  <div class="secao">Das Despesas e do Fornecimento de Documentos</div><hr>
+  <p class="cl"><strong>CLÁUSULA 4ª:</strong> Ao CONTRATANTE caberá o pagamento das custas processuais, despesas judiciais e extrajudiciais, emolumentos, tributos e demais despesas que forem necessárias ao bom andamento de processos, bem como ao pagamento/ressarcimento de despesas de viagens e deslocamentos interurbanos, e ainda, ao fornecimento de documentos e informações que a CONTRATADA solicitar, não sendo esta responsabilizada em caso do não cumprimento parcial ou integral desta cláusula.</p>
+  <p class="pg"><strong>Parágrafo único:</strong> O CONTRATANTE deverá reembolsar todas as despesas apresentadas pela CONTRATADA que sejam relacionadas a seus processos ou procedimentos, como por exemplo: deslocamento, alimentação, cópias, guias judiciais, consulta CPF, emissão de declarações ou certidões, diligências de advogados correspondentes etc., sendo que a falta do pagamento importará na rescisão do presente contrato.</p>
+
+  <div class="secao">Da Rescisão do Contrato</div><hr>
+  <p class="cl"><strong>Cláusula 5ª.</strong> Em caso de rescisão do presente contrato por interesse do CONTRATANTE, este ficará obrigado pelo pagamento dos honorários advocatícios descritos neste contrato, ocasião em que deverá constituir novo procurador afim de salvaguardar seus direitos, isentando a CONTRATADA de toda e qualquer responsabilidade, que fica desobrigada de patrocinar a(s) demanda(s) do CONTRATANTE, ainda que os honorários pactuados estejam pagos.</p>
+  <p class="cl"><strong>Cláusula 6ª.</strong> Em caso de inadimplemento pelo(a) CONTRATANTE, por prazo superior a 30 (trinta) dias, em qualquer pagamento, ficará a CONTRATADA isenta de qualquer obrigação, podendo rescindir o contrato e cessar a prestação de serviços, assumindo o CONTRATANTE o ônus desta conduta, para todos os efeitos legais.</p>
+  <p class="cl"><strong>Cláusula 7ª.</strong> O presente contrato poderá ser revogado, mediante comunicação escrita por qualquer das partes com antecedência mínima de 15 (quinze) dias, mantendo-se devidos honorários até o termo da notificação, bem como multa de 20% sobre o valor total das parcelas restantes.</p>
+  <p class="cl"><strong>Cláusula 8ª.</strong> Agindo o CONTRATANTE prejudicialmente, de forma dolosa ou culposa, em face da CONTRATADA, ou, ainda, na hipótese de prática de qualquer ato que gere desequilíbrio ou quebra de confiança na relação advogado-cliente, restará facultado a este rescindir o contrato, se exonerando de todas as obrigações, com reserva de honorários previstos na forma do presente instrumento.</p>
+  <p class="cl"><strong>Cláusula 9ª.</strong> Caso o CONTRATANTE falte com o pagamento de honorários, taxas ou despesas pactuadas neste contrato, estará sujeito à emissão de boleto e protesto em cartório, e consequente inscrição nos órgãos de proteção ao crédito SPC e SERASA e demais sanções cabíveis, nos termos da lei.</p>
+
+  <div class="secao">Das Disposições Gerais</div><hr>
+  <p class="cl"><strong>Cláusula 10ª.</strong> É obrigação do(a) CONTRATANTE informar imediatamente qualquer mudança de endereço, número de telefone, e-mail ou demais dados cadastrais, não podendo alegar qualquer responsabilidade da CONTRATADA em eventual falta de sua intimação, notificação de cobrança ou a sua não localização.</p>
+  <p class="cl"><strong>Cláusula 11ª.</strong> O CONTRATANTE fica ciente de que acaso falte com a verdade ou omita qualquer documento ou informação, visando obter indevidamente o benefício da justiça gratuita, poderá vir a ser condenado ao pagamento de multa por litigância de má-fé, além das sanções civis e criminais. Fica o CONTRATANTE ciente, ainda, de que o benefício da justiça gratuita depende única e exclusivamente do livre convencimento do juiz/tribunal, concordando que em nenhuma hipótese será o advogado responsabilizado pelo ônus de decisão desfavorável.</p>
+  <p class="cl"><strong>Cláusula 12ª.</strong> O CONTRATANTE fica expressamente ciente de que o sucesso da ação depende diretamente da produção probatória e que este encargo é integralmente e intransferívelmente seu. A CONTRATADA se compromete a requisitar as provas, documentos e/ou testemunhas que se façam necessários ao sucesso da ação, restringindo-se sua atuação à orientação do(a) CONTRATANTE sobre a forma de obtenção das mesmas.</p>
+  <p class="cl"><strong>Cláusula 13ª.</strong> A CONTRATADA não se compromete a diligenciar na busca de provas, documentos e/ou testemunhas, estando a parte CONTRATANTE ciente de que deverá empenhar os máximos esforços na busca dos elementos que amparem o seu pretenso direito, de modo que o atraso injustificado no fornecimento de tais informações/documentos isentará a CONTRATADA de toda e qualquer obrigação.</p>
+  <p class="cl"><strong>Cláusula 14ª.</strong> O CONTRATANTE fica ciente de que o seu não comparecimento aos atos do processo em que seja indispensável sua presença, tais como audiências, perícias, inspeções e outros, poderá acarretar no arquivamento, extinção do processo ou na improcedência da ação. Nos casos de arquivamento, extinção ou improcedência em que o(a) CONTRATANTE tenha dado causa por não comparecimento sem motivo justificado, serão cobrados honorários integrais pela tabela da OAB/SC, ficando a CONTRATADA desobrigada de quaisquer deveres e obrigações.</p>
+  <p class="cl"><strong>Cláusula 15ª.</strong> Se porventura a CONTRATADA depender do CONTRATANTE para promover algum ato extrajudicial ou judicial, e este não o corresponder tempestivamente, a responsabilidade recairá exclusivamente sobre o CONTRATANTE, não podendo arguí-la em seu favor posteriormente, restando, da mesma forma, isenta a CONTRATADA de qualquer responsabilidade.</p>
+  <p class="cl"><strong>Cláusula 16ª.</strong> Este contrato enquadra-se no rol dos títulos executivos extrajudiciais, nos termos do artigo 784, Inciso XII, do Código de Processo Civil, combinado com o artigo 24 da Lei 8.906/94 (EOAB).</p>
+  <p class="cl"><strong>Cláusula 17ª.</strong> O CONTRATANTE autoriza o tratamento e armazenamento de seus dados digitais pela CONTRATADA, tais como documentos, mídias e informações privadas, para o exercício regular de seus direitos no processo judicial ou administrativo, objetos do presente contrato, ficando vedado para qualquer outro fim. Conforme Lei 13.709 de 2018 (LGPD).</p>
+  <p class="cl"><strong>Cláusula 18ª.</strong> Caso a parte CONTRATANTE compartilhe dados pessoais e processuais sensíveis para terceiros, sem o consentimento do titular dos dados ou da CONTRATADA de forma expressa, assumirá todos os ônus decorrentes do referido compartilhamento, conforme hipóteses previstas na LGPD.</p>
+  <p class="cl"><strong>Cláusula 19ª.</strong> As partes reconhecem e acordam que o presente contrato poderá ser assinado eletronicamente por meio de plataforma eletrônica Docusign, ZapSign ou pelo sistema de assinatura gov.br, produzindo os mesmos efeitos legais da via assinada fisicamente, nos termos da Lei nº 13.874/2019 e do Decreto nº 10.278/2020 e acordam ainda em não contestar a sua validade, conteúdo, autenticidade e integridade.</p>
+
+  <div class="secao">Da Eleição do Foro</div><hr>
+  <p class="pre">As partes acima identificadas elegem o Foro de Balneário Camboriú para dirimir quaisquer divergências originárias deste contrato, e firmam-no em 02 (duas) vias iguais.</p>
+  <p style="text-align:right;font-size:8.5pt;margin-top:10px">Balneário Camboriú, [data de hoje].</p>
+
+  <div class="assin-wrap">
+    <div class="assin"><div class="ln">CONTRATANTE<br><em>[Nome do Cliente]</em></div></div>
+    <div class="assin"><div class="ln">CONTRATADA<br>Domingos Advocacia e Assessoria Jurídica</div></div>
+  </div>
+  <div class="test-wrap">
+    <div class="test"><div class="ln">Testemunha &nbsp;Nome: ____________<br>CPF: ____________________</div></div>
+    <div class="test"><div class="ln">Testemunha &nbsp;Nome: ____________<br>CPF: ____________________</div></div>
+  </div>
+
+  <div class="doc-footer">R. 501, nº 145 sala 05, centro, Balneário Camboriú &nbsp;|&nbsp; 47 99915-9178 &nbsp;|&nbsp; jonathan@domingosadvocacia.com.br</div>
+</div>
+
+<!-- ═════════════════════════════════════════ DOC 2 — PROCURAÇÃO ════ -->
+<div class="page" id="d1">
+  <div class="doc-header">
+    <div class="n">DOMINGOS ADVOCACIA &amp; ASSESSORIA JURÍDICA</div>
+    <div class="a">R. 501, nº 145 sala 05, centro, Balneário Camboriú &nbsp;|&nbsp; (47) 99915-9178 &nbsp;|&nbsp; jonathan@domingosadvocacia.com.br</div>
+  </div>
+  <div class="titulo">Procuração</div><hr>
+  <p class="pre"><strong>OUTORGANTE: [NOME DO CLIENTE]</strong>, brasileiro(a), [estado civil], [profissão], portador(a) do RG nº [RG] SSP/SC e CPF nº [CPF], residente e domiciliado(a) na [endereço completo].</p>
+  <p class="pre"><strong>OUTORGADOS: Dr. JONATHAN FRANK STOBIENIA DOMINGOS</strong>, inscrito na OAB/SC sob nº 43.348, e <strong>Dra. THAMILE ALESSANDRA DOMINGOS</strong>, inscrita na OAB/SC nº 57.773, com endereço profissional subscrito no rodapé.</p>
+  <div class="secao">Poderes</div><hr>
+  <p class="cl">Para o foro em geral, conferindo-lhes os mais amplos e ilimitados poderes inclusive os da cláusula <strong>"ad judicia et extra"</strong>, bem como os especiais constantes do art. 105, do Código de Processo Civil, para, onde com esta se apresentarem, em conjunto ou separadamente, além de ordem de nomeação, propor ações e contestá-las, receber citações, notificações e intimações, apresentar justificações, variar de ações e pedidos, notificar, interpelar, protestar, discordar, transigir e desistir, receber a quantia e dar quitação, arrematar ou adjudicar em qualquer praça ou leilão, prestar compromissos de inventariante, oferecer as primeiras e últimas declarações, interpor quaisquer recursos, requerer, assinar, praticar, perante qualquer repartição pública, entidades autárquicas e ou parastatal, Juízo, Instância ou Tribunal, tudo o que julgar conveniente ou necessário ao bom e fiel desempenho deste mandato, que poderá ser substabelecido, no todo ou em parte, a quem melhor lhes convier, com ou sem reserva de poderes.</p>
+  <p class="cl" style="margin-top:8px"><strong>Finalidade específica:</strong> <em>[objeto da ação]</em>.</p>
+  <p class="cl" style="margin-top:8px">Os poderes específicos acima outorgados <strong>poderão</strong> ser substabelecidos.</p>
+  <hr>
+  <p class="cl" style="font-size:8pt">As partes reconhecem e acordam que o presente documento poderá ser assinado eletronicamente por meio de plataforma eletrônica Docusign, ZapSign ou pelo sistema de assinatura gov.br, produzindo os mesmos efeitos legais da via assinada fisicamente, nos termos da Lei nº 13.874/2019 e do Decreto nº 10.278/2020 e acordam ainda em não contestar a sua validade, conteúdo, autenticidade e integridade.</p>
+  <p style="text-align:right;font-size:8.5pt;margin-top:14px">Balneário Camboriú, [data de hoje].</p>
+  <div style="text-align:center;margin-top:40px;border-top:1px solid #000;padding-top:4px;width:55%;margin-left:22.5%">
+    [NOME DO CLIENTE]<br><span style="font-size:8pt">CPF: [CPF]</span>
+  </div>
+  <div class="doc-footer">R. 501, nº 145 sala 05, centro, Balneário Camboriú &nbsp;|&nbsp; 47 99915-9178 &nbsp;|&nbsp; jonathan@domingosadvocacia.com.br</div>
+</div>
+
+<!-- ══════════════════════════════════════ DOC 3 — HIPOSSUFICIÊNCIA ════ -->
+<div class="page" id="d2">
+  <div class="doc-header">
+    <div class="n">DOMINGOS ADVOCACIA &amp; ASSESSORIA JURÍDICA</div>
+    <div class="a">R. 501, nº 145 sala 05, centro, Balneário Camboriú &nbsp;|&nbsp; (47) 99915-9178 &nbsp;|&nbsp; jonathan@domingosadvocacia.com.br</div>
+  </div>
+  <div class="titulo">Declaração de Hipossuficiência Econômica</div>
+  <div class="subtit">(Para fins de concessão do benefício de Assistência Judiciária Gratuita – Art. 99, §3º, CPC)</div><hr>
+  <p class="pre">Eu, <strong>[NOME DO CLIENTE]</strong>, brasileiro(a), [estado civil], [profissão], portador(a) do RG nº [RG] SSP/SC e inscrito(a) no CPF nº [CPF], residente e domiciliado(a) na [endereço completo], na qualidade de parte no processo judicial em andamento ou a ser proposto pelo escritório <strong>DOMINGOS ADVOCACIA E ASSESSORIA JURÍDICA</strong>, DECLARO, sob as penas da lei, o que segue:</p>
+  <p class="cl" style="margin-top:10px"><strong>1.</strong> Que não possuo condições financeiras de arcar com as custas do processo e honorários advocatícios sem prejuízo do sustento próprio ou de minha família, razão pela qual requeiro a concessão do benefício da Assistência Judiciária Gratuita, nos termos do art. 98 e seguintes do Código de Processo Civil e da Lei nº 1.060/50.</p>
+  <p class="cl" style="margin-top:8px"><strong>2.</strong> Que minha renda mensal é insuficiente para custear as despesas processuais, conforme declarado a seguir:</p>
+  <div class="campo"><strong>Renda mensal bruta:</strong> &nbsp; R$ <span></span></div>
+  <div class="campo"><strong>Número de dependentes:</strong> &nbsp; <span style="width:80px"></span></div>
+  <div class="campo"><strong>Despesas mensais aproximadas:</strong> &nbsp; R$ <span></span></div>
+  <p class="cl" style="margin-top:8px"><strong>3.</strong> Que estou ciente de que a falsidade desta declaração configura crime de falsidade ideológica (art. 299 do Código Penal Brasileiro), sujeitando-me às respectivas penalidades, bem como ao pagamento das custas em dobro (art. 100 do CPC).</p>
+  <p class="cl" style="margin-top:8px"><strong>4.</strong> Que caso minha situação financeira se altere de forma significativa, comprometo-me a informar imediatamente ao(à) advogado(a) responsável, para que seja avaliada a manutenção ou revogação do benefício.</p>
+  <p style="text-align:right;font-size:8.5pt;margin-top:14px">Balneário Camboriú, [data de hoje].</p>
+  <div style="text-align:center;margin-top:40px;border-top:1px solid #000;padding-top:4px;width:55%;margin-left:22.5%">
+    [NOME DO CLIENTE]<br><span style="font-size:8pt">CPF: [CPF]</span>
+  </div>
+  <div class="doc-footer">R. 501, nº 145 sala 05, centro, Balneário Camboriú &nbsp;|&nbsp; 47 99915-9178 &nbsp;|&nbsp; jonathan@domingosadvocacia.com.br</div>
+</div>
+
+<!-- ════════════════════════════════════════ DOC 4 — RENÚNCIA ════ -->
+<div class="page" id="d3">
+  <div class="doc-header">
+    <div class="n">DOMINGOS ADVOCACIA &amp; ASSESSORIA JURÍDICA</div>
+    <div class="a">R. 501, nº 145 sala 05, centro, Balneário Camboriú &nbsp;|&nbsp; (47) 99915-9178 &nbsp;|&nbsp; jonathan@domingosadvocacia.com.br</div>
+  </div>
+  <div class="titulo">Carta de Renúncia de Mandato</div><hr>
+  <p class="pre" style="margin-top:14px">Prezado senhor(a) <strong>[Nome do Cliente]</strong>, portador(a) do RG nº [RG] e CPF nº [CPF].</p>
+  <p class="pre" style="margin-top:10px">Serve a presente, para notificar de que os subscritores desta <strong>RENUNCIAM AO MANDATO QUE LHES FOI OUTORGADO POR PROCURAÇÃO AD JUDICIA OS ADVOGADOS DR. JONATHAN FRANK STOBIENIA DOMINGOS OAB/SC 43.348 E THAMILE ALESSANDRA DOMINGOS OAB/SC 57.773</strong>, como já foi devidamente notificado, ficando o(a) senhor(a) notificado(a) da renúncia acima expressa, sendo certo que, a partir do recebimento desta, tem o prazo legal de <strong>10 (dez) dias</strong>, para, nos termos do art. 45 do CPC, constituir novo patrono para o referido processo assinando ao final o canhoto do recebimento.</p>
+  <p class="pre">Atenciosamente Jonathan Domingos OAB/SC 43.348.</p>
+  <div class="assin-wrap" style="margin-top:50px">
+    <div class="assin"><div class="ln">Dr. Jonathan F. S. Domingos<br>OAB/SC 43.348</div></div>
+    <div class="assin"><div class="ln">Thamile Alessandra Domingos<br>OAB/SC 57.773</div></div>
+  </div>
+  <div class="secao" style="margin-top:40px">Assinatura de Recebimento</div><hr>
+  <div style="text-align:center;margin-top:40px;border-top:1px solid #000;padding-top:4px;width:55%;margin-left:22.5%">
+    <strong>[NOME DO CLIENTE]</strong>
+  </div>
+  <div class="doc-footer">R. 501, nº 145 sala 05, centro, Balneário Camboriú &nbsp;|&nbsp; 47 99915-9178 &nbsp;|&nbsp; jonathan@domingosadvocacia.com.br</div>
+</div>
+
+<script>
+function m(i) {
+  document.querySelectorAll('.page').forEach((p,j) => p.classList.toggle('active', j===i));
+  document.querySelectorAll('.tab').forEach((t,j) => t.classList.toggle('active', j===i));
+}
+</script>
+</body>
+</html>
