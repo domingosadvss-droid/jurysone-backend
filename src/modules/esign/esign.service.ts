@@ -1009,19 +1009,25 @@ export class EsignService {
     this.logger.log(`[ClickSign v3] Req autenticação: ${authResp.status} — ${authText.substring(0, 400)}`);
     if (!authResp.ok) throw new Error(`ClickSign: req autenticação rejeitada ${authResp.status} — ${authText.substring(0, 200)}`);
 
-    // ── 5c. Requisitos de assinatura para os demais documentos ───────────
+    // ── 5c. Requisitos de assinatura e autenticação para todos os documentos ─
     for (const extraDocId of [docProcId, docDeclId, docQuestId]) {
       const extraRels = {
         document: { data: { type: 'documents', id: extraDocId } },
         signer:   { data: { type: 'signers',   id: signerId   } },
       };
-      const r = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/requirements`, {
+      await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/requirements`, {
         method: 'POST', headers,
         body: JSON.stringify({
           data: { type: 'requirements', attributes: { action: 'agree', role: 'sign' }, relationships: extraRels },
         }),
       });
-      this.logger.log(`[ClickSign v3] Req doc extra ${extraDocId}: ${r.status}`);
+      await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/requirements`, {
+        method: 'POST', headers,
+        body: JSON.stringify({
+          data: { type: 'requirements', attributes: { action: 'provide_evidence', auth: 'email' }, relationships: extraRels },
+        }),
+      });
+      this.logger.log(`[ClickSign v3] Req sign+auth doc ${extraDocId}: ok`);
     }
 
     // ── 6. Ativar envelope (draft → running) ──────────────────────────────
