@@ -155,7 +155,7 @@ export class EsignController {
               const nameWords  = (s.name || dc.clienteNome || '').replace(/[^a-zA-ZÀ-ÿ\s]/g, '').trim().split(/\s+/).filter((w: string) => w.length > 0);
               const signerName = nameWords.length >= 2 ? nameWords.join(' ') : `${nameWords[0] || 'Cliente'} Signatario`;
               const signerEmail = s.email || dc.clienteEmail || dc.email || '';
-              const auths = hasPhone ? ['email', 'whatsapp'] : ['email'];
+              const auths = hasPhone ? ['whatsapp'] : ['email'];
 
               const sigResp = await fetch(`${base}/api/v1/signers${qs}`, {
                 method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -259,7 +259,7 @@ export class EsignController {
               signer: {
                 email:            s.email,
                 name:             signerName,
-                auths:            hasPhone ? ['email', 'whatsapp'] : ['email'],
+                auths:            hasPhone ? ['whatsapp'] : ['email'],
                 has_documentation: false,
               },
             };
