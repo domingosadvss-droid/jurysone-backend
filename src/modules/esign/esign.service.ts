@@ -763,10 +763,16 @@ export class EsignService {
         }
       }
     } catch (err) {
-      this.logger.warn(`[Esign] ClickSign falhou, tentando SMTP: ${err.message}`);
+      this.logger.warn(`[Esign] ClickSign falhou: ${err.message}`);
+      // Se o ClickSign já criou o envelope antes de falhar, não envia email interno
+      const envelopeCheck = await this.prisma.esignEnvelope.findUnique({ where: { id: envelopeId } }).catch(() => null);
+      if ((envelopeCheck as any)?.zapsignDocumentId) {
+        this.logger.log(`[Esign] Envelope já registrado no ClickSign (${(envelopeCheck as any).zapsignDocumentId}) — SMTP ignorado`);
+        return { provider: 'clicksign' };
+      }
     }
 
-    // 2. Fallback SMTP
+    // 2. Fallback SMTP (só chega aqui se ClickSign não criou nada)
     try {
       const signingLink = `${process.env.FRONTEND_URL || process.env.APP_URL || 'https://jurysone.com'}/esign/assinar/${envelopeId}`;
       await this.enviarEmailAssinatura({ nome: signatario.nome, email: signatario.email, link: signingLink }, titulo);
@@ -902,35 +908,34 @@ export class EsignService {
       vencimento1Parc: atendimento?.vencimento1Parc ?? null,
     };
 
-    // ── 3. Upload do contrato (documento principal) ───────────────────────
-    // Prioridade: template "contrato_honorarios" salvo pelo escritório
-    // (ex.: Contrato de Prestação de Serviço carregado na área de Modelos).
-    // Fallback: PDF gerado automaticamente com os dados do atendimento.
+    // ── 3. Upload dos 4 documentos do atendimento ────────────────────────
     const escritorioId = atendimento?.escritorioId ?? '';
-    const templateB64  = escritorioId
-      ? await this.getTemplateBase64(escritorioId, 'contrato_honorarios').catch(() => null)
-      : null;
 
-    const pdfBase64  = templateB64 ?? await this.gerarContratoBase64('Contrato de Prestacao de Servico', dadosPdf);
-    const nomeArquivo = 'Contrato_de_Prestacao_de_Servico.pdf';
+    const uploadDoc = async (tipo: string, filename: string, pdfFallback: () => Promise<string>): Promise<string> => {
+      const templateB64 = escritorioId
+        ? await this.getTemplateBase64(escritorioId, tipo).catch(() => null)
+        : null;
+      const b64 = templateB64 ?? await pdfFallback();
+      this.logger.log(`[ClickSign v3] Upload: ${filename} (template=${!!templateB64})`);
+      const resp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/documents`, {
+        method: 'POST', headers,
+        body: JSON.stringify({
+          data: { type: 'documents', attributes: { filename, content_base64: `data:application/pdf;base64,${b64}` } },
+        }),
+      });
+      const text = await resp.text();
+      this.logger.log(`[ClickSign v3] Doc ${filename}: ${resp.status} — ${text.substring(0, 200)}`);
+      const id = JSON.parse(text)?.data?.id;
+      if (!id) throw new Error(`ClickSign: falha upload ${filename} — ${text.substring(0, 200)}`);
+      return id;
+    };
 
-    this.logger.log(`[ClickSign v3] Upload: ${nomeArquivo} (template=${!!templateB64})`);
-    const docResp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/documents`, {
-      method: 'POST', headers,
-      body: JSON.stringify({
-        data: {
-          type: 'documents',
-          attributes: {
-            filename:       nomeArquivo,
-            content_base64: `data:application/pdf;base64,${pdfBase64}`,
-          },
-        },
-      }),
-    });
-    const docText = await docResp.text();
-    this.logger.log(`[ClickSign v3] Contrato: ${docResp.status} — ${docText.substring(0, 300)}`);
-    const documentId = JSON.parse(docText)?.data?.id;
-    if (!documentId) throw new Error(`ClickSign: documento nao criado — ${docText.substring(0, 200)}`);
+    const [documentId, docProcId, docDeclId, docQuestId] = await Promise.all([
+      uploadDoc('contrato_honorarios',        'Contrato_de_Prestacao_de_Servico.pdf', () => this.gerarContratoBase64('Contrato de Prestacao de Servico', dadosPdf)),
+      uploadDoc('procuracao',                 'Procuracao_Ad_Judicia.pdf',            () => this.gerarProcuracaoBase64(dadosPdf)),
+      uploadDoc('declaracao_hipossuficiencia','Declaracao_de_Hipossuficiencia.pdf',   () => this.gerarDeclaracaoBase64(dadosPdf)),
+      uploadDoc('questionario_juridico',      'Questionario_Juridico.pdf',            () => this.gerarQuestionarioBase64(dadosPdf)),
+    ]);
 
     // ── 4. Criar signatário no envelope ───────────────────────────────────
     const nomeNormalizado = signatario.nome.trim().includes(' ')
@@ -1007,6 +1012,21 @@ export class EsignService {
     const authText = await authResp.text();
     this.logger.log(`[ClickSign v3] Req autenticação: ${authResp.status} — ${authText.substring(0, 400)}`);
     if (!authResp.ok) throw new Error(`ClickSign: req autenticação rejeitada ${authResp.status} — ${authText.substring(0, 200)}`);
+
+    // ── 5c. Requisitos de assinatura para os demais documentos ───────────
+    for (const extraDocId of [docProcId, docDeclId, docQuestId]) {
+      const extraRels = {
+        document: { data: { type: 'documents', id: extraDocId } },
+        signer:   { data: { type: 'signers',   id: signerId   } },
+      };
+      const r = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/requirements`, {
+        method: 'POST', headers,
+        body: JSON.stringify({
+          data: { type: 'requirements', attributes: { action: 'agree', role: 'sign' }, relationships: extraRels },
+        }),
+      });
+      this.logger.log(`[ClickSign v3] Req doc extra ${extraDocId}: ${r.status}`);
+    }
 
     // ── 6. Ativar envelope (draft → running) ──────────────────────────────
     this.logger.log(`[ClickSign v3] Ativando envelope ${envelopeId}`);
