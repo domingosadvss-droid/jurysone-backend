@@ -242,16 +242,12 @@ export class EsignController {
               };
             } catch (err) {
               this.logger.error(`[ClickSign v3] Falha envelope: ${err.message}`);
+              throw new Error(`Falha ao criar envelope ClickSign: ${err.message}`);
             }
           }
 
-          // ── Fluxo padrão (sem dados_cliente): 1 documento via template ou base64 ──
-          const tipoDocumento = dto.tipo_documento || 'contrato_honorarios';
-          const templateB64 = await this.esignService.getTemplateBase64(escritorioId, tipoDocumento).catch(() => null);
-          if (templateB64) {
-            docBody.document.content_base64 = `data:application/pdf;base64,${templateB64}`;
-            this.logger.log(`[ClickSign] PDF template '${tipoDocumento}' carregado do banco`);
-          } else if (dto.base64_pdf) {
+          // ── Fluxo padrão (sem dados_cliente): 1 documento via base64 ──
+          if (dto.base64_pdf) {
             const b64 = dto.base64_pdf.startsWith('data:')
               ? dto.base64_pdf
               : `data:application/pdf;base64,${dto.base64_pdf}`;
