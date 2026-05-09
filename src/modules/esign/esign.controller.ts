@@ -112,35 +112,117 @@ export class EsignController {
               sequence_enabled: false,
             },
           };
-          // Prioridade: 1) dados_cliente → gera .docx  2) template do banco  3) base64_pdf do frontend
+          // ── Se dados_cliente presentes: gera 4 PDFs e cria 4 documentos separados no ClickSign ──
           if (dto.dados_cliente?.clienteNome) {
+            const signersOut: any[] = [];
             try {
-              const docxBuffer = await this.docxGerarService.gerarTodosDocumentos(dto.dados_cliente);
-              const docxB64    = docxBuffer.toString('base64');
-              docBody.document.content_base64 = `data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,${docxB64}`;
-              // Ajusta extensão do path para .docx
-              docBody.document.path = docBody.document.path.replace(/\.pdf$/, '.docx');
-              this.logger.log(`[ClickSign] .docx gerado com dados do cliente: ${dto.dados_cliente.clienteNome} (${Math.round(docxBuffer.length / 1024)}KB)`);
-            } catch (docxErr) {
-              this.logger.warn(`[ClickSign] Falha ao gerar .docx — tentando template: ${docxErr.message}`);
+              const dc = dto.dados_cliente;
+              // Normaliza campos: frontend usa clienteCPF (maiúsculo), service usa clienteCpf
+              const dadosPdf = {
+                clienteNome:      dc.clienteNome,
+                clienteCpf:       dc.clienteCPF || dc.clienteCpf || dc.clienteCpf,
+                clienteEndereco:  [dc.clienteRua || dc.clienteEndereco, dc.clienteNum, dc.clienteBairro, dc.clienteCidade, dc.clienteEstado].filter(Boolean).join(', '),
+                area:             dc.objetoAcao || '',
+                tipoAcao:         dc.objetoAcao || '',
+                valorAcao:        Number(dc.valorAcao) || 0,
+                tipoHonorario:    dc.tipoHonorario || 'percentual',
+                percentualExito:  Number(dc.percHonorarios) || 30,
+                valorHonorario:   Number(dc.valorHonorarios) || 0,
+                formaPagamento:   dc.formaPagamento || 'PIX',
+                numParcelas:      Number(dc.numParcelas) || 1,
+              };
+
+              const docs = await this.esignService.gerarTodosDocumentosPdf(dadosPdf);
+              this.logger.log(`[ClickSign] 4 PDFs gerados para ${dc.clienteNome}`);
+
+              // Cria um documento ClickSign para cada PDF e vincula o mesmo signatário
+              for (const doc of docs) {
+                const safePath = `/${Date.now()}_${doc.nome}.pdf`;
+                const docBodyItem: any = {
+                  document: {
+                    path:             safePath,
+                    deadline_at:      deadline,
+                    auto_close:       true,
+                    locale:           'pt-BR',
+                    sequence_enabled: false,
+                    content_base64:   `data:application/pdf;base64,${doc.base64}`,
+                  },
+                };
+
+                const dResp = await fetch(`${base}/api/v1/documents${qs}`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(docBodyItem),
+                });
+                const dText = await dResp.text();
+                this.logger.log(`[ClickSign] Doc '${doc.nome}': ${dResp.status}`);
+                if (!dResp.ok) { this.logger.warn(`[ClickSign] Falha doc ${doc.nome}: ${dText.substring(0, 200)}`); continue; }
+                const dData    = JSON.parse(dText) as any;
+                const dKey     = dData.document?.key;
+
+                // Reutiliza signatários já criados (cria só na 1ª iteração, vincula nas demais)
+                for (const s of (dto.signers || [])) {
+                  const phoneRaw = (s.phone_number || s.telefone || '').replace(/\D/g, '');
+                  const hasPhone = phoneRaw.length >= 10;
+                  const cleanedName = (s.name || '').replace(/[^a-zA-ZÀ-ÿ\s]/g, '').trim();
+                  const nameWords   = cleanedName.split(/\s+/).filter((w: string) => w.length > 0);
+                  const signerName  = nameWords.length >= 2 ? nameWords.join(' ') : nameWords.length === 1 ? `${nameWords[0]} Signatario` : 'Cliente Signatario';
+
+                  const sigResp = await fetch(`${base}/api/v1/signers${qs}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ signer: { email: s.email, name: signerName, auths: hasPhone ? ['email', 'whatsapp'] : ['email'], has_documentation: false, ...(hasPhone ? { phone_number: phoneRaw } : {}) } }),
+                  });
+                  if (!sigResp.ok) { this.logger.warn(`[ClickSign] Falha signatário: ${s.email}`); continue; }
+                  const sigKey = (JSON.parse(await sigResp.text()) as any)?.signer?.key;
+
+                  const listResp = await fetch(`${base}/api/v1/lists${qs}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ list: { document_key: dKey, signer_key: sigKey, sign_as: 'sign', refusable: false, message: dto.message || 'Por favor, assine os documentos' } }),
+                  });
+                  const listData = listResp.ok ? JSON.parse(await listResp.text()) as any : {};
+                  const signUrl  = listData.list?.url || `${base}/sign/${sigKey}`;
+
+                  // Notificação e-mail
+                  await fetch(`${base}/api/v1/notifications${qs}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ notification: { document_key: dKey, signer_key: sigKey, url: signUrl, message: dto.message || 'Por favor, assine os documentos de honorários' } }) });
+
+                  // Notificação WhatsApp
+                  if (hasPhone) {
+                    await fetch(`${base}/api/v1/notifications${qs}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ notification: { document_key: dKey, signer_key: sigKey, url: signUrl, message: dto.message || 'Por favor, assine os documentos de honorários', delivery: 'whatsapp' } }) });
+                  }
+
+                  signersOut.push({ token: sigKey, sign_url: signUrl, name: s.name, email: s.email });
+                }
+              }
+
+              this.logger.log(`[ClickSign] ✅ 4 documentos enviados com dados reais do cliente`);
+              return {
+                token:       `multi_${Date.now()}`,
+                name:        `Documentos Jurídicos — ${dc.clienteNome}`,
+                status_name: 'pending',
+                signers:     signersOut,
+                _provider:   'clicksign',
+              };
+            } catch (err) {
+              this.logger.error(`[ClickSign] Falha ao gerar PDFs do cliente: ${err.message}`);
             }
           }
 
-          if (!docBody.document.content_base64) {
-            const tipoDocumento = dto.tipo_documento || 'contrato_honorarios';
-            const templateB64 = await this.esignService.getTemplateBase64(escritorioId, tipoDocumento).catch(() => null);
-            if (templateB64) {
-              docBody.document.content_base64 = `data:application/pdf;base64,${templateB64}`;
-              this.logger.log(`[ClickSign] PDF template '${tipoDocumento}' carregado do banco`);
-            } else if (dto.base64_pdf) {
-              const b64 = dto.base64_pdf.startsWith('data:')
-                ? dto.base64_pdf
-                : `data:application/pdf;base64,${dto.base64_pdf}`;
-              docBody.document.content_base64 = b64;
-              this.logger.log(`[ClickSign] PDF base64 do frontend: ${Math.round(b64.length / 1024)}KB`);
-            } else if (dto.url_pdf) {
-              docBody.document.content_base64 = dto.url_pdf;
-            }
+          // ── Fluxo padrão (sem dados_cliente): 1 documento via template ou base64 ──
+          const tipoDocumento = dto.tipo_documento || 'contrato_honorarios';
+          const templateB64 = await this.esignService.getTemplateBase64(escritorioId, tipoDocumento).catch(() => null);
+          if (templateB64) {
+            docBody.document.content_base64 = `data:application/pdf;base64,${templateB64}`;
+            this.logger.log(`[ClickSign] PDF template '${tipoDocumento}' carregado do banco`);
+          } else if (dto.base64_pdf) {
+            const b64 = dto.base64_pdf.startsWith('data:')
+              ? dto.base64_pdf
+              : `data:application/pdf;base64,${dto.base64_pdf}`;
+            docBody.document.content_base64 = b64;
+            this.logger.log(`[ClickSign] PDF base64 do frontend: ${Math.round(b64.length / 1024)}KB`);
+          } else if (dto.url_pdf) {
+            docBody.document.content_base64 = dto.url_pdf;
           }
 
           this.logger.log(`[ClickSign] Criando documento: POST ${base}/api/v1/documents`);

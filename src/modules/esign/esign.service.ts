@@ -1057,6 +1057,38 @@ export class EsignService {
     return { docKey: envelopeId, signUrl };
   }
 
+  /**
+   * Gera os 4 PDFs jurídicos preenchidos com dados do cliente.
+   * Retorna array de { nome, base64 } para envio ao ClickSign.
+   */
+  async gerarTodosDocumentosPdf(dados: {
+    clienteNome: string;
+    clienteCpf?: string;
+    clienteEndereco?: string;
+    area: string;
+    tipoAcao?: string;
+    valorAcao?: number;
+    tipoHonorario?: string;
+    valorHonorario?: number;
+    percentualExito?: number;
+    formaPagamento?: string;
+    numParcelas?: number;
+    vencimento1Parc?: Date | null;
+  }): Promise<Array<{ nome: string; base64: string }>> {
+    const [contrato, procuracao, declaracao, questionario] = await Promise.all([
+      this.gerarContratoBase64('Contrato de Honorarios', dados),
+      this.gerarProcuracaoBase64(dados),
+      this.gerarDeclaracaoBase64(dados),
+      this.gerarQuestionarioBase64(dados),
+    ]);
+    return [
+      { nome: 'Contrato_de_Honorarios',          base64: contrato     },
+      { nome: 'Procuracao_Ad_Judicia',            base64: procuracao   },
+      { nome: 'Declaracao_de_Hipossuficiencia',   base64: declaracao   },
+      { nome: 'Questionario_Juridico',            base64: questionario },
+    ];
+  }
+
   /** Delega a geração de PDF para o método correto conforme o tipo */
   private async gerarDocumentoPdf(
     tipo: string,
