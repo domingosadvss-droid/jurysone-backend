@@ -1133,15 +1133,20 @@ export class EsignService {
     const AZUL = rgb(0.06, 0.18, 0.37); const CINZA = rgb(0.33, 0.33, 0.33);
     let page: any = pdfDoc.addPage([595, 842]); let y = 790;
     const hdr = (pg: any) => {
-      pg.drawText('DOMINGOS ADVOCACIA & ASSESSORIA JURIDICA', { x: M, y: 820, font: bold, size: 9, color: AZUL });
-      pg.drawLine({ start: { x: M, y: 815 }, end: { x: M + W, y: 815 }, thickness: 0.5, color: AZUL });
-      pg.drawText('R. 501, no 145 sala 05, centro, Balneario Camboriu  |  (47) 99915-9178  |  jonathan@domingosadvocacia.com.br', { x: M, y: 807, font: regular, size: 7, color: CINZA });
+      const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
+      pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
+      const t2 = 'ADVOCACIA E ASSESSORIA JURIDICA'; const t2w = regular.widthOfTextAtSize(t2, 8);
+      pg.drawText(t2, { x: M + (W - t2w) / 2, y: 809, font: regular, size: 8, color: rgb(0.45, 0.45, 0.45) });
+      pg.drawLine({ start: { x: M, y: 805 }, end: { x: M + W, y: 805 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
     };
     const ftr = (pg: any) => {
-      pg.drawLine({ start: { x: M, y: 40 }, end: { x: M + W, y: 40 }, thickness: 0.5, color: AZUL });
-      pg.drawText('R. 501, no 145 sala 05, Balneario Camboriu  |  47 99915-9178  |  jonathan@domingosadvocacia.com.br', { x: M, y: 28, font: regular, size: 7, color: CINZA });
+      pg.drawLine({ start: { x: M, y: 48 }, end: { x: M + W, y: 48 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
+      const f1 = 'R. 501, no 145, Sl. 05, centro, Balneario Camboriu'; const f1w = regular.widthOfTextAtSize(f1, 8);
+      pg.drawText(f1, { x: M + (W - f1w) / 2, y: 37, font: regular, size: 8, color: rgb(0.3, 0.3, 0.3) });
+      const f2 = 'jonathan@domingosadvocacia.com.br     47 -999159178'; const f2w = regular.widthOfTextAtSize(f2, 8);
+      pg.drawText(f2, { x: M + (W - f2w) / 2, y: 26, font: regular, size: 8, color: rgb(0.3, 0.3, 0.3) });
     };
-    const np  = () => { ftr(page); page = pdfDoc.addPage([595, 842]); hdr(page); y = 790; };
+    const np  = () => { ftr(page); page = pdfDoc.addPage([595, 842]); hdr(page); y = 795; };
     const nl  = (n = 1) => { y -= LINE * n; };
     const chk = () => { if (y < 70) np(); };
     const sep = () => { chk(); page.drawLine({ start: { x: M, y }, end: { x: M + W, y }, thickness: 0.5, color: rgb(0.7, 0.7, 0.7) }); nl(); };
@@ -1215,15 +1220,20 @@ export class EsignService {
     const AZUL = rgb(0.06, 0.18, 0.37); const CINZA = rgb(0.33, 0.33, 0.33);
     let page: any = pdfDoc.addPage([595, 842]); let y = 790;
     const hdr = (pg: any) => {
-      pg.drawText('DOMINGOS ADVOCACIA & ASSESSORIA JURIDICA', { x: M, y: 820, font: bold, size: 9, color: AZUL });
-      pg.drawLine({ start: { x: M, y: 815 }, end: { x: M + W, y: 815 }, thickness: 0.5, color: AZUL });
-      pg.drawText('R. 501, no 145 sala 05, centro, Balneario Camboriu  |  (47) 99915-9178  |  jonathan@domingosadvocacia.com.br', { x: M, y: 807, font: regular, size: 7, color: CINZA });
+      const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
+      pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
+      const t2 = 'ADVOCACIA E ASSESSORIA JURIDICA'; const t2w = regular.widthOfTextAtSize(t2, 8);
+      pg.drawText(t2, { x: M + (W - t2w) / 2, y: 809, font: regular, size: 8, color: rgb(0.45, 0.45, 0.45) });
+      pg.drawLine({ start: { x: M, y: 805 }, end: { x: M + W, y: 805 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
     };
     const ftr = (pg: any) => {
-      pg.drawLine({ start: { x: M, y: 40 }, end: { x: M + W, y: 40 }, thickness: 0.5, color: AZUL });
-      pg.drawText('R. 501, no 145 sala 05, Balneario Camboriu  |  47 99915-9178  |  jonathan@domingosadvocacia.com.br', { x: M, y: 28, font: regular, size: 7, color: CINZA });
+      pg.drawLine({ start: { x: M, y: 48 }, end: { x: M + W, y: 48 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
+      const f1 = 'R. 501, no 145, Sl. 05, centro, Balneario Camboriu'; const f1w = regular.widthOfTextAtSize(f1, 8);
+      pg.drawText(f1, { x: M + (W - f1w) / 2, y: 37, font: regular, size: 8, color: rgb(0.3, 0.3, 0.3) });
+      const f2 = 'jonathan@domingosadvocacia.com.br     47 -999159178'; const f2w = regular.widthOfTextAtSize(f2, 8);
+      pg.drawText(f2, { x: M + (W - f2w) / 2, y: 26, font: regular, size: 8, color: rgb(0.3, 0.3, 0.3) });
     };
-    const np  = () => { ftr(page); page = pdfDoc.addPage([595, 842]); hdr(page); y = 790; };
+    const np  = () => { ftr(page); page = pdfDoc.addPage([595, 842]); hdr(page); y = 795; };
     const nl  = (n = 1) => { y -= LINE * n; };
     const chk = () => { if (y < 70) np(); };
     const sep = () => { chk(); page.drawLine({ start: { x: M, y }, end: { x: M + W, y }, thickness: 0.5, color: rgb(0.7, 0.7, 0.7) }); nl(); };
@@ -1297,15 +1307,20 @@ export class EsignService {
     const AZUL = rgb(0.06, 0.18, 0.37); const CINZA = rgb(0.33, 0.33, 0.33);
     let page: any = pdfDoc.addPage([595, 842]); let y = 790;
     const hdr = (pg: any) => {
-      pg.drawText('DOMINGOS ADVOCACIA & ASSESSORIA JURIDICA', { x: M, y: 820, font: bold, size: 9, color: AZUL });
-      pg.drawLine({ start: { x: M, y: 815 }, end: { x: M + W, y: 815 }, thickness: 0.5, color: AZUL });
-      pg.drawText('R. 501, no 145 sala 05, centro, Balneario Camboriu  |  (47) 99915-9178  |  jonathan@domingosadvocacia.com.br', { x: M, y: 807, font: regular, size: 7, color: CINZA });
+      const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
+      pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
+      const t2 = 'ADVOCACIA E ASSESSORIA JURIDICA'; const t2w = regular.widthOfTextAtSize(t2, 8);
+      pg.drawText(t2, { x: M + (W - t2w) / 2, y: 809, font: regular, size: 8, color: rgb(0.45, 0.45, 0.45) });
+      pg.drawLine({ start: { x: M, y: 805 }, end: { x: M + W, y: 805 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
     };
     const ftr = (pg: any) => {
-      pg.drawLine({ start: { x: M, y: 40 }, end: { x: M + W, y: 40 }, thickness: 0.5, color: AZUL });
-      pg.drawText('R. 501, no 145 sala 05, Balneario Camboriu  |  47 99915-9178  |  jonathan@domingosadvocacia.com.br', { x: M, y: 28, font: regular, size: 7, color: CINZA });
+      pg.drawLine({ start: { x: M, y: 48 }, end: { x: M + W, y: 48 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
+      const f1 = 'R. 501, no 145, Sl. 05, centro, Balneario Camboriu'; const f1w = regular.widthOfTextAtSize(f1, 8);
+      pg.drawText(f1, { x: M + (W - f1w) / 2, y: 37, font: regular, size: 8, color: rgb(0.3, 0.3, 0.3) });
+      const f2 = 'jonathan@domingosadvocacia.com.br     47 -999159178'; const f2w = regular.widthOfTextAtSize(f2, 8);
+      pg.drawText(f2, { x: M + (W - f2w) / 2, y: 26, font: regular, size: 8, color: rgb(0.3, 0.3, 0.3) });
     };
-    const np  = () => { ftr(page); page = pdfDoc.addPage([595, 842]); hdr(page); y = 790; };
+    const np  = () => { ftr(page); page = pdfDoc.addPage([595, 842]); hdr(page); y = 795; };
     const nl  = (n = 1) => { y -= LINE * n; };
     const chk = () => { if (y < 70) np(); };
     const sep = () => { chk(); page.drawLine({ start: { x: M, y }, end: { x: M + W, y }, thickness: 0.5, color: rgb(0.7, 0.7, 0.7) }); nl(); };
