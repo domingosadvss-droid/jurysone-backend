@@ -26,6 +26,7 @@ import { ApiTags, ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagg
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { EsignService } from './esign.service';
 import { ChavesService } from '../chaves/chaves.service';
+import { DocxGerarService } from '../documentos/docx-gerar.service';
 
 @ApiTags('E-Sign — Assinatura Digital')
 @UseGuards(JwtAuthGuard)
@@ -37,6 +38,7 @@ export class EsignController {
   constructor(
     private readonly esignService: EsignService,
     private readonly chavesService: ChavesService,
+    private readonly docxGerarService: DocxGerarService,
   ) {}
 
   /* ──────────────────── ENVELOPES ───────────────────────────── */
@@ -110,21 +112,35 @@ export class EsignController {
               sequence_enabled: false,
             },
           };
-          // Tenta buscar template configurado pelo escritório; usa base64_pdf do frontend como fallback
-          const tipoDocumento = dto.tipo_documento || 'contrato_honorarios';
-          const templateB64 = await this.esignService.getTemplateBase64(escritorioId, tipoDocumento).catch(() => null);
+          // Prioridade: 1) dados_cliente → gera .docx  2) template do banco  3) base64_pdf do frontend
+          if (dto.dados_cliente?.clienteNome) {
+            try {
+              const docxBuffer = await this.docxGerarService.gerarTodosDocumentos(dto.dados_cliente);
+              const docxB64    = docxBuffer.toString('base64');
+              docBody.document.content_base64 = `data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,${docxB64}`;
+              // Ajusta extensão do path para .docx
+              docBody.document.path = docBody.document.path.replace(/\.pdf$/, '.docx');
+              this.logger.log(`[ClickSign] .docx gerado com dados do cliente: ${dto.dados_cliente.clienteNome} (${Math.round(docxBuffer.length / 1024)}KB)`);
+            } catch (docxErr) {
+              this.logger.warn(`[ClickSign] Falha ao gerar .docx — tentando template: ${docxErr.message}`);
+            }
+          }
 
-          if (templateB64) {
-            docBody.document.content_base64 = `data:application/pdf;base64,${templateB64}`;
-            this.logger.log(`[ClickSign] PDF template '${tipoDocumento}' carregado do banco`);
-          } else if (dto.base64_pdf) {
-            const b64 = dto.base64_pdf.startsWith('data:')
-              ? dto.base64_pdf
-              : `data:application/pdf;base64,${dto.base64_pdf}`;
-            docBody.document.content_base64 = b64;
-            this.logger.log(`[ClickSign] PDF base64 do frontend: ${Math.round(b64.length / 1024)}KB`);
-          } else if (dto.url_pdf) {
-            docBody.document.content_base64 = dto.url_pdf;
+          if (!docBody.document.content_base64) {
+            const tipoDocumento = dto.tipo_documento || 'contrato_honorarios';
+            const templateB64 = await this.esignService.getTemplateBase64(escritorioId, tipoDocumento).catch(() => null);
+            if (templateB64) {
+              docBody.document.content_base64 = `data:application/pdf;base64,${templateB64}`;
+              this.logger.log(`[ClickSign] PDF template '${tipoDocumento}' carregado do banco`);
+            } else if (dto.base64_pdf) {
+              const b64 = dto.base64_pdf.startsWith('data:')
+                ? dto.base64_pdf
+                : `data:application/pdf;base64,${dto.base64_pdf}`;
+              docBody.document.content_base64 = b64;
+              this.logger.log(`[ClickSign] PDF base64 do frontend: ${Math.round(b64.length / 1024)}KB`);
+            } else if (dto.url_pdf) {
+              docBody.document.content_base64 = dto.url_pdf;
+            }
           }
 
           this.logger.log(`[ClickSign] Criando documento: POST ${base}/api/v1/documents`);
