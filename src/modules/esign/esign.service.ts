@@ -28,6 +28,8 @@ import { NotificationsGateway, NotificationType } from '../notifications/notific
 import { ChavesService } from '../chaves/chaves.service';
 import { WhatsappService } from '../whatsapp/whatsapp.service';
 import * as crypto from 'crypto';
+import * as fs   from 'fs';
+import * as path from 'path';
 
 export interface CreateEnvelopeInput {
   title: string;
@@ -1132,12 +1134,19 @@ export class EsignService {
     const M = 50; const W = 595 - M * 2; const LINE = 14;
     const AZUL = rgb(0.06, 0.18, 0.37); const CINZA = rgb(0.33, 0.33, 0.33);
     let page: any = pdfDoc.addPage([595, 842]); let y = 790;
+    const logoPath = path.join(process.cwd(), 'public', 'logo domingos.png');
+    const logoImg  = fs.existsSync(logoPath) ? await pdfDoc.embedPng(fs.readFileSync(logoPath)) : null;
     const hdr = (pg: any) => {
-      const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
-      pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
-      const t2 = 'ADVOCACIA E ASSESSORIA JURIDICA'; const t2w = regular.widthOfTextAtSize(t2, 8);
-      pg.drawText(t2, { x: M + (W - t2w) / 2, y: 809, font: regular, size: 8, color: rgb(0.45, 0.45, 0.45) });
-      pg.drawLine({ start: { x: M, y: 805 }, end: { x: M + W, y: 805 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
+      if (logoImg) {
+        const lh = 48; const lw = logoImg.width * (lh / logoImg.height);
+        pg.drawImage(logoImg, { x: M + (W - lw) / 2, y: 806, width: lw, height: lh });
+      } else {
+        const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
+        pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
+        const t2 = 'ADVOCACIA E ASSESSORIA JURIDICA'; const t2w = regular.widthOfTextAtSize(t2, 8);
+        pg.drawText(t2, { x: M + (W - t2w) / 2, y: 809, font: regular, size: 8, color: rgb(0.45, 0.45, 0.45) });
+      }
+      pg.drawLine({ start: { x: M, y: 803 }, end: { x: M + W, y: 803 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
     };
     const ftr = (pg: any) => {
       pg.drawLine({ start: { x: M, y: 48 }, end: { x: M + W, y: 48 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
@@ -1219,12 +1228,19 @@ export class EsignService {
     const M = 50; const W = 595 - M * 2; const LINE = 14;
     const AZUL = rgb(0.06, 0.18, 0.37); const CINZA = rgb(0.33, 0.33, 0.33);
     let page: any = pdfDoc.addPage([595, 842]); let y = 790;
+    const logoPath = path.join(process.cwd(), 'public', 'logo domingos.png');
+    const logoImg  = fs.existsSync(logoPath) ? await pdfDoc.embedPng(fs.readFileSync(logoPath)) : null;
     const hdr = (pg: any) => {
-      const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
-      pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
-      const t2 = 'ADVOCACIA E ASSESSORIA JURIDICA'; const t2w = regular.widthOfTextAtSize(t2, 8);
-      pg.drawText(t2, { x: M + (W - t2w) / 2, y: 809, font: regular, size: 8, color: rgb(0.45, 0.45, 0.45) });
-      pg.drawLine({ start: { x: M, y: 805 }, end: { x: M + W, y: 805 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
+      if (logoImg) {
+        const lh = 48; const lw = logoImg.width * (lh / logoImg.height);
+        pg.drawImage(logoImg, { x: M + (W - lw) / 2, y: 806, width: lw, height: lh });
+      } else {
+        const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
+        pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
+        const t2 = 'ADVOCACIA E ASSESSORIA JURIDICA'; const t2w = regular.widthOfTextAtSize(t2, 8);
+        pg.drawText(t2, { x: M + (W - t2w) / 2, y: 809, font: regular, size: 8, color: rgb(0.45, 0.45, 0.45) });
+      }
+      pg.drawLine({ start: { x: M, y: 803 }, end: { x: M + W, y: 803 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
     };
     const ftr = (pg: any) => {
       pg.drawLine({ start: { x: M, y: 48 }, end: { x: M + W, y: 48 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
@@ -1306,12 +1322,19 @@ export class EsignService {
     const M = 50; const W = 595 - M * 2; const LINE = 14;
     const AZUL = rgb(0.06, 0.18, 0.37); const CINZA = rgb(0.33, 0.33, 0.33);
     let page: any = pdfDoc.addPage([595, 842]); let y = 790;
+    const logoPath = path.join(process.cwd(), 'public', 'logo domingos.png');
+    const logoImg  = fs.existsSync(logoPath) ? await pdfDoc.embedPng(fs.readFileSync(logoPath)) : null;
     const hdr = (pg: any) => {
-      const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
-      pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
-      const t2 = 'ADVOCACIA E ASSESSORIA JURIDICA'; const t2w = regular.widthOfTextAtSize(t2, 8);
-      pg.drawText(t2, { x: M + (W - t2w) / 2, y: 809, font: regular, size: 8, color: rgb(0.45, 0.45, 0.45) });
-      pg.drawLine({ start: { x: M, y: 805 }, end: { x: M + W, y: 805 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
+      if (logoImg) {
+        const lh = 48; const lw = logoImg.width * (lh / logoImg.height);
+        pg.drawImage(logoImg, { x: M + (W - lw) / 2, y: 806, width: lw, height: lh });
+      } else {
+        const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
+        pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
+        const t2 = 'ADVOCACIA E ASSESSORIA JURIDICA'; const t2w = regular.widthOfTextAtSize(t2, 8);
+        pg.drawText(t2, { x: M + (W - t2w) / 2, y: 809, font: regular, size: 8, color: rgb(0.45, 0.45, 0.45) });
+      }
+      pg.drawLine({ start: { x: M, y: 803 }, end: { x: M + W, y: 803 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
     };
     const ftr = (pg: any) => {
       pg.drawLine({ start: { x: M, y: 48 }, end: { x: M + W, y: 48 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
