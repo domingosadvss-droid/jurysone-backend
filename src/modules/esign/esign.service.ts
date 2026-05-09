@@ -729,10 +729,13 @@ export class EsignService {
     titulo: string,
     mensagem: string,
   ): Promise<{ provider: 'clicksign' | 'smtp' | 'none' }> {
-    // 1. Tenta ClickSign
-    try {
-      const clickToken = await this.chaves.getChave(escritorioId, 'clicksign');
-      if (clickToken && signatario.email) {
+    const clickToken = await this.chaves.getChave(escritorioId, 'clicksign');
+
+    // ── 1. ClickSign configurado: tenta exclusivamente o ClickSign ──────────
+    // Se falhar, NÃO envia SMTP — o link jurysone.com.br/esign/assinar/{uuid}
+    // retorna 404 e é pior que nenhum email. O escritório reenvio pelo dashboard.
+    if (clickToken && signatario.email) {
+      try {
         const resultado = await this.criarDocumentoClicksign(
           clickToken,
           envelopeId,
@@ -753,7 +756,7 @@ export class EsignService {
 
           this.logger.log(`[Esign] ✅ ClickSign: documento ${resultado.docKey} criado para ${signatario.email}`);
 
-          // WhatsApp em paralelo
+          // WhatsApp em paralelo com o link real de assinatura
           if (signatario.telefone && resultado.signUrl) {
             const msgWpp = `Olá, ${signatario.nome}!\n\nVocê recebeu documentos para assinar referentes ao seu processo jurídico.\n\nAssine pelo link:\n${resultado.signUrl}\n\n— JurysOne`;
             this.whatsapp.enviarTextoSimples(signatario.telefone, msgWpp).catch(() => null);
@@ -761,18 +764,14 @@ export class EsignService {
 
           return { provider: 'clicksign' };
         }
+      } catch (err) {
+        this.logger.warn(`[Esign] ClickSign falhou — SMTP omitido para evitar link quebrado: ${err.message}`);
       }
-    } catch (err) {
-      this.logger.warn(`[Esign] ClickSign falhou: ${err.message}`);
-      // Se o ClickSign já criou o envelope antes de falhar, não envia email interno
-      const envelopeCheck = await this.prisma.esignEnvelope.findUnique({ where: { id: envelopeId } }).catch(() => null);
-      if ((envelopeCheck as any)?.zapsignDocumentId) {
-        this.logger.log(`[Esign] Envelope já registrado no ClickSign (${(envelopeCheck as any).zapsignDocumentId}) — SMTP ignorado`);
-        return { provider: 'clicksign' };
-      }
+
+      return { provider: 'none' };
     }
 
-    // 2. Fallback SMTP (só chega aqui se ClickSign não criou nada)
+    // ── 2. ClickSign NÃO configurado: fallback SMTP ─────────────────────────
     try {
       const signingLink = `${process.env.FRONTEND_URL || process.env.APP_URL || 'https://jurysone.com'}/esign/assinar/${envelopeId}`;
       await this.enviarEmailAssinatura({ nome: signatario.nome, email: signatario.email, link: signingLink }, titulo);
@@ -784,16 +783,14 @@ export class EsignService {
 
       this.logger.log(`[Esign] ✅ SMTP: email enviado para ${signatario.email}`);
 
-      // WhatsApp em paralelo
       if (signatario.telefone) {
-        const signingLink2 = `${process.env.FRONTEND_URL || process.env.APP_URL || 'https://jurysone.com'}/esign/assinar/${envelopeId}`;
-        const msgWpp = `Olá, ${signatario.nome}!\n\nVocê recebeu documentos para assinar referentes ao seu processo jurídico.\n\nAssine pelo link:\n${signingLink2}\n\n— JurysOne`;
+        const msgWpp = `Olá, ${signatario.nome}!\n\nVocê recebeu documentos para assinar referentes ao seu processo jurídico.\n\nAssine pelo link:\n${signingLink}\n\n— JurysOne`;
         this.whatsapp.enviarTextoSimples(signatario.telefone, msgWpp).catch(() => null);
       }
 
       return { provider: 'smtp' };
     } catch (smtpErr) {
-      this.logger.warn(`[Esign] SMTP também falhou: ${smtpErr.message}`);
+      this.logger.warn(`[Esign] SMTP falhou: ${smtpErr.message}`);
     }
 
     // WhatsApp como último recurso
