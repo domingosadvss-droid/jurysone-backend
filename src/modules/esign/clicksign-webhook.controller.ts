@@ -76,14 +76,16 @@ export class ClicksignWebhookController {
       const data      = payload?.event?.data ?? {};
       const document  = data.document ?? {};
       const signer    = data.signer   ?? {};
+      // v3 envelopes: usa envelope.id (o que foi salvo no banco) com document.key como fallback
+      const envelopeKey = data.envelope?.id ?? document.key;
 
-      this.logger.log(`[ClickSign Webhook] Evento: ${eventName} | doc: ${document.key}`);
+      this.logger.log(`[ClickSign Webhook] Evento: ${eventName} | envelope: ${envelopeKey} | doc: ${document.key}`);
 
       switch (eventName) {
         // ── Alguém assinou ──────────────────────────────────────────
         case 'sign':
           await this.esignService.processZapsignDocumentSigned({
-            zapsignDocumentId:  document.key,
+            zapsignDocumentId:  envelopeKey,
             externalDocumentId: document.key,
             signatureId:        signer.key,
             signedAt:           signer.signed_at ? new Date(signer.signed_at) : new Date(),
@@ -98,7 +100,7 @@ export class ClicksignWebhookController {
         case 'auto_close':
         case 'document_closed':
           await this.esignService.processZapsignDocumentSigned({
-            zapsignDocumentId:  document.key,
+            zapsignDocumentId:  envelopeKey,
             externalDocumentId: document.key,
             signatureId:        null,
             signedAt:           new Date(),
@@ -113,7 +115,7 @@ export class ClicksignWebhookController {
         case 'cancel':
         case 'close':
           await this.esignService.processZapsignDocumentRejected({
-            zapsignDocumentId:  document.key,
+            zapsignDocumentId:  envelopeKey,
             externalDocumentId: document.key,
             rejectedAt:         new Date(),
             rejectorEmail:      signer.email ?? null,
@@ -126,7 +128,7 @@ export class ClicksignWebhookController {
         case 'refusal':
         case 'refused':
           await this.esignService.processZapsignDocumentRejected({
-            zapsignDocumentId:  document.key,
+            zapsignDocumentId:  envelopeKey,
             externalDocumentId: document.key,
             rejectedAt:         new Date(),
             rejectorEmail:      signer.email ?? null,
@@ -160,7 +162,7 @@ export class ClicksignWebhookController {
       // ── Broadcast SSE para o dashboard ─────────────────────────────────────
       const sseData = {
         evento:    eventName,
-        docToken:  document.key,
+        docToken:  envelopeKey,
         docNome:   document.filename ?? null,
         status:    this._clicksignEventToStatus(eventName),
         signerNome:  signer.name  ?? null,
