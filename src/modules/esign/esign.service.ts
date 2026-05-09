@@ -1343,6 +1343,7 @@ export class EsignService {
     let page: any = pdfDoc.addPage([595, 842]); let y = 790;
     const logoPath = path.join(process.cwd(), 'public', 'logo-domingos.png');
     const logoImg  = fs.existsSync(logoPath) ? await pdfDoc.embedPng(fs.readFileSync(logoPath)) : null;
+    const sigImg   = fs.existsSync(path.join(process.cwd(), 'public', 'assinatura-jonathan.png')) ? await pdfDoc.embedPng(fs.readFileSync(path.join(process.cwd(), 'public', 'assinatura-jonathan.png'))) : null;
     const hdr = (pg: any) => {
       if (logoImg) {
         const lh = 46; const lw = logoImg.width * (lh / logoImg.height);
@@ -1398,6 +1399,7 @@ export class EsignService {
     text('Atenciosamente Jonathan Domingos OAB/SC 43.348.', { ind: 20 });
     nl(2);
     const midX = M + W / 2;
+    if (sigImg) { const sh = 38; const sw = sigImg.width * (sh / sigImg.height); page.drawImage(sigImg, { x: M + 20, y: y + 4, width: sw, height: sh }); }
     page.drawLine({ start: { x: M + 20, y }, end: { x: midX - 20, y }, thickness: 0.5, color: rgb(0, 0, 0) });
     page.drawLine({ start: { x: midX + 20, y }, end: { x: M + W - 20, y }, thickness: 0.5, color: rgb(0, 0, 0) });
     nl();
@@ -1456,6 +1458,7 @@ export class EsignService {
     let page: any = pdfDoc.addPage([595, 842]); let y = 790;
     const logoPath = path.join(process.cwd(), 'public', 'logo-domingos.png');
     const logoImg  = fs.existsSync(logoPath) ? await pdfDoc.embedPng(fs.readFileSync(logoPath)) : null;
+    const sigImg   = fs.existsSync(path.join(process.cwd(), 'public', 'assinatura-jonathan.png')) ? await pdfDoc.embedPng(fs.readFileSync(path.join(process.cwd(), 'public', 'assinatura-jonathan.png'))) : null;
     const hdr = (pg: any) => {
       if (logoImg) {
         const lh = 46; const lw = logoImg.width * (lh / logoImg.height);
@@ -1604,6 +1607,7 @@ export class EsignService {
 
     const midX = M + W / 2;
     chk();
+    if (sigImg) { const sh = 38; const sw = sigImg.width * (sh / sigImg.height); page.drawImage(sigImg, { x: midX + 22, y: y + 4, width: sw, height: sh }); }
     page.drawLine({ start: { x: M + 10, y }, end: { x: midX - 20, y }, thickness: 0.5, color: rgb(0, 0, 0) });
     page.drawLine({ start: { x: midX + 20, y }, end: { x: M + W - 10, y }, thickness: 0.5, color: rgb(0, 0, 0) });
     nl();
