@@ -1142,11 +1142,11 @@ export class EsignService {
         pg.drawImage(logoImg, { x: M, y: 806, width: lw, height: lh });
         const tx = M + lw + 10;
         pg.drawText('DOMINGOS', { x: tx, y: 832, font: bold, size: 20, color: rgb(0.23, 0.23, 0.23) });
-        pg.drawText('ADVOCACIA E ASSESSORIA JURIDICA', { x: tx, y: 818, font: regular, size: 7.5, color: rgb(0.4, 0.4, 0.4) });
+        pg.drawText('ADVOCACIA E ASSESSORIA EMPRESARIAL', { x: tx, y: 818, font: regular, size: 7.5, color: rgb(0.4, 0.4, 0.4) });
       } else {
         const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
         pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
-        const t2 = 'ADVOCACIA E ASSESSORIA JURIDICA'; const t2w = regular.widthOfTextAtSize(t2, 8);
+        const t2 = 'ADVOCACIA E ASSESSORIA EMPRESARIAL'; const t2w = regular.widthOfTextAtSize(t2, 8);
         pg.drawText(t2, { x: M + (W - t2w) / 2, y: 809, font: regular, size: 8, color: rgb(0.45, 0.45, 0.45) });
       }
       pg.drawLine({ start: { x: M, y: 803 }, end: { x: M + W, y: 803 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
@@ -1239,11 +1239,11 @@ export class EsignService {
         pg.drawImage(logoImg, { x: M, y: 806, width: lw, height: lh });
         const tx = M + lw + 10;
         pg.drawText('DOMINGOS', { x: tx, y: 832, font: bold, size: 20, color: rgb(0.23, 0.23, 0.23) });
-        pg.drawText('ADVOCACIA E ASSESSORIA JURIDICA', { x: tx, y: 818, font: regular, size: 7.5, color: rgb(0.4, 0.4, 0.4) });
+        pg.drawText('ADVOCACIA E ASSESSORIA EMPRESARIAL', { x: tx, y: 818, font: regular, size: 7.5, color: rgb(0.4, 0.4, 0.4) });
       } else {
         const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
         pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
-        const t2 = 'ADVOCACIA E ASSESSORIA JURIDICA'; const t2w = regular.widthOfTextAtSize(t2, 8);
+        const t2 = 'ADVOCACIA E ASSESSORIA EMPRESARIAL'; const t2w = regular.widthOfTextAtSize(t2, 8);
         pg.drawText(t2, { x: M + (W - t2w) / 2, y: 809, font: regular, size: 8, color: rgb(0.45, 0.45, 0.45) });
       }
       pg.drawLine({ start: { x: M, y: 803 }, end: { x: M + W, y: 803 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
@@ -1294,7 +1294,7 @@ export class EsignService {
     text('DECLARACAO DE HIPOSSUFICIENCIA ECONOMICA', { f: bold, sz: 13, ctr: true }); nl(0.3);
     text('(Para fins de concessao do beneficio de Assistencia Judiciaria Gratuita - Art. 99, §3o, CPC)', { sz: 9, ctr: true }); nl(0.5);
     sep(); nl(0.5);
-    text(`Eu, ${dados.clienteNome.toUpperCase()}, ${nac}${ec ? ', ' + ec : ''}${prof ? ', ' + prof : ''}, portador(a) do RG no ${rg} ${rgOrgao} e inscrito(a) no CPF no ${cpfFmt}, residente e domiciliado(a) na ${endCli}, na qualidade de parte no processo judicial em andamento ou a ser proposto pelo escritorio DOMINGOS ADVOCACIA E ASSESSORIA JURIDICA, DECLARO, sob as penas da lei, o que segue:`, { ind: 20 });
+    text(`Eu, ${dados.clienteNome.toUpperCase()}, ${nac}${ec ? ', ' + ec : ''}${prof ? ', ' + prof : ''}, portador(a) do RG no ${rg} ${rgOrgao} e inscrito(a) no CPF no ${cpfFmt}, residente e domiciliado(a) na ${endCli}, na qualidade de parte no processo judicial em andamento ou a ser proposto pelo escritorio DOMINGOS ADVOCACIA E ASSESSORIA EMPRESARIAL, DECLARO, sob as penas da lei, o que segue:`, { ind: 20 });
     nl();
     text('1. Que nao possuo condicoes financeiras de arcar com as custas do processo e honorarios advocaticios sem prejuizo do sustento proprio ou de minha familia, razao pela qual requeiro a concessao do beneficio da Assistencia Judiciaria Gratuita, nos termos do art. 98 e seguintes do Codigo de Processo Civil e da Lei no 1.060/50.');
     nl(0.5);
@@ -1336,11 +1336,11 @@ export class EsignService {
         pg.drawImage(logoImg, { x: M, y: 806, width: lw, height: lh });
         const tx = M + lw + 10;
         pg.drawText('DOMINGOS', { x: tx, y: 832, font: bold, size: 20, color: rgb(0.23, 0.23, 0.23) });
-        pg.drawText('ADVOCACIA E ASSESSORIA JURIDICA', { x: tx, y: 818, font: regular, size: 7.5, color: rgb(0.4, 0.4, 0.4) });
+        pg.drawText('ADVOCACIA E ASSESSORIA EMPRESARIAL', { x: tx, y: 818, font: regular, size: 7.5, color: rgb(0.4, 0.4, 0.4) });
       } else {
         const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
         pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
-        const t2 = 'ADVOCACIA E ASSESSORIA JURIDICA'; const t2w = regular.widthOfTextAtSize(t2, 8);
+        const t2 = 'ADVOCACIA E ASSESSORIA EMPRESARIAL'; const t2w = regular.widthOfTextAtSize(t2, 8);
         pg.drawText(t2, { x: M + (W - t2w) / 2, y: 809, font: regular, size: 8, color: rgb(0.45, 0.45, 0.45) });
       }
       pg.drawLine({ start: { x: M, y: 803 }, end: { x: M + W, y: 803 }, thickness: 0.5, color: rgb(0.75, 0.75, 0.75) });
@@ -1505,7 +1505,7 @@ export class EsignService {
     const contatoStr = [tel ? `telefone ${tel}` : '', email ? `e-mail ${email}` : ''].filter(Boolean).join(', ');
     text(`Pelo presente instrumento particular, que entre si fazem, de um lado como cliente/contratante e assim doravante indicado, ${dados.clienteNome.toUpperCase()}, ${nac}${ec ? ', ' + ec : ''}${prof ? ', ' + prof : ''}, portador(a) do RG no ${rg} ${rgOrgao}, inscrito(a) no CPF no ${cpfFmt}, com endereco na ${endCli}${contatoStr ? ', ' + contatoStr : ''}.`, { ind: 20 });
     nl(0.5);
-    text('CONTRATADA: DOMINGOS ADVOCACIA E ASSESSORIA JURIDICA, composta por Dr. JONATHAN FRANK STOBIENIA DOMINGOS, brasileiro, solteiro, advogado, inscrito na OAB-SC sob no 43.348, CPF no 055.993.629-06, e Dra. THAMILE ALESSANDRA DOMINGOS, brasileira, casada, CPF no 090.222.009-81, inscrita na OAB-SC sob no 57.773, ambos com endereco subscrito no rodape.', { ind: 20 });
+    text('CONTRATADA: DOMINGOS ADVOCACIA E ASSESSORIA EMPRESARIAL, composta por Dr. JONATHAN FRANK STOBIENIA DOMINGOS, brasileiro, solteiro, advogado, inscrito na OAB-SC sob no 43.348, CPF no 055.993.629-06, e Dra. THAMILE ALESSANDRA DOMINGOS, brasileira, casada, CPF no 090.222.009-81, inscrita na OAB-SC sob no 57.773, ambos com endereco subscrito no rodape.', { ind: 20 });
     nl(0.5);
     text('Por este instrumento particular, o(a) CONTRATANTE e a CONTRATADA, tem, entre si, justo e contratado, o presente contrato de prestacao de servicos profissionais de advocacia que se regera pelos seguintes termos.', { ind: 20 });
     nl();
@@ -1573,7 +1573,7 @@ export class EsignService {
     page.drawText('CONTRATADA', { x: midX + 20, y, font: bold, size: 9, color: rgb(0, 0, 0) });
     nl();
     page.drawText(dados.clienteNome.toUpperCase(), { x: M + 10, y, font: regular, size: 9, color: rgb(0, 0, 0) });
-    page.drawText('DOMINGOS ADVOCACIA E ASSESSORIA JURIDICA', { x: midX + 20, y, font: regular, size: 8, color: rgb(0, 0, 0) });
+    page.drawText('DOMINGOS ADVOCACIA E ASSESSORIA EMPRESARIAL', { x: midX + 20, y, font: regular, size: 8, color: rgb(0, 0, 0) });
     nl(3);
     text('TESTEMUNHAS:', { f: bold }); nl(2);
     page.drawLine({ start: { x: M, y }, end: { x: midX - 20, y }, thickness: 0.5, color: rgb(0, 0, 0) });
