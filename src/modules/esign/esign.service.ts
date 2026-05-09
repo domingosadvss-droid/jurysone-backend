@@ -848,8 +848,9 @@ export class EsignService {
   ): Promise<{ docKey: string; signUrl: string } | null> {
     const base    = (process.env.CLICKSIGN_URL || 'https://app.clicksign.com').replace(/\/$/, '');
     const baseV3  = `${base}/api/v3`;
+    const authValue = apiToken.startsWith('Bearer ') ? apiToken : `Bearer ${apiToken}`;
     const headers = {
-      'Authorization': apiToken,
+      'Authorization': authValue,
       'Content-Type':  'application/vnd.api+json',
       'Accept':        'application/vnd.api+json',
     };
@@ -964,7 +965,10 @@ export class EsignService {
     this.logger.log(`[ClickSign v3] Signatário: ${sigResp.status} — ${sigText.substring(0, 400)}`);
     if (!sigResp.ok) throw new Error(`ClickSign: signatário rejeitado ${sigResp.status} — ${sigText.substring(0, 300)}`);
 
-    const signerId = JSON.parse(sigText)?.data?.id;
+    const signerParsed = JSON.parse(sigText);
+    const signerId     = signerParsed?.data?.id;
+    // ClickSign v3 retorna o link de assinatura nos atributos do signatário
+    const signerSignUrl = signerParsed?.data?.attributes?.sign_url ?? null;
     if (!signerId) throw new Error(`ClickSign: signatário sem ID — ${sigText.substring(0, 200)}`);
 
     const reqRels = {
@@ -1030,8 +1034,9 @@ export class EsignService {
     const notifText = await notifResp.text().catch(() => '');
     this.logger.log(`[ClickSign v3] Notificação: ${notifResp.status} — ${notifText.substring(0, 200)}`);
 
-    const signUrl = `${base}/sign/${signerId}`;
-    this.logger.log(`[ClickSign v3] ✅ Envelope ${envelopeId} | signatário ${signerId}`);
+    // Usa o sign_url retornado pela API; fallback para URL construída manualmente
+    const signUrl = signerSignUrl ?? `${base}/sign/${signerId}`;
+    this.logger.log(`[ClickSign v3] ✅ Envelope ${envelopeId} | signatário ${signerId} | url=${signUrl}`);
     return { docKey: envelopeId, signUrl };
   }
 
