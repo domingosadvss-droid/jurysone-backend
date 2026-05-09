@@ -1139,10 +1139,15 @@ export class EsignService {
     const hdr = (pg: any) => {
       if (logoImg) {
         const lh = 46; const lw = logoImg.width * (lh / logoImg.height);
-        pg.drawImage(logoImg, { x: M, y: 806, width: lw, height: lh });
-        const tx = M + lw + 10;
-        pg.drawText('DOMINGOS', { x: tx, y: 832, font: bold, size: 20, color: rgb(0.23, 0.23, 0.23) });
-        pg.drawText('ADVOCACIA E ASSESSORIA EMPRESARIAL', { x: tx, y: 818, font: regular, size: 7.5, color: rgb(0.4, 0.4, 0.4) });
+        const gap = 14;
+        const t1 = 'DOMINGOS'; const t2 = 'ADVOCACIA E ASSESSORIA EMPRESARIAL';
+        const tw = Math.max(bold.widthOfTextAtSize(t1, 20), regular.widthOfTextAtSize(t2, 7.5));
+        const totalW = lw + gap + tw;
+        const startX = M + (W - totalW) / 2;
+        pg.drawImage(logoImg, { x: startX, y: 806, width: lw, height: lh });
+        const tx = startX + lw + gap;
+        pg.drawText(t1, { x: tx, y: 832, font: bold, size: 20, color: rgb(0.23, 0.23, 0.23) });
+        pg.drawText(t2, { x: tx, y: 818, font: regular, size: 7.5, color: rgb(0.4, 0.4, 0.4) });
       } else {
         const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
         pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
@@ -1236,10 +1241,15 @@ export class EsignService {
     const hdr = (pg: any) => {
       if (logoImg) {
         const lh = 46; const lw = logoImg.width * (lh / logoImg.height);
-        pg.drawImage(logoImg, { x: M, y: 806, width: lw, height: lh });
-        const tx = M + lw + 10;
-        pg.drawText('DOMINGOS', { x: tx, y: 832, font: bold, size: 20, color: rgb(0.23, 0.23, 0.23) });
-        pg.drawText('ADVOCACIA E ASSESSORIA EMPRESARIAL', { x: tx, y: 818, font: regular, size: 7.5, color: rgb(0.4, 0.4, 0.4) });
+        const gap = 14;
+        const t1 = 'DOMINGOS'; const t2 = 'ADVOCACIA E ASSESSORIA EMPRESARIAL';
+        const tw = Math.max(bold.widthOfTextAtSize(t1, 20), regular.widthOfTextAtSize(t2, 7.5));
+        const totalW = lw + gap + tw;
+        const startX = M + (W - totalW) / 2;
+        pg.drawImage(logoImg, { x: startX, y: 806, width: lw, height: lh });
+        const tx = startX + lw + gap;
+        pg.drawText(t1, { x: tx, y: 832, font: bold, size: 20, color: rgb(0.23, 0.23, 0.23) });
+        pg.drawText(t2, { x: tx, y: 818, font: regular, size: 7.5, color: rgb(0.4, 0.4, 0.4) });
       } else {
         const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
         pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
@@ -1333,10 +1343,15 @@ export class EsignService {
     const hdr = (pg: any) => {
       if (logoImg) {
         const lh = 46; const lw = logoImg.width * (lh / logoImg.height);
-        pg.drawImage(logoImg, { x: M, y: 806, width: lw, height: lh });
-        const tx = M + lw + 10;
-        pg.drawText('DOMINGOS', { x: tx, y: 832, font: bold, size: 20, color: rgb(0.23, 0.23, 0.23) });
-        pg.drawText('ADVOCACIA E ASSESSORIA EMPRESARIAL', { x: tx, y: 818, font: regular, size: 7.5, color: rgb(0.4, 0.4, 0.4) });
+        const gap = 14;
+        const t1 = 'DOMINGOS'; const t2 = 'ADVOCACIA E ASSESSORIA EMPRESARIAL';
+        const tw = Math.max(bold.widthOfTextAtSize(t1, 20), regular.widthOfTextAtSize(t2, 7.5));
+        const totalW = lw + gap + tw;
+        const startX = M + (W - totalW) / 2;
+        pg.drawImage(logoImg, { x: startX, y: 806, width: lw, height: lh });
+        const tx = startX + lw + gap;
+        pg.drawText(t1, { x: tx, y: 832, font: bold, size: 20, color: rgb(0.23, 0.23, 0.23) });
+        pg.drawText(t2, { x: tx, y: 818, font: regular, size: 7.5, color: rgb(0.4, 0.4, 0.4) });
       } else {
         const t1 = 'DOMINGOS'; const t1w = bold.widthOfTextAtSize(t1, 18);
         pg.drawText(t1, { x: M + (W - t1w) / 2, y: 822, font: bold, size: 18, color: rgb(0.27, 0.27, 0.27) });
