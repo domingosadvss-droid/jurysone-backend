@@ -199,7 +199,8 @@ export class EsignController {
               if (!signerId) throw new Error(`ClickSign v3: signatário sem ID`);
               this.logger.log(`[ClickSign v3] Signatário: ${signerId}`);
 
-              // Cria requisitos (sign + email auth) para cada documento
+              // Cria requisitos (sign + auth por email ou whatsapp) para cada documento
+              const authMethod = phoneRaw.length >= 10 ? 'whatsapp' : 'email';
               for (const docId of docIds) {
                 const rels = { document: { data: { type: 'documents', id: docId } }, signer: { data: { type: 'signers', id: signerId } } };
                 await fetch(`${baseV3}/envelopes/${envelopeId}/requirements`, {
@@ -208,9 +209,10 @@ export class EsignController {
                 });
                 await fetch(`${baseV3}/envelopes/${envelopeId}/requirements`, {
                   method: 'POST', headers: hdrsV3,
-                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'provide_evidence', auth: 'email' }, relationships: rels } }),
+                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'provide_evidence', auth: authMethod }, relationships: rels } }),
                 });
               }
+              this.logger.log(`[ClickSign v3] Auth method: ${authMethod}`);
 
               // Ativa envelope
               await fetch(`${baseV3}/envelopes/${envelopeId}`, {
