@@ -157,15 +157,16 @@ export class EsignController {
             const signerName = nameWords.length >= 2
               ? nameWords.join(' ')
               : nameWords.length === 1 ? `${nameWords[0]} Signatario` : 'Cliente Signatario';
+            const hasPhone = phoneRaw.length >= 10;
             const signerBody: any = {
               signer: {
                 email:            s.email,
                 name:             signerName,
-                auths:            ['email'],
+                auths:            hasPhone ? ['email', 'whatsapp'] : ['email'],
                 has_documentation: false,
               },
             };
-            if (phoneRaw.length >= 10) signerBody.signer.phone_number = phoneRaw;
+            if (hasPhone) signerBody.signer.phone_number = phoneRaw;
 
             this.logger.log(`[ClickSign] Criando signatário: ${s.email}`);
             const sigResp = await fetch(`${base}/api/v1/signers${qs}`, {
@@ -217,6 +218,25 @@ export class EsignController {
             });
             const notifText = await notifResp.text().catch(() => '');
             this.logger.log(`[ClickSign] Notificação e-mail: ${notifResp.status} — ${notifText.substring(0,100)}`);
+
+            // Notificação por WhatsApp (se telefone disponível)
+            if (hasPhone) {
+              const whatsResp = await fetch(`${base}/api/v1/notifications${qs}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  notification: {
+                    document_key: docKey,
+                    signer_key:   sigKey,
+                    url:          signUrl,
+                    message:      dto.message || 'Por favor, assine o contrato de honorários',
+                    delivery:     'whatsapp',
+                  },
+                }),
+              });
+              const whatsText = await whatsResp.text().catch(() => '');
+              this.logger.log(`[ClickSign] Notificação WhatsApp: ${whatsResp.status} — ${whatsText.substring(0,100)}`);
+            }
 
             signersOut.push({ token: sigKey, sign_url: signUrl, name: s.name, email: s.email });
           }
