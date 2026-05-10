@@ -204,7 +204,7 @@ export class EsignController {
                 // Qualificação: papel do signatário
                 const qualResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
                   method: 'POST', headers: hdrs,
-                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'agree', document_id: dId, signer_id: signerId, sign_as: 'sign' } } }),
+                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'agree', role: 'sign' }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
                 });
                 const qualText = await qualResp.text();
                 this.logger.log(`[ClickSign v3] Qualificação doc ${dId}: ${qualResp.status} — ${qualText.substring(0, 200)}`);
@@ -212,7 +212,7 @@ export class EsignController {
                 // Autenticação: token por email
                 const authResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
                   method: 'POST', headers: hdrs,
-                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'provide_evidence', document_id: dId, signer_id: signerId, auth: 'email' } } }),
+                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'provide_evidence', auth: 'email' }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
                 });
                 const authText = await authResp.text();
                 this.logger.log(`[ClickSign v3] Autenticação doc ${dId}: ${authResp.status} — ${authText.substring(0, 200)}`);
