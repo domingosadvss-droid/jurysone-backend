@@ -113,6 +113,7 @@ export class EsignController {
             },
           };
           // ── Se dados_cliente presentes: gera 4 PDFs em envelope único via API v3 ──
+          this.logger.log(`[ClickSign] dados_cliente presente: ${!!dto.dados_cliente?.clienteNome} | clienteNome: ${dto.dados_cliente?.clienteNome || 'AUSENTE'}`);
           if (dto.dados_cliente?.clienteNome) {
             try {
               const dc  = dto.dados_cliente;
@@ -166,6 +167,8 @@ export class EsignController {
               this.logger.log(`[ClickSign v3] Envelope: ${envResp.status} — ${envText.substring(0, 300)}`);
               if (!envResp.ok) throw new Error(`ClickSign v3: falha ao criar envelope — ${envText}`);
               const envId = (JSON.parse(envText) as any)?.data?.id;
+              if (!envId) throw new Error(`ClickSign v3: envId nulo — resposta: ${envText}`);
+              this.logger.log(`[ClickSign v3] ✅ Envelope criado: ${envId}`);
 
               // ── 2. Adicionar os 4 documentos ao envelope ──
               const docIds: string[] = [];
@@ -180,12 +183,15 @@ export class EsignController {
                 const dId = (JSON.parse(dText) as any)?.data?.id;
                 if (dId) docIds.push(dId);
               }
+              this.logger.log(`[ClickSign v3] ${docIds.length} de ${docs.length} docs adicionados ao envelope`);
+              if (docIds.length === 0) throw new Error('ClickSign v3: nenhum documento adicionado ao envelope');
 
               // ── 3. Adicionar signatário ──
               const nameWords  = (s.name || dc.clienteNome || '').replace(/[^a-zA-ZÀ-ÿ\s]/g, '').trim().split(/\s+/).filter((w: string) => w.length > 0);
               const signerName  = nameWords.length >= 2 ? nameWords.join(' ') : `${nameWords[0] || 'Cliente'} Signatario`;
               const signerEmail = s.email || dc.clienteEmail || dc.email || '';
               const phoneRaw    = (s.phone_number || s.telefone || dc.clienteTelefone || '').replace(/\D/g, '');
+              this.logger.log(`[ClickSign v3] Signatário: nome="${signerName}" email="${signerEmail}"`);
 
               const sigAttrs: any = { name: signerName, email: signerEmail };
               if (phoneRaw.length >= 10) sigAttrs.phone_number = phoneRaw;
@@ -195,9 +201,10 @@ export class EsignController {
                 body: JSON.stringify({ data: { type: 'signers', attributes: sigAttrs } }),
               });
               const sigText = await sigResp.text();
-              this.logger.log(`[ClickSign v3] Signatário: ${sigResp.status} — ${sigText.substring(0, 300)}`);
+              this.logger.log(`[ClickSign v3] Signatário resp: ${sigResp.status} — ${sigText.substring(0, 300)}`);
               if (!sigResp.ok) throw new Error(`ClickSign v3: falha ao criar signatário — ${sigText}`);
               const signerId = (JSON.parse(sigText) as any)?.data?.id;
+              if (!signerId) throw new Error(`ClickSign v3: signerId nulo — resposta: ${sigText}`);
 
               // ── 4. Criar requisitos por documento (qualificação + autenticação) ──
               for (const dId of docIds) {
