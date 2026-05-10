@@ -1311,14 +1311,9 @@ export class EsignService {
     nl();
     text('1. Que nao possuo condicoes financeiras de arcar com as custas do processo e honorarios advocaticios sem prejuizo do sustento proprio ou de minha familia, razao pela qual requeiro a concessao do beneficio da Assistencia Judiciaria Gratuita, nos termos do art. 98 e seguintes do Codigo de Processo Civil e da Lei no 1.060/50.');
     nl(0.5);
-    text('2. Que minha renda mensal e insuficiente para custear as despesas processuais, conforme declarado a seguir:');
-    nl();
-    text('Renda mensal bruta: R$ ________________________________________________', { ind: 20 }); nl(0.5);
-    text('Numero de dependentes: ________________', { ind: 20 }); nl(0.5);
-    text('Despesas mensais aproximadas: R$ ________________________________________', { ind: 20 }); nl();
-    text('3. Que estou ciente de que a falsidade desta declaracao configura crime de falsidade ideologica (art. 299 do Codigo Penal Brasileiro), sujeitando-me as respectivas penalidades, bem como ao pagamento das custas em dobro (art. 100 do CPC).');
+    text('2. Que estou ciente de que a falsidade desta declaracao configura crime de falsidade ideologica (art. 299 do Codigo Penal Brasileiro), sujeitando-me as respectivas penalidades, bem como ao pagamento das custas em dobro (art. 100 do CPC).');
     nl(0.5);
-    text('4. Que caso minha situacao financeira se altere de forma significativa, comprometo-me a informar imediatamente ao(a) advogado(a) responsavel, para que seja avaliada a manutencao ou revogacao do beneficio.');
+    text('3. Que caso minha situacao financeira se altere de forma significativa, comprometo-me a informar imediatamente ao(a) advogado(a) responsavel, para que seja avaliada a manutencao ou revogacao do beneficio.');
     nl(2);
     text(`${cidade}, ${hoje}.`, { ctr: true }); nl(2);
     page.drawLine({ start: { x: M + W / 4, y }, end: { x: M + (W * 3) / 4, y }, thickness: 0.5, color: rgb(0, 0, 0) }); nl();
