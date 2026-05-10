@@ -218,7 +218,7 @@ export class EsignController {
                 this.logger.log(`[ClickSign v3] Autenticação doc ${dId}: ${authResp.status} — ${authText.substring(0, 200)}`);
               }
 
-              // ── 5. Ativar envelope (dispara notificações automaticamente) ──
+              // ── 5. Ativar envelope ──
               const actResp = await fetch(`${v3}/envelopes/${envId}`, {
                 method: 'PATCH', headers: hdrs,
                 body: JSON.stringify({ data: { id: envId, type: 'envelopes', attributes: { status: 'running' } } }),
@@ -226,6 +226,14 @@ export class EsignController {
               const actText = await actResp.text();
               this.logger.log(`[ClickSign v3] Ativação: ${actResp.status} — ${actText.substring(0, 300)}`);
               if (!actResp.ok) throw new Error(`ClickSign v3: falha ao ativar envelope — ${actText}`);
+
+              // ── 6. Notificar signatários (enviar email com link de assinatura) ──
+              const notifResp = await fetch(`${v3}/envelopes/${envId}/notifications`, {
+                method: 'POST', headers: hdrs,
+                body: JSON.stringify({ data: { type: 'notifications' } }),
+              });
+              const notifText = await notifResp.text();
+              this.logger.log(`[ClickSign v3] Notificação: ${notifResp.status} — ${notifText.substring(0, 200)}`);
 
               const signUrl = `${base}/sign/${signerId}`;
               this.logger.log(`[ClickSign v3] ✅ Envelope ${envId} ativo | signatário=${signerId}`);
