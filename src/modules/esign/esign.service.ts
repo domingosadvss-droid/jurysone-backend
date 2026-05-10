@@ -1216,6 +1216,7 @@ export class EsignService {
     text('As partes reconhecem e acordam que o presente documento podera ser assinado eletronicamente por meio de plataforma eletronica Docusign, ZapSign ou pelo sistema de assinatura gov.br, produzindo os mesmos efeitos legais da via assinada fisicamente, nos termos da Lei no 13.874/2019 e do Decreto no 10.278/2020 e acordam ainda em nao contestar a sua validade, conteudo, autenticidade e integridade.', { ind: 10 });
     nl(2);
     text(`${cidade}, ${hoje}.`, { ctr: true }); nl(2);
+    page.drawText('{{~position_sign_cliente}}', { x: M + W / 4, y: y + 4, font: regular, size: 6, color: rgb(0.92, 0.92, 0.92) });
     page.drawLine({ start: { x: M + W / 4, y }, end: { x: M + (W * 3) / 4, y }, thickness: 0.5, color: rgb(0, 0, 0) }); nl();
     text(dados.clienteNome.toUpperCase(), { ctr: true });
     text(`CPF: ${cpfFmt}`, { ctr: true, sz: 9 });
@@ -1316,6 +1317,7 @@ export class EsignService {
     text('3. Que caso minha situacao financeira se altere de forma significativa, comprometo-me a informar imediatamente ao(a) advogado(a) responsavel, para que seja avaliada a manutencao ou revogacao do beneficio.');
     nl(2);
     text(`${cidade}, ${hoje}.`, { ctr: true }); nl(2);
+    page.drawText('{{~position_sign_cliente}}', { x: M + W / 4, y: y + 4, font: regular, size: 6, color: rgb(0.92, 0.92, 0.92) });
     page.drawLine({ start: { x: M + W / 4, y }, end: { x: M + (W * 3) / 4, y }, thickness: 0.5, color: rgb(0, 0, 0) }); nl();
     text(dados.clienteNome.toUpperCase(), { ctr: true });
     text(`CPF: ${cpfFmt}`, { ctr: true, sz: 9 });
@@ -1403,6 +1405,7 @@ export class EsignService {
     page.drawText('OAB/SC 57.773', { x: midX + 20, y, font: regular, size: 9, color: rgb(0, 0, 0) });
     nl(3); sep();
     text('ASSINATURA DE RECEBIMENTO', { f: bold, sz: 11 }); nl(2);
+    page.drawText('{{~position_sign_cliente}}', { x: M + W / 4, y: y + 4, font: regular, size: 6, color: rgb(0.92, 0.92, 0.92) });
     page.drawLine({ start: { x: M + W / 4, y }, end: { x: M + (W * 3) / 4, y }, thickness: 0.5, color: rgb(0, 0, 0) }); nl();
     text(dados.clienteNome.toUpperCase(), { ctr: true });
 
@@ -1601,6 +1604,7 @@ export class EsignService {
     const midX = M + W / 2;
     chk();
     if (sigImg) { const sh = 38; const sw = sigImg.width * (sh / sigImg.height); page.drawImage(sigImg, { x: midX + 22, y: y + 4, width: sw, height: sh }); }
+    page.drawText('{{~position_sign_cliente}}', { x: M + 10, y: y + 4, font: regular, size: 6, color: rgb(0.92, 0.92, 0.92) });
     page.drawLine({ start: { x: M + 10, y }, end: { x: midX - 20, y }, thickness: 0.5, color: rgb(0, 0, 0) });
     page.drawLine({ start: { x: midX + 20, y }, end: { x: M + W - 10, y }, thickness: 0.5, color: rgb(0, 0, 0) });
     nl();
