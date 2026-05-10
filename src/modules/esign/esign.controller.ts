@@ -227,7 +227,7 @@ export class EsignController {
                 // Rubrica: signatário rubrica em todas as páginas do documento
                 const rubrResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
                   method: 'POST', headers: hdrs,
-                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'rubricate' }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
+                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'rubricate', pages: 'all' }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
                 });
                 const rubrText = await rubrResp.text();
                 this.logger.log(`[ClickSign v3] Rubrica doc ${dId}: ${rubrResp.status} — ${rubrText.substring(0, 200)}`);
