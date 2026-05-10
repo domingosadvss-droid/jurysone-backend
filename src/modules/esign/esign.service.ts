@@ -1031,7 +1031,7 @@ export class EsignService {
     const rubrResp0 = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/requirements`, {
       method: 'POST', headers,
       body: JSON.stringify({
-        data: { type: 'requirements', attributes: { action: 'rubricate', kind: 'manuscript', rubric_field: 'cliente' }, relationships: reqRels },
+        data: { type: 'requirements', attributes: { action: 'rubricate', kind: 'initials', pages: 'all' }, relationships: reqRels },
       }),
     });
     const rubrText0 = await rubrResp0.text();
@@ -1058,7 +1058,7 @@ export class EsignService {
       const rubrResp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/requirements`, {
         method: 'POST', headers,
         body: JSON.stringify({
-          data: { type: 'requirements', attributes: { action: 'rubricate', kind: 'manuscript', rubric_field: 'cliente' }, relationships: extraRels },
+          data: { type: 'requirements', attributes: { action: 'rubricate', kind: 'initials', pages: 'all' }, relationships: extraRels },
         }),
       });
       const rubrText = await rubrResp.text();

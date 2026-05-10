@@ -233,7 +233,7 @@ export class EsignController {
                 // Rubrica posicionada: vincula à tag {{~position_sign_cliente}} no DOCX
                 const rubrResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
                   method: 'POST', headers: hdrs,
-                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'rubricate', kind: 'manuscript', rubric_field: 'cliente' }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
+                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'rubricate', kind: 'initials', pages: 'all' }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
                 });
                 const rubrText = await rubrResp.text();
                 this.logger.log(`[ClickSign v3] Rubrica doc ${dId}: ${rubrResp.status} — ${rubrText.substring(0, 200)}`);
