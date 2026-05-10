@@ -148,11 +148,12 @@ export class EsignController {
                 this.docxGerarService.gerarDocumento('hipossuficiencia', dadosDocx),
                 this.docxGerarService.gerarDocumento('renuncia',         dadosDocx),
               ]);
+              // signPage: página provável da linha de assinatura em cada documento
               const docs = [
-                { nome: 'Contrato_de_Prestacao_de_Servicos', base64: b1.toString('base64') },
-                { nome: 'Procuracao_Ad_Judicia',             base64: b2.toString('base64') },
-                { nome: 'Declaracao_de_Hipossuficiencia',    base64: b3.toString('base64') },
-                { nome: 'Carta_de_Renuncia',                 base64: b4.toString('base64') },
+                { nome: 'Contrato_de_Prestacao_de_Servicos', base64: b1.toString('base64'), signPage: 3 },
+                { nome: 'Procuracao_Ad_Judicia',             base64: b2.toString('base64'), signPage: 2 },
+                { nome: 'Declaracao_de_Hipossuficiencia',    base64: b3.toString('base64'), signPage: 1 },
+                { nome: 'Carta_de_Renuncia',                 base64: b4.toString('base64'), signPage: 1 },
               ];
               this.logger.log(`[ClickSign v3] 4 DOCX gerados para ${dc.clienteNome}`);
 
@@ -177,7 +178,7 @@ export class EsignController {
               this.logger.log(`[ClickSign v3] ✅ Envelope criado: ${envId}`);
 
               // ── 2. Adicionar os 4 documentos ao envelope ──
-              const docIds: string[] = [];
+              const docsMeta: { id: string; signPage: number }[] = [];
               for (const doc of docs) {
                 const dResp = await fetch(`${v3}/envelopes/${envId}/documents`, {
                   method: 'POST', headers: hdrs,
@@ -187,10 +188,10 @@ export class EsignController {
                 this.logger.log(`[ClickSign v3] Doc '${doc.nome}': ${dResp.status} — ${dText.substring(0, 200)}`);
                 if (!dResp.ok) { this.logger.warn(`[ClickSign v3] Falha doc ${doc.nome}: ${dText}`); continue; }
                 const dId = (JSON.parse(dText) as any)?.data?.id;
-                if (dId) docIds.push(dId);
+                if (dId) docsMeta.push({ id: dId, signPage: doc.signPage });
               }
-              this.logger.log(`[ClickSign v3] ${docIds.length} de ${docs.length} docs adicionados ao envelope`);
-              if (docIds.length === 0) throw new Error('ClickSign v3: nenhum documento adicionado ao envelope');
+              this.logger.log(`[ClickSign v3] ${docsMeta.length} de ${docs.length} docs adicionados ao envelope`);
+              if (docsMeta.length === 0) throw new Error('ClickSign v3: nenhum documento adicionado ao envelope');
 
               // ── 3. Adicionar signatário ──
               const nameWords  = (s.name || dc.clienteNome || '').replace(/[^a-zA-ZÀ-ÿ\s]/g, '').trim().split(/\s+/).filter((w: string) => w.length > 0);
@@ -212,9 +213,9 @@ export class EsignController {
               const signerId = (JSON.parse(sigText) as any)?.data?.id;
               if (!signerId) throw new Error(`ClickSign v3: signerId nulo — resposta: ${sigText}`);
 
-              // ── 4. Criar requisitos por documento (qualificação + autenticação + rubrica) ──
+              // ── 4. Criar requisitos por documento (qualificação + autenticação + assinatura + rubrica) ──
               const rubrErrors: string[] = [];
-              for (const dId of docIds) {
+              for (const { id: dId, signPage } of docsMeta) {
                 // Qualificação: papel do signatário
                 const qualResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
                   method: 'POST', headers: hdrs,
@@ -231,14 +232,23 @@ export class EsignController {
                 const authText = await authResp.text();
                 this.logger.log(`[ClickSign v3] Autenticação doc ${dId}: ${authResp.status} — ${authText.substring(0, 200)}`);
 
-                // Campo visual de assinatura (sign) — sem page para usar posicionamento padrão do ClickSign
+                // Campo visual de assinatura com coordenadas (tenta posicionar na linha de assinatura)
+                const signAttrs: any = { action: 'sign', page: signPage, x: 0.05, y: 0.77, width: 0.35, height: 0.08 };
                 const signResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
                   method: 'POST', headers: hdrs,
-                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'sign' }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
+                  body: JSON.stringify({ data: { type: 'requirements', attributes: signAttrs, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
                 });
                 const signText = await signResp.text();
-                this.logger.log(`[ClickSign v3] Sign doc ${dId}: ${signResp.status} — ${signText.substring(0, 300)}`);
-                if (!signResp.ok) rubrErrors.push(`sign doc ${dId}: ${signResp.status} — ${signText.substring(0, 200)}`);
+                this.logger.log(`[ClickSign v3] Sign coord p${signPage} doc ${dId}: ${signResp.status} — ${signText.substring(0, 300)}`);
+                if (!signResp.ok) {
+                  rubrErrors.push(`sign doc ${dId}: ${signResp.status} — ${signText.substring(0, 200)}`);
+                  // Fallback: sign sem coordenadas
+                  const signFbResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
+                    method: 'POST', headers: hdrs,
+                    body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'sign' }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
+                  });
+                  this.logger.log(`[ClickSign v3] Sign fallback doc ${dId}: ${signFbResp.status}`);
+                }
 
                 // Rubrica em todas as páginas
                 const rubrResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
