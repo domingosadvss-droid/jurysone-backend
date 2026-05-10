@@ -698,4 +698,52 @@ export class EsignController {
   async getStats(@Request() req: any) {
     return this.esignService.getStats(req.user.officeId);
   }
+
+  /**
+   * GET /esign/diagnostico
+   * Diagnóstico da integração ClickSign: token, URL, conexão
+   */
+  @Get('diagnostico')
+  async diagnostico(@Request() req: any) {
+    const escritorioId = req.user.escritorioId ?? req.user.officeId;
+    const clickToken = await this.chavesService.getChave(escritorioId, 'clicksign');
+    const base = (process.env.CLICKSIGN_URL || 'https://sandbox.clicksign.com').replace(/\/$/, '');
+    const v3 = `${base}/api/v3`;
+
+    const resultado: any = {
+      token_configurado: !!clickToken,
+      token_primeiros_chars: clickToken ? clickToken.substring(0, 8) + '...' : null,
+      clicksign_url: base,
+      env_CLICKSIGN_URL: process.env.CLICKSIGN_URL || '(não definido — usando sandbox)',
+      env_CLICKSIGN_API_TOKEN: process.env.CLICKSIGN_API_TOKEN ? process.env.CLICKSIGN_API_TOKEN.substring(0, 8) + '...' : '(não definido)',
+    };
+
+    if (!clickToken) {
+      resultado.erro = 'Token ClickSign não configurado. Configure em Integrações ou defina a env var CLICKSIGN_API_TOKEN.';
+      return resultado;
+    }
+
+    // Testa conexão: lista envelopes (não cria nada)
+    try {
+      const hdrs = {
+        'Authorization': clickToken,
+        'Content-Type': 'application/vnd.api+json',
+        'Accept': 'application/vnd.api+json',
+      };
+      const testResp = await fetch(`${v3}/envelopes?page[size]=1`, { method: 'GET', headers: hdrs });
+      const testText = await testResp.text();
+      resultado.conexao_status = testResp.status;
+      resultado.conexao_ok = testResp.ok;
+      if (!testResp.ok) {
+        resultado.conexao_erro = testText.substring(0, 300);
+        resultado.dica = base.includes('app.clicksign.com')
+          ? 'Token de SANDBOX não funciona em app.clicksign.com — defina CLICKSIGN_URL=https://sandbox.clicksign.com ou use token de produção'
+          : 'Token inválido ou expirado — verifique em Integrações';
+      }
+    } catch (e) {
+      resultado.conexao_erro = e.message;
+    }
+
+    return resultado;
+  }
 }
