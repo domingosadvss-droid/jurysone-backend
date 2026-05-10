@@ -230,7 +230,7 @@ export class EsignController {
               // ── 6. Notificar signatários (enviar email com link de assinatura) ──
               const notifResp = await fetch(`${v3}/envelopes/${envId}/notifications`, {
                 method: 'POST', headers: hdrs,
-                body: JSON.stringify({ data: { type: 'notifications' } }),
+                body: JSON.stringify({ data: { type: 'notifications', attributes: { message: null } } }),
               });
               const notifText = await notifResp.text();
               this.logger.log(`[ClickSign v3] Notificação: ${notifResp.status} — ${notifText.substring(0, 200)}`);
