@@ -853,7 +853,7 @@ export class EsignService {
   ): Promise<{ docKey: string; signUrl: string } | null> {
     const base    = (process.env.CLICKSIGN_URL || 'https://app.clicksign.com').replace(/\/$/, '');
     const baseV3  = `${base}/api/v3`;
-    const authValue = apiToken.startsWith('Bearer ') ? apiToken : `Bearer ${apiToken}`;
+    const authValue = apiToken.startsWith('Bearer ') ? apiToken.replace(/^Bearer\s+/, '') : apiToken;
     const headers = {
       'Authorization': authValue,
       'Content-Type':  'application/vnd.api+json',
