@@ -212,7 +212,8 @@ export class EsignController {
               const signerId = (JSON.parse(sigText) as any)?.data?.id;
               if (!signerId) throw new Error(`ClickSign v3: signerId nulo — resposta: ${sigText}`);
 
-              // ── 4. Criar requisitos por documento (qualificação + autenticação) ──
+              // ── 4. Criar requisitos por documento (qualificação + autenticação + rubrica) ──
+              const rubrErrors: string[] = [];
               for (const dId of docIds) {
                 // Qualificação: papel do signatário
                 const qualResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
@@ -230,13 +231,14 @@ export class EsignController {
                 const authText = await authResp.text();
                 this.logger.log(`[ClickSign v3] Autenticação doc ${dId}: ${authResp.status} — ${authText.substring(0, 200)}`);
 
-                // Rubrica posicionada: vincula à tag {{~position_sign_cliente}} no DOCX
+                // Rubrica em todas as páginas
                 const rubrResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
                   method: 'POST', headers: hdrs,
                   body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'rubricate', kind: 'initials', pages: 'all' }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
                 });
                 const rubrText = await rubrResp.text();
-                this.logger.log(`[ClickSign v3] Rubrica doc ${dId}: ${rubrResp.status} — ${rubrText.substring(0, 200)}`);
+                this.logger.log(`[ClickSign v3] Rubrica doc ${dId}: ${rubrResp.status} — ${rubrText.substring(0, 300)}`);
+                if (!rubrResp.ok) rubrErrors.push(`doc ${dId}: ${rubrResp.status} — ${rubrText.substring(0, 200)}`);
               }
 
               // ── 5. Ativar envelope ──
@@ -264,6 +266,7 @@ export class EsignController {
                 status_name: 'pending',
                 signers:     [{ token: signerId, sign_url: signUrl, name: signerName, email: signerEmail }],
                 _provider:   'clicksign_v3',
+                _rubrErrors: rubrErrors.length > 0 ? rubrErrors : undefined,
               };
             } catch (err) {
               this.logger.error(`[ClickSign v3] Falha: ${err.message}`);
