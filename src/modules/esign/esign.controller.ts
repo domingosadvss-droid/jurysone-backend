@@ -230,10 +230,10 @@ export class EsignController {
                 const authText = await authResp.text();
                 this.logger.log(`[ClickSign v3] Autenticação doc ${dId}: ${authResp.status} — ${authText.substring(0, 200)}`);
 
-                // Rubrica: signatário rubrica em todas as páginas do documento
+                // Rubrica posicionada: vincula à tag {{~position_sign_cliente}} no DOCX
                 const rubrResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
                   method: 'POST', headers: hdrs,
-                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'rubricate' }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
+                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'rubricate', kind: 'manuscript', rubric_field: 'cliente' }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
                 });
                 const rubrText = await rubrResp.text();
                 this.logger.log(`[ClickSign v3] Rubrica doc ${dId}: ${rubrResp.status} — ${rubrText.substring(0, 200)}`);
