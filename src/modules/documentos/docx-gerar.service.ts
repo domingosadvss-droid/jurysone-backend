@@ -3,10 +3,12 @@
  * Portado de public/contrato.js — mesma lógica, mesma formatação.
  */
 import { Injectable } from '@nestjs/common';
+import * as fs   from 'fs';
+import * as path from 'path';
 import {
   Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell,
   AlignmentType, BorderStyle, WidthType, ShadingType,
-  Header, Footer, PageNumber,
+  Header, Footer, PageNumber, ImageRun,
 } from 'docx';
 
 export interface DadosCliente {
@@ -127,23 +129,24 @@ export class DocxGerarService {
   // ── Header / Footer ───────────────────────────────────────────────────
 
   private makeHeader() {
+    const logoPath = path.join(process.cwd(), 'public', 'logo-domingos.png');
+    let logoBuffer: Buffer | null = null;
+    try { logoBuffer = fs.readFileSync(logoPath); } catch { /* fallback texto */ }
+
+    const headerChildren = logoBuffer
+      ? [new ImageRun({ data: logoBuffer, transformation: { width: 200, height: 67 }, type: 'png' } as any)]
+      : [
+          new TextRun({ text: 'DOMINGOS ', bold: true, size: 22, font: 'Arial', color: this.AZUL }),
+          new TextRun({ text: 'ADVOCACIA & ASSESSORIA JURÍDICA', size: 20, font: 'Arial', color: this.AZUL }),
+        ];
+
     return new Header({
       children: [
         new Paragraph({
-          alignment: AlignmentType.RIGHT,
+          alignment: AlignmentType.CENTER,
           border: { bottom: { style: BorderStyle.SINGLE, size: 2, color: this.AZUL, space: 2 } },
           spacing: { after: 60 },
-          children: [
-            new TextRun({ text: 'DOMINGOS ', bold: true, size: 22, font: 'Arial', color: this.AZUL }),
-            new TextRun({ text: 'ADVOCACIA & ASSESSORIA JURÍDICA', size: 20, font: 'Arial', color: this.AZUL }),
-          ],
-        }),
-        new Paragraph({
-          alignment: AlignmentType.RIGHT,
-          spacing: { after: 0 },
-          children: [
-            new TextRun({ text: 'R. 501, nº 145 sala 05, centro, Balneário Camboriú  |  (47) 99915-9178  |  jonathan@domingosadvocacia.com.br', size: 16, font: 'Arial', color: '555555' }),
-          ],
+          children: headerChildren,
         }),
       ],
     });
