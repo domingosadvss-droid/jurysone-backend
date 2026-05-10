@@ -118,37 +118,43 @@ export class EsignController {
             try {
               const dc  = dto.dados_cliente;
               const s   = (dto.signers || [])[0] || {};
-              const dadosPdf = {
+              const dadosDocx = {
                 clienteNome:        dc.clienteNome,
-                clienteCpf:         dc.clienteCPF || dc.clienteCpf,
+                clienteCPF:         dc.clienteCPF || dc.clienteCpf || '',
                 clienteRG:          dc.clienteRG || '',
                 clienteRGOrgao:     dc.clienteRGOrgao || 'SSP/SC',
                 clienteNaciona:     dc.clienteNaciona || dc.clienteNacionalidade || 'brasileiro(a)',
                 clienteEstadoCivil: dc.clienteEstadoCivil || '',
                 clienteProfissao:   dc.clienteProfissao || '',
-                clienteTelefone:    dc.clienteTelefone || dc.telefone || '',
-                clienteEmail:       dc.clienteEmail || dc.email || '',
-                clienteEndereco:    dc.clienteRua || dc.clienteEndereco || '',
+                clienteRua:         dc.clienteRua || dc.clienteEndereco || '',
                 clienteNum:         dc.clienteNum || '',
                 clienteCompl:       dc.clienteCompl || '',
                 clienteBairro:      dc.clienteBairro || '',
                 clienteCidade:      dc.clienteCidade || '',
                 clienteEstado:      dc.clienteEstado || 'SC',
                 clienteCEP:         dc.clienteCEP || '',
-                area:               dc.objetoAcao || '',
-                tipoAcao:           dc.objetoAcao || '',
-                valorAcao:          Number(dc.valorAcao) || 0,
+                objetoAcao:         dc.objetoAcao || '',
                 tipoHonorario:      dc.tipoHonorario || 'percentual',
-                percentualExito:    Number(dc.percHonorarios) || 30,
-                valorHonorario:     Number(dc.valorHonorarios) || 0,
-                formaPagamento:     dc.formaPagamento || 'PIX',
-                numParcelas:        Number(dc.numParcelas) || 1,
-                cidade:             dc.clienteCidade || 'Balneario Camboriu',
+                percHonorarios:     String(Number(dc.percHonorarios) || 30),
+                valorHonorarios:    String(Number(dc.valorHonorarios) || 0),
+                parcelas:           dc.numParcelas ? `${dc.numParcelas} parcelas` : '',
+                cidade:             dc.clienteCidade || 'Balneário Camboriú',
               };
 
-              // Gera os 4 PDFs
-              const docs = await this.esignService.gerarTodosDocumentosPdf(dadosPdf);
-              this.logger.log(`[ClickSign v3] 4 PDFs gerados para ${dc.clienteNome}`);
+              // Gera os 4 DOCX (com tag {{~position_sign_cliente}} na linha de assinatura)
+              const [b1, b2, b3, b4] = await Promise.all([
+                this.docxGerarService.gerarDocumento('contrato',         dadosDocx),
+                this.docxGerarService.gerarDocumento('procuracao',       dadosDocx),
+                this.docxGerarService.gerarDocumento('hipossuficiencia', dadosDocx),
+                this.docxGerarService.gerarDocumento('renuncia',         dadosDocx),
+              ]);
+              const docs = [
+                { nome: 'Contrato_de_Prestacao_de_Servicos', base64: b1.toString('base64') },
+                { nome: 'Procuracao_Ad_Judicia',             base64: b2.toString('base64') },
+                { nome: 'Declaracao_de_Hipossuficiencia',    base64: b3.toString('base64') },
+                { nome: 'Carta_de_Renuncia',                 base64: b4.toString('base64') },
+              ];
+              this.logger.log(`[ClickSign v3] 4 DOCX gerados para ${dc.clienteNome}`);
 
               // Headers v3: Authorization sem Bearer, Content-Type json:api
               const hdrs = {
@@ -175,7 +181,7 @@ export class EsignController {
               for (const doc of docs) {
                 const dResp = await fetch(`${v3}/envelopes/${envId}/documents`, {
                   method: 'POST', headers: hdrs,
-                  body: JSON.stringify({ data: { type: 'documents', attributes: { filename: `${doc.nome}.pdf`, content_base64: `data:application/pdf;base64,${doc.base64}` } } }),
+                  body: JSON.stringify({ data: { type: 'documents', attributes: { filename: `${doc.nome}.docx`, content_base64: `data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,${doc.base64}` } } }),
                 });
                 const dText = await dResp.text();
                 this.logger.log(`[ClickSign v3] Doc '${doc.nome}': ${dResp.status} — ${dText.substring(0, 200)}`);
@@ -227,7 +233,7 @@ export class EsignController {
                 // Rubrica: signatário rubrica em todas as páginas do documento
                 const rubrResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
                   method: 'POST', headers: hdrs,
-                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'rubricate', pages: 'all' }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
+                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'rubricate' }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
                 });
                 const rubrText = await rubrResp.text();
                 this.logger.log(`[ClickSign v3] Rubrica doc ${dId}: ${rubrResp.status} — ${rubrText.substring(0, 200)}`);

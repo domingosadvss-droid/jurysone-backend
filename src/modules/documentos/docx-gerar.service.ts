@@ -273,6 +273,7 @@ export class DocxGerarService {
         children: [new TextRun({ text: `${cidade}, ${data}.`, size: 22, font: 'Arial' })],
       }),
       this.espaco(240),
+      new Paragraph({ children: [new TextRun({ text: '{{~position_sign_cliente}}', size: 8, font: 'Arial', color: 'AAAAAA' })] }),
       new Paragraph({
         children: [
           new TextRun({ text: 'CONTRATANTE: ', bold: true, size: 22, font: 'Arial' }),
@@ -344,6 +345,7 @@ export class DocxGerarService {
       this.espaco(160),
       new Paragraph({ alignment: AlignmentType.RIGHT, spacing: { before: 80, after: 160 }, children: [new TextRun({ text: `${cidade}, ${data}.`, size: 22, font: 'Arial' })] }),
       this.espaco(240),
+      new Paragraph({ children: [new TextRun({ text: '{{~position_sign_cliente}}', size: 8, font: 'Arial', color: 'AAAAAA' })] }),
       new Paragraph({ alignment: AlignmentType.CENTER, children: [new TextRun({ text: '_'.repeat(50), size: 22, font: 'Arial' })] }),
       new Paragraph({ alignment: AlignmentType.CENTER, children: [new TextRun({ text: D.clienteNome.toUpperCase(), bold: true, size: 22, font: 'Arial' })] }),
     ] as any;
@@ -384,6 +386,7 @@ export class DocxGerarService {
       this.espaco(160),
       new Paragraph({ alignment: AlignmentType.RIGHT, spacing: { before: 80, after: 160 }, children: [new TextRun({ text: `${cidade}, ${data}.`, size: 22, font: 'Arial' })] }),
       this.espaco(240),
+      new Paragraph({ children: [new TextRun({ text: '{{~position_sign_cliente}}', size: 8, font: 'Arial', color: 'AAAAAA' })] }),
       new Paragraph({ alignment: AlignmentType.CENTER, children: [new TextRun({ text: '_'.repeat(50), size: 22, font: 'Arial' })] }),
       new Paragraph({ alignment: AlignmentType.CENTER, children: [new TextRun({ text: D.clienteNome.toUpperCase(), bold: true, size: 22, font: 'Arial' })] }),
       new Paragraph({ alignment: AlignmentType.CENTER, children: [new TextRun({ text: `CPF: ${D.clienteCPF || ''}`, size: 20, font: 'Arial', color: '555555' })] }),
@@ -429,6 +432,7 @@ export class DocxGerarService {
       this.espaco(240),
       new Paragraph({ spacing: { before: 80, after: 40 }, children: [new TextRun({ text: 'ASSINATURA DE RECEBIMENTO', bold: true, allCaps: true, size: 22, font: 'Arial' })] }),
       this.espaco(280),
+      new Paragraph({ children: [new TextRun({ text: '{{~position_sign_cliente}}', size: 8, font: 'Arial', color: 'AAAAAA' })] }),
       new Paragraph({ alignment: AlignmentType.CENTER, border: { top: { style: BorderStyle.SINGLE, size: 4, color: '000000', space: 1 } }, spacing: { before: 80, after: 40 }, children: [new TextRun({ text: assinNome, bold: true, size: 22, font: 'Arial' })] }),
     ] as any;
   }
