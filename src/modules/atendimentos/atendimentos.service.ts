@@ -218,30 +218,9 @@ export class AtendimentosService {
         } as any,
       });
 
-      // 7b. Enviar envelope para o cliente assinar (ZapSign → fallback SMTP)
-      let esignProvider: string | null = null;
-      try {
-        if (cliente.email) {
-          const envio = await this.esignService.enviarEnvelopeParaCliente(
-            escritorioId,
-            envelope.id,
-            {
-              nome: cliente.nome,
-              email: cliente.email,
-              telefone: cliente.telefone ?? undefined,
-              cpf: cliente.cpf ?? undefined,
-            },
-            envelope.titulo as string,
-            (envelope as any).mensagem || 'Segue o contrato de honorários para sua assinatura',
-          );
-          esignProvider = envio.provider;
-          this.logger.log(`[Esign] Envio via ${String(envio.provider)}`);
-        } else {
-          this.logger.warn(`[Esign] Cliente sem e-mail — envio ignorado`);
-        }
-      } catch (esignErr) {
-        this.logger.warn(`[Esign] Falha no envio ao cliente: ${esignErr.message}`);
-      }
+      // 7b. Envio via ClickSign é feito pelo frontend (POST /esign/envelopes)
+      // para evitar duplicidade de envelopes. Apenas registramos o status local.
+      const esignProvider: string | null = null;
 
       // 8. Create atendimento record
       const atendimento = await this.prisma.atendimento.create({
