@@ -27,6 +27,7 @@ import { PrismaService } from '../../database/prisma.service';
 import { NotificationsGateway, NotificationType } from '../notifications/notifications.gateway';
 import { ChavesService } from '../chaves/chaves.service';
 import { WhatsappService } from '../whatsapp/whatsapp.service';
+import { DocxGerarService } from '../documentos/docx-gerar.service';
 import * as crypto from 'crypto';
 import * as fs   from 'fs';
 import * as path from 'path';
@@ -57,6 +58,7 @@ export class EsignService {
     private readonly notifications: NotificationsGateway,
     private readonly chaves: ChavesService,
     private readonly whatsapp: WhatsappService,
+    private readonly docxGerar: DocxGerarService,
   ) {}
 
   // ════════════════════════════════════════════════════════════
@@ -880,57 +882,73 @@ export class EsignService {
     const envelopeId = envData?.data?.id;
     if (!envelopeId) throw new Error(`ClickSign: envelope nao criado — ${envText.substring(0, 200)}`);
 
-    // ── 2. Buscar dados do atendimento para gerar o PDF real ─────────────
+    // ── 2. Buscar dados do atendimento para gerar os DOCX ───────────────
     const atendimento = await this.prisma.atendimento.findFirst({
       where:   { envelopeId: envelopeLocalId },
       include: { cliente: true },
     }).catch(() => null);
 
-    const clienteEndereco = atendimento?.cliente
-      ? (typeof atendimento.cliente.endereco === 'string'
-          ? atendimento.cliente.endereco
-          : JSON.stringify(atendimento.cliente.endereco ?? ''))
-      : '';
+    const cli = atendimento?.cliente as any;
+    const enderecoRaw = cli?.endereco;
+    const enderecoStr = typeof enderecoRaw === 'string'
+      ? enderecoRaw
+      : (enderecoRaw ? JSON.stringify(enderecoRaw) : '');
 
-    const dadosPdf = {
-      clienteNome:     signatario.nome,
-      clienteCpf:      signatario.cpf ?? atendimento?.cliente?.cpf ?? undefined,
-      clienteEndereco: clienteEndereco || undefined,
-      area:            atendimento?.area            ?? '',
-      tipoAcao:        atendimento?.tipoAcao        ?? '',
-      valorAcao:       atendimento?.valorAcao       ?? 0,
-      tipoHonorario:   atendimento?.tipoHonorario   ?? '',
-      valorHonorario:  atendimento?.valorHonorario  ?? 0,
-      percentualExito: atendimento?.percentualExito ?? 0,
-      formaPagamento:  atendimento?.formaPagamento  ?? '',
-      numParcelas:     atendimento?.numParcelas     ?? 1,
-      vencimento1Parc: atendimento?.vencimento1Parc ?? null,
+    const dadosDocx = {
+      clienteNome:        signatario.nome,
+      clienteCPF:         signatario.cpf ?? cli?.cpf ?? '',
+      clienteRG:          cli?.rg ?? '',
+      clienteRGOrgao:     cli?.rgOrgao ?? 'SSP/SC',
+      clienteNaciona:     cli?.nacionalidade ?? 'brasileiro(a)',
+      clienteEstadoCivil: cli?.estadoCivil ?? '',
+      clienteProfissao:   cli?.profissao ?? '',
+      clienteRua:         cli?.rua ?? cli?.endereco ?? enderecoStr,
+      clienteNum:         cli?.numero ?? '',
+      clienteCompl:       cli?.complemento ?? '',
+      clienteBairro:      cli?.bairro ?? '',
+      clienteCidade:      cli?.cidade ?? '',
+      clienteEstado:      cli?.estado ?? 'SC',
+      clienteCEP:         cli?.cep ?? '',
+      objetoAcao:         atendimento?.tipoAcao ?? '',
+      tipoHonorario:      atendimento?.tipoHonorario ?? 'percentual',
+      percHonorarios:     String(Number(atendimento?.percentualExito) || 30),
+      valorHonorarios:    String(Number(atendimento?.valorHonorario) || 0),
+      parcelas:           atendimento?.numParcelas ? `${atendimento.numParcelas} parcelas` : '',
+      cidade:             cli?.cidade ?? 'Balneário Camboriú',
     };
 
-    // ── 3. Upload dos 4 documentos do atendimento ────────────────────────
-    const escritorioId = atendimento?.escritorioId ?? '';
+    // ── 3. Upload dos 4 DOCX ao envelope ────────────────────────────────
+    this.logger.log(`[ClickSign v3] Gerando 4 DOCX para ${signatario.nome}`);
+    const [b1, b2, b3, b4] = await Promise.all([
+      this.docxGerar.gerarDocumento('contrato',         dadosDocx),
+      this.docxGerar.gerarDocumento('procuracao',       dadosDocx),
+      this.docxGerar.gerarDocumento('hipossuficiencia', dadosDocx),
+      this.docxGerar.gerarDocumento('renuncia',         dadosDocx),
+    ]);
 
-    const uploadDoc = async (tipo: string, filename: string, pdfFallback: () => Promise<string>): Promise<string> => {
-      const b64 = await pdfFallback();
-      this.logger.log(`[ClickSign v3] Upload: ${filename} (gerador pdf-lib)`);
+    const docxMime = 'data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,';
+
+    const uploadDocx = async (nome: string, buf: Buffer): Promise<string> => {
+      const b64 = buf.toString('base64');
+      this.logger.log(`[ClickSign v3] Upload DOCX: ${nome}`);
       const resp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/documents`, {
         method: 'POST', headers,
         body: JSON.stringify({
-          data: { type: 'documents', attributes: { filename, content_base64: `data:application/pdf;base64,${b64}` } },
+          data: { type: 'documents', attributes: { filename: `${nome}.docx`, content_base64: `${docxMime}${b64}` } },
         }),
       });
       const text = await resp.text();
-      this.logger.log(`[ClickSign v3] Doc ${filename}: ${resp.status} — ${text.substring(0, 200)}`);
+      this.logger.log(`[ClickSign v3] Doc ${nome}: ${resp.status} — ${text.substring(0, 200)}`);
       const id = JSON.parse(text)?.data?.id;
-      if (!id) throw new Error(`ClickSign: falha upload ${filename} — ${text.substring(0, 200)}`);
+      if (!id) throw new Error(`ClickSign: falha upload ${nome} — ${text.substring(0, 200)}`);
       return id;
     };
 
     const [documentId, docProcId, docDeclId, docQuestId] = await Promise.all([
-      uploadDoc('contrato_honorarios',        'Contrato_de_Prestacao_de_Servico.pdf', () => this.gerarContratoBase64('Contrato de Prestacao de Servico', dadosPdf)),
-      uploadDoc('procuracao',                 'Procuracao_Ad_Judicia.pdf',            () => this.gerarProcuracaoBase64(dadosPdf)),
-      uploadDoc('declaracao_hipossuficiencia','Declaracao_de_Hipossuficiencia.pdf',   () => this.gerarDeclaracaoBase64(dadosPdf)),
-      uploadDoc('renuncia',                   'Carta_de_Renuncia.pdf',               () => this.gerarRenunciaBase64(dadosPdf)),
+      uploadDocx('Contrato_de_Prestacao_de_Servicos', b1),
+      uploadDocx('Procuracao_Ad_Judicia',             b2),
+      uploadDocx('Declaracao_de_Hipossuficiencia',    b3),
+      uploadDocx('Carta_de_Renuncia',                 b4),
     ]);
 
     // ── 4. Criar signatário no envelope ───────────────────────────────────
@@ -1009,7 +1027,17 @@ export class EsignService {
     this.logger.log(`[ClickSign v3] Req autenticação: ${authResp.status} — ${authText.substring(0, 400)}`);
     if (!authResp.ok) throw new Error(`ClickSign: req autenticação rejeitada ${authResp.status} — ${authText.substring(0, 200)}`);
 
-    // ── 5c. Requisitos de assinatura e autenticação para todos os documentos ─
+    // ── 5b2. Rubrica para o primeiro documento ────────────────────────────
+    const rubrResp0 = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/requirements`, {
+      method: 'POST', headers,
+      body: JSON.stringify({
+        data: { type: 'requirements', attributes: { action: 'rubricate' }, relationships: reqRels },
+      }),
+    });
+    const rubrText0 = await rubrResp0.text();
+    this.logger.log(`[ClickSign v3] Rubrica doc principal: ${rubrResp0.status} — ${rubrText0.substring(0, 200)}`);
+
+    // ── 5c. Requisitos de assinatura, autenticação e rubrica para todos os documentos ─
     for (const extraDocId of [docProcId, docDeclId, docQuestId]) {
       const extraRels = {
         document: { data: { type: 'documents', id: extraDocId } },
@@ -1027,7 +1055,14 @@ export class EsignService {
           data: { type: 'requirements', attributes: { action: 'provide_evidence', auth: 'email' }, relationships: extraRels },
         }),
       });
-      this.logger.log(`[ClickSign v3] Req sign+auth doc ${extraDocId}: ok`);
+      const rubrResp = await this.fetchWithRetry(`${baseV3}/envelopes/${envelopeId}/requirements`, {
+        method: 'POST', headers,
+        body: JSON.stringify({
+          data: { type: 'requirements', attributes: { action: 'rubricate' }, relationships: extraRels },
+        }),
+      });
+      const rubrText = await rubrResp.text();
+      this.logger.log(`[ClickSign v3] Rubrica doc ${extraDocId}: ${rubrResp.status} — ${rubrText.substring(0, 200)}`);
     }
 
     // ── 6. Ativar envelope (draft → running) ──────────────────────────────
