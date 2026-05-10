@@ -212,7 +212,7 @@ export class EsignController {
               const signerId = (JSON.parse(sigText) as any)?.data?.id;
               if (!signerId) throw new Error(`ClickSign v3: signerId nulo — resposta: ${sigText}`);
 
-              // ── 4. Criar requisitos por documento (qualificação + autenticação + assinatura + rubrica) ──
+              // ── 4. Criar requisitos por documento (qualificação + autenticação + rubrica) ──
               const rubrErrors: string[] = [];
               for (const dId of docIds) {
                 // Qualificação: papel do signatário
@@ -230,24 +230,6 @@ export class EsignController {
                 });
                 const authText = await authResp.text();
                 this.logger.log(`[ClickSign v3] Autenticação doc ${dId}: ${authResp.status} — ${authText.substring(0, 200)}`);
-
-                // Campo de assinatura visual na última página do documento
-                const signFieldResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
-                  method: 'POST', headers: hdrs,
-                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'sign', page: -1 }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
-                });
-                const signFieldText = await signFieldResp.text();
-                this.logger.log(`[ClickSign v3] Sign field doc ${dId}: ${signFieldResp.status} — ${signFieldText.substring(0, 300)}`);
-                if (!signFieldResp.ok) {
-                  rubrErrors.push(`sign doc ${dId}: ${signFieldResp.status} — ${signFieldText.substring(0, 200)}`);
-                  // Fallback: sign sem page específica
-                  const signFallbackResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
-                    method: 'POST', headers: hdrs,
-                    body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'sign' }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
-                  });
-                  const signFallbackText = await signFallbackResp.text();
-                  this.logger.log(`[ClickSign v3] Sign fallback doc ${dId}: ${signFallbackResp.status} — ${signFallbackText.substring(0, 200)}`);
-                }
 
                 // Rubrica em todas as páginas
                 const rubrResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
