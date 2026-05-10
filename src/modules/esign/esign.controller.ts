@@ -231,6 +231,15 @@ export class EsignController {
                 const authText = await authResp.text();
                 this.logger.log(`[ClickSign v3] Autenticação doc ${dId}: ${authResp.status} — ${authText.substring(0, 200)}`);
 
+                // Campo visual de assinatura (sign) — sem page para usar posicionamento padrão do ClickSign
+                const signResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
+                  method: 'POST', headers: hdrs,
+                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'sign' }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
+                });
+                const signText = await signResp.text();
+                this.logger.log(`[ClickSign v3] Sign doc ${dId}: ${signResp.status} — ${signText.substring(0, 300)}`);
+                if (!signResp.ok) rubrErrors.push(`sign doc ${dId}: ${signResp.status} — ${signText.substring(0, 200)}`);
+
                 // Rubrica em todas as páginas
                 const rubrResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
                   method: 'POST', headers: hdrs,
