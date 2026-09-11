@@ -37,6 +37,19 @@ Considere `<arquivo-da-peca>` o caminho relativo informado pelo usuário (ex.:
 `casos/meu-caso/pecas/contestacao-v1.md`). Se não tiver sido informado, pergunte qual
 peça deve ser diagramada.
 
+### Qual template usar
+
+Há dois templates prontos nesta pasta — mesmos componentes (`#destaque`, `#citacao`,
+`#fundamento`, `#cronologia`, `#marcador`), visual diferente:
+
+| Template | Quando usar |
+|---|---|
+| `template-escritorio.typ` | **Padrão** para peça que vai para protocolo/entrega formal — é o papel timbrado real do escritório (logo, rodapé com endereço/contato, Calibri 12pt, espaçamento 1,5, recuo de 3cm). Ver `references/padrao-escritorio.md`. |
+| `template.typ` | Material de apoio, análise interna ou apresentação ao cliente onde um visual mais elaborado (cores, caixas) ajuda a leitura — **não** tem o timbre do escritório. |
+
+Na dúvida, use `template-escritorio.typ`. Só use `template.typ` se o usuário pedir
+explicitamente um visual mais gráfico/colorido, ou disser que não é para protocolo.
+
 ### Passo 1 — Ler a peça inteira
 
 Leia o arquivo do início ao fim. Identifique os dados de cabeçalho (juízo/destinatário,
@@ -61,18 +74,21 @@ elementos visuais por página; o resto é texto bem espaçado.
 Crie um arquivo `.typ` ao lado da peça (mesma pasta, sufixo `-diagramada`). Estrutura:
 
 ```typst
-#import "/.agents/skills/3.2-diagramar-peca/template.typ": *
+#import "/.agents/skills/3.2-diagramar-peca/template-escritorio.typ": *
 
 #show: peca.with(
   titulo: "<título da peça>",
   juizo: "<juízo ou destinatário, se houver>",
   partes: "<partes, se houver>",
-  rodape: "<advogado / OAB, se houver>",
 )
 
 // Conteúdo da peça, seção por seção, usando os componentes onde fizer sentido.
 // Copie as palavras EXATAS da peça original.
+// Assinatura/OAB, se precisar, vai no fim do corpo — o rodapé deste template
+// é fixo (institucional), não recebe esse dado.
 ```
+
+(Troque o import para `template.typ` — mesma assinatura, com `rodape: "<advogado / OAB, se houver>"` disponível — se for o caso de material de apoio/colorido em vez de papel timbrado. Ver "Qual template usar" acima.)
 
 Regras de geração:
 - **Copie as palavras da peça** — não reescreva, não resuma, não "melhore".
