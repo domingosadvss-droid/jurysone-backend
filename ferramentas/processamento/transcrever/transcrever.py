@@ -24,9 +24,15 @@ import subprocess
 import sys
 from pathlib import Path
 
+if sys.platform == "win32":
+    # console do Windows (cp1252) nao imprime os emojis usados nas mensagens abaixo
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+
 WHISPER_BIN_CANDIDATES = [
     "/opt/homebrew/bin/whisper-cli",
     "/usr/local/bin/whisper-cli",
+    "C:/Users/jonat/.local/whisper-cpp/win-x64/Release/whisper-cli.exe",
     "whisper-cli",
 ]
 DEFAULT_MODEL = os.path.expanduser("~/.whisper-models/ggml-medium-q5_0.bin")

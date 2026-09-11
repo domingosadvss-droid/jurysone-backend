@@ -8,6 +8,11 @@ import asyncio
 import os
 import sys
 
+if sys.platform == "win32":
+    # console do Windows (cp1252) nao imprime acentuacao PT-BR das ementas
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+
 from busca_tjpr.browser import browser_factory
 from busca_tjpr.tjpr import TjprLegalPrecedent
 
