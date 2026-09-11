@@ -45,6 +45,22 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
+## Fonte adicional — skills-datajud-djen
+
+As skills `datajud` e `djen` (em `.claude/skills/datajud` e `.claude/skills/djen`)
+foram importadas do projeto:
+
+- Autor: Ricardo Sanches
+- Repositório: https://github.com/rvsanches/skills-datajud-djen
+- Licença: MIT
+- Origem do conteúdo: operação em produção do SaaS jurídico Judis, consumindo as
+  APIs públicas do CNJ (DataJud e DJEN/Comunica PJe)
+
+Documentam comportamento de produção das duas APIs oficiais do CNJ que a documentação
+oficial não cobre (timeouts reais, geo-bloqueio, paginação, formatos de data, códigos
+de movimento). Projeto independente, sem afiliação com o CNJ — as APIs são públicas,
+sem SLA nem versionamento formal, e podem mudar sem aviso.
+
 ## Como isso se relaciona com as 12 skills próprias do escritório
 
 As 12 skills criadas para o JurysOne (`peticionamento-civel`, `peticionamento-trabalhista`,
