@@ -1,0 +1,917 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L10931",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l10931.json",
+      "colecao": "artigos",
+      "sha256": "42c846e43a6b78b2150b4d10fa0d546ca229386dcc6c41ab2c14e11d13da95cd",
+      "total_registros": 77,
+      "gerado_em": "2026-08-31T20:53:32+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 24,
+      "anotacoes": 71,
+      "anotacoes_sem_diploma_nomeado": 6
+    }
+  },
+  "vigencia": {
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "…s - IBS, exceto aquelas calculadas na forma do art. 4º sobre as receitas auferidas no âmbito da respectiva incorporação.",
+          "literal": "(Redação dada pela Lei Complementar nº 214, de 2025)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "…nto) da receita mensal recebida, o qual corresponderá ao pagamento mensal unificado do seguinte imposto e contribuições:",
+          "literal": "(Redação dada pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…ivo, não gerando, em qualquer hipótese, direito à restituição ou à compensação com o que for apurado pela incorporadora.",
+          "literal": "(Redação dada pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…tigo devidos pela incorporadora em virtude de suas outras atividades empresariais, inclusive incorporações não afetadas.",
+          "literal": "(Redação dada pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "… como a soma de todos os custos diretos de todas as incorporações e o de outras atividades exercidas pela incorporadora.",
+          "literal": "(Redação dada pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…ção obriga o contribuinte a fazer o recolhimento dos tributos, na forma do caput deste artigo, a partir do mês da opção.",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.970",
+            "ano": 2019
+          },
+          "trecho": "… a incorporação tenha sido registrada no cartório de imóveis competente ou tenha sido assinado o contrato de construção.",
+          "literal": "(Redação dada pela Lei nº 13.970, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.767",
+            "ano": 2012
+          },
+          "trecho": "…00,00 (cem mil reais) no âmbito do Programa Minha Casa, Minha Vida, de que trata a Lei nº 11.977, de 7 de julho de 2009.",
+          "literal": "(Redação dada pela Lei nº 12.767, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "… (um por cento) da receita mensal recebida, conforme regulamentação da Secretaria Especial da Receita Federal do Brasil.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "… às outras faixas de renda no empreendimento não obstará a fruição do regime especial de tributação de que trata o § 8º.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "§ 10. As condições para utilização dos benefícios de que tratam os §§ 6º e 8º serão definidas em regulamento.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 11º",
+          "diploma": null,
+          "trecho": "§ 11.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "§ 11. (VETADO)",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.024",
+            "ano": 2009
+          },
+          "trecho": "…ma do art. 4º deverá ser feito até o 20º (vigésimo) dia do mês subsequente àquele em que houver sido auferida a receita.",
+          "literal": "(Redação dada pela Lei nº 12.024, de 2009)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "…do disposto no § 2º do art. 4º , o percentual de 4% (quatro por cento) de que trata o caput do art. 4º será considerado:",
+          "literal": "(Redação dada pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "I - 1,71% (um inteiro e setenta e um centésimos por cento) como Cofins;",
+          "literal": "(Redação dada pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "II - 0,37% (trinta e sete centésimos por cento) como Contribuição para o PIS/Pasep;",
+          "literal": "(Redação dada pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "III - 1,26% (um inteiro e vinte e seis centésimos por cento) como IRPJ; e",
+          "literal": "(Redação dada pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "IV - 0,66% (sessenta e seis centésimos por cento) como CSLL.",
+          "literal": "(Redação dada pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.024",
+            "ano": 2009
+          },
+          "trecho": "…rágrafo único. O percentual de 1% (um por cento) de que trata o § 6º do art. 4º será considerado para os fins do caput :",
+          "literal": "(Incluído pela Lei nº 12.024, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.024",
+            "ano": 2009
+          },
+          "trecho": "I - 0,44% (quarenta e quatro centésimos por cento) como Cofins;",
+          "literal": "(Incluído pela Lei nº 12.024, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.024",
+            "ano": 2009
+          },
+          "trecho": "II - 0,09% (nove centésimos por cento) como Contribuição para o PIS/Pasep;",
+          "literal": "(Incluído pela Lei nº 12.024, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.024",
+            "ano": 2009
+          },
+          "trecho": "III - 0,31% (trinta e um centésimos por cento) como IRPJ; e",
+          "literal": "(Incluído pela Lei nº 12.024, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.024",
+            "ano": 2009
+          },
+          "trecho": "IV - 0,16% (dezesseis centésimos por cento) como CSLL.",
+          "literal": "(Incluído pela Lei nº 12.024, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "…l de 0,47% (quarenta e sete centésimos por cento) de que trata o § 6º do art. 4º será considerado para os fins do caput:",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "Art. 11.",
+          "literal": "(Revogado pela Lei nº 11.196, de 2005)"
+        }
+      ]
+    },
+    "11-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.970",
+            "ano": 2019
+          },
+          "trecho": "… sua comercialização, e, no caso de contratos de construção, até o recebimento integral do valor do respectivo contrato.",
+          "literal": "(Incluído pela Lei nº 13.970, de 2019)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…t. 13 desta Lei, podendo inclusive diferenciar tais condições de acordo com o tipo de indexador adotado contratualmente.",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…rizada pelo Banco Central do Brasil a exercer a atividade de registro ou de depósito centralizado de ativos financeiros.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…m entidade autorizada pelo Banco Central do Brasil a exercer a atividade de depósito centralizado de ativos financeiros.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "… inexistência do registro ou do depósito de que trata o § 4º-A deste artigo, para fins do disposto no art. 24 desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.430",
+            "ano": 2022
+          },
+          "trecho": "Art. 23.",
+          "literal": "(Revogado pela Lei nº 14.430, de 2022)"
+        }
+      ]
+    },
+    "27-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…rédito Bancário poderá ser emitida sob a forma escritural, por meio do lançamento em sistema eletrônico de escrituração.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…inanceira ou em outra entidade autorizada pelo Banco Central do Brasil a exercer a atividade de escrituração eletrônica.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        }
+      ]
+    },
+    "27-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "Art. 27-B. Compete ao Banco Central do Brasil:",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…dições para o exercício da atividade de escrituração eletrônica de que trata o parágrafo único do art. 27-A desta Lei; e",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "II - autorizar e supervisionar o exercício da atividade prevista no inciso I do caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…e ou por grupos de entidades que atendam a critérios específicos, dispensada a concessão de autorização individualizada.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…radores e os membros de seus órgãos estatutários ou contratuais ao disposto na Lei nº 13.506, de 13 de novembro de 2017.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        }
+      ]
+    },
+    "27-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…e solicitação de seu titular, certidão de inteiro teor do título, a qual corresponderá a título executivo extrajudicial.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…da na forma eletrônica, observados os requisitos de segurança que garantam a autenticidade e a integridade do documento.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        }
+      ]
+    },
+    "27-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…entar a emissão, a assinatura, a negociação e a liquidação da Cédula de Crédito Bancário emitida sob a forma escritural.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…ut deste artigo poderá ocorrer sob a forma eletrônica, desde que garantida a identificação inequívoca de seu signatário.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        }
+      ]
+    },
+    "42-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…io emitida sob a forma escritural, o sistema eletrônico de escrituração de que trata o art. 27-A desta Lei fará constar:",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "I - a emissão do título, com seus requisitos essenciais;",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "II - a forma de pagamento ajustada no título;",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "III - o endosso em preto de que trata o § 1º do art. 29 desta Lei e a cadeia de endossos, se houver;",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "IV - os aditamentos, as retificações e as ratificações de que trata o § 4º do art. 29 desta Lei;",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…, ou de outras declarações referentes à Cédula de Crédito Bancário ou ao certificado de que trata o art. 43 desta Lei; e",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "VI - as ocorrências de pagamento, se houver.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…ames e ônus, tais ocorrências serão informadas no sistema eletrônico de escrituração de que trata o art. 27-A desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…onstituição de gravames e ônus sobre o título deverão ser informadas no sistema ao qual se refere o art. 27-A desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        }
+      ]
+    },
+    "42-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…es de crédito rural, equiparada à Cédula de Crédito Rural de que trata o Decreto-Lei nº 167, de 14 de fevereiro de 1967.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        }
+      ]
+    },
+    "43": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…idade a ela equiparada, fará jus a todos os direitos nele previstos, incluídos a cobrança de juros e os demais encargos.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "§ 7º O certificado poderá representar:",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "I - uma única cédula;",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "II - um agrupamento de cédulas; ou",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "III - frações de cédulas.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…to Bancário emitidas sob forma escritural, e essa informação deverá constar do sistema de que trata o § 3º deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        }
+      ]
+    },
+    "45-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…ra ou de entidade autorizada a funcionar pelo Banco Central do Brasil, desde que a instituição financeira ou a entidade:",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "I - seja titular dos direitos de crédito por eles representados;",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "II - preste garantia às obrigações por eles representadas; ou",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.986",
+            "ano": 2020
+          },
+          "trecho": "…os títulos, o serviço de monitoramento dos fluxos de recursos entre credores e devedores e de eventuais inadimplementos.",
+          "literal": "(Incluído pela Lei nº 13.986, de 2020)"
+        }
+      ]
+    },
+    "57": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.430",
+            "ano": 2022
+          },
+          "trecho": "I -",
+          "literal": "(Revogado pela Lei nº 14.430, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.430",
+            "ano": 2022
+          },
+          "trecho": "§ 3º",
+          "literal": "(Revogado pela Lei nº 14.430, de 2022)"
+        }
+      ]
+    },
+    "58": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "\" Art. 819-A.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "61": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "\" Art. 39.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "62": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 62.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "63-A": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.476",
+            "ano": 2017
+          },
+          "trecho": "Art. 63-A.",
+          "literal": "(Revogado pela Lei nº 13.476, de 2017)"
+        }
+      ]
+    },
+    "64": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 64.",
+          "literal": "(VETADO)"
+        }
+      ]
+    }
+  }
+}

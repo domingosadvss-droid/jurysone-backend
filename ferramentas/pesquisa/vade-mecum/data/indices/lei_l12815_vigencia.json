@@ -1,0 +1,808 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L12815",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l12815.json",
+      "colecao": "artigos",
+      "sha256": "1904cabdd3b6448df738b4110dc3f51d8a71d382f41cdf7a16134802331cf8fc",
+      "total_registros": 81,
+      "gerado_em": "2026-08-21T22:36:34+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 22,
+      "anotacoes": 70,
+      "anotacoes_sem_diploma_nomeado": 28
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso VIII",
+          "diploma": null,
+          "trecho": "VIII -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a)",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "c)",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "IV - promoção da segurança da navegação na entrada e na saída das embarcações dos portos;",
+          "literal": "(Redação dada pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "…ação do setor privado e da garantia de amplo acesso aos portos organizados, às instalações e às atividades portuárias; e",
+          "literal": "(Redação dada pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "…e de preços nas operações portuárias, reprimidos qualquer prática prejudicial à competição e o abuso do poder econômico.",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "… a celebração de contrato, sempre precedida de licitação, em conformidade com o disposto nesta Lei e no seu regulamento.",
+          "literal": "(Redação dada pela Lei nº 14.047, de 2020)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "Art. 5º São essenciais aos contratos de concessão as cláusulas relativas:",
+          "literal": "(Redação dada pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "5-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "…ção jurídica entre os terceiros e o poder concedente, sem prejuízo das atividades regulatória e fiscalizatória da Antaq.",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "…ia e fiscalizatória da Antaq. (Incluído pela Lei nº 14.047, de 2020) Subseção II Do Arrendamento de Instalação Portuária",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        }
+      ]
+    },
+    "5-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "…ediante a celebração de contrato, precedida de licitação, em conformidade com o disposto nesta Lei e no seu regulamento.",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "…ndo for comprovada a existência de um único interessado em sua exploração e estiverem presentes os seguintes requisitos:",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "…de chamamento público pela autoridade portuária com vistas a identificar interessados na exploração econômica da área; e",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "II - conformidade com o plano de desenvolvimento e zoneamento do porto",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        }
+      ]
+    },
+    "5-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "Art. 5º-C. São essenciais aos contratos de arrendamento as cláusulas relativas:",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "I - ao objeto, à área e ao prazo;",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "II - ao modo, à forma e às condições da exploração da instalação portuária;",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "III - ao valor do contrato e aos critérios e procedimentos de revisão e reajuste;",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "IV - aos investimentos de responsabilidade do contratado;",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "V - às responsabilidades das partes;",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "VI - aos direitos, às garantias e às obrigações do contratante e do contratado;",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "VII - à responsabilidade do titular da instalação portuária pela inexecução ou deficiente execução das atividades;",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "VIII - às hipóteses de extinção do contrato;",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "…ades que atuam no setor portuário, inclusive as de interesse específico da defesa nacional, para efeitos de mobilização;",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "…acesso à instalação portuária pelo poder concedente, pela Antaq e pelas demais autoridades que atuam no setor portuário;",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "XI - às penalidades e sua forma de aplicação; e",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "XII - ao foro.",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "…º 14.047, de 2020) XII - ao foro. (Incluído pela Lei nº 14.047, de 2020) Subseção III Do Uso Temporário e das Licitações",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        }
+      ]
+    },
+    "5-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "…io de áreas e instalações portuárias localizadas na poligonal do porto organizado, dispensada a realização de licitação.",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "§ 1º O contrato de uso temporário terá o prazo improrrogável de até 48 (quarenta e oito) meses.",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "…nda ao interesse público e do porto, assegurados os princípios da isonomia e da impessoalidade na realização do certame.",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "…to de uso temporário ocorrerão exclusivamente a expensas do interessado, sem direito a indenização de qualquer natureza.",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "…ganizado adotará as medidas necessárias ao encaminhamento de proposta de licitação da área e das instalações existentes.",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "…tos e as condições para o uso temporário de áreas e instalações portuárias localizadas na poligonal do porto organizado.",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "…á as cláusulas essenciais previstas no caput do art. 5º-C desta Lei, com exceção da cláusula prevista em seu inciso III.",
+          "literal": "(Redação dada pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "882",
+            "ano": 2019
+          },
+          "trecho": "…liação, melhoramento e conservação das instalações portuárias, inclusive a infraestrutura de proteção e acesso ao porto;",
+          "literal": "(Redação dada pela Medida Provisória nº 882, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "…tuárias, inclusive a infraestrutura de proteção e acesso ao porto; (Redação dada pela Medida Provisória nº 882, de 2019)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "40": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "945",
+            "ano": 2020
+          },
+          "trecho": "…a o § 1º, vedada a exigência de novo registro ou cadastro específico, independentemente de acordo ou convenção coletiva.",
+          "literal": "(Incluído pela Medida Provisória nº 945, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "…e artigo, vedada a exigência de novo registro ou cadastro específico, independentemente de acordo ou convenção coletiva.",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        }
+      ]
+    },
+    "45": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 45.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "56": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 56.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "56-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.273",
+            "ano": 2021
+          },
+          "trecho": "…ela respectiva autoridade portuária ou autorizatário, dispensada a realização de outorga específica para sua exploração.",
+          "literal": "(Incluído pela Lei nº 14.273, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.273",
+            "ano": 2021
+          },
+          "trecho": "… segurança do trânsito e do transporte ferroviários, e caberá ao regulador ferroviário federal fiscalizar sua aplicação.",
+          "literal": "(Incluído pela Lei nº 14.273, de 2021)"
+        }
+      ]
+    },
+    "57": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "69": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 69.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "71": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea g",
+          "diploma": null,
+          "trecho": "g)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea h",
+          "diploma": null,
+          "trecho": "h)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XXVII",
+          "diploma": null,
+          "trecho": "XXVII -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.301",
+            "ano": 2022
+          },
+          "trecho": "…elo voto da maioria absoluta de seus membros, cabendo ao Diretor-Geral o voto de qualidade, e serão registradas em atas.",
+          "literal": "(Revogado pela Lei nº 14.301, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.301",
+            "ano": 2022
+          },
+          "trecho": "…que as instruam, deverão ser objeto de ampla publicidade, inclusive por meio da internet, na forma do regulamento.” (NR)",
+          "literal": "(Revogado pela Lei nº 14.301, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.301",
+            "ano": 2022
+          },
+          "trecho": "…os da Presidência da República, respectivamente, suas propostas orçamentárias anuais, nos termos da legislação em vigor.",
+          "literal": "(Revogado pela Lei nº 14.301, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.301",
+            "ano": 2022
+          },
+          "trecho": "III - instalações e vias de transbordo e de interface intermodal, exceto as portuárias;",
+          "literal": "(Revogado pela Lei nº 14.301, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(revogado)"
+        }
+      ]
+    },
+    "72": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.301",
+            "ano": 2022
+          },
+          "trecho": "Art. 72. A Lei nº 10.683, de 28 de maio de 2003, passa a vigorar com as seguintes alterações:",
+          "literal": "(Revogado pela Lei nº 14.301, de 2022)"
+        }
+      ]
+    },
+    "74": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 74.",
+          "literal": "(VETADO)"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,951 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L6019",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l6019.json",
+      "colecao": "artigos",
+      "sha256": "37fb9ca48a1cbf2ac3450d1f7c5ea0fb7fa6565d7cab6f788379faa0bdbf038d",
+      "total_registros": 30,
+      "gerado_em": "2026-08-21T22:36:34+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 17,
+      "anotacoes": 78,
+      "anotacoes_sem_diploma_nomeado": 8
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "…porário, na empresa de prestação de serviços e nas respectivas tomadoras de serviço e contratante regem-se por esta Lei.",
+          "literal": "(Redação dada pela Lei nº 13.429, de 2017)"
+        }
+      ]
+    },
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "…ços, para atender à necessidade de substituição transitória de pessoal permanente ou à demanda complementar de serviços.",
+          "literal": "(Redação dada pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "…da a contratação de trabalho temporário para a substituição de trabalhadores em greve, salvo nos casos previstos em lei.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "…e fatores imprevisíveis ou, quando decorrente de fatores previsíveis, tenha natureza intermitente, periódica ou sazonal.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "… no Ministério do Trabalho, responsável pela colocação de trabalhadores à disposição de outras empresas temporariamente.",
+          "literal": "(Redação dada pela Lei nº 13.429, de 2017)"
+        }
+      ]
+    },
+    "4-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.467",
+            "ano": 2017
+          },
+          "trecho": "…pessoa jurídica de direito privado prestadora de serviços que possua capacidade econômica compatível com a sua execução.",
+          "literal": "(Redação dada pela Lei nº 13.467, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "…ra e dirige o trabalho realizado por seus trabalhadores, ou subcontrata outras empresas para realização desses serviços.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "…os trabalhadores, ou sócios das empresas prestadoras de serviços, qualquer que seja o seu ramo, e a empresa contratante.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        }
+      ]
+    },
+    "4-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "Art. 4o-B. São requisitos para o funcionamento da empresa de prestação de serviços a terceiros:",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "I - prova de inscrição no Cadastro Nacional da Pessoa Jurídica (CNPJ);",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "II - registro na Junta Comercial;",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "III - capital social compatível com o número de empregados, observando-se os seguintes parâmetros:",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "a) empresas com até dez empregados - capital mínimo de R$ 10.000,00 (dez mil reais);",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "b) empresas com mais de dez e até vinte empregados - capital mínimo de R$ 25.000,00 (vinte e cinco mil reais);",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "c) empresas com mais de vinte e até cinquenta empregados - capital mínimo de R$ 45.000,00 (quarenta e cinco mil reais);",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "d) empresas com mais de cinquenta e até cem empregados - capital mínimo de R$ 100.000,00 (cem mil reais); e",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "e) empresas com mais de cem empregados - capital mínimo de R$ 250.000,00 (duzentos e cinquenta mil reais).",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        }
+      ]
+    },
+    "4-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.467",
+            "ano": 2017
+          },
+          "trecho": "…m ser de qualquer uma das atividades da contratante, forem executados nas dependências da tomadora, as mesmas condições:",
+          "literal": "(Incluído pela Lei nº 13.467, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.467",
+            "ano": 2017
+          },
+          "trecho": "I - relativas a:",
+          "literal": "(Incluído pela Lei nº 13.467, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.467",
+            "ano": 2017
+          },
+          "trecho": "a) alimentação garantida aos empregados da contratante, quando oferecida em refeitórios;",
+          "literal": "(Incluído pela Lei nº 13.467, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.467",
+            "ano": 2017
+          },
+          "trecho": "b) direito de utilizar os serviços de transporte;",
+          "literal": "(Incluído pela Lei nº 13.467, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.467",
+            "ano": 2017
+          },
+          "trecho": "c) atendimento médico ou ambulatorial existente nas dependências da contratante ou local por ela designado;",
+          "literal": "(Incluído pela Lei nº 13.467, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.467",
+            "ano": 2017
+          },
+          "trecho": "d) treinamento adequado, fornecido pela contratada, quando a atividade o exigir.",
+          "literal": "(Incluído pela Lei nº 13.467, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.467",
+            "ano": 2017
+          },
+          "trecho": "…sanitárias, de medidas de proteção à saúde e de segurança no trabalho e de instalações adequadas à prestação do serviço.",
+          "literal": "(Incluído pela Lei nº 13.467, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.467",
+            "ano": 2017
+          },
+          "trecho": "…rão jus a salário equivalente ao pago aos empregados da contratante, além de outros direitos não previstos neste artigo.",
+          "literal": "(Incluído pela Lei nº 13.467, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.467",
+            "ano": 2017
+          },
+          "trecho": "…locais apropriados e com igual padrão de atendimento, com vistas a manter o pleno funcionamento dos serviços existentes.",
+          "literal": "(Incluído pela Lei nº 13.467, de 2017)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "…e a ela equiparada que celebra contrato de prestação de trabalho temporário com a empresa definida no art. 4o desta Lei.",
+          "literal": "(Redação dada pela Lei nº 13.429, de 2017)"
+        }
+      ]
+    },
+    "5-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.467",
+            "ano": 2017
+          },
+          "trecho": "…ato com empresa de prestação de serviços relacionados a quaisquer de suas atividades, inclusive sua atividade principal.",
+          "literal": "(Redação dada pela Lei nº 13.467, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "…ão dos trabalhadores em atividades distintas daquelas que foram objeto do contrato com a empresa prestadora de serviços.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "…oderão ser executados nas instalações físicas da empresa contratante ou em outro local, de comum acordo entre as partes.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "… dos trabalhadores, quando o trabalho for realizado em suas dependências ou local previamente convencionado em contrato.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "…rial e de refeição destinado aos seus empregados, existente nas dependências da contratante, ou local por ela designado.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "… recolhimento das contribuições previdenciárias observará o disposto no art. 31 da Lei no 8.212, de 24 de julho de 1991.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        }
+      ]
+    },
+    "5-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "Art. 5o-B. O contrato de prestação de serviços conterá:",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "I - qualificação das partes;",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "II - especificação do serviço a ser prestado;",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "III - prazo para realização do serviço, quando for o caso;",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "IV - valor.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        }
+      ]
+    },
+    "5-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.467",
+            "ano": 2017
+          },
+          "trecho": "…dade de empregado ou trabalhador sem vínculo empregatício, exceto se os referidos titulares ou sócios forem aposentados.",
+          "literal": "(Incluído pela Lei nº 13.467, de 2017)"
+        }
+      ]
+    },
+    "5-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.467",
+            "ano": 2017
+          },
+          "trecho": "…e empresa prestadora de serviços antes do decurso de prazo de dezoito meses, contados a partir da demissão do empregado.",
+          "literal": "(Incluído pela Lei nº 13.467, de 2017)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "Art. 6o São requisitos para funcionamento e registro da empresa de trabalho temporário no Ministério do Trabalho:",
+          "literal": "(Redação dada pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "a) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "b) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "c)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "c) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea d",
+          "diploma": null,
+          "trecho": "d)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "d) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea e",
+          "diploma": null,
+          "trecho": "e)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "e) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea f",
+          "diploma": null,
+          "trecho": "f)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "f) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "I - prova de inscrição no Cadastro Nacional da Pessoa Jurídica (CNPJ), do Ministério da Fazenda;",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "II - prova do competente registro na Junta Comercial da localidade em que tenha sede;",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "III - prova de possuir capital social de, no mínimo, R$ 100.000,00 (cem mil reais).",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "Parágrafo único. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.429, de 2017)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "… será por escrito, ficará à disposição da autoridade fiscalizadora no estabelecimento da tomadora de serviços e conterá:",
+          "literal": "(Redação dada pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "I - qualificação das partes;",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "II - motivo justificador da demanda de trabalho temporário;",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "III - prazo da prestação de serviços;",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "IV - valor da prestação de serviços;",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "V - disposições sobre a segurança e a saúde do trabalhador, independentemente do local de realização do trabalho.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "…ene e salubridade dos trabalhadores, quando o trabalho for realizado em suas dependências ou em local por ela designado.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "…rial e de refeição destinado aos seus empregados, existente nas dependências da contratante, ou local por ela designado.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "…e versar sobre o desenvolvimento de atividades-meio e atividades-fim a serem executadas na empresa tomadora de serviços.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "… serviços, não existe vínculo de emprego entre ela e os trabalhadores contratados pelas empresas de trabalho temporário.",
+          "literal": "(Redação dada pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "…o temporário, com relação ao mesmo empregador, não poderá exceder ao prazo de cento e oitenta dias, consecutivos ou não.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "…s ou não, além do prazo estabelecido no § 1o deste artigo, quando comprovada a manutenção das condições que o ensejaram.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "§ 3o (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "…único do art. 445 da Consolidação das Leis do Trabalho (CLT), aprovada pelo Decreto-Lei nº 5.452, de 1o de maio de 1943.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "…disposição da mesma tomadora de serviços em novo contrato temporário, após noventa dias do término do contrato anterior.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "… recolhimento das contribuições previdenciárias observará o disposto no art. 31 da Lei nº 8.212, de 24 de julho de 1991.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        }
+      ]
+    },
+    "19-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "Art. 19-A. O descumprimento do disposto nesta Lei sujeita a empresa infratora ao pagamento de multa.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        }
+      ]
+    },
+    "19-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "…ubsidiariamente pela Consolidação das Leis do Trabalho (CLT), aprovada pelo Decreto-Lei no 5.452, de 1o de maio de 1943.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        }
+      ]
+    },
+    "19-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.429",
+            "ano": 2017
+          },
+          "trecho": "Art. 19-C. Os contratos em vigência, se as partes assim acordarem, poderão ser adequados aos termos desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.429, de 2017)"
+        }
+      ]
+    }
+  }
+}

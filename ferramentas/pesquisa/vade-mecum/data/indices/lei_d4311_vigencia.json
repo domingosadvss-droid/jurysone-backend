@@ -1,0 +1,39 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "D4311",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_d4311.json",
+      "colecao": "artigos",
+      "sha256": "f910d2686117d4a093160655b776d3b5323c00117ada6a563f45ed065b28c54c",
+      "total_registros": 3,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 0,
+      "anotacoes": 0,
+      "anotacoes_sem_diploma_nomeado": 0
+    }
+  },
+  "vigencia": {}
+}

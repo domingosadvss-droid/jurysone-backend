@@ -1,0 +1,149 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L10684",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l10684.json",
+      "colecao": "artigos",
+      "sha256": "208ef44b013f50f4d94598d3647a15f50b6ce9a1421d7aa46cfa60ebd15edf90",
+      "total_registros": 29,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 6,
+      "anotacoes": 9,
+      "anotacoes_sem_diploma_nomeado": 5
+    }
+  },
+  "vigencia": {
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2o",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "225",
+            "ano": 2026
+          },
+          "trecho": "…formativo dos créditos não quitados do setor público federal (Cadin), previsto na Lei nº 10.522, de 19 de julho de 2002.",
+          "literal": "(Incluído pela Lei Complementar nº 225, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "225",
+            "ano": 2026
+          },
+          "trecho": "…tumaz não afasta o disposto no § 3º deste artigo em relação aos atos praticados no período em que era assim considerado.",
+          "literal": "(Incluído pela Lei Complementar nº 225, de 2026)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "446",
+            "ano": 2008
+          },
+          "trecho": "Art. 21. O art. 18 da Lei no 8.742, de 7 de dezembro de 1993, passa a vigorar acrescido do seguinte parágrafo único:",
+          "literal": "(Revogado pela Medida Provisória nº 446, de 2008)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "446",
+            "ano": 2008
+          },
+          "trecho": "…ssada, do Instituto Nacional do Seguro Social - INSS ou da Secretaria da Receita Federal do Ministério da Fazenda.\" (NR)",
+          "literal": "(Revogado pela Medida Provisória nº 446, de 2008)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 22. O art. 20 da Lei no 9.249, de 26 de dezembro de 1995, passa a vigorar com a seguinte redação:",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "VI –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso VII",
+          "diploma": null,
+          "trecho": "VII –",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 27.",
+          "literal": "(VETADO)"
+        }
+      ]
+    }
+  }
+}

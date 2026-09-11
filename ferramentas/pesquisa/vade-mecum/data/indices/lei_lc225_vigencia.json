@@ -1,0 +1,104 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "LC225",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_lc225.json",
+      "colecao": "artigos",
+      "sha256": "f09e5d5592e3bee2911cd331a8029a6c90d3633c7bf4b0a49c2bb5b5cd6830af",
+      "total_registros": 58,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 3,
+      "anotacoes": 7,
+      "anotacoes_sem_diploma_nomeado": 7
+    }
+  },
+  "vigencia": {
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "31": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(VETADO)"
+        }
+      ]
+    }
+  }
+}

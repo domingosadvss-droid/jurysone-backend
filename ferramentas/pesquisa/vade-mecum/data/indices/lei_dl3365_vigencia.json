@@ -1,0 +1,1020 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "DL3365",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_dl3365.json",
+      "colecao": "artigos",
+      "sha256": "69da9fec77be8a4170d76dc165ffb9578fe0a0ac685887aa377c679fadc1931e",
+      "total_registros": 49,
+      "gerado_em": "2026-08-21T22:36:29+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 18,
+      "anotacoes": 82,
+      "anotacoes_sem_diploma_nomeado": 3
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…domínio dos Estados, dos Municípios e do Distrito Federal pela União e dos bens de domínio dos Municípios pelos Estados.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…no qual serão fixadas as respectivas responsabilidades financeiras quanto ao pagamento das indenizações correspondentes.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "856",
+            "ano": 1969
+          },
+          "trecho": "…no Federal e se subordine à sua fiscalização, salvo mediante prévia autorização, por decreto do Presidente da República.",
+          "literal": "(Incluído pelo Decreto-lei nº 856, de 1969)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "Art. 3º Poderão promover a desapropriação mediante autorização expressa constante de lei ou contrato:",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…nº 11.079, de 30 de dezembro de 2004 (Lei de Parceria Público-Privada), permissionários, autorizatários e arrendatários;",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.273",
+            "ano": 2021
+          },
+          "trecho": "II - as entidades públicas;",
+          "literal": "(Redação dada pela Lei nº 14.273, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.273",
+            "ano": 2021
+          },
+          "trecho": "III - as entidades que exerçam funções delegadas do poder público; e",
+          "literal": "(Redação dada pela Lei nº 14.273, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…ras e serviços de engenharia sob os regimes de empreitada por preço global, empreitada integral e contratação integrada.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "Parágrafo único. Na hipótese prevista no inciso IV do caput, o edital deverá prever expressamente:",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "I - o responsável por cada fase do procedimento expropriatório;",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "II - o orçamento estimado para sua realização;",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…de riscos entre as partes, incluído o risco pela variação do custo das desapropriações em relação ao orçamento estimado.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…contratação, no mínimo, o ressarcimento dos desembolsos com indenizações, quando essas ficarem sob sua responsabilidade.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        }
+      ]
+    },
+    "4-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…e seu regulamento, o ente expropriante deverá prever, no planejamento da ação de desapropriação, medidas compensatórias.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…ssegurar o restabelecimento da família em outro local, exigindo-se, para este fim, o prévio cadastramento dos ocupantes.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…rea que, por sua situação fática específica, apresente condição de vulnerabilidade, conforme definido pelo expropriante.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea i",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.785",
+            "ano": 1999
+          },
+          "trecho": "…icação, para sua melhor utilização econômica, higiênica ou estética; a construção ou ampliação de distritos industriais;",
+          "literal": "(Redação dada pela Lei nº 9.785, de 1999)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.602",
+            "ano": 1978
+          },
+          "trecho": "…strias e atividades correlatas, bem como a revenda ou locação dos respectivos lotes a empresas previamente qualificadas.",
+          "literal": "(Incluído pela Lei nº 6.602, de 1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.602",
+            "ano": 1978
+          },
+          "trecho": "…ndustriais depende de aprovação, prévia e expressa, pelo Poder Público competente, do respectivo projeto de implantação.",
+          "literal": "(Incluído pela Lei nº 6.602, de 1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.785",
+            "ano": 1999
+          },
+          "trecho": "…tação de parcelamento popular, destinado às classes de menor renda, não se dará outra utilização nem haverá retrocessão.",
+          "literal": "(Incluído pela Lei nº 9.785, de 1999)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.273",
+            "ano": 2021
+          },
+          "trecho": "…úblico-privada e ainda transferidos como integralização de fundos de investimento ou sociedades de propósito específico.",
+          "literal": "(Redação dada pela Lei nº 14.273, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…to do solo, desde que seja assegurada a destinação prevista no referido plano de urbanização ou de parcelamento do solo.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "… prevista no decreto expropriatório, o expropriante deverá adotar uma das seguintes medidas, nesta ordem de preferência:",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "I - destinar a área não utilizada para outra finalidade pública; ou",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…er interessado, na forma prevista em lei, assegurado o direito de preferência à pessoa física ou jurídica desapropriada.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…o solo deverão estar previstas no plano diretor, na legislação de uso e ocupação do solo ou em lei municipal específica.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…ara realizar inspeções e levantamentos de campo, podendo recorrer, em caso de resistência, ao auxílio de força policial.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…ário das inspeções e levantamentos de campo realizados, cabe indenização por perdas e danos, sem prejuízo da ação penal.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…ue-se em cinco anos o direito de propor ação que vise a indenização por restrições decorrentes de atos do Poder Público.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        }
+      ]
+    },
+    "10-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.867",
+            "ano": 2019
+          },
+          "trecho": "Art. 10-A. O poder público deverá notificar o proprietário e apresentar-lhe oferta de indenização.",
+          "literal": "(Incluído pela Lei nº 13.867, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.867",
+            "ano": 2019
+          },
+          "trecho": "§ 1º A notificação de que trata o caput deste artigo conterá:",
+          "literal": "(Incluído pela Lei nº 13.867, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.867",
+            "ano": 2019
+          },
+          "trecho": "I - cópia do ato de declaração de utilidade pública;",
+          "literal": "(Incluído pela Lei nº 13.867, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.867",
+            "ano": 2019
+          },
+          "trecho": "II - planta ou descrição dos bens e suas confrontações;",
+          "literal": "(Incluído pela Lei nº 13.867, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.867",
+            "ano": 2019
+          },
+          "trecho": "III - valor da oferta;",
+          "literal": "(Incluído pela Lei nº 13.867, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.867",
+            "ano": 2019
+          },
+          "trecho": "…ão de que o prazo para aceitar ou rejeitar a oferta é de 15 (quinze) dias e de que o silêncio será considerado rejeição;",
+          "literal": "(Incluído pela Lei nº 13.867, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.867",
+            "ano": 2019
+          },
+          "trecho": "V - (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.867, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.867",
+            "ano": 2019
+          },
+          "trecho": "…oferta e realizado o pagamento, será lavrado acordo, o qual será título hábil para a transcrição no registro de imóveis.",
+          "literal": "(Incluído pela Lei nº 13.867, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.867",
+            "ano": 2019
+          },
+          "trecho": "…ou transcorrido o prazo sem manifestação, o poder público procederá na forma dos arts. 11 e seguintes deste Decreto-Lei.",
+          "literal": "(Incluído pela Lei nº 13.867, de 2019)"
+        }
+      ]
+    },
+    "10-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.867",
+            "ano": 2019
+          },
+          "trecho": "…nstituições especializados em mediação ou arbitragem previamente cadastrados pelo órgão responsável pela desapropriação.",
+          "literal": "(Incluído pela Lei nº 13.867, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.867",
+            "ano": 2019
+          },
+          "trecho": "…rmas da Lei nº 13.140, de 26 de junho de 2015, e, subsidiariamente, os regulamentos do órgão ou instituição responsável.",
+          "literal": "(Incluído pela Lei nº 13.867, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.867",
+            "ano": 2019
+          },
+          "trecho": "…ser eleita câmara de mediação criada pelo poder público, nos termos do art. 32 da Lei nº 13.140, de 26 de junho de 2015.",
+          "literal": "(Incluído pela Lei nº 13.867, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.867",
+            "ano": 2019
+          },
+          "trecho": "§ 3º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.867, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.867",
+            "ano": 2019
+          },
+          "trecho": "…as da Lei nº 9.307, de 23 de setembro de 1996, e, subsidiariamente, os regulamentos do órgão ou instituição responsável.",
+          "literal": "(Incluído pela Lei nº 13.867, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.867",
+            "ano": 2019
+          },
+          "trecho": "§ 5º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.867, de 2019)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.786",
+            "ano": 1956
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Lei nº 2.786, de 1956)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.786",
+            "ano": 1956
+          },
+          "trecho": "§ 1º A imissão provisória poderá ser feita, independente da citação do réu, mediante o depósito:",
+          "literal": "(Incluído pela Lei nº 2.786, de 1956)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.786",
+            "ano": 1956
+          },
+          "trecho": "…ço oferecido, se êste fôr superior a 20 (vinte) vêzes o valor locativo, caso o imóvel esteja sujeito ao impôsto predial;",
+          "literal": "(Incluída pela Lei nº 2.786, de 1956)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.786",
+            "ano": 1956
+          },
+          "trecho": "…ndente a 20 (vinte) vêzes o valor locativo, estando o imóvel sujeito ao impôsto predial e sendo menor o preço oferecido;",
+          "literal": "(Incluída pela Lei nº 2.786, de 1956)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.786",
+            "ano": 1956
+          },
+          "trecho": "… impôsto territorial, urbano ou rural, caso o referido valor tenha sido atualizado no ano fiscal imediatamente anterior;",
+          "literal": "(Incluída pela Lei nº 2.786, de 1956)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.786",
+            "ano": 1956
+          },
+          "trecho": "…a época em que houver sido fixado originàlmente o valor cadastral e a valorização ou desvalorização posterior do imóvel.",
+          "literal": "(Incluída pela Lei nº 2.786, de 1956)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.786",
+            "ano": 1956
+          },
+          "trecho": "…vada, obrigará o expropriante a requerer a imissão provisória dentro do prazo improrrogável de 120 (cento e vinte) dias.",
+          "literal": "(Incluído pela Lei nº 2.786, de 1956)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.786",
+            "ano": 1956
+          },
+          "trecho": "§ 3º Excedido o prazo fixado no parágrafo anterior não será concedida a imissão provisória.",
+          "literal": "(Incluído pela Lei nº 2.786, de 1956)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.977",
+            "ano": 2009
+          },
+          "trecho": "§ 4o A imissão provisória na posse será registrada no registro de imóveis competente.",
+          "literal": "(Incluído pela Lei nº 11.977, de 2009)"
+        }
+      ]
+    },
+    "15-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "… o valor da diferença eventualmente apurada, contado da data de imissão na posse, vedada a aplicação de juros compostos.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "… descumprimento da função social da propriedade, previstas no art. 182, § 4º, inciso III, e no art. 184 da Constituição.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…o ou por desapropriação indireta e às ações que visem à indenização por restrições decorrentes de atos do poder público.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…or juros compensatórios relativos a período anterior à aquisição da propriedade ou da posse titulada pelo autor da ação.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        }
+      ]
+    },
+    "15-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…1o de janeiro do exercício seguinte àquele em que o pagamento deveria ser feito, nos termos do art. 100 da Constituição.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.786",
+            "ano": 1956
+          },
+          "trecho": "…lor da indenização, que será contemporâneo da avaliação, não se incluirão os direitos de terceiros contra o expropriado.",
+          "literal": "(Redação dada pela Lei nº 2.786, de 1956)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.686",
+            "ano": 1965
+          },
+          "trecho": "…didas as benfeitorias necessárias feitas após a desapropriação; as úteis, quando feitas com autorização do expropriante.",
+          "literal": "(Renumerado do Parágrafo Único pela Lei nº 4.686, de 1965)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.306",
+            "ano": 1978
+          },
+          "trecho": "… apurado, conforme índice que será fixado, trimestralmente, pela Secretaria de Planejamento da Presidência da República.",
+          "literal": "(Redação dada pela Lei nº 6.306, de 1978)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "… 20 do Código de Processo Civil, não podendo os honorários ultrapassar R$ 151.000,00 (cento e cinqüenta e um mil reais).",
+          "literal": "(Redação dada Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.786",
+            "ano": 1956
+          },
+          "trecho": "…o da propriedade, decorrente de desapropriação amigável ou judicial, não ficará sujeita ao impôsto de lucro imobiliário.",
+          "literal": "(Incluído pela Lei nº 2.786, de 1956)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "§ 3º O disposto no § 1o deste artigo se aplica:",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "… de rito sumário, para o processo de desapropriação de imóvel rural, por interesse social, para fins de reforma agrária;",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "II - às ações de indenização por apossamento administrativo ou desapropriação indireta.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…aneiro de cada ano, com base na variação acumulada do Índice de Preços ao Consumidor Amplo - IPCA do respectivo período.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.071",
+            "ano": 1974
+          },
+          "trecho": "…tença que condenar a Fazenda Pública em quantia superior ao dobro da oferecida fica sujeita ao duplo grau de jurisdição.",
+          "literal": "(Redação dada pela Lei nº 6.071, de 1974)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.786",
+            "ano": 1956
+          },
+          "trecho": "Art. 32. O pagamento do preço será prévio e em dinheiro.",
+          "literal": "(Redação dada pela Lei nº 2.786, de 1956)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.977",
+            "ano": 2009
+          },
+          "trecho": "§ 1o As dívidas fiscais serão deduzidas dos valores depositados, quando inscritas e ajuizadas.",
+          "literal": "(Incluído pela Lei nº 11.977, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.977",
+            "ano": 2009
+          },
+          "trecho": "§ 2o Incluem-se na disposição prevista no § 1o as multas decorrentes de inadimplemento e de obrigações fiscais.",
+          "literal": "(Incluído pela Lei nº 11.977, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.977",
+            "ano": 2009
+          },
+          "trecho": "§ 3o A discussão acerca dos valores inscritos ou executados será realizada em ação própria.",
+          "literal": "(Incluído pela Lei nº 11.977, de 2009)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.786",
+            "ano": 1956
+          },
+          "trecho": "…far-se-á no Banco do Brasil ou, onde este não tiver agência, em estabelecimento bancário acreditado, a critério do juiz.",
+          "literal": "(Renumerado do Parágrafo Único pela Lei nº 2.786, de 1956)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.786",
+            "ano": 1956
+          },
+          "trecho": "…tenta por cento) do depósito feito para o fim previsto neste e no art. 15, observado o processo estabelecido no art. 34.",
+          "literal": "(Incluído pela Lei nº 2.786, de 1956)"
+        }
+      ]
+    },
+    "34-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…implicará a aquisição da propriedade pelo expropriante com o consequente registro da propriedade na matrícula do imóvel.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "§ 1o A concordância escrita do expropriado não implica renúncia ao seu direito de questionar o preço ofertado em juízo.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…e deste artigo, o expropriado poderá levantar 100% (cem por cento) do depósito de que trata o art. 33 deste Decreto-Lei.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…deste Decreto-Lei, bem como, a critério do juiz, aqueles tidos como necessários para o custeio das despesas processuais.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.421",
+            "ano": 2022
+          },
+          "trecho": "…dentemente de anuência expressa do expropriado, e prosseguirá o processo somente para resolução das questões litigiosas.",
+          "literal": "(Incluído pela Lei nº 14.421, de 2022)"
+        }
+      ]
+    }
+  }
+}

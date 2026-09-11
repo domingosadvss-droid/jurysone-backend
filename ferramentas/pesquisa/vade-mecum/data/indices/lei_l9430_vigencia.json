@@ -1,0 +1,3136 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L9430",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l9430.json",
+      "colecao": "artigos",
+      "sha256": "90ad350731aff0cd4edbc534887bb873ba4e3f89c1713cdb973c2423c3e09248",
+      "total_registros": 103,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 55,
+      "anotacoes": 271,
+      "anotacoes_sem_diploma_nomeado": 40
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…s, observado o disposto nos §§ 1o e 2o do art. 29 e nos arts. 30, 32, 34 e 35 da Lei no 8.981, de 20 de janeiro de 1995.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…rt. 29 e nos arts. 30, 32, 34 e 35 da Lei no 8.981, de 20 de janeiro de 1995. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "§ 1o O saldo do imposto apurado em 31 de dezembro receberá o seguinte tratamento:",
+          "literal": "(Redação dada pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "…vo, será pago em quota única, até o último dia útil do mês de março do ano subsequente, observado o disposto no § 2o; ou",
+          "literal": "(Redação dada pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "II - se negativo, poderá ser objeto de restituição ou de compensação nos termos do art. 74.",
+          "literal": "(Redação dada pela Lei nº 12.844, de 2013)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…icial, relativamente à parcela que exceder o valor que esta tenha se comprometido a pagar, observado o disposto no § 5o.",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…íneas a e b do inciso II do § 7o serão considerados em relação ao total dos créditos, por operação, com o mesmo devedor.",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…eração judicial, desde que a credora tenha adotado os procedimentos judiciais necessários para o recebimento do crédito.",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…cordata ou recuperação judicial poderá, também, ser deduzida como perda, observadas as condições previstas neste artigo.",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…data de publicação da Medida Provisória no 656, de 7 de outubro de 2014, poderão ser registrados como perda os créditos:",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "I - em relação aos quais tenha havido a declaração de insolvência do devedor, em sentença emanada do Poder Judiciário;",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "II - sem garantia, de valor:",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…, independentemente de iniciados os procedimentos judiciais para o seu recebimento, mantida a cobrança administrativa; e",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…il reais), vencidos há mais de um ano, desde que iniciados e mantidos os procedimentos judiciais para o seu recebimento;",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "III - com garantia, vencidos há mais de dois anos, de valor:",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…l reais), independentemente de iniciados os procedimentos judiciais para o seu recebimento ou o arresto das garantias; e",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…l reais), desde que iniciados e mantidos os procedimentos judiciais para o seu recebimento ou o arresto das garantias; e",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…icial, relativamente à parcela que exceder o valor que esta tenha se comprometido a pagar, observado o disposto no § 5o.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        }
+      ]
+    },
+    "9-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.043",
+            "ano": 2020
+          },
+          "trecho": "…ado de taxas, de emolumentos, de acréscimos legais e de demais despesas por ocasião da protocolização e dos demais atos.",
+          "literal": "(Incluído pela Lei nº 14.043, de 2020)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…registra o crédito de que trata a alínea a do inciso II do § 1o do art. 9o e a alínea a do inciso II do § 7o do art. 9o;",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…aplica quando a pessoa jurídica houver tomado as providências de caráter judicial necessárias ao recebimento do crédito.",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.431",
+            "ano": 2011
+          },
+          "trecho": "…ito ou avaliados pela valor definido na decisão judicial que tenha determinado sua incorporação ao patrimônio do credor.",
+          "literal": "(Incluído pela Lei nº 12.431, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…osto sobre a renda e da Contribuição Social sobre o Lucro Líquido ocorrerá no momento do efetivo recebimento do crédito.",
+          "literal": "(Redação dada pela nº 12.715, de 2012)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…cial sobre o Lucro Líquido ocorrerá no momento do efetivo recebimento do crédito. (Redação dada pela nº 12.715, de 2012)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "…vos, obtidos em operações de cobertura de riscos (hedge) por meio de contratos derivativos com contrapartes no exterior.",
+          "literal": "(Redação dada pela Lei nº 15.265, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "§ 1º Os resultados negativos somente poderão ser computados caso as operações de que trata o caput sejam:",
+          "literal": "(Incluído pela Lei nº 15.265, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "I – realizadas a preços de mercado; e",
+          "literal": "(Incluído pela Lei nº 15.265, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "II – registradas em mercados de bolsa ou de balcão, organizado ou não, no País ou no exterior.",
+          "literal": "(Incluído pela Lei nº 15.265, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "…e sistemas que permitam aferir se os preços na abertura e no encerramento são consistentes com os praticados no mercado.",
+          "literal": "(Incluído pela Lei nº 15.265, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "…vo, nos termos de regulamentação editada pela Secretaria Especial da Receita Federal do Brasil do Ministério da Fazenda.",
+          "literal": "(Incluído pela Lei nº 15.265, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "…3º não dispensa a observância às regras de preços de transferência de que trata a Lei nº 14.596, de 14 de junho de 2023.",
+          "literal": "(Incluído pela Lei nº 15.265, de 2025)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.596",
+            "ano": 2023
+          },
+          "trecho": "Art. 18.",
+          "literal": "(Revogado pela Lei nº 14.596, de 2023)"
+        }
+      ]
+    },
+    "18-A": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.596",
+            "ano": 2023
+          },
+          "trecho": "Art. 18-A.",
+          "literal": "(Revogado pela Lei nº 14.596, de 2023)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.596",
+            "ano": 2023
+          },
+          "trecho": "Art. 19.",
+          "literal": "(Revogado pela Lei nº 14.596, de 2023)"
+        }
+      ]
+    },
+    "19-A": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.596",
+            "ano": 2023
+          },
+          "trecho": "Art. 19-A.",
+          "literal": "(Revogado pela Lei nº 14.596, de 2023)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.596",
+            "ano": 2023
+          },
+          "trecho": "Art. 20.",
+          "literal": "(Revogado pela Lei nº 14.596, de 2023)"
+        }
+      ]
+    },
+    "20-A": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.596",
+            "ano": 2023
+          },
+          "trecho": "Art. 20-A.",
+          "literal": "(Revogado pela Lei nº 14.596, de 2023)"
+        }
+      ]
+    },
+    "20-B": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.596",
+            "ano": 2023
+          },
+          "trecho": "Art. 20-B.",
+          "literal": "(Revogado pela Lei nº 14.596, de 2023)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.596",
+            "ano": 2023
+          },
+          "trecho": "Art. 21.",
+          "literal": "(Revogado pela Lei nº 14.596, de 2023)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.596",
+            "ano": 2023
+          },
+          "trecho": "Art. 22.",
+          "literal": "(Revogado pela Lei nº 14.596, de 2023)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.596",
+            "ano": 2023
+          },
+          "trecho": "Art. 23.",
+          "literal": "(Revogado pela Lei nº 14.596, de 2023)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.596",
+            "ano": 2023
+          },
+          "trecho": "… ou domiciliada em país que não tribute a renda ou que a tribute a alíquota máxima inferior a 17% (dezessete por cento).",
+          "literal": "(Redação dada pela Lei nº 14.596, de 2023)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.596",
+            "ano": 2023
+          },
+          "trecho": "§ 2º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.596, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.451",
+            "ano": 2002
+          },
+          "trecho": "…r-se-á separadamente a tributação do trabalho e do capital, bem como as dependências do país de residência ou domicílio.",
+          "literal": "(Incluído pela Lei nº 10.451, de 2002)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "…oas jurídicas, à sua titularidade ou à identificação do beneficiário efetivo de rendimentos atribuídos a não residentes.",
+          "literal": "(Incluído pela Lei nº 11.727, de 2008)"
+        }
+      ]
+    },
+    "24-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.596",
+            "ano": 2023
+          },
+          "trecho": "…ciliada no exterior que seja beneficiária de regime fiscal privilegiado, inclusive na hipótese de parte não relacionada.",
+          "literal": "(Redação dada pela Lei nº 14.596, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.596",
+            "ano": 2023
+          },
+          "trecho": "…ste artigo, considera-se regime fiscal privilegiado aquele que apresentar, no mínimo, uma das seguintes características:",
+          "literal": "(Redação dada pela Lei nº 14.596, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.596",
+            "ano": 2023
+          },
+          "trecho": "I – não tribute a renda ou que o faça a alíquota máxima inferior a 17% (dezessete por cento);",
+          "literal": "(Redação dada pela Lei nº 14.596, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "II – conceda vantagem de natureza fiscal a pessoa física ou jurídica não residente:",
+          "literal": "(Incluído pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "a) sem exigência de realização de atividade econômica substantiva no país ou dependência;",
+          "literal": "(Incluído pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "b) condicionada ao não exercício de atividade econômica substantiva no país ou dependência;",
+          "literal": "(Incluído pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.596",
+            "ano": 2023
+          },
+          "trecho": "…ribute os rendimentos auferidos fora de seu território ou o faça a alíquota máxima inferior a 17% (dezessete por cento);",
+          "literal": "(Redação dada pela Lei nº 14.596, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "…a informações relativas à composição societária, titularidade de bens ou direitos ou às operações econômicas realizadas.",
+          "literal": "(Incluído pela Lei nº 11.727, de 2008)"
+        }
+      ]
+    },
+    "24-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "…r os percentuais de que tratam o caput do art. 24 e os incisos I e III do parágrafo único do art. 24-A, ambos desta Lei.",
+          "literal": "(Incluído pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "…mbém ser aplicado, de forma excepcional e restrita, a países que componham blocos econômicos dos quais o País participe.",
+          "literal": "(Incluído pela Lei nº 11.727, de 2008)"
+        }
+      ]
+    },
+    "24-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.079",
+            "ano": 2024
+          },
+          "trecho": "…ra países que fomentem de forma relevante o desenvolvimento nacional por meio de investimentos significativos no Brasil.",
+          "literal": "(Incluído pela Lei nº 15.079, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.079",
+            "ano": 2024
+          },
+          "trecho": "… caput deste artigo, inclusive os investimentos que poderão ser considerados, seus patamares, critérios e periodicidade.",
+          "literal": "(Incluído pela Lei nº 15.079, de 2024)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…puração de que trata o art. 1o, deduzida das devoluções e vendas canceladas e dos descontos incondicionais concedidos; e",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…s devoluções e vendas canceladas e dos descontos incondicionais concedidos; e (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…83 da Lei no 6.404, de 15 de dezembro de 1976, e demais valores determinados nesta Lei, auferidos naquele mesmo período.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…76, e demais valores determinados nesta Lei, auferidos naquele mesmo período. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "… imobilizados e intangíveis corresponderá à diferença positiva entre o valor da alienação e o respectivo valor contábil.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…rá à diferença positiva entre o valor da alienação e o respectivo valor contábil. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…os do ajuste a valor presente de que trata o inciso III do caput do art. 184 da Lei nº 6.404, de 15 de dezembro de 1976.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…ata o inciso III do caput do art. 184 da Lei nº 6.404, de 15 de dezembro de 1976. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "… ativo ou passivo com base no valor justo não integrarão a base de cálculo do imposto, no momento em que forem apurados.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…to não integrarão a base de cálculo do imposto, no momento em que forem apurados. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ecorrentes de avaliação do ativo com base em valor justo não serão considerados como parte integrante do valor contábil.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…se em valor justo não serão considerados como parte integrante do valor contábil. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 5o O disposto no § 4o não se aplica aos ganhos que tenham sido anteriormente computados na base de cálculo do imposto.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "…os ganhos que tenham sido anteriormente computados na base de cálculo do imposto. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…puração de que trata o art. 1o, deduzida das devoluções e vendas canceladas e dos descontos incondicionais concedidos; e",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…s devoluções e vendas canceladas e dos descontos incondicionais concedidos; e (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…83 da Lei nº 6.404, de 15 de dezembro de 1976, e demais valores determinados nesta Lei, auferidos naquele mesmo período.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…76, e demais valores determinados nesta Lei, auferidos naquele mesmo período. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "… imobilizados e intangíveis corresponderá à diferença positiva entre o valor da alienação e o respectivo valor contábil.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…rá à diferença positiva entre o valor da alienação e o respectivo valor contábil. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…os do ajuste a valor presente de que trata o inciso III do caput do art. 184 da Lei nº 6.404, de 15 de dezembro de 1976.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…ata o inciso III do caput do art. 184 da Lei nº 6.404, de 15 de dezembro de 1976. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "… ativo ou passivo com base no valor justo não integrarão a base de cálculo do imposto, no momento em que forem apurados.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "…to não integrarão a base de cálculo do imposto, no momento em que forem apurados. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ecorrentes de avaliação do ativo com base em valor justo não serão considerados como parte integrante do valor contábil.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "…se em valor justo não serão considerados como parte integrante do valor contábil. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 7o O disposto no § 6o não se aplica aos ganhos que tenham sido anteriormente computados na base de cálculo do imposto.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "…os ganhos que tenham sido anteriormente computados na base de cálculo do imposto. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.715",
+            "ano": 2012
+          },
+          "trecho": "…o lucro líquido as normas da legislação vigente e as correspondentes aos arts. 1o a 3o, 5o a 14, 17 a 24-B, 26, 55 e 71.",
+          "literal": "(Redação dada pela Lei nº 12.715, de 2012)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…83 da Lei nº 6.404, de 15 de dezembro de 1976, e demais valores determinados nesta Lei, auferidos naquele mesmo período.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…76, e demais valores determinados nesta Lei, auferidos naquele mesmo período. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "§ 11.",
+          "literal": "(Revogado pela Lei nº 13.165, de 20150)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "… A entidade interessada disporá de todos os meios legais para impugnar os fatos que determinam a suspensão do benefício.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "…iscalização será aplicada a multa de que trata o inciso I do caput do art. 44 desta Lei, duplicando-se o seu percentual.",
+          "literal": "(Redação dada Lei nº 11.488, de 2007)"
+        }
+      ]
+    },
+    "39": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.532",
+            "ano": 1997
+          },
+          "trecho": "Art. 39.",
+          "literal": "(Revogado pela Lei nº 9.532, de 1997)"
+        }
+      ]
+    },
+    "42": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.637",
+            "ano": 2002
+          },
+          "trecho": "…u receitas será efetuada em relação ao terceiro, na condição de efetivo titular da conta de depósito ou de investimento.",
+          "literal": "(Incluído pela Lei nº 10.637, de 2002)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.637",
+            "ano": 2002
+          },
+          "trecho": "…as será imputado a cada titular mediante divisão entre o total dos rendimentos ou receitas pela quantidade de titulares.",
+          "literal": "(Incluído pela Lei nº 10.637, de 2002)"
+        }
+      ]
+    },
+    "44": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "Art. 44. Nos casos de lançamento de ofício, serão aplicadas as seguintes multas: (Vide Lei nº 10.892, de 2004)",
+          "literal": "(Redação dada pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "…de falta de pagamento ou recolhimento, de falta de declaração e nos de declaração inexata; (Vide Lei nº 10.892, de 2004)",
+          "literal": "(Redação dada pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "II - de 50% (cinqüenta por cento), exigida isoladamente, sobre o valor do pagamento mensal:",
+          "literal": "(Redação dada pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "…xar de ser efetuado, ainda que não tenha sido apurado imposto a pagar na declaração de ajuste, no caso de pessoa física;",
+          "literal": "(Redação dada pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "…negativa para a contribuição social sobre o lucro líquido, no ano-calendário correspondente, no caso de pessoa jurídica.",
+          "literal": "(Redação dada pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "… de novembro de 1964, independentemente de outras penalidades administrativas ou criminais cabíveis, e passará a ser de:",
+          "literal": "(Redação dada pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "I - (revogado);",
+          "literal": "(Redação dada pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "II - (revogado);",
+          "literal": "(Redação dada pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "III - (revogado);",
+          "literal": "(Redação dada pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "IV - (revogado);",
+          "literal": "(Redação dada pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.716",
+            "ano": 1998
+          },
+          "trecho": "V -",
+          "literal": "(revogado pela Lei nº 9.716, de 26 de novembro de 1998)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "V - (revogado pela Lei nº 9.716, de 26 de novembro de 1998).",
+          "literal": "(Redação dada pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "…I – 100% (cem por cento) sobre a totalidade ou a diferença de imposto ou de contribuição objeto do lançamento de ofício;",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "…mposto ou de contribuição objeto do lançamento de ofício, nos casos em que verificada a reincidência do sujeito passivo.",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "…de novembro de 1964, ficar comprovado que o sujeito passivo incorreu novamente em qualquer uma dessas ações ou omissões.",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º-B.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "§ 1º-B. (VETADO).",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "§ 1º-C. A qualificação da multa prevista no § 1º deste artigo não se aplica quando:",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "…ualizada e comprovada a conduta dolosa a que se referem os arts. 71, 72 e 73 da Lei nº 4.502, de 30 de novembro de 1964;",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "…ntença penal de absolvição com apreciação de mérito em processo do qual decorra imputação criminal do sujeito passivo; e",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "III – (VETADO).",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º-D.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "§ 1º-D. (VETADO);",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "…tigo serão aumentados de metade, nos casos de não atendimento pela sujeito passivo, no prazo marcado, de intimação para:",
+          "literal": "(Redação dada pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "I - prestar esclarecimentos;",
+          "literal": "(Redação dada pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "II - apresentar os arquivos ou sistemas de que tratam os arts. 11 a 13 da Lei no 8.218, de 29 de agosto de 1991;",
+          "literal": "(Redação dada pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "III - apresentar a documentação técnica de que trata o art. 38 desta Lei.",
+          "literal": "(Redação dada pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.249",
+            "ano": 2010
+          },
+          "trecho": "…so de que seja comprovadamente constatado dolo ou má-fé do contribuinte, a multa de que trata o inciso I do caput sobre:",
+          "literal": "(Redação dada pela Lei nº 12.249, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.249",
+            "ano": 2010
+          },
+          "trecho": "…uinte pessoa física, na Declaração de Ajuste Anual, que deixar de ser restituída por infração à legislação tributária; e",
+          "literal": "(Incluído pela Lei nº 12.249, de 2010)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.249",
+            "ano": 2010
+          },
+          "trecho": "II – (VETADO).",
+          "literal": "(Redação dada pela Lei nº 12.249, de 2010)"
+        }
+      ]
+    },
+    "45": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "Art. 45.",
+          "literal": "(Revogado pela Lei nº 11.488, de 2007)"
+        }
+      ]
+    },
+    "46": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "Art. 46.",
+          "literal": "(Revogado pela Lei nº 11.488, de 2007)"
+        }
+      ]
+    },
+    "47": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.532",
+            "ano": 1997
+          },
+          "trecho": "…eito passivo como contribuinte ou responsável, com os acréscimos legais aplicáveis nos casos de procedimento espontâneo.",
+          "literal": "(Redação dada pela Lei nº 9.532, de 1997)"
+        }
+      ]
+    },
+    "48": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.788",
+            "ano": 2013
+          },
+          "trecho": "…ta ou declarar sua ineficácia, na forma disciplinada pela Secretaria da Receita Federal do Brasil, poderá ser atribuída:",
+          "literal": "(Redação dada pela Lei nº 12.788, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.788",
+            "ano": 2013
+          },
+          "trecho": "I - a unidade central; ou",
+          "literal": "(Redação dada pela Lei nº 12.788, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.788",
+            "ano": 2013
+          },
+          "trecho": "II - a unidade descentralizada.",
+          "literal": "(Redação dada pela Lei nº 12.788, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.788",
+            "ano": 2013
+          },
+          "trecho": "…O juízo de admissibilidade do recurso será realizado na forma disciplinada pela Secretaria da Receita Federal do Brasil.",
+          "literal": "(Redação dada pela Lei nº 12.788, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.788",
+            "ano": 2013
+          },
+          "trecho": "…A consulta poderá ser formulada por meio eletrônico, na forma disciplinada pela Secretaria da Receita Federal do Brasil.",
+          "literal": "(Incluído pela Lei nº 12.788, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.788",
+            "ano": 2013
+          },
+          "trecho": "§ 15. O Poder Executivo regulamentará prazo para solução das consultas de que trata este artigo.",
+          "literal": "(Incluído pela Lei nº 12.788, de 2013)"
+        }
+      ]
+    },
+    "54": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ade de controle no livro de que trata o inciso I do caput do art. 8o do Decreto-Lei no 1.598, de 26 de dezembro de 1977.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…iso I do caput do art. 8o do Decreto-Lei no 1.598, de 26 de dezembro de 1977. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "56-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.873",
+            "ano": 2013
+          },
+          "trecho": "…mentos de aplicação financeira de renda fixa e de renda variável, bem como da contribuição social sobre o lucro líquido.",
+          "literal": "(Incluído pela Lei nº 12.873, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.873",
+            "ano": 2013
+          },
+          "trecho": "…zo da isenção, a referida entidade deverá ter seu estatuto e seu regulamento aprovados pela Conselho Monetário Nacional.",
+          "literal": "(Incluído pela Lei nº 12.873, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.873",
+            "ano": 2013
+          },
+          "trecho": "…ma direta ou indireta, ao Fundo Garantidor de Crédito de que trata o art. 4o da Lei no 9.710, de 19 de novembro de 1998.",
+          "literal": "(Incluído pela Lei nº 12.873, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.873",
+            "ano": 2013
+          },
+          "trecho": "§ 3o As transferências dos recursos de que trata o § 2o não serão tributadas, nos termos deste artigo.",
+          "literal": "(Incluído pela Lei nº 12.873, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.873",
+            "ano": 2013
+          },
+          "trecho": "…lmente devolvidos às associadas estarão sujeitos à tributação na instituição recebedora, na forma da legislação vigente.",
+          "literal": "(Incluído pela Lei nº 12.873, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.873",
+            "ano": 2013
+          },
+          "trecho": "…seguinte ao da aprovação pela Conselho Monetário Nacional do estatuto e do regulamento da entidade de que trata o caput.",
+          "literal": "(Incluído pela Lei nº 12.873, de 2013)"
+        }
+      ]
+    },
+    "63": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.158-35",
+            "ano": 2001
+          },
+          "trecho": "…orma dos incisos IV e V do art. 151 da Lei nº 5.172, de 25 de outubro de 1966, não caberá lançamento de multa de ofício.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.158-35, de 2001)"
+        }
+      ]
+    },
+    "64": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.043",
+            "ano": 2014
+          },
+          "trecho": "…GF, no caso de compra de passagens aéreas diretamente das companhias aéreas prestadoras de serviços de transporte aéreo.",
+          "literal": "(Incluído pela Lei nº 13.043, de 2014)"
+        }
+      ]
+    },
+    "68-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…do Documento de Arrecadação de Receitas Federais, podendo reduzir ou restabelecer os limites e valores que vier a fixar.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "70": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "§ 2o O imposto será retido na data do pagamento ou crédito da multa ou vantagem.",
+          "literal": "(Redação dada pela Lei nº 11.196, de 2005)"
+        }
+      ]
+    },
+    "71": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.833",
+            "ano": 2003
+          },
+          "trecho": "§ 2o Somente será admitido o reconhecimento de perdas nas operações registradas nos termos da legislação vigente.",
+          "literal": "(Redação dada pela Lei nº 10.833, de 2003)"
+        }
+      ]
+    },
+    "73": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "…l será efetuada depois de verificada a ausência de débitos em nome do sujeito passivo credor perante a Fazenda Nacional.",
+          "literal": "(Redação dada pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "I - (revogado);",
+          "literal": "(Redação dada pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "II - (revogado).",
+          "literal": "(Redação dada pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "…ive inscritos em Dívida Ativa da União, os créditos serão utilizados para quitação desses débitos, observado o seguinte:",
+          "literal": "(Incluído pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "I - o valor bruto da restituição ou do ressarcimento será debitado à conta do tributo a que se referir;",
+          "literal": "(Incluído pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "…arcela utilizada para a quitação de débitos do contribuinte ou responsável será creditada à conta do respectivo tributo.",
+          "literal": "(Incluído pela Lei nº 12.844, de 2013)"
+        }
+      ]
+    },
+    "74": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.637",
+            "ano": 2002
+          },
+          "trecho": "…izá-lo na compensação de débitos próprios relativos a quaisquer tributos e contribuições administrados por aquele Órgão.",
+          "literal": "(Redação dada pela Lei nº 10.637, de 2002)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.637",
+            "ano": 2002
+          },
+          "trecho": "…vo, de declaração na qual constarão informações relativas aos créditos utilizados e aos respectivos débitos compensados.",
+          "literal": "(Incluído pela Lei nº 10.637, de 2002)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.637",
+            "ano": 2002
+          },
+          "trecho": "…ada à Secretaria da Receita Federal extingue o crédito tributário, sob condição resolutória de sua ulterior homologação.",
+          "literal": "(Incluído pela Lei nº 10.637, de 2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.833",
+            "ano": 2003
+          },
+          "trecho": "…tribuição, não poderão ser objeto de compensação mediante entrega, pela sujeito passivo, da declaração referida no § 1o:",
+          "literal": "(Redação dada pela Lei nº 10.833, de 2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.637",
+            "ano": 2002
+          },
+          "trecho": "I - o saldo a restituir apurado na Declaração de Ajuste Anual do Imposto de Renda da Pessoa Física;",
+          "literal": "(Incluído pela Lei nº 10.637, de 2002)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.637",
+            "ano": 2002
+          },
+          "trecho": "II - os débitos relativos a tributos e contribuições devidos no registro da Declaração de Importação.",
+          "literal": "(Incluído pela Lei nº 10.637, de 2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.833",
+            "ano": 2003
+          },
+          "trecho": "…ederal que já tenham sido encaminhados à Procuradoria-Geral da Fazenda Nacional para inscrição em Dívida Ativa da União;",
+          "literal": "(Redação dada pela Lei nº 10.833, de 2003)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.051",
+            "ano": 2004
+          },
+          "trecho": "IV - o débito consolidado em qualquer modalidade de parcelamento concedido pela Secretaria da Receita Federal - SRF;",
+          "literal": "(Redação dada pela Lei nº 11.051, de 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.670",
+            "ano": 2018
+          },
+          "trecho": "…compensação não homologada, ainda que a compensação se encontre pendente de decisão definitiva na esfera administrativa;",
+          "literal": "(Redação dada pela Lei nº 13.670, de 2018)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.670",
+            "ano": 2018
+          },
+          "trecho": "…ia da Receita Federal do Brasil, ainda que o pedido se encontre pendente de decisão definitiva na esfera administrativa;",
+          "literal": "(Redação dada pela Lei nº 13.670, de 2018)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.670",
+            "ano": 2018
+          },
+          "trecho": "… o crédito informado em declaração de compensação cuja confirmação de liquidez e certeza esteja sob procedimento fiscal;",
+          "literal": "(Redação dada pela Lei nº 13.670, de 2018)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.670",
+            "ano": 2018
+          },
+          "trecho": "VIII - os valores de quotas de salário-família e salário-maternidade; e",
+          "literal": "(Redação dada pela Lei nº 13.670, de 2018)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.670",
+            "ano": 2018
+          },
+          "trecho": "…s Pessoas Jurídicas (IRPJ) e da Contribuição Social sobre o Lucro Líquido (CSLL) apurados na forma do art. 2º desta Lei.",
+          "literal": "(Redação dada pela Lei nº 13.670, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.873",
+            "ano": 2024
+          },
+          "trecho": "X - o valor do crédito utilizado na compensação que superar o limite mensal de que trata o art. 74-A desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.873, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.227",
+            "ano": 2024
+          },
+          "trecho": "XI -",
+          "literal": "(Incluído pela Medida Provisória nº 1.227, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.637",
+            "ano": 2002
+          },
+          "trecho": "…inistrativa serão considerados declaração de compensação, desde o seu protocolo, para os efeitos previstos neste artigo.",
+          "literal": "(Redação dada pela Lei nº 10.637, de 2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.833",
+            "ano": 2003
+          },
+          "trecho": "…pensação declarada pela sujeito passivo será de 5 (cinco) anos, contado da data da entrega da declaração de compensação.",
+          "literal": "(Redação dada pela Lei nº 10.833, de 2003)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.833",
+            "ano": 2003
+          },
+          "trecho": "…o constitui confissão de dívida e instrumento hábil e suficiente para a exigência dos débitos indevidamente compensados.",
+          "literal": "(Redação dada pela Lei nº 10.833, de 2003)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.833",
+            "ano": 2003
+          },
+          "trecho": "…o de 30 (trinta) dias, contado da ciência do ato que não a homologou, o pagamento dos débitos indevidamente compensados.",
+          "literal": "(Redação dada pela Lei nº 10.833, de 2003)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.833",
+            "ano": 2003
+          },
+          "trecho": "…minhado à Procuradoria-Geral da Fazenda Nacional para inscrição em Dívida Ativa da União, ressalvado o disposto no § 9o.",
+          "literal": "(Redação dada pela Lei nº 10.833, de 2003)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.833",
+            "ano": 2003
+          },
+          "trecho": "…o passivo, no prazo referido no § 7o, apresentar manifestação de inconformidade contra a não-homologação da compensação.",
+          "literal": "(Redação dada pela Lei nº 10.833, de 2003)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.833",
+            "ano": 2003
+          },
+          "trecho": "§ 10. Da decisão que julgar improcedente a manifestação de inconformidade caberá recurso ao Conselho de Contribuintes.",
+          "literal": "(Redação dada pela Lei nº 10.833, de 2003)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.833",
+            "ano": 2003
+          },
+          "trecho": "…1 da Lei no 5.172, de 25 de outubro de 1966 - Código Tributário Nacional, relativamente ao débito objeto da compensação.",
+          "literal": "(Redação dada pela Lei nº 10.833, de 2003)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.051",
+            "ano": 2004
+          },
+          "trecho": "§ 12. Será considerada não declarada a compensação nas hipóteses:",
+          "literal": "(Redação dada pela Lei nº 11.051, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.051",
+            "ano": 2004
+          },
+          "trecho": "I - previstas no § 3o deste artigo;",
+          "literal": "(Incluído pela Lei nº 11.051, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.051",
+            "ano": 2004
+          },
+          "trecho": "II - em que o crédito:",
+          "literal": "(Incluído pela Lei nº 11.051, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.051",
+            "ano": 2004
+          },
+          "trecho": "a) seja de terceiros;",
+          "literal": "(Incluída pela Lei nº 11.051, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.051",
+            "ano": 2004
+          },
+          "trecho": "b) refira-se a \"crédito-prêmio\" instituído pela art. 1o do Decreto-Lei no 491, de 5 de março de 1969;",
+          "literal": "(Incluída pela Lei nº 11.051, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.051",
+            "ano": 2004
+          },
+          "trecho": "c) refira-se a título público;",
+          "literal": "(Incluída pela Lei nº 11.051, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.051",
+            "ano": 2004
+          },
+          "trecho": "d) seja decorrente de decisão judicial não transitada em julgado; ou",
+          "literal": "(Incluída pela Lei nº 11.051, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.051",
+            "ano": 2004
+          },
+          "trecho": "e) não se refira a tributos e contribuições administrados pela Secretaria da Receita Federal - SRF.",
+          "literal": "(Incluída pela Lei nº 11.051, de 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "f) tiver como fundamento a alegação de inconstitucionalidade de lei, exceto nos casos em que a lei:",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…al pela Supremo Tribunal Federal em ação direta de inconstitucionalidade ou em ação declaratória de constitucionalidade;",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "2 – tenha tido sua execução suspensa pela Senado Federal;",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "3 – tenha sido julgada inconstitucional em sentença judicial transitada em julgado a favor do contribuinte; ou",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…eja objeto de súmula vinculante aprovada pela Supremo Tribunal Federal nos termos do art. 103-A da Constituição Federal.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea g",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "… pagamento indevido ou a maior que o devido, com fundamento em documento de arrecadação que se verifique inexistente; ou",
+          "literal": "(Redação dada pela Lei nº 15.265, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea h",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "…dos os casos de transformação, incorporação ou fusão, em que podem ser consideradas as atividades da empresa originária.",
+          "literal": "(Redação dada pela Lei nº 15.265, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.051",
+            "ano": 2004
+          },
+          "trecho": "§ 13. O disposto nos §§ 2o e 5o a 11 deste artigo não se aplica às hipóteses previstas no § 12 deste artigo.",
+          "literal": "(Incluído pela Lei nº 11.051, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.051",
+            "ano": 2004
+          },
+          "trecho": "…nto à fixação de critérios de prioridade para apreciação de processos de restituição, de ressarcimento e de compensação.",
+          "literal": "(Incluído pela Lei nº 11.051, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "§ 15.",
+          "literal": "(Revogado pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 15º",
+          "diploma": null,
+          "trecho": "§ 15. (Revogado pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 16º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "§ 16.",
+          "literal": "(Revogado pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 16º",
+          "diploma": null,
+          "trecho": "§ 16. (Revogado pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 17º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "… de declaração de compensação não homologada, salvo no caso de falsidade da declaração apresentada pela sujeito passivo.",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 18º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "…adrando-se no disposto no inciso III do art. 151 da Lei no 5.172, de 25 de outubro de 1966 - Código Tributário Nacional.",
+          "literal": "(Incluído pela Lei nº 12.844, de 2013)"
+        }
+      ]
+    },
+    "74-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.873",
+            "ano": 2024
+          },
+          "trecho": "…e decisão judicial transitada em julgado observará o limite mensal estabelecido em ato do Ministro de Estado da Fazenda.",
+          "literal": "(Incluído pela Lei nº 14.873, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.873",
+            "ano": 2024
+          },
+          "trecho": "§ 1º O limite mensal a que se refere o caput deste artigo:",
+          "literal": "(Incluído pela Lei nº 14.873, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.873",
+            "ano": 2024
+          },
+          "trecho": "I - será graduado em função do valor total do crédito decorrente de decisão judicial transitada em julgado;",
+          "literal": "(Incluído pela Lei nº 14.873, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.873",
+            "ano": 2024
+          },
+          "trecho": "…são judicial transitada em julgado, demonstrado e atualizado na data da entrega da primeira declaração de compensação; e",
+          "literal": "(Incluído pela Lei nº 14.873, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.873",
+            "ano": 2024
+          },
+          "trecho": "…ente de decisão judicial transitada em julgado cujo valor total seja inferior a R$ 10.000.000,00 (dez milhões de reais).",
+          "literal": "(Incluído pela Lei nº 14.873, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.873",
+            "ano": 2024
+          },
+          "trecho": "…anos, contado da data do trânsito em julgado da decisão ou da homologação da desistência da execução do título judicial.",
+          "literal": "(Incluído pela Lei nº 14.873, de 2024)"
+        }
+      ]
+    },
+    "79": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.189-49",
+            "ano": 2001
+          },
+          "trecho": "…xecutivo poderá excepcionar, em caráter temporário, a aplicação do disposto neste artigo em relação a determinados bens.",
+          "literal": "(Incluído pela Medida Provisória nº 2.189-49, de 2001)"
+        }
+      ]
+    },
+    "80": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…pensas quando se enquadrarem nas hipóteses de suspensão definidas pela Secretaria Especial da Receita Federal do Brasil.",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "§ 1º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "I - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "II - (revogado).",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "§ 2º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "§ 3º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "§ 4º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "80-A": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "Art. 80-A.",
+          "literal": "(Revogado pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "80-B": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "Art. 80-B.",
+          "literal": "(Revogado pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "80-C": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "Art. 80-C.",
+          "literal": "(Revogado pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "81": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…s, nos termos e nas condições definidos pela Secretaria Especial da Receita Federal do Brasil, quando a pessoa jurídica:",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "I - deixar de apresentar obrigações acessórias, por, no mínimo, 90 (noventa) dias a contar da omissão;",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…, a disponibilidade e a efetiva transferência, se for o caso, dos recursos empregados em operações de comércio exterior;",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "III - for inexistente de fato, assim considerada a entidade que:",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…cidade operacional necessários à realização de seu objeto, inclusive a que não comprovar o capital social integralizado;",
+          "literal": "(Incluída pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "b) não for localizada no endereço informado no CNPJ;",
+          "literal": "(Incluída pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "c) quando intimado, o seu representante legal:",
+          "literal": "(Incluída pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…gar falsidade ou simulação de sua participação na referida entidade ou não comprovar legitimidade para representá-la; ou",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "2. não indicar, depois de intimado, seu novo domicílio tributário;",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…dicado seu procurador ou seu representante legalmente constituído no CNPJ ou, se indicado, não tiver sido localizado; ou",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "e) encontrar-se com as atividades paralisadas, salvo quando a paralisação for comunicada;",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "IV - realizar operações de terceiros, com intuito de acobertar seus reais beneficiários;",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…eio de emissão de documentos fiscais que relatem operações fictícias ou cessão de créditos inexistentes ou de terceiros;",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…ituída, segundo evidências, para a prática de fraude fiscal estruturada, inclusive em proveito de terceiras empresas; ou",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "VII - encontrar-se suspensa por no, mínimo, 1 (um) ano.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…frações de que trata o art. 471-D, nos termos do art. 471-E, ambos da Lei Complementar nº 214, de 16 de janeiro de 2025.",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "§ 1º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "… do caput deste artigo, a comprovação da origem de recursos provenientes do exterior dar-se-á mediante, cumulativamente:",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.637",
+            "ano": 2002
+          },
+          "trecho": "…io, inclusive com a identificação da instituição financeira no exterior encarregada da remessa dos recursos para o País;",
+          "literal": "(Redação dada pela Lei nº 10.637, de 2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.637",
+            "ano": 2002
+          },
+          "trecho": "…dentificação do remetente dos recursos, assim entendido como a pessoa física ou jurídica titular dos recursos remetidos.",
+          "literal": "(Redação dada pela Lei nº 10.637, de 2002)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.637",
+            "ano": 2002
+          },
+          "trecho": "…o II do § 2o ser pessoa jurídica deverão ser também identificados os integrantes de seus quadros societário e gerencial.",
+          "literal": "(Incluído pela Lei nº 10.637, de 2002)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.637",
+            "ano": 2002
+          },
+          "trecho": "…§§ 2o e 3o aplica-se, também, na hipótese de que trata o § 2o do art. 23 do Decreto-Lei no 1.455, de 7 de abril de 1976.",
+          "literal": "(Incluído pela Lei nº 10.637, de 2002)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "§ 5º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "81-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…-A. As inscrições no CNPJ serão declaradas baixadas após 180 (cento e oitenta) dias contados da declaração de inaptidão.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…ão no CNPJ baixada as pessoas jurídicas que estejam extintas, canceladas ou baixadas nos respectivos órgãos de registro.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…no CNPJ não impede que, posteriormente, sejam lançados ou cobrados os débitos de natureza tributária da pessoa jurídica.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "… inscrição no CNPJ, observados os termos e as condições definidos pela Secretaria Especial da Receita Federal do Brasil.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "82": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "… interessados o documento emitido por pessoa jurídica cuja inscrição no CNPJ tenha sido considerada ou declarada inapta.",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "83": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "…s de proferida a decisão final, na esfera administrativa, sobre a exigência fiscal do crédito tributário correspondente.",
+          "literal": "(Redação dada pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.382",
+            "ano": 2011
+          },
+          "trecho": "…fins penais somente será encaminhada ao Ministério Público após a exclusão da pessoa física ou jurídica do parcelamento.",
+          "literal": "(Incluído pela Lei nº 12.382, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.382",
+            "ano": 2011
+          },
+          "trecho": "…da no parcelamento, desde que o pedido de parcelamento tenha sido formalizado antes do recebimento da denúncia criminal.",
+          "literal": "(Incluído pela Lei nº 12.382, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.382",
+            "ano": 2011
+          },
+          "trecho": "§ 3o A prescrição criminal não corre durante o período de suspensão da pretensão punitiva.",
+          "literal": "(Incluído pela Lei nº 12.382, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.382",
+            "ano": 2011
+          },
+          "trecho": "…o integral dos débitos oriundos de tributos, inclusive acessórios, que tiverem sido objeto de concessão de parcelamento.",
+          "literal": "(Incluído pela Lei nº 12.382, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "225",
+            "ano": 2026
+          },
+          "trecho": "§ 5º O disposto nos §§ 1º a 4º não se aplica:",
+          "literal": "(Redação dada pela Lei Complementar nº 225, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "225",
+            "ano": 2026
+          },
+          "trecho": "I - às hipóteses de vedação legal de parcelamento; e",
+          "literal": "(Incluído pela Lei Complementar nº 225, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "225",
+            "ano": 2026
+          },
+          "trecho": "…formativo dos créditos não quitados do setor público federal (Cadin), previsto na Lei nº 10.522, de 19 de julho de 2002.",
+          "literal": "(Incluído pela Lei Complementar nº 225, de 2026)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.382",
+            "ano": 2011
+          },
+          "trecho": "…cam-se aos processos administrativos e aos inquéritos e processos em curso, desde que não recebida a denúncia pela juiz.",
+          "literal": "(Renumerado do Parágrafo único pela Lei nº 12.382, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "225",
+            "ano": 2026
+          },
+          "trecho": "…sta o disposto no inciso II do § 5º deste artigo em relação aos atos praticados no período em que era assim considerado.",
+          "literal": "(Incluído pela Lei Complementar nº 225, de 2026)"
+        }
+      ]
+    },
+    "88": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.508",
+            "ano": 2007
+          },
+          "trecho": "XVI -",
+          "literal": "(Revogado pela Lei nº 11.508, de 2007)"
+        }
+      ]
+    }
+  }
+}

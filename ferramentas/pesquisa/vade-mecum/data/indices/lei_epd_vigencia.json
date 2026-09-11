@@ -1,0 +1,687 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "EPD",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_epd.json",
+      "colecao": "artigos",
+      "sha256": "13ad3ab6a4785d78153efec8620832a78edc2697deef00249b310ff08324d7a8",
+      "total_registros": 130,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 26,
+      "anotacoes": 59,
+      "anotacoes_sem_diploma_nomeado": 33
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…ência, quando necessária, será biopsicossocial, realizada por equipe multiprofissional e interdisciplinar e considerará:",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.724",
+            "ano": 2023
+          },
+          "trecho": "… o uso de tecnologia de telemedicina ou por análise documental conforme situações e requisitos definidos em regulamento.",
+          "literal": "(Incluído pela Lei nº 14.724, de 2023)"
+        }
+      ]
+    },
+    "2-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.624",
+            "ano": 2023
+          },
+          "trecho": "…o o cordão de fita com desenhos de girassóis como símbolo nacional de identificação de pessoas com deficiências ocultas.",
+          "literal": "(Incluído pela Lei nº 14.624, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.624",
+            "ano": 2023
+          },
+          "trecho": "…ata o caput deste artigo é opcional, e sua ausência não prejudica o exercício de direitos e garantias previstos em lei.",
+          "literal": "(Incluído pela Lei nº 14.624, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.624",
+            "ano": 2023
+          },
+          "trecho": "…resentação de documento comprobatório da deficiência, caso seja solicitado pelo atendente ou pela autoridade competente.",
+          "literal": "(Incluído pela Lei nº 14.624, de 2023)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.249",
+            "ano": 2025
+          },
+          "trecho": "…aumentativas para viabilizar a interação social, o acesso à informação e a participação em atividades da vida cotidiana.",
+          "literal": "(Incluído pela Lei nº 15.249, de 2025)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.280",
+            "ano": 2025
+          },
+          "trecho": "…ive para seus familiares e atendentes pessoais, especialmente em caso de vitimização em crime contra a dignidade sexual;",
+          "literal": "(Redação dada pela Lei nº 15.280, de 2025)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "…de ações e serviços de prevenção de danos cerebrais e sequelas neurológicas em recém-nascidos, inclusive por telessaúde.",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.249",
+            "ano": 2025
+          },
+          "trecho": "…verão a capacitação permanente das suas equipes para o atendimento de pessoas com necessidades complexas de comunicação.",
+          "literal": "(Incluído pela Lei nº 15.249, de 2025)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.249",
+            "ano": 2025
+          },
+          "trecho": "…e baixa tecnologia para o atendimento educacional especializado de estudantes com necessidades complexas de comunicação.",
+          "literal": "(Incluído pela Lei nº 15.249, de 2025)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…ras atuantes na educação básica devem, no mínimo, possuir ensino médio completo e certificado de proficiência na Libras;",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…e pós-graduação, devem possuir nível superior, com habilitação, prioritariamente, em Tradução e Interpretação em Libras.",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 29.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "42": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.249",
+            "ano": 2025
+          },
+          "trecho": "…cas de comunicação aumentativa e alternativa para a acessibilidade de pessoas com necessidades complexas de comunicação.",
+          "literal": "(Incluído pela Lei nº 15.249, de 2025)"
+        }
+      ]
+    },
+    "44": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6º As salas de cinema devem oferecer, em todas as sessões, recursos de acessibilidade para a pessoa com deficiência.",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "45": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…do-se os princípios do desenho universal, além de adotar todos os meios de acessibilidade, conforme legislação em vigor.",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.978",
+            "ano": 2024
+          },
+          "trecho": "…nsados dessa exigência mediante comprovação por laudo técnico estrutural, que deverá ser renovado a cada 5 (cinco) anos.",
+          "literal": "(Incluído pela Lei nº 14.978, de 2024)"
+        }
+      ]
+    },
+    "47": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.281",
+            "ano": 2016
+          },
+          "trecho": "… sanções previstas no inciso XX do art. 181 da Lei nº 9.503, de 23 de setembro de 1997 (Código de Trânsito Brasileiro) .",
+          "literal": "(Redação dada pela Lei nº 13.281, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "… da Lei nº 9.503, de 23 de setembro de 1997 (Código de Trânsito Brasileiro) . (Redação dada pela Lei nº 13.281, de 2016)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "49": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…tamento e de turismo, na renovação de suas frotas, são obrigadas ao cumprimento do disposto nos arts. 46 e 48 desta Lei.",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "51": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…evem reservar 10% (dez por cento) de seus veículos acessíveis à pessoa com deficiência. (Vide Decreto nº 9.762, de 2019)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "52": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…ara uso de pessoa com deficiência, a cada conjunto de 20 (vinte) veículos de sua frota. (Vide Decreto nº 9.762, de 2019)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "62-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.249",
+            "ano": 2025
+          },
+          "trecho": "…placas com sistemas de comunicação aumentativa e alternativa, compostas de pranchas de baixa tecnologia com pictogramas.",
+          "literal": "(Incluído pela Lei nº 15.249, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.249",
+            "ano": 2025
+          },
+          "trecho": "…omunicativos e confeccionadas em materiais adequados para resistir às condições climáticas e de uso no ambiente externo.",
+          "literal": "(Incluído pela Lei nº 15.249, de 2025)"
+        }
+      ]
+    },
+    "73-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.863",
+            "ano": 2024
+          },
+          "trecho": "Art. 73-A. As campanhas sociais, preventivas e educativas devem ser acessíveis à pessoa com deficiência.",
+          "literal": "(Incluído pela Lei nº 14.863, de 2024)"
+        }
+      ]
+    },
+    "82": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 82.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "90": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.163",
+            "ano": 2025
+          },
+          "trecho": "Pena - reclusão, de 2 (dois) a 5 (cinco) anos, e multa.",
+          "literal": "(Redação dada pela Lei nº 15.163, de 2025)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.163",
+            "ano": 2025
+          },
+          "trecho": "Parágrafo único. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 15.163, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.163",
+            "ano": 2025
+          },
+          "trecho": "§ 1º Se do abandono resulta lesão corporal de natureza grave:",
+          "literal": "(Incluído pela Lei nº 15.163, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.163",
+            "ano": 2025
+          },
+          "trecho": "Pena - reclusão, de 3 (três) a 7 (sete) anos, e multa.",
+          "literal": "(Incluído pela Lei nº 15.163, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.163",
+            "ano": 2025
+          },
+          "trecho": "§ 2º Se do abandono resulta morte:",
+          "literal": "(Incluído pela Lei nº 15.163, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.163",
+            "ano": 2025
+          },
+          "trecho": "Pena - reclusão, de 8 (oito) a 14 (quatorze) anos, e multa.",
+          "literal": "(Incluído pela Lei nº 15.163, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.163",
+            "ano": 2025
+          },
+          "trecho": "…smas penas incorre quem não prover as necessidades básicas de pessoa com deficiência quando obrigado por lei ou mandado.",
+          "literal": "(Incluído pela Lei nº 15.163, de 2025)"
+        }
+      ]
+    },
+    "101": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "“Art. 93.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "106": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 106.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "109": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "“Art. 154.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "114": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(Revogado)"
+        }
+      ]
+    },
+    "123": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 123. Revogam-se os seguintes dispositivos:",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "125": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "917",
+            "ano": 2019
+          },
+          "trecho": "II - § 6º do art. 44, 60 (sessenta) meses;",
+          "literal": "(Redação dada pela Medida Provisória nº 917, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.009",
+            "ano": 2020
+          },
+          "trecho": "II - § 6º do art. 44, 60 (sessenta) meses;",
+          "literal": "(Redação dada pela Lei nº 14.009, de 2020)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.025",
+            "ano": 2020
+          },
+          "trecho": "II - § 6º do art. 44, 84 (oitenta e quatro) meses;",
+          "literal": "(Redação dada pela Medida Provisória nº 1.025, de 2020)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.159",
+            "ano": 2021
+          },
+          "trecho": "II - § 6º do art. 44, 84 (oitenta e quatro) meses;",
+          "literal": "(Redação dada pela Lei nº 14.159, de 2021)"
+        }
+      ]
+    }
+  }
+}

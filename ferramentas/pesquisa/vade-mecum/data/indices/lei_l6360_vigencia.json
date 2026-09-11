@@ -1,0 +1,1196 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L6360",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l6360.json",
+      "colecao": "artigos",
+      "sha256": "863556bed554a3d652b36b4d135f978f8014e46de6ae4c8c55cc13a3d52ec9ef",
+      "total_registros": 92,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 20,
+      "anotacoes": 108,
+      "anotacoes_sem_diploma_nomeado": 33
+    }
+  },
+  "vigencia": {
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XX",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "… de validade, embalagem, rotulagem, excipientes e veículos, devendo sempre ser identificado por nome comercial ou marca;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.235",
+            "ano": 2015
+          },
+          "trecho": "…veículos, comprovada a sua eficácia, segurança e qualidade, devendo sempre ser identificado por nome comercial ou marca;",
+          "literal": "(Redação dada pela Lei nº 13.235, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso XX",
+          "diploma": null,
+          "trecho": "…nça e qualidade, devendo sempre ser identificado por nome comercial ou marca; (Redação dada pela Lei nº 13.235, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…o medicamento de referência internacional utilizado no estudo de bioequivalência e o medicamento de referência nacional.",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.669",
+            "ano": 2003
+          },
+          "trecho": "…o medicamento de referência internacional utilizado no estudo de bioequivalência e o medicamento de referência nacional.",
+          "literal": "(Redação dada pela Lei nº 10.669, de 14.5.2003)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.236",
+            "ano": 2015
+          },
+          "trecho": "…ticas de rotulagem e de embalagem que possibilitem a sua imediata e precisa distinção daqueles destinados ao uso adulto.",
+          "literal": "(Incluído pela Lei nº 13.236, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "…ossibilitem a sua imediata e precisa distinção daqueles destinados ao uso adulto. (Incluído pela Lei nº 13.236, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.236",
+            "ano": 2015
+          },
+          "trecho": "Art. 5º Os produtos de que trata esta Lei não poderão ter nomes, designações, rótulos ou embalagens que induzam a erro.",
+          "literal": "(Redação dada pela Lei nº 13.236, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…não poderão ter nomes, designações, rótulos ou embalagens que induzam a erro. (Redação dada pela Lei nº 13.236, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.480",
+            "ano": 1977
+          },
+          "trecho": "… denominação constante da Farmacopéia Brasileira, não podendo, em hipótese alguma, ter nomes ou designações de fantasia.",
+          "literal": "(Incluído pela Lei nº 6.480, de 1.12.1977)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.236",
+            "ano": 2015
+          },
+          "trecho": "… entre os erros mencionados no caput os de dispensação e de administração de medicamentos, drogas e produtos correlatos.",
+          "literal": "(Incluído pela Lei nº 13.236, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.236",
+            "ano": 2015
+          },
+          "trecho": "… entre os erros mencionados no caput os de dispensação e de administração de medicamentos, drogas e produtos correlatos.",
+          "literal": "(Redação dada pela Lei nº 13.236, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "…dispensação e de administração de medicamentos, drogas e produtos correlatos. (Redação dada pela Lei nº 13.236, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…a Lei, não superior a 10 (dez) anos, considerando a natureza do produto e o risco sanitário envolvido na sua utilização.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "…protocolo do requerimento, salvo nos casos de inobservância, por parte do requerente, a esta Lei ou a seus regulamentos.",
+          "literal": "(Redação dada pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…de inobservância, por parte do requerente, a esta Lei ou a seus regulamentos. (Redação dada pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "§ 8o - Não será revalidado o registro:",
+          "literal": "(Redação dada pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "§ 8o - Não será revalidado o registro: (Redação dada pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "…roduto não classificado como medicamento que não tenha sido industrializado no período de validade do registro expirado;",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…o que não tenha sido industrializado no período de validade do registro expirado; (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "…rcializado durante pelo menos o tempo correspondente aos dois terços finais do período de validade do registro expirado.",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…orrespondente aos dois terços finais do período de validade do registro expirado. (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "…istro, de alteração pós-registro e de renovação de registro, sendo obrigatória a apresentação das seguintes informações:",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 10º",
+          "diploma": null,
+          "trecho": "…enovação de registro, sendo obrigatória a apresentação das seguintes informações: (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "I - status da análise;",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I - status da análise; (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "II - prazo previsto para a decisão final sobre o processo;",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II - prazo previsto para a decisão final sobre o processo; (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "III - fundamentos técnicos das decisões sobre o processo.",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III - fundamentos técnicos das decisões sobre o processo. (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.742",
+            "ano": 2003
+          },
+          "trecho": "…ra fins de diagnóstico, fica sujeito, além do atendimento das exigências próprias, aos seguintes requisitos específicos:",
+          "literal": "(Redação dada pela Lei nº 10.742, de 6.10.2003)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "6.480",
+            "ano": 1977
+          },
+          "trecho": "I - que o produto obedeça ao disposto no artigo 5º, e seus parágrafos.",
+          "literal": "(Redação dada pelo Decreto nº 6.480, de 1.12.1977)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.742",
+            "ano": 2003
+          },
+          "trecho": "VII - a apresentação das seguintes informações econômicas:",
+          "literal": "(Incluído pela Lei nº 10.742, de 6.10.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.742",
+            "ano": 2003
+          },
+          "trecho": "a) o preço do produto praticado pela empresa em outros países;",
+          "literal": "(Incluído pela Lei nº 10.742, de 6.10.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.742",
+            "ano": 2003
+          },
+          "trecho": "b) o valor de aquisição da substância ativa do produto;",
+          "literal": "(Incluído pela Lei nº 10.742, de 6.10.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.742",
+            "ano": 2003
+          },
+          "trecho": "c) o custo do tratamento por paciente com o uso do produto;",
+          "literal": "(Incluído pela Lei nº 10.742, de 6.10.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.742",
+            "ano": 2003
+          },
+          "trecho": "d) o número potencial de pacientes a ser tratado;",
+          "literal": "(Incluído pela Lei nº 10.742, de 6.10.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.742",
+            "ano": 2003
+          },
+          "trecho": "e) a lista de preço que pretende praticar no mercado interno, com a discriminação de sua carga tributária;",
+          "literal": "(Incluído pela Lei nº 10.742, de 6.10.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.742",
+            "ano": 2003
+          },
+          "trecho": "…osta de comercialização do produto, incluindo os gastos previstos com o esforço de venda e com publicidade e propaganda;",
+          "literal": "(Incluído pela Lei nº 10.742, de 6.10.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea g",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.742",
+            "ano": 2003
+          },
+          "trecho": "g) o preço do produto que sofreu modificação, quando se tratar de mudança de fórmula ou de forma; e",
+          "literal": "(Incluído pela Lei nº 10.742, de 6.10.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea h",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.742",
+            "ano": 2003
+          },
+          "trecho": "h) a relação de todos os produtos substitutos existentes no mercado, acompanhada de seus respectivos preços.",
+          "literal": "(Incluído pela Lei nº 10.742, de 6.10.2003)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.480",
+            "ano": 1977
+          },
+          "trecho": "…m a produtos farmacêuticos contendo uma única substância ativa sobejamente conhecida, a critério do Ministério da Saúde.",
+          "literal": "(Revogado pela Lei no 6.480, de 1o de dezembro de 1977)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.480",
+            "ano": 1977
+          },
+          "trecho": "§ 1o",
+          "literal": "(Revogado como parágrafo único pela Lei no 6.480, de 1o de dezembro de 1977)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.742",
+            "ano": 2003
+          },
+          "trecho": "§ 1o (Revogado como parágrafo único pela Lei no 6.480, de 1o de dezembro de 1977).",
+          "literal": "(Incluído pela Lei nº 10.742, de 6.10.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.742",
+            "ano": 2003
+          },
+          "trecho": "…ções constantes do inciso VII poderá ser dispensada, em parte ou no todo, em conformidade com regulamentação específica.",
+          "literal": "(Incluído pela Lei nº 10.742, de 6.10.2003)"
+        }
+      ]
+    },
+    "17-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "…isão final nos processos de registro e de alteração pós-registro de medicamento levarão em conta os seguintes critérios:",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…de alteração pós-registro de medicamento levarão em conta os seguintes critérios: (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "I - complexidade técnica;",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I - complexidade técnica; (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "I - benefícios clínicos, econômicos e sociais da utilização do medicamento objeto do requerimento.",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…ínicos, econômicos e sociais da utilização do medicamento objeto do requerimento. (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "…osta em ato da Anvisa, determinará o enquadramento do medicamento sob avaliação nas seguintes categorias de precedência:",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…quadramento do medicamento sob avaliação nas seguintes categorias de precedência: (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "I - prioritária;",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I - prioritária; (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "II - ordinária.",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II - ordinária. (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "…áximos para a decisão final nos processos de registro e de alteração pós-registro de medicamento serão, respectivamente:",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…os de registro e de alteração pós-registro de medicamento serão, respectivamente: (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "…prioritária, de cento e vinte dias e de sessenta dias, contados a partir da data do respectivo protocolo de priorização;",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "… sessenta dias, contados a partir da data do respectivo protocolo de priorização; (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "…s e de cento e oitenta dias, contados a partir da data do respectivo protocolo de registro ou de alteração pós-registro.",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "… partir da data do respectivo protocolo de registro ou de alteração pós-registro. (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "… ser tomada por aprovação condicional, presumida pela não manifestação contrária da Anvisa nos prazos definidos no § 2o.",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…presumida pela não manifestação contrária da Anvisa nos prazos definidos no § 2o. (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "…ento e será automaticamente revertida, a qualquer tempo, em caso de indeferimento da alteração pós-registro pela Anvisa.",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…a qualquer tempo, em caso de indeferimento da alteração pós-registro pela Anvisa. (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "…z, mediante decisão fundamentada da Anvisa expedida em, no mínimo, quinze dias úteis antes do término do prazo original.",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "…isa expedida em, no mínimo, quinze dias úteis antes do término do prazo original. (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "…atendida pela empresa requerente, e suspenderão a contagem dos prazos determinados neste artigo até que sejam atendidas.",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "…penderão a contagem dos prazos determinados neste artigo até que sejam atendidas. (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "…dade funcional do servidor ou dos servidores que lhe derem causa, nos termos da Lei no 8.112, de 11 de dezembro de 1990.",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "…dores que lhe derem causa, nos termos da Lei no 8.112, de 11 de dezembro de 1990. (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "…m especial a especificação dos critérios de que trata o caput, com vistas ao enquadramento nas categorias de prioridade.",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "…s de que trata o caput, com vistas ao enquadramento nas categorias de prioridade. (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2016
+          },
+          "trecho": "… de trezentos e sessenta e cinco dias nos processos de registro e de cento e oitenta dias nos de alteração pós-registro.",
+          "literal": "(Incluído pela Lei nº 13.411, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 9º",
+          "diploma": null,
+          "trecho": "…os processos de registro e de cento e oitenta dias nos de alteração pós-registro. (Incluído pela Lei nº 13.411, de 2016)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…de sanitária internacional e aprovado em ato próprio da Agência Nacional de Vigilância Sanitária do Ministério da Saúde.",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.440",
+            "ano": 2026
+          },
+          "trecho": "… Agência Nacional de Vigilância Sanitária do Ministério da Saúde. (Incluído pela Medida Provisória nº 2.190-34, de 2001)",
+          "literal": "(Revogado pela Lei nº 15.440, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…abricante deverá apresentar comprovação do cumprimento das Boas Práticas de Fabricação, reconhecidas no âmbito nacional.",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.440",
+            "ano": 2026
+          },
+          "trecho": "…das Boas Práticas de Fabricação, reconhecidas no âmbito nacional. (Incluído pela Medida Provisória nº 2.190-34, de 2001)",
+          "literal": "(Revogado pela Lei nº 15.440, de 2026)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.782",
+            "ano": 1999
+          },
+          "trecho": "…dicamento que não tenha em sua composição substância reconhecidamente benéfica do ponto de vista clínico ou terapêutico.",
+          "literal": "(Redação dada pela Lei nº 9.782, de 26.1.1999)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.782",
+            "ano": 1999
+          },
+          "trecho": "… registro de medicamentos similares a outros já registrados, desde que satisfaçam as exigências estabelecidas nesta Lei.",
+          "literal": "(Redação dada pela Lei nº 9.782, de 26.1.1999)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.235",
+            "ano": 2015
+          },
+          "trecho": "…edido de registro, se até então o pedido não tiver sido indeferido e desde que atendido o disposto no § 6º deste artigo.",
+          "literal": "(Redação dada pela Lei nº 13.235, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…o tiver sido indeferido e desde que atendido o disposto no § 6º deste artigo. (Redação dada pela Lei nº 13.235, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.235",
+            "ano": 2015
+          },
+          "trecho": "…deverá ter a sua eficácia, segurança e qualidade comprovadas de forma equivalente à adotada para o medicamento genérico.",
+          "literal": "(Incluído pela Lei nº 13.235, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "…qualidade comprovadas de forma equivalente à adotada para o medicamento genérico. (Incluído pela Lei nº 13.235, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.742",
+            "ano": 2003
+          },
+          "trecho": "…ta Lei e seu regulamento, suas embalagens e sua rotulagem se enquadrarem nos padrões aprovados pelo Ministério da Saúde.",
+          "literal": "(Redação dada pela Lei nº 10.742, de 6.10.2003)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.742",
+            "ano": 2003
+          },
+          "trecho": "…aminhamento, pela empresa, ao Ministério da Saúde, das informações e dos dados elucidativos sobre os solutos injetáveis.",
+          "literal": "(Revogado pela Lei nº 10.742, de 6.10.2003)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.742",
+            "ano": 2003
+          },
+          "trecho": "…erimental, sob controle médico, podendo, inclusive, ser importados mediante expressa autorização do Ministério da Saúde.",
+          "literal": "(Redação dada pela Lei nº 10.742, de 6.10.2003)"
+        }
+      ]
+    },
+    "24-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…os significativos e que estejam adequados às exigências sanitárias vigentes, independente de sua classificação de venda.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "… e no processo produtivo, bem como a via de administração, a forma farmacêutica e a efetiva exposição do produto ao uso.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        }
+      ]
+    },
+    "24-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…fere o art. 24-A, os requisitos a serem observados pelos interessados no ato serão definidos pela Anvisa em regulamento.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.183",
+            "ano": 2025
+          },
+          "trecho": "III - cumprir as regras relativas à testagem em animais estabelecidas na Lei nº 11.794, de 8 de outubro de 2008.",
+          "literal": "(Incluído pela Lei nº 15.183, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.154",
+            "ano": 2025
+          },
+          "trecho": "…clusão de substâncias que venham a ser julgadas nocivas à saúde, ou para inclusão de outras, que venham a ser aprovadas.",
+          "literal": "(Incluído pela Lei nº 15.154, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.154",
+            "ano": 2025
+          },
+          "trecho": "…na forma de regulamento que conterá, entre outras disposições, os critérios para enquadramento como atividade artesanal.",
+          "literal": "(Incluído pela Lei nº 15.154, de 2025)"
+        }
+      ]
+    },
+    "50": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…va Taxa de Fiscalização de Vigilância Sanitária e de outros requisitos definidos em regulamentação específica da Anvisa.",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…artigo será válida para todo o território nacional e deverá ser atualizada conforme regulamentação específica da Anvisa.",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        }
+      ]
+    },
+    "57": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.236",
+            "ano": 2015
+          },
+          "trecho": "…m letras e caracteres com tamanho nunca inferior à metade do tamanho das letras e caracteres do nome comercial ou marca.",
+          "literal": "(Redação dada pela Lei nº 13.236, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…erior à metade do tamanho das letras e caracteres do nome comercial ou marca. (Redação dada pela Lei nº 13.236, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.236",
+            "ano": 2015
+          },
+          "trecho": "…erenciem claramente entre si e que inibam erros de dispensação e de administração, trocas indesejadas ou uso equivocado.",
+          "literal": "(Incluído pela Lei nº 13.236, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…am erros de dispensação e de administração, trocas indesejadas ou uso equivocado. (Incluído pela Lei nº 13.236, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.806",
+            "ano": 2024
+          },
+          "trecho": "…m essa informação nos rótulos, nas bulas e nos materiais destinados a propaganda e publicidade, na forma do regulamento.",
+          "literal": "(Incluído pela Lei nº 14.806, de 2024)"
+        }
+      ]
+    },
+    "60-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.236",
+            "ano": 2015
+          },
+          "trecho": "…o de embalagem que possa induzir trocas indesejadas ou erros na dispensação, no uso ou na administração desses produtos.",
+          "literal": "(Incluído pela Lei nº 13.236, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… indesejadas ou erros na dispensação, no uso ou na administração desses produtos. (Incluído pela Lei nº 13.236, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "73": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "… dos Estados, do Distrito Federal ou dos Municípios, ou por laboratórios públicos ou privados credenciados para tal fim.",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…lizado pela Anvisa ou pelos próprios laboratórios oficiais, nos termos de regulamentação específica editada pela Anvisa.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        }
+      ]
+    },
+    "82": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190",
+            "ano": 2001
+          },
+          "trecho": "… regime de preços públicos, cabendo ao Ministro de Estado fixar os respectivos valores e disciplinar o seu recolhimento.",
+          "literal": "(Revogado pela Medida Provisória nº 2.190, de 2001)"
+        }
+      ]
+    }
+  }
+}

@@ -45,3 +45,18 @@ secrets.env
 
 # Railway (o .env.railway é referência, pode commitar)
 # .env.railway  ← pode commitar pois não tem valores reais
+
+# Dados de casos reais de clientes — NUNCA commitar (sigilo profissional/LGPD).
+# Mantém só o modelo vazio, o README e o caso-exemplo SINTÉTICO (nao e cliente real).
+casos/*
+!casos/README.md
+!casos/_modelo-de-caso
+!casos/exemplo-trafico-sintetico
+
+# Dependências das ferramentas importadas (base-juridica/ferramentas)
+ferramentas/pesquisa/vade-mecum/node_modules/
+ferramentas/**/.venv/
+ferramentas/**/__pycache__/
+ferramentas/**/*.pyc
+.bun/
+.atualizacao-base-juridica/

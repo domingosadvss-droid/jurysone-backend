@@ -1,0 +1,1896 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "CFLO",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_cflo.json",
+      "colecao": "artigos",
+      "sha256": "defda2c4eee329593afbda3fb90baee61b7655f2c8436e6af52cb471fa3ee15a",
+      "total_registros": 91,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 36,
+      "anotacoes": 160,
+      "anotacoes_sem_diploma_nomeado": 21
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 1º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "1-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…le e prevenção dos incêndios florestais, e prevê instrumentos econômicos e financeiros para o alcance de seus objetivos.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "Parágrafo único. Tendo como objetivo o desenvolvimento sustentável, esta Lei atenderá aos seguintes princípios:",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…do solo, dos recursos hídricos e da integridade do sistema climático, para o bem estar das gerações presentes e futuras;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…e de vida da população brasileira e na presença do País nos mercados nacional e internacional de alimentos e bioenergia;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…ís com a compatibilização e harmonização entre o uso produtivo da terra e a preservação da água, do solo e da vegetação;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "… para a preservação e restauração da vegetação nativa e de suas funções ecológicas e sociais nas áreas urbanas e rurais;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…ra o uso sustentável do solo e da água, a recuperação e a preservação das florestas e demais formas de vegetação nativa;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…preservação e a recuperação da vegetação nativa e para promover o desenvolvimento de atividades produtivas sustentáveis.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea j",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.653",
+            "ano": 2023
+          },
+          "trecho": "…u outras áreas degradadas, conforme norma expedida pelo órgão competente do Sistema Nacional do Meio Ambiente (Sisnama);",
+          "literal": "(Incluído pela Lei nº 14.653, de 2023)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XI",
+          "diploma": null,
+          "trecho": "XI -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…arbórea Mauritia flexuosa - buriti emergente, sem formar dossel, em meio a agrupamentos de espécies arbustivo-herbáceas;",
+          "literal": "(Redação pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…rais, por no máximo 5 (cinco) anos, para possibilitar a recuperação da capacidade de uso ou da estrutura física do solo;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "… de forma periódica por águas, cobertas originalmente por florestas ou outras formas de vegetação adaptadas à inundação;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XXVI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.285",
+            "ano": 2021
+          },
+          "trecho": "XXVI – área urbana consolidada: aquela que atende os seguintes critérios:",
+          "literal": "(Redação dada pela Lei nº 14.285, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.285",
+            "ano": 2021
+          },
+          "trecho": "a) estar incluída no perímetro urbano ou em zona urbana pelo plano diretor ou por lei municipal específica;",
+          "literal": "(Incluída pela Lei nº 14.285, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.285",
+            "ano": 2021
+          },
+          "trecho": "b) dispor de sistema viário implantado;",
+          "literal": "(Incluída pela Lei nº 14.285, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.285",
+            "ano": 2021
+          },
+          "trecho": "c) estar organizada em quadras e lotes predominantemente edificados;",
+          "literal": "(Incluída pela Lei nº 14.285, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.285",
+            "ano": 2021
+          },
+          "trecho": "…ia de edificações residenciais, comerciais, industriais, institucionais, mistas ou direcionadas à prestação de serviços;",
+          "literal": "(Incluída pela Lei nº 14.285, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.285",
+            "ano": 2021
+          },
+          "trecho": "e) dispor de, no mínimo, 2 (dois) dos seguintes equipamentos de infraestrutura urbana implantados:",
+          "literal": "(Incluída pela Lei nº 14.285, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.285",
+            "ano": 2021
+          },
+          "trecho": "1. drenagem de águas pluviais;",
+          "literal": "(Incluída pela Lei nº 14.285, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.285",
+            "ano": 2021
+          },
+          "trecho": "2. esgotamento sanitário;",
+          "literal": "(Incluída pela Lei nº 14.285, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.285",
+            "ano": 2021
+          },
+          "trecho": "3. abastecimento de água potável;",
+          "literal": "(Incluída pela Lei nº 14.285, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.285",
+            "ano": 2021
+          },
+          "trecho": "4. distribuição de energia elétrica e iluminação pública; e",
+          "literal": "(Incluída pela Lei nº 14.285, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.285",
+            "ano": 2021
+          },
+          "trecho": "5. limpeza urbana, coleta e manejo de resíduos sólidos;",
+          "literal": "(Incluída pela Lei nº 14.285, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XXVII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.042",
+            "ano": 2024
+          },
+          "trecho": "…lato e verificação de emissões, externos ao Sistema Brasileiro de Comércio de Emissões de Gases de Efeito Estufa (SBCE).",
+          "literal": "(Redação dada pela Lei nº 15.042, de 2024)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…gua natural perene e intermitente, excluídos os efêmeros, desde a borda da calha do leito regular, em largura mínima de:",
+          "literal": "(Redação dada pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…entes de barramento ou represamento de cursos d’água naturais, na faixa definida na licença ambiental do empreendimento;",
+          "literal": "(Redação dada pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…scentes e dos olhos d’água perenes, qualquer que seja sua situação topográfica, no raio mínimo de 50 (cinquenta) metros;",
+          "literal": "(Redação dada pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…ojeção horizontal, com largura mínima de 50 (cinquenta) metros, a partir do espaço permanentemente brejoso e encharcado.",
+          "literal": "(Redação dada pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…o entorno de reservatórios artificiais de água que não decorram de barramento ou represamento de cursos d’água naturais.",
+          "literal": "(Redação dada pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "§ 2º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…eas de vegetação nativa, salvo autorização do órgão ambiental competente do Sistema Nacional do Meio Ambiente - Sisnama.",
+          "literal": "(Redação dada pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "V - não implique novas supressões de vegetação nativa.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "§ 7º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "§ 8º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 9º",
+          "diploma": null,
+          "trecho": "§ 9º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "§ 9º (VETADO).",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.285",
+            "ano": 2021
+          },
+          "trecho": "…definir faixas marginais distintas daquelas estabelecidas no inciso I do caput deste artigo, com regras que estabeleçam:",
+          "literal": "(Incluído pela Lei nº 14.285, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.285",
+            "ano": 2021
+          },
+          "trecho": "I – a não ocupação de áreas com risco de desastres;",
+          "literal": "(Incluído pela Lei nº 14.285, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.285",
+            "ano": 2021
+          },
+          "trecho": "…es do plano de recursos hídricos, do plano de bacia, do plano de drenagem ou do plano de saneamento básico, se houver; e",
+          "literal": "(Incluído pela Lei nº 14.285, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.285",
+            "ano": 2021
+          },
+          "trecho": "…banas devem observar os casos de utilidade pública, de interesse social ou de baixo impacto ambiental fixados nesta Lei.",
+          "literal": "(Incluído pela Lei nº 14.285, de 2021)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…de 100 (cem) metros em área rural, e a faixa mínima de 15 (quinze) metros e máxima de 30 (trinta) metros em área urbana.",
+          "literal": "(Redação dada pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "… do Meio Ambiente - Sisnama, não podendo o uso exceder a 10% (dez por cento) do total da Área de Preservação Permanente.",
+          "literal": "(Redação dada pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "IX - proteger áreas úmidas, especialmente as de importância internacional.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…olo condicionadas à autorização do órgão estadual do meio ambiente, com base nas recomendações mencionadas neste artigo.",
+          "literal": "(Redação dada pela Lei nº 12.727, de 2012)"
+        }
+      ]
+    },
+    "11-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…o § 4º do art. 225 da Constituição Federal, devendo sua ocupação e exploração dar-se de modo ecologicamente sustentável.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…e salgados podem ser utilizados em atividades de carcinicultura e salinas, desde que observados os seguintes requisitos:",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "… cinco por cento) no restante do País, excluídas as ocupações consolidadas que atendam ao disposto no § 6º deste artigo;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…cos essenciais a eles associados, bem como da sua produtividade biológica e condição de berçário de recursos pesqueiros;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…caso de uso de terrenos de marinha ou outros bens da União, realizada regularização prévia da titulação perante a União;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "IV - recolhimento, tratamento e disposição adequados dos efluentes e resíduos;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "V - garantia da manutenção da qualidade da água e do solo, respeitadas as Áreas de Preservação Permanente; e",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "VI - respeito às atividades tradicionais de sobrevivência das comunidades locais.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…gências da legislação ambiental e do próprio licenciamento, mediante comprovação anual, inclusive por mídia fotográfica.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…esentação de Estudo Prévio de Impacto Ambiental - EPIA e Relatório de Impacto Ambiental - RIMA os novos empreendimentos:",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "I - com área superior a 50 (cinquenta) hectares, vedada a fragmentação do projeto para ocultar ou camuflar seu porte;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…- com área de até 50 (cinquenta) hectares, se potencialmente causadores de significativa degradação do meio ambiente; ou",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…- localizados em região com adensamento de empreendimentos de carcinicultura ou salinas cujo impacto afete áreas comuns.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "… recuperar os danos ambientais causados, alterar as condicionantes e as medidas de controle e adequação, quando ocorrer:",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "… inadequado das condicionantes ou medidas de controle previstas no licenciamento, ou desobediência às normas aplicáveis;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…falsa, dúbia ou enganosa, inclusive por omissão, em qualquer fase do licenciamento ou período de validade da licença; ou",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "III - superveniência de informações sobre riscos ao meio ambiente ou à saúde pública.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…10.000, que deverá ser concluído por cada Estado no prazo máximo de 1 (um) ano a partir da data da publicação desta Lei.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…apicum ou salgado e se obrigue, por termo de compromisso, a proteger a integridade dos manguezais arbustivos adjacentes.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…tese ou forma, de ocupação ou exploração irregular em apicum ou salgado, ressalvadas as exceções previstas neste artigo.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…rvados os seguintes percentuais mínimos em relação à área do imóvel, excetuados os casos previstos no art. 68 desta Lei:",
+          "literal": "(Redação dada pela Lei nº 12.727, de 2012)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…s, por qualquer órgão ambiental competente integrante do Sisnama, em razão da não formalização da área de Reserva Legal.",
+          "literal": "(Redação dada pela Lei nº 12.727, de 2012)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…ica-se a todas as modalidades de cumprimento da Reserva Legal, abrangendo a regeneração, a recomposição e a compensação.",
+          "literal": "(Redação dada pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…sso de recuperação, somadas às demais florestas e outras formas de vegetação nativa existentes em imóvel, ultrapassarem:",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "I - 80% (oitenta por cento) do imóvel rural localizado em áreas de floresta na Amazônia Legal; e",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "II - (VETADO).",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "… condomínio ou coletiva entre propriedades rurais, respeitado o percentual previsto no art. 12 em relação a cada imóvel.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…igatória a suspensão imediata das atividades em área de Reserva Legal desmatada irregularmente após 22 de julho de 2008.",
+          "literal": "(Redação dada pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "… processo ser concluído nos prazos estabelecidos pelo Programa de Regularização Ambiental - PRA, de que trata o art. 59.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "… o registro no CAR, o proprietário ou possuidor rural que desejar fazer a averbação terá direito à gratuidade deste ato.",
+          "literal": "(Redação dada pela Lei nº 12.727, de 2012)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…e, no órgão ambiental municipal ou estadual, que, nos termos do regulamento, exigirá do proprietário ou possuidor rural:",
+          "literal": "(Redação dada pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.887",
+            "ano": 2019
+          },
+          "trecho": "§ 3º A inscrição no CAR é obrigatória e por prazo indeterminado para todas as propriedades e posses rurais.",
+          "literal": "(Redação dada pela Lei nº 13.887,de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.595",
+            "ano": 2023
+          },
+          "trecho": "…isposto no art. 3º da Lei nº 11.326, de 24 de julho de 2006, que os inscreverem no CAR até o dia 31 de dezembro de 2025.",
+          "literal": "(Redação dada pela Lei nº 14.595, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.932",
+            "ano": 2024
+          },
+          "trecho": "…. 10 da Lei nº 9.393, de 19 de dezembro de 1996, que dispõe sobre o Imposto sobre a Propriedade Territorial Rural (ITR).",
+          "literal": "(Incluído pela Lei nº 14.932, de 2024)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…ados dos diferentes entes federativos, coordenado, fiscalizado e regulamentado pelo órgão federal competente do Sisnama.",
+          "literal": "(Redação dada pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…e Origem Florestal - DOF dos entes federativos não integrados ao sistema e fiscalizar os dados e relatórios respectivos.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        }
+      ]
+    },
+    "36": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "§ 5º O órgão ambiental federal do Sisnama regulamentará os casos de dispensa da licença prevista no caput .",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        }
+      ]
+    },
+    "39": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.944",
+            "ano": 2024
+          },
+          "trecho": "…m vegetação nativa ou plantios florestais, deverão elaborar, atualizar e implementar planos de manejo integrado do fogo.",
+          "literal": "(Redação dada pela Lei nº 14.944, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.406",
+            "ano": 2022
+          },
+          "trecho": "…ãos do Sisnama conterão diretrizes para o uso da aviação agrícola no combate a incêndios em todos os tipos de vegetação.",
+          "literal": "(Incluído pela Lei nº 14.406, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.406",
+            "ano": 2022
+          },
+          "trecho": "…o e ser pilotadas por profissionais devidamente qualificados para o desempenho dessa atividade, na forma do regulamento.",
+          "literal": "(Incluído pela Lei nº 14.406, de 2022)"
+        }
+      ]
+    },
+    "40": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.406",
+            "ano": 2022
+          },
+          "trecho": "…aput deste artigo contemplará programa de uso da aviação agrícola no combate a incêndios em todos os tipos de vegetação.",
+          "literal": "(Incluído pela Lei nº 14.406, de 2022)"
+        }
+      ]
+    },
+    "41": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…nte sustentável, observados sempre os critérios de progressividade, abrangendo as seguintes categorias e linhas de ação:",
+          "literal": "(Redação dada pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…te artigo serão prioritariamente destinados aos agricultores familiares como definidos no inciso V do art. 3º desta Lei.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        }
+      ]
+    },
+    "42": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…nde não era vedada a supressão, que foram promovidos sem autorização ou licença, em data anterior a 22 de julho de 2008.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        }
+      ]
+    },
+    "43": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 43.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "58": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…ciamento para atender, prioritariamente, os imóveis a que se refere o inciso V do caput do art. 3º , nas iniciativas de:",
+          "literal": "(Redação dada pela Lei nº 12.727, de 2012)"
+        }
+      ]
+    },
+    "59": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.887",
+            "ano": 2019
+          },
+          "trecho": "… Regularização Ambiental (PRAs) de posses e propriedades rurais, com o objetivo de adequá-las aos termos deste Capítulo.",
+          "literal": "(Redação dada pela Lei 13.887, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.887",
+            "ano": 2019
+          },
+          "trecho": "…toriais, climáticas, históricas, culturais, econômicas e sociais, conforme preceitua o art. 24 da Constituição Federal..",
+          "literal": "(Redação dada pela Lei 13.887, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.595",
+            "ano": 2023
+          },
+          "trecho": "…nte a validação do cadastro e a identificação de passivos ambientais, observado o disposto no § 4º do art. 29 desta Lei.",
+          "literal": "(Redação dada pela Lei nº 14.595, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.595",
+            "ano": 2023
+          },
+          "trecho": "…08, relativas à supressão irregular de vegetação em Áreas de Preservação Permanente, de Reserva Legal e de uso restrito.",
+          "literal": "(Redação dada pela Lei nº 14.595, de 2023)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "§ 6º (VETADO)",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.887",
+            "ano": 2019
+          },
+          "trecho": "…ário ou possuidor de imóvel rural poderá aderir ao PRA implantado pela União, observado o disposto no § 2º deste artigo.",
+          "literal": "(Incluído pela Lei 13.887, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.595",
+            "ano": 2023
+          },
+          "trecho": "…de 12 de fevereiro de 1998, devendo as instituições financeiras embasar suas decisões em informações de órgãos oficiais.",
+          "literal": "(Incluído pela Lei nº 14.595, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.595",
+            "ano": 2023
+          },
+          "trecho": "…as a dados do CAR e do PRA que permitam verificar a regularidade ambiental do proprietário ou possuidor de imóvel rural.",
+          "literal": "(Incluído pela Lei nº 14.595, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.595",
+            "ano": 2023
+          },
+          "trecho": "…os cadastros em processo de validação, os requerimentos de adesão ao PRA recebidos e os termos de compromisso assinados.",
+          "literal": "(Incluído pela Lei nº 14.595, de 2023)"
+        }
+      ]
+    },
+    "61": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 61.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "61-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…as atividades agrossilvipastoris, de ecoturismo e de turismo rural em áreas rurais consolidadas até 22 de julho de 2008.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…arginais em 5 (cinco) metros, contados da borda da calha do leito regular, independentemente da largura do curso d´água.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…marginais em 8 (oito) metros, contados da borda da calha do leito regular, independentemente da largura do curso d´água.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…ginais em 15 (quinze) metros, contados da borda da calha do leito regular, independentemente da largura do curso d’água.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…ervação Permanente ao longo de cursos d’água naturais, será obrigatória a recomposição das respectivas faixas marginais:",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "I - (VETADO); e",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…ão do PRA, observado o mínimo de 20 (vinte) e o máximo de 100 (cem) metros, contados da borda da calha do leito regular.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…silvipastoris, de ecoturismo ou de turismo rural, sendo obrigatória a recomposição do raio mínimo de 15 (quinze) metros.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…vipastoris, de ecoturismo ou de turismo rural, sendo obrigatória a recomposição de faixa marginal com largura mínima de:",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "I - 5 (cinco) metros, para imóveis rurais com área de até 1 (um) módulo fiscal;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "II - 8 (oito) metros, para imóveis rurais com área superior a 1 (um) módulo fiscal e de até 2 (dois) módulos fiscais;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…(quinze) metros, para imóveis rurais com área superior a 2 (dois) módulos fiscais e de até 4 (quatro) módulos fiscais; e",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "IV - 30 (trinta) metros, para imóveis rurais com área superior a 4 (quatro) módulos fiscais.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…das faixas marginais, em projeção horizontal, delimitadas a partir do espaço brejoso e encharcado, de largura mínima de:",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "I - 30 (trinta) metros, para imóveis rurais com área de até 4 (quatro) módulos fiscais; e",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "II - 50 (cinquenta) metros, para imóveis rurais com área superior a 4 (quatro) módulos fiscais.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…onsiderada, para os fins do disposto no caput e nos §§ 1º a 7º , a área detida pelo imóvel rural em 22 de julho de 2008.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…igida, nesses casos, a adoção de técnicas de conservação do solo e da água que visem à mitigação dos eventuais impactos.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…ário ou possuidor rural responsável pela conservação do solo e da água, por meio de adoção de boas práticas agronômicas.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…indicados no PRA previsto nesta Lei, sendo vedada a conversão de novas áreas para uso alternativo do solo nesses locais.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "… no caput e nos §§ 1º a 7º , desde que não estejam em área que ofereça risco à vida ou à integridade física das pessoas.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "§ 13. A recomposição de que trata este artigo poderá ser feita, isolada ou conjuntamente, pelos seguintes métodos:",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "I - condução de regeneração natural de espécies nativas;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "II - plantio de espécies nativas;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "III - plantio de espécies nativas conjugado com a condução da regeneração natural de espécies nativas;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…inquenta por cento) da área total a ser recomposta, no caso dos imóveis a que se refere o inciso V do caput do art. 3º ;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "V - (VETADO).",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "… a qualidade da água, após deliberação do Conselho Estadual de Meio Ambiente ou de órgão colegiado estadual equivalente.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…ão ser informadas no CAR para fins de monitoramento, sendo exigida a adoção de medidas de conservação do solo e da água.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 16º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…oder Executivo, devendo o proprietário, possuidor rural ou ocupante a qualquer título adotar todas as medidas indicadas.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 17º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…os §§ 1º a 7º , como projeto prioritário, ouvidos o Comitê de Bacia Hidrográfica e o Conselho Estadual de Meio Ambiente.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 18º",
+          "diploma": null,
+          "trecho": "§ 18.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 18º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "§ 18. (VETADO).",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        }
+      ]
+    },
+    "61-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…cia de recomposição, nos termos desta Lei, somadas todas as Áreas de Preservação Permanente do imóvel, não ultrapassará:",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "I - 10% (dez por cento) da área total do imóvel, para imóveis rurais com área de até 2 (dois) módulos fiscais;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…or cento) da área total do imóvel, para imóveis rurais com área superior a 2 (dois) e de até 4 (quatro) módulos fiscais;",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "III - (VETADO).",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        }
+      ]
+    },
+    "61-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "… contrato de concessão de uso, até a titulação por parte do Instituto Nacional de Colonização e Reforma Agrária - Incra.",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        }
+      ]
+    },
+    "64": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…r meio da aprovação do projeto de regularização fundiária, na forma da lei específica de regularização fundiária urbana.",
+          "literal": "(Redação dada pela Lei nº 13.465, de 2017)"
+        }
+      ]
+    },
+    "65": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…r meio da aprovação do projeto de regularização fundiária, na forma da lei específica de regularização fundiária urbana.",
+          "literal": "(Redação dada pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…demonstre a melhoria das condições ambientais em relação à situação anterior e ser instruído com os seguintes elementos:",
+          "literal": "(Redação dada pela Lei nº 13.465, de 2017)"
+        }
+      ]
+    },
+    "66": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.727",
+            "ano": 2012
+          },
+          "trecho": "…ntercalado de espécies nativas com exóticas ou frutíferas, em sistema agroflorestal, observados os seguintes parâmetros:",
+          "literal": "(Incluído pela Lei nº 12.727, de 2012)"
+        }
+      ]
+    },
+    "76": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 76.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "77": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 77.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "78-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.295",
+            "ano": 2016
+          },
+          "trecho": "…ão crédito agrícola, em qualquer de suas modalidades, para proprietários de imóveis rurais que estejam inscritos no CAR.",
+          "literal": "(Redação dada pela Lei nº 13.295, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.295",
+            "ano": 2016
+          },
+          "trecho": "… único. O prazo de que trata este artigo será prorrogado em observância aos novos prazos de que trata o § 3º do art. 29.",
+          "literal": "(Incluído pela Lei nº 13.295, de 2016)"
+        }
+      ]
+    },
+    "78-B": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 78-B.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.595",
+            "ano": 2023
+          },
+          "trecho": "Art. 78-B. (VETADO).",
+          "literal": "(Incluído pela Lei nº 14.595, de 2023)"
+        }
+      ]
+    }
+  }
+}

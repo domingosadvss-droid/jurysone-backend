@@ -1,0 +1,3078 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "LEP",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_lep.json",
+      "colecao": "artigos",
+      "sha256": "721a3e03daed2228aa7fee138dbd2886c36f879dff80e6ffab83730b4de5448e",
+      "total_registros": 219,
+      "gerado_em": "2026-08-31T20:53:14+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 53,
+      "anotacoes": 263,
+      "anotacoes_sem_diploma_nomeado": 30
+    }
+  },
+  "vigencia": {
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.792",
+            "ano": 2003
+          },
+          "trecho": "…ação que elaborará o programa individualizador da pena privativa de liberdade adequada ao condenado ou preso provisório.",
+          "literal": "(Redação dada pela Lei nº 10.792, de 2003)"
+        }
+      ]
+    },
+    "9-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.295",
+            "ano": 2025
+          },
+          "trecho": "…e DNA (ácido desoxirribonucleico), por técnica adequada e indolor, por ocasião do ingresso no estabelecimento prisional.",
+          "literal": "(Redação dada pela Lei nº 15.295, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…erá fazer constar garantias mínimas de proteção de dados genéticos, observando as melhores práticas da genética forense.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…proteção de dados genéticos, observando as melhores práticas da genética forense. (Incluído pela Lei nº 13.964, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.654",
+            "ano": 2012
+          },
+          "trecho": "…rer ao juiz competente, no caso de inquérito instaurado, o acesso ao banco de dados de identificação de perfil genético.",
+          "literal": "(Incluído pela Lei nº 12.654, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…como a todos os documentos da cadeia de custódia que gerou esse dado, de maneira que possa ser contraditado pela defesa.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "… custódia que gerou esse dado, de maneira que possa ser contraditado pela defesa. (Incluído pela Lei nº 13.964, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…por ocasião do ingresso no estabelecimento prisional deverá ser submetido ao procedimento durante o cumprimento da pena.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…nto prisional deverá ser submetido ao procedimento durante o cumprimento da pena. (Incluído pela Lei nº 13.964, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.295",
+            "ano": 2025
+          },
+          "trecho": "…usivo fim de permitir a identificação pelo perfil genético, não estando autorizadas as práticas de fenotipagem genética.",
+          "literal": "(Redação dada pela Lei nº 15.295, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.295",
+            "ano": 2025
+          },
+          "trecho": "…ciente para a eventualidade de nova perícia, nos termos do regulamento, vedada a sua utilização para qualquer outro fim.",
+          "literal": "(Redação dada pela Lei nº 15.295, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.295",
+            "ano": 2025
+          },
+          "trecho": "…deia de custódia definidos pela legislação em vigor e complementados pelo órgão de perícia oficial de natureza criminal.",
+          "literal": "(Redação dada pela Lei nº 15.295, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "§ 8º Constitui falta grave a recusa do condenado em submeter-se ao procedimento de identificação do perfil genético.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "… do condenado em submeter-se ao procedimento de identificação do perfil genético. (Incluído pela Lei nº 13.964, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.295",
+            "ano": 2025
+          },
+          "trecho": "§ 9º A elaboração do laudo da amostra biológica coletada nos termos do § 7º será realizada por perito oficial.",
+          "literal": "(Incluído pela Lei nº 15.295, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.295",
+            "ano": 2025
+          },
+          "trecho": "…co deverão ser realizados, se possível, em até 30 (trinta) dias contados da recepção da amostra pelo laboratório de DNA.",
+          "literal": "(Incluído pela Lei nº 15.295, de 2025)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º -",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.942",
+            "ano": 2009
+          },
+          "trecho": "… Será assegurado acompanhamento médico à mulher, principalmente no pré-natal e no pós-parto, extensivo ao recém-nascido.",
+          "literal": "(Incluído pela Lei nº 11.942, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.326",
+            "ano": 2022
+          },
+          "trecho": "…lher no período de puerpério, cabendo ao poder público promover a assistência integral à sua saúde e à do recém-nascido.",
+          "literal": "(Incluído pela Lei nº 14.326, de 2022)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "…rviços de assistência jurídica, integral e gratuita, pela Defensoria Pública, dentro e fora dos estabelecimentos penais.",
+          "literal": "(Redação dada pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "…tural, pessoal e material à Defensoria Pública, no exercício de suas funções, dentro e fora dos estabelecimentos penais.",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "§ 2o Em todos os estabelecimentos penais, haverá local apropriado destinado ao atendimento pelo Defensor Público.",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "…uita aos réus, sentenciados em liberdade, egressos e seus familiares, sem recursos financeiros para constituir advogado.",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        }
+      ]
+    },
+    "18-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.163",
+            "ano": 2015
+          },
+          "trecho": "…issional de nível médio, será implantado nos presídios, em obediência ao preceito constitucional de sua universalização.",
+          "literal": "(Incluído pela Lei nº 13.163, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.163",
+            "ano": 2015
+          },
+          "trecho": "…nião, não só com os recursos destinados à educação, mas pelo sistema estadual de justiça ou administração penitenciária.",
+          "literal": "(Incluído pela Lei nº 13.163, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.163",
+            "ano": 2015
+          },
+          "trecho": "§ 2o Os sistemas de ensino oferecerão aos presos e às presas cursos supletivos de educação de jovens e adultos.",
+          "literal": "(Incluído pela Lei nº 13.163, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.163",
+            "ano": 2015
+          },
+          "trecho": "… programas de educação à distância e de utilização de novas tecnologias de ensino, o atendimento aos presos e às presas.",
+          "literal": "(Incluído pela Lei nº 13.163, de 2015)"
+        }
+      ]
+    },
+    "21-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.163",
+            "ano": 2015
+          },
+          "trecho": "Art. 21-A. O censo penitenciário deverá apurar:",
+          "literal": "(Incluído pela Lei nº 13.163, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.163",
+            "ano": 2015
+          },
+          "trecho": "I - o nível de escolaridade dos presos e das presas;",
+          "literal": "(Incluído pela Lei nº 13.163, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.163",
+            "ano": 2015
+          },
+          "trecho": "II - a existência de cursos nos níveis fundamental e médio e o número de presos e presas atendidos;",
+          "literal": "(Incluído pela Lei nº 13.163, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.163",
+            "ano": 2015
+          },
+          "trecho": "…ntação de cursos profissionais em nível de iniciação ou aperfeiçoamento técnico e o número de presos e presas atendidos;",
+          "literal": "(Incluído pela Lei nº 13.163, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.163",
+            "ano": 2015
+          },
+          "trecho": "IV - a existência de bibliotecas e as condições de seu acervo;",
+          "literal": "(Incluído pela Lei nº 13.163, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.163",
+            "ano": 2015
+          },
+          "trecho": "V - outros dados relevantes para o aprimoramento educacional de presos e presas.",
+          "literal": "(Incluído pela Lei nº 13.163, de 2015)"
+        }
+      ]
+    },
+    "34": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.792",
+            "ano": 2003
+          },
+          "trecho": "…esariais, encarregar-se de sua comercialização, bem como suportar despesas, inclusive pagamento de remuneração adequada.",
+          "literal": "(Renumerado pela Lei nº 10.792, de 2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.792",
+            "ano": 2003
+          },
+          "trecho": "…convênio com a iniciativa privada, para implantação de oficinas de trabalho referentes a setores de apoio dos presídios.",
+          "literal": "(Incluído pela Lei nº 10.792, de 2003)"
+        }
+      ]
+    },
+    "41": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.713",
+            "ano": 2003
+          },
+          "trecho": "XVI – atestado de pena a cumprir, emitido anualmente, sob pena da responsabilidade da autoridade judiciária competente.",
+          "literal": "(Incluído pela Lei nº 10.713, de 2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.994",
+            "ano": 2024
+          },
+          "trecho": "…s previstos nos incisos V, X e XV poderão ser suspensos ou restringidos mediante ato motivado do juiz da execução penal.",
+          "literal": "(Incluído pela Lei nº 14.994, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.994",
+            "ano": 2024
+          },
+          "trecho": "…mbro de 1940 (Código Penal), não poderá usufruir do direito previsto no inciso X em relação à visita íntima ou conjugal.",
+          "literal": "(Incluído pela Lei nº 14.994, de 2024)"
+        }
+      ]
+    },
+    "41-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "…militares ou milícias privadas e os seus visitantes poderão ser monitorados por meio de captação audiovisual e gravação.",
+          "literal": "(Incluído pela Lei nº 15.358, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "…onitoramento poderá ser requerido pelo delegado de polícia, pelo Ministério Público ou pela administração penitenciária.",
+          "literal": "(Incluído pela Lei nº 15.358, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "…penais federais de segurança máxima ficam sujeitos às regras especiais previstas na Lei nº 11.671, de 8 de maio de 2008.",
+          "literal": "(Incluído pela Lei nº 15.358, de 2026)"
+        }
+      ]
+    },
+    "41-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "… o controle da legalidade da investigação, distinto do juízo responsável pela instrução e pelo julgamento da ação penal.",
+          "literal": "(Incluído pela Lei nº 15.358, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "…rtinência e a necessidade da prova e sobre a sua eventual inutilização, antes de qualquer remessa ao juízo da instrução.",
+          "literal": "(Incluído pela Lei nº 15.358, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "…trole, a requerimento do Ministério Público ou da parte interessada, facultada a presença do acusado ou de seu defensor.",
+          "literal": "(Incluído pela Lei nº 15.358, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "…s indeferidas ou declaradas ilícitas não poderá ser acessado, direta ou indiretamente, pelo juízo da instrução criminal.",
+          "literal": "(Incluído pela Lei nº 15.358, de 2026)"
+        }
+      ]
+    },
+    "50": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.466",
+            "ano": 2007
+          },
+          "trecho": "…ornecer aparelho telefônico, de rádio ou similar, que permita a comunicação com outros presos ou com o ambiente externo.",
+          "literal": "(Incluído pela Lei nº 11.466, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "VIII - recusar submeter-se ao procedimento de identificação do perfil genético.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.410",
+            "ano": 2026
+          },
+          "trecho": "…gosto de 2006 (Lei Maria da Penha), nos casos de condenação por crime de violência doméstica e familiar contra a mulher.",
+          "literal": "(Incluído pela Lei nº 15.410, de 2026)"
+        }
+      ]
+    },
+    "52": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…onal ou estrangeiro, sem prejuízo da sanção penal, ao regime disciplinar diferenciado, com as seguintes características:",
+          "literal": "(Redação dada pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "I - duração máxima de até 2 (dois) anos, sem prejuízo de repetição da sanção por nova falta grave de mesma espécie;",
+          "literal": "(Redação dada pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "II - recolhimento em cela individual;",
+          "literal": "(Redação dada pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…agem de objetos, por pessoa da família ou, no caso de terceiro, autorizado judicialmente, com duração de 2 (duas) horas;",
+          "literal": "(Redação dada pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…s para banho de sol, em grupos de até 4 (quatro) presos, desde que não haja contato com presos do mesmo grupo criminoso;",
+          "literal": "(Redação dada pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…ações equipadas para impedir o contato físico e a passagem de objetos, salvo expressa autorização judicial em contrário;",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "VI - fiscalização do conteúdo da correspondência;",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…s judiciais preferencialmente por videoconferência, garantindo-se a participação do defensor no mesmo ambiente do preso.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "… O regime disciplinar diferenciado também será aplicado aos presos provisórios ou condenados, nacionais ou estrangeiros:",
+          "literal": "(Redação dada pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "I - que apresentem alto risco para a ordem e a segurança do estabelecimento penal ou da sociedade;",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "… título, em organização criminosa, associação criminosa ou milícia privada, independentemente da prática de falta grave.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.407",
+            "ano": 2026
+          },
+          "trecho": "III - (VETADO);",
+          "literal": "(Incluído pela Lei nº 15.407, de 2026)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.407",
+            "ano": 2026
+          },
+          "trecho": "IV - (VETADO).",
+          "literal": "(Incluído pela Lei nº 15.407, de 2026)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "§ 2º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…dos da Federação, o regime disciplinar diferenciado será obrigatoriamente cumprido em estabelecimento prisional federal.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…plinar diferenciado poderá ser prorrogado sucessivamente, por períodos de 1 (um) ano, existindo indícios de que o preso:",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "I - continua apresentando alto risco para a ordem e a segurança do estabelecimento penal de origem ou da sociedade;",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "… operação duradoura do grupo, a superveniência de novos processos criminais e os resultados do tratamento penitenciário.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…contato do preso com membros de sua organização criminosa, associação criminosa ou milícia privada, ou de grupos rivais.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "…artigo será gravada em sistema de áudio ou de áudio e vídeo, com autorização judicial, e acompanhada por policial penal.",
+          "literal": "(Redação dada pela Lei nº 15.358, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…nto, ter contato telefônico, que será gravado, com uma pessoa da família, 2 (duas) vezes por mês e por 10 (dez) minutos.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.410",
+            "ano": 2026
+          },
+          "trecho": "…rime de violência doméstica e familiar contra a mulher, ameace ou pratique violência contra a vítima ou seus familiares.",
+          "literal": "(Redação dada pela Lei nº 15.410, de 2026)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 9º",
+          "diploma": null,
+          "trecho": "§ 9º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.407",
+            "ano": 2026
+          },
+          "trecho": "§ 9º (VETADO).",
+          "literal": "(Incluído pela Lei nº 15.407, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.407",
+            "ano": 2026
+          },
+          "trecho": "…dministrativa ou o órgão do Ministério Público poderá solicitar ao juiz sua inclusão no regime disciplinar diferenciado.",
+          "literal": "(Incluído pela Lei nº 15.407, de 2026)"
+        }
+      ]
+    },
+    "53": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.792",
+            "ano": 2003
+          },
+          "trecho": "V - inclusão no regime disciplinar diferenciado.",
+          "literal": "(Incluído pela Lei nº 10.792, de 2003)"
+        }
+      ]
+    },
+    "54": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.792",
+            "ano": 2003
+          },
+          "trecho": "…s por ato motivado do diretor do estabelecimento e a do inciso V, por prévio e fundamentado despacho do juiz competente.",
+          "literal": "(Redação dada pela Lei nº 10.792, de 2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.792",
+            "ano": 2003
+          },
+          "trecho": "… dependerá de requerimento circunstanciado elaborado pelo diretor do estabelecimento ou outra autoridade administrativa.",
+          "literal": "(Incluído pela Lei nº 10.792, de 2003)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.407",
+            "ano": 2026
+          },
+          "trecho": "…iado e prolatará decisão final no prazo máximo de 15 (quinze) dias, após manifestação do Ministério Público e da defesa.",
+          "literal": "(Redação dada pela Lei nº 15.407, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.407",
+            "ano": 2026
+          },
+          "trecho": "…efesa não configura impedimento para a decisão do juiz competente, respeitado o prazo estabelecido no § 2º deste artigo.",
+          "literal": "(Incluído pela Lei nº 15.407, de 2026)"
+        }
+      ]
+    },
+    "57": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.792",
+            "ano": 2003
+          },
+          "trecho": "… natureza, os motivos, as circunstâncias e as conseqüências do fato, bem como a pessoa do faltoso e seu tempo de prisão.",
+          "literal": "(Redação dada pela Lei nº 10.792, de 2003)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.792",
+            "ano": 2003
+          },
+          "trecho": "Parágrafo único. Nas faltas graves, aplicam-se as sanções previstas nos incisos III a V do art. 53 desta Lei.",
+          "literal": "(Redação dada pela Lei nº 10.792, de 2003)"
+        }
+      ]
+    },
+    "58": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.792",
+            "ano": 2003
+          },
+          "trecho": "…o e a restrição de direitos não poderão exceder a trinta dias, ressalvada a hipótese do regime disciplinar diferenciado.",
+          "literal": "(Redação dada pela Lei nº 10.792, de 2003)"
+        }
+      ]
+    },
+    "60": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.792",
+            "ano": 2003
+          },
+          "trecho": "…disciplinar diferenciado, no interesse da disciplina e da averiguação do fato, dependerá de despacho do juiz competente.",
+          "literal": "(Redação dada pela Lei nº 10.792, de 2003)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.792",
+            "ano": 2003
+          },
+          "trecho": "…u inclusão preventiva no regime disciplinar diferenciado será computado no período de cumprimento da sanção disciplinar.",
+          "literal": "(Redação dada pela Lei nº 10.792, de 2003)"
+        }
+      ]
+    },
+    "61": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "VIII - a Defensoria Pública.",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        }
+      ]
+    },
+    "66": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "alínea i",
+          "diploma": null,
+          "trecho": "i)",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea i",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "i) (VETADO);",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea j",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.843",
+            "ano": 2024
+          },
+          "trecho": "j) a utilização do equipamento de monitoração eletrônica pelo condenado nas hipóteses legais;",
+          "literal": "(Incluído pela Lei nº 14.843, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.713",
+            "ano": 2003
+          },
+          "trecho": "X – emitir anualmente atestado de pena a cumprir.",
+          "literal": "(Incluído pela Lei nº 10.713, de 2003)"
+        }
+      ]
+    },
+    "70": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.792",
+            "ano": 2003
+          },
+          "trecho": "…recer sobre indulto e comutação de pena, excetuada a hipótese de pedido de indulto com base no estado de saúde do preso;",
+          "literal": "(Redação dada pela Lei nº 10.792, de 2003)"
+        }
+      ]
+    },
+    "72": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.792",
+            "ano": 2003
+          },
+          "trecho": "… de liberdade aplicadas pela justiça de outra unidade federativa, em especial para presos sujeitos a regime disciplinar.",
+          "literal": "(Incluído pela Lei nº 10.792, de 2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.769",
+            "ano": 2018
+          },
+          "trecho": "…orrência de reincidência, específica ou não, mediante a realização de avaliações periódicas e de estatísticas criminais.",
+          "literal": "(Incluído pela Lei nº 13.769, de 2018)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.769",
+            "ano": 2018
+          },
+          "trecho": "§ 1º Incumbem também ao Departamento a coordenação e supervisão dos estabelecimentos penais e de internamento federais.",
+          "literal": "(Redação dada pela Lei nº 13.769, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.769",
+            "ano": 2018
+          },
+          "trecho": "…o regime fechado de cumprimento de pena para essas mulheres nos casos de crimes cometidos sem violência ou grave ameaça.",
+          "literal": "(Incluído pela Lei nº 13.769, de 2018)"
+        }
+      ]
+    },
+    "74": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.769",
+            "ano": 2018
+          },
+          "trecho": "… o inciso VII do caput do art. 72 desta Lei e encaminharão ao Departamento Penitenciário Nacional os resultados obtidos.",
+          "literal": "(Incluído pela Lei nº 13.769, de 2018)"
+        }
+      ]
+    },
+    "80": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "…Público Geral e 1 (um) assistente social escolhido pela Delegacia Seccional do Conselho Nacional de Assistentes Sociais.",
+          "literal": "(Redação dada pela Lei nº 12.313, de 2010)"
+        }
+      ]
+    },
+    "81-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "…s incidentes da execução, para a defesa dos necessitados em todos os graus e instâncias, de forma individual e coletiva.",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        }
+      ]
+    },
+    "81-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "Art. 81-B. Incumbe, ainda, à Defensoria Pública:",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "I - requerer:",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "a) todas as providências necessárias ao desenvolvimento do processo executivo;",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "b) a aplicação aos casos julgados de lei posterior que de qualquer modo favorecer o condenado;",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "c) a declaração de extinção da punibilidade;",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "d) a unificação de penas;",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "e) a detração e remição da pena;",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "f) a instauração dos incidentes de excesso ou desvio de execução;",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea g",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "g) a aplicação de medida de segurança e sua revogação, bem como a substituição da pena por medida de segurança;",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea h",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "…s, a progressão nos regimes, a suspensão condicional da pena, o livramento condicional, a comutação de pena e o indulto;",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea i",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "i) a autorização de saídas temporárias;",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea j",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "j) a internação, a desinternação e o restabelecimento da situação anterior;",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea k",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "k) o cumprimento de pena ou medida de segurança em outra comarca;",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea l",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "l) a remoção do condenado na hipótese prevista no § 1o do art. 86 desta Lei;",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "II - requerer a emissão anual do atestado de pena a cumprir;",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "III - interpor recursos de decisões proferidas pela autoridade judiciária ou administrativa durante a execução;",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "…ra instauração de sindicância ou procedimento administrativo em caso de violação das normas referentes à execução penal;",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "…nais, tomando providências para o adequado funcionamento, e requerer, quando for o caso, a apuração de responsabilidade;",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "VI - requerer à autoridade competente a interdição, no todo ou em parte, de estabelecimento penal.",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "…o da Defensoria Pública visitará periodicamente os estabelecimentos penais, registrando a sua presença em livro próprio.",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        }
+      ]
+    },
+    "82": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.460",
+            "ano": 1997
+          },
+          "trecho": "…e o maior de sessenta anos, separadamente, serão recolhidos a estabelecimento próprio e adequado à sua condição pessoal.",
+          "literal": "(Redação dada pela Lei nº 9.460, de 1997)"
+        }
+      ]
+    },
+    "83": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.046",
+            "ano": 1995
+          },
+          "trecho": "§ 1º Haverá instalação destinada a estágio de estudantes universitários.",
+          "literal": "(Renumerado pela Lei nº 9.046, de 1995)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.942",
+            "ano": 2009
+          },
+          "trecho": "…rçário, onde as condenadas possam cuidar de seus filhos, inclusive amamentá-los, no mínimo, até 6 (seis) meses de idade.",
+          "literal": "(Redação dada pela Lei nº 11.942, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.121",
+            "ano": 2009
+          },
+          "trecho": "… § 2o deste artigo deverão possuir, exclusivamente, agentes do sexo feminino na segurança de suas dependências internas.",
+          "literal": "(Incluído pela Lei nº 12.121, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.245",
+            "ano": 2010
+          },
+          "trecho": "§ 4o Serão instaladas salas de aulas destinadas a cursos do ensino básico e profissionalizante.",
+          "literal": "(Incluído pela Lei nº 12.245, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "§ 5o Haverá instalação destinada à Defensoria Pública.",
+          "literal": "(Incluído pela Lei nº 12.313, de 2010)"
+        }
+      ]
+    },
+    "83-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.190",
+            "ano": 2015
+          },
+          "trecho": "…tividades materiais acessórias, instrumentais ou complementares desenvolvidas em estabelecimentos penais, e notadamente:",
+          "literal": "(Incluído pela Lei nº 13.190, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.190",
+            "ano": 2015
+          },
+          "trecho": "…pção, reprografia, telecomunicações, lavanderia e manutenção de prédios, instalações e equipamentos internos e externos;",
+          "literal": "(Incluído pela Lei nº 13.190, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.190",
+            "ano": 2015
+          },
+          "trecho": "II - serviços relacionados à execução de trabalho pelo preso.",
+          "literal": "(Incluído pela Lei nº 13.190, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.190",
+            "ano": 2015
+          },
+          "trecho": "§ 1o A execução indireta será realizada sob supervisão e fiscalização do poder público.",
+          "literal": "(Incluído pela Lei nº 13.190, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.190",
+            "ano": 2015
+          },
+          "trecho": "…viços relacionados neste artigo poderão compreender o fornecimento de materiais, equipamentos, máquinas e profissionais.",
+          "literal": "(Incluído pela Lei nº 13.190, de 2015)"
+        }
+      ]
+    },
+    "83-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.190",
+            "ano": 2015
+          },
+          "trecho": "…ação no âmbito do sistema penal, bem como todas as atividades que exijam o exercício do poder de polícia, e notadamente:",
+          "literal": "(Incluído pela Lei nº 13.190, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.190",
+            "ano": 2015
+          },
+          "trecho": "I - classificação de condenados;",
+          "literal": "(Incluído pela Lei nº 13.190, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.190",
+            "ano": 2015
+          },
+          "trecho": "II - aplicação de sanções disciplinares;",
+          "literal": "(Incluído pela Lei nº 13.190, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.190",
+            "ano": 2015
+          },
+          "trecho": "III - controle de rebeliões;",
+          "literal": "(Incluído pela Lei nº 13.190, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.190",
+            "ano": 2015
+          },
+          "trecho": "… - transporte de presos para órgãos do Poder Judiciário, hospitais e outros locais externos aos estabelecimentos penais.",
+          "literal": "(Incluído pela Lei nº 13.190, de 2015)"
+        }
+      ]
+    },
+    "84": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.167",
+            "ano": 2015
+          },
+          "trecho": "§ 1o Os presos provisórios ficarão separados de acordo com os seguintes critérios:",
+          "literal": "(Redação dada pela Lei nº 13.167, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.167",
+            "ano": 2015
+          },
+          "trecho": "I - acusados pela prática de crimes hediondos ou equiparados;",
+          "literal": "(Incluído pela Lei nº 13.167, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.167",
+            "ano": 2015
+          },
+          "trecho": "II - acusados pela prática de crimes cometidos com violência ou grave ameaça à pessoa;",
+          "literal": "(Incluído pela Lei nº 13.167, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.167",
+            "ano": 2015
+          },
+          "trecho": "III - acusados pela prática de outros crimes ou contravenções diversos dos apontados nos incisos I e II.",
+          "literal": "(Incluído pela Lei nº 13.167, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.167",
+            "ano": 2015
+          },
+          "trecho": "§ 3o Os presos condenados ficarão separados de acordo com os seguintes critérios:",
+          "literal": "(Incluído pela Lei nº 13.167, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.167",
+            "ano": 2015
+          },
+          "trecho": "I - condenados pela prática de crimes hediondos ou equiparados;",
+          "literal": "(Incluído pela Lei nº 13.167, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.167",
+            "ano": 2015
+          },
+          "trecho": "II - reincidentes condenados pela prática de crimes cometidos com violência ou grave ameaça à pessoa;",
+          "literal": "(Incluído pela Lei nº 13.167, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.167",
+            "ano": 2015
+          },
+          "trecho": "III - primários condenados pela prática de crimes cometidos com violência ou grave ameaça à pessoa;",
+          "literal": "(Incluído pela Lei nº 13.167, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.167",
+            "ano": 2015
+          },
+          "trecho": "…ais condenados pela prática de outros crimes ou contravenções em situação diversa das previstas nos incisos I, II e III.",
+          "literal": "(Incluído pela Lei nº 13.167, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.167",
+            "ano": 2015
+          },
+          "trecho": "…tegridade física, moral ou psicológica ameaçada pela convivência com os demais presos ficará segregado em local próprio.",
+          "literal": "(Incluído pela Lei nº 13.167, de 2015)"
+        }
+      ]
+    },
+    "86": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.792",
+            "ano": 2003
+          },
+          "trecho": "…ão para recolher os condenados, quando a medida se justifique no interesse da segurança pública ou do próprio condenado.",
+          "literal": "(Redação dada pela Lei nº 10.792, de 2003)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "…to prisional adequado para abrigar o preso provisório ou condenado, em atenção ao regime e aos requisitos estabelecidos.",
+          "literal": "(Redação dada pela Lei nº 15.358, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.410",
+            "ano": 2026
+          },
+          "trecho": "…familiar contra a mulher, ameace ou pratique violência contra a vítima ou seus familiares durante o cumprimento da pena.",
+          "literal": "(Redação dada pela Lei nº 15.410, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "…la imediatamente ao juiz competente, que decidirá, no prazo de 24 (vinte e quatro) horas, sobre os respectivos destinos.",
+          "literal": "(Incluído pela Lei nº 15.358, de 2026)"
+        }
+      ]
+    },
+    "87": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.792",
+            "ano": 2003
+          },
+          "trecho": "… condenados que estejam em regime fechado, sujeitos ao regime disciplinar diferenciado, nos termos do art. 52 desta Lei.",
+          "literal": "(Incluído pela Lei nº 10.792, de 2003)"
+        }
+      ]
+    },
+    "89": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.942",
+            "ano": 2009
+          },
+          "trecho": "…is) meses e menores de 7 (sete) anos, com a finalidade de assistir a criança desamparada cuja responsável estiver presa.",
+          "literal": "(Redação dada pela Lei nº 11.942, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.942",
+            "ano": 2009
+          },
+          "trecho": "Parágrafo único. São requisitos básicos da seção e da creche referidas neste artigo:",
+          "literal": "(Incluído pela Lei nº 11.942, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.942",
+            "ano": 2009
+          },
+          "trecho": "…nto por pessoal qualificado, de acordo com as diretrizes adotadas pela legislação educacional e em unidades autônomas; e",
+          "literal": "(Incluído pela Lei nº 11.942, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.942",
+            "ano": 2009
+          },
+          "trecho": "II – horário de funcionamento que garanta a melhor assistência à criança e à sua responsável.",
+          "literal": "(Incluído pela Lei nº 11.942, de 2009)"
+        }
+      ]
+    },
+    "112": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.402",
+            "ano": 2026
+          },
+          "trecho": "… ao menos 1/6 (um sexto) da pena no regime anterior e seu mérito indicar a progressão, observadas as seguintes exceções:",
+          "literal": "(Redação dada pela Lei nº 15.402, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.402",
+            "ano": 2026
+          },
+          "trecho": "…nº 2.848, de 7 de dezembro de 1940 (Código Penal), deverão ser cumpridos ao menos 25% (vinte e cinco por cento) da pena;",
+          "literal": "(Redação dada pela Lei nº 15.402, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.402",
+            "ano": 2026
+          },
+          "trecho": "…to-Lei nº 2.848, de 7 de dezembro de 1940 (Código Penal), deverão ser cumpridos ao menos 30% (trinta por cento) da pena;",
+          "literal": "(Redação dada pela Lei nº 15.402, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.402",
+            "ano": 2026
+          },
+          "trecho": "…crimes referidos nos incisos I e II do caput deste artigo, deverão ser cumpridos ao menos 20% (vinte por cento) da pena;",
+          "literal": "(Redação dada pela Lei nº 15.402, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…- 30% (trinta por cento) da pena, se o apenado for reincidente em crime cometido com violência à pessoa ou grave ameaça;",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "…apenado for reincidente em crime cometido com violência à pessoa ou grave ameaça; (Incluído pela Lei nº 13.964, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "…% (setenta por cento) da pena, se o apenado for condenado pela prática de crime hediondo ou equiparado, se for primário;",
+          "literal": "(Redação dada pela Lei nº 15.358, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "VI - 75% (setenta e cinco por cento) da pena, se o apenado for:",
+          "literal": "(Redação dada pela Lei nº 15.358, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…ado pela prática de crime hediondo ou equiparado, com resultado morte, se for primário, vedado o livramento condicional;",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "…quiparado, com resultado morte, se for primário, vedado o livramento condicional; (Incluído pela Lei nº 13.964, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "…ção criminosa ultraviolenta estruturada para a prática de crime hediondo ou equiparado, vedado o livramento condicional;",
+          "literal": "(Redação dada pela Lei nº 15.358, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "c) condenado pela prática do crime de constituição de milícia privada;",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "c) condenado pela prática do crime de constituição de milícia privada; (Incluído pela Lei nº 13.964, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "d) condenado pela prática de feminicídio, se for primário, vedado o livramento condicional;",
+          "literal": "(Incluído pela Lei nº 15.358, de 2026)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "VI-A -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "VI-A - (revogado);",
+          "literal": "(Redação dada pela Lei nº 15.358, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "VII - 80% (oitenta por cento) da pena, se o apenado for reincidente na prática de crime hediondo ou equiparado;",
+          "literal": "(Redação dada pela Lei nº 15.358, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "…pena, se o apenado for reincidente em crime hediondo ou equiparado com resultado morte, vedado o livramento condicional.",
+          "literal": "(Redação dada pela Lei nº 15.358, de 2026)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso IX",
+          "diploma": null,
+          "trecho": "IX –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.402",
+            "ano": 2026
+          },
+          "trecho": "IX – (VETADO);",
+          "literal": "(Incluído pela Lei nº 15.402, de 2026)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso X",
+          "diploma": null,
+          "trecho": "X –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.402",
+            "ano": 2026
+          },
+          "trecho": "X – (VETADO).",
+          "literal": "(Incluído pela Lei nº 15.402, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.843",
+            "ano": 2024
+          },
+          "trecho": "…elo diretor do estabelecimento, e pelos resultados do exame criminológico, respeitadas as normas que vedam a progressão.",
+          "literal": "(Redação dada pela Lei nº 14.843, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "… concessão de livramento condicional, indulto e comutação de penas, respeitados os prazos previstos nas normas vigentes.",
+          "literal": "(Redação dada pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…to e comutação de penas, respeitados os prazos previstos nas normas vigentes. (Redação dada pela Lei nº 13.964, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.769",
+            "ano": 2018
+          },
+          "trecho": "…ãe ou responsável por crianças ou pessoas com deficiência, os requisitos para progressão de regime são, cumulativamente:",
+          "literal": "(Incluído pela Lei nº 13.769, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.769",
+            "ano": 2018
+          },
+          "trecho": "I - não ter cometido crime com violência ou grave ameaça a pessoa;",
+          "literal": "(Incluído pela Lei nº 13.769, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.769",
+            "ano": 2018
+          },
+          "trecho": "II - não ter cometido o crime contra seu filho ou dependente;",
+          "literal": "(Incluído pela Lei nº 13.769, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.769",
+            "ano": 2018
+          },
+          "trecho": "III - ter cumprido ao menos 1/8 (um oitavo) da pena no regime anterior;",
+          "literal": "(Incluído pela Lei nº 13.769, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.769",
+            "ano": 2018
+          },
+          "trecho": "IV - ser primária e ter bom comportamento carcerário, comprovado pelo diretor do estabelecimento;",
+          "literal": "(Incluído pela Lei nº 13.769, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.769",
+            "ano": 2018
+          },
+          "trecho": "V - não ter integrado organização criminosa.",
+          "literal": "(Incluído pela Lei nº 13.769, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.769",
+            "ano": 2018
+          },
+          "trecho": "§ 4º O cometimento de novo crime doloso ou falta grave implicará a revogação do benefício previsto no § 3º deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.769, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…s fins deste artigo, o crime de tráfico de drogas previsto no § 4º do art. 33 da Lei nº 11.343, de 23 de agosto de 2006.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…ime de cumprimento da pena, caso em que o reinício da contagem do requisito objetivo terá como base a pena remanescente.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "… (um) ano da ocorrência do fato, ou antes, após o cumprimento do requisito temporal exigível para a obtenção do direito.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "…es, após o cumprimento do requisito temporal exigível para a obtenção do direito. (Incluído pela Lei nº 13.964, de 2019)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "114": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.843",
+            "ano": 2024
+          },
+          "trecho": "…os indícios de que irá ajustar-se, com autodisciplina, baixa periculosidade e senso de responsabilidade, ao novo regime.",
+          "literal": "(Redação dada pela Lei nº 14.843, de 2024)"
+        }
+      ]
+    },
+    "115": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.843",
+            "ano": 2024
+          },
+          "trecho": "…entre as quais, a fiscalização por monitoramento eletrônico, sem prejuízo das seguintes condições gerais e obrigatórias:",
+          "literal": "(Redação dada pela Lei nº 14.843, de 2024)"
+        }
+      ]
+    },
+    "119-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.280",
+            "ano": 2025
+          },
+          "trecho": "…ultados do exame criminológico afirmarem a existência de indícios de que não voltará a cometer crimes da mesma natureza.",
+          "literal": "(Incluído pela Lei nº 15.280, de 2025)"
+        }
+      ]
+    },
+    "122": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.843",
+            "ano": 2024
+          },
+          "trecho": "I - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.843, de 2024)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.843",
+            "ano": 2024
+          },
+          "trecho": "III - (revogado).",
+          "literal": "(Redação dada pela Lei nº 14.843, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…impede a utilização de equipamento de monitoração eletrônica pelo condenado, quando assim determinar o juiz da execução.",
+          "literal": "(Redação dada pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.843",
+            "ano": 2024
+          },
+          "trecho": "…igilância direta o condenado que cumpre pena por praticar crime hediondo ou com violência ou grave ameaça contra pessoa.",
+          "literal": "(Redação dada pela Lei nº 14.843, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.843",
+            "ano": 2024
+          },
+          "trecho": "…e instrução de ensino médio ou superior, o tempo de saída será o necessário para o cumprimento das atividades discentes.",
+          "literal": "(Incluído pela Lei nº 14.843, de 2024)"
+        }
+      ]
+    },
+    "124": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.843",
+            "ano": 2024
+          },
+          "trecho": "Art. 124.",
+          "literal": "(Revogado pela Lei nº 14.843, de 2024)"
+        }
+      ]
+    },
+    "126": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.433",
+            "ano": 2011
+          },
+          "trecho": "…pre a pena em regime fechado ou semiaberto poderá remir, por trabalho ou por estudo, parte do tempo de execução da pena.",
+          "literal": "(Redação dada pela Lei nº 12.433, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.433",
+            "ano": 2011
+          },
+          "trecho": "§ 1o A contagem de tempo referida no caput será feita à razão de:",
+          "literal": "(Redação dada pela Lei nº 12.433, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.433",
+            "ano": 2011
+          },
+          "trecho": "…usive profissionalizante, ou superior, ou ainda de requalificação profissional - divididas, no mínimo, em 3 (três) dias;",
+          "literal": "(Incluído pela Lei nº 12.433, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.433",
+            "ano": 2011
+          },
+          "trecho": "II - 1 (um) dia de pena a cada 3 (três) dias de trabalho.",
+          "literal": "(Incluído pela Lei nº 12.433, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.433",
+            "ano": 2011
+          },
+          "trecho": "…gia de ensino a distância e deverão ser certificadas pelas autoridades educacionais competentes dos cursos frequentados.",
+          "literal": "(Redação dada pela Lei nº 12.433, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.433",
+            "ano": 2011
+          },
+          "trecho": "…cumulação dos casos de remição, as horas diárias de trabalho e de estudo serão definidas de forma a se compatibilizarem.",
+          "literal": "(Redação dada pela Lei nº 12.433, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.433",
+            "ano": 2011
+          },
+          "trecho": "… preso impossibilitado, por acidente, de prosseguir no trabalho ou nos estudos continuará a beneficiar-se com a remição.",
+          "literal": "(Incluído pela Lei nº 12.433, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.433",
+            "ano": 2011
+          },
+          "trecho": "…al, médio ou superior durante o cumprimento da pena, desde que certificada pelo órgão competente do sistema de educação.",
+          "literal": "(Incluído pela Lei nº 12.433, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.433",
+            "ano": 2011
+          },
+          "trecho": "…ional, parte do tempo de execução da pena ou do período de prova, observado o disposto no inciso I do § 1o deste artigo.",
+          "literal": "(Incluído pela Lei nº 12.433, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.433",
+            "ano": 2011
+          },
+          "trecho": "§ 7o O disposto neste artigo aplica-se às hipóteses de prisão cautelar.",
+          "literal": "(Incluído pela Lei nº 12.433, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.433",
+            "ano": 2011
+          },
+          "trecho": "§ 8o A remição será declarada pelo juiz da execução, ouvidos o Ministério Público e a defesa.",
+          "literal": "(Incluído pela Lei nº 12.433, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.402",
+            "ano": 2026
+          },
+          "trecho": "§ 9º O cumprimento da pena restritiva de liberdade em regime domiciliar não impede a remição da pena.",
+          "literal": "(Incluído pela Lei nº 15.402, de 2026)"
+        }
+      ]
+    },
+    "127": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.433",
+            "ano": 2011
+          },
+          "trecho": "…erço) do tempo remido, observado o disposto no art. 57, recomeçando a contagem a partir da data da infração disciplinar.",
+          "literal": "(Redação dada pela Lei nº 12.433, de 2011)"
+        }
+      ]
+    },
+    "128": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.433",
+            "ano": 2011
+          },
+          "trecho": "Art. 128. O tempo remido será computado como pena cumprida, para todos os efeitos.",
+          "literal": "(Redação dada pela Lei nº 12.433, de 2011)"
+        }
+      ]
+    },
+    "129": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.433",
+            "ano": 2011
+          },
+          "trecho": "…ndo, com informação dos dias de trabalho ou das horas de frequência escolar ou de atividades de ensino de cada um deles.",
+          "literal": "(Redação dada pela Lei nº 12.433, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.433",
+            "ano": 2011
+          },
+          "trecho": "… comprovar mensalmente, por meio de declaração da respectiva unidade de ensino, a frequência e o aproveitamento escolar.",
+          "literal": "(Incluído pela Lei nº 12.433, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.433",
+            "ano": 2011
+          },
+          "trecho": "§ 2o Ao condenado dar-se-á a relação de seus dias remidos.",
+          "literal": "(Incluído pela Lei nº 12.433, de 2011)"
+        }
+      ]
+    },
+    "132": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "alínea d",
+          "diploma": null,
+          "trecho": "d)",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "d) (VETADO)",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.843",
+            "ano": 2024
+          },
+          "trecho": "e) utilizar equipamento de monitoração eletrônica.",
+          "literal": "(Incluído pela Lei nº 14.843, de 2024)"
+        }
+      ]
+    },
+    "144": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "…ados no inciso I do caput do art. 137 desta Lei, observado o disposto nos incisos II e III e §§ 1o e 2o do mesmo artigo.",
+          "literal": "(Redação dada pela Lei nº 12.313, de 2010)"
+        }
+      ]
+    },
+    "146-A": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 146-A.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "Art. 146-A. (VETADO).",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        }
+      ]
+    },
+    "146-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "Art. 146-B. O juiz poderá definir a fiscalização por meio da monitoração eletrônica quando:",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "I - (VETADO);",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "II - autorizar a saída temporária no regime semiaberto;",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "III - (VETADO);",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "IV - determinar a prisão domiciliar;",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "V - (VETADO);",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.843",
+            "ano": 2024
+          },
+          "trecho": "…r pena privativa de liberdade a ser cumprida nos regimes aberto ou semiaberto, ou conceder progressão para tais regimes;",
+          "literal": "(Incluído pela Lei nº 14.843, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.843",
+            "ano": 2024
+          },
+          "trecho": "VII - aplicar pena restritiva de direitos que estabeleça limitação de frequência a lugares específicos;",
+          "literal": "(Incluído pela Lei nº 14.843, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.843",
+            "ano": 2024
+          },
+          "trecho": "VIII - conceder o livramento condicional.",
+          "literal": "(Incluído pela Lei nº 14.843, de 2024)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "Parágrafo único. (VETADO).",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        }
+      ]
+    },
+    "146-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "…. O condenado será instruído acerca dos cuidados que deverá adotar com o equipamento eletrônico e dos seguintes deveres:",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "…ber visitas do servidor responsável pela monitoração eletrônica, responder aos seus contatos e cumprir suas orientações;",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "…, de modificar, de danificar de qualquer forma o dispositivo de monitoração eletrônica ou de permitir que outrem o faça;",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "III - (VETADO);",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "…everes previstos neste artigo poderá acarretar, a critério do juiz da execução, ouvidos o Ministério Público e a defesa:",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "I - a regressão do regime;",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "II - a revogação da autorização de saída temporária;",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "III - (VETADO);",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "IV - (VETADO);",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "V - (VETADO);",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "VI - a revogação da prisão domiciliar;",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "…s casos em que o juiz da execução decida não aplicar alguma das medidas previstas nos incisos de I a VI deste parágrafo.",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.843",
+            "ano": 2024
+          },
+          "trecho": "VIII - a revogação do livramento condicional;",
+          "literal": "(Incluído pela Lei nº 14.843, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.843",
+            "ano": 2024
+          },
+          "trecho": "IX - a conversão da pena restritiva de direitos em pena privativa de liberdade.",
+          "literal": "(Incluído pela Lei nº 14.843, de 2024)"
+        }
+      ]
+    },
+    "146-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "Art. 146-D. A monitoração eletrônica poderá ser revogada:",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "I - quando se tornar desnecessária ou inadequada;",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.258",
+            "ano": 2010
+          },
+          "trecho": "II - se o acusado ou condenado violar os deveres a que estiver sujeito durante a sua vigência ou cometer falta grave.",
+          "literal": "(Incluído pela Lei nº 12.258, de 2010)"
+        }
+      ]
+    },
+    "146-E": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.280",
+            "ano": 2025
+          },
+          "trecho": "…lquer benefício em que ocorra a sua saída de estabelecimento penal, será fiscalizado por meio de monitoração eletrônica.",
+          "literal": "(Redação dada pela Lei nº 15.280, de 2025)"
+        }
+      ]
+    },
+    "152": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.344",
+            "ano": 2022
+          },
+          "trecho": "… adolescente, o juiz poderá determinar o comparecimento obrigatório do agressor a programas de recuperação e reeducação.",
+          "literal": "(Redação dada pela Lei nº 14.344, de 2022)"
+        }
+      ]
+    },
+    "182": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.268",
+            "ano": 1996
+          },
+          "trecho": "Art. 182.",
+          "literal": "(Revogado pela Lei nº 9.268, de 1996)"
+        }
+      ]
+    },
+    "183": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.313",
+            "ano": 2010
+          },
+          "trecho": "…da Defensoria Pública ou da autoridade administrativa, poderá determinar a substituição da pena por medida de segurança.",
+          "literal": "(Redação dada pela Lei nº 12.313, de 2010)"
+        }
+      ]
+    }
+  }
+}

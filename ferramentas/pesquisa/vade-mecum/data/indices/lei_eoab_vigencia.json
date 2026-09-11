@@ -1,0 +1,1790 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "EOAB",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_eoab.json",
+      "colecao": "artigos",
+      "sha256": "d8d106622edc28626d0fc317cb456a902b4f824195fa10cf77f0752970370c95",
+      "total_registros": 96,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 34,
+      "anotacoes": 148,
+      "anotacoes_sem_diploma_nomeado": 12
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…o advogado contribui com a postulação de decisão favorável ao seu constituinte, e os seus atos constituem múnus público.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "2-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…o pode contribuir com o processo legislativo e com a elaboração de normas jurídicas, no âmbito dos Poderes da República.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "3-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.039",
+            "ano": 2020
+          },
+          "trecho": "… advogado são, por sua natureza, técnicos e singulares, quando comprovada sua notória especialização, nos termos da lei.",
+          "literal": "(Incluído pela Lei nº 14.039, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.039",
+            "ano": 2020
+          },
+          "trecho": "…ita inferir que o seu trabalho é essencial e indiscutivelmente o mais adequado à plena satisfação do objeto do contrato.",
+          "literal": "(Incluído pela Lei nº 14.039, de 2020)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…, a critério do advogado e do cliente, e independem de outorga de mandato ou de formalização por contrato de honorários.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…sempenho, preservando e resguardando, de ofício, a imagem, a reputação e a integridade do advogado nos termos desta Lei.",
+          "literal": "(Redação dada pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.508",
+            "ano": 2022
+          },
+          "trecho": "…ício, a imagem, a reputação e a integridade do advogado nos termos desta Lei. (Redação dada pela Lei nº 14.365, de 2022)",
+          "literal": "(Renumerado do parágrafo único pela Lei nº 14.508, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.508",
+            "ano": 2022
+          },
+          "trecho": "…equerido devem permanecer no mesmo plano topográfico e em posição equidistante em relação ao magistrado que as presidir.",
+          "literal": "(Incluído pela Lei nº 14.508, de 2022)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.767",
+            "ano": 2008
+          },
+          "trecho": "…lho, de sua correspondência escrita, eletrônica, telefônica e telemática, desde que relativas ao exercício da advocacia;",
+          "literal": "(Redação dada pela Lei nº 11.767, de 2008)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso IX",
+          "diploma": null,
+          "trecho": "IX-A -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "IX-A - (VETADO);",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…ria, para esclarecer equívoco ou dúvida surgida em relação a fatos, a documentos ou a afirmações que influam na decisão;",
+          "literal": "(Redação dada pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.793",
+            "ano": 2019
+          },
+          "trecho": "…verem sujeitos a sigilo ou segredo de justiça, assegurada a obtenção de cópias, com possibilidade de tomar apontamentos;",
+          "literal": "(Redação dada pela Lei nº 13.793, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.245",
+            "ano": 2016
+          },
+          "trecho": "…ou em andamento, ainda que conclusos à autoridade, podendo copiar peças e tomar apontamentos, em meio físico ou digital;",
+          "literal": "(Redação dada pela Lei nº 13.245, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.245",
+            "ano": 2016
+          },
+          "trecho": "…probatórios dele decorrentes ou derivados, direta ou indiretamente, podendo, inclusive, no curso da respectiva apuração:",
+          "literal": "(Incluído pela Lei nº 13.245, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.245",
+            "ano": 2016
+          },
+          "trecho": "a) apresentar razões e quesitos;",
+          "literal": "(Incluído pela Lei nº 13.245, de 2016)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.245",
+            "ano": 2016
+          },
+          "trecho": "b) (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.245, de 2016)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "§ 1º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "1)",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "1) (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "2)",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "2) (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "3)",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "3) (revogado).",
+          "literal": "(Redação dada pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "§ 2º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º-A.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "§ 2º-A. (VETADO).",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "… interposto contra a decisão monocrática de relator que julgar o mérito ou não conhecer dos seguintes recursos ou ações:",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "I - recurso de apelação;",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "II - recurso ordinário;",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "III - recurso especial;",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "IV - recurso extraordinário;",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "V - embargos de divergência;",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "VI - ação rescisória, mandado de segurança, reclamação, habeas corpus e outras ações de competência originária.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.767",
+            "ano": 2008
+          },
+          "trecho": "… clientes do advogado averiguado, bem como dos demais instrumentos de trabalho que contenham informações sobre clientes.",
+          "literal": "(Incluído pela Lei nº 11.767, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…ada em hipótese excepcional, desde que exista fundamento em indício, pelo órgão acusatório. (Promulgação partes vetadas)",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…ementos produzidos em declarações do colaborador sem confirmação por outros meios de prova. (Promulgação partes vetadas)",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…am analisados, fotografados, filmados, retirados ou apreendidos do escritório de advocacia. (Promulgação partes vetadas)",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…ará o sigilo do seu conteúdo, assegurada a presença do representante da OAB, nos termos dos §§ 6º-F e 6º-G deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…omes dos servidores, dará conhecimento à autoridade judiciária e o encaminhará à OAB para a elaboração de notícia-crime.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…odos os atos, para assegurar o cumprimento do disposto no inciso II do caput deste artigo. (Promulgação partes vetadas).",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…te da OAB e pelo profissional investigado para assegurar o disposto no § 6º-C deste artigo. (Promulgação partes vetadas)",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…te da OAB e pelo profissional investigado para assegurar o disposto no § 6º-C deste artigo. (Promulgação partes vetadas)",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…esta Lei, sem prejuízo das penas previstas no art. 154 do Decreto-Lei nº 2.848, de 7 de dezembro de 1940 (Código Penal).",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.767",
+            "ano": 2008
+          },
+          "trecho": "…e investigados como seus partícipes ou co-autores pela prática do mesmo crime que deu causa à quebra da inviolabilidade.",
+          "literal": "(Incluído pela Lei nº 11.767, de 2008)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "§ 8o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.767",
+            "ano": 2008
+          },
+          "trecho": "§ 8o (VETADO)",
+          "literal": "(Incluído pela Lei nº 11.767, de 2008)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 9º",
+          "diploma": null,
+          "trecho": "§ 9o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.767",
+            "ano": 2008
+          },
+          "trecho": "§ 9o (VETADO)",
+          "literal": "(Incluído pela Lei nº 11.767, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.245",
+            "ano": 2016
+          },
+          "trecho": "… autos sujeitos a sigilo, deve o advogado apresentar procuração para o exercício dos direitos de que trata o inciso XIV.",
+          "literal": "(Incluído pela Lei nº 13.245, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.245",
+            "ano": 2016
+          },
+          "trecho": "…umentados nos autos, quando houver risco de comprometimento da eficiência, da eficácia ou da finalidade das diligências.",
+          "literal": "(Incluído pela Lei nº 13.245, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.245",
+            "ano": 2016
+          },
+          "trecho": "…ar o exercício da defesa, sem prejuízo do direito subjetivo do advogado de requerer acesso aos autos ao juiz competente.",
+          "literal": "(Incluído pela Lei nº 13.245, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.793",
+            "ano": 2019
+          },
+          "trecho": "…go aplica-se integralmente a processos e a procedimentos eletrônicos, ressalvado o disposto nos §§ 10 e 11 deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.793, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…o disciplinar próprio, dispor, analisar e decidir sobre a prestação efetiva do serviço jurídico realizado pelo advogado.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "… nos termos do Capítulo VI desta Lei, e observado o disposto no inciso XXXV do caput do art. 5º da Constituição Federal.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 16º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…lização, o ato praticado com violação da competência privativa do Conselho Federal da OAB prevista no § 14 deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "7-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.363",
+            "ano": 2016
+          },
+          "trecho": "Art. 7o-A. São direitos da advogada:",
+          "literal": "(Incluído pela Lei nº 13.363, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.363",
+            "ano": 2016
+          },
+          "trecho": "I - gestante:",
+          "literal": "(Incluído pela Lei nº 13.363, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.363",
+            "ano": 2016
+          },
+          "trecho": "a) entrada em tribunais sem ser submetida a detectores de metais e aparelhos de raios X;",
+          "literal": "(Incluído pela Lei nº 13.363, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.363",
+            "ano": 2016
+          },
+          "trecho": "b) reserva de vaga em garagens dos fóruns dos tribunais;",
+          "literal": "(Incluído pela Lei nº 13.363, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.363",
+            "ano": 2016
+          },
+          "trecho": "…e, adotante ou que der à luz, acesso a creche, onde houver, ou a local adequado ao atendimento das necessidades do bebê;",
+          "literal": "(Incluído pela Lei nº 13.363, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.363",
+            "ano": 2016
+          },
+          "trecho": "…ia na ordem das sustentações orais e das audiências a serem realizadas a cada dia, mediante comprovação de sua condição;",
+          "literal": "(Incluído pela Lei nº 13.363, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.363",
+            "ano": 2016
+          },
+          "trecho": "… suspensão de prazos processuais quando for a única patrona da causa, desde que haja notificação por escrito ao cliente.",
+          "literal": "(Incluído pela Lei nº 13.363, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.363",
+            "ano": 2016
+          },
+          "trecho": "…gada gestante ou lactante aplicam-se enquanto perdurar, respectivamente, o estado gravídico ou o período de amamentação.",
+          "literal": "(Incluído pela Lei nº 13.363, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.363",
+            "ano": 2016
+          },
+          "trecho": "…idos pelo prazo previsto no art. 392 do Decreto-Lei no 5.452, de 1o de maio de 1943 (Consolidação das Leis do Trabalho).",
+          "literal": "(Incluído pela Lei nº 13.363, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.363",
+            "ano": 2016
+          },
+          "trecho": "…á concedido pelo prazo previsto no § 6o do art. 313 da Lei no 13.105, de 16 de março de 2015 (Código de Processo Civil).",
+          "literal": "(Incluído pela Lei nº 13.363, de 2016)"
+        }
+      ]
+    },
+    "7-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.869",
+            "ano": 2019
+          },
+          "trecho": "…ui crime violar direito ou prerrogativa de advogado previstos nos incisos II, III, IV e V do caput do art. 7º desta Lei:",
+          "literal": "(Incluído pela Lei nº 13.869. de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.869",
+            "ano": 2019
+          },
+          "trecho": "Pena - detenção, de 3 (três) meses a 1 (um) ano, e multa.",
+          "literal": "(Incluído pela Lei nº 13.869. de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "Pena - detenção, de 2 (dois) a 4 (quatro) anos, e multa.",
+          "literal": "(Redação dada pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…oto ou não, por qualquer meio telemático, sem configurar vínculo de emprego a adoção de qualquer uma dessas modalidades.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…vista no § 5º deste artigo, essa informação deverá constar, expressamente, do convênio de estágio e do termo de estágio.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.247",
+            "ano": 2016
+          },
+          "trecho": "…os de advocacia ou constituir sociedade unipessoal de advocacia, na forma disciplinada nesta Lei e no regulamento geral.",
+          "literal": "(Redação dada pela Lei nº 13.247, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.247",
+            "ano": 2016
+          },
+          "trecho": "…ca com o registro aprovado dos seus atos constitutivos no Conselho Seccional da OAB em cuja base territorial tiver sede.",
+          "literal": "(Redação dada pela Lei nº 13.247, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.247",
+            "ano": 2016
+          },
+          "trecho": "… Aplica-se à sociedade de advogados e à sociedade unipessoal de advocacia o Código de Ética e Disciplina, no que couber.",
+          "literal": "(Redação dada pela Lei nº 13.247, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.247",
+            "ano": 2016
+          },
+          "trecho": "… e uma sociedade unipessoal de advocacia, com sede ou filial na mesma área territorial do respectivo Conselho Seccional.",
+          "literal": "(Redação dada pela Lei nº 13.247, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.247",
+            "ano": 2016
+          },
+          "trecho": "…nstalar, ficando os sócios, inclusive o titular da sociedade unipessoal de advocacia, obrigados à inscrição suplementar.",
+          "literal": "(Redação dada pela Lei nº 13.247, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.247",
+            "ano": 2016
+          },
+          "trecho": "…o por um advogado das quotas de uma sociedade de advogados, independentemente das razões que motivaram tal concentração.",
+          "literal": "(Incluído pela Lei nº 13.247, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "… 117 da Lei nº 8.112, de 11 de dezembro de 1990, no que se refere à sociedade de advogados. (Promulgação partes vetadas)",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…ros advogados ou a sociedades que atuem em forma de parceria para o atendimento do cliente. (Promulgação partes vetadas)",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "… ao cumprimento dos requisitos norteadores da associação sem vínculo empregatício autorizada expressamente neste artigo.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…emprego previstos na Consolidação das Leis do Trabalho (CLT), aprovada pelo Decreto-Lei nº 5.452, de 1º de maio de 1943.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…vocacia ou empresas, desde que respeitadas as hipóteses de sigilo previstas nesta Lei e no Código de Ética e Disciplina.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.247",
+            "ano": 2016
+          },
+          "trecho": "…cio ou titular de sociedade unipessoal de advocacia pessoa não inscrita como advogado ou totalmente proibida de advogar.",
+          "literal": "(Redação dada pela Lei nº 13.247, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "… 28, 29 e 30 desta Lei e proibida, em qualquer hipótese, a exploração de seu nome e de sua imagem em favor da sociedade.",
+          "literal": "(Redação dada pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.247",
+            "ano": 2016
+          },
+          "trecho": "…gatoriamente formada pelo nome do seu titular, completo ou parcial, com a expressão ‘Sociedade Individual de Advocacia’.",
+          "literal": "(Incluído pela Lei nº 13.247, de 2016)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.247",
+            "ano": 2016
+          },
+          "trecho": "…ntes por ação ou omissão no exercício da advocacia, sem prejuízo da responsabilidade disciplinar em que possam incorrer.",
+          "literal": "(Redação dada pela Lei nº 13.247, de 2016)"
+        }
+      ]
+    },
+    "17-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…ão de serviços e participação nos resultados, na forma do Regulamento Geral e de Provimentos do Conselho Federal da OAB.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "17-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…gistrado no Conselho Seccional da OAB em cuja base territorial tiver sede a sociedade de advogados que dele tomar parte.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…tipularão livremente os critérios para a partilha dos resultados dela decorrentes, devendo o contrato conter, no mínimo:",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "I - qualificação das partes, com referência expressa à inscrição no Conselho Seccional da OAB competente;",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "II - especificação e delimitação do serviço a ser prestado;",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…e das receitas entre as partes, vedada a atribuição da totalidade dos riscos ou das receitas exclusivamente a uma delas;",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…sponsabilidade pelo fornecimento de condições materiais e pelo custeio das despesas necessárias à execução dos serviços;",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "V - prazo de duração do contrato.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…o está obrigado à prestação de serviços profissionais de interesse pessoal dos empregadores, fora da relação de emprego.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…atividades do advogado empregado poderão ser realizadas, a critério do empregador, em qualquer um dos seguintes regimes:",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…ado empregado, desde o início da contratação, realizará o trabalho nas dependências ou locais indicados pelo empregador;",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…nente, variável ou para participação em reuniões ou em eventos presenciais não descaracterizará o regime não presencial;",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…forme as condições definidas pelo empregador em seu regulamento empresarial, independentemente de preponderância ou não.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…ia da relação de emprego, as partes poderão pactuar, por acordo individual simples, a alteração de um regime para outro.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…viço para empresas, não poderá exceder a duração diária de 8 (oito) horas contínuas e a de 40 (quarenta) horas semanais.",
+          "literal": "(Redação dada pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "… 3º, 4º, 5º, 6º, 6º-A, 8º, 8º-A, 9º e 10 do art. 85 da Lei nº 13.105, de 16 de março de 2015 (Código de Processo Civil).",
+          "literal": "(Redação dada pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.725",
+            "ano": 2018
+          },
+          "trecho": "…ações coletivas propostas por entidades de classe em substituição processual, sem prejuízo aos honorários convencionais.",
+          "literal": "(Incluído pela Lei nº 13.725, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.725",
+            "ano": 2018
+          },
+          "trecho": "…ecorrentes do contrato originário a partir do momento em que este foi celebrado, sem a necessidade de mais formalidades.",
+          "literal": "(Incluído pela Lei nº 13.725, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "… indicação de cliente entre advogados ou sociedade de advogados, aplicada a regra prevista no § 9º do art. 15 desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.472",
+            "ano": 2026
+          },
+          "trecho": "…udicial ou de sucumbência, sendo-lhes assegurado tratamento privilegiado em qualquer modalidade de concurso de credores.",
+          "literal": "(Incluído pela Lei nº 15.472, de 2026)"
+        }
+      ]
+    },
+    "22-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "… montante repassado aos Estados e aos Municípios na forma de precatórios, como complementação de fundos constitucionais.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…título judicial constituído em ação civil pública ajuizada pelo Ministério Público Federal. (Promulgação partes vetadas)",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.472",
+            "ano": 2026
+          },
+          "trecho": "…a, na recuperação judicial e extrajudicial, no concurso de credores, na insolvência civil e na liquidação extrajudicial.",
+          "literal": "(Redação dada pela Lei nº 15.472, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…s ou que noticie a renúncia a eles, e os honorários serão devidos proporcionalmente ao trabalho realizado nos processos.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…, inclusive em relação aos eventos de sucesso que porventura venham a ocorrer após o encerramento da relação contratual.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…o de serviços advocatícios, mesmo que formalmente celebrados, não configuram renúncia expressa aos honorários pactuados.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…ato referido no § 6º deste artigo, os honorários advocatícios serão arbitrados conforme o disposto no art. 22 desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "24-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "… de 23 de agosto de 2006 (Lei de Drogas), e observado o disposto no parágrafo único do art. 243 da Constituição Federal.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…queio de bens será feito em autos apartados, que permanecerão em sigilo, mediante a apresentação do respectivo contrato.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…preferencialmente, a ordem estabelecida no art. 835 da Lei nº 13.105, de 16 de março de 2015 (Código de Processo Civil).",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…s valores serão transferidos diretamente para a conta do advogado ou do escritório de advocacia responsável pela defesa.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…orários devidos, nos termos do art. 879 e seguintes da Lei nº 13.105, de 16 de março de 2015 (Código de Processo Civil).",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "§ 5º O valor excedente deverá ser depositado em conta vinculada ao processo judicial.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "25-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.902",
+            "ano": 2009
+          },
+          "trecho": "…restação de contas pelas quantias recebidas pelo advogado de seu cliente, ou de terceiros por conta dele (art. 34, XXI).",
+          "literal": "(Incluído pela Lei nº 11.902, de 2009)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…o se aplica na hipótese de o advogado substabelecido, com reservas de poderes, possuir contrato celebrado com o cliente.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…ela de direitos pessoais, desde que mediante inscrição especial na OAB, vedada a participação em sociedade de advogados.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…dos à OAB, na forma por ela estabelecida, vedada cobrança em valor superior ao exigido para os demais membros inscritos.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "34": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.612",
+            "ano": 2023
+          },
+          "trecho": "XXX - praticar assédio moral, assédio sexual ou discriminação.",
+          "literal": "(Incluído pela Lei nº 14.612, de 2023)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.612",
+            "ano": 2023
+          },
+          "trecho": "§1º Inclui-se na conduta incompatível:",
+          "literal": "(Renumerado do parágrafo único pela Lei nº 14.612, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.612",
+            "ano": 2023
+          },
+          "trecho": "§ 2º Para os fins desta Lei, considera-se:",
+          "literal": "(Incluído pela Lei nº 14.612, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.612",
+            "ano": 2023
+          },
+          "trecho": "… o objetivo de excluí-los das suas funções ou de desestabilizá-los emocionalmente, deteriorando o ambiente profissional;",
+          "literal": "(Incluído pela Lei nº 14.612, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.612",
+            "ano": 2023
+          },
+          "trecho": "… meios, proposta ou imposta à pessoa contra sua vontade, causando-lhe constrangimento e violando a sua liberdade sexual;",
+          "literal": "(Incluído pela Lei nº 14.612, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.612",
+            "ano": 2023
+          },
+          "trecho": "…ia nacional ou regional, origem étnica, condição de gestante, lactante ou nutriz, faixa etária, religião ou outro fator.",
+          "literal": "(Incluído pela Lei nº 14.612, de 2023)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.612",
+            "ano": 2023
+          },
+          "trecho": "I - infrações definidas nos incisos XVII a XXV e XXX do caput do art. 34 desta Lei;",
+          "literal": "(Redação dada pela Lei nº 14.612, de 2023)"
+        }
+      ]
+    },
+    "45": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.688",
+            "ano": 2018
+          },
+          "trecho": "…os Advogados do Brasil, a ser disponibilizado na internet, podendo ser afixados no fórum local, na íntegra ou em resumo.",
+          "literal": "(Redação dada Lei nº 13.688, de 2018)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "…ilizado na internet, podendo ser afixados no fórum local, na íntegra ou em resumo. (Redação dada Lei nº 13.688, de 2018)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "51": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…l são membros honorários, somente com direito a voz nas sessões do Conselho Federal.’ (NR)” (Promulgação partes vetadas)",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "53": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.179",
+            "ano": 2005
+          },
+          "trecho": "…oria do Conselho Federal, cada membro da delegação terá direito a 1 (um) voto, vedado aos membros honorários vitalícios.",
+          "literal": "(Incluído pela Lei nº 11.179, de 2005)"
+        }
+      ]
+    },
+    "54": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "… associado, inclusive no que se refere ao cumprimento dos requisitos norteadores da associação sem vínculo empregatício;",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…re advogados e sociedades de advogados, observado o disposto no inciso XXXV do caput do art. 5º da Constituição Federal.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "58": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "… seccional, inclusive no que se refere ao cumprimento dos requisitos norteadores da associação sem vínculo empregatício;",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…re advogados e sociedades de advogados, observado o disposto no inciso XXXV do caput do art. 5º da Constituição Federal.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "63": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.875",
+            "ano": 2019
+          },
+          "trecho": "…e Conselheiro Seccional e das Subseções, quando houver, e há mais de 5 (cinco) anos, nas eleições para os demais cargos.",
+          "literal": "(Redação dada pela Lei nº 13.875, de 2019)"
+        }
+      ]
+    },
+    "67": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.179",
+            "ano": 2005
+          },
+          "trecho": "…selheiro mais antigo, por voto secreto e para mandato de 3 (três) anos, sua diretoria, que tomará posse no dia seguinte;",
+          "literal": "(Redação dada pela Lei nº 11.179, de 2005)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.179",
+            "ano": 2005
+          },
+          "trecho": "… a chapa que obtiver maioria simples dos votos dos Conselheiros Federais, presente a metade mais 1 (um) de seus membros.",
+          "literal": "(Redação dada pela Lei nº 11.179, de 2005)"
+        }
+      ]
+    },
+    "69": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…idera-se dia do começo do prazo o primeiro dia útil imediato ao da juntada aos autos do respectivo aviso de recebimento.",
+          "literal": "(Redação dada pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.688",
+            "ano": 2018
+          },
+          "trecho": "…il seguinte à publicação, assim considerada o primeiro dia útil seguinte ao da disponibilização da informação no Diário.",
+          "literal": "(Redação dada Lei nº 13.688, de 2018)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…erada o primeiro dia útil seguinte ao da disponibilização da informação no Diário. (Redação dada Lei nº 13.688, de 2018)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "85": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…qualidade para promover perante a OAB o que julgarem do interesse dos advogados em geral ou de qualquer de seus membros.",
+          "literal": "(Redação dada pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    }
+  }
+}

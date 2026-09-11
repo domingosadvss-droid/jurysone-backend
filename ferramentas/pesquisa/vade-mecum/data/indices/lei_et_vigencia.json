@@ -1,0 +1,1129 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "ET",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_et.json",
+      "colecao": "artigos",
+      "sha256": "05bf7fd114789c68b0d728dd9b27d16f1dfc1de9ff9020f3f6242d6be4ef745b",
+      "total_registros": 129,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 14,
+      "anotacoes": 93,
+      "anotacoes_sem_diploma_nomeado": 1
+    }
+  },
+  "vigencia": {
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…e Reforma Agrária - INCRA representará a União nos acordos, convênios ou contratos multilaterais referidos neste artigo.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…Nacional de Reforma Agrária, observados os parâmetros e critérios estabelecidos nas leis e nos atos normativos federais.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "… a sociedade civil organizada, com a finalidade de formular propostas para a adequada implementação da política agrária.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…ção da vistoria e avaliação do imóvel rural para fins de reforma agrária, poderá o Estado utilizar-se de força policial.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…tração Pública dos Estados, do Distrito Federal e dos Municípios, para a execução das atividades referidas neste artigo.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…istema cooperativo, bem como de outras modalidades associativas e societárias que objetivem a democratização do capital.",
+          "literal": "(Redação dada Medida Provisória nº 2.183-56, 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…rma consorcial ou condominial, com a denominação de \"consórcio\" ou \"condomínio\", nos termos dos arts. 3o e 6o desta Lei.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…o elas praticarem atos de comércio, e no Cartório de Registro das Pessoas Jurídicas, quando não envolver essa atividade.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "alínea e",
+          "diploma": null,
+          "trecho": "e) reversão à posse",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.431",
+            "ano": 1988
+          },
+          "trecho": "…stinado a fornecer os meios necessários para o financiamento da Reforma Agrária e dos Órgãos incumbidos da sua execução.",
+          "literal": "(Redação dada pelo Decreto Lei nº 2.431, de 1988 e rejeitado pelo Ato Declaratório de 14.6.1989)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.431",
+            "ano": 1988
+          },
+          "trecho": "…ecial de natureza contábil, regido pelas normas de execução orçamentária e financeira aplicáveis à Administração Direta.",
+          "literal": "(Incluído pelo Decreto Lei nº 2.431, de 1988 e rejeitado pelo Ato Declaratório de 14.6.1989)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.431",
+            "ano": 1988
+          },
+          "trecho": "…à execução dos planos nacional e regionais de Reforma Agrária, não poderão ser suprimidos, nem aplicados em outros fins.",
+          "literal": "(Revogado pelo Decreto Lei nº 2.431, de 1988 e rejeitado pelo Ato Declaratório de 14.6.1989)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.431",
+            "ano": 1988
+          },
+          "trecho": "…e cada exercício, não prescrevem, e serão aplicados, na sua totalidade, em consonância com os objetivos da presente Lei.",
+          "literal": "(Revogado pelo Decreto Lei nº 2.431, de 1988 e rejeitado pelo Ato Declaratório de 14.6.1989)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.431",
+            "ano": 1988
+          },
+          "trecho": "… nos incisos deste artigo terão a destinação, durante vinte anos, vinculada à execução dos programas da Reforma Agrária.",
+          "literal": "(Revogado pelo Decreto Lei nº 2.431, de 1988 e rejeitado pelo Ato Declaratório de 14.6.1989)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.431",
+            "ano": 1988
+          },
+          "trecho": "…do referido Instituto, em quatro parcelas, até 31 de janeiro, 30 de abril, 31 de julho e 31 de outubro, respectivamente.",
+          "literal": "(Revogado pelo Decreto Lei nº 2.431, de 1988 e rejeitado pelo Ato Declaratório de 14.6.1989)"
+        }
+      ]
+    },
+    "49": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "… territorial rural obedecerão a critérios de progressividade e regressividade, levando-se em conta os seguintes fatores:",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "I - o valor da terra nua;",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "II - a área do imóvel rural;",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "III - o grau de utilização da terra na exploração agrícola, pecuária e florestal;",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "IV - o grau de eficiência obtido nas diferentes explorações;",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "V - a área total, no País, do conjunto de imóveis rurais de um mesmo proprietário.",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…s rurais, obrigados a prestar declaração para cadastro, nos prazos e segundo normas fixadas na regulamentação desta Lei.",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…domínio útil ou possuidores, a qualquer título, de imóveis rurais, procedendo-se a verificações \"in loco\" se necessário.",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "… ao pagamento em dobro dos tributos devidos, além das multas decorrentes e das despesas com as verificações necessárias.",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…com a utilização de dados indiciários, além da cobrança de multas e despesas necessárias à apuração dos referidos dados.",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        }
+      ]
+    },
+    "50": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…sultante de avaliação, a alíquota correspondente ao número de módulos fiscais do imóvel, de acordo com a tabela adiante:",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…o domínio útil ou possuidor, a qualquer título, o cultive só ou com sua família, admitida a ajuda eventual de terceiros.",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "§ 2º O módulo fiscal de cada Município, expresso em hectares, será determinado levando-se em conta os seguintes fatores:",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "a) o tipo de exploração predominante no Município:",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "I - hortifrutigranjeira;",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "Il - cultura permanente;",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "III - cultura temporária;",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "IV - pecuária;",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "V - florestal;",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "b) a renda obtida no tipo de exploração predominante;",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…rações existentes no Município que, embora não predominantes, sejam expressivas em função da renda ou da área utilizada;",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "d) o conceito de \"propriedade familiar\", definido no item II do artigo 4º desta Lei.",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…módulos fiscais de um imóvel rural será obtido dividindo-se sua área aproveitável total pelo modulo fiscal do Município.",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…eitável do imóvel rural a que for passível de exploração agrícola, pecuária ou florestal. Não se considera aproveitável:",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "a) a área ocupada por benfeitoria;",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "b) a área ocupada por floresta ou mata de efetiva preservação permanente, ou reflorestada com essências nativas;",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "c) a área comprovadamente imprestável para qualquer exploração agrícola, pecuária ou florestal.",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…venta por cento) a título de estímulo fiscal, segundo o grau de utilização econômica do imóvel rural, da forma seguinte:",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…tilização da terra, medido pela relação entre a área efetivamente utilizada e a área aproveitável total do imóvel rural;",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…is fixados pelo Poder Executivo e multiplicado pelo grau de utilização da terra, referido na alínea \"a\" deste parágrafo.",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…ercícios anteriores devidamente quitado, ressalvadas as hipóteses previstas no artigo 151 do Código Tributário Nacional.",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…evista nas alíneas a e b do § 5º deste artigo, ajustando-a à política agrícola adotada para as diversas regiões do País.",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…da ocorrência, podendo ainda o Ministro da Agricultura fixar as percentagens de redução do imposto que serão utilizadas.",
+          "literal": "(Redação dada pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "… artigo, inferior aos limites fixados no § 11, a alíquota a ser aplicada será multiplicada pelos seguintes coeficientes:",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "a) no primeiro ano: 2,0 (dois);",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "b) no segundo ano: 3,0 (três);",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "c) no terceiro ano e seguintes: 4,0 (quatro).",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "§ 10. Em qualquer hipótese, a aplicação do disposto no § 9º não resultará em alíquotas inferiores a:",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "a) no primeiro ano: 2% (dois por cento);",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "b) no segundo ano: 3% (três por cento);",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "c) no terceiro ano e seguintes: 4% (quatro por cento).",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…s no § 9º são fixados segundo o tamanho do módulo fiscal do Município de localização do imóvel rural, da seguinte forma:",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…ensão da aplicação do disposto nos §§ 9º 10 e 11 deste artigo, poderá ser requerida por um período de até 3 (três) anos.",
+          "literal": "(Incluído pela Lei nº 6.746, de 1979)"
+        }
+      ]
+    },
+    "52": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…eferimento, anexando, ao requerimento, comprovante da aprovação do projeto pelo Instituto Brasileiro de Reforma Agrária.",
+          "literal": "(Revogado pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…ro do prazo máximo de noventa dias, sendo considerado aprovado se dentro desse prazo não houver pronunciamento do órgão.",
+          "literal": "(Revogado pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…zo de noventa dias para assinar, junto ao Instituto Brasileiro de Reforma Agrária, termo de compromisso de sua execução.",
+          "literal": "(Revogado pela Lei nº 6.746, de 1979)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.746",
+            "ano": 1979
+          },
+          "trecho": "…suspensa dos impostos lançados, acrescida da taxa de correção monetária, calculada na forma da lei que regula a matéria.",
+          "literal": "(Revogado pela Lei nº 6.746, de 1979)"
+        }
+      ]
+    },
+    "60": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "5.709",
+            "ano": null
+          },
+          "trecho": "…uídas e sediadas no País, que tiverem por finalidade executar programa de valorização de área ou distribuição de terras.",
+          "literal": "(Redação dada pela Lei nº 5.709, de 19/01/71)"
+        }
+      ]
+    },
+    "65": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.446",
+            "ano": 2007
+          },
+          "trecho": "…poio à atividade agrícola familiar, cujos beneficiários sejam agricultores que não possuam outro imóvel rural ou urbano.",
+          "literal": "(Incluído pela Lei nº 11.446, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.446",
+            "ano": 2007
+          },
+          "trecho": "§ 6o Nenhum imóvel rural adquirido na forma do § 5o deste artigo poderá ser desmembrado ou dividido.",
+          "literal": "(Incluído pela Lei nº 11.446, de 2007)"
+        }
+      ]
+    },
+    "95": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.947",
+            "ano": 1966
+          },
+          "trecho": "…arrendamento, deverá ajustar, previamente, com o locador, a forma de pagamento do uso da terra por esse prazo excedente.",
+          "literal": "(Redação dada pela Lei nº 4.947, de 1966)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "…rendamento, deverá ajustar, previamente, com o arrendador a forma de pagamento do uso da terra por esse prazo excedente;",
+          "literal": "(Redação dada pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "…ormule nova proposta, tudo mediante simples registro de suas declarações no competente Registro de Títulos e Documentos;",
+          "literal": "(Redação dada pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "…trajudicial, declarar sua intenção de retomar o imóvel para explorá-lo diretamente ou por intermédio de descendente seu;",
+          "literal": "(Redação dada pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "…ozo das vantagens por ele oferecidas, nos termos do contrato de arrendamento e das disposições do inciso I deste artigo;",
+          "literal": "(Redação dada pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "a) limites da remuneração e formas de pagamento em dinheiro ou no seu equivalente em produtos;",
+          "literal": "(Redação dada pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "b) prazos mínimos de arrendamento e limites de vigência para os vários tipos de atividades agrícolas;",
+          "literal": "(Redação dada pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "… exploração intensiva de alta rentabilidade, caso em que a remuneração poderá ir até o limite de 30% (trinta por cento).",
+          "literal": "(Redação dada pela Lei nº 11.443, de 2007)"
+        }
+      ]
+    },
+    "95-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…dores rurais qualificados para participar do Programa Nacional de Reforma Agrária, na forma estabelecida em regulamento.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…ins de reforma agrária enquanto se mantiverem arrendados, desde que atendam aos requisitos estabelecidos em regulamento.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        }
+      ]
+    },
+    "96": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "a) 20% (vinte por cento), quando concorrer apenas com a terra nua;",
+          "literal": "(Redação dada pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "b) 25% (vinte e cinco por cento), quando concorrer com a terra preparada;",
+          "literal": "(Redação dada pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "c) 30% (trinta por cento), quando concorrer com a terra preparada e moradia;",
+          "literal": "(Redação dada pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "…s, constituído especialmente de casa de moradia, galpões, banheiro para gado, cercas, valas ou currais, conforme o caso;",
+          "literal": "(Redação dada pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "…ia, com animais de cria em proporção superior a 50% (cinqüenta por cento) do número total de cabeças objeto de parceria;",
+          "literal": "(Redação dada pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "…r cento) do rebanho e onde se adotarem a meação do leite e a comissão mínima de 5% (cinco por cento) por animal vendido;",
+          "literal": "(Redação dada pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "…corresponder à participação deste, em qualquer das modalidades previstas nas alíneas do inciso VI do caput deste artigo;",
+          "literal": "(Incluído pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "…base em percentagem máxima de 10% (dez por cento) do valor das benfeitorias ou dos bens postos à disposição do parceiro.",
+          "literal": "(Incluído pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "…da ou extração de matérias-primas de origem animal, mediante partilha, isolada ou cumulativamente, dos seguintes riscos:",
+          "literal": "(Incluído pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "I - caso fortuito e de força maior do empreendimento rural;",
+          "literal": "(Incluído pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "…idos nas proporções que estipularem, observados os limites percentuais estabelecidos no inciso VI do caput deste artigo;",
+          "literal": "(Incluído pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "III - variações de preço dos frutos obtidos na exploração do empreendimento rural.",
+          "literal": "(Incluído pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "… ao final do contrato, seja realizado o ajustamento do percentual pertencente ao proprietário, de acordo com a produção.",
+          "literal": "(Incluído pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "§ 3o Eventual adiantamento do montante prefixado não descaracteriza o contrato de parceria.",
+          "literal": "(Incluído pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "…abe todo o risco, assegurando-se ao locador, pelo menos, a percepção do salário mínimo no cômputo das 2 (duas) parcelas.",
+          "literal": "(Incluído pela Lei nº 11.443, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.443",
+            "ano": 2007
+          },
+          "trecho": "…artigo não se aplica aos contratos de parceria agroindustrial, de aves e suínos, que serão regulados por lei específica.",
+          "literal": "(Incluído pela Lei nº 11.443, de 2007)"
+        }
+      ]
+    },
+    "105": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.647",
+            "ano": null
+          },
+          "trecho": "…o o limite máximo de circulação equivalente a 500.000.000 de OTN (quinhentos milhões de Obrigações do Tesouro Nacional).",
+          "literal": "(Redação dada pela Lei nº 7.647, de 19/01/88)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.647",
+            "ano": null
+          },
+          "trecho": "…idade de correção monetária plena que venha a substituí-las, de acordo com o que estabelecer a regulamentação desta Lei.",
+          "literal": "(Redação dada pela Lei nº 7.647, de 19/01/88)"
+        }
+      ]
+    }
+  }
+}

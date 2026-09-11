@@ -1,0 +1,659 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L10887",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l10887.json",
+      "colecao": "artigos",
+      "sha256": "2799cc5b419231ce2eafb32461cd4f4d8613f790faaab26d187c7a406b738d32",
+      "total_registros": 20,
+      "gerado_em": "2026-08-21T22:36:32+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 4,
+      "anotacoes": 57,
+      "anotacoes_sem_diploma_nomeado": 7
+    }
+  },
+  "vigencia": {
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.618",
+            "ano": 2012
+          },
+          "trecho": "…s, para a manutenção do respectivo regime próprio de previdência social, será de 11% (onze por cento), incidentes sobre:",
+          "literal": "(Redação dada pela Lei nº 12.618, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.618",
+            "ano": 2012
+          },
+          "trecho": "…dência complementar para os servidores públicos federais titulares de cargo efetivo e não tiver optado por aderir a ele;",
+          "literal": "(Incluído pela Lei nº 12.618, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.618",
+            "ano": 2012
+          },
+          "trecho": "…eder ao limite máximo estabelecido para os benefícios do regime geral de previdência social, em se tratando de servidor:",
+          "literal": "(Incluído pela Lei nº 12.618, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.618",
+            "ano": 2012
+          },
+          "trecho": "…o até a data a que se refere o inciso I e tenha optado por aderir ao regime de previdência complementar ali referido; ou",
+          "literal": "(Incluído pela Lei nº 12.618, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.618",
+            "ano": 2012
+          },
+          "trecho": "…rtir da data a que se refere o inciso I, independentemente de adesão ao regime de previdência complementar ali referido.",
+          "literal": "(Incluído pela Lei nº 12.618, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.688",
+            "ano": 2012
+          },
+          "trecho": "VIII - a parcela percebida em decorrência do exercício de cargo em comissão ou de função comissionada ou gratificada;",
+          "literal": "(Redação dada pela Lei nº 12.688, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.688",
+            "ano": 2012
+          },
+          "trecho": "…Constituição Federal , o § 5º do art. 2º e o § 1º do art. 3º da Emenda Constitucional nº 41, de 19 de dezembro de 2003 ;",
+          "literal": "(Redação dada pela Lei nº 12.688, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.688",
+            "ano": 2012
+          },
+          "trecho": "X - o adicional de férias;",
+          "literal": "(Incluído pela Lei nº 12.688, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.688",
+            "ano": 2012
+          },
+          "trecho": "XI - o adicional noturno;",
+          "literal": "(Incluído pela Lei nº 12.688, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.688",
+            "ano": 2012
+          },
+          "trecho": "XII - o adicional por serviço extraordinário;",
+          "literal": "(Incluído pela Lei nº 12.688, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.688",
+            "ano": 2012
+          },
+          "trecho": "XIII - a parcela paga a título de assistência à saúde suplementar;",
+          "literal": "(Incluído pela Lei nº 12.688, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.688",
+            "ano": 2012
+          },
+          "trecho": "XIV - a parcela paga a título de assistência pré-escolar;",
+          "literal": "(Incluído pela Lei nº 12.688, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.688",
+            "ano": 2012
+          },
+          "trecho": "…iberativo, na condição de representante do governo, de órgão ou de entidade da administração pública do qual é servidor;",
+          "literal": "(Incluído pela Lei nº 12.688, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.688",
+            "ano": 2012
+          },
+          "trecho": "XVI - o auxílio-moradia;",
+          "literal": "(Incluído pela Lei nº 12.688, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.688",
+            "ano": 2012
+          },
+          "trecho": "…- a Gratificação por Encargo de Curso ou Concurso, de que trata o art. 76-A da Lei nº 8.112, de 11 de dezembro de 1990 ;",
+          "literal": "(Incluído pela Lei nº 12.688, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.688",
+            "ano": 2012
+          },
+          "trecho": "…emas Estruturadores da Administração Pública Federal (GSISTE), instituída pela Lei nº 11.356, de 19 de outubro de 2006 ;",
+          "literal": "(Incluído pela Lei nº 12.688, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XIX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.328",
+            "ano": 2016
+          },
+          "trecho": "…ministração dos Recursos de Informação e Informática (GSISP), instituída pela Lei nº 11.907, de 2 de fevereiro de 2009 ;",
+          "literal": "(Redação dada pela Lei nº 13.328, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.328",
+            "ano": 2016
+          },
+          "trecho": "…ificação Temporária de Atividade em Escola de Governo (GAEG), instituída pela Lei nº 11.907, de 2 de fevereiro de 2009 ;",
+          "literal": "(Incluído pela Lei nº 13.328, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.328",
+            "ano": 2016
+          },
+          "trecho": "…pecífica de Produção de Radioisótopos e Radiofármacos (GEPR), instituída pela Lei nº 11.907, de 2 de fevereiro de 2009 ;",
+          "literal": "(Incluído pela Lei nº 13.328, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XXII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.464",
+            "ano": 2017
+          },
+          "trecho": "XXII - a Gratificação de Raio X;",
+          "literal": "(Redação dada pela Lei nº 13.464, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.464",
+            "ano": 2017
+          },
+          "trecho": "…idade Tributária e Aduaneira, recebida pelos servidores da carreira Tributária e Aduaneira da Receita Federal do Brasil;",
+          "literal": "(Incluído pela Lei nº 13.464, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.464",
+            "ano": 2017
+          },
+          "trecho": "…ade na Atividade de Auditoria-Fiscal do Trabalho, recebida pelos servidores da carreira de Auditoria-Fiscal do Trabalho.",
+          "literal": "(Incluído pela Lei nº 13.464, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "805",
+            "ano": 2017
+          },
+          "trecho": "XXV -",
+          "literal": "(Incluído Medida Provisória nº 805, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso XXV",
+          "diploma": null,
+          "trecho": "XXV - (Incluído Medida Provisória nº 805, de 2017)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XXVI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.875",
+            "ano": 2024
+          },
+          "trecho": "XXVI - o Bônus de Desempenho Institucional por Perícia Médica em Benefícios por Incapacidade (BPMBI);",
+          "literal": "(Redação dada pela Lei nº 14.875, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XXVII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.367",
+            "ano": 2026
+          },
+          "trecho": "…nstitucional por Análise de Benefícios com Indícios de Irregularidade do Monitoramento Operacional de Benefícios (BMOB);",
+          "literal": "(Redação dada pela Lei nº 15.367, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XXVIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.367",
+            "ano": 2026
+          },
+          "trecho": "XXVIII – a Gratificação Temporária de Proteção e Defesa Civil (GPDEC); e",
+          "literal": "(Redação dada pela Lei nº 15.367, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXIX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.367",
+            "ano": 2026
+          },
+          "trecho": "XXIX – a Gratificação Temporária de Atividades de Execução e Apoio a Atividades Técnicas e Administrativas (GTATA).",
+          "literal": "(Incluído pela Lei nº 15.367, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.875",
+            "ano": 2024
+          },
+          "trecho": "…da Constituição Federal e no art. 26 da Emenda Constitucional nº 103, de 12 de novembro de 2019, das seguintes parcelas:",
+          "literal": "(Redação dada pela Lei nº 14.875, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.875",
+            "ano": 2024
+          },
+          "trecho": "…ebidas em decorrência de local de trabalho e do exercício de cargo em comissão ou de função comissionada ou gratificada;",
+          "literal": "(Incluído pela Lei nº 14.875, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.875",
+            "ano": 2024
+          },
+          "trecho": "II - a GSISTE;",
+          "literal": "(Incluído pela Lei nº 14.875, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.875",
+            "ano": 2024
+          },
+          "trecho": "III - a GSISP;",
+          "literal": "(Incluído pela Lei nº 14.875, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.875",
+            "ano": 2024
+          },
+          "trecho": "IV - a GAEG;",
+          "literal": "(Incluído pela Lei nº 14.875, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.875",
+            "ano": 2024
+          },
+          "trecho": "V - a GEPR;",
+          "literal": "(Incluído pela Lei nº 14.875, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.875",
+            "ano": 2024
+          },
+          "trecho": "VI - a Gratificação de Raio X;",
+          "literal": "(Incluído pela Lei nº 14.875, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.367",
+            "ano": 2026
+          },
+          "trecho": "VII – as recebidas a título de adicional noturno ou de adicional por serviço extraordinário;",
+          "literal": "(Redação dada pela Lei nº 15.367, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.367",
+            "ano": 2026
+          },
+          "trecho": "VIII – a GPDEC; e",
+          "literal": "(Redação dada pela Lei nº 15.367, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.367",
+            "ano": 2026
+          },
+          "trecho": "IX – a GTATA.",
+          "literal": "(Incluído pela Lei nº 15.367, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "805",
+            "ano": 2017
+          },
+          "trecho": "§ 3º",
+          "literal": "(Incluído Medida Provisória nº 805, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º (Incluído Medida Provisória nº 805, de 2017)",
+          "literal": "(Vigência encerrada)"
+        }
+      ]
+    },
+    "8-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "…será do dirigente e do ordenador de despesa do órgão ou entidade que efetuar o pagamento da remuneração ou do benefício.",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "§ 1º O recolhimento das contribuições de que trata este artigo deve ser efetuado:",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "I – até o dia 15, no caso de pagamentos de remunerações ou benefícios efetuados no primeiro decêndio do mês;",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "II – até o dia 25, no caso de pagamentos de remunerações ou benefícios efetuados no segundo decêndio do mês; ou",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "…– até o dia 5 do mês posterior, no caso de pagamentos de remunerações ou benefícios efetuados no último decêndio do mês.",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "§ 2º O não recolhimento das contribuições nos prazos previstos no § 1º :",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "I – enseja a aplicação dos acréscimos de mora previstos para os tributos federais; e",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "II – sujeita o responsável às sanções penais e administrativas cabíveis.",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.688",
+            "ano": 2012
+          },
+          "trecho": "…6 da Lei nº 8.112, de 11 de dezembro de 1990, observado o disposto no art. 56 da Lei nº 9.784, de 29 de janeiro de 1999.",
+          "literal": "(Incluído pela Lei nº 12.688, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.688",
+            "ano": 2012
+          },
+          "trecho": "…de controle e constituirá o crédito tributário relativo à parcela devida pelo servidor ativo, aposentado ou pensionista.",
+          "literal": "(Incluído pela Lei nº 12.688, de 2012)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5º",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6º",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "§ 7º",
+          "literal": "(revogado)"
+        }
+      ]
+    },
+    "16-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "…implantação de rubrica específica em folha, mediante a aplicação da alíquota de 11% (onze por cento) sobre o valor pago.",
+          "literal": "(Redação dada pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.688",
+            "ano": 2012
+          },
+          "trecho": "…da contribuição deverá ser efetuado nos mesmos prazos previstos no § 1º do art. 8º-A, de acordo com a data do pagamento.",
+          "literal": "(Redação dada pela Lei nº 12.688, de 2012)"
+        }
+      ]
+    }
+  }
+}

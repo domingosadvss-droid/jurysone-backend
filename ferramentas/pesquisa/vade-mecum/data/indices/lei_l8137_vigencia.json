@@ -1,0 +1,522 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L8137",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l8137.json",
+      "colecao": "artigos",
+      "sha256": "f079c1e725dd8e4c97f692da16cddd3d04ef1f196ae7a04b3500c5bd99d24cf5",
+      "total_registros": 23,
+      "gerado_em": "2026-08-21T22:36:32+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 7,
+      "anotacoes": 45,
+      "anotacoes_sem_diploma_nomeado": 12
+    }
+  },
+  "vigencia": {
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.884",
+            "ano": 1994
+          },
+          "trecho": "VII - elevar sem justa causa o preço de bem ou serviço, valendo-se de posição dominante no mercado.",
+          "literal": "(Redação dada pela Lei nº 8.884, de 11.6.1994)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "… o mercado ou eliminando, total ou parcialmente, a concorrência mediante qualquer forma de ajuste ou acordo de empresas;",
+          "literal": "(Redação dada pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "a) (revogada);",
+          "literal": "(Redação dada pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "b) (revogada);",
+          "literal": "(Redação dada pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "c)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "c) (revogada);",
+          "literal": "(Redação dada pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea d",
+          "diploma": null,
+          "trecho": "d)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "d) (revogada);",
+          "literal": "(Redação dada pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea e",
+          "diploma": null,
+          "trecho": "e)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "e) (revogada);",
+          "literal": "(Redação dada pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea f",
+          "diploma": null,
+          "trecho": "f)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "f) (revogada);",
+          "literal": "(Redação dada pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "II - formar acordo, convênio, ajuste ou aliança entre ofertantes, visando:",
+          "literal": "(Redação dada pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "a) à fixação artificial de preços ou quantidades vendidas ou produzidas;",
+          "literal": "(Redação dada pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "b) ao controle regionalizado do mercado por empresa ou grupo de empresas;",
+          "literal": "(Redação dada pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "c) ao controle, em detrimento da concorrência, de rede de distribuição ou de fornecedores.",
+          "literal": "(Redação dada pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "Pena - reclusão, de 2 (dois) a 5 (cinco) anos e multa.",
+          "literal": "(Redação dada pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "III - (revogado);",
+          "literal": "(Redação dada pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "IV - (revogado);",
+          "literal": "(Redação dada pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "V - (revogado);",
+          "literal": "(Redação dada pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "VI -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "VI - (revogado);",
+          "literal": "(Redação dada pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VII",
+          "diploma": null,
+          "trecho": "VII -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "VII - (revogado).",
+          "literal": "(Redação dada pela Lei nº 12.529, de 2011)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "Art. 5° Constitui crime da mesma natureza:",
+          "literal": "(Revogado pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "I - exigir exclusividade de propaganda, transmissão ou difusão de publicidade, em detrimento de concorrência;",
+          "literal": "(Revogado pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "II - subordinar a venda de bem ou a utilização de serviço à aquisição de outro bem, ou ao uso de determinado serviço;",
+          "literal": "(Revogado pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "III - sujeitar a venda de bem ou a utilização de serviço à aquisição de quantidade arbitrariamente determinada;",
+          "literal": "(Revogado pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "… a prestar à autoridade competente ou prestá-la de modo inexato, informando sobre o custo de produção ou preço de venda.",
+          "literal": "(Revogado pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "Pena - detenção, de 2 (dois) a 5 (cinco) anos, ou multa.",
+          "literal": "(Revogado pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "…plexidade da matéria ou da dificuldade quanto ao atendimento da exigência, caracteriza a infração prevista no inciso IV.",
+          "literal": "(Revogado pela Lei nº 12.529, de 2011)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "Art. 6° Constitui crime da mesma natureza:",
+          "literal": "(Revogado pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "… mercadoria, ou contratar ou oferecer serviço, por preço superior ao oficialmente tabelado, ao regime legal de controle;",
+          "literal": "(Revogado pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "…indexação de contrato proibida, ou diversa daquela que for legalmente estabelecida, ou fixada por autoridade competente;",
+          "literal": "(Revogado pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "…r Público, inclusive por meio da adoção ou de aumento de taxa ou outro percentual, incidente sobre qualquer contratação.",
+          "literal": "(Revogado pela Lei nº 12.529, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.529",
+            "ano": 2011
+          },
+          "trecho": "Pena - detenção, de 1 (um) a 4 (quatro) anos, ou multa.",
+          "literal": "(Revogado pela Lei nº 12.529, de 2011)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "…nado a bens alcançados pelas imunidades tributárias dispostas no inciso VI do caput do art. 150 da Constituição Federal.",
+          "literal": "(Incluído pela Lei Complementar nº 224, de 2025)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 13.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.383",
+            "ano": 1991
+          },
+          "trecho": "…o agente promover o pagamento de tributo ou contribuição social, inclusive acessórios, antes do recebimento da denúncia.",
+          "literal": "(Revogado pela Lei nº 8.383, de 30.12.1991)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.176",
+            "ano": 1991
+          },
+          "trecho": "… - Código Penal, um artigo com parágrafo único, após o art. 162, renumerando-se os subseqüentes, com a seguinte redação:",
+          "literal": "(Revogado pela Lei nº 8.176, de 8.2.1991)"
+        }
+      ]
+    }
+  }
+}

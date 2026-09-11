@@ -1,0 +1,4708 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L9656",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l9656.json",
+      "colecao": "artigos",
+      "sha256": "001a50e3fced2e3c8424cf4505a36d4a4186b01cb8833b6baa76242e6c9342ce",
+      "total_registros": 58,
+      "gerado_em": "2026-08-31T20:53:32+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 56,
+      "anotacoes": 404,
+      "anotacoes_sem_diploma_nomeado": 14
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.454",
+            "ano": 2022
+          },
+          "trecho": "…go de Defesa do Consumidor), adotando-se, para fins de aplicação das normas aqui estabelecidas, as seguintes definições:",
+          "literal": "(Redação dada pela Lei nº 14.454, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… expensas da operadora contratada, mediante reembolso ou pagamento direto ao prestador, por conta e ordem do consumidor;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…al, cooperativa, ou entidade de autogestão, que opere produto, serviço ou contrato de que trata o inciso I deste artigo;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…alquer das modalidades de que tratam o inciso I e o § 1o deste artigo, com todos os direitos e obrigações nele contidos.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…a, hospitalar e odontológica, outras características que o diferencie de atividade exclusivamente financeira, tais como:",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "a) custeio de despesas;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "b) oferecimento de rede credenciada ou referenciada;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "c) reembolso de despesas;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "d) mecanismos de regulação;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…tratual, técnica ou operacional para a cobertura de procedimentos solicitados por prestador escolhido pelo consumidor; e",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "f) vinculação de cobertura financeira à aplicação de conceitos ou critérios médico-assistenciais.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… as entidades ou empresas que mantêm sistemas de assistência à saúde, pela modalidade de autogestão ou de administração.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…as jurídicas de direito privado constituídas sob as leis brasileiras para operar planos privados de assistência à saúde.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "§ 4o É vedada às pessoas físicas a operação dos produtos de que tratam o inciso I e o § 1o deste artigo.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "2": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…onstantes do contrato, as pessoas jurídicas de que trata esta Lei poderão: (Vide Medida Provisória nº 1.908-18, de 1999)",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ou jurídicas legalmente habilitadas e reembolsar o beneficiário das despesas decorrentes de eventos cobertos pelo plano;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… aos prestadores, livremente escolhidos pelo segurado, as despesas advindas de eventos cobertos, nos limites da apólice.",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…lha dos segurados, as sociedades seguradoras podem apresentar relação de prestadores de serviços de assistência à saúde.",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…, e em particular dispor sobre: (Vide Medida Provisória nº 1.665, de 1998) (Vide Medida Provisória nº 1.908-18, de 1999)",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… nº 1.665, de 1998) (Vide Medida Provisória nº 1.908-18, de 1999) (Revogado pela Medida Provisória nº 2.177-44, de 2001)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "I - a constituição, organização, funcionamento e fiscalização das operadoras de planos privados de assistência à saúde;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ições técnicas aplicáveis às operadoras de planos privados de assistência à saúde, de acordo com as suas peculiaridades;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…as gerais dos instrumentos contratuais utilizados na atividade das operadoras de planos privados de assistência à saúde;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… contabilidade, atuariais e estatísticas, a serem observadas pelas operadoras de planos privados de assistência à saúde;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…assistência à saúde, assim como a forma de sua subscrição e realização quando se tratar de sociedade anônima de capital;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "VI - os limites técnicos das operações relacionadas com planos privados de assistência à saúde;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…fundos especiais ou seguros garantidores, a serem observados pelas operadoras de planos privados de assistência à saúde;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "VIII - a direção fiscal, a liquidação extrajudicial e os procedimentos de recuperação financeira.",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…rá às características específicas da operadora, mormente no que concerne à natureza jurídica de seus atos constitutivos.",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… 8.127, de 20 de dezembro de 1990, passa a vigorar com a seguinte redação: (Vide Medida Provisória nº 1.908-18, de 1999)",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "\"Art. 33. O Conselho Nacional de Seguros Privados - CNSP será integrado pelos seguintes membros:",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "I - Ministro de Estado da Fazenda, ou seu representante legal;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "II - Ministro de Estado da Saúde, ou seu representante legal;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "III - Ministro de Estado da Justiça, ou seu representante legal;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "IV - Ministro de Estado da Previdência e Assistência Social, ou seu representante legal;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "V - Presidente do Banco Central do Brasil, ou seu representante legal;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "VI - Superintendente da Superintendência de Seguros Privados - SUSEP, ou seu representante legal;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "VII - Presidente do Instituto de Resseguros do Brasil - IRB, ou seu representante legal.",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "§ 1o O Conselho será presidido pelo Ministro de Estado da Fazenda e, na sua ausência, pelo Superintendente da SUSEP.",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "§ 2o O CNSP terá seu funcionamento regulado em regimento interno.\"",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…istas na legislação em vigor: (Vide Medida Provisória nº 1.730-7, de 1998) (Vide Medida Provisória nº 1.908-18, de 1999)",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…º 1.730-7, de 1998) (Vide Medida Provisória nº 1.908-18, de 1999) (Revogado pela Medida Provisória nº 2.177-44, de 2001)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ncorporação, alteração ou transferência do controle societário das operadoras de planos privados de assistência à saúde;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ados de assistência à saúde e zelar pelo cumprimento das normas atinentes ao funcionamento dos planos privados de saúde;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… operadoras de planos privados de assistência à saúde previstas nesta Lei; (Vide Medida Provisória nº 1.801-14, de 1999)",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…rcício de cargos diretivos das operadoras de planos privados de assistência à saúde, segundo normas definidas pelo CNSP;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "V - proceder à liquidação das operadoras que tiverem cassada a autorização para funcionar no País;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "VI - promover a alienação da carteira de planos ou seguros das operadoras.",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ra o tratamento das questões concernentes às operadoras referidas no art. 1o. (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…s e epidemiológicos relativos à prestação de serviços médicos e hospitalares. (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…rigatória, previstas no art. 3o, bem como propor a expedição de normas sobre: (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "I - regulamentação das atividades das operadoras de planos e seguros privados de assistência à saúde;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "II - fixação de condições mínimas dos contratos relativos a planos e seguros privados de assistência à saúde;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…rar o equilíbrio das relações entre os consumidores e os operadores de planos e seguros privados de assistência à saúde;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "IV - estabelecimento de mecanismos de garantia, visando preservar a prestação de serviços aos consumidores;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "V - o regimento interno da própria Câmara.",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "Art. 7o A Câmara de Saúde Suplementar é composta dos seguintes membros: (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "I - Ministro de Estado da Saúde, ou seu representante legal, na qualidade de presidente;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "II - Ministro de Estado da Fazenda, ou seu representante legal;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "III - Ministro de Estado da Previdência e Assistência Social, ou seu representante legal;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "IV - Ministro de Estado do Trabalho, ou seu representante legal;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "V - Secretário Executivo do Ministério da Saúde, ou seu representante legal;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "VI - Superintendente da Superintendência de Seguros Privados - SUSEP, ou seu representante legal;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "VII - Secretário de Direito Econômico do Ministério da Justiça, ou seu representante legal;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "VIII - um representante indicado pelo Conselho Nacional de Saúde - CNS, dentre seus membros;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "IX - um representante de entidades de defesa do consumidor;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "X - um representante de entidades de consumidores de planos e seguros privados de assistência à saúde;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "XI - um representante indicado pelos órgãos superiores de classe que representem os estabelecimentos de seguro;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…epresentante indicado pelos órgãos superiores de classe que representem o segmento de autogestão de assistência à saúde;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XIII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "XIII - um representante indicado pelos órgãos superiores de classe que representem a medicina de grupo;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "XIV - um representante indicado pelas entidades que representem as cooperativas de serviços médicos;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "XV - um representante das entidades filantrópicas da área de saúde;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "XVI - um representante indicado pelas entidades nacionais de representação da categoria dos médicos;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XVII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "XVII - um representante indicado pelas entidades nacionais de representação da categoria dos odontólogos;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XVIII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "XVIII - um representante indicado pelos órgãos superiores de classe que representem as empresas de odontologia de grupo;",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XIX",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "XIX - um representante do Ministério Público Federal.",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…rovadas por dois terços de seus integrantes exigirão igual quorum para serem reformadas, no todo ou em parte, pelo CNSP.",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…Em suas faltas e impedimentos, o presidente da Câmara será substituído pelo Secretário Executivo do Ministério da Saúde.",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…s de saúde, das entidades vinculadas à assistência à saúde ou dos consumidores, conforme dispuser seu regimento interno.",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…tratam os incisos VIII a XVII serão indicados pelas respectivas entidades e designados pelo Ministro de Estado da Saúde.",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ra, têm prazo de trinta dias para discussão e votação, após o que poderão ser avocadas pelo CNSP para deliberação final.",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ia à saúde devem satisfazer os seguintes requisitos, independentemente de outros que venham a ser determinados pela ANS:",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… ou empresas que mantêm sistemas de assistência privada à saúde na modalidade de autogestão, citadas no § 2o do art. 1o.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ratam o inciso I e o § 1o do art. 1o desta Lei, no prazo máximo de cento e oitenta dias a contar do seu registro na ANS.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…suas atividades, observando os seguintes requisitos, independentemente de outros que venham a ser determinados pela ANS:",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…a transferência da carteira sem prejuízo para o consumidor, ou a inexistência de beneficiários sob sua responsabilidade;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "b) garantia da continuidade da prestação de serviços dos beneficiários internados ou em tratamento;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…itação de suas obrigações com os prestadores de serviço no âmbito da operação de planos privados de assistência à saúde;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…aos prestadores de serviço contratados, credenciados ou referenciados, na forma e nos prazos a serem definidos pela ANS.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… inciso I e o § 1o do art. 1o desta Lei, e observado o que dispõe o art. 19, só poderão comercializar estes produtos se:",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…eradoras e administradoras estiverem provisoriamente cadastradas na ANS; e (Vide Medida Provisória nº 1.908-18, de 1999)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "II - os produtos a serem comercializados estiverem registrados na ANS. (Vide Medida Provisória nº 1.908-18, de 1999)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…configurar infração, constitui agravante na aplicação de penalidades por infração das demais normas previstas nesta Lei.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…tar informações, determinar alterações e promover a suspensão do todo ou de parte das condições dos planos apresentados.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ratam o inciso I e o § 1o do art. 1o desta Lei, no prazo máximo de cento e oitenta dias a contar do seu registro na ANS.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ialização de plano ou produto caso identifique qualquer irregularidade contratual, econômico-financeira ou assistencial.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… a Saúde, da Organização Mundial de Saúde, respeitadas as exigências mínimas estabelecidas no art. 12 desta Lei, exceto:",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "I - tratamento clínico ou cirúrgico experimental;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.880",
+            "ano": 2013
+          },
+          "trecho": "…edicamentos para tratamento domiciliar, ressalvado o disposto nas alíneas ‘c’ do inciso I e ‘g’ do inciso II do art. 12;",
+          "literal": "(Redação dada pela Lei nº 12.880, de 2013)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "…salvado o disposto nas alíneas ‘c’ do inciso I e ‘g’ do inciso II do art. 12; (Redação dada pela Lei nº 12.880, de 2013)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "VII - fornecimento de próteses, órteses e seus acessórios não ligados ao ato cirúrgico;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ntária, profilaxia de cárie dentária, cirurgia e traumatologia bucomaxilar; (Vide Medida Provisória nº 1.685-5, de 1998)",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "§ 1o As exceções constantes dos incisos deste artigo serão objeto de regulamentação pela ANS.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…tir de 3 de dezembro de 1999, o plano-referência de que trata este artigo a todos os seus atuais e futuros consumidores.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…assistência à saúde pela modalidade de autogestão e as pessoas jurídicas que operem exclusivamente planos odontológicos.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ocedimentos de alta complexidade, será definida por normas editadas pela ANS. (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "…spostas nas alíneas “c” do inciso I e “g” do inciso II do caput do art. 12, será estabelecida em norma editada pela ANS.",
+          "literal": "(Redação dada pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.307",
+            "ano": 2022
+          },
+          "trecho": "…ementar, inclusive de transplantes e de procedimentos de alta complexidade, será estabelecida em norma editada pela ANS.",
+          "literal": "(Redação dada pela Lei nº 14.307, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.454",
+            "ano": 2022
+          },
+          "trecho": "…rma editada pela ANS, que publicará rol de procedimentos e eventos em saúde suplementar, atualizado a cada incorporação.",
+          "literal": "(Redação dada pela Lei nº 14.454, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "…norma editada pela ANS, assessorada pela Comissão de Atualização do Rol de Procedimentos e Eventos em Saúde Suplementar.",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.307",
+            "ano": 2022
+          },
+          "trecho": "…sessorada pela Comissão de Atualização do Rol de Procedimentos e Eventos em Saúde Suplementar, e terão ampla divulgação.",
+          "literal": "(Incluído pela Lei nº 14.307, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "… no prazo de cento e vinte dias, que poderá ser prorrogado por sessenta dias corridos quando as circunstâncias exigirem.",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.307",
+            "ano": 2022
+          },
+          "trecho": "…la vigilância sanitária, com uso terapêutico aprovado para essas finalidades, observado o disposto no § 7º deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.307, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "…ue haja decisão da ANS, garantida a continuidade da assistência iniciada mesmo se a decisão for desfavorável à inclusão.",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.307",
+            "ano": 2022
+          },
+          "trecho": "…da data em que foi protocolado o pedido, prorrogável por 90 (noventa) dias corridos quando as circunstâncias o exigirem.",
+          "literal": "(Incluído pela Lei nº 14.307, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "…enha sido publicada, serão incluídas no Rol de Procedimentos e Eventos em Saúde Suplementar no prazo de até trinta dias.",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.307",
+            "ano": 2022
+          },
+          "trecho": "…a data em que foi protocolado o pedido, prorrogável por 60 (sessenta) dias corridos quando as circunstâncias o exigirem.",
+          "literal": "(Incluído pela Lei nº 14.307, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "…rata o § 6º observará o disposto na Lei nº 9.784, de 29 de janeiro de 1999, no que couber, e as seguintes determinações:",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "…mentos com as informações necessárias ao atendimento do disposto no § 3º do art. 10-D, na forma prevista em regulamento;",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "II - apresentação do preço estabelecido pela Câmara de Regulação do Mercado de Medicamentos, no caso de medicamentos;",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "…ção de relatório preliminar emitido pela Comissão de Atualização do Rol de Procedimentos e Eventos em Saúde Suplementar;",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "IV - realização de audiência pública, na hipótese de matéria relevante; e",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "…inal de que trata o § 3º do art. 10-D da Comissão de Atualização do Rol de Procedimentos e Eventos em Saúde Suplementar.",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.307",
+            "ano": 2022
+          },
+          "trecho": "…ue haja decisão da ANS, garantida a continuidade da assistência iniciada mesmo se a decisão for desfavorável à inclusão.",
+          "literal": "(Incluído pela Lei nº 14.307, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.307",
+            "ano": 2022
+          },
+          "trecho": "…do publicada, serão incluídas no Rol de Procedimentos e Eventos em Saúde Suplementar no prazo de até 60 (sessenta) dias.",
+          "literal": "(Incluído pela Lei nº 14.307, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.307",
+            "ano": 2022
+          },
+          "trecho": "…este artigo observará o disposto na Lei nº 9.784, de 29 de janeiro de 1999, no que couber, e as seguintes determinações:",
+          "literal": "(Incluído pela Lei nº 14.307, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.307",
+            "ano": 2022
+          },
+          "trecho": "… as informações necessárias ao atendimento do disposto no § 3º do art. 10-D desta Lei, na forma prevista em regulamento;",
+          "literal": "(Incluído pela Lei nº 14.307, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.307",
+            "ano": 2022
+          },
+          "trecho": "II - apresentação do preço estabelecido pela Câmara de Regulação do Mercado de Medicamentos, no caso de medicamentos;",
+          "literal": "(Incluído pela Lei nº 14.307, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.307",
+            "ano": 2022
+          },
+          "trecho": "…ção de relatório preliminar emitido pela Comissão de Atualização do Rol de Procedimentos e Eventos em Saúde Suplementar;",
+          "literal": "(Incluído pela Lei nº 14.307, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.307",
+            "ano": 2022
+          },
+          "trecho": "… no mínimo 1/3 (um terço) dos membros da Comissão de Atualização do Rol de Procedimentos e Eventos em Saúde Suplementar;",
+          "literal": "(Incluído pela Lei nº 14.307, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.307",
+            "ano": 2022
+          },
+          "trecho": "…trata o § 3º do art. 10-D desta Lei da Comissão de Atualização do Rol de Procedimentos e Eventos em Saúde Suplementar; e",
+          "literal": "(Incluído pela Lei nº 14.307, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.307",
+            "ano": 2022
+          },
+          "trecho": "VI - possibilidade de recurso, no prazo de até 15 (quinze) dias após a divulgação do relatório final.",
+          "literal": "(Incluído pela Lei nº 14.307, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.454",
+            "ano": 2022
+          },
+          "trecho": "…ados a partir de 1º de janeiro de 1999 e para os contratos adaptados a esta Lei e fixa as diretrizes de atenção à saúde.",
+          "literal": "(Incluído dada pela Lei nº 14.454, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.454",
+            "ano": 2022
+          },
+          "trecho": "…rido no § 12 deste artigo, a cobertura deverá ser autorizada pela operadora de planos de assistência à saúde, desde que:",
+          "literal": "(Incluído dada pela Lei nº 14.454, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.454",
+            "ano": 2022
+          },
+          "trecho": "…- exista comprovação da eficácia, à luz das ciências da saúde, baseada em evidências científicas e plano terapêutico; ou",
+          "literal": "(Incluído dada pela Lei nº 14.454, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.454",
+            "ano": 2022
+          },
+          "trecho": "… avaliação de tecnologias em saúde que tenha renome internacional, desde que sejam aprovadas também para seus nacionais.",
+          "literal": "(Incluído dada pela Lei nº 14.454, de 2022)"
+        }
+      ]
+    },
+    "10-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.171",
+            "ano": 2025
+          },
+          "trecho": "… mama, utilizando-se de todos os meios e técnicas necessárias, para o tratamento de mutilação total ou parcial do órgão.",
+          "literal": "(Redação dada pela Lei nº 15.171, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.770",
+            "ano": 2018
+          },
+          "trecho": "…condições técnicas, a reconstrução da mama será efetuada no tempo cirúrgico da mutilação referida no caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.770, de 2018)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.171",
+            "ano": 2025
+          },
+          "trecho": "…ilação, respeitada a autonomia da mulher para, plenamente esclarecida, decidir livremente pela execução do procedimento.",
+          "literal": "(Redação dada pela Lei nº 15.171, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.770",
+            "ano": 2018
+          },
+          "trecho": "…a acompanhamento e terá garantida a realização da cirurgia imediatamente após alcançar as condições clínicas requeridas.",
+          "literal": "(Incluído pela Lei nº 13.770, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.770",
+            "ano": 2018
+          },
+          "trecho": "…nstrução do complexo aréolo-mamilar integram a cirurgia plástica reconstrutiva prevista no caput e no § 1º deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.770, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.538",
+            "ano": 2023
+          },
+          "trecho": "…io, é assegurada a substituição do dispositivo sempre que ocorrerem complicações ou efeitos adversos a ele relacionados.",
+          "literal": "(Incluído pela Lei nº 14.538, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.538",
+            "ano": 2023
+          },
+          "trecho": "…s pacientes que sofrerem mutilação total ou parcial de mama decorrente de utilização de técnica de tratamento de câncer.",
+          "literal": "(Incluído pela Lei nº 14.538, de 2023)"
+        }
+      ]
+    },
+    "10-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.738",
+            "ano": 2012
+          },
+          "trecho": "…a com conector, para uso hospitalar, ambulatorial ou domiciliar, vedada a limitação de prazo, valor máximo e quantidade.",
+          "literal": "(Incluído pela Lei nº 12.738, de 2012)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…bulatorial ou domiciliar, vedada a limitação de prazo, valor máximo e quantidade. (Incluído pela Lei nº 12.738, de 2012)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "10-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.819",
+            "ano": 2019
+          },
+          "trecho": "… 1º do art. 1º desta Lei deverão incluir cobertura de atendimento à violência autoprovocada e às tentativas de suicídio.",
+          "literal": "(Incluído pela Lei nº 13.819, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…r cobertura de atendimento à violência autoprovocada e às tentativas de suicídio. (Incluído pela Lei nº 13.819, de 2019)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "10-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "…edimentos e Eventos em Saúde Suplementar à qual compete assessorar a ANS nas atribuições de que trata o § 4º do art. 10.",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "…ão da Comissão de Atualização do Rol de Procedimentos e Eventos em Saúde Suplementar serão estabelecidos em regulamento.",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "…ol de Procedimentos e Eventos em Saúde Suplementar será composta, no mínimo, por representantes das seguintes entidades:",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "I - um do Conselho Federal de Medicina;",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "II - um do Conselho Federal de Odontologia; e",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "III - um do Conselho Federal de Enfermagem.",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "…issão de Atualização do Rol de Procedimentos e Eventos em Saúde Suplementar deverá apresentar relatório que considerará:",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "…produto ou do procedimento analisado, reconhecidas pelo órgão competente para o registro ou a para a autorização de uso;",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "…os custos em relação às coberturas já previstas no rol de procedimentos e eventos em saúde suplementar, quando couber; e",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.067",
+            "ano": 2021
+          },
+          "trecho": "III - a análise de impacto financeiro da ampliação da cobertura no âmbito da saúde suplementar.",
+          "literal": "(Incluído pela Medida Provisória nº 1.067, de 2021)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…, cabendo à respectiva operadora o ônus da prova e da demonstração do conhecimento prévio do consumidor ou beneficiário.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…rova de que trata o caput, na forma da regulamentação a ser editada pela ANS. (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…s amplitudes de cobertura definidas no plano-referência de que trata o art. 10, segundo as seguintes exigências mínimas:",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… de serviços de apoio diagnóstico, tratamentos e demais procedimentos ambulatoriais, solicitados pelo médico assistente;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.880",
+            "ano": 2013
+          },
+          "trecho": "…iliares de uso oral, incluindo medicamentos para o controle de efeitos adversos relacionados ao tratamento e adjuvantes;",
+          "literal": "(Incluído pela Lei nº 12.880, de 2013)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "…ntos para o controle de efeitos adversos relacionados ao tratamento e adjuvantes; (Incluído pela Lei nº 12.880, de 2013)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…e especializadas, reconhecidas pelo Conselho Federal de Medicina, admitindo-se a exclusão dos procedimentos obstétricos;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… terapia intensiva, ou similar, vedada a limitação de prazo, valor máximo e quantidade, a critério do médico assistente;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…terapia, conforme prescrição do médico assistente, realizados ou ministrados durante o período de internação hospitalar;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…abelecimento hospitalar, dentro dos limites de abrangência geográfica previstos no contrato, em território brasileiro; e",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea g",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.880",
+            "ano": 2013
+          },
+          "trecho": "…edimentos cuja necessidade esteja relacionada à continuidade da assistência prestada em âmbito de internação hospitalar;",
+          "literal": "(Incluído pela Lei nº 12.880, de 2013)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea g",
+          "diploma": null,
+          "trecho": "…cionada à continuidade da assistência prestada em âmbito de internação hospitalar;(Incluído pela Lei nº 12.880, de 2013)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…imento dos períodos de carência, desde que a inscrição ocorra no prazo máximo de trinta dias do nascimento ou da adoção;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… de vinte e quatro horas para a cobertura dos casos de urgência e emergência; (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…res praticados pelo respectivo produto, pagáveis no prazo máximo de trinta dias após a entrega da documentação adequada;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… Lei fora das segmentações de que trata este artigo, observadas suas respectivas condições de abrangência e contratação.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…onsumidor, de que tem conhecimento da existência e disponibilidade do plano referência, e de que este lhe foi oferecido.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ior, é vedado o estabelecimento de carências superiores a três dias úteis. (Vide Medida Provisória nº 1.908-18, de 1999)",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.880",
+            "ano": 2013
+          },
+          "trecho": "…zes terapêuticas, revisados periodicamente, ouvidas as sociedades médicas de especialistas da área, publicados pela ANS.",
+          "literal": "(Incluído pela Lei nº 12.880, de 2013)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…nte, ouvidas as sociedades médicas de especialistas da área, publicados pela ANS. (Incluído pela Lei nº 12.880, de 2013)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.880",
+            "ano": 2013
+          },
+          "trecho": "…ira fracionada por ciclo, observadas as normas estabelecidas pelos órgãos reguladores e de acordo com prescrição médica.",
+          "literal": "(Incluído pela Lei nº 12.880, de 2013)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "… normas estabelecidas pelos órgãos reguladores e de acordo com prescrição médica. (Incluído pela Lei nº 12.880, de 2013)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.307",
+            "ano": 2022
+          },
+          "trecho": "… seu representante legal recebeu as devidas orientações sobre o uso, a conservação e o eventual descarte do medicamento.",
+          "literal": "(Redação dada pela Lei nº 14.307, de 2022)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…do vencimento do prazo inicial de vigência, não cabendo a cobrança de taxas ou qualquer outro valor no ato da renovação.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…fo único. Os produtos de que trata o caput, contratados individualmente, terão vigência mínima de um ano, sendo vedadas:",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "I - a recontagem de carências;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…vigência do contrato, desde que o consumidor seja comprovadamente notificado até o qüinquagésimo dia de inadimplência; e",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ontrato, em qualquer hipótese, durante a ocorrência de internação do titular. (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…o de pessoa portadora de deficiência, ninguém pode ser impedido de participar de planos privados de assistência à saúde.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…tuais de reajustes incidentes em cada uma delas, conforme normas expedidas pela ANS, ressalvado o disposto no art. 35-E.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…e idade, que participarem dos produtos de que tratam o inciso I e o § 1o do art. 1o, ou sucessores, há mais de dez anos.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…dos produtos de que tratam o inciso I e o § 1o do art. 1o desta Lei devem constar dispositivos que indiquem com clareza:",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "V - as condições de perda da qualidade de beneficiário;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "VII - o regime, ou tipo de contratação:",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "a) individual ou familiar;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "b) coletivo empresarial; ou",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "c) coletivo por adesão;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…do consumidor ou beneficiário, contratualmente previstos nas despesas com assistência médica, hospitalar e odontológica;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "X - a área geográfica de abrangência;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "XII - número de registro na ANS. (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…material explicativo que descreva, em linguagem simples e precisa, todas as suas características, direitos e obrigações.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.003",
+            "ano": 2014
+          },
+          "trecho": "…e que seja por outro prestador equivalente e mediante comunicação aos consumidores com 30 (trinta) dias de antecedência.",
+          "literal": "(Redação dada pela Lei nº 13.003, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…dos desse prazo mínimo os casos decorrentes de rescisão por fraude ou infração das normas sanitárias e fiscais em vigor.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…a manter a internação e a operadora, a pagar as despesas até a alta hospitalar, a critério médico, na forma do contrato.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…arantindo a continuação da assistência, sem ônus adicional para o consumidor. (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…presas deverão solicitar à ANS autorização expressa para tanto, informando: (Vide Medida Provisória nº 1.685-5, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "I - nome da entidade a ser excluída; (Vide Medida Provisória nº 1.685-5, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "II - capacidade operacional a ser reduzida com a exclusão; (Vide Medida Provisória nº 1.685-5, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…relacionando a necessidade de leitos e a capacidade operacional restante; e (Vide Medida Provisória nº 1.685-5, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…om padrões de qualidade equivalente e sem ônus adicional para o consumidor. (Vide Medida Provisória nº 1.685-5, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "17-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.003",
+            "ano": 2014
+          },
+          "trecho": "…s ou credenciadas, serão reguladas por contrato escrito, estipulado entre a operadora do plano e o prestador de serviço.",
+          "literal": "(Incluído pela Lei nº 13.003, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.003",
+            "ano": 2014
+          },
+          "trecho": "…s de assistência à saúde a que aludem os arts. 1o e 35-F desta Lei, no âmbito de planos privados de assistência à saúde.",
+          "literal": "(Incluído pela Lei nº 13.003, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.003",
+            "ano": 2014
+          },
+          "trecho": "…áusulas que definam direitos, obrigações e responsabilidades das partes, incluídas, obrigatoriamente, as que determinem:",
+          "literal": "(Incluído pela Lei nº 13.003, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.003",
+            "ano": 2014
+          },
+          "trecho": "I - o objeto e a natureza do contrato, com descrição de todos os serviços contratados;",
+          "literal": "(Incluído pela Lei nº 13.003, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.003",
+            "ano": 2014
+          },
+          "trecho": "…rma e da periodicidade do seu reajuste e dos prazos e procedimentos para faturamento e pagamento dos serviços prestados;",
+          "literal": "(Incluído pela Lei nº 13.003, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.003",
+            "ano": 2014
+          },
+          "trecho": "…icação dos atos, eventos e procedimentos médico-assistenciais que necessitem de autorização administrativa da operadora;",
+          "literal": "(Incluído pela Lei nº 13.003, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.003",
+            "ano": 2014
+          },
+          "trecho": "IV - a vigência do contrato e os critérios e procedimentos para prorrogação, renovação e rescisão;",
+          "literal": "(Incluído pela Lei nº 13.003, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.003",
+            "ano": 2014
+          },
+          "trecho": "V - as penalidades pelo não cumprimento das obrigações estabelecidas.",
+          "literal": "(Incluído pela Lei nº 13.003, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.003",
+            "ano": 2014
+          },
+          "trecho": "…ste artigo será anual e realizada no prazo improrrogável de 90 (noventa) dias, contado do início de cada ano-calendário.",
+          "literal": "(Incluído pela Lei nº 13.003, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.003",
+            "ano": 2014
+          },
+          "trecho": "…o no § 3o deste artigo, a Agência Nacional de Saúde Suplementar - ANS, quando for o caso, definirá o índice de reajuste.",
+          "literal": "(Incluído pela Lei nº 13.003, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.003",
+            "ano": 2014
+          },
+          "trecho": "…ação vigente, câmara técnica com representação proporcional das partes envolvidas para o adequado cumprimento desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.003, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.003",
+            "ano": 2014
+          },
+          "trecho": "§ 6o A ANS publicará normas regulamentares sobre o disposto neste artigo.",
+          "literal": "(Incluído pela Lei nº 13.003, de 2014)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.003",
+            "ano": 2014
+          },
+          "trecho": "…operadora de produtos de que tratam o inciso I e o § 1o do art. 1o desta Lei implica as seguintes obrigações e direitos:",
+          "literal": "(Redação dada pela Lei nº 13.003, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ndente de sua natureza jurídica constitutiva, impor contratos de exclusividade ou de restrição à atividade profissional.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…e previsto nesta Lei, sob pena de responsabilidade por atividade irregular. (Vide Medida Provisória nº 1.730-7, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…do art. 1o desta Lei, terão prazo de cento e oitenta dias, a partir da publicação da regulamentação específica pela ANS.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…peração dos produtos a que alude o caput, a partir de 2 de janeiro de 1999. (Vide Medida Provisória nº 1.730-7, de 1998)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…eguintes documentos, independentemente de outros que venham a ser exigidos: (Vide Medida Provisória nº 1.730-7, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "I - registro do instrumento de constituição da pessoa jurídica;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "II - nome fantasia;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "III - CNPJ;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "IV - endereço;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "V - telefone, fax e e-mail; e",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "VI - principais dirigentes da pessoa jurídica e nome dos cargos que ocupam.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…a serem comercializados, deverão ser apresentados à ANS os seguintes dados: (Vide Medida Provisória nº 1.730-7, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "I - razão social da operadora ou da administradora;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "II - CNPJ da operadora ou da administradora;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "III - nome do produto;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…entação da assistência (ambulatorial, hospitalar com obstetrícia, hospitalar sem obtetrícia, odontológica e referência);",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "V - tipo de contratação (individual/familiar, coletivo empresarial e coletivo por adesão);",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "VI - âmbito geográfico de cobertura;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "VII - faixas etárias e respectivos preços;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "VIII - rede hospitalar própria por Município (para segmentações hospitalar e referência);",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "IX - rede hospitalar contratada ou referenciada por Município (para segmentações hospitalar e referência);",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "X - outros documentos e informações que venham a ser solicitados pela ANS.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…registro provisório dos produtos serão tratados em norma específica da ANS. (Vide Medida Provisória nº 1.730-7, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…esta Lei e em seus regulamentos, para cada segmentação definida no art. 12. (Vide Medida Provisória nº 1.730-7, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…da às operadoras dos produtos de que tratam o inciso I e o § 1o do art. 1o. (Vide Medida Provisória nº 1.730-7, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…bro de 1998, estão sujeitas aos registros de que trata o § 1o deste artigo. (Vide Medida Provisória nº 1.730-7, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…es, inscrições no Cadastro de Pessoas Físicas dos titulares e Municípios onde residem, para fins do disposto no art. 32.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…elativos aos produtos de que tratam o inciso I e o § 1o do art. 1o desta Lei. (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Renumerado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…à consecução dos objetivos da fiscalização, de que trata o § 1o deste artigo. (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ue se refere o inciso I, desde que estas sejam, em conjunto ou isoladamente, consideradas como controladoras da empresa.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ente também poderá ser exigida quanto aos cálculos atuariais, elaborados segundo diretrizes gerais definidas pelo CONSU.",
+          "literal": "(Renumerado pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…m dispensadas da publicação do parecer do auditor e das demonstrações financeiras, devendo, a ANS, dar-lhes publicidade.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… concordata e não estão sujeitas a falência ou insolvência civil, mas tão-somente ao regime de liquidação extrajudicial.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…lência ou insolvência civil quando, no curso da liquidação extrajudicial, forem verificadas uma das seguintes hipóteses:",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "I - o ativo da massa liquidanda não for suficiente para o pagamento de pelo menos a metade dos créditos quirografários;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…pagamento das despesas administrativas e operacionais inerentes ao regular processamento da liquidação extrajudicial; ou",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ipóteses de fundados indícios de condutas previstas nos arts. 186 a 189 do Decreto-Lei no 7.661, de 21 de junho de 1945.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… em moeda corrente em prazo compatível para o pagamento das despesas administrativas e operacionais da massa liquidanda.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…sos I, II ou III do § 1o deste artigo, a ANS poderá autorizá-lo a requerer a falência ou insolvência civil da operadora.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "§ 4o A distribuição do requerimento produzirá imediatamente os seguintes efeitos:",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "I - a manutenção da suspensão dos prazos judiciais em relação à massa liquidanda;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…entos administrativos de liquidação extrajudicial, salvo os relativos à guarda e à proteção dos bens e imóveis da massa;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ponibilidade dos bens dos administradores, gerentes, conselheiros e assemelhados, até posterior determinação judicial; e",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "IV - prevenção do juízo que emitir o primeiro despacho em relação ao pedido de conversão do regime.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…imento e a decretação da falência ou insolvência civil, apoiar a proteção dos bens móveis e imóveis da massa liquidanda.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ndamento ficará suspenso até que o juiz competente nomeie o síndico da massa falida ou o liquidante da massa insolvente.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…por prazo não superior a trezentos e sessenta e cinco dias, ou a liquidação extrajudicial, conforme a gravidade do caso.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ireito ao contraditório, sem que isto implique efeito suspensivo da decisão administrativa que determinou o afastamento.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…s diretores, administradores, gerentes e membros do conselho fiscal da operadora sob regime de direção ou em liquidação.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…co-financeira da operadora, bem assim da qualidade do atendimento aos consumidores, e proporá à ANS as medidas cabíveis.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "§ 4o O diretor-fiscal ou técnico poderá propor a transformação do regime de direção em liquidação extrajudicial.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…nadas para sanar as irregularidades ou nas situações que impliquem risco para os consumidores participantes da carteira.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "24-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… qualquer forma, direta ou indireta, aliená-los ou onerá-los, até apuração e liquidação final de suas responsabilidades.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…xtrajudicial e atinge a todos aqueles que tenham estado no exercício das funções nos doze meses anteriores ao mesmo ato.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ut deste artigo poderá não alcançar os bens dos administradores, por deliberação expressa da Diretoria Colegiada da ANS.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ficio ou por recomendação do diretor fiscal ou do liquidante, poderá estender a indisponibilidade prevista neste artigo:",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… que tenham concorrido, no período previsto no § 1o, para a decretação da direção fiscal ou da liquidação extrajudicial;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…erceiros, no período previsto no § 1o, das pessoas referidas no inciso I, desde que configurada fraude na transferência.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…Não se incluem nas disposições deste artigo os bens considerados inalienáveis ou impenhoráveis pela legislação em vigor.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…dos ao competente registro público, anteriormente à data da decretação da direção fiscal ou da liquidação extrajudicial.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…s por eles assumidas durante sua gestão até o montante dos prejuízos causados, independentemente do nexo de causalidade.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "24-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ncias do diretor técnico, diretor fiscal e do responsável pela alienação de carteira, podendo ampliá-las, se necessário.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "24-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… de serviços de assistência privada à saúde preferem a todos os demais, exceto os de natureza trabalhista e tributários.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "24-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…-Lei no 41, de 18 de novembro de 1966, e no Decreto-Lei no 73, de 21 de novembro de 1966, conforme o que dispuser a ANS.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…onsultivos, fiscais e assemelhados às seguintes penalidades, sem prejuízo de outras estabelecidas na legislação vigente:",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…, sem prejuízo de outras estabelecidas na legislação vigente: (Redação dada pela Medida Provisória nº 2.177-44, de 2001)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "IV - inabilitação temporária para exercício de cargos em operadoras de planos de assistência à saúde;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…lamento da autorização de funcionamento e alienação da carteira da operadora. (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… às operações previstas na legislação e, em especial, pela falta de constituição e cobertura das garantias obrigatórias.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…uir-se-ão em receitas da SUSEP. (Vide Medida Provisória nº 1.665, de 1998) (Vide Medida Provisória nº 1.908-20, de 1999)",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…SP, no prazo de quinze dias, contado a partir do recebimento da intimação. (Vide Medida Provisória nº 1.908-20, de 1999)",
+          "literal": "(Revogado pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…dos fatos irregulares, cabendo à ANS dispor sobre normas para instauração, recursos e seus efeitos, instâncias e prazos.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…e ajuste de conduta, perante a diretoria colegiada, que terá eficácia de título executivo extrajudicial, obrigando-se a:",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "I - cessar a prática de atividades ou atos objetos da apuração; e",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "II - corrigir as irregularidades, inclusive indenizando os prejuízos delas decorrentes.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "§ 2o O termo de compromisso de ajuste de conduta conterá, necessariamente, as seguintes cláusulas:",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "I - obrigações do compromissário de fazer cessar a prática objeto da apuração, no prazo estabelecido;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…uperior a R$ 1.000.000,00 (um milhão de reais) de acordo com o porte econômico da operadora ou da prestadora de serviço.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ão importa confissão do compromissário quanto à matéria de fato, nem reconhecimento de ilicitude da conduta em apuração.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…, sem prejuízo da aplicação da multa a que se refere o inciso II do § 2o, acarreta a revogação da suspensão do processo.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "§ 5o Cumpridas as obrigações assumidas no termo de compromisso de ajuste de conduta, será extinto o processo.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "§ 6o Suspende-se a prescrição durante a vigência do termo de compromisso de ajuste de conduta.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…do descumprimento de outro termo de compromisso de ajuste de conduta nos termos desta Lei, dentro do prazo de dois anos.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "§ 8o O termo de compromisso de ajuste de conduta deverá ser publicado no Diário Oficial da União.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "§ 9o A ANS regulamentará a aplicação do disposto nos §§ 1o a 7o deste artigo.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "29-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…em vantagens para os consumidores, com vistas a assegurar a manutenção da qualidade dos serviços de assistência à saúde.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "§ 1o O termo de compromisso referido no caput não poderá implicar restrição de direitos do usuário.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…go serão considerados os critérios de aferição e controle da qualidade dos serviços a serem oferecidos pelas operadoras.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…compromisso poderá importar na aplicação da penalidade de multa a que se refere o inciso II, § 2o, do art. 29 desta Lei.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "30": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ertura assistencial de que gozava quando da vigência do contrato de trabalho, desde que assuma o seu pagamento integral.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…inciso I e o § 1o do art. 1o, ou sucessores, com um mínimo assegurado de seis meses e um máximo de vinte e quatro meses.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… deixará de existir quando da admissão do consumidor titular em novo emprego. (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… moderação, na utilização dos serviços de assistência médica ou hospitalar. (Vide Medida Provisória nº 1.685-5, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "31": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ertura assistencial de que gozava quando da vigência do contrato de trabalho, desde que assuma o seu pagamento integral.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… cada ano de contribuição, desde que assuma o pagamento integral do mesmo. (Vide Medida Provisória nº 1.908-20, de 1999)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…o as mesmas condições estabelecidas nos §§ 2o, 3o, 4o, 5o e 6o do art. 30. (Vide Medida Provisória nº 1.908-20, de 1999)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…endentes, em instituições públicas ou privadas, conveniadas ou contratadas, integrantes do Sistema Único de Saúde - SUS.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… quando esta possuir personalidade jurídica própria, e ao SUS, mediante tabela de procedimentos a ser aprovada pela ANS.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.469",
+            "ano": 2011
+          },
+          "trecho": "… ao SUS com base em regra de valoração aprovada e divulgada pela ANS, mediante crédito ao Fundo Nacional de Saúde - FNS.",
+          "literal": "(Redação dada pela Lei nº 12.469, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…do ressarcimento, a ANS disponibilizará às operadoras a discriminação dos procedimentos realizados para cada consumidor.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… pela ANS, creditando os valores correspondentes à entidade prestadora ou ao respectivo fundo de saúde, conforme o caso.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.469",
+            "ano": 2011
+          },
+          "trecho": "…efetuará o ressarcimento até o 15o (décimo quinto) dia da data de recebimento da notificação de cobrança feita pela ANS.",
+          "literal": "(Redação dada pela Lei nº 12.469, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "§ 4o O ressarcimento não efetuado no prazo previsto no § 3o será cobrado com os seguintes acréscimos:",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "I - juros de mora contados do mês seguinte ao do vencimento, à razão de um por cento ao mês ou fração;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "II - multa de mora de dez por cento",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…da ativa da ANS, a qual compete a cobrança judicial dos respectivos créditos. (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "§ 6o O produto da arrecadação dos juros e da multa de mora serão revertidos ao Fundo Nacional de Saúde.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…as aplicáveis ao processo de glosa ou impugnação dos procedimentos encaminhados, conforme previsto no § 2o deste artigo.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.469",
+            "ano": 2011
+          },
+          "trecho": "…o no § 2o deste artigo, cabendo-lhe, inclusive, estabelecer procedimentos para cobrança dos valores a serem ressarcidos.",
+          "literal": "(Redação dada pela Lei nº 12.469, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…SUS e nem superiores aos praticados pelas operadoras de produtos de que tratam o inciso I e o § 1o do art. 1o desta Lei.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.469",
+            "ano": 2011
+          },
+          "trecho": "…s para fins de aplicação dos recursos mínimos nas ações e serviços públicos de saúde nos termos da Constituição Federal.",
+          "literal": "(Incluído pela Lei nº 12.469, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.301",
+            "ano": 2025
+          },
+          "trecho": "… serem prestados, conforme condições estabelecidas em ato conjunto da Advocacia-Geral da União e do Ministério da Saúde.",
+          "literal": "(Incluído pela Medida Provisória nº 1.301, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.233",
+            "ano": 2025
+          },
+          "trecho": "… serem prestados, conforme condições estabelecidas em ato conjunto da Advocacia-Geral da União e do Ministério da Saúde.",
+          "literal": "(Incluído pela Lei nº 15.233, de 2025)"
+        }
+      ]
+    },
+    "34": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… planos privados de assistência à saúde, na forma da legislação em vigor e em especial desta Lei e de seus regulamentos.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.127",
+            "ano": 2015
+          },
+          "trecho": "…m outras atividades em conjunto com as relacionadas à assistência à saúde, nos termos dos pertinentes estatutos sociais.",
+          "literal": "(Incluído pela Lei nº 13.127, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.127",
+            "ano": 2015
+          },
+          "trecho": "…ir filial ou departamento com número do Cadastro Nacional da Pessoa Jurídica sequencial ao da pessoa jurídica principal.",
+          "literal": "(Incluído pela Lei nº 13.127, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.127",
+            "ano": 2015
+          },
+          "trecho": "… previsto no § 2o assegurarão condições para sua adequada segregação patrimonial, administrativa, financeira e contábil.",
+          "literal": "(Incluído pela Lei nº 13.127, de 2015)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…re 2 de setembro de 1998 e 1o de janeiro de 1999, a possibilidade de optar pela adaptação ao sistema previsto nesta Lei.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…everá ser formalizada em termo próprio, assinado pelos contratantes, de acordo com as normas a serem definidas pela ANS.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… para verificação pela ANS, que poderá determinar sua alteração quando o novo valor não estiver devidamente justificado.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…quanto aos últimos, os limites de cobertura previstos no contrato original. (Vide Medida Provisória nº 1.685-5, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… contrato poderá ser adaptado por decisão unilateral da empresa operadora. (Vide Medida Provisória nº 1.908-17, de 1999)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…a a transferência da sua titularidade, sob qualquer pretexto, a terceiros. (Vide Medida Provisória nº 1.908-17, de 1999)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… às novas regras, sendo considerados extintos para fim de comercialização. (Vide Medida Provisória nº 1.908-17, de 1999)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ção dos contratos originais, nas coberturas assistenciais neles pactuadas. (Vide Medida Provisória nº 1.908-17, de 1999)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…os procedimentos formais que deverão ser adotados pelas empresas para a adatação dos contratos de que trata este artigo.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "35-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…egrante da estrutura regimental do Ministério da Saúde, com competência para: (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… com competência para: (Vide Medida Provisória nº 1.665, de 1998) (Incluído pela Medida Provisória nº 2.177-44, de 2001)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "I - estabelecer e supervisionar a execução de políticas e diretrizes gerais do setor de saúde suplementar;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "II - aprovar o contrato de gestão da ANS;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "III - supervisionar e acompanhar as ações e o funcionamento da ANS;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "IV - fixar diretrizes gerais para implementação no setor de saúde suplementar sobre:",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "a) aspectos econômico-financeiros;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "b) normas de contabilidade, atuariais e estatísticas;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…imônio líquido mínimos, bem assim quanto às formas de sua subscrição e realização quando se tratar de sociedade anônima;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…o equilíbrio econômico-financeiro, consistentes em bens, móveis ou imóveis, ou fundos especiais ou seguros garantidores;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…jetivo de proteger o consumidor de planos privados de assistência à saúde em caso de insolvência de empresas operadoras;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "V - deliberar sobre a criação de câmaras técnicas, de caráter consultivo, de forma a subsidiar suas decisões.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… no inciso IV deste artigo, devendo adequá-las, se necessário, quando houver diretrizes gerais estabelecidas pelo CONSU.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "35-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "Art. 35-B. O CONSU será integrado pelos seguintes Ministros de Estado: (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…s Ministros de Estado: (Vide Medida Provisória nº 1.665, de 1998) (Incluído pela Medida Provisória nº 2.177-44, de 2001)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "I - Chefe da Casa Civil da Presidência da República, na qualidade de Presidente;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "II - da Saúde;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "III - da Fazenda;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "IV - da Justiça; e",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "V - do Planejamento, Orçamento e Gestão. (Vide Medida Provisória nº 1.685-5, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ao Presidente a prerrogativa de deliberar nos casos de urgência e relevante interesse, ad referendum dos demais membros.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…erendum do Conselho, o Presidente submeterá a decisão ao Colegiado na primeira reunião que se seguir àquela deliberação.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ssim outros representantes de órgãos públicos, para participar das reuniões, não lhes sendo permitido o direito de voto.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "§ 4o O Conselho reunir-se-á sempre que for convocado por seu Presidente.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "§ 5o O regimento interno do CONSU será aprovado por decreto do Presidente da República.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "§ 6o As atividades de apoio administrativo ao CONSU serão prestadas pela ANS.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "§ 7o O Presidente da ANS participará, na qualidade de Secretário, das reuniões do CONSU.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "35-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.935",
+            "ano": 2009
+          },
+          "trecho": "Art. 35-C. É obrigatória a cobertura do atendimento nos casos:",
+          "literal": "(Redação dada pela Lei nº 11.935, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…em risco imediato de vida ou de lesões irreparáveis para o paciente, caracterizada em declaração do médico assistente; e",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.935",
+            "ano": 2009
+          },
+          "trecho": "…arem risco imediato de vida ou de lesões irreparáveis para o paciente, caracterizado em declaração do médico assistente;",
+          "literal": "(Redação dada pela Lei nº 11.935, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "II - de urgência, assim entendidos os resultantes de acidentes pessoais ou de complicações no processo gestacional.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.935",
+            "ano": 2009
+          },
+          "trecho": "II - de urgência, assim entendidos os resultantes de acidentes pessoais ou de complicações no processo gestacional;",
+          "literal": "(Redação dada pela Lei nº 11.935, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.935",
+            "ano": 2009
+          },
+          "trecho": "III - de planejamento familiar.",
+          "literal": "(Incluído pela Lei nº 11.935, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ará publicar normas regulamentares para o disposto neste artigo, observados os termos de adaptação previstos no art. 35.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "35-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…o de reais) por infração, ressalvado o disposto no § 6o do art. 19 desta Lei. (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… do art. 19 desta Lei. (Vide Medida Provisória nº 1.665, de 1998) (Incluído pela Medida Provisória nº 2.177-44, de 2001)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "35-E": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… para os contratos celebrados anteriormente à data de vigência desta Lei que: (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…igência desta Lei que: (Vide Medida Provisória nº 1.665, de 1998) (Incluído pela Medida Provisória nº 2.177-44, de 2001)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…traprestação pecuniária para consumidores com mais de sessenta anos de idade estará sujeita à autorização prévia da ANS;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "II - a alegação de doença ou lesão preexistente estará sujeita à prévia regulamentação da matéria pela ANS;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…§ 1o do art. 1o desta Lei por parte da operadora, salvo o disposto no inciso II do parágrafo único do art. 13 desta Lei;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…pitalar em leito clínico, cirúrgico ou em centro de terapia intensiva ou similar, salvo a critério do médico assistente.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ser adaptados, até 31 de outubro de 1999, para repactuação da cláusula de reajuste, observadas as seguintes disposições:",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… fixo que, aplicado a cada ano, permita atingir o reajuste integral no início do último ano da faixa etária considerada;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ção da fórmula de diluição, consideram-se de dez anos as faixas etárias que tenham sido estipuladas sem limite superior;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…epactuado e do percentual de reajuste anual fixo, esclarecendo, ainda, que o seu pagamento formalizará esta repactuação;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "IV - a cláusula original de reajuste deverá ter sido previamente submetida à ANS;",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… nota técnica, para, uma vez aprovada a cláusula e o percentual de reajuste, adotar a diluição prevista neste parágrafo.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…a celebração, a aplicação de cláusula de reajuste das contraprestações pecuniárias dependerá de prévia aprovação da ANS.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "§ 3o O disposto no art. 35 desta Lei aplica-se sem prejuízo do estabelecido neste artigo.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "35-F": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "… saúde, observados os termos desta Lei e do contrato firmado entre as partes. (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "35-G": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ciso I e o § 1o do art. 1o desta Lei as disposições da Lei no 8.078, de 1990. (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "35-H": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…esta Lei, deverão estar acompanhados de parecer conclusivo daquela Autarquia. (Vide Medida Provisória nº 1.665, de 1998)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "35-I": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…rivado de assistência à saúde, independentemente da sua natureza jurídica. (Vide Medida Provisória nº 1.908-18, de 1999)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "35-J": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…obidade administrativa, sem prejuízo das responsabilidades civis e penais. (Vide Medida Provisória nº 1.908-18, de 1999)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "35-L": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…ienações realizadas ou os gravames constituídos com violação deste artigo. (Vide Medida Provisória nº 1.908-18, de 1999)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…o do Registro Geral de Imóveis, mediante requerimento firmado pela operadora de plano de assistência à saúde e pela ANS.",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    },
+    "35-M": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.177-44",
+            "ano": 2001
+          },
+          "trecho": "…na Lei no 9.932, de 20 de dezembro de 1999, e regulamentações posteriores. (Vide Medida Provisória nº 1.908-20, de 1999)",
+          "literal": "(Incluído pela Medida Provisória nº 2.177-44, de 2001)"
+        }
+      ]
+    }
+  }
+}

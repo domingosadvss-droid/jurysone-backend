@@ -1,0 +1,229 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "LAI",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_lai.json",
+      "colecao": "artigos",
+      "sha256": "370a60609f8c1c642f9a5acdc187efbbb4644f0d8fea968a30a3cb90ac19228d",
+      "total_registros": 49,
+      "gerado_em": "2026-08-21T22:36:29+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 6,
+      "anotacoes": 17,
+      "anotacoes_sem_diploma_nomeado": 7
+    }
+  },
+  "vigencia": {
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso VIII",
+          "diploma": null,
+          "trecho": "VIII –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.345",
+            "ano": 2022
+          },
+          "trecho": "VIII – (VETADO).",
+          "literal": "(Incluído pela Lei nº 14.345, de 2022)"
+        }
+      ]
+    },
+    "8-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.141",
+            "ano": 2025
+          },
+          "trecho": "…derais decorrentes de contrato de gestão deverão divulgar as seguintes informações relativas aos respectivos empregados:",
+          "literal": "(Incluído pela Lei nº 15.141, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.141",
+            "ano": 2025
+          },
+          "trecho": "… e salários, inclusive com a divulgação dos critérios para a evolução na carreira e para a fixação da política salarial;",
+          "literal": "(Incluído pela Lei nº 15.141, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.141",
+            "ano": 2025
+          },
+          "trecho": "…da entidade, discriminado por cargo e por faixas salariais, acompanhado do nome do empregado e do cargo por ele ocupado;",
+          "literal": "(Incluído pela Lei nº 15.141, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.141",
+            "ano": 2025
+          },
+          "trecho": "…jetons e quaisquer outras vantagens pecuniárias, que os empregados possam receber em virtude de condições específicas; e",
+          "literal": "(Incluído pela Lei nº 15.141, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.141",
+            "ano": 2025
+          },
+          "trecho": "…nções gratificadas, os critérios para sua ocupação e o rol dos empregados que ocupam cada espécie de função gratificada.",
+          "literal": "(Incluído pela Lei nº 15.141, de 2025)"
+        }
+      ]
+    },
+    "8-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.141",
+            "ano": 2025
+          },
+          "trecho": "…s jetons e quaisquer outras vantagens pecuniárias, que os empregados possam receber em virtude de condições específicas.",
+          "literal": "(Incluído pela Lei nº 15.141, de 2025)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.129",
+            "ano": 2021
+          },
+          "trecho": "Art. 12. O serviço de busca e de fornecimento de informação é gratuito.",
+          "literal": "(Redação dada pela Lei nº 14.129, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 12. O serviço de busca e de fornecimento de informação é gratuito. (Redação dada pela Lei nº 14.129, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.129",
+            "ano": 2021
+          },
+          "trecho": "…de busca e de fornecimento da informação exigir reprodução de documentos pelo órgão ou pela entidade pública consultada.",
+          "literal": "(Incluído pela Lei nº 14.129, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…o exigir reprodução de documentos pelo órgão ou pela entidade pública consultada. (Incluído pela Lei nº 14.129, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.129",
+            "ano": 2021
+          },
+          "trecho": "…a fazê-lo sem prejuízo do sustento próprio ou da família, declarada nos termos da Lei nº 7.115, de 29 de agosto de 1983.",
+          "literal": "(Incluído pela Lei nº 14.129, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…rio ou da família, declarada nos termos da Lei nº 7.115, de 29 de agosto de 1983. (Incluído pela Lei nº 14.129, de 2021)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 19.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 35.",
+          "literal": "(VETADO)"
+        }
+      ]
+    }
+  }
+}

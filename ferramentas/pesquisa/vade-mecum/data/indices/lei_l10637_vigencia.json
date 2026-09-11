@@ -1,0 +1,1614 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L10637",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l10637.json",
+      "colecao": "artigos",
+      "sha256": "711dd460e2435a69772b7b30e522a111a06383c5457a769ec352bb2089ea4c7c",
+      "total_registros": 65,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 29,
+      "anotacoes": 147,
+      "anotacoes_sem_diploma_nomeado": 47
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…otal das receitas auferidas no mês pela pessoa jurídica, independentemente de sua denominação ou classificação contábil.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…soa jurídica, independentemente de sua denominação ou classificação contábil. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…s do ajuste a valor presente de que trata o inciso VIII do caput do art. 183 da Lei no 6.404, de 15 de dezembro de 1976.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "… inciso VIII do caput do art. 183 da Lei no 6.404, de 15 de dezembro de 1976. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ntribuição para o PIS/Pasep é o total das receitas auferidas pela pessoa jurídica, conforme definido no caput e no § 1o.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…eceitas auferidas pela pessoa jurídica, conforme definido no caput e no § 1o. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "IV -",
+          "literal": "(Revogado pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…imônio líquido e os lucros e dividendos derivados de participações societárias, que tenham sido computados como receita;",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "…ivados de participações societárias, que tenham sido computados como receita; (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…e 1976, decorrentes da venda de bens do ativo não circulante, classificado como investimento, imobilizado ou intangível;",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "…vo não circulante, classificado como investimento, imobilizado ou intangível; (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.945",
+            "ano": 2009
+          },
+          "trecho": "…de exportação, conforme o disposto no inciso II do § 1o do art. 25 da Lei Complementar no 87, de 13 de setembro de 1996.",
+          "literal": "(Incluído pela Lei nº 11.945, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…º 6.404, de 15 de dezembro de 1976, referentes a receitas excluídas da base de cálculo da Contribuição para o PIS/Pasep;",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso VIII",
+          "diploma": null,
+          "trecho": "…erentes a receitas excluídas da base de cálculo da Contribuição para o PIS/Pasep; (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "IX - relativas aos ganhos decorrentes de avaliação de ativo e passivo com base no valor justo;",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso IX",
+          "diploma": null,
+          "trecho": "…s aos ganhos decorrentes de avaliação de ativo e passivo com base no valor justo; (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.789",
+            "ano": 2023
+          },
+          "trecho": "X -",
+          "literal": "(Revogado pela Lei nº 14.789, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…a seja ativo intangível representativo de direito de exploração, no caso de contratos de concessão de serviços públicos;",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso XI",
+          "diploma": null,
+          "trecho": "…de direito de exploração, no caso de contratos de concessão de serviços públicos; (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.592",
+            "ano": 2023
+          },
+          "trecho": "…ções de que tratam as alíneas “a”, “b”, “c” e “e” do § 1º do art. 19 do Decreto-Lei nº 1.598, de 26 de dezembro de 1977;",
+          "literal": "(Redação dada pela Lei nº 14.592, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.592",
+            "ano": 2023
+          },
+          "trecho": "XIII - relativas ao prêmio na emissão de debêntures; e",
+          "literal": "(Redação dada pela Lei nº 14.592, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.592",
+            "ano": 2023
+          },
+          "trecho": "XIV - relativas ao valor do ICMS que tenha incidido sobre a operação.",
+          "literal": "(Incluído pela Lei nº 14.592, de 2023)"
+        }
+      ]
+    },
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.865",
+            "ano": 2004
+          },
+          "trecho": "…o disposto no caput a receita bruta auferida pelos produtores ou importadores, que devem aplicar as alíquotas previstas:",
+          "literal": "(Incluído pela Lei nº 10.865, de 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.925",
+            "ano": 2004
+          },
+          "trecho": "…olina de aviação, óleo diesel e suas correntes e gás liquefeito de petróleo - GLP derivado de petróleo e de gás natural;",
+          "literal": "(Redação dada pela Lei nº 10.925, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.865",
+            "ano": 2004
+          },
+          "trecho": "…eriores, no caso de venda de produtos farmacêuticos, de perfumaria, de toucador ou de higiene pessoal nele relacionados;",
+          "literal": "(Incluído pela Lei nº 10.865, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.865",
+            "ano": 2004
+          },
+          "trecho": "…9, 8432.40.00, 84.32.80.00, 8433.20, 8433.30.00, 8433.40.00, 8433.5, 87.01, 87.02, 87.03, 87.04, 87.05 e 87.06, da TIPI;",
+          "literal": "(Incluído pela Lei nº 10.865, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.865",
+            "ano": 2004
+          },
+          "trecho": "…para comerciante atacadista ou varejista ou para consumidores, de autopeças relacionadas nos Anexos I e II da mesma Lei;",
+          "literal": "(Incluído pela Lei nº 10.865, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.865",
+            "ano": 2004
+          },
+          "trecho": "…da dos produtos classificados nas posições 40.11 (pneus novos de borracha) e 40.13 (câmaras-de-ar de borracha), da TIPI;",
+          "literal": "(Incluído pela Lei nº 10.865, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.865",
+            "ano": 2004
+          },
+          "trecho": "…art. 2o da Lei no 10.560, de 13 de novembro de 2002, e alterações posteriores, no caso de venda de querosene de aviação;",
+          "literal": "(Incluído pela Lei nº 10.865, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "VII - a IX -",
+          "literal": "(Revogado pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso VII",
+          "diploma": null,
+          "trecho": "VII - a IX - (Revogado pela Lei nº 13.097, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.925",
+            "ano": 2004
+          },
+          "trecho": "…o diesel e suas correntes, querosene de aviação, gás liquefeito de petróleo - GLP derivado de petróleo e de gás natural.",
+          "literal": "(Incluído pela Lei nº 10.925, de 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "…antes, à qual se aplicam as alíquotas previstas, conforme o caso, no art. 5º da Lei nº 9.718, de 27 de novembro de 1998.",
+          "literal": "(Redação dada pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.865",
+            "ano": 2004
+          },
+          "trecho": "…uição Federal, quando destinado à impressão de periódicos, que fica sujeita à alíquota de 0,8% (oito décimos por cento).",
+          "literal": "(Incluído pela Lei nº 10.865, de 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "…lassificados nas posições 30.02, 30.06, 39.26, 40.15 e 90.18, e sobre semens e embriões da posição 05.11, todos da TIPI.",
+          "literal": "(Redação dada pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.996",
+            "ano": 2004
+          },
+          "trecho": "…a Zona Franca de Manaus – SUFRAMA, que fica sujeita, ressalvado o disposto nos §§ 1o a 3o deste artigo, às alíquotas de:",
+          "literal": "(Incluído pela Lei nº 10.996, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.996",
+            "ano": 2004
+          },
+          "trecho": "I - 0,65% (sessenta e cinco centésimos por cento), no caso de venda efetuada a pessoa jurídica estabelecida:",
+          "literal": "(Incluído pela Lei nº 10.996, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.996",
+            "ano": 2004
+          },
+          "trecho": "a) na Zona Franca de Manaus; e",
+          "literal": "(Incluído pela Lei nº 10.996, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.996",
+            "ano": 2004
+          },
+          "trecho": "b) fora da Zona Franca de Manaus, que apure a Contribuição para o PIS/PASEP no regime de não-cumulatividade;",
+          "literal": "(Incluído pela Lei nº 10.996, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.996",
+            "ano": 2004
+          },
+          "trecho": "II - 1,3% (um inteiro e três décimos por cento), no caso de venda efetuada a:",
+          "literal": "(Incluído pela Lei nº 10.996, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.996",
+            "ano": 2004
+          },
+          "trecho": "a) pessoa jurídica estabelecida fora da Zona Franca de Manaus, que apure o imposto de renda com base no lucro presumido;",
+          "literal": "(Incluído pela Lei nº 10.996, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.996",
+            "ano": 2004
+          },
+          "trecho": "…ha sua receita, total ou parcialmente, excluída do regime de incidência não-cumulativa da Contribuição para o PIS/PASEP;",
+          "literal": "(Incluído pela Lei nº 10.996, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.996",
+            "ano": 2004
+          },
+          "trecho": "…da Zona Franca de Manaus e que seja optante pelo Sistema Integrado de Pagamento de Impostos e Contribuições – SIMPLES; e",
+          "literal": "(Incluído pela Lei nº 10.996, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.996",
+            "ano": 2004
+          },
+          "trecho": "d) órgãos da administração federal, estadual, distrital e municipal.",
+          "literal": "(Incluído pela Lei nº 10.996, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.945",
+            "ano": 2009
+          },
+          "trecho": "…e 25 de novembro de 1991, o art. 11 da Lei no 8.387, de 30 de dezembro de 1991, e a Lei no 8.857, de 8 de março de 1994.",
+          "literal": "(Incluído pela Lei nº 11.945, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.945",
+            "ano": 2009
+          },
+          "trecho": "… deste artigo relativa ao projeto aprovado não se aplica às pessoas jurídicas comerciais referidas no § 5o deste artigo.",
+          "literal": "(Incluído pela Lei nº 11.945, de 2009)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.865",
+            "ano": 2004
+          },
+          "trecho": "I - bens adquiridos para revenda, exceto em relação às mercadorias e aos produtos referidos:",
+          "literal": "(Redação dada pela Lei nº 10.865, de 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "a) no inciso III do § 3o do art. 1o desta Lei; e",
+          "literal": "(Redação dada pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.787",
+            "ano": 2008
+          },
+          "trecho": "b) nos §§ 1o e 1o-A do art. 2o desta Lei;",
+          "literal": "(Redação dada pela Lei nº 11.787, de 2008)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.865",
+            "ano": 2004
+          },
+          "trecho": "…ortador, ao concessionário, pela intermediação ou entrega dos veículos classificados nas posições 87.03 e 87.04 da TIPI;",
+          "literal": "(Redação dada pela Lei nº 10.865, de 2004)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.865",
+            "ano": 2004
+          },
+          "trecho": "… Sistema Integrado de Pagamento de Impostos e Contribuições das Microempresas e das Empresas de Pequeno Porte - SIMPLES;",
+          "literal": "(Redação dada pela Lei nº 10.865, de 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…bricados para locação a terceiros ou para utilização na produção de bens destinados à venda ou na prestação de serviços.",
+          "literal": "(Redação dada pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "… energia elétrica e energia térmica, inclusive sob a forma de vapor, consumidas nos estabelecimentos da pessoa jurídica.",
+          "literal": "(Redação dada pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.898",
+            "ano": 2009
+          },
+          "trecho": "… empregados por pessoa jurídica que explore as atividades de prestação de serviços de limpeza, conservação e manutenção.",
+          "literal": "(Incluído pela Lei nº 11.898, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ados ao ativo intangível, adquiridos para utilização na produção de bens destinados a venda ou na prestação de serviços.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso XI",
+          "diploma": null,
+          "trecho": "…ra utilização na produção de bens destinados a venda ou na prestação de serviços. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.865",
+            "ano": 2004
+          },
+          "trecho": "§ 1o O crédito será determinado mediante a aplicação da alíquota prevista no caput do art. 2o desta Lei sobre o valor:",
+          "literal": "(Redação dada pela Lei nº 10.865, de 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.684",
+            "ano": 2003
+          },
+          "trecho": "II - dos itens mencionados nos incisos IV, V e IX do caput, incorridos no mês;",
+          "literal": "(Redação dada pela Lei nº 10.684, de 30.5.2003)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…I - dos encargos de depreciação e amortização dos bens mencionados nos incisos VI, VII e XI do caput, incorridos no mês;",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "…ão dos bens mencionados nos incisos VI, VII e XI do caput, incorridos no mês; (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.865",
+            "ano": 2004
+          },
+          "trecho": "§ 2o Não dará direito a crédito o valor:",
+          "literal": "(Redação dada pela Lei nº 10.865, de 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.592",
+            "ano": 2023
+          },
+          "trecho": "I - de mão de obra paga a pessoa física;",
+          "literal": "(Redação dada pela Lei nº 14.592, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.592",
+            "ano": 2023
+          },
+          "trecho": "…lizados como insumo em produtos ou serviços sujeitos à alíquota 0 (zero), isentos ou não alcançados pela contribuição; e",
+          "literal": "(Redação dada pela Lei nº 14.592, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.592",
+            "ano": 2023
+          },
+          "trecho": "III - do ICMS que tenha incidido sobre a operação de aquisição.",
+          "literal": "(Incluído pela Lei nº 14.592, de 2023)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.925",
+            "ano": 2004
+          },
+          "trecho": "§§ 10 e 11.",
+          "literal": "(Revogados pela Lei nº 10.925, de 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.307",
+            "ano": 2006
+          },
+          "trecho": "…4o do art. 2o desta Lei, mediante a aplicação da alíquota de 1,65% (um inteiro e sessenta e cinco centésimos por cento).",
+          "literal": "(Redação dada pela Lei nº 11.307, de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…o ativo imobilizado na forma do inciso VI do caput deste artigo os custos de que tratam os incisos do § 2o deste artigo.",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.945",
+            "ano": 2009
+          },
+          "trecho": "…e 25 de novembro de 1991, o art. 11 da Lei no 8.387, de 30 de dezembro de 1991, e a Lei no 8.857, de 8 de março de 1994.",
+          "literal": "(Incluído pela Lei nº 11.945, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 16º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.945",
+            "ano": 2009
+          },
+          "trecho": "…s no § 15, o crédito será determinado mediante a aplicação da alíquota de 0,65% (sessenta e cinco centésimos por cento).",
+          "literal": "(Incluído pela Lei nº 11.945, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 17º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…es do ajuste a valor presente de que trata o inciso III do caput do art. 184 da Lei nº 6.404, de 15 de dezembro de 1976.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 17º",
+          "diploma": null,
+          "trecho": "…ata o inciso III do caput do art. 184 da Lei nº 6.404, de 15 de dezembro de 1976. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 18º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ncisos VI e VII do caput não se aplica no caso de bem objeto de arrendamento mercantil, na pessoa jurídica arrendatária.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 18º",
+          "diploma": null,
+          "trecho": "…no caso de bem objeto de arrendamento mercantil, na pessoa jurídica arrendatária. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 19º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ra fins do disposto nos incisos VI e VII do caput, fica vedado o desconto de quaisquer créditos calculados em relação a:",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 19º",
+          "diploma": null,
+          "trecho": "…I do caput, fica vedado o desconto de quaisquer créditos calculados em relação a: (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…s registrados como custo na forma da alínea “b” do § 1o do art. 17 do Decreto-Lei no 1.598, de 26 de dezembro de 1977; e",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…ínea “b” do § 1o do art. 17 do Decreto-Lei no 1.598, de 26 de dezembro de 1977; e (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "II - custos estimados de desmontagem e remoção do imobilizado e de restauração do local em que estiver situado.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…ntagem e remoção do imobilizado e de restauração do local em que estiver situado. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 20º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…os VI e VII do caput, não serão computados os ganhos e perdas decorrentes de avaliação de ativo com base no valor justo.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 20º",
+          "diploma": null,
+          "trecho": "…dos os ganhos e perdas decorrentes de avaliação de ativo com base no valor justo. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 21º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…o financeiro, na proporção de seu recebimento, excetuado, para ambos os casos, o crédito previsto no inciso VI do caput.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 21º",
+          "diploma": null,
+          "trecho": "…imento, excetuado, para ambos os casos, o crédito previsto no inciso VI do caput. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 22º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 22. O disposto no inciso XI do caput não se aplica ao ativo intangível referido no § 21.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 22º",
+          "diploma": null,
+          "trecho": "…isposto no inciso XI do caput não se aplica ao ativo intangível referido no § 21. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.865",
+            "ano": 2004
+          },
+          "trecho": "…iços para pessoa física ou jurídica residente ou domiciliada no exterior, cujo pagamento represente ingresso de divisas;",
+          "literal": "(Redação dada pela Lei nº 10.865, de 2004)"
+        }
+      ]
+    },
+    "5-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.865",
+            "ano": 2004
+          },
+          "trecho": "…os e consoante projetos aprovados pelo Conselho de Administração da Superintendência da Zona Franca de Manaus – SUFRAMA.",
+          "literal": "(Redação dada pela Lei nº 10.865, de 2004)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.833",
+            "ano": 2003
+          },
+          "trecho": "Art. 6o .",
+          "literal": "(Revogado pela Lei nº 10.833, de 29.12.2003)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.967",
+            "ano": 2024
+          },
+          "trecho": "… de novembro de 1998, e na Lei que institui o Estatuto da Segurança Privada e da Segurança das Instituições Financeiras;",
+          "literal": "(Redação dada pela Lei nº 14.967, de 2024)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "VI -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "a)",
+          "literal": "(Revogado pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso IX",
+          "diploma": null,
+          "trecho": "IX -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso X",
+          "diploma": null,
+          "trecho": "X -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "X - (VETADO);",
+          "literal": "(Redação dada pela Lei nº 12.973,de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.684",
+            "ano": 2003
+          },
+          "trecho": "…s receitas decorrentes de prestação de serviços das empresas jornalísticas e de radiodifusão sonora e de sons e imagens.",
+          "literal": "(Incluído pela Lei nº 10.684, de 30.5.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.693",
+            "ano": 2012
+          },
+          "trecho": "…ceitas decorrentes de operações de comercialização de pedra britada, de areia para construção civil e de areia de brita.",
+          "literal": "(Incluído pela Lei nº 12.693, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.043",
+            "ano": 2014
+          },
+          "trecho": "XIII - as receitas decorrentes da alienação de participações societárias.",
+          "literal": "(Incluído pela Lei nº 13.043, de 2014)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 9o",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.933",
+            "ano": 2009
+          },
+          "trecho": "…o art. 1o desta Lei deverá ser paga até o 25o (vigésimo quinto) dia do mês subsequente ao de ocorrência do fato gerador.",
+          "literal": "(Redação dada pela Lei nº 11.933, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.933",
+            "ano": 2009
+          },
+          "trecho": "…rata o caput deste artigo não for dia útil, considerar-se-á antecipado o prazo para o primeiro dia útil que o anteceder.",
+          "literal": "(Incluído pela Lei nº 11.933, de 2009)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.865",
+            "ano": 2004
+          },
+          "trecho": "…erá utilizado em 12 (doze) parcelas mensais, iguais e sucessivas, a partir da data a que se refere o caput deste artigo.",
+          "literal": "(Redação dada pela Lei nº 10.865, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.684",
+            "ano": 2003
+          },
+          "trecho": "§ 4o O disposto no caput aplica-se também aos estoques de produtos acabados e em elaboração.",
+          "literal": "(Incluído pela Lei nº 10.684, de 30.5.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.865",
+            "ano": 2004
+          },
+          "trecho": "…ho de 2002, e 10.560, de 13 de novembro de 2002, ou quaisquer outros submetidos à incidência monofásica da contribuição.",
+          "literal": "(Incluído pela Lei nº 10.865, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.865",
+            "ano": 2004
+          },
+          "trecho": "…icam aos estoques de produtos adquiridos a alíquota 0 (zero), isentos ou não alcançados pela incidência da contribuição.",
+          "literal": "(Incluído pela Lei nº 10.865, de 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.925",
+            "ano": 2004
+          },
+          "trecho": "…ive para as pessoas jurídicas fabricantes dos produtos referidos no art. 51 da Lei no 10.833, de 29 de dezembro de 2003.",
+          "literal": "(Redação dada pela Lei nº 10.925, de 2004)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 22.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "VI -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso VII",
+          "diploma": null,
+          "trecho": "VII -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso VIII",
+          "diploma": null,
+          "trecho": "VIII -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso IX",
+          "diploma": null,
+          "trecho": "IX -",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.684",
+            "ano": 2003
+          },
+          "trecho": "…a que corresponde a notação NT (não tributados), sairão do estabelecimento industrial com suspensão do referido imposto.",
+          "literal": "(Redação dada pela Lei nº 10.684, de 30.5.2003)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "c)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.969",
+            "ano": 2019
+          },
+          "trecho": "c) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.969, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.969",
+            "ano": 2019
+          },
+          "trecho": "… o art. 16-A da Lei nº 8.248, de 23 de outubro de 1991, desde que façam jus ao crédito previsto no art. 4º da mesma Lei.",
+          "literal": "(Incluído pela Lei nº 13.969, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.715",
+            "ano": 2012
+          },
+          "trecho": "…total de venda de bens e serviços no mesmo período, após excluídos os impostos e contribuições incidentes sobre a venda.",
+          "literal": "(Redação dada pela Lei nº 12.715, de 2012)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.712",
+            "ano": 2012
+          },
+          "trecho": "§ 8o",
+          "literal": "(Revogado pela Lei nº 12.712, de 2012)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 33.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "36": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "Art. 36.",
+          "literal": "(Revogado pela Lei nº 11.196, de 2005)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "Art. 37.",
+          "literal": "(Revogado pela Lei nº 11.727, de 2008)"
+        }
+      ]
+    },
+    "38": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "225",
+            "ano": 2026
+          },
+          "trecho": "Art. 38.",
+          "literal": "(Revogado pela Lei Complementar nº 225, de 2026)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "Arts. 39 e 40.",
+          "literal": "(Revogados pela Lei nº 11.196, de 2005)"
+        }
+      ]
+    },
+    "41": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 41.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "Arts. 42 e 43.",
+          "literal": "(Revogados pela Lei nº 11.196, de 2005)"
+        }
+      ]
+    },
+    "44": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 44.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "45": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.596",
+            "ano": 2023
+          },
+          "trecho": "Art. 45.",
+          "literal": "(Revogado pela Lei nº 14.596, de 2023)"
+        }
+      ]
+    },
+    "47": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "§ 7o",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "48": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 48.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "54": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.833",
+            "ano": 2003
+          },
+          "trecho": "…dustrial fabricante de cigarros, classificados no código 2402.20.00 da Tabela de Incidência do IPI - TIPI, ou mortalhas.",
+          "literal": "(Redação dada pela Lei nº 10.833, de 29.12.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.833",
+            "ano": 2003
+          },
+          "trecho": "§ 1o Os fabricantes e os importadores do papel de que trata o caput deverão:",
+          "literal": "(Incluído pela Lei nº 10.833, de 29.12.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.833",
+            "ano": 2003
+          },
+          "trecho": "…o registro especial de que trata o art. 1o do Decreto-Lei no 1.593, de 21 de dezembro de 1977, e alterações posteriores;",
+          "literal": "(Incluído pela Lei nº 10.833, de 29.12.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.833",
+            "ano": 2003
+          },
+          "trecho": "… da comercialização de papel para industrialização de cigarros, nos termos definidos pela Secretaria da Receita Federal.",
+          "literal": "(Incluído pela Lei nº 10.833, de 29.12.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.833",
+            "ano": 2003
+          },
+          "trecho": "…posto no inciso I do § 1o não se aplica aos fabricantes de cigarros classificados no Ex 01 do código 2402.20.00 da TIPI.",
+          "literal": "(Incluído pela Lei nº 10.833, de 29.12.2003)"
+        }
+      ]
+    },
+    "55": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "Art. 55.",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        }
+      ]
+    },
+    "56": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 56.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "61": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 61.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "63": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.828",
+            "ano": 2003
+          },
+          "trecho": "Art. 63.",
+          "literal": "(Revogado pela Lei nº 10.828, de 2003)"
+        }
+      ]
+    },
+    "65": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 65.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "67": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 67.",
+          "literal": "(VETADO)"
+        }
+      ]
+    }
+  }
+}

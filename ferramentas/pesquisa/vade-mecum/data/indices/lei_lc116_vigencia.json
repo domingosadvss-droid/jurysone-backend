@@ -1,0 +1,757 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "LC116",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_lc116.json",
+      "colecao": "artigos",
+      "sha256": "46c24af4ace29c917ed72fbf362eead4a1a11e692239e2c368c069c6e53df2d0",
+      "total_registros": 12,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 7,
+      "anotacoes": 66,
+      "anotacoes_sem_diploma_nomeado": 11
+    }
+  },
+  "vigencia": {
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "…al do domicílio do prestador, exceto nas hipóteses previstas nos incisos I a XXV, quando o imposto será devido no local:",
+          "literal": "(Redação dada pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "218",
+            "ano": 2025
+          },
+          "trecho": "III – da execução da obra, no caso dos serviços descritos nos subitens 7.02, 7.19 e 14.14 da lista anexa;",
+          "literal": "(Redação dada pela Lei Complementar nº 218, de 2025)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso X",
+          "diploma": null,
+          "trecho": "X –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XI",
+          "diploma": null,
+          "trecho": "XI –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "…ços congêneres indissociáveis da formação, manutenção e colheita de florestas para quaisquer fins e por quaisquer meios;",
+          "literal": "(Redação dada pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "…omicílio das pessoas vigiados, segurados ou monitorados, no caso dos serviços descritos no subitem 11.02 da lista anexa;",
+          "literal": "(Redação dada pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XIX",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "XIX - do Município onde está sendo executado o transporte, no caso dos serviços descritos pelo item 16 da lista anexa;",
+          "literal": "(Redação dada pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXIII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "XXIII - do domicílio do tomador dos serviços dos subitens 4.22, 4.23 e 5.09;",
+          "literal": "(Incluído pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXIV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "…no caso dos serviços prestados pelas administradoras de cartão de crédito ou débito e demais descritos no subitem 15.01;",
+          "literal": "(Incluído pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "XXV - do domicílio do tomador dos serviços dos subitens 10.04 e 15.09.",
+          "literal": "(Incluído pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XXV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "175",
+            "ano": 2020
+          },
+          "trecho": "XXV - do domicílio do tomador do serviço do subitem 15.09.",
+          "literal": "(Redação dada pela Lei Complementar nº 175, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "…do estabelecimento do tomador ou intermediário do serviço ou, na falta de estabelecimento, onde ele estiver domiciliado.",
+          "literal": "(Incluído pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "175",
+            "ano": 2020
+          },
+          "trecho": "… posto de atendimento, sucursal, escritório de representação ou contato ou quaisquer outras que venham a ser utilizadas.",
+          "literal": "(Incluído pela Lei Complementar nº 175, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "175",
+            "ano": 2020
+          },
+          "trecho": "…ra por meio de convênio ou contrato de plano de saúde individual, familiar, coletivo empresarial ou coletivo por adesão.",
+          "literal": "(Incluído pela Lei Complementar nº 175, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "175",
+            "ano": 2020
+          },
+          "trecho": "…nculados ao titular do plano, será considerado apenas o domicílio do titular para fins do disposto no § 6º deste artigo.",
+          "literal": "(Incluído pela Lei Complementar nº 175, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "175",
+            "ano": 2020
+          },
+          "trecho": "…tados diretamente aos portadores de cartões de crédito ou débito e congêneres, o tomador é o primeiro titular do cartão.",
+          "literal": "(Incluído pela Lei Complementar nº 175, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "175",
+            "ano": 2020
+          },
+          "trecho": "…or meio de cartão de crédito ou débito, ou a eles conexos, que sejam prestados ao tomador, direta ou indiretamente, por:",
+          "literal": "(Incluído pela Lei Complementar nº 175, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "175",
+            "ano": 2020
+          },
+          "trecho": "I - bandeiras;",
+          "literal": "(Incluído pela Lei Complementar nº 175, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "175",
+            "ano": 2020
+          },
+          "trecho": "II - credenciadoras; ou",
+          "literal": "(Incluído pela Lei Complementar nº 175, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "175",
+            "ano": 2020
+          },
+          "trecho": "III - emissoras de cartões de crédito e débito.",
+          "literal": "(Incluído pela Lei Complementar nº 175, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "175",
+            "ano": 2020
+          },
+          "trecho": "…s de investimento, referidos no subitem 15.01 da lista de serviços anexa a esta Lei Complementar, o tomador é o cotista.",
+          "literal": "(Incluído pela Lei Complementar nº 175, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "175",
+            "ano": 2020
+          },
+          "trecho": "§ 11. No caso dos serviços de administração de consórcios, o tomador de serviço é o consorciado.",
+          "literal": "(Incluído pela Lei Complementar nº 175, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "175",
+            "ano": 2020
+          },
+          "trecho": "… domiciliado no País, e, no caso de arrendatário não domiciliado no País, o tomador é o beneficiário do serviço no País.",
+          "literal": "(Incluído pela Lei Complementar nº 175, de 2020)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "183",
+            "ano": 2021
+          },
+          "trecho": "… independentemente de o prestador de serviços ser proprietário ou não da infraestrutura de telecomunicações que utiliza;",
+          "literal": "(Redação dada pela Lei Complementar nº 183, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "…ou intermediária de serviços, ainda que imune ou isenta, na hipótese prevista no § 4o do art. 3o desta Lei Complementar.",
+          "literal": "(Incluído pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "175",
+            "ano": 2020
+          },
+          "trecho": "…afo, em decorrência dos serviços prestados na forma do subitem 15.01 da lista de serviços anexa a esta Lei Complementar.",
+          "literal": "(Incluído pela Lei Complementar nº 175, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "…arado como domicílio tributário da pessoa jurídica ou física tomadora do serviço, conforme informação prestada por este.",
+          "literal": "(Incluído pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "175",
+            "ano": 2020
+          },
+          "trecho": "…a ou física tomadora do serviço, conforme informação prestada por este. (Incluído pela Lei Complementar nº 157, de 2016)",
+          "literal": "(Revogado pela Lei Complementar nº 175, de 2020)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "175",
+            "ano": 2020
+          },
+          "trecho": "§ 3º (Revogado).",
+          "literal": "(Redação dada pela Lei Complementar nº 175, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "…eletrônicos ou as máquinas das operações efetivadas deverão ser registrados no local do domicílio do tomador do serviço.",
+          "literal": "(Incluído pela Lei Complementar nº 157, de 2016)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3o",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I –",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "8-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "Art. 8o-A. A alíquota mínima do Imposto sobre Serviços de Qualquer Natureza é de 2% (dois por cento).",
+          "literal": "(Incluído pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "…o caput, exceto para os serviços a que se referem os subitens 7.02, 7.05 e 16.01 da lista anexa a esta Lei Complementar.",
+          "literal": "(Incluído pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "…prestado a tomador ou intermediário localizado em Município diverso daquele onde está localizado o prestador do serviço.",
+          "literal": "(Incluído pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "…restituição do valor efetivamente pago do Imposto sobre Serviços de Qualquer Natureza calculado sob a égide da lei nula.",
+          "literal": "(Incluído pela Lei Complementar nº 157, de 2016)"
+        }
+      ]
+    },
+    "8-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "…rções das alíquotas previstas nas legislações dos Municípios ou do Distrito Federal, vigentes em 31 de dezembro de 2028:",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "I - 10% (dez por cento), em 2029;",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "II - 20% (vinte por cento), em 2030;",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "III - 30% (trinta por cento), em 2031; e",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "IV - 40% (quarenta por cento), em 2032.",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "…anceiros relativos ao imposto serão reduzidos na mesma proporção da redução das alíquotas prevista nos incisos do caput.",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "…o imposto serão reduzidos na mesma proporção da redução das alíquotas, em decorrência do disposto no caput deste artigo.",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "… imposto já tenham sido reduzidos proporcionalmente por força da redução das alíquotas nos termos do caput deste artigo.",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "…textos, imagens, vídeos, páginas eletrônicas, aplicativos e sistemas de informação, entre outros formatos, e congêneres.",
+          "literal": "(Redação dada pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "…nte da arquitetura construtiva da máquina em que o programa será executado, incluindo tablets, smartphones e congêneres.",
+          "literal": "(Redação dada pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "…restadoras de Serviço de Acesso Condicionado, de que trata a Lei no 12.485, de 12 de setembro de 2011, sujeita ao ICMS).",
+          "literal": "(Incluído pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "3.01 –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "6.06 - Aplicação de tatuagens, piercings e congêneres.",
+          "literal": "(Incluído pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "7.14 –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "7.15 –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "…os congêneres indissociáveis da formação, manutenção e colheita de florestas, para quaisquer fins e por quaisquer meios.",
+          "literal": "(Redação dada pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "11.02 - Vigilância, segurança ou monitoramento de bens, pessoas e semoventes.",
+          "literal": "(Redação dada pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "183",
+            "ano": 2021
+          },
+          "trecho": "… independentemente de o prestador de serviços ser proprietário ou não da infraestrutura de telecomunicações que utiliza.",
+          "literal": "(Incluído pela Lei Complementar nº 183, de 2021)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "13.01 –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "…s, rótulos, etiquetas, caixas, cartuchos, embalagens e manuais técnicos e de instrução, quando ficarão sujeitos ao ICMS.",
+          "literal": "(Redação dada pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "…anoplastia, anodização, corte, recorte, plastificação, costura, acabamento, polimento e congêneres de objetos quaisquer.",
+          "literal": "(Redação dada pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "14.14 - Guincho intramunicipal, guindaste e içamento.",
+          "literal": "(Redação dada pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "16.01 - Serviços de transporte coletivo municipal rodoviário, metroviário, ferroviário e aquaviário de passageiros.",
+          "literal": "(Redação dada pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "16.02 - Outros serviços de transporte de natureza municipal.",
+          "literal": "(Incluído pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "17.07 –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "…nais, periódicos e nas modalidades de serviços de radiodifusão sonora e de sons e imagens de recepção livre e gratuita).",
+          "literal": "(Incluído pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "25.02 - Translado intramunicipal e cremação de corpos e partes de corpos cadavéricos.",
+          "literal": "(Redação dada pela Lei Complementar nº 157, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "157",
+            "ano": 2016
+          },
+          "trecho": "25.05 - Cessão de uso de espaços em cemitérios para sepultamento.",
+          "literal": "(Incluído pela Lei Complementar nº 157, de 2016)"
+        }
+      ]
+    }
+  }
+}

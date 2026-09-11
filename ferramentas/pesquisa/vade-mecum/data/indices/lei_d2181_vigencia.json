@@ -1,0 +1,1944 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "D2181",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_d2181.json",
+      "colecao": "artigos",
+      "sha256": "30a4c5268aaea87d65cee46744687f4bb4a87f2a76bf045afa315d5b6b5d2f7b",
+      "total_registros": 80,
+      "gerado_em": "2026-08-31T20:53:32+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 42,
+      "anotacoes": 154,
+      "anotacoes_sem_diploma_nomeado": 0
+    }
+  },
+  "vigencia": {
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "7.738",
+            "ano": 2012
+          },
+          "trecho": "…Consumidor do Ministério da Justiça, a coordenação da política do Sistema Nacional de Defesa do Consumidor, cabendo-lhe:",
+          "literal": "(Redação dada pelo Decreto nº 7.738, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "7.738",
+            "ano": 2012
+          },
+          "trecho": "…ebrar convênios e termos de ajustamento de conduta, na forma do § 6o do art. 5o da Lei no 7.347, de 24 de julho de 1985;",
+          "literal": "(Redação dada pelo Decreto nº 7.738, de 2012)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "7.738",
+            "ano": 2012
+          },
+          "trecho": "…e trata o art. 44 da Lei no 8.078, de 1990 e remeter cópia à Secretaria Nacional do Consumidor do Ministério da Justiça;",
+          "literal": "(Redação dada pelo Decreto nº 7.738, de 2012)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "7.738",
+            "ano": 2012
+          },
+          "trecho": "…r - CNPDC, levando sempre em consideração a competência federativa para legislar sobre a respectiva atividade econômica.",
+          "literal": "(Redação dada pelo Decreto nº 7.738, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.417",
+            "ano": 2020
+          },
+          "trecho": "…onal de Defesa do Consumidor, considerada a competência federativa para legislar sobre a respectiva atividade econômica.",
+          "literal": "(Redação dada pelo Decreto nº 10.417, de 2020)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…ícios concedidos ao compromissário, sem prejuízo da pena pecuniária diária a que se refere o inciso II do caput do § 3º.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…es de termo de ajustamento de conduta deverão ser utilizados nos termos do disposto no art. 13 da Lei nº 7.347, de 1985.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "6-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "… de ajustamento de conduta poderá estipular obrigações de fazer ou compensatórias a serem cumpridas pelo compromissário.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "Parágrafo único. As obrigações de que trata o caput deverão ser estimadas, preferencialmente, em valor monetário.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "7.738",
+            "ano": 2012
+          },
+          "trecho": "… do consumidor criados pelos Estados, Distrito Federal e Municípios, em suas respectivas áreas de atuação e competência.",
+          "literal": "(Redação dada pelo Decreto nº 7.738, de 2012)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…ndustrial - Conmetro, observado o disposto no inciso VI do caput do art. 3º da Lei nº 13.874, de 20 de setembro de 2019;",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…nsivas e adequadas, inclusive no caso de oferta ou de aquisição de produto ou serviço por meio de provedor de aplicação;",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…nos incisos I, II, III e VII do caput à oferta e à aquisição de produto ou de serviço por meio de provedor de aplicação.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…e aplicação, que vise a promover a oferta ou a aquisição de produto ou de serviço disponibilizado no mercado de consumo.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "14-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…ão e defesa do consumidor deverá considerar as práticas de autorregulação adotadas pelo mercado de publicidade em geral.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…erador de prática infrativa poderá ser remetido ao órgão coordenador do SNDC pela autoridade máxima do sistema estadual.",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…o coordenador do SNDC apurará o fato e aplicará as sanções cabíveis, ouvido o Conselho Nacional de Defesa do Consumidor.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…xima do sistema estadual optar por não encaminhar o processo, o fato deverá ser comunicado ao órgão coordenador do SNDC.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.417",
+            "ano": 2020
+          },
+          "trecho": "…a poderá avocá-los, ouvido o Conselho Nacional de Defesa do Consumidor, e as autoridades máximas dos sistemas estaduais.",
+          "literal": "(Redação dada pelo Decreto nº 10.417, de 2020)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "III - ter o infrator adotado as providências pertinentes para minimizar ou de imediato reparar os efeitos do ato lesivo;",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "IV - a confissão do infrator;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…ação regular do infrator em projetos e ações de capacitação e treinamento oferecidos pelos órgãos integrantes do SNDC; e",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…I - ter o fornecedor aderido à plataforma Consumidor.gov.br, de que trata o Decreto nº 8.573, de 19 de novembro de 2015.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…icipais de defesa do consumidor, com vistas a subsidiar a atuação no âmbito dos processos administrativos sancionadores.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "26-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "… art. 26, têm natureza taxativa e não comportam ampliação por meio de ato dos órgãos de proteção e defesa do consumidor.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "… os parâmetros estabelecidos no parágrafo único do art. 57 da Lei nº 8.078, de 1990, a pena de multa fixada considerará:",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "I - a gravidade da prática infrativa;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "II - a extensão do dano causado aos consumidores;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "III - a vantagem auferida com o ato infrativo;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "IV - a condição econômica do infrator; e",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "V - a proporcionalidade entre a gravidade da falta e a intensidade da sanção.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "28-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…utilizados para a fixação da pena-base não poderão ser valorados novamente como circunstâncias agravantes ou atenuantes.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "28-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…Secretário Nacional do Consumidor do Ministério da Justiça e Segurança Pública poderá estabelecer critérios gerais para:",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "I - a valoração das circunstâncias agravantes e atenuantes, de que tratam os art. 25 e art. 26; e",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "II - a fixação da pena-base para a aplicação da pena de multa.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…rmas de proteção e defesa do consumidor serão apuradas em processo administrativo sancionador, que terá início mediante:",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "I - ato, por escrito, da autoridade competente; e",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "II - lavratura de auto de infração.",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "III - reclamação.",
+          "literal": "(Revogado pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…das cautelares, nos termos do disposto no art. 18, com ou sem oitiva prévia da pessoa que estará sujeita a seus efeitos.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…ção, a autoridade administrativa, mediante ato motivado, poderá deixar de instaurar processo administrativo sancionador.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…umentos e medidas de supervisão, observados os princípios da finalidade, da motivação, da razoabilidade e da eficiência.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "33-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…idor, quando os indícios ainda não forem suficientes para a instauração imediata de processo administrativo sancionador.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…s legalmente previstas, inclusive requerer esclarecimentos do representado ou de terceiros, por escrito ou pessoalmente.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "§ 2º Da averiguação preliminar poderá resultar:",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "I - a instauração de processo administrativo sancionador; ou",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "II - o arquivamento do caso.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "§ 3º A averiguação preliminar poderá ser desmembrada, quando conveniente para a instrução do caso.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "33-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…liminar, o superior hierárquico do órgão prolator da decisão poderá avocar o processo, de ofício ou mediante provocação.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "Parágrafo único. A autoridade responsável por avocar a averiguação preliminar poderá:",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "I - ratificar a decisão de arquivamento; ou",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "… continuidade da averiguação preliminar ou para a instauração de processo administrativo sancionatório, conforme o caso.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "34": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…u qualquer outro meio de comunicação, físico ou eletrônico, a qualquer órgão oficial de proteção e defesa do consumidor.",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…entadas na forma prevista no caput orientarão a implementação das políticas públicas de proteção e defesa do consumidor.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "e) a determinação da exigência e a intimação para cumpri-la ou impugná-la no prazo estabelecido no caput do art. 42;",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea i",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…ificação completa de até três testemunhas, mediante fornecimento do motivo para o seu arrolamento e sempre que possível:",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea i",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "1. do nome;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea i",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "2. da profissão;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea i",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "3. do estado civil;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea i",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "4. da idade;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea i",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "5. do número de inscrição no Cadastro de Pessoas Físicas;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea i",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "6. do número de registro da identidade; e",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea i",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "7. do endereço completo da residência e do local de trabalho;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…o poderão ser formalizados, comunicados e transmitidos em meio eletrônico, observado o disposto na legislação aplicável.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "38-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…ômica for classificada como de risco leve, irrelevante ou inexistente, nos termos do disposto na Lei nº 13.874, de 2019.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…fração será observado, exceto na hipótese de ocorrência de reincidência, fraude, resistência ou embaraço à fiscalização.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…isita, nos termos do disposto no § 1º, implica nulidade do auto de infração, independentemente da natureza da obrigação.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…ementar nº 123, de 14 de dezembro de 2006, na fixação de valores decorrentes de multas e demais sanções administrativas.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "39": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…ancionador de que trata o art. 33 poderá ser instaurado de ofício pela autoridade competente ou a pedido do interessado.",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "40": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "… 40. O ato que instaurar o processo administrativo sancionador, na forma do inciso I do caput do art. 33, deverá conter:",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "IV - a assinatura da autoridade competente; e",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…ificação completa de até três testemunhas, mediante fornecimento do motivo para o seu arrolamento e sempre que possível:",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "a) do nome;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "b) da profissão;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "c) do estado civil;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "d) da idade;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "e) do número de inscrição no Cadastro de Pessoas Físicas;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "f) do número de registro da identidade; e",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea g",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "g) do endereço completo da residência e do local de trabalho.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "… anteriores, pareceres, informações, decisões ou proposta que, nesse caso, serão parte integrante do ato de instauração.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…ção pelas partes nos autos, hipótese em que será reiniciada a contagem do prazo para a defesa nos limites do aditamento.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "40-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "… da autoridade processante e por meio de despacho fundamentado, o processo administrativo poderá ser desmembrado quando:",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "I - as infrações tiverem sido praticadas em circunstâncias de tempo ou de lugar diferentes;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "… - houver número de representados excessivo, para não comprometer a duração razoável do processo ou dificultar a defesa;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "III - houver dificuldade de notificar um ou mais dos representados; ou",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "IV - houver outro motivo considerado relevante pela autoridade processante.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "40-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "… processante poderá proceder à juntada de processos administrativos diferentes com vistas à racionalização dos recursos.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "42": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "… dias, contado da data de seu recebimento pelo infrator, para apresentação de defesa, nos termos do disposto no art. 44.",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…rativo sancionador e, se for o caso, da nota técnica ou de outro ato que o fundamente por meio de remissão e será feita:",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "I - por carta registrada ao representado, seu mandatário ou preposto, com aviso de recebimento ;",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "II - por outro meio, físico ou eletrônico, que assegure a certeza da ciência do representado; ou",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "III - por mecanismos de cooperação internacional.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…a, a notificação internacional poderá ser realizada por meio de serviço postal com aviso de recebimento em nome próprio.",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…ficação e nessa data se iniciará a contagem do prazo para apresentação de defesa no processo administrativo sancionador.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "42-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "Art. 42-A. A intimação dos demais atos processuais será feita por meio de:",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "I - carta registrada ao representado, ou ao seu mandatário ou preposto, com aviso de recebimento);",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "II - publicação oficial, da qual constarão os nomes do representado e de seu procurador, se houver; ou",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "III - por outro meio, físico ou eletrônico, que assegure a certeza da ciência do representado.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…apítulo preliminar do próprio ato que lhe caiba praticar, o qual será tido por tempestivo caso o vício seja reconhecido.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…mitado arguir a nulidade da intimação, caso em que o prazo será contado da data da intimação da decisão que a reconheça.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…elo interessado, caso a modificação temporária ou definitiva do endereço não tenha sido comunicada ao órgão processante.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…serviços, por meio de aplicação de internet, desde que o uso ou a fruição do bem adquirido se dê no território nacional.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…ão do bem adquirido se dê no território nacional. (Incluído pelo Decreto nº 10.887, de 2021) “SEÇÃO V-A Do Amicus Curiae",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "42-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…a, com representatividade adequada, na condição de amicus curiae, no prazo de quinze dias, contado da data de intimação.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "Parágrafo único. A intervenção de que trata o caput não:",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "I - implicará alteração de competência; ou",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "II - autorizará a interposição de recursos.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "43": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…utoridade competente, ou de reclamação será instruído e julgado na esfera de atribuição do órgão que o tiver instaurado.",
+          "literal": "(Revogado pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "44": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…ionador, no prazo estabelecido no caput do art. 42, contado da data de sua notificação, de modo a indicar em sua defesa:",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "I - a autoridade decisória a quem é dirigida;",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "III - as razões de fato e de direito que fundamentam a impugnação; e",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…neira fundamentada, as provas que pretende produzir, de modo a declinar a qualificação completa de até três testemunhas.",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "45": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "Art. 45. Decorrido o prazo da impugnação, o órgão decisor determinará as diligências cabíveis e:",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "I - deverá dispensar as diligências meramente protelatórias ou irrelevantes; e",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…presentado, a pessoas físicas ou jurídicas e a órgãos ou entidades públicos, a serem apresentados no prazo estabelecido.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "… que forem ilícitas, impertinentes, desnecessárias ou protelatórias serão indeferidas por meio de despacho fundamentado.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…rgão, exceto se houver impossibilidade comprovada de deslocamento da testemunha, sob as expensas da parte que a arrolou.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…ições técnicas para realização da diligência e segundo critério de conveniência e oportunidade da autoridade competente.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…hora e o local da audiência designada, dispensada a intimação por parte do órgão responsável pela instrução do processo.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "… de que trata o § 4º, o não comparecimento injustificado da testemunha presumirá que a parte desistiu de sua inquirição.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "§ 6º A juntada de prova documental poderá ser realizada até o saneamento do processo, excetuadas as seguintes hipóteses:",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "I - necessidade de demonstração de fato ocorrido após o encerramento da instrução processual;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "II - necessidade de contraposição a fato levantado após o encerramento da instrução processual;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…ocessual, hipótese em que caberá à parte que os produzir comprovar o motivo que a impediu de juntá-los anteriormente; ou",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "IV - o documento ter sido formado após a instauração do processo sancionatório.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…o ou judicial, e lhe atribuirá o valor probatório adequado, observados os princípios do contraditório e da ampla defesa.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "46": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "Art. 46. A decisão administrativa conterá:",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "I - a identificação do representado e, quando for o caso, do representante;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "II - o resumo dos fatos imputados ao representado, com a indicação dos dispositivos legais infringidos;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "III - o sumário das razões de defesa;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "IV - o registro das principais ocorrências no andamento do processo;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "V - a apreciação das provas; e",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…guração da prática infrativa, com a especificação dos fatos que constituam a infração apurada na hipótese de condenação.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…ótese de caracterização de infração contra as normas de proteção e defesa do consumidor, a decisão também deverá conter:",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "I - a indicação das providências a serem tomadas pelos responsáveis para fazê-la cessar, quando for o caso;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "II - o prazo no qual deverão ser iniciadas e concluídas as providências referidas no inciso I;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "III - a multa estipulada, sua individualização e sua dosimetria;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "IV - a multa diária, em caso de continuidade da infração;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "V - as demais sanções descritas na Lei nº 8.078, de 1990, se for o caso;",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "VI - a multa em caso de descumprimento das providências estipuladas, se for o caso; e",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "VII - o prazo para pagamento da multa e para cumprimento das demais obrigações determinadas.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…tir em declaração de concordância com pareceres, notas técnicas ou decisões, hipótese em que integrarão o ato decisório.",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "49": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…rágrafo único. No caso de aplicação de multas, o recurso será recebido, com efeito suspensivo, pela autoridade superior.",
+          "literal": "(Revogado pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "§ 1º Na hipótese de aplicação de multas, o recurso será recebido, com efeito suspensivo, pela autoridade superior.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "§ 2º A decisão recorrida pode ser confirmada, total ou parcialmente, pelos seus próprios fundamentos.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…ontados todos os argumentos deduzidos no recurso capazes, em tese, de infirmar a conclusão adotada na decisão recorrida.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "50": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "7.738",
+            "ano": 2012
+          },
+          "trecho": "… do Consumidor, no prazo de dez dias, contado da data da intimação da decisão, como segunda e última instância recursal.",
+          "literal": "(Redação dada pelo Decreto nº 7.738, de 2012)"
+        }
+      ]
+    },
+    "53": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…infrator será notificado para efetuar o recolhimento no prazo de dez dias, nos termos do disposto nos art. 29 a art. 32.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "56": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "7.738",
+            "ano": 2012
+          },
+          "trecho": "…las contratuais consideradas abusivas, notadamente para o fim de aplicação do disposto no inciso IV do caput do art. 22.",
+          "literal": "(Redação dada pelo Decreto nº 7.738, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…e 1990, e pela legislação correlata, por meio de ato próprio, observado o disposto no art. 4º da Lei nº 13.874, de 2019.",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…a pública, a ser regulamentado em ato do Secretário Nacional do Consumidor do Ministério da Justiça e Segurança Pública.",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "… as disposições deste Decreto, quando o fornecedor de produtos ou serviços utilizá-las uniformemente em âmbito nacional.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "63": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "…ervância das normas de proteção e defesa do consumidor, facultada a oitiva do Conselho Nacional de Defesa do Consumidor.",
+          "literal": "(Redação dada pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    },
+    "65-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "10.887",
+            "ano": 2021
+          },
+          "trecho": "… 13.105, de 16 de março de 2015 - Código de Processo Civil, aplicam-se subsidiariamente e supletivamente a este Decreto.",
+          "literal": "(Incluído pelo Decreto nº 10.887, de 2021)"
+        }
+      ]
+    }
+  }
+}

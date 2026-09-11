@@ -1,0 +1,1362 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L10820",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l10820.json",
+      "colecao": "artigos",
+      "sha256": "094cff5e089ad83658ecaf9029d90bd14d37afb2228697f1b95622ea87bc05ea",
+      "total_registros": 23,
+      "gerado_em": "2026-08-31T20:53:32+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 20,
+      "anotacoes": 114,
+      "anotacoes_sem_diploma_nomeado": 8
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.172",
+            "ano": 2015
+          },
+          "trecho": "…ncedidos por instituições financeiras e sociedades de arrendamento mercantil, quando previsto nos respectivos contratos.",
+          "literal": "(Redação dada pela Lei nº 13.172, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.431",
+            "ano": 2022
+          },
+          "trecho": "…meio de cartão de crédito consignado ou à utilização com a finalidade de saque por meio de cartão de crédito consignado.",
+          "literal": "(Redação dada pela Lei nº 14.431, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.431",
+            "ano": 2022
+          },
+          "trecho": "I - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.431, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.431",
+            "ano": 2022
+          },
+          "trecho": "II - (revogado).",
+          "literal": "(Redação dada pela Lei nº 14.431, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "§ 3o Os empregados de que trata o caput poderão solicitar o bloqueio, a qualquer tempo, de novos descontos.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "§ 4o O disposto no § 3o não se aplica aos descontos autorizados em data anterior à da solicitação do bloqueio.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.313",
+            "ano": 2016
+          },
+          "trecho": "…édito consignado de que trata este artigo, o empregado poderá oferecer em garantia, de forma irrevogável e irretratável:",
+          "literal": "(Redação dada pela Lei nº 13.313, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.313",
+            "ano": 2016
+          },
+          "trecho": "I - até 10% (dez por cento) do saldo de sua conta vinculada no Fundo de Garantia do Tempo de Serviço - FGTS;",
+          "literal": "(Incluído pela Lei nº 13.313, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.313",
+            "ano": 2016
+          },
+          "trecho": "…spedida por culpa recíproca ou força maior, nos termos dos §§ 1º e 2º do art. 18 da Lei nº 8.036, de 11 de maio de 1990.",
+          "literal": "(Incluído pela Lei nº 13.313, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.313",
+            "ano": 2016
+          },
+          "trecho": "… não se aplicando, em relação à referida garantia, o disposto no § 2º do art. 2º da Lei nº 8.036, de 11 de maio de 1990.",
+          "literal": "(Redação dada pela Lei nº 13.313, de 2016)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "§ 7º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "§ 7º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.313",
+            "ano": 2016
+          },
+          "trecho": "…isposto nos §§ 5º e 6º deste artigo, nos termos do inciso II do caput do art. 7º da Lei nº 8.036, de 11 de maio de 1990.",
+          "literal": "(Redação dada pela Lei nº 13.313, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…rato de trabalho, o seu redirecionamento será automático, independentemente de consentimento adicional do devedor, para:",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…ros vínculos de emprego ativos no momento da contratação do crédito, mas inicialmente não alcançados pela consignação; e",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "II – vínculos empregatícios que surjam posteriormente à contratação da operação de crédito.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…artigo, ato do Poder Executivo federal disporá sobre as formalidades para a habilitação das instituições consignatárias.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…rabalho Rural), e a Lei Complementar nº 150, de 1º de junho de 2015, e aos diretores não empregados com direito ao FGTS.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        }
+      ]
+    },
+    "1-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "… nos termos da regulamentação do Comitê Gestor das Operações de Crédito Consignado, instituído pelo art. 2º-G desta Lei.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.367",
+            "ano": 2026
+          },
+          "trecho": "… Pública Federal, aplicam-se as regras previstas na Lei nº 14.509, de 27 de dezembro de 2022, nos termos do regulamento.",
+          "literal": "(Incluído pela Lei nº 15.367, de 2026)"
+        }
+      ]
+    },
+    "1-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…1, da regulamentação do Conselho Monetário Nacional e da Superintendência Nacional de Previdência Complementar (Previc).",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…orma a evidenciar a assistência concedida e a garantir adequada avaliação das condições de endividamento do trabalhador.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        }
+      ]
+    },
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…ário a que se refere o Título I do Livro II da Parte Especial da Lei no 10.406, de 10 de janeiro de 2002 - Código Civil;",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.172",
+            "ano": 2015
+          },
+          "trecho": "…ou financiamento ou realizar operação com cartão de crédito ou de arrendamento mercantil mencionada no caput do art. 1o;",
+          "literal": "(Redação dada pela Lei nº 13.172, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.172",
+            "ano": 2015
+          },
+          "trecho": "… consignatária contrato de empréstimo, financiamento, cartão de crédito ou arrendamento mercantil regulado por esta Lei;",
+          "literal": "(Redação dada pela Lei nº 13.172, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…ição a que se refere o inciso III do caput e que mantém as contas para crédito da remuneração disponível dos empregados;",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.172",
+            "ano": 2015
+          },
+          "trecho": "… valor das prestações assumidas em operação de empréstimo, financiamento, cartão de crédito ou arrendamento mercantil; e",
+          "literal": "(Redação dada pela Lei nº 13.172, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…ração disponível, os vencimentos, subsídios, soldos, salários ou remunerações, descontadas as consignações compulsórias.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.431",
+            "ano": 2022
+          },
+          "trecho": "… 1º desta Lei não poderá exceder a 40% (quarenta por cento) da remuneração disponível, conforme definido em regulamento;",
+          "literal": "(Redação dada pela Lei nº 14.431, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.431",
+            "ano": 2022
+          },
+          "trecho": "a) (revogada);",
+          "literal": "(Redação dada pela Lei nº 14.431, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.431",
+            "ano": 2022
+          },
+          "trecho": "b) (revogada);",
+          "literal": "(Redação dada pela Lei nº 14.431, de 2022)"
+        }
+      ]
+    },
+    "2-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…etuada em sistemas ou em plataformas digitais acessíveis por meio eletrônico e mantidos por agentes operadores públicos.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…r Executivo federal disporá sobre as normas complementares necessárias ao cumprimento do disposto no caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "§ 2º A utilização de sistemas ou de plataformas digitais de que trata o caput deste artigo implicará:",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "I – para os empregadores:",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…es das prestações contratadas em operação de crédito, quando realizados por meio de sistemas ou de plataformas digitais;",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…os credenciados e com as instituições consignatárias habilitadas para a contratação de operação de crédito consignado; e",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…, independentemente da existência de prévio acordo ou de convênio firmado na forma dos §§ 1º ou 2º do art. 4º desta Lei;",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "II – para os empregados:",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…es das prestações contratadas em operação de crédito, quando realizados por meio de sistemas ou de plataformas digitais;",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…os credenciados e com as instituições consignatárias habilitadas para a contratação de operação de crédito consignado; e",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "c)",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "c) (VETADO); e",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "III – para as instituições consignatárias habilitadas:",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…ntos necessários à adaptação de sistemas e à operacionalização do empréstimo nos sistemas ou nas plataformas digitais; e",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…ções assumidas nos atos expedidos pelo Poder Executivo federal, sob pena de suspensão ou de cancelamento da habilitação.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "… por meio de documento de arrecadação gerado nos sistemas ou nas plataformas digitais de que trata o caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…rações de crédito consignado disciplinadas neste artigo, observado o disposto em regulamento do Poder Executivo federal.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        }
+      ]
+    },
+    "2-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…as plataformas digitais, nos termos da Lei nº 13.709, de 14 de agosto de 2018 (Lei Geral de Proteção de Dados Pessoais).",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "§ 1º (VETADO).",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…alquer outra finalidade, nos termos da Lei nº 13.709, de 14 de agosto de 2018 (Lei Geral de Proteção de Dados Pessoais).",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        }
+      ]
+    },
+    "2-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…ervados o sigilo legal e o disposto na Lei nº 13.709, de 14 de agosto de 2018 (Lei Geral de Proteção de Dados Pessoais).",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "Parágrafo único. (VETADO).",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        }
+      ]
+    },
+    "2-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…lataforma dos operadores públicos, sob pena de nulidade, conforme o disposto em ato do Ministério do Trabalho e Emprego.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "§ 1º É facultada ao empregado a transferência da consignação de que trata esta Lei entre as instituições consignatárias.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…forme ato do Ministério do Trabalho e Emprego, condicionada essa averbação à adequação do contrato aos termos desta Lei.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…rata o § 2º deste artigo, a nova operação de crédito terá taxa de juros inferior à taxa de juros da operação originária.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        }
+      ]
+    },
+    "2-E": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "… pagamento das seguintes modalidades, caso os mutuários tenham operações ativas nessas modalidades na data da concessão:",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "I – empréstimo não consignado, sem garantia e com parcelas vincendas; ou",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "II – empréstimo com desconto em folha de pagamento, com parcelas vincendas.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…erações de crédito de que trata este artigo poderão ser ofertadas por quaisquer instituições consignatárias habilitadas.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…caput deste artigo, a nova operação de crédito deverá ter taxa de juros inferior à taxa de juros da operação originária.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…ue tratam os incisos I e II do caput deste artigo aos agentes operadores públicos a que se refere o art. 2º-A desta Lei.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        }
+      ]
+    },
+    "2-F": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…idade das operações de crédito que estejam averbadas nos sistemas ou nas plataformas de que trata o art. 2º-A desta Lei.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…rações de crédito de que trata o caput deste artigo terão taxa de juros inferior à taxa de juros da operação originária.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        }
+      ]
+    },
+    "2-G": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…ara a operacionalização e a execução das operações de crédito consignado de empregados de que trata o art. 1º desta Lei.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…epresentantes da Casa Civil da Presidência da República, do Ministério do Trabalho e Emprego e do Ministério da Fazenda.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "… as competências, a forma de funcionamento e as demais atribuições do Comitê Gestor das Operações de Crédito Consignado.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…s do Comitê Gestor das Operações de Crédito Consignado não serão remunerados por suas atividades no exercício da função.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        }
+      ]
+    },
+    "2-H": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…es elegíveis às operações de crédito consignado de que trata esta Lei, conforme disponibilidade financeira-orçamentária.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…er Executivo federal definirá parâmetros e diretrizes das formas de disponibilização das ações de que trata este artigo.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…iva, assegurado seu acesso gratuito, em linguagem acessível e compatível com a legislação de proteção de dados pessoais.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        }
+      ]
+    },
+    "2-I": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…crédito consignado realizadas por meio dos sistemas ou das plataformas digitais conforme ato do Poder Executivo federal.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…tricos será obrigatório, nos termos da Lei nº 13.709, de 14 de agosto de 2018 (Lei Geral de Proteção de Dados Pessoais).",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…os sistemas e das plataformas digitais para operacionalização das operações de crédito deverão ser firmados por meio de:",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…qualificadas, baseadas em certificado digital emitido pela Infraestrutura de Chaves Públicas Brasileira (ICP-Brasil); ou",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…oria e a integridade de documentos eletrônicos, nos termos da legislação aplicável e das normas regulamentares vigentes.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…tivamente, aos requisitos do inciso II do caput do art. 4º da Lei nº 14.063, de 23 de setembro de 2020, e aos seguintes:",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "I – autenticação biométrica que assegure alto nível de segurança, com prova de vida, no ato da assinatura;",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…técnicas que comprovem a autenticação e a integridade do ato, utilizáveis em procedimentos administrativos ou judiciais.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…s digitais, nos termos de regulamentação do Poder Executivo, que poderá atualizar os parâmetros de segurança aplicáveis.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "… bem como às respectivas entidades sindicais que as solicitem, as informações referentes aos custos referidos no § 2o; e",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…obre as verbas rescisórias, e repassar o valor à instituição consignatária na forma e no prazo previstos em regulamento.",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.172",
+            "ano": 2015
+          },
+          "trecho": "…ão de empréstimo, financiamento, cartão de crédito ou arrendamento mercantil e os custos operacionais referidos no § 2o.",
+          "literal": "(Redação dada pela Lei nº 13.172, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "… no caso de apropriação indevida dos recursos, estará sujeito às penalidades administrativas, civis e penais aplicáveis.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.172",
+            "ano": 2015
+          },
+          "trecho": "…ndições objeto de livre negociação entre ela e o mutuário, observadas as demais disposições desta Lei e seu regulamento.",
+          "literal": "(Redação dada pela Lei nº 13.172, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.172",
+            "ano": 2015
+          },
+          "trecho": "… empréstimo, financiamento, cartão de crédito ou arrendamento mercantil que venham a ser realizadas com seus empregados.",
+          "literal": "(Redação dada pela Lei nº 13.172, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.172",
+            "ano": 2015
+          },
+          "trecho": "…préstimo, financiamento, cartão de crédito ou arrendamento mercantil que venham a ser realizadas com seus representados.",
+          "literal": "(Redação dada pela Lei nº 13.172, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.172",
+            "ano": 2015
+          },
+          "trecho": "… consignatária negar-se a celebrar a operação de empréstimo, financiamento, cartão de crédito ou arrendamento mercantil.",
+          "literal": "(Redação dada pela Lei nº 13.172, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…stituição consignatária obrigada a disponibilizar, inclusive em meio eletrônico, a opção de bloqueio de novos descontos.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "…os por meio dos sistemas ou das plataformas de que trata o art. 2º-A desta Lei, nos termos estabelecidos em regulamento.",
+          "literal": "(Redação dada pela Lei nº 15.179, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.172",
+            "ano": 2015
+          },
+          "trecho": "… confirmadas na forma desta Lei e de seu regulamento que deixarem, por sua falha ou culpa, de ser retidos ou repassados.",
+          "literal": "(Redação dada pela Lei nº 13.172, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.172",
+            "ano": 2015
+          },
+          "trecho": "…rma do § 5o, à instituição consignatária, fica esta proibida de incluir o nome do mutuário em cadastro de inadimplentes.",
+          "literal": "(Redação dada pela Lei nº 13.172, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "… da instituição financeira mantenedora, se responsável pelo desconto, na forma do § 5o, e de seus representantes legais.",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…dora poderá prever que a responsabilidade pelo desconto de que trata o caput será da instituição financeira mantenedora.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.431",
+            "ano": 2022
+          },
+          "trecho": "…estabelecida em regulamento, observadas as normas editadas pelo INSS e ouvido o Conselho Nacional de Previdência Social.",
+          "literal": "(Redação dada pela Lei nº 14.431, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.953",
+            "ano": 2004
+          },
+          "trecho": "…alquer circunstância, a responsabilidade do INSS em relação às operações referidas no caput deste artigo restringe-se à:",
+          "literal": "(Redação dada pela Lei nº 10.953, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.953",
+            "ano": 2004
+          },
+          "trecho": "…nas operações de desconto, não cabendo à autarquia responsabilidade solidária pelos débitos contratados pelo segurado; e",
+          "literal": "(Incluído pela Lei nº 10.953, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.953",
+            "ano": 2004
+          },
+          "trecho": "…e for autorizada a retenção, não cabendo à autarquia responsabilidade solidária pelos débitos contratados pelo segurado.",
+          "literal": "(Incluído pela Lei nº 10.953, de 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.953",
+            "ano": 2004
+          },
+          "trecho": "…eridas nesta Lei solicitar a alteração da instituição financeira pagadora, enquanto houver saldo devedor em amortização.",
+          "literal": "(Redação dada pela Lei nº 10.953, de 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.601",
+            "ano": 2023
+          },
+          "trecho": "… de cartão consignado de benefício ou à utilização com a finalidade de saque por meio de cartão consignado de benefício.",
+          "literal": "(Redação dada pela Lei nº 14.601, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.601",
+            "ano": 2023
+          },
+          "trecho": "…io ou à utilização com a finalidade de saque por meio de cartão de crédito consignado ou cartão consignado de benefício.",
+          "literal": "(Redação dada pela Lei nº 14.601, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.601",
+            "ano": 2023
+          },
+          "trecho": "…perior ao limite estabelecido nos §§ 5º e 5º-A deste artigo perderá todas as garantias que lhe são conferidas nesta Lei.",
+          "literal": "(Redação dada pela Lei nº 14.601, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.601",
+            "ano": 2023
+          },
+          "trecho": "…aput e no § 5º deste artigo aos titulares da renda mensal vitalícia prevista na Lei nº 6.179, de 11 de dezembro de 1974.",
+          "literal": "(Redação dada pela Lei nº 14.601, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.601",
+            "ano": 2023
+          },
+          "trecho": "…, de 7 de dezembro de 1993 (Lei Orgânica da Assistência Social), aplica-se o previsto no caput e no § 5º-A deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.601, de 2023)"
+        }
+      ]
+    },
+    "6-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.183",
+            "ano": 2015
+          },
+          "trecho": "… realizadas com entidades abertas ou fechadas de previdência complementar pelos respectivos participantes ou assistidos.",
+          "literal": "(Incluído pela Lei nº 13.183, de 2015)"
+        }
+      ]
+    },
+    "6-B": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.601",
+            "ano": 2023
+          },
+          "trecho": "Art. 6º-B.",
+          "literal": "(Revogado pela Lei nº 14.601, de 2023)"
+        }
+      ]
+    },
+    "8-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.179",
+            "ano": 2025
+          },
+          "trecho": "… A União não responde pelo descumprimento das obrigações relativas aos contratos de financiamento de que trata esta Lei.",
+          "literal": "(Incluído pela Lei nº 15.179, de 2025)"
+        }
+      ]
+    }
+  }
+}

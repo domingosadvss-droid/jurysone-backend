@@ -1,0 +1,400 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L9790",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l9790.json",
+      "colecao": "artigos",
+      "sha256": "92f27028f01a2c17fc1400399cd481d353dda5918cd3664b2c2231749358eed8",
+      "total_registros": 22,
+      "gerado_em": "2026-08-31T20:53:32+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 7,
+      "anotacoes": 35,
+      "anotacoes_sem_diploma_nomeado": 15
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.019",
+            "ano": 2014
+          },
+          "trecho": "… anos, desde que os respectivos objetivos sociais e normas estatutárias atendam aos requisitos instituídos por esta Lei.",
+          "literal": "(Redação dada pela Lei nº 13.019, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…ociais e normas estatutárias atendam aos requisitos instituídos por esta Lei. (Redação dada pela Lei nº 13.019, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.999",
+            "ano": 2020
+          },
+          "trecho": "…instituições financeiras na forma de recebimento de repasses, venda de operações realizadas ou atuação como mandatárias.",
+          "literal": "(Incluído pela Lei nº 13.999, de 2020)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.364",
+            "ano": 2026
+          },
+          "trecho": "…instituições financeiras na forma de recebimento de repasses, venda de operações realizadas ou atuação como mandatárias.",
+          "literal": "(Redação dada pela Lei nº 15.364, de 2026)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.019",
+            "ano": 2014
+          },
+          "trecho": "…, a disponibilização e a implementação de tecnologias voltadas à mobilidade de pessoas, por qualquer meio de transporte.",
+          "literal": "(Incluído pela Lei nº 13.019, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso XIII",
+          "diploma": null,
+          "trecho": "…de tecnologias voltadas à mobilidade de pessoas, por qualquer meio de transporte. (Incluído pela Lei nº 13.019, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.364",
+            "ano": 2026
+          },
+          "trecho": "… – disponibilização de produtos ou serviços nas áreas de microcrédito, microcrédito produtivo orientado e microfinanças.",
+          "literal": "(Incluído pela Lei nº 15.364, de 2026)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.539",
+            "ano": 2002
+          },
+          "trecho": "…resse Público, vedada a percepção de remuneração ou subsídio, a qualquer título. (Vide Medida Provisória nº 37, de 2002)",
+          "literal": "(Incluído pela Lei nº 10.539, de 2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.019",
+            "ano": 2014
+          },
+          "trecho": "…ão de servidores públicos na composição de conselho ou diretoria de Organização da Sociedade Civil de Interesse Público.",
+          "literal": "(Redação dada pela Lei nº 13.019, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "…conselho ou diretoria de Organização da Sociedade Civil de Interesse Público. (Redação dada pela Lei nº 13.019, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "15-A": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 15-A.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.019",
+            "ano": 2014
+          },
+          "trecho": "Art. 15-A. (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.019, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 15-A. (VETADO). (Incluído pela Lei nº 13.019, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "15-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.019",
+            "ano": 2014
+          },
+          "trecho": "…s públicos recebidos e ao adimplemento do objeto do Termo de Parceria, mediante a apresentação dos seguintes documentos:",
+          "literal": "(Incluído pela Lei nº 13.019, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…do objeto do Termo de Parceria, mediante a apresentação dos seguintes documentos: (Incluído pela Lei nº 13.019, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.019",
+            "ano": 2014
+          },
+          "trecho": "…bre a execução do objeto do Termo de Parceria, bem como comparativo entre as metas propostas e os resultados alcançados;",
+          "literal": "(Incluído pela Lei nº 13.019, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…rceria, bem como comparativo entre as metas propostas e os resultados alcançados; (Incluído pela Lei nº 13.019, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.019",
+            "ano": 2014
+          },
+          "trecho": "II - demonstrativo integral da receita e despesa realizadas na execução;",
+          "literal": "(Incluído pela Lei nº 13.019, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II - demonstrativo integral da receita e despesa realizadas na execução; (Incluído pela Lei nº 13.019, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.019",
+            "ano": 2014
+          },
+          "trecho": "III - extrato da execução física e financeira;",
+          "literal": "(Incluído pela Lei nº 13.019, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III - extrato da execução física e financeira; (Incluído pela Lei nº 13.019, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.019",
+            "ano": 2014
+          },
+          "trecho": "IV - demonstração de resultados do exercício;",
+          "literal": "(Incluído pela Lei nº 13.019, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV - demonstração de resultados do exercício; (Incluído pela Lei nº 13.019, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.019",
+            "ano": 2014
+          },
+          "trecho": "V - balanço patrimonial;",
+          "literal": "(Incluído pela Lei nº 13.019, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V - balanço patrimonial; (Incluído pela Lei nº 13.019, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.019",
+            "ano": 2014
+          },
+          "trecho": "VI - demonstração das origens e das aplicações de recursos;",
+          "literal": "(Incluído pela Lei nº 13.019, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "VI - demonstração das origens e das aplicações de recursos; (Incluído pela Lei nº 13.019, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.019",
+            "ano": 2014
+          },
+          "trecho": "VII - demonstração das mutações do patrimônio social;",
+          "literal": "(Incluído pela Lei nº 13.019, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso VII",
+          "diploma": null,
+          "trecho": "VII - demonstração das mutações do patrimônio social; (Incluído pela Lei nº 13.019, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.019",
+            "ano": 2014
+          },
+          "trecho": "VIII - notas explicativas das demonstrações contábeis, caso necessário;",
+          "literal": "(Incluído pela Lei nº 13.019, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso VIII",
+          "diploma": null,
+          "trecho": "VIII - notas explicativas das demonstrações contábeis, caso necessário; (Incluído pela Lei nº 13.019, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.019",
+            "ano": 2014
+          },
+          "trecho": "IX - parecer e relatório de auditoria, se for o caso.",
+          "literal": "(Incluído pela Lei nº 13.019, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso IX",
+          "diploma": null,
+          "trecho": "IX - parecer e relatório de auditoria, se for o caso. (Incluído pela Lei nº 13.019, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.216-37",
+            "ano": 2001
+          },
+          "trecho": "…ssas qualificações, até cinco anos contados da data de vigência desta Lei. (Vide Medida Provisória nº 2.123-29, de 2001)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.216-37, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.216-37",
+            "ano": 2001
+          },
+          "trecho": "…fato que implicará a renúncia automática de suas qualificações anteriores. (Vide Medida Provisória nº 2.123-29, de 2001)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.216-37, de 2001)"
+        }
+      ]
+    }
+  }
+}

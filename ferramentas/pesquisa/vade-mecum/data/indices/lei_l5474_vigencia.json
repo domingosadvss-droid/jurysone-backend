@@ -1,0 +1,420 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L5474",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l5474.json",
+      "colecao": "artigos",
+      "sha256": "12a5c217e7288931379730b3b516ee450eecb13f11402af61e8a3321674a26d0",
+      "total_registros": 28,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 10,
+      "anotacoes": 30,
+      "anotacoes_sem_diploma_nomeado": 0
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "436",
+            "ano": 1969
+          },
+          "trecho": "§ 2º",
+          "literal": "(Revogado pelo Decreto-Lei nº 436, de 27.1.1969)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.458",
+            "ano": 1977
+          },
+          "trecho": "…ágrafo anterior substituirá, quando necessário, no ato do protesto ou na execução judicial, a duplicata a que se refere.",
+          "literal": "(Redação dada pela Lei nº 6.458, de 1º.11.1977)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "436",
+            "ano": 1969
+          },
+          "trecho": "Art. 13. A duplicata é protestável por falta de aceite de devolução ou pagamento.",
+          "literal": "(Redação dada pelo Decreto-Lei nº 436, de 27.1.1969)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "436",
+            "ano": 1969
+          },
+          "trecho": "…presentação da duplicata, da triplicata, ou, ainda, por simples indicações do portador, na falta de devolução do título.",
+          "literal": "(Redação dada pelo Decreto-Lei nº 436, de 27.1.1969)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "436",
+            "ano": 1969
+          },
+          "trecho": "…e protestar o título, por falta de aceite ou de devolução, não elide a possibilidade de protesto por falta de pagamento.",
+          "literal": "(Redação dada pelo Decreto-Lei nº 436, de 27.1.1969)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "436",
+            "ano": 1969
+          },
+          "trecho": "§ 3º O protesto será tirado na praça de pagamento constante do título.",
+          "literal": "(Redação dada pelo Decreto-Lei nº 436, de 27.1.1969)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "436",
+            "ano": 1969
+          },
+          "trecho": "…a) dias, contado da data de seu vencimento, perderá o direito de regresso contra os endossantes e respectivos avalistas.",
+          "literal": "(Redação dada pelo Decreto-Lei nº 436, de 27.1.1969)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "436",
+            "ano": 1969
+          },
+          "trecho": "…transcrição mencionada no inciso II, que será substituída pela reprodução das indicações feitas pelo portador do título.",
+          "literal": "(Redação dada pelo Decreto-Lei nº 436, de 27.1.1969)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.458",
+            "ano": 1977
+          },
+          "trecho": "…aplicável aos títulos executivos extrajudiciais, de que cogita o Livro II do Código de Processo Civil ,quando se tratar:",
+          "literal": "(Redação dada pela Lei nº 6.458, de 1º.11.1977)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.458",
+            "ano": 1977
+          },
+          "trecho": "l - de duplicata ou triplicata aceita, protestada ou não;",
+          "literal": "(Redação dada pela Lei nº 6.458, de 1º.11.1977)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.458",
+            "ano": 1977
+          },
+          "trecho": "II - de duplicata ou triplicata não aceita, contanto que, cumulativamente:",
+          "literal": "(Redação dada pela Lei nº 6.458, de 1º.11.1977)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.458",
+            "ano": 1977
+          },
+          "trecho": "a) haja sido protestada;",
+          "literal": "(Redação dada pela Lei nº 6.458, de 1º.11.1977)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.301",
+            "ano": 2022
+          },
+          "trecho": "…ocumento hábil comprobatório da entrega e do recebimento da mercadoria, permitida a sua comprovação por meio eletrônico;",
+          "literal": "(Redação dada pela Lei nº 14.301, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.458",
+            "ano": 1977
+          },
+          "trecho": "…enha, comprovadamente, recusado o aceite, no prazo, nas condições e pelos motivos previstos nos arts. 7º e 8º desta Lei.",
+          "literal": "(Redação dada pela Lei nº 6.458, de 1º.11.1977)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.458",
+            "ano": 1977
+          },
+          "trecho": "…s avalistas caberá o processo de execução referido neste artigo, quaisquer que sejam a forma e as condições do protesto.",
+          "literal": "(Redação dada pela Lei nº 6.458, de 1º.11.1977)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.458",
+            "ano": 1977
+          },
+          "trecho": "…ações do credor ou do apresentante do título, nos termos do art. 14, preenchidas as condições do inciso II deste artigo.",
+          "literal": "(Redação dada pela Lei nº 6.458, de 1º.11.1977)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.301",
+            "ano": 2022
+          },
+          "trecho": "…co de que trata a alínea b do inciso II do caput deste artigo poderá ser disciplinada em ato do Poder Executivo federal.",
+          "literal": "(Incluído pela Lei nº 14.301, de 2022)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.458",
+            "ano": 1977
+          },
+          "trecho": "…em como à ação para ilidir as razões invocadas pelo devedor para o não aceite do título, nos casos previstos no art. 8º.",
+          "literal": "(Redação dada pela Lei nº 6.458, de 1º.11.1977)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.458",
+            "ano": 1977
+          },
+          "trecho": "…outra de domicílio do comprador e, no caso de ação regressiva, a dos sacadores, dos endossantes e respectivos avalistas.",
+          "literal": "(Redação dada pela Lei nº 6.458, de 1º.11.1977)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.458",
+            "ano": 1977
+          },
+          "trecho": "Art 18 - A pretensão à execução da duplicata prescreve:",
+          "literal": "(Redação dada pela Lei nº 6.458, de 1º.11.1977)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.458",
+            "ano": 1977
+          },
+          "trecho": "l - contra o sacado e respectivos avalistas, em 3(três) anos, contados da data do vencimento do título;",
+          "literal": "(Redação dada pela Lei nº 6.458, de 1º.11.1977)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.458",
+            "ano": 1977
+          },
+          "trecho": "ll - contra endossante e seus avalistas, em 1 (um) ano, contado da data do protesto;",
+          "literal": "(Redação dada pela Lei nº 6.458, de 1º.11.1977)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.458",
+            "ano": 1977
+          },
+          "trecho": "…alquer dos coobrigados contra os demais, em 1 (um) ano, contado da data em que haja sido efetuado o pagamento do título.",
+          "literal": "(Redação dada pela Lei nº 6.458, de 1º.11.1977)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.458",
+            "ano": 1977
+          },
+          "trecho": "…udicial poderá ser proposta contra um ou contra todos os coobrigados, sem observância da ordem em que figurem no título.",
+          "literal": "(Redação dada pela Lei nº 6.458, de 1º.11.1977)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.458",
+            "ano": 1977
+          },
+          "trecho": "§ 2º - Os coobrigados da duplicata respondem solidariamente pelo aceite e pelo pagamento.",
+          "literal": "(Redação dada pela Lei nº 6.458, de 1º.11.1977)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.206",
+            "ano": 2021
+          },
+          "trecho": "Art. 20. Poderão emitir, na forma prevista nesta Lei, fatura e duplicata:",
+          "literal": "(Redação dada pela Lei nº 14.206, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.206",
+            "ano": 2021
+          },
+          "trecho": "I - as empresas, individuais ou coletivas, fundações ou sociedades civis que se dediquem à prestação de serviços; e",
+          "literal": "(Incluído pela Lei nº 14.206, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.206",
+            "ano": 2021
+          },
+          "trecho": "…ortador Autônomo de Cargas (TAC), de que trata o inciso I do caput do art. 2º da Lei nº 11.442, de 5 de janeiro de 2007.",
+          "literal": "(Incluído pela Lei nº 14.206, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "436",
+            "ano": 1969
+          },
+          "trecho": "…o de protesto, qualquer documento que comprove a efetiva prestação, dos serviços e o vínculo contratual que a autorizou.",
+          "literal": "(Incluído pelo Decreto-Lei nº 436, de 27.1.1969)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.458",
+            "ano": 1977
+          },
+          "trecho": "…tório de Títulos e Documentos, autorizará o ajuizamento do competente processo de execução na forma prescrita nesta Lei.",
+          "literal": "(Redação dada pela Lei nº 6.458, de 1º.11.1977)"
+        }
+      ]
+    }
+  }
+}

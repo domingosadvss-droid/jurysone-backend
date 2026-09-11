@@ -1,0 +1,2907 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "LIA",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_lia.json",
+      "colecao": "artigos",
+      "sha256": "23b7f61836799b91fd401d10c60f65e8d1575bf871928a1831b778b0ea5c5f6a",
+      "total_registros": 35,
+      "gerado_em": "2026-08-21T22:36:30+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 31,
+      "anotacoes": 260,
+      "anotacoes_sem_diploma_nomeado": 37
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…o exercício de suas funções, como forma de assegurar a integridade do patrimônio público e social, nos termos desta Lei.",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "Parágrafo único. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…strativa as condutas dolosas tipificadas nos arts. 9º, 10 e 11 desta Lei, ressalvados tipos previstos em leis especiais.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…nte de alcançar o resultado ilícito tipificado nos arts. 9º, 10 e 11 desta Lei, não bastando a voluntariedade do agente.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…úblicas, sem comprovação de ato doloso com fim ilícito, afasta a responsabilidade por ato de improbidade administrativa.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…se ao sistema da improbidade disciplinado nesta Lei os princípios constitucionais do direito administrativo sancionador.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…rio, bem como da administração direta e indireta, no âmbito da União, dos Estados, dos Municípios e do Distrito Federal.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…nção, benefício ou incentivo, fiscal ou creditício, de entes públicos ou governamentais, previstos no § 5º deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…l, limitado o ressarcimento de prejuízos, nesse caso, à repercussão do ilícito sobre a contribuição dos cofres públicos.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ue não venha a ser posteriormente prevalecente nas decisões dos órgãos de controle ou dos tribunais do Poder Judiciário.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…r outra forma de investidura ou vínculo, mandato, cargo, emprego ou função nas entidades referidas no art. 1º desta Lei.",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…o, contrato de repasse, contrato de gestão, termo de parceria, termo de cooperação ou ajuste administrativo equivalente.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…couber, àquele que, mesmo não sendo agente público, induza ou concorra dolosamente para a prática do ato de improbidade.",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "… se, comprovadamente, houver participação e benefícios diretos, caso em que responderão nos limites da sua participação.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…va seja também sancionado como ato lesivo à administração pública de que trata a Lei nº 12.846, de 1º de agosto de 2013.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "Art. 4°",
+          "literal": "(Revogado pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "Art. 5°",
+          "literal": "(Revogado pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "Art. 6°",
+          "literal": "(Revogado pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…de, a autoridade que conhecer dos fatos representará ao Ministério Público competente, para as providências necessárias.",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "Parágrafo único. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…icitamente estão sujeitos apenas à obrigação de repará-lo até o limite do valor da herança ou do patrimônio transferido.",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "8-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…plica-se também na hipótese de alteração contratual, de transformação, de incorporação, de fusão ou de cisão societária.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…data da fusão ou da incorporação, exceto no caso de simulação ou de evidente intuito de fraude, devidamente comprovados.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…de cargo, de mandato, de função, de emprego ou de atividade nas entidades referidas no art. 1º desta Lei, e notadamente:",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "… no art. 1º desta Lei, bem como o trabalho de servidores, de empregados ou de terceiros contratados por essas entidades;",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…, qualidade ou característica de mercadorias ou bens fornecidos a qualquer das entidades referidas no art. 1º desta Lei;",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "… do patrimônio ou à renda do agente público, assegurada a demonstração pelo agente da licitude da origem dessa evolução;",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…opriação, malbaratamento ou dilapidação dos bens ou haveres das entidades referidas no art. 1º desta Lei, e notadamente:",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…bens, de rendas, de verbas ou de valores integrantes do acervo patrimonial das entidades referidas no art. 1º desta Lei;",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ão de parcerias com entidades sem fins lucrativos, ou dispensá-los indevidamente, acarretando perda patrimonial efetiva;",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ir ilicitamente na arrecadação de tributo ou de renda, bem como no que diz respeito à conservação do patrimônio público;",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.107",
+            "ano": 2005
+          },
+          "trecho": "… por objeto a prestação de serviços públicos por meio da gestão associada sem observar as formalidades previstas na lei;",
+          "literal": "(Incluído pela Lei nº 11.107, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.107",
+            "ano": 2005
+          },
+          "trecho": "…eio de consórcio público sem suficiente e prévia dotação orçamentária, ou sem observar as formalidades previstas na lei.",
+          "literal": "(Incluído pela Lei nº 11.107, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.019",
+            "ano": 2014
+          },
+          "trecho": "…adas mediante celebração de parcerias, sem a observância das formalidades legais ou regulamentares aplicáveis à espécie;",
+          "literal": "(Incluído pela Lei nº 13.019, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso XVI",
+          "diploma": null,
+          "trecho": "…sem a observância das formalidades legais ou regulamentares aplicáveis à espécie; (Incluído pela Lei nº 13.019, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.019",
+            "ano": 2014
+          },
+          "trecho": "…vada mediante celebração de parcerias, sem a observância das formalidades legais ou regulamentares aplicáveis à espécie;",
+          "literal": "(Incluído pela Lei nº 13.019, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso XVII",
+          "diploma": null,
+          "trecho": "…sem a observância das formalidades legais ou regulamentares aplicáveis à espécie; (Incluído pela Lei nº 13.019, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.019",
+            "ano": 2014
+          },
+          "trecho": "…stração pública com entidades privadas sem a observância das formalidades legais ou regulamentares aplicáveis à espécie;",
+          "literal": "(Incluído pela Lei nº 13.019, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso XVIII",
+          "diploma": null,
+          "trecho": "…sem a observância das formalidades legais ou regulamentares aplicáveis à espécie; (Incluído pela Lei nº 13.019, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XIX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…calização e na análise das prestações de contas de parcerias firmadas pela administração pública com entidades privadas;",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.019",
+            "ano": 2014
+          },
+          "trecho": "…s privadas sem a estrita observância das normas pertinentes ou influir de qualquer forma para a sua aplicação irregular.",
+          "literal": "(Incluído pela Lei nº 13.019, de 2014, com a redação dada pela Lei nº 13.204, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XXI",
+          "diploma": null,
+          "trecho": "XXI -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XXI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "XXI - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ou tributário contrário ao que dispõem o caput e o § 1º do art. 8º-A da Lei Complementar nº 116, de 31 de julho de 2003.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…não ocorrerá imposição de ressarcimento, vedado o enriquecimento sem causa das entidades referidas no art. 1º desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…idade econômica não acarretará improbidade administrativa, salvo se comprovado ato doloso praticado com essa finalidade.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "10-A": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "Art. 10-A.",
+          "literal": "(Revogado pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…sa que viole os deveres de honestidade, de imparcialidade e de legalidade, caracterizada por uma das seguintes condutas:",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "I - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "II - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…redo, propiciando beneficiamento por informação privilegiada ou colocando em risco a segurança da sociedade e do Estado;",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…em razão de sua imprescindibilidade para a segurança da sociedade e do Estado ou de outras hipóteses instituídas em lei;",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…mamento ou de procedimento licitatório, com vistas à obtenção de benefício próprio, direto ou indireto, ou de terceiros;",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ntas quando esteja obrigado a fazê-lo, desde que disponha das condições para isso, com vistas a ocultar irregularidades;",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.019",
+            "ano": 2014
+          },
+          "trecho": "…s de parcerias firmadas pela administração pública com entidades privadas. (Vide Medida Provisória nº 2.088-35, de 2000)",
+          "literal": "(Redação dada pela Lei nº 13.019, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso VIII",
+          "diploma": null,
+          "trecho": "…pública com entidades privadas. (Vide Medida Provisória nº 2.088-35, de 2000) (Redação dada pela Lei nº 13.019, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IX",
+          "diploma": null,
+          "trecho": "IX -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "IX - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso X",
+          "diploma": null,
+          "trecho": "X -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "X - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…eres da União, dos Estados, do Distrito Federal e dos Municípios, compreendido o ajuste mediante designações recíprocas;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…nto do agente público e personalização de atos, de programas, de obras, de serviços ou de campanhas dos órgãos públicos.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…duta funcional do agente público o fim de obter proveito ou benefício indevido para si ou para outra pessoa ou entidade.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…os nesta Lei e em leis especiais e a quaisquer outros tipos especiais de improbidade administrativa instituídos por lei.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "… ilegalidade no exercício da função pública, com a indicação das normas constitucionais, legais ou infralegais violadas.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…onamento e independem do reconhecimento da produção de danos ao erário e de enriquecimento ilícito dos agentes públicos.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…rte dos detentores de mandatos eletivos, sendo necessária a aferição de dolo com finalidade ilícita por parte do agente.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "… sujeito às seguintes cominações, que podem ser aplicadas isolada ou cumulativamente, de acordo com a gravidade do fato:",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ainda que por intermédio de pessoa jurídica da qual seja sócio majoritário, pelo prazo não superior a 14 (catorze) anos;",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…e, ainda que por intermédio de pessoa jurídica da qual seja sócio majoritário, pelo prazo não superior a 12 (doze) anos;",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…, ainda que por intermédio de pessoa jurídica da qual seja sócio majoritário, pelo prazo não superior a 4 (quatro) anos;",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "IV - (revogado).",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "Parágrafo único. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…m caráter excepcional, estendê-la aos demais vínculos, consideradas as circunstâncias do caso e a gravidade da infração.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ado na forma dos incisos I, II e III do caput deste artigo é ineficaz para reprovação e prevenção do ato de improbidade.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…erão ser considerados os efeitos econômicos e sociais das sanções, de modo a viabilizar a manutenção de suas atividades.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "… e sociais das sanções, de forma a preservar a função social da pessoa jurídica, conforme disposto no § 3º deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…m prejuízo do ressarcimento do dano e da perda dos valores obtidos, quando for o caso, nos termos do caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…á deduzir o ressarcimento ocorrido nas instâncias criminal, civil e administrativa que tiver por objeto os mesmos fatos.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…e nesta Lei e na Lei nº 12.846, de 1º de agosto de 2013, deverão observar o princípio constitucional do non bis in idem.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…sto de 2013, observadas as limitações territoriais contidas em decisão judicial, conforme disposto no § 4º deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…9º As sanções previstas neste artigo somente poderão ser executadas após o trânsito em julgado da sentença condenatória.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ar-se-á retroativamente o intervalo de tempo entre a decisão colegiada e o trânsito em julgado da sentença condenatória.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…apresentada à Secretaria Especial da Receita Federal do Brasil, a fim de ser arquivada no serviço de pessoal competente.",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 1º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…tualizada anualmente e na data em que o agente público deixar o exercício do mandato, do cargo, do emprego ou da função.",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "… a declaração dos bens a que se refere o caput deste artigo dentro do prazo determinado ou que prestar declaração falsa.",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 4º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…mediata apuração dos fatos, observada a legislação que regula o processo administrativo disciplinar aplicável ao agente.",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…s, a fim de garantir a integral recomposição do erário ou do acréscimo patrimonial resultante de enriquecimento ilícito.",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 1º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…se refere o caput deste artigo poderá ser formulado independentemente da representação de que trata o art. 7º desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…bancárias e aplicações financeiras mantidas pelo indiciado no exterior, nos termos da lei e dos tratados internacionais.",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…critos na petição inicial com fundamento nos respectivos elementos de instrução, após a oitiva do réu em 5 (cinco) dias.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…idade da medida ou houver outras circunstâncias que recomendem a proteção liminar, não podendo a urgência ser presumida.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…isponíveis não poderá superar o montante indicado na petição inicial como dano ao erário ou como enriquecimento ilícito.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ária ou por seguro-garantia judicial, a requerimento do réu, bem como a sua readequação durante a instrução do processo.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…, da instauração de incidente de desconsideração da personalidade jurídica, a ser processado na forma da lei processual.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "… cabível, o regime da tutela provisória de urgência da Lei nº 13.105, de 16 de março de 2015 (Código de Processo Civil).",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…de de bens caberá agravo de instrumento, nos termos da Lei nº 13.105, de 16 de março de 2015 (Código de Processo Civil).",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…s a serem eventualmente aplicados a título de multa civil ou sobre acréscimo patrimonial decorrente de atividade lícita.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…as bancárias, de forma a garantir a subsistência do acusado e a manutenção da atividade empresária ao longo do processo.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "… os efeitos práticos da decisão, vedada a adoção de medida capaz de acarretar prejuízo à prestação de serviços públicos.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…(quarenta) salários mínimos depositados em caderneta de poupança, em outras aplicações financeiras ou em conta-corrente.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…u, salvo se comprovado que o imóvel seja fruto de vantagem patrimonial indevida, conforme descrito no art. 9º desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…edimento comum previsto na Lei nº 13.105, de 16 de março de 2015 (Código de Processo Civil), salvo o disposto nesta Lei.",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 1º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 2º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 3º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 4º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "… o caput deste artigo deverá ser proposta perante o foro do local onde ocorrer o dano ou da pessoa jurídica prejudicada.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…competência do juízo para todas as ações posteriormente intentadas que possuam a mesma causa de pedir ou o mesmo objeto.",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 6º A petição inicial observará o seguinte:",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…orrência das hipóteses dos arts. 9º, 10 e 11 desta Lei e de sua autoria, salvo impossibilidade devidamente fundamentada;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…clusive as disposições constantes dos arts. 77 e 80 da Lei nº 13.105, de 16 de março de 2015 (Código de Processo Civil).",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…equadas e necessárias, nos termos dos arts. 294 a 310 da Lei nº 13.105, de 16 de março de 2015 (Código de Processo Civil",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…eferem os incisos I e II do § 6º deste artigo, ou ainda quando manifestamente inexistente o ato de improbidade imputado.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…trinta) dias, iniciado o prazo na forma do art. 231 da Lei nº 13.105, de 16 de março de 2015 (Código de Processo Civil).",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "§ 8º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 8º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 9º",
+          "diploma": null,
+          "trecho": "§ 9º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 9º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "… 9º-A Da decisão que rejeitar questões preliminares suscitadas pelo réu em sua contestação caberá agravo de instrumento.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 10º",
+          "diploma": null,
+          "trecho": "§ 10.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 10. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…oderão as partes requerer ao juiz a interrupção do prazo para a contestação, por prazo não superior a 90 (noventa) dias.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 10-B. Oferecida a contestação e, se for o caso, ouvido o autor, o juiz:",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…rocederá ao julgamento conforme o estado do processo, observada a eventual inexistência manifesta do ato de improbidade;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "II - poderá desmembrar o litisconsórcio, com vistas a otimizar a instrução processual.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ministrativa imputável ao réu, sendo-lhe vedado modificar o fato principal e a capitulação legal apresentada pelo autor.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…nistrativa, deverá necessariamente ser indicado apenas um tipo dentre aqueles previstos nos arts. 9º, 10 e 11 desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ida a decisão referida no § 10-C deste artigo, as partes serão intimadas a especificar as provas que pretendem produzir.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 10-F. Será nula a decisão de mérito total ou parcial da ação de improbidade administrativa que:",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "I - condenar o requerido por tipo diverso daquele definido na petição inicial;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "II - condenar o requerido sem a produção das provas por ele tempestivamente especificadas.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…Em qualquer momento do processo, verificada a inexistência do ato de improbidade, o juiz julgará a demanda improcedente.",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 12º",
+          "diploma": null,
+          "trecho": "§ 12.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 12. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 13º",
+          "diploma": null,
+          "trecho": "§ 13.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 13. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…. Sem prejuízo da citação dos réus, a pessoa jurídica interessada será intimada para, caso queira, intervir no processo.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…regras previstas nos arts. 133, 134, 135, 136 e 137 da Lei nº 13.105, de 16 de março de 2015 (Código de Processo Civil).",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 16º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…onverter a ação de improbidade administrativa em ação civil pública, regulada pela Lei nº 7.347, de 24 de julho de 1985.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 17º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 17. Da decisão que converter a ação de improbidade em ação civil pública caberá agravo de instrumento.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 18º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ireito de ser interrogado sobre os fatos de que trata a ação, e a sua recusa ou o seu silêncio não implicarão confissão.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 19º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 19. Não se aplicam na ação de improbidade administrativa:",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "I - a presunção de veracidade dos fatos alegados pelo autor em caso de revelia;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…a prova ao réu, na forma dos §§ 1º e 2º do art. 373 da Lei nº 13.105, de 16 de março de 2015 (Código de Processo Civil);",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…onselho Nacional do Ministério Público dirimir conflitos de atribuições entre membros de Ministérios Públicos distintos;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "IV - o reexame obrigatório da sentença de improcedência ou de extinção sem resolução de mérito.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 20º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…o judicialmente, caso este venha a responder ação por improbidade administrativa, até que a decisão transite em julgado.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 21º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…á agravo de instrumento, inclusive da decisão que rejeitar questões preliminares suscitadas pelo réu em sua contestação.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "17-A": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 17-A.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "Art. 17-A. (VETADO):",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "I - (VETADO);",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "II - (VETADO);",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "III - (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "§ 1º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "§ 2º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "§ 3º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "§ 4º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "§ 5º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        }
+      ]
+    },
+    "17-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…s do caso concreto, celebrar acordo de não persecução civil, desde que dele advenham, ao menos, os seguintes resultados:",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "I - o integral ressarcimento do dano;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "II - a reversão à pessoa jurídica lesada da vantagem indevida obtida, ainda que oriunda de agentes privados.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 1º A celebração do acordo a que se refere o caput deste artigo dependerá, cumulativamente:",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "I - da oitiva do ente federativo lesado, em momento anterior ou posterior à propositura da ação;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…o Público competente para apreciar as promoções de arquivamento de inquéritos civis, se anterior ao ajuizamento da ação;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ão judicial, independentemente de o acordo ocorrer antes ou depois do ajuizamento da ação de improbidade administrativa.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "… a repercussão social do ato de improbidade, bem como as vantagens, para o interesse público, da rápida solução do caso.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ibunal de Contas competente, que se manifestará, com indicação dos parâmetros utilizados, no prazo de 90 (noventa) dias.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…investigação de apuração do ilícito, no curso da ação de improbidade ou no momento da execução da sentença condenatória.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…deste artigo ocorrerão entre o Ministério Público, de um lado, e, de outro, o investigado ou demandado e o seu defensor.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…oa jurídica, se for o caso, bem como de outras medidas em favor do interesse público e de boas práticas administrativas.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…rar novo acordo pelo prazo de 5 (cinco) anos, contado do conhecimento pelo Ministério Público do efetivo descumprimento.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "17-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…Lei deverá, além de observar o disposto no art. 489 da Lei nº 13.105, de 16 de março de 2015 (Código de Processo Civil):",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…s fundamentos que demonstram os elementos a que se referem os arts. 9º, 10 e 11 desta Lei, que não podem ser presumidos;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "II - considerar as consequências práticas da decisão, sempre que decidir com base em valores jurídicos abstratos;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ireitos dos administrados e das circunstâncias práticas que houverem imposto, limitado ou condicionado a ação do agente;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "IV - considerar, para a aplicação das sanções, de forma isolada ou cumulativa:",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "a) os princípios da proporcionalidade e da razoabilidade;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "b) a natureza, a gravidade e o impacto da infração cometida;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "c) a extensão do dano causado;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "d) o proveito patrimonial obtido pelo agente;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "e) as circunstâncias agravantes ou atenuantes;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "f) a atuação do agente em minorar os prejuízos e as consequências advindas de sua conduta omissiva ou comissiva;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea g",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "g) os antecedentes do agente;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "V - considerar na aplicação das sanções a dosimetria das sanções relativas ao mesmo fato já aplicadas ao agente;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…por ações ou omissões para as quais não tiver concorrido ou das quais não tiver obtido vantagens patrimoniais indevidas;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "VII - indicar, na apuração da ofensa a princípios, critérios objetivos que justifiquem a imposição da sanção.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 1º A ilegalidade sem a presença de dolo que a qualifique não configura ato de improbidade.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…sórcio passivo, a condenação ocorrerá no limite da participação e dos benefícios diretos, vedada qualquer solidariedade.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 3º Não haverá remessa necessária nas sentenças de que trata esta Lei.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "17-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ção do patrimônio público e social, do meio ambiente e de outros interesses difusos, coletivos e individuais homogêneos.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…, étnicos ou religiosos e ao patrimônio público e social submetem-se aos termos da Lei nº 7.347, de 24 de julho de 1985.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ersão dos bens e valores ilicitamente adquiridos, conforme o caso, em favor da pessoa jurídica prejudicada pelo ilícito.",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…dimento para cumprimento da sentença referente ao ressarcimento do patrimônio público ou à perda ou à reversão dos bens.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…atrimônio público ou à perda ou à reversão dos bens, sem prejuízo de eventual responsabilização pela omissão verificada.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 3º Para fins de apuração do valor do ressarcimento, deverão ser descontados os serviços efetivamente prestados.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ndenação pela prática de improbidade administrativa se o réu demonstrar incapacidade financeira de saldá-lo de imediato.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "18-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "… processos, tendo em vista a eventual continuidade de ilícito ou a prática de diversas ilicitudes, observado o seguinte:",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…uiz promoverá a maior sanção aplicada, aumentada de 1/3 (um terço), ou a soma das penas, o que for mais benéfico ao réu;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "II - no caso de prática de novos atos ilícitos pelo mesmo sujeito, o juiz somará as sanções.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ontratar ou de receber incentivos fiscais ou creditícios do poder público observarão o limite máximo de 20 (vinte) anos.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "… remuneração, quando a medida for necessária à instrução processual ou para evitar a iminente prática de novos ilícitos.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "… § 1º deste artigo será de até 90 (noventa) dias, prorrogáveis uma única vez por igual prazo, mediante decisão motivada.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…rência de dano ao patrimônio público, salvo quanto à pena de ressarcimento e às condutas previstas no art. 10 desta Lei;",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…e interno ou externo serão considerados pelo juiz quando tiverem servido de fundamento para a conduta do agente público.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "… deverão ser consideradas na formação da convicção do juiz, sem prejuízo da análise acerca do dolo na conduta do agente.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…rão efeitos em relação à ação de improbidade quando concluírem pela inexistência da conduta ou pela negativa da autoria.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…amentos de absolvição previstos no art. 386 do Decreto-Lei nº 3.689, de 3 de outubro de 1941 (Código de Processo Penal).",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…Sanções eventualmente aplicadas em outras esferas deverão ser compensadas com as sanções aplicadas nos termos desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…rá instaurar inquérito civil ou procedimento investigativo assemelhado e requisitar a instauração de inquérito policial.",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "… de manifestação por escrito e de juntada de documentos que comprovem suas alegações e auxiliem na elucidação dos fatos.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "… anos, contados a partir da ocorrência do fato ou, no caso de infrações permanentes, do dia em que cessou a permanência.",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "I - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "II - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "III - (revogado).",
+          "literal": "(Redação dada pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…as corridos, recomeçando a correr após a sua conclusão ou, caso não concluído o processo, esgotado o prazo de suspensão.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…damentado submetido à revisão da instância competente do órgão ministerial, conforme dispuser a respectiva lei orgânica.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ste artigo, a ação deverá ser proposta no prazo de 30 (trinta) dias, se não for caso de arquivamento do inquérito civil.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 4º O prazo da prescrição referido no caput deste artigo interrompe-se:",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "I - pelo ajuizamento da ação de improbidade administrativa;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "II - pela publicação da sentença condenatória;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…nal de Justiça ou Tribunal Regional Federal que confirma sentença condenatória ou que reforma sentença de improcedência;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ão ou acórdão do Superior Tribunal de Justiça que confirma acórdão condenatório ou que reforma acórdão de improcedência;",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…ecisão ou acórdão do Supremo Tribunal Federal que confirma acórdão condenatório ou que reforma acórdão de improcedência.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…pida a prescrição, o prazo recomeça a correr do dia da interrupção, pela metade do prazo previsto no caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…nterrupção da prescrição produzem efeitos relativamente a todos os que concorreram para a prática do ato de improbidade.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…nexos que sejam objeto do mesmo processo, a suspensão e a interrupção relativas a qualquer deles estendem-se aos demais.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…la de imediato, caso, entre os marcos interruptivos referidos no § 4º, transcorra o prazo previsto no § 5º deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "23-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…capacitação aos agentes públicos e políticos que atuem com prevenção ou repressão de atos de improbidade administrativa.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "23-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…, não haverá adiantamento de custas, de preparo, de emolumentos, de honorários periciais e de quaisquer outras despesas.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 1º No caso de procedência da ação, as custas e as demais despesas processuais serão pagas ao final.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "§ 2º Haverá condenação em honorários sucumbenciais em caso de improcedência da ação de improbidade se comprovada má-fé.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    },
+    "23-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.230",
+            "ano": 2021
+          },
+          "trecho": "…partidos políticos, ou de suas fundações, serão responsabilizados nos termos da Lei nº 9.096, de 19 de setembro de 1995.",
+          "literal": "(Incluído pela Lei nº 14.230, de 2021)"
+        }
+      ]
+    }
+  }
+}

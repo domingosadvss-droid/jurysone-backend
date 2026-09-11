@@ -1,0 +1,4435 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L8112",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l8112.json",
+      "colecao": "artigos",
+      "sha256": "451490a079a58acfc770cd418ca1af945531c08e48b653bf36259b2f889ae04f",
+      "total_registros": 259,
+      "gerado_em": "2026-08-21T22:36:29+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 107,
+      "anotacoes": 360,
+      "anotacoes_sem_diploma_nomeado": 25
+    }
+  },
+  "vigencia": {
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.515",
+            "ano": null
+          },
+          "trecho": "…r seus cargos com professores, técnicos e cientistas estrangeiros, de acordo com as normas e os procedimentos desta Lei.",
+          "literal": "(Incluído pela Lei nº 9.515, de 20.11.97)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "III -",
+          "literal": "(Revogado pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "IV -",
+          "literal": "(Revogado pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "II - em comissão, inclusive na condição de interino, para cargos de confiança vagos.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…es do que atualmente ocupa, hipótese em que deverá optar pela remuneração de um deles durante o período da interinidade.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…abelecidos pela lei que fixar as diretrizes do sistema de carreira na Administração Pública Federal e seus regulamentos.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…xado no edital, quando indispensável ao seu custeio, e ressalvadas as hipóteses de isenção nele expressamente previstas.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "§ 1o A posse ocorrerá no prazo de trinta dias contados da publicação do ato de provimento.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…s I, IV, VI, VIII, alíneas \"a\", \"b\", \"d\", \"e\" e \"f\", IX e X do art. 102, o prazo será contado do término do impedimento.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "§ 4o Só haverá posse nos casos de provimento de cargo por nomeação.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "Art. 15. Exercício é o efetivo desempenho das atribuições do cargo público ou da função de confiança.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "§ 1o É de quinze dias o prazo para o servidor empossado em cargo público entrar em exercício, contados da data da posse.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…para função de confiança, se não entrar em exercício nos prazos previstos neste artigo, observado o disposto no art. 18.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…3o À autoridade competente do órgão ou entidade para onde for nomeado ou designado o servidor compete dar-lhe exercício.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…e em que recairá no primeiro dia útil após o término do impedimento, que não poderá exceder a trinta dias da publicação.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…ercício, que é contado no novo posicionamento na carreira a partir da data de publicação do ato que promover o servidor.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…etivo desempenho das atribuições do cargo, incluído nesse prazo o tempo necessário para o deslocamento para a nova sede.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "§ 2o É facultado ao servidor declinar dos prazos estabelecidos no caput.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.270",
+            "ano": null
+          },
+          "trecho": "…o semanal de quarenta horas e observados os limites mínimo e máximo de seis horas e oito horas diárias, respectivamente.",
+          "literal": "(Redação dada pela Lei nº 8.270, de 17.12.91)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…icação ao serviço, observado o disposto no art. 120, podendo ser convocado sempre que houver interesse da Administração.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.270",
+            "ano": null
+          },
+          "trecho": "§ 2o O disposto neste artigo não se aplica a duração de trabalho estabelecida em leis especiais.",
+          "literal": "(Incluído pela Lei nº 8.270, de 17.12.91)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…argos de provimento em comissão do Grupo-Direção e Assessoramento Superiores - DAS, de níveis 6, 5 e 4, ou equivalentes.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…a participar de curso de formação decorrente de aprovação em concurso para outro cargo na Administração Pública Federal.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…86 e 96, bem assim na hipótese de participação em curso de formação, e será retomado a partir do término do impedimento.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "Art. 23.",
+          "literal": "(Revogado pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…a hipótese de inexistência de cargo vago, o servidor exercerá suas atribuições como excedente, até a ocorrência de vaga.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "Art. 25. Reversão é o retorno à atividade de servidor aposentado:",
+          "literal": "(Redação dada pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "I - por invalidez, quando junta médica oficial declarar insubsistentes os motivos da aposentadoria; ou",
+          "literal": "(Incluído pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "II - no interesse da administração, desde que:",
+          "literal": "(Incluído pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "a) tenha solicitado a reversão;",
+          "literal": "(Incluído pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "b) a aposentadoria tenha sido voluntária;",
+          "literal": "(Incluído pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "c) estável quando na atividade;",
+          "literal": "(Incluído pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "d) a aposentadoria tenha ocorrido nos cinco anos anteriores à solicitação;",
+          "literal": "(Incluído pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "e) haja cargo vago.",
+          "literal": "(Incluído pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "§ 1o A reversão far-se-á no mesmo cargo ou no cargo resultante de sua transformação.",
+          "literal": "(Incluído pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "§ 2o O tempo em que o servidor estiver em exercício será considerado para concessão da aposentadoria.",
+          "literal": "(Incluído pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "…inciso I, encontrando-se provido o cargo, o servidor exercerá suas atribuições como excedente, até a ocorrência de vaga.",
+          "literal": "(Incluído pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "…o cargo que voltar a exercer, inclusive com as vantagens de natureza pessoal que percebia anteriormente à aposentadoria.",
+          "literal": "(Incluído pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "… inciso II somente terá os proventos calculados com base nas regras atuais se permanecer pelo menos cinco anos no cargo.",
+          "literal": "(Incluído pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "§ 6o O Poder Executivo regulamentará o disposto neste artigo.",
+          "literal": "(Incluído pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "Art. 26.",
+          "literal": "(Revogado pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "IV -",
+          "literal": "(Revogado pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "V -",
+          "literal": "(Revogado pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "Art. 35. A exoneração de cargo em comissão e a dispensa de função de confiança dar-se-á:",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "36": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "Parágrafo único. Para fins do disposto neste artigo, entende-se por modalidades de remoção:",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "I - de ofício, no interesse da Administração;",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "II - a pedido, a critério da Administração;",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "III - a pedido, para outra localidade, independentemente do interesse da Administração:",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…os Poderes da União, dos Estados, do Distrito Federal e dos Municípios, que foi deslocado no interesse da Administração;",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…e que viva às suas expensas e conste do seu assentamento funcional, condicionada à comprovação por junta médica oficial;",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…uperior ao número de vagas, de acordo com normas preestabelecidas pelo órgão ou entidade em que aqueles estejam lotados.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…ro órgão ou entidade do mesmo Poder, com prévia apreciação do órgão central do SIPEC, observados os seguintes preceitos:",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "I - interesse da administração;",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "II - equivalência de vencimentos;",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "III - manutenção da essência das atribuições do cargo;",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "IV - vinculação entre os graus de responsabilidade e complexidade das atividades;",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "V - mesmo nível de escolaridade, especialidade ou habilitação profissional;",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "VI - compatibilidade entre as atribuições do cargo e as finalidades institucionais do órgão ou entidade.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…e trabalho às necessidades dos serviços, inclusive nos casos de reorganização, extinção ou criação de órgão ou entidade.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…ediante ato conjunto entre o órgão central do SIPEC e os órgãos e entidades da Administração Pública Federal envolvidos.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…dade do órgão central do SIPEC, e ter exercício provisório, em outro órgão ou entidade, até seu adequado aproveitamento.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "38": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…ndicados no regimento interno ou, no caso de omissão, previamente designados pelo dirigente máximo do órgão ou entidade.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…titular e na vacância do cargo, hipóteses em que deverá optar pela remuneração de um deles durante o respectivo período.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…riores a trinta dias consecutivos, paga na proporção dos dias de efetiva substituição, que excederem o referido período.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "40": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "431",
+            "ano": 2008
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Medida Provisória nº 431, de 2008)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.784",
+            "ano": 2008
+          },
+          "trecho": "Parágrafo único. (Revogado pela Medida Provisória nº 431, de 2008).",
+          "literal": "(Revogado pela Lei nº 11.784, de 2008)"
+        }
+      ]
+    },
+    "43": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.624",
+            "ano": null
+          },
+          "trecho": "Art. 43.",
+          "literal": "(Revogado pela Lei nº 9.624, de 2.4.98)"
+        }
+      ]
+    },
+    "44": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "I - a remuneração do dia em que faltar ao serviço, sem motivo justificado;",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "… na hipótese de compensação de horário, até o mês subseqüente ao da ocorrência, a ser estabelecida pela chefia imediata.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…u de força maior poderão ser compensadas a critério da chefia imediata, sendo assim consideradas como efetivo exercício.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "45": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.509",
+            "ano": 2022
+          },
+          "trecho": "§ 1o",
+          "literal": "(Revogado pela Lei nº 14.509, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.509",
+            "ano": 2022
+          },
+          "trecho": "§ 2o",
+          "literal": "(Revogado pela Lei nº 14.509, de 2022)"
+        }
+      ]
+    },
+    "46": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "…tado ou ao pensionista, para pagamento, no prazo máximo de trinta dias, podendo ser parceladas, a pedido do interessado.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "…1o O valor de cada parcela não poderá ser inferior ao correspondente a dez por cento da remuneração, provento ou pensão.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "…ouver ocorrido no mês anterior ao do processamento da folha, a reposição será feita imediatamente, em uma única parcela.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "… tutela antecipada ou a sentença que venha a ser revogada ou rescindida, serão eles atualizados até a data da reposição.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        }
+      ]
+    },
+    "47": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "…exonerado ou que tiver sua aposentadoria ou disponibilidade cassada, terá o prazo de sessenta dias para quitar o débito.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "Parágrafo único. A não quitação do débito no prazo previsto implicará sua inscrição em dívida ativa.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        }
+      ]
+    },
+    "51": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.355",
+            "ano": 2006
+          },
+          "trecho": "IV - auxílio-moradia.",
+          "literal": "(Incluído pela Lei nº 11.355, de 2006)"
+        }
+      ]
+    },
+    "52": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.355",
+            "ano": 2006
+          },
+          "trecho": "…ecidas nos incisos I a III do art. 51, assim como as condições para a sua concessão, serão estabelecidos em regulamento.",
+          "literal": "(Redação dada pela Lei nº 11.355, de 2006)"
+        }
+      ]
+    },
+    "53": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…empo, no caso de o cônjuge ou companheiro que detenha também a condição de servidor, vier a ter exercício na mesma sede.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.998",
+            "ano": 2014
+          },
+          "trecho": "…Não será concedida ajuda de custo nas hipóteses de remoção previstas nos incisos II e III do parágrafo único do art. 36.",
+          "literal": "(Incluído pela Lei nº 12.998, de 2014)"
+        }
+      ]
+    },
+    "58": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…ar as parcelas de despesas extraordinária com pousada, alimentação e locomoção urbana, conforme dispuser em regulamento.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…ir pernoite fora da sede, ou quando a União custear, por meio diverso, as despesas extraordinárias cobertas por diárias.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…a da sede, hipóteses em que as diárias pagas serão sempre as fixadas para os afastamentos dentro do território nacional.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "60": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.355",
+            "ano": 2006
+          },
+          "trecho": "Do Auxílio-Moradia",
+          "literal": "(Incluído pela Lei nº 11.355, de 2006)"
+        }
+      ]
+    },
+    "60-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.355",
+            "ano": 2006
+          },
+          "trecho": "…m meio de hospedagem administrado por empresa hoteleira, no prazo de um mês após a comprovação da despesa pelo servidor.",
+          "literal": "(Incluído pela Lei nº 11.355, de 2006)"
+        }
+      ]
+    },
+    "60-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.355",
+            "ano": 2006
+          },
+          "trecho": "Art. 60-B. Conceder-se-á auxílio-moradia ao servidor se atendidos os seguintes requisitos:",
+          "literal": "(Incluído pela Lei nº 11.355, de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.355",
+            "ano": 2006
+          },
+          "trecho": "I - não exista imóvel funcional disponível para uso pelo servidor;",
+          "literal": "(Incluído pela Lei nº 11.355, de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.355",
+            "ano": 2006
+          },
+          "trecho": "II - o cônjuge ou companheiro do servidor não ocupe imóvel funcional;",
+          "literal": "(Incluído pela Lei nº 11.355, de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.355",
+            "ano": 2006
+          },
+          "trecho": "…cargo, incluída a hipótese de lote edificado sem averbação de construção, nos doze meses que antecederem a sua nomeação;",
+          "literal": "(Incluído pela Lei nº 11.355, de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.355",
+            "ano": 2006
+          },
+          "trecho": "IV - nenhuma outra pessoa que resida com o servidor receba auxílio-moradia;",
+          "literal": "(Incluído pela Lei nº 11.355, de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.355",
+            "ano": 2006
+          },
+          "trecho": "…-Direção e Assessoramento Superiores - DAS, níveis 4, 5 e 6, de Natureza Especial, de Ministro de Estado ou equivalentes",
+          "literal": "(Incluído pela Lei nº 11.355, de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.355",
+            "ano": 2006
+          },
+          "trecho": "…de confiança não se enquadre nas hipóteses do art. 58, § 3o, em relação ao local de residência ou domicílio do servidor;",
+          "literal": "(Incluído pela Lei nº 11.355, de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.355",
+            "ano": 2006
+          },
+          "trecho": "…er o cargo em comissão ou função de confiança, desconsiderando-se prazo inferior a sessenta dias dentro desse período; e",
+          "literal": "(Incluído pela Lei nº 11.355, de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.355",
+            "ano": 2006
+          },
+          "trecho": "VIII - o deslocamento não tenha sido por força de alteração de lotação ou nomeação para cargo efetivo.",
+          "literal": "(Incluído pela Lei nº 11.355, de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.490",
+            "ano": 2007
+          },
+          "trecho": "IX - o deslocamento tenha ocorrido após 30 de junho de 2006.",
+          "literal": "(Incluído pela Lei nº 11.490, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.355",
+            "ano": 2006
+          },
+          "trecho": "…so VII, não será considerado o prazo no qual o servidor estava ocupando outro cargo em comissão relacionado no inciso V.",
+          "literal": "(Incluído pela Lei nº 11.355, de 2006)"
+        }
+      ]
+    },
+    "60-C": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.998",
+            "ano": 2014
+          },
+          "trecho": "Art. 60-C.",
+          "literal": "(Revogado pela Lei nº 12.998, de 2014)"
+        }
+      ]
+    },
+    "60-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "805",
+            "ano": 2017
+          },
+          "trecho": "§ 3o",
+          "literal": "(Incluído pela Medida Provisória nº 805, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3o (Incluído pela Medida Provisória nº 805, de 2017)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "805",
+            "ano": 2017
+          },
+          "trecho": "§ 4o",
+          "literal": "(Incluído pela Medida Provisória nº 805, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4o (Incluído pela Medida Provisória nº 805, de 2017)",
+          "literal": "(Vigência encerrada)"
+        }
+      ]
+    },
+    "60-E": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.355",
+            "ano": 2006
+          },
+          "trecho": "…de imóvel funcional à disposição do servidor ou aquisição de imóvel, o auxílio-moradia continuará sendo pago por um mês.",
+          "literal": "(Incluído pela Lei nº 11.355, de 2006)"
+        }
+      ]
+    },
+    "61": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…das vantagens previstas nesta Lei, serão deferidos aos servidores as seguintes retribuições, gratificações e adicionais:",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "I - retribuição pelo exercício de função de direção, chefia e assessoramento;",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "III -",
+          "literal": "(Revogado pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.314",
+            "ano": 2006
+          },
+          "trecho": "IX - gratificação por encargo de curso ou concurso.",
+          "literal": "(Incluído pela Lei nº 11.314 de 2006)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "Da Retribuição pelo Exercício de Função de Direção, Chefia e Assessoramento",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "62": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…efia ou assessoramento, cargo de provimento em comissão ou de Natureza Especial é devida retribuição pelo seu exercício.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "Parágrafo único. Lei específica estabelecerá a remuneração dos cargos em comissão de que trata o inciso II do art. 9o.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "62-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "…se referem os arts. 3o e 10 da Lei no 8.911, de 11 de julho de 1994, e o art. 3o da Lei no 9.624, de 2 de abril de 1998.",
+          "literal": "(Incluído pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "…ue trata o caput deste artigo somente estará sujeita às revisões gerais de remuneração dos servidores públicos federais.",
+          "literal": "(Incluído pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        }
+      ]
+    },
+    "64": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "67": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "Art. 67.",
+          "literal": "(Revogado pela Medida Provisória nº 2.225-45, de 2001, respeitadas as situações constituídas até 8.3.1999)"
+        }
+      ]
+    },
+    "76": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.314",
+            "ano": 2006
+          },
+          "trecho": "Da Gratificação por Encargo de Curso ou Concurso",
+          "literal": "(Incluído pela Lei nº 11.314 de 2006)"
+        }
+      ]
+    },
+    "76-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.314",
+            "ano": 2006
+          },
+          "trecho": "Art. 76-A. A Gratificação por Encargo de Curso ou Concurso é devida ao servidor que, em caráter eventual:",
+          "literal": "(Incluído pela Lei nº 11.314 de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.314",
+            "ano": 2006
+          },
+          "trecho": "…so de formação, de desenvolvimento ou de treinamento regularmente instituído no âmbito da administração pública federal;",
+          "literal": "(Incluído pela Lei nº 11.314 de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.314",
+            "ano": 2006
+          },
+          "trecho": "…o de provas discursivas, para elaboração de questões de provas ou para julgamento de recursos intentados por candidatos;",
+          "literal": "(Incluído pela Lei nº 11.314 de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.314",
+            "ano": 2006
+          },
+          "trecho": "…execução e avaliação de resultado, quando tais atividades não estiverem incluídas entre as suas atribuições permanentes;",
+          "literal": "(Incluído pela Lei nº 11.314 de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.314",
+            "ano": 2006
+          },
+          "trecho": "…da aplicação, fiscalizar ou avaliar provas de exame vestibular ou de concurso público ou supervisionar essas atividades.",
+          "literal": "(Incluído pela Lei nº 11.314 de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.314",
+            "ano": 2006
+          },
+          "trecho": "… e os limites da gratificação de que trata este artigo serão fixados em regulamento, observados os seguintes parâmetros:",
+          "literal": "(Incluído pela Lei nº 11.314 de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.314",
+            "ano": 2006
+          },
+          "trecho": "I - o valor da gratificação será calculado em horas, observadas a natureza e a complexidade da atividade exercida;",
+          "literal": "(Incluído pela Lei nº 11.314 de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.314",
+            "ano": 2006
+          },
+          "trecho": "…idade máxima do órgão ou entidade, que poderá autorizar o acréscimo de até 120 (cento e vinte) horas de trabalho anuais;",
+          "literal": "(Incluído pela Lei nº 11.314 de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.314",
+            "ano": 2006
+          },
+          "trecho": "…da corresponderá aos seguintes percentuais, incidentes sobre o maior vencimento básico da administração pública federal:",
+          "literal": "(Incluído pela Lei nº 11.314 de 2006)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.501",
+            "ano": 2007
+          },
+          "trecho": "…ois inteiros e dois décimos por cento), em se tratando de atividades previstas nos incisos I e II do caput deste artigo;",
+          "literal": "(Redação dada pela Lei nº 11.501, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.501",
+            "ano": 2007
+          },
+          "trecho": "… (um inteiro e dois décimos por cento), em se tratando de atividade prevista nos incisos III e IV do caput deste artigo.",
+          "literal": "(Redação dada pela Lei nº 11.501, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.314",
+            "ano": 2006
+          },
+          "trecho": "… compensação de carga horária quando desempenhadas durante a jornada de trabalho, na forma do § 4o do art. 98 desta Lei.",
+          "literal": "(Incluído pela Lei nº 11.314 de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.314",
+            "ano": 2006
+          },
+          "trecho": "…de cálculo para quaisquer outras vantagens, inclusive para fins de cálculo dos proventos da aposentadoria e das pensões.",
+          "literal": "(Incluído pela Lei nº 11.314 de 2006)"
+        }
+      ]
+    },
+    "77": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.525",
+            "ano": null
+          },
+          "trecho": "… máximo de dois períodos, no caso de necessidade do serviço, ressalvadas as hipóteses em que haja legislação específica.",
+          "literal": "(Redação dada pela Lei nº 9.525, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.525",
+            "ano": null
+          },
+          "trecho": "…ão ser parceladas em até três etapas, desde que assim requeridas pelo servidor, e no interesse da administração pública.",
+          "literal": "(Incluído pela Lei nº 9.525, de 10.12.97)"
+        }
+      ]
+    },
+    "78": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "§ 1° e § 2°",
+          "literal": "(Revogado pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.216",
+            "ano": null
+          },
+          "trecho": "… direito e ao incompleto, na proporção de um doze avos por mês de efetivo exercício, ou fração superior a quatorze dias.",
+          "literal": "(Incluído pela Lei nº 8.216, de 13.8.91)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.216",
+            "ano": null
+          },
+          "trecho": "§ 4o A indenização será calculada com base na remuneração do mês em que for publicado o ato exoneratório.",
+          "literal": "(Incluído pela Lei nº 8.216, de 13.8.91)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.525",
+            "ano": null
+          },
+          "trecho": "…á o valor adicional previsto no inciso XVII do art. 7o da Constituição Federal quando da utilização do primeiro período.",
+          "literal": "(Incluído pela Lei nº 9.525, de 10.12.97)"
+        }
+      ]
+    },
+    "79": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "80": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…júri, serviço militar ou eleitoral, ou por necessidade do serviço declarada pela autoridade máxima do órgão ou entidade.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "Parágrafo único. O restante do período interrompido será gozado de uma só vez, observado o disposto no art. 77.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "81": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "V - para capacitação;",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.907",
+            "ano": 2009
+          },
+          "trecho": "…a de suas prorrogações serão precedidas de exame por perícia médica oficial, observado o disposto no art. 204 desta Lei.",
+          "literal": "(Redação dada pela Lei nº 11.907, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "§ 2o",
+          "literal": "(Revogado pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "83": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.907",
+            "ano": 2009
+          },
+          "trecho": "…ndente que viva a suas expensas e conste do seu assentamento funcional, mediante comprovação por perícia médica oficial.",
+          "literal": "(Redação dada pela Lei nº 11.907, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…multaneamente com o exercício do cargo ou mediante compensação de horário, na forma do disposto no inciso II do art. 44.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.269",
+            "ano": 2010
+          },
+          "trecho": "…que trata o caput, incluídas as prorrogações, poderá ser concedida a cada período de doze meses nas seguintes condições:",
+          "literal": "(Redação dada pela Lei nº 12.269, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.269",
+            "ano": 2010
+          },
+          "trecho": "I - por até 60 (sessenta) dias, consecutivos ou não, mantida a remuneração do servidor; e",
+          "literal": "(Incluído pela Lei nº 12.269, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.269",
+            "ano": 2010
+          },
+          "trecho": "II - por até 90 (noventa) dias, consecutivos ou não, sem remuneração.",
+          "literal": "(Incluído pela Lei nº 12.269, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.269",
+            "ano": 2010
+          },
+          "trecho": "…o O início do interstício de 12 (doze) meses será contado a partir da data do deferimento da primeira licença concedida.",
+          "literal": "(Incluído pela Lei nº 12.269, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.269",
+            "ano": 2010
+          },
+          "trecho": "… (doze) meses, observado o disposto no § 3o, não poderá ultrapassar os limites estabelecidos nos incisos I e II do § 2o.",
+          "literal": "(Incluído pela Lei nº 12.269, de 2010)"
+        }
+      ]
+    },
+    "84": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…nistração Federal direta, autárquica ou fundacional, desde que para o exercício de atividade compatível com o seu cargo.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "86": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…r do dia imediato ao do registro de sua candidatura perante a Justiça Eleitoral, até o décimo dia seguinte ao do pleito.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…eleição, o servidor fará jus à licença, assegurados os vencimentos do cargo efetivo, somente pelo período de três meses.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "87": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…o cargo efetivo, com a respectiva remuneração, por até três meses, para participar de curso de capacitação profissional.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "Parágrafo único. Os períodos de licença de que trata o caput não são acumuláveis.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "88": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "Art. 88.",
+          "literal": "(Revogado pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "Art. 88. (Revogado pela Lei nº 9.527, de 10.12.97) Art. 89.",
+          "literal": "(Revogado pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "90": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 90.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "91": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "…io probatório, licenças para o trato de assuntos particulares pelo prazo de até três anos consecutivos, sem remuneração.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "Parágrafo único. A licença poderá ser interrompida, a qualquer tempo, a pedido do servidor ou no interesse do serviço.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        }
+      ]
+    },
+    "92": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.094",
+            "ano": 2005
+          },
+          "trecho": "…to na alínea c do inciso VIII do art. 102 desta Lei, conforme disposto em regulamento e observados os seguintes limites:",
+          "literal": "(Redação dada pela Lei nº 11.094, de 2005)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.998",
+            "ano": 2014
+          },
+          "trecho": "I - para entidades com até 5.000 (cinco mil) associados, 2 (dois) servidores;",
+          "literal": "(Redação dada pela Lei nº 12.998, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.998",
+            "ano": 2014
+          },
+          "trecho": "II - para entidades com 5.001 (cinco mil e um) a 30.000 (trinta mil) associados, 4 (quatro) servidores;",
+          "literal": "(Redação dada pela Lei nº 12.998, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.998",
+            "ano": 2014
+          },
+          "trecho": "III - para entidades com mais de 30.000 (trinta mil) associados, 8 (oito) servidores.",
+          "literal": "(Redação dada pela Lei nº 12.998, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.998",
+            "ano": 2014
+          },
+          "trecho": "…s eleitos para cargos de direção ou de representação nas referidas entidades, desde que cadastradas no órgão competente.",
+          "literal": "(Redação dada pela Lei nº 12.998, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.998",
+            "ano": 2014
+          },
+          "trecho": "§ 2o A licença terá duração igual à do mandato, podendo ser renovada, no caso de reeleição.",
+          "literal": "(Redação dada pela Lei nº 12.998, de 2014)"
+        }
+      ]
+    },
+    "93": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.270",
+            "ano": null
+          },
+          "trecho": "…o órgão ou entidade dos Poderes da União, dos Estados, ou do Distrito Federal e dos Municípios, nas seguintes hipóteses:",
+          "literal": "(Redação dada pela Lei nº 8.270, de 17.12.91)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.270",
+            "ano": null
+          },
+          "trecho": "I - para exercício de cargo em comissão ou função de confiança;",
+          "literal": "(Redação dada pela Lei nº 8.270, de 17.12.91)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.270",
+            "ano": null
+          },
+          "trecho": "II - em casos previstos em leis específicas.",
+          "literal": "(Redação dada pela Lei nº 8.270, de 17.12.91)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.270",
+            "ano": null
+          },
+          "trecho": "…Municípios, o ônus da remuneração será do órgão ou entidade cessionária, mantido o ônus para o cedente nos demais casos.",
+          "literal": "(Redação dada pela Lei nº 8.270, de 17.12.91)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.355",
+            "ano": 2006
+          },
+          "trecho": "…cargo em comissão, a entidade cessionária efetuará o reembolso das despesas realizadas pelo órgão ou entidade de origem.",
+          "literal": "(Redação dada pela Lei nº 11.355, de 2006)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.270",
+            "ano": null
+          },
+          "trecho": "§ 3o A cessão far-se-á mediante Portaria publicada no Diário Oficial da União.",
+          "literal": "(Redação dada pela Lei nº 8.270, de 17.12.91)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.270",
+            "ano": null
+          },
+          "trecho": "…tro órgão da Administração Federal direta que não tenha quadro próprio de pessoal, para fim determinado e a prazo certo.",
+          "literal": "(Incluído pela Lei nº 8.270, de 17.12.91)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.470",
+            "ano": 2002
+          },
+          "trecho": "…ica-se à União, em se tratando de empregado ou servidor por ela requisitado, as disposições dos §§ 1º e 2º deste artigo.",
+          "literal": "(Redação dada pela Lei nº 10.470, de 25.6.2002)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.470",
+            "ano": 2002
+          },
+          "trecho": "…Ministério do Planejamento, Orçamento e Gestão, exceto nos casos de ocupação de cargo em comissão ou função gratificada.",
+          "literal": "(Incluído pela Lei nº 10.470, de 25.6.2002)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.470",
+            "ano": 2002
+          },
+          "trecho": "…cício de empregado ou servidor, independentemente da observância do constante no inciso I e nos §§ 1º e 2º deste artigo.",
+          "literal": "(Incluído pela Lei nº 10.470, de 25.6.2002)"
+        }
+      ]
+    },
+    "95": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…ação de que trata este artigo, inclusive no que se refere à remuneração do servidor, serão disciplinadas em regulamento.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "96-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.907",
+            "ano": 2009
+          },
+          "trecho": "…ctiva remuneração, para participar em programa de pós-graduação stricto sensu em instituição de ensino superior no País.",
+          "literal": "(Incluído pela Lei nº 11.907, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.907",
+            "ano": 2009
+          },
+          "trecho": "… pós-graduação no País, com ou sem afastamento do servidor, que serão avaliados por um comitê constituído para este fim.",
+          "literal": "(Incluído pela Lei nº 11.907, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.907",
+            "ano": 2009
+          },
+          "trecho": "…de licença capacitação ou com fundamento neste artigo nos 2 (dois) anos anteriores à data da solicitação de afastamento.",
+          "literal": "(Incluído pela Lei nº 11.907, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.269",
+            "ano": 2010
+          },
+          "trecho": "…e assuntos particulares ou com fundamento neste artigo, nos quatro anos anteriores à data da solicitação de afastamento.",
+          "literal": "(Redação dada pela Lei nº 12.269, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.907",
+            "ano": 2009
+          },
+          "trecho": "…o terão que permanecer no exercício de suas funções após o seu retorno por um período igual ao do afastamento concedido.",
+          "literal": "(Incluído pela Lei nº 11.907, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.907",
+            "ano": 2009
+          },
+          "trecho": "…o órgão ou entidade, na forma do art. 47 da Lei no 8.112, de 11 de dezembro de 1990, dos gastos com seu aperfeiçoamento.",
+          "literal": "(Incluído pela Lei nº 11.907, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.907",
+            "ano": 2009
+          },
+          "trecho": "…o, salvo na hipótese comprovada de força maior ou de caso fortuito, a critério do dirigente máximo do órgão ou entidade.",
+          "literal": "(Incluído pela Lei nº 11.907, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.907",
+            "ano": 2009
+          },
+          "trecho": "…ograma de pós-graduação no Exterior, autorizado nos termos do art. 95 desta Lei, o disposto nos §§ 1o a 6o deste artigo.",
+          "literal": "(Incluído pela Lei nº 11.907, de 2009)"
+        }
+      ]
+    },
+    "97": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.998",
+            "ano": 2014
+          },
+          "trecho": "…o comprovadamente necessário para alistamento ou recadastramento eleitoral, limitado, em qualquer caso, a 2 (dois) dias;",
+          "literal": "(Redação dada pela Lei nº 12.998, de 2014)"
+        }
+      ]
+    },
+    "98": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…r de deficiência, quando comprovada a necessidade por junta médica oficial, independentemente de compensação de horário.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.370",
+            "ano": 2016
+          },
+          "trecho": "… 3o As disposições constantes do § 2o são extensivas ao servidor que tenha cônjuge, filho ou dependente com deficiência.",
+          "literal": "(Redação dada pela Lei nº 13.370, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.501",
+            "ano": 2007
+          },
+          "trecho": "…azo de até 1 (um) ano, ao servidor que desempenhe atividade prevista nos incisos I e II do caput do art. 76-A desta Lei.",
+          "literal": "(Redação dada pela Lei nº 11.501, de 2007)"
+        }
+      ]
+    },
+    "101": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "102": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.907",
+            "ano": 2009
+          },
+          "trecho": "…inamento regularmente instituído ou em programa de pós-graduação stricto sensu no País, conforme dispuser o regulamento;",
+          "literal": "(Redação dada pela Lei nº 11.907, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "VII - missão ou estudo no exterior, quando autorizado o afastamento, conforme dispuser o regulamento;",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "… vinte e quatro meses, cumulativo ao longo do tempo de serviço público prestado à União, em cargo de provimento efetivo;",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.094",
+            "ano": 2005
+          },
+          "trecho": "…erativa constituída por servidores para prestar serviços a seus membros, exceto para efeito de promoção por merecimento;",
+          "literal": "(Redação dada pela Lei nº 11.094, de 2005)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "e) para capacitação, conforme dispuser o regulamento;",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "XI - afastamento para servir em organismo internacional de que o Brasil participe ou com o qual coopere.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "103": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.269",
+            "ano": 2010
+          },
+          "trecho": "… saúde de pessoal da família do servidor, com remuneração, que exceder a 30 (trinta) dias em período de 12 (doze) meses.",
+          "literal": "(Redação dada pela Lei nº 12.269, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…de licença para tratamento da própria saúde que exceder o prazo a que se refere a alínea \"b\" do inciso VIII do art. 102.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "116": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.527",
+            "ano": 2011
+          },
+          "trecho": "…superior ou, quando houver suspeita de envolvimento desta, ao conhecimento de outra autoridade competente para apuração;",
+          "literal": "(Redação dada pela Lei nº 12.527, de 2011)"
+        }
+      ]
+    },
+    "117": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "XIX - recusar-se a atualizar seus dados cadastrais quando solicitado.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "118": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "… com proventos da inatividade, salvo quando os cargos de que decorram essas remunerações forem acumuláveis na atividade.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "119": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…o no caso previsto no parágrafo único do art. 9o, nem ser remunerado pela participação em órgão de deliberação coletiva.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.225-45",
+            "ano": 2001
+          },
+          "trecho": "…a ou indiretamente, detenha participação no capital social, observado o que, a respeito, dispuser legislação específica.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.225-45, de 4.9.2001)"
+        }
+      ]
+    },
+    "120": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "… de horário e local com o exercício de um deles, declarada pelas autoridades máximas dos órgãos ou entidades envolvidos.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "126-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.527",
+            "ano": 2011
+          },
+          "trecho": "…mes ou improbidade de que tenha conhecimento, ainda que em decorrência do exercício de cargo, emprego ou função pública.",
+          "literal": "(Incluído pela Lei nº 12.527, de 2011)"
+        }
+      ]
+    },
+    "128": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "Parágrafo único. O ato de imposição da penalidade mencionará sempre o fundamento legal e a causa da sanção disciplinar.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "129": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…dever funcional previsto em lei, regulamentação ou norma interna, que não justifique imposição de penalidade mais grave.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "133": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…a a sua apuração e regularização imediata, cujo processo administrativo disciplinar se desenvolverá nas seguintes fases:",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "… por dois servidores estáveis, e simultaneamente indicar a autoria e a materialidade da transgressão objeto da apuração;",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "II - instrução sumária, que compreende indiciação, defesa e relatório;",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "III - julgamento.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…os órgãos ou entidades de vinculação, das datas de ingresso, do horário de trabalho e do correspondente regime jurídico.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…apresentar defesa escrita, assegurando-se-lhe vista do processo na repartição, observado o disposto nos arts. 163 e 164.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…ação em exame, indicará o respectivo dispositivo legal e remeterá o processo à autoridade instauradora, para julgamento.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…ocesso, a autoridade julgadora proferirá a sua decisão, aplicando-se, quando for o caso, o disposto no § 3o do art. 167.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…ara defesa configurará sua boa-fé, hipótese em que se converterá automaticamente em pedido de exoneração do outro cargo.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…funções públicas em regime de acumulação ilegal, hipótese em que os órgãos ou entidades de vinculação serão comunicados.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…o do ato que constituir a comissão, admitida a sua prorrogação por até quinze dias, quando as circunstâncias o exigirem.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…es deste artigo, observando-se, no que lhe for aplicável, subsidiariamente, as disposições dos Títulos IV e V desta Lei.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "140": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…uidade habitual, também será adotado o procedimento sumário a que se refere o art. 133, observando-se especialmente que:",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "I - a indicação da materialidade dar-se-á:",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…ndono de cargo, pela indicação precisa do período de ausência intencional do servidor ao serviço superior a trinta dias;",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "… sem causa justificada, por período igual ou superior a sessenta dias interpoladamente, durante o período de doze meses;",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…onalidade da ausência ao serviço superior a trinta dias e remeterá o processo à autoridade instauradora para julgamento.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "143": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.204",
+            "ano": 2005
+          },
+          "trecho": "§ 1o",
+          "literal": "(Revogado pela Lei nº 11.204, de 2005)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.204",
+            "ano": 2005
+          },
+          "trecho": "§ 2o",
+          "literal": "(Revogado pela Lei nº 11.204, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…o âmbito do respectivo Poder, órgão ou entidade, preservadas as competências para o julgamento que se seguir à apuração.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "149": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…er ocupante de cargo efetivo superior ou de mesmo nível, ou ter nível de escolaridade igual ou superior ao do indiciado.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "164": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…er ocupante de cargo efetivo superior ou de mesmo nível, ou ter nível de escolaridade igual ou superior ao do indiciado.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "167": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…autoridade instauradora do processo determinará o seu arquivamento, salvo se flagrantemente contrária à prova dos autos.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "169": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…ulidade, total ou parcial, e ordenará, no mesmo ato, a constituição de outra comissão para instauração de novo processo.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "183": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.667",
+            "ano": 2003
+          },
+          "trecho": "…árquica e fundacional não terá direito aos benefícios do Plano de Seguridade Social, com exceção da assistência à saúde.",
+          "literal": "(Redação dada pela Lei nº 10.667, de 14.5.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.667",
+            "ano": 2003
+          },
+          "trecho": "…durar o afastamento ou a licença, não lhes assistindo, neste período, os benefícios do mencionado regime de previdência.",
+          "literal": "(Incluído pela Lei nº 10.667, de 14.5.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.667",
+            "ano": 2003
+          },
+          "trecho": "…cargo a que faz jus no exercício de suas atribuições, computando-se, para esse efeito, inclusive, as vantagens pessoais.",
+          "literal": "(Incluído pela Lei nº 10.667, de 14.5.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.667",
+            "ano": 2003
+          },
+          "trecho": "… aplicando-se os procedimentos de cobrança e execução dos tributos federais quando não recolhidas na data de vencimento.",
+          "literal": "(Incluído pela Lei nº 10.667, de 14.5.2003)"
+        }
+      ]
+    },
+    "186": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…zada a incapacidade para o desempenho das atribuições do cargo ou a impossibilidade de se aplicar o disposto no art. 24.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "188": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.907",
+            "ano": 2009
+          },
+          "trecho": "…go, serão consideradas apenas as licenças motivadas pela enfermidade ensejadora da invalidez ou doenças correlacionadas.",
+          "literal": "(Incluído pela Lei nº 11.907, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.907",
+            "ano": 2009
+          },
+          "trecho": "…ez poderá ser convocado a qualquer momento, para avaliação das condições que ensejaram o afastamento ou a aposentadoria.",
+          "literal": "(Incluído pela Lei nº 11.907, de 2009)"
+        }
+      ]
+    },
+    "190": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.907",
+            "ano": 2009
+          },
+          "trecho": "…dica oficial passará a perceber provento integral, calculado com base no fundamento legal de concessão da aposentadoria.",
+          "literal": "(Redação dada pela Lei nº 11.907, de 2009)"
+        }
+      ]
+    },
+    "192": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "Art. 192.",
+          "literal": "(Revogado pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "193": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "Art. 193.",
+          "literal": "(Revogado pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "203": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.907",
+            "ano": 2009
+          },
+          "trecho": "Art. 203. A licença de que trata o art. 202 desta Lei será concedida com base em perícia oficial.",
+          "literal": "(Redação dada pela Lei nº 11.907, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…o se configurando as hipóteses previstas nos parágrafos do art. 230, será aceito atestado passado por médico particular.",
+          "literal": "(Redação dada pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.907",
+            "ano": 2009
+          },
+          "trecho": "…tigo, o atestado somente produzirá efeitos depois de recepcionado pela unidade de recursos humanos do órgão ou entidade.",
+          "literal": "(Redação dada pela Lei nº 11.907, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.907",
+            "ano": 2009
+          },
+          "trecho": "…o de 12 (doze) meses a contar do primeiro dia de afastamento será concedida mediante avaliação por junta médica oficial.",
+          "literal": "(Redação dada pela Lei nº 11.907, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.907",
+            "ano": 2009
+          },
+          "trecho": "…stos nesta Lei, será efetuada por cirurgiões-dentistas, nas hipóteses em que abranger o campo de atuação da odontologia.",
+          "literal": "(Incluído pela Lei nº 11.907, de 2009)"
+        }
+      ]
+    },
+    "204": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.907",
+            "ano": 2009
+          },
+          "trecho": "…or a 15 (quinze) dias, dentro de 1 (um) ano, poderá ser dispensada de perícia oficial, na forma definida em regulamento.",
+          "literal": "(Redação dada pela Lei nº 11.907, de 2009)"
+        }
+      ]
+    },
+    "206-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.907",
+            "ano": 2009
+          },
+          "trecho": "Art. 206-A. O servidor será submetido a exames médicos periódicos, nos termos e condições definidos em regulamento.",
+          "literal": "(Incluído pela Lei nº 11.907, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.998",
+            "ano": 2014
+          },
+          "trecho": "Parágrafo único. Para os fins do disposto no caput, a União e suas entidades autárquicas e fundacionais poderão:",
+          "literal": "(Incluído pela Lei nº 12.998, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.998",
+            "ano": 2014
+          },
+          "trecho": "I - prestar os exames médicos periódicos diretamente pelo órgão ou entidade à qual se encontra vinculado o servidor;",
+          "literal": "(Incluído pela Lei nº 12.998, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.998",
+            "ano": 2014
+          },
+          "trecho": "…ou instrumento de cooperação ou parceria com os órgãos e entidades da administração direta, suas autarquias e fundações;",
+          "literal": "(Incluído pela Lei nº 12.998, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.998",
+            "ano": 2014
+          },
+          "trecho": "…zadas na modalidade de autogestão, que possuam autorização de funcionamento do órgão regulador, na forma do art. 230; ou",
+          "literal": "(Incluído pela Lei nº 12.998, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.998",
+            "ano": 2014
+          },
+          "trecho": "…ante contrato administrativo, observado o disposto na Lei no 8.666, de 21 de junho de 1993, e demais normas pertinentes.",
+          "literal": "(Incluído pela Lei nº 12.998, de 2014)"
+        }
+      ]
+    },
+    "215": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…elecidos no inciso XI do caput do art. 37 da Constituição Federal e no art. 2º da Lei nº 10.887, de 18 de junho de 2004.",
+          "literal": "(Redação dada pela Lei nº 13.846, de 2019)"
+        }
+      ]
+    },
+    "216": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "664",
+            "ano": 2014
+          },
+          "trecho": "Art. 216.",
+          "literal": "(Revogado pela Medida Provisória nº 664, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 216. (Revogado pela Medida Provisória nº 664, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "Art. 216. (Revogado pela Medida Provisória nº 664, de 2014) (Vigência)",
+          "literal": "(Revogado pela Lei nº 13.135, de 2015)"
+        }
+      ]
+    },
+    "217": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "I - o cônjuge;",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a)",
+          "literal": "(Revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "a) (Revogada);",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(Revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "b) (Revogada);",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "c)",
+          "literal": "(Revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "c) (Revogada);",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea d",
+          "diploma": null,
+          "trecho": "d)",
+          "literal": "(Revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "d) (Revogada);",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea e",
+          "diploma": null,
+          "trecho": "e)",
+          "literal": "(Revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "e) (Revogada);",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "…cônjuge divorciado ou separado judicialmente ou de fato, com percepção de pensão alimentícia estabelecida judicialmente;",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a)",
+          "literal": "(Revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "a) (Revogada);",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(Revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "b) (Revogada);",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "c) Revogada);",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea d",
+          "diploma": null,
+          "trecho": "d)",
+          "literal": "(Revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "d) (Revogada);",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "III - o companheiro ou companheira que comprove união estável como entidade familiar;",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "IV - o filho de qualquer condição que atenda a um dos seguintes requisitos:",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "a) seja menor de 21 (vinte e um) anos;",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "b) seja inválido;",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "c) (Vide Lei nº 13.135, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "d) tenha deficiência intelectual ou mental;",
+          "literal": "(Redação dada pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "V - a mãe e o pai que comprovem dependência econômica do servidor; e",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "…de qualquer condição que comprove dependência econômica do servidor e atenda a um dos requisitos previstos no inciso IV.",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "… pensão aos beneficiários de que tratam os incisos I a IV do caput exclui os beneficiários referidos nos incisos V e VI.",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "…2o A concessão de pensão aos beneficiários de que trata o inciso V do caput exclui o beneficiário referido no inciso VI.",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "…ilho mediante declaração do servidor e desde que comprovada dependência econômica, na forma estabelecida em regulamento.",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "§ 4º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        }
+      ]
+    },
+    "218": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "…ilitação de vários titulares à pensão, o seu valor será distribuído em partes iguais entre os beneficiários habilitados.",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "§ 1o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "§ 2o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "§ 3o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        }
+      ]
+    },
+    "219": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…A pensão por morte será devida ao conjunto dos dependentes do segurado que falecer, aposentado ou não, a contar da data:",
+          "literal": "(Redação dada pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…to, para os filhos menores de 16 (dezesseis) anos, ou em até 90 (noventa) dias após o óbito, para os demais dependentes;",
+          "literal": "(Redação dada pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "II - do requerimento, quando requerida após o prazo previsto no inciso I do caput deste artigo; ou",
+          "literal": "(Redação dada pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "III - da decisão judicial, na hipótese de morte presumida.",
+          "literal": "(Redação dada pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…pendente só produzirá efeito a partir da data da publicação da portaria de concessão da pensão ao dependente habilitado.",
+          "literal": "(Redação dada pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "… respectiva cota até o trânsito em julgado da respectiva ação, ressalvada a existência de decisão judicial em contrário.",
+          "literal": "(Redação dada pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "… respectiva cota até o trânsito em julgado da respectiva ação, ressalvada a existência de decisão judicial em contrário.",
+          "literal": "(Redação dada pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "… pago de forma proporcional aos demais dependentes, de acordo com as suas cotas e o tempo de duração de seus benefícios.",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…egurada ao órgão concessor da pensão por morte a cobrança dos valores indevidamente pagos em função de nova habilitação.",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        }
+      ]
+    },
+    "220": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "Art. 220. Perde o direito à pensão por morte:",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "…nsito em julgado, o beneficiário condenado pela prática de crime de que tenha dolosamente resultado a morte do servidor;",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "…fício previdenciário, apuradas em processo judicial no qual será assegurado o direito ao contraditório e à ampla defesa.",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        }
+      ]
+    },
+    "222": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…ciência, respeitados os períodos mínimos decorrentes da aplicação das alíneas a e b do inciso VII do caput deste artigo;",
+          "literal": "(Redação dada pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "IV - o implemento da idade de 21 (vinte e um) anos, pelo filho ou irmão;",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "VI - a renúncia expressa; e",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "VII - em relação aos beneficiários de que tratam os incisos I a III do caput do art. 217:",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "…ensais ou se o casamento ou a união estável tiverem sido iniciados em menos de 2 (dois) anos antes do óbito do servidor;",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "…e vertidas 18 (dezoito) contribuições mensais e pelo menos 2 (dois) anos após o início do casamento ou da união estável:",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "1) 3 (três) anos, com menos de 21 (vinte e um) anos de idade;",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "2) 6 (seis) anos, entre 21 (vinte e um) e 26 (vinte e seis) anos de idade;",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "3) 10 (dez) anos, entre 27 (vinte e sete) e 29 (vinte e nove) anos de idade;",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "4) 15 (quinze) anos, entre 30 (trinta) e 40 (quarenta) anos de idade;",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "5) 20 (vinte) anos, entre 41 (quarenta e um) e 43 (quarenta e três) anos de idade;",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "6) vitalícia, com 44 (quarenta e quatro) ou mais anos de idade.",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "…dez, por incapacidade ou por deficiência poderá ser convocado a qualquer momento para avaliação das referidas condições.",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "… recolhimento de 18 (dezoito) contribuições mensais ou da comprovação de 2 (dois) anos de casamento ou de união estável.",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "…do Planejamento, Orçamento e Gestão, limitado o acréscimo na comparação com as idades anteriores ao referido incremento.",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "…á considerado na contagem das 18 (dezoito) contribuições mensais referidas nas alíneas “a” e “b” do inciso VII do caput.",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…á devida pelo prazo remanescente na data do óbito, caso não incida outra hipótese de cancelamento anterior do benefício.",
+          "literal": "(Redação dada pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…benefício suspenso, observado o disposto nos incisos I e II do caput do art. 95 da Lei nº 13.146, de 6 de julho de 2015.",
+          "literal": "(Redação dada pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "… concessão ou manutenção da cota da pensão de dependente com deficiência intelectual ou mental ou com deficiência grave.",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…uratela de titular ou de beneficiário com deficiência, observados os procedimentos a serem estabelecidos em regulamento.",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        }
+      ]
+    },
+    "223": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "Art. 223. Por morte ou perda da qualidade de beneficiário, a respectiva cota reverterá para os cobeneficiários.",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "I - (Revogado);",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "II - (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        }
+      ]
+    },
+    "225": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "…rcepção cumulativa de pensão deixada por mais de um cônjuge ou companheiro ou companheira e de mais de 2 (duas) pensões.",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        }
+      ]
+    },
+    "226": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2o",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "229": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "… auxílio-reclusão será devido, nas mesmas condições da pensão por morte, aos dependentes do segurado recolhido à prisão.",
+          "literal": "(Incluído pela Lei nº 13.135, de 2015)"
+        }
+      ]
+    },
+    "230": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.302",
+            "ano": 2006
+          },
+          "trecho": "…dependentes ou pensionistas com planos ou seguros privados de assistência à saúde, na forma estabelecida em regulamento.",
+          "literal": "(Redação dada pela Lei nº 11.302 de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…úde, entidades sem fins lucrativos declaradas de utilidade pública, ou com o Instituto Nacional do Seguro Social - INSS.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…e suas habilitações e de que não estejam respondendo a processo disciplinar junto à entidade fiscalizadora da profissão.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.302",
+            "ano": 2006
+          },
+          "trecho": "…Para os fins do disposto no caput deste artigo, ficam a União e suas entidades autárquicas e fundacionais autorizadas a:",
+          "literal": "(Incluído pela Lei nº 11.302 de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.302",
+            "ano": 2006
+          },
+          "trecho": "…itenta) dias da vigência desta Lei, normas essas também aplicáveis aos convênios existentes até 12 de fevereiro de 2006;",
+          "literal": "(Incluído pela Lei nº 11.302 de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.302",
+            "ano": 2006
+          },
+          "trecho": "…radoras de planos e seguros privados de assistência à saúde que possuam autorização de funcionamento do órgão regulador;",
+          "literal": "(Incluído pela Lei nº 11.302 de 2006)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.302",
+            "ano": 2006
+          },
+          "trecho": "III - (VETADO)",
+          "literal": "(Incluído pela Lei nº 11.302 de 2006)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.302",
+            "ano": 2006
+          },
+          "trecho": "§ 4o (VETADO)",
+          "literal": "(Incluído pela Lei nº 11.302 de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.302",
+            "ano": 2006
+          },
+          "trecho": "…fica limitado ao total despendido pelo servidor ou pensionista civil com plano ou seguro privado de assistência à saúde.",
+          "literal": "(Incluído pela Lei nº 11.302 de 2006)"
+        }
+      ]
+    },
+    "231": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.783",
+            "ano": null
+          },
+          "trecho": "Art. 231.",
+          "literal": "(Revogado pela Lei nº 9.783, de 28.01.99)"
+        }
+      ]
+    },
+    "232": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.745",
+            "ano": null
+          },
+          "trecho": "Art. 232.",
+          "literal": "(Revogado pela Lei nº 8.745, de 9.12.93)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.745",
+            "ano": null
+          },
+          "trecho": "Art. 232. (Revogado pela Lei nº 8.745, de 9.12.93) Art. 233.",
+          "literal": "(Revogado pela Lei nº 8.745, de 9.12.93)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.745",
+            "ano": null
+          },
+          "trecho": "Art. 232. (Revogado pela Lei nº 8.745, de 9.12.93) Art. 233. (Revogado pela Lei nº 8.745, de 9.12.93) Art. 234.",
+          "literal": "(Revogado pela Lei nº 8.745, de 9.12.93)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.745",
+            "ano": null
+          },
+          "trecho": "…9.12.93) Art. 233. (Revogado pela Lei nº 8.745, de 9.12.93) Art. 234. (Revogado pela Lei nº 8.745, de 9.12.93) Art. 235.",
+          "literal": "(Revogado pela Lei nº 8.745, de 9.12.93)"
+        }
+      ]
+    },
+    "240": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "d)",
+          "literal": "(Revogado pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "e)",
+          "literal": "(Revogado pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "243": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…o, ser exonerados mediante indenização de um mês de remuneração por ano de efetivo exercício no serviço público federal.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…o considerados como indenizações isentas os pagamentos efetuados a título de indenização prevista no parágrafo anterior.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "…corrência da aplicação do disposto no § 7o poderão ser extintos pelo Poder Executivo quando considerados desnecessários.",
+          "literal": "(Incluído pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    },
+    "246": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 246.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "247": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.162",
+            "ano": null
+          },
+          "trecho": "…vidência Social, correspondente ao período de contribuição por parte dos servidores celetistas abrangidos pelo art. 243.",
+          "literal": "(Redação dada pela Lei nº 8.162, de 8.1.91)"
+        }
+      ]
+    },
+    "251": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.527",
+            "ano": null
+          },
+          "trecho": "Art. 251.",
+          "literal": "(Revogado pela Lei nº 9.527, de 10.12.97)"
+        }
+      ]
+    }
+  }
+}

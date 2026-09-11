@@ -1,0 +1,702 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "LINDB",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_lindb.json",
+      "colecao": "artigos",
+      "sha256": "d067529940d1b8bb00ca0474e167a740acb3b8f891a23ba8c6c4251248b00f85",
+      "total_registros": 30,
+      "gerado_em": "2026-08-31T20:53:14+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 18,
+      "anotacoes": 56,
+      "anotacoes_sem_diploma_nomeado": 11
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.036",
+            "ano": 2009
+          },
+          "trecho": "§ 2o",
+          "literal": "(Revogado pela Lei nº 12.036, de 2009)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "3.238",
+            "ano": 1957
+          },
+          "trecho": "…A Lei em vigor terá efeito imediato e geral, respeitados o ato jurídico perfeito, o direito adquirido e a coisa julgada.",
+          "literal": "(Redação dada pela Lei nº 3.238, de 1957)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "3.238",
+            "ano": 1957
+          },
+          "trecho": "§ 1º Reputa-se ato jurídico perfeito o já consumado segundo a lei vigente ao tempo em que se efetuou.",
+          "literal": "(Incluído pela Lei nº 3.238, de 1957)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "3.238",
+            "ano": 1957
+          },
+          "trecho": "…o aquêles cujo comêço do exercício tenha têrmo pré-fixo, ou condição pré-estabelecida inalterável, a arbítrio de outrem.",
+          "literal": "(Incluído pela Lei nº 3.238, de 1957)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "3.238",
+            "ano": 1957
+          },
+          "trecho": "§ 3º Chama-se coisa julgada ou caso julgado a decisão judicial de que já não caiba recurso.",
+          "literal": "(Incluído pela Lei nº 3.238, de 1957)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "3.238",
+            "ano": 1957
+          },
+          "trecho": "…asamento de estrangeiros poderá celebrar-se perante autoridades diplomáticas ou consulares do país de ambos os nubentes.",
+          "literal": "(Redação dada pela Lei nº 3.238, de 1957)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.515",
+            "ano": 1977
+          },
+          "trecho": "…o do regime de comunhão parcial de bens, respeitados os direitos de terceiros e dada esta adoção ao competente registro.",
+          "literal": "(Redação dada pela Lei nº 6.515, de 1977)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.036",
+            "ano": 2009
+          },
+          "trecho": "…omologação de sentenças estrangeiras de divórcio de brasileiros, a fim de que passem a produzir todos os efeitos legais.",
+          "literal": "(Redação dada pela Lei nº 12.036, de 2009)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.047",
+            "ano": 1995
+          },
+          "trecho": "… ou dos filhos brasileiros, ou de quem os represente, sempre que não lhes seja mais favorável a lei pessoal do de cujus.",
+          "literal": "(Redação dada pela Lei nº 9.047, de 1995)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.036",
+            "ano": 2009
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Lei nº 12.036, de 2009)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "3.238",
+            "ano": 1957
+          },
+          "trecho": "…clusive o registro de nascimento e de óbito dos filhos de brasileiro ou brasileira nascido no país da sede do Consulado.",
+          "literal": "(Redação dada pela Lei nº 3.238, de 1957)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.874",
+            "ano": 2013
+          },
+          "trecho": "…acordo quanto à retomada pelo cônjuge de seu nome de solteiro ou à manutenção do nome adotado quando se deu o casamento.",
+          "literal": "(Incluído pela Lei nº 12.874, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.874",
+            "ano": 2013
+          },
+          "trecho": "… a outra constitua advogado próprio, não se fazendo necessário que a assinatura do advogado conste da escritura pública.",
+          "literal": "(Incluído pela Lei nº 12.874, de 2013)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "3.238",
+            "ano": 1957
+          },
+          "trecho": "…sileiros na vigência do Decreto-lei nº 4.657, de 4 de setembro de 1942, desde que satisfaçam todos os requisitos legais.",
+          "literal": "(Incluído pela Lei nº 3.238, de 1957)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "3.238",
+            "ano": 1957
+          },
+          "trecho": "…o-lei, ao interessado é facultado renovar o pedido dentro em 90 (noventa) dias contados da data da publicação desta lei.",
+          "literal": "(Incluído pela Lei nº 3.238, de 1957)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "…não se decidirá com base em valores jurídicos abstratos sem que sejam consideradas as consequências práticas da decisão.",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "…da invalidação de ato, contrato, ajuste, processo ou norma administrativa, inclusive em face das possíveis alternativas.",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "…ajuste, processo ou norma administrativa deverá indicar de modo expresso suas consequências jurídicas e administrativas.",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "…ndo impor aos sujeitos atingidos ônus ou perdas que, em função das peculiaridades do caso, sejam anormais ou excessivos.",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "…strativa, serão consideradas as circunstâncias práticas que houverem imposto, limitado ou condicionado a ação do agente.",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "…que dela provierem para a administração pública, as circunstâncias agravantes ou atenuantes e os antecedentes do agente.",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "…aplicadas ao agente serão levadas em conta na dosimetria das demais sanções de mesma natureza e relativas ao mesmo fato.",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "Parágrafo único. (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "… vedado que, com base em mudança posterior de orientação geral, se declarem inválidas situações plenamente constituídas.",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "…ou administrativa majoritária, e ainda as adotadas por prática administrativa reiterada e de amplo conhecimento público.",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 25.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "Art. 25. (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "…o com os interessados, observada a legislação aplicável, o qual só produzirá efeitos a partir de sua publicação oficial.",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "§ 1º O compromisso referido no caput deste artigo:",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "I - buscará solução jurídica proporcional, equânime, eficiente e compatível com os interesses gerais;",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "II – (VETADO);",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "…I - não poderá conferir desoneração permanente de dever ou condicionamento de direito reconhecidos por orientação geral;",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "…er com clareza as obrigações das partes, o prazo para seu cumprimento e as sanções aplicáveis em caso de descumprimento.",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "§ 2º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "…ensação por benefícios indevidos ou prejuízos anormais ou injustos resultantes do processo ou da conduta dos envolvidos.",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "…e a compensação será motivada, ouvidas previamente as partes sobre seu cabimento, sua forma e, se for o caso, seu valor.",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "§ 2º Para prevenir ou regular a compensação, poderá ser celebrado compromisso processual entre os envolvidos.",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "…. 28. O agente público responderá pessoalmente por suas decisões ou opiniões técnicas em caso de dolo ou erro grosseiro.",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "§ 1º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "§ 2º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "§ 3º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "…ta pública para manifestação de interessados, preferencialmente por meio eletrônico, a qual será considerada na decisão.",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…sados, preferencialmente por meio eletrônico, a qual será considerada na decisão. (Incluído pela Lei nº 13.655, de 2018)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "…ará o prazo e demais condições da consulta pública, observadas as normas legais e regulamentares específicas, se houver.",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…lta pública, observadas as normas legais e regulamentares específicas, se houver. (Incluído pela Lei nº 13.655, de 2018)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "§ 2º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º (VETADO). (Incluído pela Lei nº 13.655, de 2018)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "30": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "…a jurídica na aplicação das normas, inclusive por meio de regulamentos, súmulas administrativas e respostas a consultas.",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.655",
+            "ano": 2018
+          },
+          "trecho": "… no caput deste artigo terão caráter vinculante em relação ao órgão ou entidade a que se destinam, até ulterior revisão.",
+          "literal": "(Incluído pela Lei nº 13.655, de 2018)"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,799 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L10779",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l10779.json",
+      "colecao": "artigos",
+      "sha256": "498d1bf61f883cbbd6b4a22d0ce804c478d83121cb57e787f803ed61f9e42e3b",
+      "total_registros": 11,
+      "gerado_em": "2026-08-21T22:36:32+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 8,
+      "anotacoes": 69,
+      "anotacoes_sem_diploma_nomeado": 10
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…valor de 1 (um) salário-mínimo mensal, durante o período de defeso de atividade pesqueira para a preservação da espécie.",
+          "literal": "(Redação dada pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "… o defeso anterior e o em curso, ou nos 12 (doze) meses imediatamente anteriores ao do defeso em curso, o que for menor.",
+          "literal": "(Redação dada pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "… o defeso anterior e o em curso, ou nos 12 (doze) meses imediatamente anteriores ao do defeso em curso, o que for menor.",
+          "literal": "(Incluído dada pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…urado especial pescador artesanal que não disponha de outra fonte de renda diversa da decorrente da atividade pesqueira.",
+          "literal": "(Incluído dada pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…ará jus, no mesmo ano, a mais de um benefício de seguro-desemprego decorrente de defesos relativos a espécies distintas.",
+          "literal": "(Incluído dada pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…sca nem aos familiares do pescador profissional que não satisfaçam os requisitos e as condições estabelecidos nesta Lei.",
+          "literal": "(Incluído dada pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "§ 7o O benefício do seguro-desemprego é pessoal e intransferível.",
+          "literal": "(Incluído dada pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…a o caput do art. 4o da Lei no 7.998, de 11 de janeiro de 1990, ressalvado o disposto nos §§ 4o e 5o do referido artigo.",
+          "literal": "(Incluído dada pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "…jeto de cruzamento com informações das bases de dados cadastrais oficiais, nos termos de ato do Poder Executivo federal.",
+          "literal": "(Redação dada pela Lei nº 15.265, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "…rior Eleitoral e da Carteira Nacional de Habilitação (CNH) até a plena implementação da Carteira de Identidade Nacional.",
+          "literal": "(Redação dada pela Lei nº 15.399, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "…ocedimentos e critérios estabelecidos em resolução do Conselho Deliberativo do Fundo de Amparo ao Trabalhador (Codefat).",
+          "literal": "(Redação dada pela Lei nº 15.265, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "…adores artesanais, diretamente, ou com o apoio das entidades de pesca habilitadas pelo Ministério do Trabalho e Emprego.",
+          "literal": "(Incluído pela Lei nº 15.399, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "…o previsto no caput deste artigo ocorrerá durante o período do defeso correspondente, nos termos das regras do programa.",
+          "literal": "(Incluído pela Lei nº 15.399, de 2026)"
+        }
+      ]
+    },
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "…-desemprego do pescador artesanal, conforme procedimentos, critérios e validações estabelecidos em resolução do Codefat.",
+          "literal": "(Redação dada pela Lei nº 15.265, de 2025)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "I - (Revogado);",
+          "literal": "(Redação dada pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "II - (Revogado);",
+          "literal": "(Redação dada pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "III - (Revogado);",
+          "literal": "(Redação dada pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "IV - (Revogado):",
+          "literal": "(Redação dada pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a)",
+          "literal": "(Revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "a) (Revogada);",
+          "literal": "(Redação dada pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(Revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "b) (Revogada);",
+          "literal": "(Redação dada pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "c)",
+          "literal": "(Revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "c) (Revogada).",
+          "literal": "(Redação dada pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "…VI do caput do art. 203 da Constituição Federal e o caput e o § 1º do art. 1º da Lei nº 10.835, de 8 de janeiro de 2004.",
+          "literal": "(Redação dada pela Lei nº 15.265, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "…ara se habilitar ao benefício, o pescador deverá apresentar ao Ministério do Trabalho e Emprego os seguintes documentos:",
+          "literal": "(Redação dada pela Lei nº 15.265, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…o Ministério da Pesca e Aquicultura com antecedência mínima de 1 (um) ano, contado da data de requerimento do benefício;",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "…videnciária mensal referentes aos meses de exercício da pesca, caso tenha comercializado sua produção a pessoa física; e",
+          "literal": "(Redação dada pela Lei nº 15.265, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "III – outros estabelecidos em ato do Codefat que comprovem:",
+          "literal": "(Redação dada pela Lei nº 15.265, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "a) o exercício da profissão, na forma do art. 1o desta Lei;",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "b) que se dedicou à pesca durante o período definido no § 3o do art. 1o desta Lei;",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "c) que não dispõe de outra fonte de renda diversa da decorrente da atividade pesqueira.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "…imos 12 (doze) meses imediatamente anteriores ao requerimento do benefício ou no período entre defesos, o que for menor.",
+          "literal": "(Redação dada pela Lei nº 15.265, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "…RGP, de que trata o art. 24 da Lei nº 11.959, de 29 de junho de 2009, necessárias para a concessão do seguro-desemprego.",
+          "literal": "(Redação dada pela Lei nº 15.265, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "§ 5o Da aplicação do disposto no § 4o deste artigo não poderá resultar nenhum ônus para os segurados.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "…alho e Emprego poderá, quando julgar necessário, exigir outros documentos ou validações para a habilitação do benefício.",
+          "literal": "(Redação dada pela Lei nº 15.265, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "…divulgação do endereço completo ou de qualquer dado que permita a identificação específica do domicílio do beneficiário.",
+          "literal": "(Redação dada pela Lei nº 15.399, de 2026)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.601",
+            "ano": 2023
+          },
+          "trecho": "§ 8º",
+          "literal": "(Revogado pela Lei nº 14.601, de 2023)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.601",
+            "ano": 2023
+          },
+          "trecho": "§ 9o",
+          "literal": "(Revogado pela Lei nº 14.601, de 2023)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.601",
+            "ano": 2023
+          },
+          "trecho": "§ 10.",
+          "literal": "(Revogado pela Lei nº 14.601, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.303",
+            "ano": 2025
+          },
+          "trecho": "§ 11.",
+          "literal": "(Incluído Medida Provisória nº 1.303, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "…a, nos prazos e observados os critérios estabelecidos pelo Codefat, a ser submetido ao Ministério do Trabalho e Emprego.",
+          "literal": "(Redação dada pela Lei nº 15.399, de 2026)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 13º",
+          "diploma": null,
+          "trecho": "§ 13.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "§ 13. (VETADO).",
+          "literal": "(Incluído pela Lei nº 15.399, de 2026)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 14º",
+          "diploma": null,
+          "trecho": "§ 14.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "§ 14. (VETADO).",
+          "literal": "(Incluído pela Lei nº 15.399, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "…tesanais credenciadas das 5 (cinco) grandes regiões do País, nos termos definidos pelo Ministério do Trabalho e Emprego.",
+          "literal": "(Incluído pela Lei nº 15.399, de 2026)"
+        }
+      ]
+    },
+    "2-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "…ssionais artesanais sobre o seguro-desemprego do pescador artesanal, conforme disponibilidade orçamentária e financeira.",
+          "literal": "(Incluído pela Lei nº 15.399, de 2026)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "…is, os responsáveis pelo uso de meios fraudulentos na habilitação ou na percepção do seguro-desemprego estarão sujeitos:",
+          "literal": "(Redação dada pela Lei nº 15.265, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "II - à suspensão de sua atividade, com o cancelamento do respectivo registro, por 5 (cinco) anos; e",
+          "literal": "(Redação dada pela Lei nº 15.399, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "…ido no caput do art. 1º desta Lei pelo prazo de 5 (cinco) anos, aplicando-se o dobro do prazo nos casos de reincidência.",
+          "literal": "(Redação dada pela Lei nº 15.399, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "…celebrar qualquer modalidade de parceria prevista nesta Lei, bem como terá suas eventuais parcerias em curso canceladas.",
+          "literal": "(Incluído pela Lei nº 15.399, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "…ocial, Família e Combate à Fome e ao Ministério da Pesca e Aquicultura as ocorrências de que trata o caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 15.399, de 2026)"
+        }
+      ]
+    },
+    "3-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "…ismos permanentes de acompanhamento cadastral dos pescadores artesanais beneficiários de seguro-desemprego com vistas à:",
+          "literal": "(Incluído pela Lei nº 15.399, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "I - atualização periódica dos dados socioeconômicos e produtivos;",
+          "literal": "(Incluído pela Lei nº 15.399, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "II - identificação de demandas regionais e perfil produtivo.",
+          "literal": "(Incluído pela Lei nº 15.399, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "… artigo, respeitada a privacidade dos dados pessoais utilizados, serão divulgadas em plataforma digital de acesso amplo.",
+          "literal": "(Incluído pela Lei nº 15.399, de 2026)"
+        }
+      ]
+    },
+    "4-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "…vidamente com o novo benefício a que fizer jus, na forma e de acordo com os critérios definidos em resolução do Codefat.",
+          "literal": "(Redação dada pela Lei nº 15.265, de 2025)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "…dos arts. 4º e 5º da Lei Complementar nº 200, de 30 de agosto de 2023, aplicável ao exercício a que se refere a despesa.",
+          "literal": "(Incluído pela Lei nº 15.399, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "§ 2º A concessão do benefício de que trata esta Lei observará o disposto no § 1º deste artigo.",
+          "literal": "(Incluído pela Lei nº 15.399, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "…igo não excederá a R$ 7.909.535.000,00 (sete bilhões novecentos e nove milhões e quinhentos e trinta e cinco mil reais).",
+          "literal": "(Incluído pela Lei nº 15.399, de 2026)"
+        }
+      ]
+    },
+    "5-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "… ou com acesso insatisfatório à internet ou com disponibilidade precária de transporte e recursos tecnológicos em geral.",
+          "literal": "(Incluído pela Lei nº 15.399, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "… pelo Ministério do Trabalho e Emprego, diretamente ou por meio das alternativas previstas no § 13 do art. 2º desta Lei.",
+          "literal": "(Incluído pela Lei nº 15.399, de 2026)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.399",
+            "ano": 2026
+          },
+          "trecho": "§ 2º (VETADO).",
+          "literal": "(Incluído pela Lei nº 15.399, de 2026)"
+        }
+      ]
+    }
+  }
+}

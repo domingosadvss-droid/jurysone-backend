@@ -1,0 +1,415 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L12529",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l12529.json",
+      "colecao": "artigos",
+      "sha256": "fccf1396cbae1a518ee79c534d630c5c0df301c9825c62d3a8fc0dea7fa79d91",
+      "total_registros": 130,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 15,
+      "anotacoes": 36,
+      "anotacoes_sem_diploma_nomeado": 24
+    }
+  },
+  "vigencia": {
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.196",
+            "ano": 2015
+          },
+          "trecho": "…reais), para os processos que têm como fato gerador a apresentação das consultas referidas no § 4o do art. 9o desta Lei.",
+          "literal": "(Redação dada pela Lei nº 13.196, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… gerador a apresentação das consultas referidas no § 4o do art. 9o desta Lei. (Redação dada pela Lei nº 13.196, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "687",
+            "ano": 2015
+          },
+          "trecho": "…rafo único. As taxas processuais de que trata o caput poderão ser atualizadas monetariamente por ato do Poder Executivo.",
+          "literal": "(Redação dada pela Medida Provisória nº 687, de 2015)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 26.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2o",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "46-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.470",
+            "ano": 2022
+          },
+          "trecho": "…rt. 47 desta Lei, não correrá a prescrição durante o curso do inquérito ou do processo administrativo no âmbito do Cade.",
+          "literal": "(Incluído pela Lei nº 14.470,de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.470",
+            "ano": 2022
+          },
+          "trecho": "…s à ordem econômica previstas no art. 36 desta Lei, iniciando-se sua contagem a partir da ciência inequívoca do ilícito.",
+          "literal": "(Incluído pela Lei nº 14.470,de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.470",
+            "ano": 2022
+          },
+          "trecho": "…rida a ciência inequívoca do ilícito por ocasião da publicação do julgamento final do processo administrativo pelo Cade.",
+          "literal": "(Incluído pela Lei nº 14.470,de 2022)"
+        }
+      ]
+    },
+    "47": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.470",
+            "ano": 2022
+          },
+          "trecho": "… nos incisos I e II do § 3º do art. 36 desta Lei, sem prejuízo das sanções aplicadas nas esferas administrativa e penal.",
+          "literal": "(Incluído pela Lei nº 14.470,de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.470",
+            "ano": 2022
+          },
+          "trecho": "…cujo cumprimento tenha sido declarado pelo Cade, os quais responderão somente pelos prejuízos causados aos prejudicados.",
+          "literal": "(Incluído pela Lei nº 14.470,de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.470",
+            "ano": 2022
+          },
+          "trecho": "…incidindo sobre eles responsabilidade solidária pelos danos causados pelos demais autores da infração à ordem econômica.",
+          "literal": "(Incluído pela Lei nº 14.470,de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.470",
+            "ano": 2022
+          },
+          "trecho": "…rações à ordem econômica previstas nos incisos I e II do § 3º do art. 36 desta Lei, cabendo a prova ao réu que o alegar.",
+          "literal": "(Incluído pela Lei nº 14.470,de 2022)"
+        }
+      ]
+    },
+    "47-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.470",
+            "ano": 2022
+          },
+          "trecho": "…ar a concessão de tutela da evidência, permitindo ao juiz decidir liminarmente nas ações previstas no art. 47 desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.470,de 2022)"
+        }
+      ]
+    },
+    "64": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 64.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "66": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5o",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "85": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 16º",
+          "diploma": null,
+          "trecho": "§ 16.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 16º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.470",
+            "ano": 2022
+          },
+          "trecho": "§ 16. (VETADO).",
+          "literal": "(Incluído pela Lei nº 14.470,de 2022)"
+        }
+      ]
+    },
+    "92": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 92.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "98": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "… o mesmo pedido ser deduzido sob diferentes causas de pedir em ações distintas, salvo em relação a fatos supervenientes.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…tes causas de pedir em ações distintas, salvo em relação a fatos supervenientes. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "112": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 112.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "114": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 114.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "116": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "c)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea d",
+          "diploma": null,
+          "trecho": "d)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea e",
+          "diploma": null,
+          "trecho": "e)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea f",
+          "diploma": null,
+          "trecho": "f)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "VI -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VII",
+          "diploma": null,
+          "trecho": "VII -",
+          "literal": "(revogado)"
+        }
+      ]
+    },
+    "120": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 120.",
+          "literal": "(VETADO)"
+        }
+      ]
+    }
+  }
+}

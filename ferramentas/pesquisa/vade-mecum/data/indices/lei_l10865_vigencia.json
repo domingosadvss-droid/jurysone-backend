@@ -1,0 +1,2814 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L10865",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l10865.json",
+      "colecao": "artigos",
+      "sha256": "cfa5f3a4265d092380d67bace743bdeb6065d52d1bebf7ad163ab70b22b462f8",
+      "total_registros": 55,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 18,
+      "anotacoes": 268,
+      "anotacoes_sem_diploma_nomeado": 66
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.249",
+            "ano": 2010
+          },
+          "trecho": "…sanitárias (SPS) e sobre barreiras técnicas ao comércio (TBT), ambos do âmbito da Organização Mundial do Comércio - OMC.",
+          "literal": "(Incluído pela Lei nº 12.249, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.249",
+            "ano": 2010
+          },
+          "trecho": "…beneficiada por regime fiscal privilegiado, de que tratam os arts. 24 e 24-A da Lei nº 9.430, de 27 de dezembro de 1996.",
+          "literal": "(Incluído pela Lei nº 12.249, de 2010)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.865",
+            "ano": 2013
+          },
+          "trecho": "I - o valor aduaneiro, na hipótese do inciso I do caput do art. 3º desta Lei; ou",
+          "literal": "(Redação dada pela Lei nº 12.865, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.249",
+            "ano": 2010
+          },
+          "trecho": "… de resseguro cedidos ao exterior é de 15% (quinze por cento) do valor pago, creditado, entregue, empregado ou remetido.",
+          "literal": "(Redação dada pela Lei nº 12.249, de 2010)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.865",
+            "ano": 2013
+          },
+          "trecho": "§ 4º",
+          "literal": "(Revogado pela Lei nº 12.865, de 2013)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.865",
+            "ano": 2013
+          },
+          "trecho": "§ 5º",
+          "literal": "(Revogado pela Lei nº 12.865, de 2013)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "…tribuições serão calculadas mediante aplicação, sobre a base de cálculo de que trata o art. 7º desta Lei, das alíquotas:",
+          "literal": "(Redação dada pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…ção, sobre a base de cálculo de que trata o art. 7º desta Lei, das alíquotas: (Redação dada pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "I - na hipótese do inciso I do caput do art. 3º , de:",
+          "literal": "(Redação dada pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I - na hipótese do inciso I do caput do art. 3º , de: (Redação dada pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "a) 2,1% (dois inteiros e um décimo por cento), para a Contribuição para o PIS/Pasep-Importação; e",
+          "literal": "(Incluído pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "…teiros e um décimo por cento), para a Contribuição para o PIS/Pasep-Importação; e (Incluído pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "b) 9,65% (nove inteiros e sessenta e cinco centésimos por cento), para a Cofins-Importação; e",
+          "literal": "(Incluído pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "…ve inteiros e sessenta e cinco centésimos por cento), para a Cofins-Importação; e (Incluído pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "II - na hipótese do inciso II do caput do art. 3º , de:",
+          "literal": "(Redação dada pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II - na hipótese do inciso II do caput do art. 3º , de: (Redação dada pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "a) 1,65% (um inteiro e sessenta e cinco centésimos por cento), para a Contribuição para o PIS/Pasep-Importação; e",
+          "literal": "(Incluído pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "…e cinco centésimos por cento), para a Contribuição para o PIS/Pasep-Importação; e (Incluído pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "b) 7,6% (sete inteiros e seis décimos por cento), para a Cofins-Importação.",
+          "literal": "(Incluído pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b) 7,6% (sete inteiros e seis décimos por cento), para a Cofins-Importação. (Incluído pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "I - 2,76% (dois inteiros e setenta e seis centésimos por cento), para a Contribuição para o PIS/Pasep-Importação; e",
+          "literal": "(Redação dada pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…eis centésimos por cento), para a Contribuição para o PIS/Pasep-Importação; e (Redação dada pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "II - 13,03% (treze inteiros e três centésimos por cento), para a Cofins-Importação.",
+          "literal": "(Redação dada pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…3,03% (treze inteiros e três centésimos por cento), para a Cofins-Importação. (Redação dada pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.829",
+            "ano": 2013
+          },
+          "trecho": "…0 a 33.07, exceto na posição 33.06; e nos códigos 3401.11.90, exceto 3401.11.90 Ex 01; 3401.20.10; e 9603.21.00; são de:",
+          "literal": "(Redação dada pela Lei nº 12.829, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "I - 3,52% (três inteiros e cinquenta e dois centésimos por cento), para a Contribuição para o PIS/Pasep-Importação; e",
+          "literal": "(Redação dada pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…ois centésimos por cento), para a Contribuição para o PIS/Pasep-Importação; e (Redação dada pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "II - 16,48% (dezesseis inteiros e quarenta e oito centésimos por cento), para a Cofins-Importação.",
+          "literal": "(Redação dada pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…s inteiros e quarenta e oito centésimos por cento), para a Cofins-Importação. (Redação dada pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "I - 2,62% (dois inteiros e sessenta e dois centésimos por cento), para a Contribuição para o PIS/Pasep-Importação; e",
+          "literal": "(Redação dada pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…ois centésimos por cento), para a Contribuição para o PIS/Pasep-Importação; e (Redação dada pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "II - 12,57% (doze inteiros e cinquenta e sete centésimos por cento), para a Cofins-Importação.",
+          "literal": "(Redação dada pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "… inteiros e cinquenta e sete centésimos por cento), para a Cofins-Importação. (Redação dada pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "I - 2,68% (dois inteiros e sessenta e oito centésimos por cento), para a Contribuição para o PIS/Pasep-Importação; e",
+          "literal": "(Redação dada pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…ito centésimos por cento), para a Contribuição para o PIS/Pasep-Importação; e (Redação dada pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "II - 12,35% (doze inteiros e trinta e cinco centésimos por cento), para a Cofins-Importação.",
+          "literal": "(Redação dada pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…ze inteiros e trinta e cinco centésimos por cento), para a Cofins-Importação. (Redação dada pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "§ 6º e 6º-A -",
+          "literal": "(Revogado pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6º e 6º-A - (Revogado pela Lei nº 13.097, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "§ 7º",
+          "literal": "(Revogado pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "I - 2,62% (dois inteiros e sessenta e dois centésimos por cento), para a Contribuição para o PIS/Pasep-Importação; e",
+          "literal": "(Redação dada pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…ois centésimos por cento), para a Contribuição para o PIS/Pasep-Importação; e (Redação dada pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "II - 12,57% (doze inteiros e cinquenta e sete centésimos por cento), para a Cofins-Importação.",
+          "literal": "(Redação dada pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "… inteiros e cinquenta e sete centésimos por cento), para a Cofins-Importação. (Redação dada pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "…embro de 2015, as alíquotas da Contribuição do PIS/Pasep-Importação e da Cofins-Importação de que trata o § 9º serão de:",
+          "literal": "(Incluído pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 9º",
+          "diploma": null,
+          "trecho": "…ição do PIS/Pasep-Importação e da Cofins-Importação de que trata o § 9º serão de: (Incluído pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "I - 3,12% (três inteiros e doze centésimos por cento), para a Contribuição para o PIS/Pasep-Importação; e",
+          "literal": "(Incluído pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "… e doze centésimos por cento), para a Contribuição para o PIS/Pasep-Importação; e (Incluído pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "II - 14,37% (quatorze inteiros e trinta e sete centésimos por cento), para a Cofins-Importação.",
+          "literal": "(Incluído pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…uatorze inteiros e trinta e sete centésimos por cento), para a Cofins-Importação. (Incluído pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "I - 0,8% (oito décimos por cento), para a contribuição para o PIS/Pasep-Importação; e",
+          "literal": "(Redação dada pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "… (oito décimos por cento), para a contribuição para o PIS/Pasep-Importação; e (Redação dada pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "II - 3,2% (três inteiros e dois décimos por cento), para a Cofins-Importação.",
+          "literal": "(Redação dada pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II - 3,2% (três inteiros e dois décimos por cento), para a Cofins-Importação. (Redação dada pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…ia patológica, citológica ou de análises clínicas, classificados nas posições 30.02, 30.06, 39.26, 40.15 e 90.18 da NCM.",
+          "literal": "(Redação dada pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.774",
+            "ano": 2008
+          },
+          "trecho": "…rvação, modernização, conversão ou reparo de embarcações registradas ou pré-registradas no Registro Especial Brasileiro;",
+          "literal": "(Redação dada pela Lei nº 11.774, de 2008)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.925",
+            "ano": 2004
+          },
+          "trecho": "VI - aeronaves, classificadas na posição 88.02 da NCM;",
+          "literal": "(Redação dada pela Lei nº 10.925, 2004)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "VI - aeronaves, classificadas na posição 88.02 da NCM; (Redação dada pela Lei nº 10.925, 2004)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "…de que trata o inciso VI deste parágrafo, de seus motores, suas partes, peças, componentes, ferramentais e equipamentos;",
+          "literal": "(Redação dada pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "VIII -",
+          "literal": "(Revogado pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.033",
+            "ano": 2004
+          },
+          "trecho": "XII - livros, conforme definido no art. 2º da Lei nº 10.753, de 30 de outubro de 2003.",
+          "literal": "(Redação dada pela Lei nº 11.033, 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "…das pelas pessoas jurídicas industriais dos produtos referidos no art. 58-A da Lei nº 10.833, de 29 de dezembro de 2003;",
+          "literal": "(Redação dada pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "…ficado nas posições 87.10.00.00 e 89.06.10.00 da Tabela de Incidência do Imposto sobre Produtos Industrializados – Tipi;",
+          "literal": "(Incluído pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "…alização, manutenção, modernização e conversão do material de emprego militar de que trata o inciso XIV deste parágrafo;",
+          "literal": "(Incluído pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "XVI – gás natural liquefeito – GNL.",
+          "literal": "(Incluído pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.058",
+            "ano": 2009
+          },
+          "trecho": "XVIII - produtos classificados na posição 87.13 da Nomenclatura Comum do Mercosul - NCM;",
+          "literal": "(Incluído pela Lei nº 12.058, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.058",
+            "ano": 2009
+          },
+          "trecho": "XIX - artigos e aparelhos ortopédicos ou para fraturas classificados no código 90.21.10 da NCM;",
+          "literal": "(Incluído pela Lei nº 12.058, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.058",
+            "ano": 2009
+          },
+          "trecho": "XX - artigos e aparelhos de próteses classificados no código 90.21.3 da NCM;",
+          "literal": "(Incluído pela Lei nº 12.058, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.058",
+            "ano": 2009
+          },
+          "trecho": "XXI - almofadas antiescaras classificadas nos Capítulos 39, 40, 63 e 94 da NCM.",
+          "literal": "(Incluído pela Lei nº 12.058, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XXIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.599",
+            "ano": 2012
+          },
+          "trecho": "…nematográfica, classificados no código 9007.2 da NCM, e suas partes e acessórios, classificados no código 9007.9 da NCM.",
+          "literal": "(Redação dada pela Lei nº 12.599, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "…4.20.00, 9021.40.00, 9021.90.82 e 9021.90.92, todos da Tipi, aprovada pelo Decreto nº 7.660, de 23 de dezembro de 2011 ;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "XXV - calculadoras equipadas com sintetizador de voz classificadas no código 8470.10.00 Ex 01 da Tipi;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXVI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "… - teclados com adaptações específicas para uso por pessoas com deficiência, classificados no código 8471.60.52 da Tipi;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXVII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "…or - mouse - com adaptações específicas para uso por pessoas com deficiência, classificado no código 8471.60.53 da Tipi;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXVIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "XXVIII - linhas braile classificadas no código 8471.60.90 Ex 01 da Tipi;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXIX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "…italizadores de imagens - scanners - equipados com sintetizador de voz classificados no código 8471.90.14 Ex 01 da Tipi;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "XXX - duplicadores braile classificados no código 8472.10.00 Ex 01 da Tipi",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXXI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "XXXI - acionadores de pressão classificados no código 8471.60.53 Ex 02 da Tipi;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXXIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "XXXIII - implantes cocleares classificados no código 9021.40.00 da Tipi;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXXIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "XXXIV - próteses oculares classificadas no código 9021.39.80 da Tipi;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXXV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "…- softwares - de leitores de tela que convertem texto em voz sintetizada para auxílio de pessoas com deficiência visual;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXXVI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "…o programas - softwares - de leitores de tela que convertem texto em caracteres braile, para utilização de surdos-cegos;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XXXVII",
+          "diploma": null,
+          "trecho": "XXXVII –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXXVII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "XXXVII – (VETADO); e",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XXXVIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.995",
+            "ano": 2014
+          },
+          "trecho": "…no código 9021.90.19, e seus acessórios, classificados nos códigos 9018.90.99, 9021.90.91 e 9021.90.99, todos da Tipi; e",
+          "literal": "(Redação dada p-ela Lei nº 12.995, de 2014)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XXXIX",
+          "diploma": null,
+          "trecho": "XXXIX -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XXXIX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "XXXIX - (revogado) ;",
+          "literal": "(Redação dada pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso XXXIX",
+          "diploma": null,
+          "trecho": "XXXIX - (revogado) ; (Redação dada pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XL",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.169",
+            "ano": 2015
+          },
+          "trecho": "XL - produtos classificados no Ex 01 do código 8503.00.90 da Tipi, exceto pás eólicas.",
+          "literal": "(Redação dada pela Lei nº 13.169, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.058",
+            "ano": 2009
+          },
+          "trecho": "§ 13. O Poder Executivo poderá regulamentar:",
+          "literal": "(Redação dada pela Lei nº 12.058, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "II - a utilização do benefício da alíquota zero de que tratam os incisos I a VII, XVIII a XXI e XXIV a XXXVIII do § 12.",
+          "literal": "(Redação dada pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.925",
+            "ano": 2004
+          },
+          "trecho": "…tações de arrendamento mercantil de máquinas e equipamentos, embarcações e aeronaves utilizados na atividade da empresa.",
+          "literal": "(Incluído pela Lei nº 10.925, 2004)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 14º",
+          "diploma": null,
+          "trecho": "…máquinas e equipamentos, embarcações e aeronaves utilizados na atividade da empresa. (Incluído pela Lei nº 10.925, 2004)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "228",
+            "ano": 2026
+          },
+          "trecho": "…trias químicas, as alíquotas da Contribuição para o PIS/Pasep-Importação e da Cofins-Importação são de, respectivamente:",
+          "literal": "(Redação dada pela Lei Complementar nº 228, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.859",
+            "ano": 2013
+          },
+          "trecho": "…r cento) e 0,82% (oitenta e dois centésimos por cento), para os fatos geradores ocorridos nos anos de 2013, 2014 e 2015;",
+          "literal": "(Redação dada pela Lei nº 12.859, de 2013)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…adores ocorridos nos anos de 2013, 2014 e 2015; (Redação dada pela Lei nº 12.859, de 2013) (Vide Lei nº 14.183, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.859",
+            "ano": 2013
+          },
+          "trecho": "…cento) e 2,46% (dois inteiros e quarenta e seis centésimos por cento), para os fatos geradores ocorridos no ano de 2016;",
+          "literal": "(Redação dada pela Lei nº 12.859, de 2013)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…ara os fatos geradores ocorridos no ano de 2016; (Redação dada pela Lei nº 12.859, de 2013)(Vide Lei nº 14.183, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.859",
+            "ano": 2013
+          },
+          "trecho": "…mos por cento) e 4,10% (quatro inteiros e dez centésimos por cento), para os fatos geradores ocorridos no ano de 2017; e",
+          "literal": "(Incluído dada pela Lei nº 12.859, de 2013)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "…os fatos geradores ocorridos no ano de 2017; e (Incluído dada pela Lei nº 12.859, de 2013) (Vide Lei nº 14.183, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.183",
+            "ano": 2021
+          },
+          "trecho": "…is décimos por cento), para os fatos geradores ocorridos nos anos de 2018 a 2020 e nos meses de janeiro a junho de 2021;",
+          "literal": "(Redação dada pela Lei nº 14.183, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.183",
+            "ano": 2021
+          },
+          "trecho": "…5,2% (cinco inteiros e dois décimos por cento), para os fatos geradores ocorridos nos meses de julho a dezembro de 2021;",
+          "literal": "(Incluído pela Lei nº 14.183, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.374",
+            "ano": 2022
+          },
+          "trecho": "… 7,6% (sete inteiros e seis décimos por cento), para os fatos geradores ocorridos nos meses de abril a dezembro de 2022;",
+          "literal": "(Redação dada pela Lei nº 14.374, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.183",
+            "ano": 2021
+          },
+          "trecho": "…ésimos por cento) e 6,4% (seis inteiros e quatro décimos por cento), para os fatos geradores ocorridos no ano de 2023; e",
+          "literal": "(Incluído pela Lei nº 14.183, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.183",
+            "ano": 2021
+          },
+          "trecho": "…nteiro e cinquenta e dois centésimos por cento) e 7% (sete por cento), para os fatos geradores ocorridos no ano de 2024.",
+          "literal": "(Incluído pela Lei nº 14.183, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "228",
+            "ano": 2026
+          },
+          "trecho": "…centésimos por cento) e 7% (sete por cento), para os fatos geradores ocorridos de janeiro de 2025 a fevereiro de 2026; e",
+          "literal": "(Redação dada pela Lei Complementar nº 228, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "228",
+            "ano": 2026
+          },
+          "trecho": "…e oitenta e três centésimos por cento), para os fatos geradores ocorridos nos meses de março de 2026 a dezembro de 2026.",
+          "literal": "(Incluído pela Lei Complementar nº 228, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 16º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "…a importação de etano, propano e butano de que trata o § 15 deste artigo, não se aplica o disposto no § 8º deste artigo.",
+          "literal": "(Incluído pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 16º",
+          "diploma": null,
+          "trecho": "…igo, não se aplica o disposto no § 8º deste artigo. (Incluído pela Lei nº 11.488, de 2007) (Vide Lei nº 14.183, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 17º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "…, arrendamento ou aluguel de embarcações marítimas ou fluviais destinadas ao transporte de pessoas para fins turísticos.",
+          "literal": "(Incluído pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 18º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "…idade mista de transporte de cargas e de pessoas para fins turísticos, independentemente da preponderância da atividade.",
+          "literal": "(Incluído pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 19º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "…aver optado pelo regime especial de apuração e pagamento referido no art. 5º da Lei nº 9.718, de 27 de novembro de 1998.",
+          "literal": "(Redação dada pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 19º",
+          "diploma": null,
+          "trecho": "…o e pagamento referido no art. 5º da Lei nº 9.718, de 27 de novembro de 1998. (Redação dada pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 20º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "491",
+            "ano": 2010
+          },
+          "trecho": "§ 20.",
+          "literal": "(Incluído pela Medida Provisória nº 491, de 2010)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 21º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "…tese de importação dos bens classificados na Tipi, aprovada pelo Decreto nº 11.158, de 29 de julho de 2022, nos códigos:",
+          "literal": "(Redação dada pela Lei nº 14.973, de 2024)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.715",
+            "ano": 2012
+          },
+          "trecho": "I –",
+          "literal": "(Revogado pela Lei nº 12.715, de 2012)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.715",
+            "ano": 2012
+          },
+          "trecho": "II –",
+          "literal": "(Revogado pela Lei nº 12.715, de 2012)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.715",
+            "ano": 2012
+          },
+          "trecho": "III –",
+          "literal": "(Revogado pela Lei nº 12.715, de 2012)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.715",
+            "ano": 2012
+          },
+          "trecho": "IV –",
+          "literal": "(Revogado pela Lei nº 12.715, de 2012)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.715",
+            "ano": 2012
+          },
+          "trecho": "V –",
+          "literal": "(Revogado pela Lei nº 12.715, de 2012)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.715",
+            "ano": 2012
+          },
+          "trecho": "VI –",
+          "literal": "(Revogado pela Lei nº 12.715, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.670",
+            "ano": 2018
+          },
+          "trecho": "VII - 3926.20.00, 40.15, 42.03, 43.03, 4818.50.00, 6505.00, 6812.91.00, 8804.00.00, capítulos 61 a 63;",
+          "literal": "(Incluído pela Lei nº 13.670, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.670",
+            "ano": 2018
+          },
+          "trecho": "VIII - 64.01 a 64.06;",
+          "literal": "(Incluído pela Lei nº 13.670, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.670",
+            "ano": 2018
+          },
+          "trecho": "IX - 41.04, 41.05, 41.06, 41.07 e 41.14;",
+          "literal": "(Incluído pela Lei nº 13.670, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.670",
+            "ano": 2018
+          },
+          "trecho": "X - 8308.10.00, 8308.20.00, 96.06 e 96.07;",
+          "literal": "(Incluído pela Lei nº 13.670, de 2018)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XI",
+          "diploma": null,
+          "trecho": "XI -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.670",
+            "ano": 2018
+          },
+          "trecho": "XI - (VETADO);",
+          "literal": "(Incluído pela Lei nº 13.670, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.670",
+            "ano": 2018
+          },
+          "trecho": "XII - 87.02, exceto 8702.90.10, e 87.07;",
+          "literal": "(Incluído pela Lei nº 13.670, de 2018)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XIII",
+          "diploma": null,
+          "trecho": "XIII -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.670",
+            "ano": 2018
+          },
+          "trecho": "XIII - (VETADO);",
+          "literal": "(Incluído pela Lei nº 13.670, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.670",
+            "ano": 2018
+          },
+          "trecho": "…; 9032.20.00; 9032.81.00; 9032.89.11; 9032.89.29; 9032.89.8; 9032.89.90; 9032.90.10; 9032.90.99; 9033.00.00; 9506.91.00;",
+          "literal": "(Incluído pela Lei nº 13.670, de 2018)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XV",
+          "diploma": null,
+          "trecho": "XV -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.670",
+            "ano": 2018
+          },
+          "trecho": "XV - (VETADO);",
+          "literal": "(Incluído pela Lei nº 13.670, de 2018)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XVI",
+          "diploma": null,
+          "trecho": "XVI -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.670",
+            "ano": 2018
+          },
+          "trecho": "XVI - (VETADO);",
+          "literal": "(Incluído pela Lei nº 13.670, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.670",
+            "ano": 2018
+          },
+          "trecho": "…06.30.00, 0206.4, 02.07, 02.09, 0210.1, 0210.99.00, 1601.00.00, 1602.3, 1602.4, 03.03, 03.04, 03.02, exceto 03.02.90.00;",
+          "literal": "(Incluído pela Lei nº 13.670, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.670",
+            "ano": 2018
+          },
+          "trecho": "…3.09, 53.10, 5311.00.00, no capítulo 54, exceto os códigos 5402.46.00, 5402.47.00 e 5402.33.10, e nos capítulos 55 a 60;",
+          "literal": "(Incluído pela Lei nº 13.670, de 2018)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XIX",
+          "diploma": null,
+          "trecho": "XIX -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.670",
+            "ano": 2018
+          },
+          "trecho": "XIX - (VETADO);",
+          "literal": "(Incluído pela Lei nº 13.670, de 2018)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XX",
+          "diploma": null,
+          "trecho": "XX -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.670",
+            "ano": 2018
+          },
+          "trecho": "XX - (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.670, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 21º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "§ 21-A. O acréscimo percentual nas alíquotas da Cofins-Importação de que trata o § 21 deste artigo será de:",
+          "literal": "(Incluído pela Lei nº 14.973, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "I – 0,8% (oito décimos por cento) de 1º de janeiro até 31 de dezembro de 2025;",
+          "literal": "(Incluído pela Lei nº 14.973, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "II – 0,6% (seis décimos por cento) de 1º de janeiro até 31 de dezembro de 2026; e",
+          "literal": "(Incluído pela Lei nº 14.973, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "III – 0,4% (quatro décimos por cento) de 1º de janeiro até 31 de dezembro de 2027.",
+          "literal": "(Incluído pela Lei nº 14.973, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 22º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "…rão de qualidade, conteúdo técnico, preço ou capacidade produtiva, conforme regulamentação editada pelo Poder Executivo.",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 23º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.715",
+            "ano": 2012
+          },
+          "trecho": "… condensado destinado a centrais petroquímicas o disposto nos arts. 56 e 57 da Lei nº 11.196, de 21 de novembro de 2005.",
+          "literal": "(Incluído pela Lei nº 12.715, de 2012)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 23º",
+          "diploma": null,
+          "trecho": "…6 e 57 da Lei nº 11.196, de 21 de novembro de 2005. (Incluído pela Lei nº 12.715, de 2012) (Vide Lei nº 14.183, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 24º",
+          "diploma": null,
+          "trecho": "§ 24.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 24º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.715",
+            "ano": 2012
+          },
+          "trecho": "§ 24. (VETADO) .",
+          "literal": "(Incluído pela Lei nº 12.715, de 2012)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.925",
+            "ano": 2004
+          },
+          "trecho": "III – (VETADO)",
+          "literal": "(Incluído pela Lei nº 10.925, de 2004)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.925",
+            "ano": 2004
+          },
+          "trecho": "…os os requisitos e condições exigidos para o reconhecimento de isenção do Imposto sobre Produtos Industrializados - IPI.",
+          "literal": "(Renumerado pela Lei nº 10.925, 2004)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.925",
+            "ano": 2004
+          },
+          "trecho": "§ 2º (VETADO)",
+          "literal": "(Incluído pela Lei nº 10.925, de 2004)"
+        }
+      ]
+    },
+    "14-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.925",
+            "ano": 2004
+          },
+          "trecho": "…us e consoante projetos aprovados pelo Conselho de Administração da Superintendência da Zona Franca de Manaus - SUFRAMA.",
+          "literal": "(Incluído pela Lei nº 10.925, 2004)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "…elação às importações sujeitas ao pagamento das contribuições de que trata o art. 1º desta Lei, nas seguintes hipóteses:",
+          "literal": "(Redação dada pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…quiridos para locação a terceiros ou para utilização na produção de bens destinados à venda ou na prestação de serviços.",
+          "literal": "(Redação dada pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "…a do adicional de alíquota de que trata o § 21 do art. 8º não gera direito ao desconto do crédito de que trata o caput .",
+          "literal": "(Incluído pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "… o § 21 do art. 8º não gera direito ao desconto do crédito de que trata o caput . (Incluído pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.440",
+            "ano": 2022
+          },
+          "trecho": "…inistrados pela Secretaria Especial da Receita Federal do Brasil, observada a legislação específica aplicável à matéria.",
+          "literal": "(Incluído pela Lei nº 14.440, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "…uições, na forma do art. 7º , acrescido do valor do IPI vinculado à importação, quando integrante do custo de aquisição.",
+          "literal": "(Redação dada pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…valor do IPI vinculado à importação, quando integrante do custo de aquisição. (Redação dada pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "V – produtos referidos no § 19 do art. 8º desta Lei, quando destinados à revenda;",
+          "literal": "(Redação dada pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "VI –",
+          "literal": "(Revogado pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "VI – (Revogado pela Lei nº 13.097, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "§ 9º",
+          "literal": "(Revogado pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "§ 10.",
+          "literal": "(Revogado pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "§ 11.",
+          "literal": "(Revogado pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 11º",
+          "diploma": null,
+          "trecho": "§ 11. (Revogado pela Lei nº 13.097, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "§ 12.",
+          "literal": "(Revogado pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 12º",
+          "diploma": null,
+          "trecho": "§ 12. (Revogado pela Lei nº 13.097, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 13. No cálculo do crédito de que trata o inciso V do caput :",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 13º",
+          "diploma": null,
+          "trecho": "§ 13. No cálculo do crédito de que trata o inciso V do caput : (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ei nº 6.404, de 15 de dezembro de 1976, poderão ser considerados como parte integrante do custo ou valor de aquisição; e",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "… poderão ser considerados como parte integrante do custo ou valor de aquisição; e (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "II - não serão computados os ganhos e perdas decorrentes de avaliação de ativo com base no valor justo.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…dos os ganhos e perdas decorrentes de avaliação de ativo com base no valor justo. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…sto no inciso V do caput não se aplica no caso de bem objeto de arrendamento mercantil, na pessoa jurídica arrendatária.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 14º",
+          "diploma": null,
+          "trecho": "…no caso de bem objeto de arrendamento mercantil, na pessoa jurídica arrendatária. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.945",
+            "ano": 2009
+          },
+          "trecho": "… revendidos ou utilizados como insumo em produtos sujeitos à alíquota zero, isentos ou não alcançados pela contribuição.",
+          "literal": "(Incluído pela Lei nº 11.945, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.945",
+            "ano": 2009
+          },
+          "trecho": "…importação efetuada na forma da alínea f do inciso II do art. 9º desta Lei não dará direito a crédito, em qualquer caso.",
+          "literal": "(Incluído pela Lei nº 11.945, de 2009)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…ns de determinação da Contribuição para o PIS/Pasep e da Cofins, em relação à importação desses produtos, nas hipóteses:",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…IS/Pasep e da Cofins, em relação à importação desses produtos, nas hipóteses: (Redação dada pela Lei nº 13.097, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.051",
+            "ano": 2004
+          },
+          "trecho": "I - dos §§ 1º a 3º , 5º a 7º e 10 do art. 8º desta Lei, quando destinados à revenda;",
+          "literal": "(Redação dada pela Lei nº 11.051, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.051",
+            "ano": 2004
+          },
+          "trecho": "IV -",
+          "literal": "(Revogado pela Lei nº 11.051, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "V – produtos referidos no § 19 do art. 8º desta Lei, quando destinados à revenda;",
+          "literal": "(Incluído pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "VI –",
+          "literal": "(Revogado pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "VI – (Revogado pela Lei nº 13.097, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.925",
+            "ano": 2004
+          },
+          "trecho": "§ 1º",
+          "literal": "(Revogado pela Lei nº 10.925, de 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "…uotas previstas para os respectivos produtos no art. 8º , conforme o caso, sobre o valor de que trata o § 3º do art. 15.",
+          "literal": "(Redação dada pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…s no art. 8º , conforme o caso, sobre o valor de que trata o § 3º do art. 15. (Redação dada pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.137",
+            "ano": 2015
+          },
+          "trecho": "…a do adicional de alíquota de que trata o § 21 do art. 8º não gera direito ao desconto do crédito de que trata o caput .",
+          "literal": "(Incluído pela Lei nº 13.137, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "… o § 21 do art. 8º não gera direito ao desconto do crédito de que trata o caput . (Incluído pela Lei nº 13.137, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "§ 3º",
+          "literal": "(Revogado pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º (Revogado pela Lei nº 13.097, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.925",
+            "ano": 2004
+          },
+          "trecho": "§ 4º",
+          "literal": "(Revogado pela Lei nº 10.925, de 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…ediante alíquota específica, na aquisição dos vasilhames, de acordo com regulamentação da Secretaria da Receita Federal.",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "…os vasilhames, de acordo com regulamentação da Secretaria da Receita Federal. (Redação dada pela Lei nº 13.097, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.051",
+            "ano": 2004
+          },
+          "trecho": "…portação efetuada por montadora de máquinas ou veículos relacionados no art. 1º da Lei nº 10.485, de 3 de julho de 2002.",
+          "literal": "(Incluído pela Lei nº 11.051, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.051",
+            "ano": 2004
+          },
+          "trecho": "§ 8º O disposto neste artigo alcança somente as pessoas jurídicas de que trata o art. 15 desta Lei.",
+          "literal": "(Incluído pela Lei nº 11.051, de 2004)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.051",
+            "ano": 2004
+          },
+          "trecho": "… um reais e quarenta centavos), por tonelada de gás liquefeito de petróleo - GLP, derivado de petróleo e de gás natural;",
+          "literal": "(Redação dada pela Lei nº 11.051, de 2004)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.925",
+            "ano": 2004
+          },
+          "trecho": "Art. 26.",
+          "literal": "(Revogado pela Lei nº 10.925, de 2004)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…s do ajuste a valor presente de que trata o inciso VIII do caput do art. 183 da Lei nº 6.404, de 15 de dezembro de 1976.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…ta o inciso VIII do caput do art. 183 da Lei nº 6.404, de 15 de dezembro de 1976. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… e da COFINS incidentes sobre a receita bruta decorrente da venda, no mercado interno, de: (Vide Lei nº 11.727, de 2008)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "…ro, revisão, conversão e industrialização das aeronaves, seus motores, partes, componentes, ferramentais e equipamentos;",
+          "literal": "(Redação dada pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.925",
+            "ano": 2004
+          },
+          "trecho": "V - semens e embriões da posição 05.11 da NCM.",
+          "literal": "(Incluído pela Lei nº 10.925, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.033",
+            "ano": 2004
+          },
+          "trecho": "VI - livros, conforme definido no art. 2º da Lei nº 10.753, de 30 de outubro de 2003;",
+          "literal": "(Incluído pela Lei nº 11.033, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…bidas pelas pessoas jurídicas industriais dos produtos referidos no art. 49 da Lei nº 10.833, de 29 de dezembro de 2003.",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "… pela União, Estados, Municípios e pelo Distrito Federal, na forma a ser estabelecida em regulamento do Poder Executivo;",
+          "literal": "(Redação dada pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "… pela União, Estados, Municípios e pelo Distrito Federal, na forma a ser estabelecida em regulamento do Poder Executivo;",
+          "literal": "(Redação dada pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.774",
+            "ano": 2008
+          },
+          "trecho": "…rvação, modernização, conversão ou reparo de embarcações registradas ou pré-registradas no Registro Especial Brasileiro;",
+          "literal": "(Incluído pela Lei nº 11.774, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "…s, quando adquiridos por órgãos e entidades da administração pública direta, na forma a ser estabelecida em regulamento;",
+          "literal": "(Incluído pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "…uipamentos e matérias-primas a serem empregados na sua industrialização, montagem, manutenção, modernização e conversão;",
+          "literal": "(Incluído pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.995",
+            "ano": 2014
+          },
+          "trecho": "…e manutenção ou obrigadas à sua utilização, nos termos e condições fixados pela Secretaria da Receita Federal do Brasil;",
+          "literal": "(Redação dada pela Lei nº 12.995, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.774",
+            "ano": 2008
+          },
+          "trecho": "XIV - produtos classificados na posição 87.13 da Nomenclatura Comum do Mercosul-NCM.",
+          "literal": "(Incluído pela Lei nº 11.774, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.058",
+            "ano": 2009
+          },
+          "trecho": "XV - artigos e aparelhos ortopédicos ou para fraturas classificados no código 90.21.10 da NCM;",
+          "literal": "(Incluído pela Lei nº 12.058, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.058",
+            "ano": 2009
+          },
+          "trecho": "XVI - artigos e aparelhos de próteses classificados no código 90.21.3 da NCM;",
+          "literal": "(Incluído pela Lei nº 12.058, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.058",
+            "ano": 2009
+          },
+          "trecho": "XVII - almofadas antiescaras classificadas nos Capítulos 39, 40, 63 e 94 da NCM.",
+          "literal": "(Incluído pela Lei nº 12.058, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.249",
+            "ano": 2010
+          },
+          "trecho": "…dezembro de 2009, quando adquiridos por órgãos da administração pública direta federal, estadual, distrital e municipal.",
+          "literal": "(Incluído pela Lei nº 12.249, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIX",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "491",
+            "ano": 2010
+          },
+          "trecho": "XIX -",
+          "literal": "(Incluído pela Medida Provisória nº 491, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "…rte ferroviário que consiga atingir velocidade igual ou superior a 250 km/h (duzentos e cinquenta quilômetros por hora).",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XXI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.599",
+            "ano": 2012
+          },
+          "trecho": "…nematográfica, classificados no código 9007.2 da NCM, e suas partes e acessórios, classificados no código 9007.9 da NCM.",
+          "literal": "(Redação dada pela Lei nº 12.599, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "… classificados nos códigos 8443.32.22, 8469.00.39 Ex 01, 8714.20.00, 9021.40.00, 9021.90.82 e 9021.90.92, todos da Tipi;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "XXIII - calculadoras equipadas com sintetizador de voz classificadas no código 8470.10.00 Ex 01 da Tipi;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "… - teclados com adaptações específicas para uso por pessoas com deficiência, classificados no código 8471.60.52 da Tipi;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "…or - mouse - com adaptações específicas para uso por pessoas com deficiência, classificado no código 8471.60.53 da Tipi;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXVI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "XXVI - linhas braile classificadas no código 8471.60.90 Ex 01 da Tipi;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXVII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "…italizadores de imagens - scanners - equipados com sintetizador de voz classificados no código 8471.90.14 Ex 01 da Tipi;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXVIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "XXVIII - duplicadores braile classificados no código 8472.10.00 Ex 01 da Tipi;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXIX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "XXIX - acionadores de pressão classificados no código 8471.60.53 Ex 02 da Tipi;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "…lupas eletrônicas do tipo utilizado por pessoas com deficiência visual classificadas no código 8525.80.19 Ex 01 da Tipi;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXXI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "XXXI - implantes cocleares classificados no código 9021.40.00 da Tipi;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXXII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "XXXII - próteses oculares classificadas no código 9021.39.80 da Tipi;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXXIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "…- softwares - de leitores de tela que convertem texto em voz sintetizada para auxílio de pessoas com deficiência visual;",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXXIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "…programas - softwares - de leitores de tela que convertem texto em caracteres braile, para utilização de surdos-cegos; e",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXXV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "…s no código 9021.90.19, e seus acessórios, classificados nos códigos 9018.90.99, 9021.90.91 e 9021.90.99, todos da Tipi.",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XXXVI",
+          "diploma": null,
+          "trecho": "XXXVI –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXXVI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.715",
+            "ano": 2012
+          },
+          "trecho": "XXXVI – (VETADO) .",
+          "literal": "(Incluído pela Lei nº 12.715, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XXXVII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.169",
+            "ano": 2015
+          },
+          "trecho": "XXXVII - produtos classificados no Ex 01 do código 8503.00.90 da Tipi, exceto pás eólicas.",
+          "literal": "(Redação dada pela Lei nº 13.169, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "Parágrafo único. O Poder Executivo poderá regulamentar o disposto nos incisos IV, X e XIII a XXXV do caput.",
+          "literal": "(Redação dada pela Lei nº 12.649, de 2012)"
+        }
+      ]
+    },
+    "40": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.925",
+            "ano": 2004
+          },
+          "trecho": "…as-primas, produtos intermediários e materiais de embalagem destinados a pessoa jurídica preponderantemente exportadora.",
+          "literal": "(Redação dada pela Lei nº 10.925, de 2004)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…ais de embalagem destinados a pessoa jurídica preponderantemente exportadora. (Redação dada pela Lei nº 10.925, de 2004)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.715",
+            "ano": 2012
+          },
+          "trecho": "…total de venda de bens e serviços no mesmo período, após excluídos os impostos e contribuições incidentes sobre a venda.",
+          "literal": "(Redação dada pela Lei nº 12.715, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.051",
+            "ano": 2004
+          },
+          "trecho": "… fornecedor, acrescidas de juros e multa de mora, ou de ofício, conforme o caso, contados a partir da data da aquisição.",
+          "literal": "(Incluído pela Lei nº 11.051, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.482",
+            "ano": 2007
+          },
+          "trecho": "…buição para o PIS/Pasep-Importação e à Cofins-Importação incidentes sobre os produtos de que trata o caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 11.482, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.774",
+            "ano": 2008
+          },
+          "trecho": "…la pessoa jurídica preponderantemente exportadora no mercado interno para o transporte dentro do território nacional de:",
+          "literal": "(Redação dada pela Lei nº 11.774, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "I - matérias-primas, produtos intermediários e materiais de embalagem adquiridos na forma deste artigo; e",
+          "literal": "(Incluído pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "II - produtos destinados à exportação pela pessoa jurídica preponderantemente exportadora.",
+          "literal": "(Incluído pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "…o § 6º-A deste artigo, o frete deverá referir-se ao transporte dos produtos até o ponto de saída do território nacional.",
+          "literal": "(Incluído pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "…A deste artigo aplica-se também na hipótese de vendas a empresa comercial exportadora, com fim específico de exportação.",
+          "literal": "(Incluído pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.488",
+            "ano": 2007
+          },
+          "trecho": "… ou à formação de lote com a finalidade de exportação, condição a ser comprovada mediante o Registro de Exportação - RE.",
+          "literal": "(Incluído pela Lei nº 11.488, de 2007)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.712",
+            "ano": 2012
+          },
+          "trecho": "§ 10.",
+          "literal": "(Revogado pela Lei nº 12.712, de 2012)"
+        }
+      ]
+    },
+    "40-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "…idos no inciso XI do caput do art. 28 desta Lei, quando destinados a órgãos e entidades da administração pública direta.",
+          "literal": "(Incluído pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "…es não pagas, acrescidas de juros e multa de mora ou de ofício, conforme o caso, contados a partir da data da aquisição.",
+          "literal": "(Incluído pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "…s e entidades da administração pública direta, no caso de produtos referidos no inciso XI do caput do art. 28 desta Lei.",
+          "literal": "(Incluído pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "§ 3º Aplicam-se ainda ao disposto neste artigo os §§ 3º , 4º e 6º do art. 40 desta Lei.",
+          "literal": "(Incluído pela Lei nº 11.727, de 2008)"
+        }
+      ]
+    },
+    "41": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.452",
+            "ano": 2007
+          },
+          "trecho": "…alizados - IPI, tributados à alíquota de 30% (trinta por cento), os produtos relacionados na subposição 2401.20 da TIPI.",
+          "literal": "(Redação dada pela Lei nº 11.452, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.452",
+            "ano": 2007
+          },
+          "trecho": "§ 1º A incidência do imposto independe da forma de apresentação, acondicionamento, estado ou peso do produto.",
+          "literal": "(Redação dada pela Lei nº 11.452, de 2007)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.452",
+            "ano": 2007
+          },
+          "trecho": "§ 2º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 11.452, de 2007)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.452",
+            "ano": 2007
+          },
+          "trecho": "§ 3º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 11.452, de 2007)"
+        }
+      ]
+    },
+    "42": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…mente, o regime de incidência não-cumulativa da contribuição para o PIS/PASEP e da COFINS. (Vide Lei nº 10.925, de 2004)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.925",
+            "ano": 2004
+          },
+          "trecho": "…o se aplicam as disposições dos arts. 45 e 46 desta Lei às pessoas jurídicas que efetuarem a opção na forma do caput des",
+          "literal": "(Redação dada pela Lei nº 10.925, de 2004)"
+        }
+      ]
+    },
+    "43": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.999",
+            "ano": 2004
+          },
+          "trecho": "Art. 43.",
+          "literal": "(Revogado pela Lei nº 10.999, de 2004)"
+        }
+      ]
+    },
+    "44": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        }
+      ]
+    }
+  }
+}

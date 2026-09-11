@@ -1,0 +1,1387 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L4595",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l4595.json",
+      "colecao": "artigos",
+      "sha256": "6f188d88f4d05cec8ad4f8aaa08ec0da4b2e108949f1aeba3d556e9eca22b710",
+      "total_registros": 65,
+      "gerado_em": "2026-08-31T20:53:32+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 31,
+      "anotacoes": 116,
+      "anotacoes_sem_diploma_nomeado": 21
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "278",
+            "ano": null
+          },
+          "trecho": "II - do Banco Central do Brasil;",
+          "literal": "(Redação dada pelo Del nº 278, de 28/02/67)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "I -",
+          "literal": "(Revogado Pela Lei Complementar nº 179, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "II -",
+          "literal": "(Revogado Pela Lei Complementar nº 179, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "III -",
+          "literal": "(Revogado Pela Lei Complementar nº 179, de 2021)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.045",
+            "ano": null
+          },
+          "trecho": "Art. 4º Compete ao Conselho Monetário Nacional, segundo diretrizes estabelecidas pelo Presidente da República:",
+          "literal": "(Redação dada pela Lei nº 6.045, de 15/05/74)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "I -",
+          "literal": "(Revogado Pela Lei Complementar nº 179, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "II -",
+          "literal": "(Revogado Pela Lei Complementar nº 179, de 2021)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV - Determinar as características gerais",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "581",
+            "ano": null
+          },
+          "trecho": "…, inclusive quanto a compra e venda de ouro e quaisquer operações em Direitos Especiais de Saque e em moeda estrangeira;",
+          "literal": "(Redação dada pelo Del nº 581, de 14/05/69)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "XIV -",
+          "literal": "(Revogado Pela Lei Complementar nº 179, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "XVI -",
+          "literal": "(Revogado Pela Lei Complementar nº 179, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XVII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "XVII -",
+          "literal": "(Revogado Pela Lei Complementar nº 179, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XIX",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "XIX -",
+          "literal": "(Revogado Pela Lei Complementar nº 179, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XXV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "XXV -",
+          "literal": "(Revogado Pela Lei Complementar nº 179, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XXVII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.376",
+            "ano": 1987
+          },
+          "trecho": "…de transferência de seus resultados para o Tesouro Nacional, sem prejuízo da competência do Tribunal de Contas da União.",
+          "literal": "(Redação dada pelo Decreto Lei nº 2.376, de 25.11.1987)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XXXI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.286",
+            "ano": 2021
+          },
+          "trecho": "XXXI -",
+          "literal": "(Revogado pela Lei nº 14.286, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso XXXI",
+          "diploma": null,
+          "trecho": "XXXI - (Revogado pela Lei nº 14.286, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XXXII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.290",
+            "ano": 1986
+          },
+          "trecho": "…das a funcionar pelo Banco Central do Brasil, inclusive entre aquelas sujeitas ao mesmo controle acionário ou coligadas.",
+          "literal": "(Redação dada pelo Decrto-lei nº 2.290, de 1986)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "§ 3º",
+          "literal": "(Revogado Pela Lei Complementar nº 179, de 2021)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "Art. 6º",
+          "literal": "(Revogado Pela Lei Complementar nº 179, de 2021)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "Art. 7º",
+          "literal": "(Revogado Pela Lei Complementar nº 179, de 2021)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.376",
+            "ano": null
+          },
+          "trecho": "…me de competência e transferidos para o Tesouro Nacional, após compensados eventuais prejuízos de exercícios anteriores.",
+          "literal": "(Redação dada pelo Del nº 2.376, de 25/11/87)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I - Emitir moeda-papel e moeda metálica, nas condições e limites autorizados pelo Conselho Monetário Nacional",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": 1989
+          },
+          "trecho": "…o em espécie, em ambos os casos entregues ao Banco Central do Brasil, a forma e condições por ele determinadas, podendo:",
+          "literal": "(Incluído pela Lei nº 7.730, de 31.1.1989)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": 1989
+          },
+          "trecho": "a) adotar percentagens diferentes em função:",
+          "literal": "(Incluído pela Lei nº 7.730, de 31.1.1989)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": 1989
+          },
+          "trecho": "1. das regiões geoeconômicas;",
+          "literal": "(Incluído pela Lei nº 7.730, de 31.1.1989)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": 1989
+          },
+          "trecho": "2. das prioridades que atribuir às aplicações;",
+          "literal": "(Incluído pela Lei nº 7.730, de 31.1.1989)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": 1989
+          },
+          "trecho": "3. da natureza das instituições financeiras;",
+          "literal": "(Incluído pela Lei nº 7.730, de 31.1.1989)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": 1989
+          },
+          "trecho": "…e que tenham sido reaplicados em financiamentos à agricultura, sob juros favorecidos e outras condições por ele fixadas.",
+          "literal": "(Incluído pela Lei nº 7.730, de 31.1.1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": null
+          },
+          "trecho": "…ior e, ainda, os depósitos voluntários à vista das instituições financeiras, nos termos do inciso III e § 2° do art. 19.",
+          "literal": "(Redação dada pela Lei nº 7.730, de 31/01/89)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "…ão, limites, prazos, garantias, formas de negociação e outras condições estabelecidos em regulamentação por ele editada;",
+          "literal": "(Redação dada pela Lei Complementar nº 179, de 2021)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": null
+          },
+          "trecho": "VI - Exercer o controle do crédito sob todas as suas formas;",
+          "literal": "(Renumerado pela Lei nº 7.730, de 31/01/89)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": null
+          },
+          "trecho": "VII - Efetuar o controle dos capitais estrangeiros, nos termos da lei;",
+          "literal": "(Renumerado pela Lei nº 7.730, de 31/01/89)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "581",
+            "ano": null
+          },
+          "trecho": "…fazer com estas últimas todas e quaisquer operações previstas no Convênio Constitutivo do Fundo Monetário Internacional;",
+          "literal": "(Redação dada pelo Del nº 581, de 14/05/69)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": null
+          },
+          "trecho": "…erações previstas no Convênio Constitutivo do Fundo Monetário Internacional; (Redação dada pelo Del nº 581, de 14/05/69)",
+          "literal": "(Renumerado pela Lei nº 7.730, de 31/01/89)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": null
+          },
+          "trecho": "IX - Exercer a fiscalização das instituições financeiras e aplicar as penalidades previstas;",
+          "literal": "(Renumerado pela Lei nº 7.730, de 31/01/89)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": null
+          },
+          "trecho": "X - Conceder autorização às instituições financeiras, a fim de que possam:",
+          "literal": "(Renumerado pela Lei nº 7.730, de 31/01/89)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea g",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.321",
+            "ano": null
+          },
+          "trecho": "g) alienar ou, por qualquer outra forma, transferir o seu controle acionário.",
+          "literal": "(Incluído pelo Del nº 2.321, de 25/02/87)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "…em regulamentação por ele editada, sem prejuízo do disposto no art. 39 da Lei Complementar nº 101, de 4 de maio de 2000;",
+          "literal": "(Redação dada pela Lei Complementar nº 179, de 2021)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso XIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": null
+          },
+          "trecho": "… matrizes das instituições financeiras registrem os cadastros das firmas que operam com suas agências há mais de um ano.",
+          "literal": "(Renumerado pela Lei nº 7.730, de 31/01/89)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "XIV - aprovar seu regimento interno;",
+          "literal": "(Incluído pela Lei Complementar nº 179, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "…e remuneração, limites, prazos, formas de negociação e outras condições estabelecidos em regulamentação por ele editada.",
+          "literal": "(Incluído pela Lei Complementar nº 179, de 2021)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…do Brasil, estudará os pedidos que lhe sejam formulados e resolverá conceder ou recusar a autorização pleiteada, podendo",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…financeiras estrangeiras dependem de autorização do Poder Executivo, mediante decreto, para que possam funcionar no País",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "…orma estabelecida no inciso V do caput deste artigo, sempre que identificar a possibilidade de impacto fiscal relevante.",
+          "literal": "(Incluído pela Lei Complementar nº 179, de 2021)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "581",
+            "ano": null
+          },
+          "trecho": "…terior, inclusive as referentes aos Direitos Especiais de Saque, e separar os mercados de câmbio financeiro e comercial;",
+          "literal": "(Redação dada pelo Del nº 581, de 14/05/69)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "IV -",
+          "literal": "(Revogado Pela Lei Complementar nº 179, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.321",
+            "ano": null
+          },
+          "trecho": "… controle acionário de instituição financeira, ficando essas pessoas sujeitas ao disposto no artigo 44, § 8º, desta lei.",
+          "literal": "(Incluído pelo Del nº 2.321, de 25/02/87)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.321",
+            "ano": null
+          },
+          "trecho": "…ara distribuição e recolhimento da moeda e o cumprimento das decisões adotadas pelo mesmo Conselho ou prescritas em lei.",
+          "literal": "(Renumerado pelo Del nº 2.321, de 25/02/87)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "278",
+            "ano": null
+          },
+          "trecho": "…de preferência com o Banco do Brasil S. A., exceto nos casos especialmente autorizados pelo Conselho Monetário Nacional.",
+          "literal": "(Redação dada pelo Del nº 278, de 28/02/67)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "179",
+            "ano": 2021
+          },
+          "trecho": "Art. 14.",
+          "literal": "(Revogado Pela Lei Complementar nº 179, de 2021)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.376",
+            "ano": null
+          },
+          "trecho": "Art. 16. Constituem receita do Banco Central do Brasil as rendas:",
+          "literal": "(Redação dada pelo Del nº 2.376, de 25/11/87)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.376",
+            "ano": null
+          },
+          "trecho": "I - de operações financeiras e de outras aplicações de seus recursos;",
+          "literal": "(Redação dada pelo Del nº 2.376, de 25/11/87)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.376",
+            "ano": null
+          },
+          "trecho": "II - das operações de câmbio, de compra e venda de ouro e de quaisquer outras operações em moeda estrangeira;",
+          "literal": "(Redação dada pelo Del nº 2.376, de 25/11/87)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.376",
+            "ano": null
+          },
+          "trecho": "…- eventuais, inclusive as derivadas de multas e de juros de mora aplicados por força do disposto na legislação em vigor.",
+          "literal": "(Redação dada pelo Del nº 2.376, de 25/11/87)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…e, regulará as condições de concorrência entre instituições financeiras, coibindo-lhes os abusos com a aplicação da pena",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.284",
+            "ano": 1986
+          },
+          "trecho": "…ntários, à vista, das instituições de que trata o inciso III, do art. 10, desta lei, escriturando as respectivas contas;",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.284, de 1986)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso VIII",
+          "diploma": null,
+          "trecho": "VIII - dar execução à política de comércio exterior",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "5.710",
+            "ano": null
+          },
+          "trecho": "…rma de sociedade anônima, devendo a totalidade de seu capital com direito a voto ser representada por ações nominativas.",
+          "literal": "(Redação dada pela Lei nº 5.710, de 07/10/71)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "5.710",
+            "ano": null
+          },
+          "trecho": "…o, às quais não se aplicará o disposto no parágrafo único do art. 81 do Decreto-lei nº 2.627, de 26 de setembro de 1940.",
+          "literal": "(Incluído pela Lei nº 5.710, de 07/10/71)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "5.710",
+            "ano": null
+          },
+          "trecho": "…cará sujeita a alterações prévias dos estatutos das sociedades, a fim de que sejam neles incluídas as declarações sobre:",
+          "literal": "(Incluído pela Lei nº 5.710, de 07/10/71)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "5.710",
+            "ano": null
+          },
+          "trecho": "…rições atribuídas a cada classe de ações preferenciais, de acordo com o Decreto-lei nº 2.627, de 26 de setembro de 1940;",
+          "literal": "(Incluído pela Lei nº 5.710, de 07/10/71)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "5.710",
+            "ano": null
+          },
+          "trecho": "… autorizada a conversão das ações, vedada a conversão das ações preferenciais em outro tipo de ações com direito a voto.",
+          "literal": "(Incluído pela Lei nº 5.710, de 07/10/71)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "5.710",
+            "ano": null
+          },
+          "trecho": "…ferenciais, emitidos nos termos dos parágrafos anteriores, deverão conter expressamente as restrições ali especificadas.",
+          "literal": "(Incluído pela Lei nº 5.710, de 07/10/71)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "48",
+            "ano": null
+          },
+          "trecho": "§ 2º",
+          "literal": "(Revogado pelo Del nº 48, de 18/11/66)"
+        }
+      ]
+    },
+    "30": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "34": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "Art. 34. É vedado às instituições financeiras realizar operação de crédito com a parte relacionada.",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "I - (revogado);",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "II - (revogado);",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "III -(revogado);",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "IV - (revogado);",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "V - (revogado);",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "§ 1o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "§ 2o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "§ 3o Considera-se parte relacionada à instituição financeira, para efeitos deste artigo:",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "I - seus controladores, pessoas físicas ou jurídicas, nos termos do art. 116 da Lei no 6.404, de 15 de dezembro de 1976;",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "II - seus diretores e membros de órgãos estatutários ou contratuais;",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…o e os parentes, consanguíneos ou afins, até o segundo grau, das pessoas mencionadas nos incisos I e II deste parágrafo;",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "IV - as pessoas físicas com participação societária qualificada em seu capital; e",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "V - as pessoas jurídicas:",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "a) com participação qualificada em seu capital;",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "b) em cujo capital, direta ou indiretamente, haja participação societária qualificada;",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…is haja controle operacional efetivo ou preponderância nas deliberações, independentemente da participação societária; e",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "d) que possuírem diretor ou membro de conselho de administração em comum.",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…-se da vedação de que trata o caput deste artigo, respeitados os limites e as condições estabelecidos em regulamentação:",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "… diferenciados comparativamente às operações deferidas aos demais clientes de mesmo perfil das respectivas instituições;",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "II - as operações com empresas controladas pela União, no caso das instituições financeiras públicas federais;",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "… de subordinação, observado o disposto no inciso V do art. 10 desta Lei, no caso das instituições financeiras bancárias;",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "IV - os depósitos interfinanceiros regulados na forma do inciso XXXII do caput do art. 4o desta Lei;",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…os e suas respectivas contrapartes em operações conduzidas no âmbito das referidas câmaras ou prestadores de serviços; e",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "VI - os demais casos autorizados pelo Conselho Monetário Nacional.",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "… indireto, simulado ou mediante interposição de terceiro, com o fim de realizar operação vedada nos termos deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…plinará o disposto neste artigo, inclusive a definição de operação de crédito, de limites e de participação qualificada.",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "Art. 35.",
+          "literal": "(Revogado pela Lei nº 13.506, de 2017)"
+        }
+      ]
+    },
+    "36": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "Art. 36.",
+          "literal": "(Revogado pela Lei nº 13.506, de 2017)"
+        }
+      ]
+    },
+    "38": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "105",
+            "ano": 2001
+          },
+          "trecho": "Art. 38.",
+          "literal": "(Revogado pela Lei Complementar nº 105, de 10.1.2001)"
+        }
+      ]
+    },
+    "40": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "130",
+            "ano": 2009
+          },
+          "trecho": "Art. 40.",
+          "literal": "(Revogado pela Lei Complementar nº 130, de 2009)"
+        }
+      ]
+    },
+    "41": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "130",
+            "ano": 2009
+          },
+          "trecho": "Art. 41.",
+          "literal": "(Revogado pela Lei Complementar nº 130, de 2009)"
+        }
+      ]
+    },
+    "42": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "Art. 42.",
+          "literal": "(Revogado pela Lei nº 13.506, de 2017)"
+        }
+      ]
+    },
+    "43": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "Art. 43.",
+          "literal": "(Revogado pela Lei nº 13.506, de 2017)"
+        }
+      ]
+    },
+    "44": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "Art. 44.",
+          "literal": "(Revogado pela Lei nº 13.506, de 2017)"
+        }
+      ]
+    },
+    "46": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… relativamente ao meio circulante inclusive as exercidas pela Caixa de Amortização para o Conselho Monetário Nacional, e",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "52": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b) estejam em exercício",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "53": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.829",
+            "ano": null
+          },
+          "trecho": "Art. 53.",
+          "literal": "(Revogado pela Lei nº 4.829, de 05/11/65)"
+        }
+      ]
+    },
+    "57": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.286",
+            "ano": 2021
+          },
+          "trecho": "Art. 57.",
+          "literal": "(Revogado pela Lei nº 14.286, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 57. (Revogado pela Lei nº 14.286, de 2021)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "59": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…e regulamentada pelo Decreto nº 42.820, de 16 de dezembro de 1957, como órgão executor da política de comércio exterior,",
+          "literal": "(VETADO)"
+        }
+      ]
+    }
+  }
+}

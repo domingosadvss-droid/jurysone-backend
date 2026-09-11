@@ -1,0 +1,642 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L14113",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l14113.json",
+      "colecao": "artigos",
+      "sha256": "1e51e1729d8b1d18a9d46cc8d6fb16d84867ec94fbdd39e6fbae4bc50df436b5",
+      "total_registros": 58,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 17,
+      "anotacoes": 47,
+      "anotacoes_sem_diploma_nomeado": 0
+    }
+  },
+  "vigencia": {
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…al, prevista no art. 156-A, combinado com a alínea “b” do inciso IV do caput do art. 158, ambos da Constituição Federal.",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…as relativas ao itinerário de formação técnica e profissional, previsto no inciso V do caput do art. 36 da referida Lei.",
+          "literal": "(Redação dada pela Lei nº 14.276, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…epasse dos recursos recebidos no âmbito do Fundeb para a cobertura das matrículas mantidas pelas referidas instituições.",
+          "literal": "(Incluído pela Lei nº 14.276, de 2021)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…s dados publicados, sob pena de responsabilização administrativa, nos termos da Lei nº 14.230, de 25 de outubro de 2021.",
+          "literal": "(Redação dada pela Lei nº 14.276, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "§ 7º Fica vedada a alteração nos dados após realizada a publicação final das informações do censo escolar.",
+          "literal": "(Incluído pela Lei nº 14.276, de 2021)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…nistério da Economia, nos termos dos incisos I, II e IV do § 3º do art. 13 e do inciso II do caput do art. 15 desta Lei;",
+          "literal": "(Redação dada pela Lei nº 14.276, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…os e atualizados pelo Ministério da Economia, com base nas características sociodemográficas e econômicas, entre outras.",
+          "literal": "(Redação dada pela Lei nº 14.276, de 2021)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "… que vierem a substituí-los, no dia 31 de agosto do exercício posterior ao exercício a que se referem os dados enviados.",
+          "literal": "(Redação dada pela Lei nº 14.276, de 2021)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "§ 3º A medida de equidade de aprendizagem, prevista no inciso I do § 2º deste artigo:",
+          "literal": "(Redação dada pela Lei nº 14.276, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…da pelo Inep, com relação aos resultados dos estudantes nos exames nacionais referidos no inciso I do § 2º deste artigo;",
+          "literal": "(Incluído pela Lei nº 14.276, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…roporção de estudantes cujos resultados de aprendizagem estejam em níveis abaixo do nível adequado, com maior peso para:",
+          "literal": "(Incluído pela Lei nº 14.276, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "a) os estudantes com resultados mais distantes desse nível;",
+          "literal": "(Incluído pela Lei nº 14.276, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…esultados nos diferentes grupos de nível socioeconômico e de raça e dos estudantes com deficiência em cada rede pública.",
+          "literal": "(Incluído pela Lei nº 14.276, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…uspensa a condicionalidade prevista no inciso II do § 1º deste artigo, para fins de distribuição da complementação-VAAR.",
+          "literal": "(Incluído pela Lei nº 14.276, de 2021)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "§ 5º O FNDE divulgará em sítio eletrônico, até 31 de dezembro de cada exercício:",
+          "literal": "(Incluído pela Lei nº 14.276, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…evisto no parágrafo único do art. 15 desta Lei, elaborado pela Secretaria do Tesouro Nacional do Ministério da Economia;",
+          "literal": "(Incluído pela Lei nº 14.276, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…rt. 13 desta Lei, consideradas no cálculo do VAAT, por rede de ensino, a que se refere o inciso V do caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.276, de 2021)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…lados à educação e do potencial de arrecadação tributária de cada ente federado, elaboradas pelo Ministério da Economia;",
+          "literal": "(Redação dada pela Lei nº 14.276, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…no anterior ao exercício de referência e será registrada em ata circunstanciada, lavrada conforme seu regimento interno.",
+          "literal": "(Incluído pela Lei nº 14.276, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…à Comissão Intergovernamental de Financiamento para a Educação Básica de Qualidade com 30 (trinta) dias de antecedência.",
+          "literal": "(Incluído pela Lei nº 14.276, de 2021)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…r instituição financeira, que deverá receber os recursos em conta específica e observar o disposto no § 6º deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.276, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.711",
+            "ano": 2023
+          },
+          "trecho": "…nto de salários, de vencimentos e de benefícios de qualquer natureza aos profissionais da educação em efetivo exercício.",
+          "literal": "(Redação dada pela Lei nº 14.711, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.711",
+            "ano": 2023
+          },
+          "trecho": "… financeiras contratadas deverão receber os recursos em uma conta específica e observar o disposto no § 6º deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.711, de 2023)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…de funções de apoio técnico, administrativo ou operacional, em efetivo exercício nas redes de ensino de educação básica;",
+          "literal": "(Redação dada pela Lei nº 14.276, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…plicados para reajuste salarial sob a forma de bonificação, abono, aumento de salário, atualização ou correção salarial.",
+          "literal": "(Incluído pela Lei nº 14.276, de 2021)"
+        }
+      ]
+    },
+    "26-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…os educandos, nos termos da Lei nº 13.935 de 11 de dezembro de 2019, observado o disposto no caput do art. 27 desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.276, de 2021)"
+        }
+      ]
+    },
+    "41": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.074",
+            "ano": 2021
+          },
+          "trecho": "…fiscais, de que trata o § 4º do art. 13, relativos aos exercícios financeiros de 2019 e 2020, nos termos de regulamento;",
+          "literal": "(Redação dada pela Medida Provisória nº 1.074, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…e que trata o § 4º do art. 13 desta Lei, relativos aos exercícios financeiros de 2019 e 2020, nos termos de regulamento;",
+          "literal": "(Redação dada pela Lei nº 14.276, de 2021)"
+        }
+      ]
+    },
+    "43": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "Art. 43. Esta Lei será atualizada até 31 de outubro de 2023, para aplicação no exercício de 2024, com relação a:",
+          "literal": "(Redação dada pela Lei nº 14.276, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "§ 1º Nos exercícios financeiros de 2021, 2022 e 2023 serão atribuídos:",
+          "literal": "(Redação dada pela Lei nº 14.276, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "… do inciso I do § 1º deste artigo terão a aplicação de fator multiplicativo de 1,50 (um inteiro e cinquenta centésimos).",
+          "literal": "(Redação dada pela Lei nº 14.276, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…encaminhados à Comissão Intergovernamental de Financiamento para a Educação Básica de Qualidade até 31 de julho de 2023.",
+          "literal": "(Redação dada pela Lei nº 14.276, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…lmente definidos por regulamento, de forma a considerar os impactos da pandemia da Covid-19 nos resultados educacionais.",
+          "literal": "(Incluído pela Lei nº 14.276, de 2021)"
+        }
+      ]
+    },
+    "43-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…ão tributária, de que trata o inciso III do caput do art. 10 desta Lei, será implementado a partir do exercício de 2027.",
+          "literal": "(Incluído pela Lei nº 14.276, de 2021)"
+        }
+      ]
+    },
+    "43-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…implementação do novo ensino médio, nas redes de ensino, em consonância com a Lei nº 13.415, de 16 de fevereiro de 2017.",
+          "literal": "(Incluído pela Lei nº 14.276, de 2021)"
+        }
+      ]
+    },
+    "47-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.325",
+            "ano": 2022
+          },
+          "trecho": "…ios em decorrência de decisões judiciais relativas ao cálculo do valor anual por aluno para a distribuição dos recursos:",
+          "literal": "(Incluído pela Lei nº 14.325, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.325",
+            "ano": 2022
+          },
+          "trecho": "…nto do Ensino Fundamental e de Valorização do Magistério (Fundef), previstos na Lei nº 9.424, de 24 de dezembro de 1996;",
+          "literal": "(Incluído pela Lei nº 14.325, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.325",
+            "ano": 2022
+          },
+          "trecho": "…a e de Valorização dos Profissionais da Educação (Fundeb) 2007-2020, previstos na Lei nº 11.494, de 20 de junho de 2007;",
+          "literal": "(Incluído pela Lei nº 14.325, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.325",
+            "ano": 2022
+          },
+          "trecho": "…envolvimento da Educação Básica e de Valorização dos Profissionais da Educação (Fundeb) permanente, previstos nesta Lei.",
+          "literal": "(Incluído pela Lei nº 14.325, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.325",
+            "ano": 2022
+          },
+          "trecho": "§ 1º Terão direito ao rateio de que trata o caput deste artigo:",
+          "literal": "(Incluído pela Lei nº 14.325, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.325",
+            "ano": 2022
+          },
+          "trecho": "…os repasses a menor do Fundef 1997-2006 ou do Fundeb 2007-2020 a que se referem os incisos I e II do caput deste artigo;",
+          "literal": "(Incluído pela Lei nº 14.325, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.325",
+            "ano": 2022
+          },
+          "trecho": "… o período em que ocorreram os repasses a menor do Fundeb permanente a que se refere o inciso III do caput deste artigo;",
+          "literal": "(Incluído pela Lei nº 14.325, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.325",
+            "ano": 2022
+          },
+          "trecho": "…istração pública que os remunerava, e os herdeiros, em caso de falecimento dos profissionais alcançados por este artigo.",
+          "literal": "(Incluído pela Lei nº 14.325, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.325",
+            "ano": 2022
+          },
+          "trecho": "§ 2º O valor a ser pago a cada profissional:",
+          "literal": "(Incluído pela Lei nº 14.325, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.325",
+            "ano": 2022
+          },
+          "trecho": "…profissionais da educação básica previstos no inciso III do caput do art. 61 da Lei nº 9.394, de 20 de dezembro de 1996;",
+          "literal": "(Incluído pela Lei nº 14.325, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.325",
+            "ano": 2022
+          },
+          "trecho": "…muneração dos servidores ativos ou aos proventos dos inativos que fizerem parte do rateio definido no § 1º deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.325, de 2022)"
+        }
+      ]
+    },
+    "53": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.276",
+            "ano": 2021
+          },
+          "trecho": "…put do art. 12 e mantidos seus efeitos financeiros no que se refere à execução dos Fundos relativa ao exercício de 2020.",
+          "literal": "(Redação dada pela Lei nº 14.276, de 2021)"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,455 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L8072",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l8072.json",
+      "colecao": "artigos",
+      "sha256": "760bf69d024be1fe47ee0aadce22c7f034375a0cc73a8a36570a0e34bbe47d46",
+      "total_registros": 13,
+      "gerado_em": "2026-08-21T22:36:32+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 4,
+      "anotacoes": 37,
+      "anotacoes_sem_diploma_nomeado": 3
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.930",
+            "ano": 1994
+          },
+          "trecho": "…ntes crimes, todos tipificados no Decreto-Lei no 2.848, de 7 de dezembro de 1940 - Código Penal, consumados ou tentados:",
+          "literal": "(Redação dada pela Lei nº 8.930, de 1994)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.159",
+            "ano": 2025
+          },
+          "trecho": "…vidade típica de grupo de extermínio, ainda que cometido por 1 (um) só agente, e homicídio qualificado (art. 121, § 2º);",
+          "literal": "(Redação dada pela Lei nº 15.159, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.159",
+            "ano": 2025
+          },
+          "trecho": "…al dolosa de natureza gravíssima (art. 129, § 2º) e lesão corporal seguida de morte (art. 129, § 3º), quando praticadas:",
+          "literal": "(Redação dada pela Lei nº 15.159, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.159",
+            "ano": 2025
+          },
+          "trecho": "…decorrência dela, ou contra seu cônjuge, companheiro ou parente consanguíneo até terceiro grau, em razão dessa condição;",
+          "literal": "(Redação dada pela Lei nº 15.159, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.159",
+            "ano": 2025
+          },
+          "trecho": "…ou contra seu cônjuge, companheiro ou parente, inclusive por afinidade, até o terceiro grau, em razão dessa condição; ou",
+          "literal": "(Redação dada pela Lei nº 15.159, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.159",
+            "ano": 2025
+          },
+          "trecho": "c) nas dependências de instituição de ensino;",
+          "literal": "(Incluído pela Lei nº 15.159, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.994",
+            "ano": 2024
+          },
+          "trecho": "I-B – feminicídio (art. 121-A);",
+          "literal": "(Incluído pela Lei nº 14.994, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.384",
+            "ano": 2026
+          },
+          "trecho": "I-C – vicaricídio (art. 121-B);",
+          "literal": "(Incluído pela Lei nº 15.384, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "II - roubo:",
+          "literal": "(Redação dada pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "a) circunstanciado pela restrição de liberdade da vítima (art. 157, § 2º, inciso V);",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…rma de fogo (art. 157, § 2º-A, inciso I) ou pelo emprego de arma de fogo de uso proibido ou restrito (art. 157, § 2º-B);",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "c) qualificado pelo resultado lesão corporal grave ou morte (art. 157, § 3º);",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…II - extorsão qualificada pela restrição da liberdade da vítima, ocorrência de lesão corporal ou morte (art. 158, § 3º);",
+          "literal": "(Redação dada pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.015",
+            "ano": 2009
+          },
+          "trecho": "V - estupro (art. 213, caput e §§ 1o e 2o);",
+          "literal": "(Redação dada pela Lei nº 12.015, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.015",
+            "ano": 2009
+          },
+          "trecho": "VI - estupro de vulnerável (art. 217-A, caput e §§ 1o, 2o, 3o e 4o);",
+          "literal": "(Redação dada pela Lei nº 12.015, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso VII",
+          "diploma": null,
+          "trecho": "VII-A –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.978",
+            "ano": 2014
+          },
+          "trecho": "…ção ou de outra forma de exploração sexual de criança ou adolescente ou de vulnerável (art. 218-B, caput, e §§ 1º e 2º).",
+          "literal": "(Incluído pela Lei nº 12.978, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "IX - furto qualificado pelo emprego de explosivo ou de artefato análogo que cause perigo comum (art. 155, § 4º-A).",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.811",
+            "ano": 2024
+          },
+          "trecho": "…ação realizados por meio da rede de computadores, de rede social ou transmitidos em tempo real (art. 122, caput e § 4º);",
+          "literal": "(Incluído pela Lei 14.811, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.811",
+            "ano": 2024
+          },
+          "trecho": "XI - sequestro e cárcere privado cometido contra menor de 18 (dezoito) anos (art. 148, § 1º, inciso IV);",
+          "literal": "(Incluído pela Lei 14.811, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.811",
+            "ano": 2024
+          },
+          "trecho": "XII - tráfico de pessoas cometido contra criança ou adolescente (art. 149-A, caput, incisos I a V, e § 1º, inciso II).",
+          "literal": "(Incluído pela Lei 14.811, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "Parágrafo único. Consideram-se também hediondos, tentados ou consumados:",
+          "literal": "(Redação dada pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "I - o crime de genocídio, previsto nos arts. 1º, 2º e 3º da Lei nº 2.889, de 1º de outubro de 1956;",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "… posse ou porte ilegal de arma de fogo de uso proibido, previsto no art. 16 da Lei nº 10.826, de 22 de dezembro de 2003;",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "III - o crime de comércio ilegal de armas de fogo, previsto no art. 17 da Lei nº 10.826, de 22 de dezembro de 2003;",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…co internacional de arma de fogo, acessório ou munição, previsto no art. 18 da Lei nº 10.826, de 22 de dezembro de 2003;",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "V - o crime de organização criminosa, quando direcionado à prática de crime hediondo ou equiparado.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.688",
+            "ano": 2023
+          },
+          "trecho": "…de 21 de outubro de 1969 (Código Penal Militar), que apresentem identidade com os crimes previstos no art. 1º desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.688, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.487",
+            "ano": 2026
+          },
+          "trecho": "…241-D e no caput e no § 1º do art. 244-A da Lei nº 8.069, de 13 de julho de 1990 (Estatuto da Criança e do Adolescente);",
+          "literal": "(Redação dada pela Lei nº 15.487, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "…put e nos §§ 1º e 3º do art. 2º e no art. 3º da lei que institui o marco legal do combate ao crime organizado no Brasil.",
+          "literal": "(Incluído pela Lei nº 15.358, de 2026)"
+        }
+      ]
+    },
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.464",
+            "ano": 2007
+          },
+          "trecho": "II - fiança.",
+          "literal": "(Redação dada pela Lei nº 11.464, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.464",
+            "ano": 2007
+          },
+          "trecho": "§ 1o A pena por crime previsto neste artigo será cumprida inicialmente em regime fechado.",
+          "literal": "(Redação dada pela Lei nº 11.464, de 2007)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "§ 2º",
+          "literal": "(Revogado pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.464",
+            "ano": 2007
+          },
+          "trecho": "§ 3o Em caso de sentença condenatória, o juiz decidirá fundamentadamente se o réu poderá apelar em liberdade.",
+          "literal": "(Redação dada pela Lei nº 11.464, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.464",
+            "ano": 2007
+          },
+          "trecho": "…ste artigo, terá o prazo de 30 (trinta) dias, prorrogável por igual período em caso de extrema e comprovada necessidade.",
+          "literal": "(Incluído pela Lei nº 11.464, de 2007)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 4º",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 11.",
+          "literal": "(Vetado)"
+        }
+      ]
+    }
+  }
+}

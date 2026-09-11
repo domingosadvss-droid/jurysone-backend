@@ -1,0 +1,2878 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "EMIL",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_emil.json",
+      "colecao": "artigos",
+      "sha256": "53419cc6fa09c60eac1550a4eb83fda5ff81e45ab86a4ba97c8b15283ab84303",
+      "total_registros": 166,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 43,
+      "anotacoes": 253,
+      "anotacoes_sem_diploma_nomeado": 40
+    }
+  },
+  "vigencia": {
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ntário, durante os prazos previstos na legislação que trata do serviço militar ou durante as prorrogações desses prazos;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ionalmente, os reformados, que estejam executando tarefa por tempo certo, segundo regulamentação para cada Força Armada.",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "… assegurada ou presumida, ou estabilidade adquirida nos termos da alínea “a” do inciso IV do caput do art. 50 desta Lei.",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…uirem estabilidade e passam a compor a reserva não remunerada das Forças Armadas após serem desligados do serviço ativo.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "…República, no Ministério da Defesa e nos demais órgãos quando previsto em lei, ou quando incorporados às Forças Armadas.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ões de graduação de oficiais da Marinha e do Exército são hierarquicamente superiores aos Suboficiais e aos Subtenentes;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…sposto no parágrafo único do art. 21 desta Lei, faz jus aos direitos correspondentes ao cargo, conforme previsto em lei.",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ilitar será calculada com base no soldo inerente ao seu posto ou à sua graduação, independentemente do cargo que ocupar.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "50": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "I-A. - a proteção social, nos termos do art. 50-A desta Lei;",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "… base no soldo integral do posto ou da graduação que possuía por ocasião da transferência para a inatividade remunerada:",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "a) por contar mais de 35 (trinta e cinco) anos de serviço;",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "b) por atingir a idade-limite de permanência em atividade no posto ou na graduação;",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "c) por estar enquadrado em uma das hipóteses previstas nos incisos VIII ou IX do caput do art. 98 desta Lei; ou",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ncluído em quota compulsória unicamente em razão do disposto na alínea “c” do inciso III do caput do art. 101 desta Lei;",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ndo tiver sido abrangido pela quota compulsória, ressalvado o disposto na alínea “d” do inciso II do caput deste artigo;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "IV - nas condições ou nas limitações impostas por legislação e regulamentação específicas, os seguintes:",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "a) a estabilidade, somente se praça de carreira com 10 (dez) anos ou mais de tempo de efetivo serviço;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea j",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "j)",
+          "literal": "(Revogada pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "§ 1º",
+          "literal": "(Revogado pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "§ 2º São considerados dependentes do militar, desde que assim declarados por ele na organização militar competente:",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "I - o cônjuge ou o companheiro com quem viva em união estável, na constância do vínculo;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "II - o filho ou o enteado:",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "a) menor de 21 (vinte e um) anos de idade;",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "b) inválido;",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "III - (revogado);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "IV - (revogado);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "V - (revogado);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "VI -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "VI - (revogado);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VII",
+          "diploma": null,
+          "trecho": "VII -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "VII - (revogado);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VIII",
+          "diploma": null,
+          "trecho": "VIII -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "VIII - (revogado).",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "… dependentes do militar, desde que não recebam rendimentos e sejam declarados por ele na organização militar competente:",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "a) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "b) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "c)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "c) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea d",
+          "diploma": null,
+          "trecho": "d)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "d) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea e",
+          "diploma": null,
+          "trecho": "e)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "e) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea f",
+          "diploma": null,
+          "trecho": "f)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "f) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea g",
+          "diploma": null,
+          "trecho": "g)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea g",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "g) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea h",
+          "diploma": null,
+          "trecho": "h)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea h",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "h) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea i",
+          "diploma": null,
+          "trecho": "i)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea i",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "i) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea j",
+          "diploma": null,
+          "trecho": "j)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea j",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "j) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "I - o filho ou o enteado estudante menor de 24 (vinte e quatro) anos de idade;",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "II - o pai e a mãe;",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…tutelado ou o curatelado inválido ou menor de 18 (dezoito) anos de idade que viva sob a sua guarda por decisão judicial.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "§ 4º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ência, mediante participação nos custos e no pagamento das contribuições devidas, conforme estabelecidos em regulamento:",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "I - o viúvo, enquanto não contrair matrimônio ou constituir união estável;",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "II - o filho ou o enteado menor de 21 (vinte e um) anos de idade ou inválido;",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "III - o filho ou o enteado estudante menor de 24 (vinte e quatro) anos de idade;",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "IV - os dependentes a que se refere o § 3º deste artigo, por ocasião do óbito do militar.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "50-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ntes e interativas, de remuneração, pensão, saúde e assistência, nos termos desta Lei e das regulamentações específicas.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "51": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "b) em 45 (quarenta e cinco) dias, nas demais hipóteses.",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "§ 3º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "53": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "Art. 53. A remuneração dos militares será estabelecida em legislação específica, comum às Forças Armadas.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.237",
+            "ano": 1991
+          },
+          "trecho": "I - na ativa;",
+          "literal": "(Redação dada pela Lei nº 8.237, de 1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.237",
+            "ano": 1991
+          },
+          "trecho": "a) soldo, gratificações e indenizações regulares;",
+          "literal": "(Redação dada pela Lei nº 8.237, de 1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.237",
+            "ano": 1991
+          },
+          "trecho": "II - na inatividade:",
+          "literal": "(Redação dada pela Lei nº 8.237, de 1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.237",
+            "ano": 1991
+          },
+          "trecho": "a) proventos, constituídos de soldo os quotas de soldo e gratificações incorporáveis;",
+          "literal": "(Redação dada pela Lei nº 8.237, de 1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.237",
+            "ano": 1991
+          },
+          "trecho": "b) adicionais.",
+          "literal": "(Redação dada pela Lei nº 8.237, de 1991)"
+        }
+      ]
+    },
+    "53-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "Art. 53-A. A remuneração dos militares ativos e inativos é encargo financeiro do Tesouro Nacional.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "56": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…e 35 (trinta e cinco) anos, ressalvado o disposto nas alíneas “b”, “c” e “d” do inciso II do caput do art. 50 desta Lei.",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "Parágrafo único. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "61": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.666",
+            "ano": 1988
+          },
+          "trecho": "…s forem Capitão-Tenente ou capitão e 1º Tenente, caso em que as proporções serão no mínimo 1/10 e 1/20, respectivamente.",
+          "literal": "(Redação dada pela Lei nº 7.666, de 1988)"
+        }
+      ]
+    },
+    "63": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "…nar, ou pelo estado de guerra, ou para que sejam cumpridos atos em serviço, bem como não anula o direito àquela licença.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "§ 5º",
+          "literal": "(Revogado pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        }
+      ]
+    },
+    "67": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "a)",
+          "literal": "(Revogada pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "e) para acompanhar cônjuge ou companheiro;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "f) para maternidade, paternidade ou adoção.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "§ 3o A concessão da licença é regulada pelo Comandante da Força.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        }
+      ]
+    },
+    "68": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "Art. 68.",
+          "literal": "(Revogado pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        }
+      ]
+    },
+    "69-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…tuado em outro ponto do território nacional ou no exterior, diverso da localização da organização militar do requerente.",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.447",
+            "ano": 2007
+          },
+          "trecho": "… da contagem de tempo de efetivo serviço, exceto, quanto a este último, para fins de indicação para a quota compulsória.",
+          "literal": "(Incluído pela Lei nº 11.447, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.447",
+            "ano": 2007
+          },
+          "trecho": "…o O prazo-limite para a licença será de 36 (trinta e seis) meses, podendo ser concedido de forma contínua ou fracionada.",
+          "literal": "(Incluído pela Lei nº 11.447, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.447",
+            "ano": 2007
+          },
+          "trecho": "…seja reconhecida a união estável entre o homem e a mulher como entidade familiar, de acordo com a legislação específica.",
+          "literal": "(Incluído pela Lei nº 11.447, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.447",
+            "ano": 2007
+          },
+          "trecho": "…o/lotado em organização militar das Forças Armadas para o desempenho de funções compatíveis com o seu nível hierárquico.",
+          "literal": "(Incluído pela Lei nº 11.447, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.447",
+            "ano": 2007
+          },
+          "trecho": "…ata o § 4o deste artigo, será efetivada sem ônus para a União e sempre com a aquiescência das Forças Armadas envolvidas.",
+          "literal": "(Incluído pela Lei nº 11.447, de 2007)"
+        }
+      ]
+    },
+    "70": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.447",
+            "ano": 2007
+          },
+          "trecho": "…l, da licença para tratar de interesse particular e da licença para acompanhar cônjuge ou companheiro(a) poderá ocorrer:",
+          "literal": "(Redação dada pela Lei nº 11.447, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "d) para cumprimento de punição disciplinar, conforme regulamentação de cada Força.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.447",
+            "ano": 2007
+          },
+          "trecho": "…e ou companheiro(a) será definitiva quando o militar for reformado ou transferido, de ofício, para a reserva remunerada.",
+          "literal": "(Redação dada pela Lei nº 11.447, de 2007)"
+        }
+      ]
+    },
+    "71": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "… com recursos provenientes da contribuição dos militares das Forças Armadas, de seus pensionistas e do Tesouro Nacional.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "81": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "… Defesa ou de Força Armada diversa daquela a que pertença, para ocupar cargo militar ou considerado de natureza militar;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        }
+      ]
+    },
+    "82": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.447",
+            "ano": 2007
+          },
+          "trecho": "… meses contínuos em licença para tratar de interesse particular ou em licença para acompanhar cônjuge ou companheiro(a);",
+          "literal": "(Redação dada pela Lei nº 11.447, de 2007)"
+        }
+      ]
+    },
+    "82-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…u definitivamente, se encontrar física ou mentalmente inapto para o exercício de cargos, funções e atividades militares.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "97": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "… por meio de requerimento, ao militar de carreira que contar, no mínimo, 35 (trinta e cinco) anos de serviço, dos quais:",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…nológico de Aeronáutica e em escola ou centro de formação de oficiais oriundos de carreira de praça e para as praças; ou",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…eza militar nas Forças Armadas, para os oficiais não enquadrados na hipótese prevista no inciso I do caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…rência para a reserva remunerada por meio de inclusão voluntária na quota compulsória, nos termos do art. 101 desta Lei.",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "… indenização será efetuado pela respectiva Força Armada, conforme estabelecido em regulamento pelo Ministério da Defesa.",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "§ 4º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "a) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "b) (revogada).",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "… correspondente à indenização referida no § 2º deste artigo poderá ser descontado diretamente da remuneração do militar.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "98": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…sferência de ofício para a reserva remunerada ocorrerá sempre que o militar se enquadrar em uma das seguintes hipóteses:",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "I - atingir as seguintes idades-limites:",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "… os oficiais-generais e para os oficiais dos Corpos, Quadros, Armas e Serviços não incluídos na alínea “b” deste inciso:",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "1. 70 (setenta) anos, nos postos de Almirante de Esquadra, General de Exército e Tenente-Brigadeiro;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "2. 69 (sessenta e nove) anos, nos postos de Vice-Almirante, General de Divisão e Major-Brigadeiro;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "3. 68 (sessenta e oito) anos, nos postos de Contra-Almirante, General de Brigada e Brigadeiro;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "4. 67 (sessenta e sete) anos, nos postos de Capitão de Mar e Guerra e Coronel;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "5. 64 (sessenta e quatro) anos, nos postos de Capitão de Fragata e Tenente-Coronel;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "6. 61 (sessenta e um) anos, nos postos de Capitão de Corveta e Major;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "7. 55 (cinquenta e cinco) anos, nos postos de Capitão-Tenente, Capitão e oficiais subalternos;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…nto Técnico (QOESup), do Quadro de Oficiais Especialistas da Aeronáutica (QOEA) e do Quadro de Oficiais de Apoio (QOAp):",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "c) na Marinha, no Exército e na Aeronáutica, para praças:",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.659",
+            "ano": 1988
+          },
+          "trecho": "… 4 (quatro) anos no último posto da hierarquia, em tempo de paz, prevista para cada Corpo ou Quadro da respectiva Força.",
+          "literal": "(Redação dada pela Lei nº 7.659, de 1988)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…etar os primeiros 6 (seis) anos no posto, já possuir os requisitos para a promoção ao primeiro posto de oficial-general;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ter definitivo, no momento em que vier a ser objeto de apreciação para ingresso em quadro de acesso ou lista de escolha;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "… não, por oficial mais moderno do respectivo Corpo, Quadro, Arma ou Serviço que tenha sido incluído em lista de escolha;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "… 5.821, de 10 de novembro de 1972, quando nele tenha entrado oficial mais moderno do respectivo Quadro, Arma ou Serviço;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XI",
+          "diploma": null,
+          "trecho": "XI -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "XI - (revogado);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.297",
+            "ano": 1996
+          },
+          "trecho": "XIV -",
+          "literal": "(Revogado pela Lei nº 9.297, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ao disposto no inciso VIII do caput deste artigo, situação em que será processada na data prevista para aquela promoção.",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.297",
+            "ano": 1996
+          },
+          "trecho": "§ 2°",
+          "literal": "(Revogado pela Lei nº 9.297, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.297",
+            "ano": 1996
+          },
+          "trecho": "…missão do militar para os cargos ou empregos públicos de que trata o inciso XV deste artigo somente poderá ser feita se:",
+          "literal": "(Redação dada pela Lei nº 9.297, de 1996)"
+        }
+      ]
+    },
+    "101": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…e integrarão a quota compulsória, será observado, sempre respeitada a conveniência da Administração Militar, o seguinte:",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "I - (revogado);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "II - em cada posto, a referida quota será composta pelos oficiais que:",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "a) contarem, no mínimo, o seguinte tempo de efetivo serviço:",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "1. 30 (trinta) anos, se oficial-general;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "2. 28 (vinte e oito) anos, se Capitão de Mar e Guerra ou Coronel;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "3. 25 (vinte e cinco) anos, se Capitão de Fragata ou Tenente-Coronel;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…e que definem a faixa daqueles que concorrem à composição dos Quadros de Acesso por Antiguidade, Merecimento ou Escolha;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…a a organização dos referidos Quadros, ainda que não estejam concorrendo à composição dos Quadros de Acesso por Escolha;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea e",
+          "diploma": null,
+          "trecho": "e)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "e) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea e",
+          "diploma": null,
+          "trecho": "1ª )",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "1ª ) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea e",
+          "diploma": null,
+          "trecho": "2ª )",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "2ª ) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea e",
+          "diploma": null,
+          "trecho": "3ª )",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "3ª ) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "III - a seguinte ordem entre os oficiais que satisfizerem as condições previstas no inciso II do caput deste artigo:",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "… indicados serão submetidos a processo administrativo que lhes garanta os princípios do contraditório e da ampla defesa;",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…is de 25 (vinte e cinco) anos de efetivo serviço, observada, em todos os casos, a conveniência da Administração Militar;",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "c) os de mais idade e, no caso da mesma idade, os mais modernos.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…a a reserva juntamente com os demais componentes da quota, não sendo computados, entretanto, no total das vagas fixadas.",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "§ 2º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "§ 3º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "104": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "Art. 104. A passagem do militar à situação de inatividade por reforma será efetuada de ofício.",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "I - (revogado);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "II - (revogado).",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "105": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "Art . 105.",
+          "literal": "(Revogado pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "106": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "Art. 106. A reforma será aplicada ao militar que:",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "a) para oficial-general, 75 (setenta e cinco) anos;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "b) para oficial superior, 72 (setenta e dois) anos;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "c) para Capitão-Tenente, Capitão e oficial subalterno, 68 (sessenta e oito) anos;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "d) para praças, 68 (sessenta e oito) anos;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "II - se de carreira, for julgado incapaz, definitivamente, para o serviço ativo das Forças Armadas;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "II-A. se temporário:",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "a) for julgado inválido;",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ara o serviço ativo das Forças Armadas, quando enquadrado no disposto nos incisos I e II do caput do art. 108 desta Lei;",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…dade assegurada, for a ela indicado ao Comandante de Força Singular respectiva, em julgamento de Conselho de Disciplina.",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "… reformado na forma prevista nos incisos V ou VI do caput deste artigo só poderá readquirir a situação militar anterior:",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "a) (revogada);",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "b) (revogada);",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ta no inciso V do caput deste artigo, por outra sentença do Superior Tribunal Militar, nas condições nela estabelecidas;",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "II - na hipótese prevista no inciso VI do caput deste artigo, por decisão do Comandante de Força Singular respectivo.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "§ 2º O disposto nos incisos III e IV do caput deste artigo não se aplica ao militar temporário.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "108": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.670",
+            "ano": 2012
+          },
+          "trecho": "…anquilosante, nefropatia grave e outras moléstias que a lei indicar com base nas conclusões da medicina especializada; e",
+          "literal": "(Redação dada pela Lei nº 12.670, de 2012)"
+        }
+      ]
+    },
+    "109": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…es previstas nos incisos I, II, III, IV e V do caput do art. 108 desta Lei será reformado com qualquer tempo de serviço.",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ca-se ao militar temporário enquadrado em uma das hipóteses previstas nos incisos I e II do caput do art. 108 desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…siderado inválido por estar impossibilitado total e permanentemente para qualquer atividade laboral, pública ou privada.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…idade laboral, pública ou privada, será licenciado ou desincorporado na forma prevista na legislação do serviço militar.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "110": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.580",
+            "ano": 1986
+          },
+          "trecho": "…a com base no soldo correspondente ao grau hierárquico imediato ao que possuir ou que possuía na ativa, respectivamente.",
+          "literal": "(Redação dada pela Lei nº 7.580, de 1986)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "§ 4º",
+          "literal": "(Revogado pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "§ 5º",
+          "literal": "(Revogado pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        }
+      ]
+    },
+    "111": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…siderado inválido por estar impossibilitado total e permanentemente para qualquer atividade laboral, pública ou privada.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…do ou desincorporado, na forma prevista na legislação pertinente, o militar temporário que não for considerado inválido.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "112-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…vocado, por iniciativa da Administração Militar, a qualquer momento, para revisão das condições que ensejaram a reforma.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ez é obrigado, sob pena de suspensão da remuneração, a submeter-se à inspeção de saúde a cargo da Administração Militar.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…Na hipótese da convocação referida no caput deste artigo, os prazos previstos no art. 112 desta Lei serão interrompidos.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "114": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "I - Segundo-Tenente: os Guardas-Marinha e os Aspirantes a Oficial;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…r de Engenharia e das demais instituições de graduação de oficiais da Marinha e do Exército, conforme o caso específico;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "III - Segundo-Sargento: os alunos do Colégio Naval e da Escola Preparatória de Cadetes;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "116": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…sas efetuadas pela União com a sua preparação, formação ou adaptação, quando contar mais de 3 (três) anos de oficialato;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…as efetuadas pela União com a sua preparação, formação ou adaptação, quando contar menos de 3 (três) anos de oficialato.",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ou no exterior, acrescidas, se for o caso, daquelas previstas no inciso II do caput deste artigo, quando não decorridos:",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "b) 3 (três) anos, para curso ou estágio de duração igual ou superior a 6 (seis) meses;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "c)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "c) (revogada).",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ecidos em ato do Ministro de Estado da Defesa, cabendo o cálculo aos Comandos da Marinha, do Exército ou da Aeronáutica.",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "117": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.297",
+            "ano": 1996
+          },
+          "trecho": "…es estabelecidas na legislação do serviço militar, obedecidos os preceitos do art. 116 no que se refere às indenizações.",
+          "literal": "(Redação dada pela Lei nº 9.297, de 1996)"
+        }
+      ]
+    },
+    "121": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…o caso de militar temporário, o licenciamento a pedido poderá ser concedido, desde que não haja prejuízo para o serviço:",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "a) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "b) (revogada);",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "I - ao oficial da reserva convocado, após prestação de serviço ativo durante 6 (seis) meses;",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…à praça engajada ou reengajada, desde que tenha cumprido, no mínimo, a metade do tempo de serviço a que estava obrigada.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "§ 1º-A. No caso de praça de carreira, o licenciamento a pedido será concedido por meio de requerimento do interessado:",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…nião com a sua preparação, formação ou adaptação, quando contar mais de 3 (três) anos de formado como praça de carreira;",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ião com a sua preparação, formação ou adaptação, quando contar menos de 3 (três) anos de formado como praça de carreira.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…u no exterior, acrescidas, se for o caso, daquelas previstas no inciso II do § 1º-A deste artigo, quando não decorridos:",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "I - 2 (dois) anos, para curso ou estágio com duração igual ou superior a 2 (dois) meses e inferior a 6 (seis) meses;",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "II - 3 (três) anos, para curso ou estágio com duração igual ou superior a 6 (seis) meses.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ecidos em ato do Ministro de Estado da Defesa, cabendo o cálculo aos Comandos da Marinha, do Exército ou da Aeronáutica.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…será aplicado às praças especiais, aos Guardas-Marinha e aos Aspirantes a Oficial após a conclusão do curso de formação.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…lada, poderá ser reincluída na Força de origem, por meio de requerimento ao Comandante da Força Singular correspondente.",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "b) por conveniência do serviço;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "c) a bem da disciplina;",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "d) por outros casos previstos em lei.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "122": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ações estabelecidas na legislação do serviço militar, observado o disposto no art. 121 desta Lei quanto às indenizações.",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "137": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "II -",
+          "literal": "(Revogado pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "IV -",
+          "literal": "(Revogado pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "V -",
+          "literal": "(Revogado pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.698",
+            "ano": 1988
+          },
+          "trecho": "…pelo militar nas guarnições especiais da Categoria \"A\", a partir da vigência da Lei nº 5.774, de 23 de dezembro de 1971.",
+          "literal": "(Redação dada pela Lei nº 7.698, de 1988)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "§ 2º",
+          "literal": "(Revogado pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "§ 3º",
+          "literal": "(Revogado pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.447",
+            "ano": 2007
+          },
+          "trecho": "b) passado em licença para tratar de interesse particular ou para acompanhar cônjuge ou companheiro(a);",
+          "literal": "(Redação dada pela Lei nº 11.447, de 2007)"
+        }
+      ]
+    },
+    "138": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "Art. 138.",
+          "literal": "(Revogado pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        }
+      ]
+    },
+    "144": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "§ 1º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "§ 2º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "§ 3º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…ião estável com pessoa estrangeira deverá comunicar o fato ao Comandante da Força a que pertence, para fins de registro.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "144-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…os mantenham em regime de internato, de dedicação exclusiva e de disponibilidade permanente peculiar à carreira militar.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…cancelamento da matrícula e o licenciamento do serviço ativo, conforme estabelecido no regulamento de cada Força Armada.",
+          "literal": "(Incluído pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "145": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…especiais que contraírem matrimônio serão excluídas do serviço ativo, sem direito a qualquer remuneração ou indenização.",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    },
+    "156": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "Art. 156.",
+          "literal": "(Revogado pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        }
+      ]
+    },
+    "160": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.215-10",
+            "ano": 2001
+          },
+          "trecho": "Art. 160.",
+          "literal": "(Revogado pela Medida Provisória nº 2.215-10, de 31.8.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.954",
+            "ano": 2019
+          },
+          "trecho": "…Rocha Este texto não substitui o publicado no DOU de 11.12.1988 ANEXO I CÍRCULOS E ESCALA HIERÁRQUICA NAS FORÇAS ARMADAS",
+          "literal": "(Redação dada pela Lei nº 13.954, de 2019)"
+        }
+      ]
+    }
+  }
+}

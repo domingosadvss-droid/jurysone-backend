@@ -1,0 +1,2307 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L4591",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l4591.json",
+      "colecao": "artigos",
+      "sha256": "ea80fae4a04b57362053a247fcf6d09d40b146947b10a2b5008caa90554a27fc",
+      "total_registros": 86,
+      "gerado_em": "2026-08-21T22:36:32+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 36,
+      "anotacoes": 197,
+      "anotacoes_sem_diploma_nomeado": 20
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…empre tratada como objeto de propriedade exclusiva, qualquer que seja o número de suas peças e sua destinação, inclusive",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.864",
+            "ano": 1965
+          },
+          "trecho": "…inculada à unidade habitacional a que corresponder, no caso de não lhe ser atribuída fração ideal específica de terreno.",
+          "literal": "(Incluído pela Lei nº 4.864, de 29.11.1965)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.864",
+            "ano": 1965
+          },
+          "trecho": "…ndependentemente da alienação da unidade a que corresponder, vedada sua transferência a pessoas estranhas ao condomínio.",
+          "literal": "(Incluído pela Lei nº 4.864, de 29.11.1965)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.864",
+            "ano": 1965
+          },
+          "trecho": "§ 3º Nos edifícios-garagem, às vagas serão atribuídas frações ideais de terreno específicas.",
+          "literal": "(Incluído pela Lei nº 4.864, de 29.11.1965)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…e alienação destacada da respectiva unidade. Serão, também, insuscetíveis de utilização exclusiva por qualquer condômino",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…s pertinentes à sua aquisição e a constituição de direitos reais sôbre ela independerão do consentimento dos condôminos,",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.182",
+            "ano": 1984
+          },
+          "trecho": "…os de que trata este artigo dependerá de prova de quitação das obrigações do alienante para com o respectivo condomínio.",
+          "literal": "(Redação dada pela Lei nº 7.182, de 27.3.1984)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.864",
+            "ano": 1965
+          },
+          "trecho": "…cações, podendo estipular formas pelas quais se possam desmembrar e alienar porções do terreno, inclusive as edificadas.",
+          "literal": "(Incluído pela Lei nº 4.864, de 29.11.1965)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º O proprietário ou titular de direito à aquisição de unidade poderá fazer obra que",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.709",
+            "ano": 1979
+          },
+          "trecho": "…cos, ou, ainda, no caso de condenação do edifício pela autoridade pública, em razão de sua insegurança ou insalubridade.",
+          "literal": "(Redação dada pela Lei nº 6.709, de 31.10.1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.709",
+            "ano": 1979
+          },
+          "trecho": "…direito de adquirir as partes dos dissidentes, mediante avaliação judicial, aplicando-se o processo previsto no art. 15.",
+          "literal": "(Redação dada pela Lei nº 6.709, de 31.10.1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.709",
+            "ano": 1979
+          },
+          "trecho": "… sua alienação total, procedendo-se em relação à minoria na forma estabelecida no art. 15, e seus parágrafos, desta Lei.",
+          "literal": "(Redação dada pela Lei nº 6.709, de 31.10.1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.709",
+            "ano": 1979
+          },
+          "trecho": "…sta no § 2º ou, a critério desses, a imóvel localizado em área próxima ou adjacente com a mesma área útil de construção.",
+          "literal": "(Redação dada pela Lei nº 6.709, de 31.10.1979)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "981",
+            "ano": 1969
+          },
+          "trecho": "… condomínio, ficando sujeito às disposições desta lei, bem assim às da convenção do condomínio e do regulamento interno.",
+          "literal": "(Redação dada pela Decreto-Lei nº 981, de 21.10.1969)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.267",
+            "ano": 1996
+          },
+          "trecho": "…envolvam despesas extraordinárias do condomínio, o locatário poderá votar, caso o condômino-locador a ela não compareça.",
+          "literal": "(Redação dada pela Lei nº 9.267, de 25.3.1996)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 26.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "… construção, para alienação total ou parcial, de edificações ou conjunto de edificações compostas de unidades autônomas,",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…mpromisse ou efetive a venda de frações ideais de terreno objetivando a vinculação de tais frações a unidades autônomas,",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "31": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…desapropriação em curso ou o cessionário deste, conforme comprovado mediante registro no registro de imóveis competente.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "31-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…destinado à consecução da incorporação correspondente e à entrega das unidades imobiliárias aos respectivos adquirentes.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…atrimônios de afetação por ele constituídos e só responde por dívidas e obrigações vinculadas à incorporação respectiva.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "§ 2o O incorporador responde pelos prejuízos que causar ao patrimônio de afetação.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…ução da edificação correspondente e à entrega das unidades imobiliárias e de suas pertenças aos respectivos adquirentes.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…s da incorporação, o produto da cessão também passará a integrar o patrimônio de afetação, observado o disposto no § 6o.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "… a responsabilidade pela sua construção tenha sido assumida por terceiros, nos termos da parte final do § 6o do art. 35.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…ntegrantes do patrimônio de afetação serão utilizados para pagamento ou reembolso das despesas inerentes à incorporação.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "… proporção das respectivas frações ideais, considerando-se tão-somente os valores efetivamente recebidos pela alienação.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "§ 8o Excluem-se do patrimônio de afetação:",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…eber até sua conclusão e, bem assim, os recursos necessários à quitação de financiamento para a construção, se houver; e",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…e incorporação em que a construção seja contratada sob o regime por empreitada (art. 55) ou por administração (art. 58).",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…edificações de que trata o art. 8o, poderão ser constituídos patrimônios de afetação separados, tantos quantos forem os:",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "I - subconjuntos de casas para as quais esteja prevista a mesma data de conclusão (art. 8o, alínea \"a\"); e",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "II - edifícios de dois ou mais pavimentos (art. 8o , alínea \"b\").",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…onstituição de patrimônios de afetação separados de que trata o § 9o deverá estar declarada no memorial de incorporação.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…nstituição financiadora ou deverá ser a ela cientificada, conforme vier a ser estabelecido no contrato de financiamento.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "… ou do construtor, permanecendo estes como únicos responsáveis pelas obrigações e pelos deveres que lhes são imputáveis.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        }
+      ]
+    },
+    "31-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…o firmado pelo incorporador e, quando for o caso, também pelos titulares de direitos reais de aquisição sobre o terreno.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…ração para garantia do pagamento do preço de sua aquisição ou do cumprimento de obrigação de construir o empreendimento.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        }
+      ]
+    },
+    "31-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…rução poderão nomear, às suas expensas, pessoa física ou jurídica para fiscalizar e acompanhar o patrimônio de afetação.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…tos de alienação das unidades imobiliárias, de construção e de outros contratos eventualmente vinculados à incorporação.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…er outra natureza referentes ao patrimônio afetado responderá pela falta de zelo, dedicação e sigilo destas informações.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…resentantes, a requerimento desta, não constituindo esse fornecimento quebra de sigilo de que trata o § 2o deste artigo.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        }
+      ]
+    },
+    "31-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "Art. 31-D. Incumbe ao incorporador:",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…cessários à boa administração e à preservação do patrimônio de afetação, inclusive mediante adoção de medidas judiciais;",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "II - manter apartados os bens e direitos objeto de cada incorporação;",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…ncorporação e aplicá-los na forma prevista nesta Lei, cuidando de preservar os recursos necessários à conclusão da obra;",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…habilitados, ressalvadas eventuais modificações sugeridas pelo incorporador e aprovadas pela Comissão de Representantes;",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…e movimentar os recursos financeiros do patrimônio de afetação em conta de depósito aberta especificamente para tal fim;",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…gar à Comissão de Representantes balancetes coincidentes com o trimestre civil, relativos a cada patrimônio de afetação;",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…epósito exclusiva referida no inciso V deste artigo e quaisquer outros documentos relativos ao patrimônio de afetação; e",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "VIII - manter escrituração contábil completa, ainda que esteja desobrigado pela legislação tributária.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        }
+      ]
+    },
+    "31-E": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "Art. 31-E. O patrimônio de afetação extinguir-se-á pela:",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…ntes e, quando for o caso, extinção das obrigações do incorporador perante a instituição financiadora do empreendimento;",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…, depois de restituídas aos adquirentes as quantias por eles pagas (art. 36), ou de outras hipóteses previstas em lei; e",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "III - liquidação deliberada pela assembléia geral nos termos do art. 31-F, § 1o.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "… extinção automática do patrimônio de afetação em relação à respectiva unidade, sem necessidade de averbação específica.",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…ção na matrícula matriz do empreendimento ou nas respectivas matrículas das unidades imobiliárias eventualmente abertas.",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "… artigo não implica a extinção do regime de tributação instituído pelo art. 1º da Lei nº 10.931, de 2 de agosto de 2004.",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…ção, mediante o cumprimento das obrigações previstas neste artigo, no art. 34 desta Lei e nas demais disposições legais.",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        }
+      ]
+    },
+    "31-F": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…assa concursal o terreno, as acessões e demais bens, direitos creditórios, obrigações e encargos objeto da incorporação.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…rt. 43, inciso III); havendo financiamento para construção, a convocação poderá ser feita pela instituição financiadora.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "§ 2o O disposto no § 1o aplica-se também à hipótese de paralisação das obras prevista no art. 43, inciso VI.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "… domínio e o titular dos direitos aquisitivos do imóvel objeto da incorporação em decorrência de contratos preliminares.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "§ 4o O mandato a que se refere o § 3o será válido mesmo depois de concluída a obra.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…ação, manifestar a responsabilidade do alienante pela evicção e imitir os adquirentes na posse das unidades respectivas.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…ato fica condicionada à constituição de garantia real sobre o imóvel, para assegurar o pagamento do débito remanescente.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…io e ação, manifestar a responsabilidade pela evicção, imitir os futuros adquirentes na posse do terreno e das acessões.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…o contrato de venda, promessa de venda ou outra modalidade de contrato compatível com os direitos objeto da transmissão.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…s o produto líquido da alienação, no prazo de cinco dias da data em que tiver recebido o preço ou cada parcela do preço.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…s valores pertencentes aos adquirentes não localizados deverão ser depositados em Juízo pela Comissão de Representantes.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…es e nos encargos relativos à incorporação, inclusive aqueles relativos ao contrato de financiamento da obra, se houver.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…itério de rateio não for deliberado em assembléia geral por dois terços dos votos dos adquirentes, observado o seguinte:",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…ório desses recursos submetido à afetação, nos termos do art. 31-A, até o limite necessário à conclusão da incorporação;",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…1997, devendo realizar a garantia e aplicar na incorporação todo o produto do recebimento do saldo do preço e do leilão;",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…de aquisição das respectivas unidades ou do preço de custeio de construção, bem como os recursos disponíveis afetados; e",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…bação da construção das edificações para efeito de individualização e discriminação das unidades, nos termos do art. 44.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…da incorporação, o valor correspondente a esse saldo deverá ser entregue à massa falida pela Comissão de Representantes.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…pectivas acessões que, até a data da decretação da falência ou insolvência não tiverem sido alienadas pelo incorporador.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…ual financiamento, e, em se tratando da hipótese do art. 39 desta Lei, nas obrigações perante o proprietário do terreno.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 16º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…cessões não pagas pelo incorporador (art. 35, § 6o) e o preço da fração ideal do terreno e das acessões (arts. 40 e 41).",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 17º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…7. No processo de venda de que trata o § 14, serão asseguradas, sucessivamente, em igualdade de condições com terceiros:",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "… vinculadas à fração objeto da venda, a ser exercida nas vinte e quatro horas seguintes à data designada para a venda; e",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…simples dos adquirentes presentes, e exercida no prazo de quarenta e oito horas a contar da data designada para a venda.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 18º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…no § 14, incumbirá à Comissão de Representantes, sucessivamente, nos cinco dias que se seguirem ao recebimento do preço:",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…servada a ordem de preferência prevista na legislação, em especial o disposto no art. 186 do Código Tributário Nacional;",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…dquirentes as quantias que tenham adiantado, com recursos próprios, para pagamento das obrigações referidas no inciso I;",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "… quantia que esta tiver entregue para a construção, salvo se outra forma for convencionada entre as partes interessadas;",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…essões de responsabilidade do incorporador (§ 6o do art. 35 e § 5o do art. 31-A), na proporção do valor obtido na venda;",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…a pessoa distinta da pessoa do incorporador, o valor apurado na venda, em proporção ao valor atribuído à fração ideal; e",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "VI - entregar à massa falida o saldo que porventura remanescer.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 19º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…ão do montante das obrigações referidas no § 12, inciso I, do art. 31-F vinculadas ao respectivo patrimônio de afetação.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 20º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…ções oriundas de outras atividades do incorporador não relacionadas diretamente com as incorporações objeto de afetação.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…mas após o registro, no registro de imóveis competente, do memorial de incorporação composto pelos seguintes documentos:",
+          "literal": "(Redação dada pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea i",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…a discriminação e a descrição, a caracterização e a destinação das futuras unidades e partes comuns que a elas acederão;",
+          "literal": "(Redação dada pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea j",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…) minuta de convenção de condomínio que disciplinará o uso das futuras unidades e partes comuns do conjunto imobiliário;",
+          "literal": "(Redação dada pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea o",
+          "diploma": null,
+          "trecho": "o)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea o",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "o) (revogada);",
+          "literal": "(Redação dada pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…e os futuros adquirentes na faculdade de sua livre disposição ou oneração e independe de anuência dos demais condôminos.",
+          "literal": "(Redação dada pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…mpulsória perante o incorporador ou a quem o suceder, inclusive na hipótese de insolvência posterior ao término da obra.",
+          "literal": "(Redação dada pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.085",
+            "ano": 2021
+          },
+          "trecho": "…o suceder, inclusive na hipótese de insolvência posterior ao término da obra. (Redação dada pela Lei nº 10.931, de 2004)",
+          "literal": "(Revogado Pela Medida Provisória nº 1.085, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…ntos públicos, e caberá ao oficial, em caso de divergência, suscitar a dúvida, segundo as normas processuais aplicáveis.",
+          "literal": "(Redação dada pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "…veis responde, civil e criminalmente, se efetuar o arquivamento de documentação contraveniente à lei ou der certidão ...",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.864",
+            "ano": 1965
+          },
+          "trecho": "…registro de que trata êste artigo, aplicável por quinzena ou fração de quinzena de superação de cada um daqueles prazos.",
+          "literal": "(Incluído pela Lei nº 4.864, de 29.11.1965)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.864",
+            "ano": 1965
+          },
+          "trecho": "…ência ao disposto nas alíneas e, g, h, l, e p dêste artigo, desde que assinados pelo profissional responsável pela obra.",
+          "literal": "(Incluído pela Lei nº 4.864, de 29.11.1965)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.864",
+            "ano": 1965
+          },
+          "trecho": "…presentadas em cópia autenticada pelo profissional responsável pela obra, acompanhada de cópia da licença de construção.",
+          "literal": "(Incluído pela Lei nº 4.864, de 29.11.1965)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.864",
+            "ano": 1965
+          },
+          "trecho": "…mulado, por escrito, as exigências previstas no § 6º, considerar-se-á de pleno direito completado o registro provisório.",
+          "literal": "(Incluído pela Lei nº 4.864, de 29.11.1965)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.864",
+            "ano": 1965
+          },
+          "trecho": "…gação de satisfazer as exigências posteriormente formuladas pelo Cartório, bem como, de completar o registro definitivo.",
+          "literal": "(Incluído pela Lei nº 4.864, de 29.11.1965)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…dades autônomas, aplicando-se a regra prevista nos §§ 4º, 5º e 6º do art. 26 da Lei no 6.766, de 19 de dezembro de 1979.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…, a certidão esclarecedora de ação cível ou penal poderá ser substituída por impressão do andamento do processo digital.",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…gistro do memorial de incorporação e da instituição do condomínio sobre as frações ideais constitui ato registral único.",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…a atualização das certidões e de eventuais documentos com prazo de validade vencido a que se refere o art. 32 desta Lei.",
+          "literal": "(Redação dada pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…a incorporação, o procedimento de que trata o caput deste artigo deverá ser realizado a cada 180 (cento e oitenta) dias.",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.085",
+            "ano": 2021
+          },
+          "trecho": "…o não concretizada a incorporação, o procedimento de que trata o caput deverá ser realizado a cada cento e oitenta dias.",
+          "literal": "(Incluído pela Medida Provisória nº 1.085, de 2021)"
+        }
+      ]
+    },
+    "34": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º A desistência da incorporação será denunciada, por escrito, ao Registro de Imóveis ...",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "35-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…ssão de unidades autônomas integrantes de incorporação imobiliária serão iniciados por quadro-resumo, que deverá conter:",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "I - o preço total a ser pago pelo imóvel;",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…a sua forma de pagamento, com destaque para o valor pago à vista, e os seus percentuais sobre o valor total do contrato;",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "III - o valor referente à corretagem, suas condições de pagamento e a identificação precisa de seu beneficiário;",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "IV - a forma de pagamento do preço, com indicação clara dos valores e vencimentos das parcelas;",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…de correção monetária aplicáveis ao contrato e, quando houver pluralidade de índices, o período de aplicação de cada um;",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…porador, com destaque negritado para as penalidades aplicáveis e para os prazos para devolução de valores ao adquirente;",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…lmente aplicadas, se mensais ou anuais, se nominais ou efetivas, o seu período de incidência e o sistema de amortização;",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…r), em todos os contratos firmados em estandes de vendas e fora da sede do incorporador ou do estabelecimento comercial;",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…X - o prazo para quitação das obrigações pelo adquirente após a obtenção do auto de conclusão da obra pelo incorporador;",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…obre o imóvel, em especial quando o vinculem como garantia real do financiamento destinado à construção do investimento;",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…stro do memorial de incorporação, a matrícula do imóvel e a identificação do cartório de registro de imóveis competente;",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…o do auto de conclusão da obra (habite-se) e os efeitos contratuais da intempestividade prevista no art. 43-A desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…, findo o qual, essa omissão, se não sanada, caracterizará justa causa para rescisão contratual por parte do adquirente.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…idas conforme o disposto no § 4º do art. 54 da Lei nº 8.078, de 11 de setembro de 1990 (Código de Defesa do Consumidor).",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        }
+      ]
+    },
+    "43": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "I - encaminhar à comissão de representantes:",
+          "literal": "(Redação dada pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "… o demonstrativo do estado da obra e de sua correspondência com o prazo pactuado para entrega do conjunto imobiliário; e",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…r ao disposto na Lei nº 13.709, de 14 de agosto de 2018 (Lei Geral de Proteção de Dados Pessoais), no que for aplicável;",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "…sujeito à cobrança executiva das importâncias comprovadamente devidas, facultando-se aos interessados prosseguir na obra",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…privilegiados pelos valores da diferença não reembolsada, respondendo subsidiariamente os bens pessoais do incorporador.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…zo de 15 (quinze) dias, contado da data da entrega da notificação na sede do incorporador ou no seu endereço eletrônico:",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "I - imita a comissão de representantes na posse do empreendimento e lhe entregue:",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "a) os documentos correspondentes à incorporação; e",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "… das quotas de construção de sua responsabilidade a que se referem o § 5º do art. 31-A e o § 6º do art. 35 desta Lei; ou",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…as quotas que estiverem pendentes, de modo a viabilizar a realização da auditoria a que se refere o art. 31-C desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…e deliberar a destituição do incorporador deverão constar os nomes dos adquirentes presentes e as seguintes informações:",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "I - a qualificação;",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "II - o documento de identidade;",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…dastro Nacional da Pessoa Jurídica (CNPJ) da Secretaria Especial da Receita Federal do Brasil do Ministério da Economia;",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "IV - os endereços residenciais ou comerciais completos; e",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…ção dos correspondentes títulos aquisitivos, públicos ou particulares, ainda que não registrados no registro de imóveis.",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "… ata de que trata o § 2º deste artigo, registrada no registro de títulos e documentos, constituirá documento hábil para:",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…ncorporador na matrícula do registro de imóveis da circunscrição em que estiver registrado o memorial de incorporação; e",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "II - implementação das medidas judiciais ou extrajudiciais necessárias:",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "a) à imissão da comissão de representantes na posse do empreendimento;",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…dministração e nos poderes para a prática dos atos de disposição que lhe são conferidos pelos arts. 31-F e 63 desta Lei;",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "c) à inscrição do respectivo condomínio da construção no CNPJ; e",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…rma instituída no caput deste artigo, inclusive para prosseguimento da obra ou liquidação do patrimônio da incorporação.",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "… constrição por dívidas estranhas à respectiva incorporação até que o incorporador comprove a regularidade do pagamento.",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "… notificação a que se refere o § 1º deste artigo, com aplicação do produto obtido no pagamento do débito correspondente.",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        }
+      ]
+    },
+    "43-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…causa à resolução do contrato por parte do adquirente nem ensejará o pagamento de qualquer penalidade pelo incorporador.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…elecida, em até 60 (sessenta) dias corridos contados da resolução, corrigidos nos termos do § 8º do art. 67-A desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…à incorporadora, para cada mês de atraso, pro rata die, corrigido monetariamente conforme índice estipulado em contrato.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…se alguma poderá ser cumulada com a multa estabelecida no § 1º deste artigo, que trata da inexecução total da obrigação.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        }
+      ]
+    },
+    "44": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "… terreno, respondendo perante os adquirentes pelas perdas e danos que resultem da demora no cumprimento dessa obrigação.",
+          "literal": "(Redação dada pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º Se o incorporador não requerer a averbação (",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º Se o incorporador não requerer a averbação ((VETADO) o construtor requerê-la-á",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "46": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "…pelo recolhimento do tributo, adicionais e acréscimos, inclusive pelos reajustamentos que vier a sofrer o débito fiscal,",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "48": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…gime de empreitada ou de administração conforme adiante definidos e poderá estar incluída no contrato com o incorporador",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "50": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…cial, perante terceiros, para praticar os atos resultantes da aplicação do disposto nos art. 31-A a art. 31-F desta Lei.",
+          "literal": "(Redação dada pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…presentantes e revogar qualquer de suas decisões, ressalvados os direitos de terceiros quanto aos efeitos já produzidos.",
+          "literal": "(Redação dada pela Lei 10.931, de 2004)"
+        }
+      ]
+    },
+    "57": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…ar, por empreitada a preço fixo, uma obra de incorporação, aplicar-se-á, no que couber o disposto nos itens II, III, IV,",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "63": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…o prazo estipulado no contrato. Nesta segunda praça, será aceito o maior lanço apurado, ainda que inferior àquele total,",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "65": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.864",
+            "ano": 1965
+          },
+          "trecho": "…o procedimento criminal objeto dêste artigo, a prisão do indicado dependerá sempre de mandado do Juízo referido no § 2º.",
+          "literal": "(Incluído pela Lei nº 4.864, de 29.11.1965)"
+        }
+      ]
+    },
+    "66": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "67-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…ontratualmente estabelecido para a correção monetária das parcelas do preço do imóvel, delas deduzidas, cumulativamente:",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "I - a integralidade da comissão de corretagem;",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "II - a pena convencional, que não poderá exceder a 25% (vinte e cinco por cento) da quantia paga.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "§ 1º Para exigir a pena convencional, não é necessário que o incorporador alegue prejuízo.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "… em caso de resolução ou de distrato, sem prejuízo do disposto no caput e no § 1º deste artigo, pelos seguintes valores:",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "I - quantias correspondentes aos impostos reais incidentes sobre o imóvel;",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "II - cotas de condomínio e contribuições devidas a associações de moradores;",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…te à fruição do imóvel, equivalente à 0,5% (cinco décimos por cento) sobre o valor atualizado do contrato, pro rata die;",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "IV - demais encargos incidentes sobre o imóvel e despesas previstas no contrato.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…ntes às deduções de que trata o § 2º deste artigo poderão ser pagos mediante compensação com a quantia a ser restituída.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…ão limitados aos valores efetivamente pagos pelo adquirente, salvo em relação às quantias relativas à fruição do imóvel.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…referida no inciso II do caput deste artigo seja estabelecida até o limite de 50% (cinquenta por cento) da quantia paga.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…erá realizado em parcela única, após o prazo de 180 (cento e oitenta) dias, contado da data do desfazimento do contrato.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…rem os §§ 5º ou 6º deste artigo, o valor remanescente devido ao adquirente será pago em até 30 (trinta) dias da revenda.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…er atualizado com base no índice contratualmente estabelecido para a correção monetária das parcelas do preço do imóvel.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…ida anuência do incorporador e a aprovação dos cadastros e da capacidade financeira e econômica do comprador substituto.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…vel de 7 (sete) dias, com a devolução de todos os valores eventualmente antecipados, inclusive a comissão de corretagem.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "… recebimento, considerada a data da postagem como data inicial da contagem do prazo a que se refere o § 10 deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…o contrato de incorporação imobiliária, conforme disposto no § 2º do art. 32 da Lei nº 4.591, de 16 de dezembro de 1964.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…m comum acordo, por meio de instrumento específico de distrato, definir condições diferenciadas das previstas nesta Lei.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.786",
+            "ano": 2018
+          },
+          "trecho": "…e-á de acordo com os critérios estabelecidos na respectiva lei especial ou com as normas aplicáveis à execução em geral.",
+          "literal": "(Incluído pela Lei nº 13.786, de 2018)"
+        }
+      ]
+    },
+    "68": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "… incorporação imobiliária sujeita ao regime jurídico instituído por esta Lei e às demais normas legais a ele aplicáveis.",
+          "literal": "(Redação dada pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…ela resultante ao regime do condomínio edilício, permanecendo as vias e as áreas por ele abrangidas sob domínio público.",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "… cada casa, dispensada a apresentação dos documentos referidos nas alíneas e, i, j, l e n do caput do art. 32 desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…t. 31-B desta Lei e o art. 2º da Lei nº 10.931, de 2 de agosto de 2004, e os demais atos correspondentes à incorporação.",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…preendimento sujeitam-se às normas do art. 237-A da Lei nº 6.015, de 31 de dezembro de 1973 (Lei de Registros Públicos).",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        }
+      ]
+    },
+    "69": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 69. O Poder Executivo baixará, no prazo de 90 dias, regulamento sôbre o registro no Registro de Imóveis",
+          "literal": "(VETADO)"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1646 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "LC87",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_lc87.json",
+      "colecao": "artigos",
+      "sha256": "504d2e700ed14f478389efbc7fafded8a1419452ee755af1c10d34c6651f2142",
+      "total_registros": 40,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 24,
+      "anotacoes": 138,
+      "anotacoes_sem_diploma_nomeado": 8
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "114",
+            "ano": 2002
+          },
+          "trecho": "… por pessoa física ou jurídica, ainda que não seja contribuinte habitual do imposto, qualquer que seja a sua finalidade;",
+          "literal": "(Redação dada pela Lcp 114, de 16.12.2002)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "194",
+            "ano": 2022
+          },
+          "trecho": "…s de qualquer natureza de que decorra a transferência de bens móveis salvados de sinistro para companhias seguradoras; e",
+          "literal": "(Redação dada pela Lei Complementar nº 194, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "194",
+            "ano": 2022
+          },
+          "trecho": "X - serviços de transmissão e distribuição e encargos setoriais vinculados às operações com energia elétrica.",
+          "literal": "(Incluído pela Lei Complementar nº 194, de 2022)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "114",
+            "ano": 2002
+          },
+          "trecho": "Parágrafo único. É também contribuinte a pessoa física ou jurídica que, mesmo sem habitualidade ou intuito comercial:",
+          "literal": "(Redação dada pela Lcp 114, de 16.12.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "114",
+            "ano": 2002
+          },
+          "trecho": "I – importe mercadorias ou bens do exterior, qualquer que seja a sua finalidade;",
+          "literal": "(Redação dada pela Lcp 114, de 16.12.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "114",
+            "ano": 2002
+          },
+          "trecho": "III – adquira em licitação mercadorias ou bens apreendidos ou abandonados;",
+          "literal": "(Redação dada pela Lcp 114, de 16.12.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "… de petróleo e energia elétrica oriundos de outro Estado, quando não destinados à comercialização ou à industrialização.",
+          "literal": "(Redação dada pela LCP nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…lecido em outro Estado, em relação à diferença entre a alíquota interna do Estado de destino e a alíquota interestadual:",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "I - o destinatário da mercadoria, bem ou serviço, na hipótese de contribuinte do imposto;",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…remetente da mercadoria ou bem ou o prestador de serviço, na hipótese de o destinatário não ser contribuinte do imposto.",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "114",
+            "ano": 2002
+          },
+          "trecho": "…o a qualquer título a responsabilidade pelo seu pagamento, hipótese em que assumirá a condição de substituto tributário.",
+          "literal": "(Redação dada pela Lcp 114, de 16.12.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "114",
+            "ano": 2002
+          },
+          "trecho": "…2o A atribuição de responsabilidade dar-se-á em relação a mercadorias, bens ou serviços previstos em lei de cada Estado.",
+          "literal": "(Redação dada pela Lcp 114, de 16.12.2002)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "114",
+            "ano": 2002
+          },
+          "trecho": "I – da entrada ou recebimento da mercadoria, do bem ou do serviço;",
+          "literal": "(Redação dada pela Lcp 114, de 16.12.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "114",
+            "ano": 2002
+          },
+          "trecho": "…similar, em condições de livre concorrência, adotando-se para sua apuração as regras estabelecidas no § 4o deste artigo.",
+          "literal": "(Redação dada pela Lcp 114, de 16.12.2002)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "114",
+            "ano": 2002
+          },
+          "trecho": "… realizada a licitação, no caso de arrematação de mercadoria ou bem importados do exterior e apreendidos ou abandonados;",
+          "literal": "(Redação dada pela Lcp 114, de 16.12.2002)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "c)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "c) (revogada);",
+          "literal": "(Redação dada pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…das a consumidor final, em relação à diferença entre a alíquota interna do Estado de destino e a alíquota interestadual:",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "a) o do estabelecimento do destinatário, quando o destinatário ou o tomador for contribuinte do imposto;",
+          "literal": "(Incluída pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…cimento do remetente ou onde tiver início a prestação, quando o destinatário ou tomador não for contribuinte do imposto.",
+          "literal": "(Incluída pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "…devido será recolhido em partes iguais para as unidades da Federação onde estiverem localizados o prestador e o tomador.",
+          "literal": "(Incluído pela LCP nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…rá devido ao Estado no qual efetivamente ocorrer a entrada física da mercadoria ou bem ou o fim da prestação do serviço.",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "§ 8º Na hipótese de serviço de transporte interestadual de passageiros cujo tomador não seja contribuinte do imposto:",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…so II do caput deste artigo, conforme o caso, não se aplicando o disposto no inciso V do caput e no § 7º deste artigo; e",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…localizado no Estado da ocorrência do fato gerador, e a prestação ficará sujeita à tributação pela sua alíquota interna.",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "204",
+            "ano": 2023
+          },
+          "trecho": "I - da saída de mercadoria de estabelecimento de contribuinte;",
+          "literal": "(Redação dada pela Lei Complementar nº 204, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "114",
+            "ano": 2002
+          },
+          "trecho": "IX – do desembaraço aduaneiro de mercadorias ou bens importados do exterior;",
+          "literal": "(Redação dada pela Lcp 114, de 16.12.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "114",
+            "ano": 2002
+          },
+          "trecho": "XI – da aquisição em licitação pública de mercadorias ou bens importados do exterior e apreendidos ou abandonados;",
+          "literal": "(Redação dada pela Lcp 114, de 16.12.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "… de petróleo e energia elétrica oriundos de outro Estado, quando não destinados à comercialização ou à industrialização;",
+          "literal": "(Redação dada pela LCP nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…u prestação subsequente, cujo tomador não seja contribuinte do imposto domiciliado ou estabelecido no Estado de destino;",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…tado adquiridos por contribuinte do imposto e destinados ao seu uso ou consumo ou à integração ao seu ativo imobilizado;",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…bem ou mercadoria destinados a consumidor final não contribuinte do imposto domiciliado ou estabelecido em outro Estado.",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "114",
+            "ano": 2002
+          },
+          "trecho": "… momento, devendo a autoridade responsável, salvo disposição em contrário, exigir a comprovação do pagamento do imposto.",
+          "literal": "(Incluído pela Lcp 114, de 16.12.2002)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "204",
+            "ano": 2023
+          },
+          "trecho": "…em favor do contribuinte, inclusive nas hipóteses de transferências interestaduais em que os créditos serão assegurados:",
+          "literal": "(Incluído pela Lei Complementar nº 204, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "204",
+            "ano": 2023
+          },
+          "trecho": "…IV do § 2º do art. 155 da Constituição Federal, aplicados sobre o valor atribuído à operação de transferência realizada;",
+          "literal": "(Incluído pela Lei Complementar nº 204, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "204",
+            "ano": 2023
+          },
+          "trecho": "…entre os créditos pertinentes às operações e prestações anteriores e o transferido na forma do inciso I deste parágrafo.",
+          "literal": "(Incluído pela Lei Complementar nº 204, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "204",
+            "ano": 2023
+          },
+          "trecho": "…ular poderá ser equiparada a operação sujeita à ocorrência do fato gerador de imposto, hipótese em que serão observadas:",
+          "literal": "(Incluído pela Lei Complementar nº 204, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "204",
+            "ano": 2023
+          },
+          "trecho": "I - nas operações internas, as alíquotas estabelecidas na legislação;",
+          "literal": "(Incluído pela Lei Complementar nº 204, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "204",
+            "ano": 2023
+          },
+          "trecho": "… nas operações interestaduais, as alíquotas fixadas nos termos do inciso IV do § 2º do art. 155 da Constituição Federal.",
+          "literal": "(Incluído pela Lei Complementar nº 204, de 2023)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "114",
+            "ano": 2002
+          },
+          "trecho": "e) quaisquer outros impostos, taxas, contribuições e despesas aduaneiras;",
+          "literal": "(Redação dada pela Lcp 114, de 16.12.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "IX - nas hipóteses dos incisos XIII e XV do caput do art. 12 desta Lei Complementar:",
+          "literal": "(Redação dada pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "a) o valor da operação ou prestação no Estado de origem, para o cálculo do imposto devido a esse Estado;",
+          "literal": "(Incluída pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "b) o valor da operação ou prestação no Estado de destino, para o cálculo do imposto devido a esse Estado;",
+          "literal": "(Incluída pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…mentar, o valor da operação ou o preço do serviço, para o cálculo do imposto devido ao Estado de origem e ao de destino.",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "114",
+            "ano": 2002
+          },
+          "trecho": "§ 1o Integra a base de cálculo do imposto, inclusive na hipótese do inciso V do caput deste artigo:",
+          "literal": "(Redação dada pela Lcp 114, de 16.12.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "§ 1º Integra a base de cálculo do imposto, inclusive nas hipóteses dos incisos V, IX e X do caput deste artigo:",
+          "literal": "(Redação dada pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…, o valor correspondente ao Imposto Seletivo a que se refere o inciso VIII do caput do art. 153 da Constituição Federal.",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…tado de destino será o valor correspondente à diferença entre a alíquota interna do Estado de destino e a interestadual.",
+          "literal": "(Redação dada pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "204",
+            "ano": 2023
+          },
+          "trecho": "… estabelecimento localizado em outro Estado, pertencente ao mesmo titular, a base de cálculo do imposto é: (Vide ADC 49)",
+          "literal": "(Revogado pela Lei Complementar nº 204, de 2023)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "204",
+            "ano": 2023
+          },
+          "trecho": "I - o valor correspondente à entrada mais recente da mercadoria;",
+          "literal": "(Revogado pela Lei Complementar nº 204, de 2023)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "204",
+            "ano": 2023
+          },
+          "trecho": "…adoria produzida, assim entendida a soma do custo da matéria-prima, material secundário, mão-de-obra e acondicionamento;",
+          "literal": "(Revogado pela Lei Complementar nº 204, de 2023)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "204",
+            "ano": 2023
+          },
+          "trecho": "…ratando-se de mercadorias não industrializadas, o seu preço corrente no mercado atacadista do estabelecimento remetente.",
+          "literal": "(Revogado pela Lei Complementar nº 204, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "§ 6º Utilizar-se-á, para os efeitos do inciso IX do caput deste artigo:",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "… a operação ou prestação interestadual, para estabelecer a base de cálculo da operação ou prestação no Estado de origem;",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "… para a operação ou prestação interna, para estabelecer a base de cálculo da operação ou prestação no Estado de destino.",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…a para a operação ou prestação interna no Estado de destino para estabelecer a base de cálculo da operação ou prestação.",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "… créditos decorrentes de entrada de mercadorias no estabelecimento destinadas ao ativo permanente, deverá ser observado:",
+          "literal": "(Redação dada pela LCP nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "120",
+            "ano": 2005
+          },
+          "trecho": "…saídas e prestações com destino ao exterior ou as saídas de papel destinado à impressão de livros, jornais e periódicos;",
+          "literal": "(Redação dada pela Lei Complementar nº 120, de 2005)"
+        }
+      ]
+    },
+    "20-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "… prestações anteriores deve ser deduzido apenas do débito correspondente ao imposto devido à unidade federada de origem.",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "…a aquisição, hipótese em que o estorno será de vinte por cento por ano ou fração que faltar para completar o qüinqüênio.",
+          "literal": "(Revogado pela Lcp nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "120",
+            "ano": 2005
+          },
+          "trecho": "… ou prestações destinadas ao exterior ou de operações com o papel destinado à impressão de livros, jornais e periódicos.",
+          "literal": "(Redação dada pela Lei Complementar nº 120, de 2005)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "…ra prestação de serviços isentos ou não tributados, haverá estorno dos créditos escriturados conforme o § 5º do art. 20.",
+          "literal": "(Revogado pela Lcp nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "…restações no mesmo período. Para este efeito, as saídas e prestações com destino ao exterior equiparam-se às tributadas.",
+          "literal": "(Revogado pela Lcp nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "…rá proporcionalmente aumentado ou diminuído, pro rata die, caso o período de apuração for superior ou inferior a um mês.",
+          "literal": "(Revogado pela Lcp nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "…ontante que resultar da aplicação dos §§ 4º, 5º e 6º deste artigo será lançado no livro próprio como estorno de crédito.",
+          "literal": "(Revogado pela Lcp nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "…a que se refere o § 5º do art. 20, o saldo remanescente do crédito será cancelado de modo a não mais ocasionar estornos.",
+          "literal": "(Revogado pela Lcp nº 102, de 11.7.2000)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 22.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "24-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…rimento das obrigações tributárias, principais e acessórias, nas operações e prestações interestaduais, conforme o tipo.",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "§ 1º O portal de que trata o caput deste artigo deverá conter, inclusive:",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…prestação específica, incluídas soluções de consulta e decisões em processo administrativo fiscal de caráter vinculante;",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "II - as alíquotas interestadual e interna aplicáveis à operação ou prestação;",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…ões sobre benefícios fiscais ou financeiros e regimes especiais que possam alterar o valor a ser recolhido do imposto; e",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "IV - as obrigações acessórias a serem cumpridas em razão da operação ou prestação realizada.",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…da ente da Federação, da diferença entre a alíquota interna do Estado de destino e a alíquota interestadual da operação.",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…s para a integração e a unificação dos portais das respectivas secretarias de fazenda dos Estados e do Distrito Federal.",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…ito no primeiro dia útil do terceiro mês subsequente ao da disponibilização do portal de que trata o caput deste artigo.",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "190",
+            "ano": 2022
+          },
+          "trecho": "…nº 24, de 7 de janeiro de 1975, e, naquilo que não lhe for contrário, nas respectivas legislações tributárias estaduais.",
+          "literal": "(Incluído pela Lei Complementar nº 190, de 2022)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "… compensando-se os saldos credores e devedores entre os estabelecimentos do mesmo sujeito passivo localizados no Estado.",
+          "literal": "(Redação dada pela LCP nº 102, de 11.7.2000)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 27.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 28.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 29.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "30": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 30.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "31": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "115",
+            "ano": 2002
+          },
+          "trecho": "…icípios, obedecidos os montantes, os critérios, os prazos e as demais condições fixadas no Anexo desta Lei Complementar.",
+          "literal": "(Redação dada pela LCP nº 115, de 26.12.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "115",
+            "ano": 2002
+          },
+          "trecho": "§ 1o Do montante de recursos que couber a cada Estado, a União entregará, diretamente:",
+          "literal": "(Redação dada pela LCP nº 115, de 26.12.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "…inanceiros de 2000, 2001 e 2002 e a partir de 1o de janeiro de 2003, os recursos do Tesouro Nacional serão provenientes:",
+          "literal": "(Redação dada pela LCP nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "115",
+            "ano": 2002
+          },
+          "trecho": "§ 2º Para atender ao disposto no caput, os recursos do Tesouro Nacional serão provenientes:",
+          "literal": "(Redação dada pela LCP nº 115, de 26.12.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "…Nacional e aos demais entes da administração federal. O saldo remanescente, se houver, será creditado em moeda corrente.",
+          "literal": "(Redação dada pela LCP nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "115",
+            "ano": 2002
+          },
+          "trecho": "… garantias honradas de operações de crédito externas. O saldo remanescente, se houver, será creditado em moeda corrente.",
+          "literal": "(Redação dada pela LCP nº 115, de 26.12.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "…Nacional e aos demais entes da administração federal. O saldo remanescente, se houver, será creditado em moeda corrente.",
+          "literal": "(Redação dada pela LCP nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "115",
+            "ano": 2002
+          },
+          "trecho": "…as consignadas a essa finalidade na respectiva Lei Orçamentária Anual da União, inclusive eventuais créditos adicionais.",
+          "literal": "(Redação dada pela LCP nº 115, de 26.12.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "…as e sobre prestações de serviços de transporte interestadual e intermunicipal e de comunicação, em 31 de julho de 1996.",
+          "literal": "(Redação dada pela LCP nº 102, de 11.7.2000)"
+        }
+      ]
+    },
+    "31-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "…oporções das alíquotas previstas nas legislações dos Estados ou do Distrito Federal, vigentes em 31 de dezembro de 2028:",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "I - 10% (dez por cento), em 2029;",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "II - 20% (vinte por cento), em 2030;",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "III - 30% (trinta por cento), em 2031; e",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "IV - 40% (quarenta por cento), em 2032.",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "§ 1º O disposto no caput aplica-se a todas as operações e prestações tributadas pelo imposto, inclusive:",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "…eis sobre os quais a incidência ocorre uma única vez, a que se refere a Lei Complementar nº 192, de 11 de março de 2022;",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "…ecidas na Resolução nº 22, de 19 de maio de 1989, e na Resolução nº 13, de 25 de abril de 2012, ambas do Senado Federal.",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "…anceiros relativos ao imposto serão reduzidos na mesma proporção da redução das alíquotas prevista nos incisos do caput.",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "…o imposto serão reduzidos na mesma proporção da redução das alíquotas, em decorrência do disposto no caput deste artigo.",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "…uzidos proporcionalmente por força da redução das alíquotas em decorrência do disposto nos termos do caput deste artigo.",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "…ho Nacional de Política Fazendária (Confaz) estabelecer a disciplina a ser observada na hipótese a que se refere o § 3º.",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "§ 6º Para fins do disposto no § 5º, as deliberações serão aprovadas por maioria simples dos votos.",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "… reduzidos na forma deste artigo, não se aplicando a redução prevista no § 2º-A do art. 3º da referida Lei Complementar.",
+          "literal": "(Incluído pela Lei Complementar nº 214, de 2025)"
+        }
+      ]
+    },
+    "32-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "194",
+            "ano": 2022
+          },
+          "trecho": "…, são consideradas operações de bens e serviços essenciais e indispensáveis, que não podem ser tratados como supérfluos.",
+          "literal": "(Incluído pela Lei Complementar nº 194, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "194",
+            "ano": 2022
+          },
+          "trecho": "§ 1º Para efeito do disposto neste artigo:",
+          "literal": "(Incluído pela Lei Complementar nº 194, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "194",
+            "ano": 2022
+          },
+          "trecho": "…s no caput deste artigo em patamar superior ao das operações em geral, considerada a essencialidade dos bens e serviços;",
+          "literal": "(Incluído pela Lei Complementar nº 194, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "194",
+            "ano": 2022
+          },
+          "trecho": "…otas reduzidas em relação aos bens referidos no caput deste artigo, como forma de beneficiar os consumidores em geral; e",
+          "literal": "(Incluído pela Lei Complementar nº 194, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "194",
+            "ano": 2022
+          },
+          "trecho": "… energia elétrica e o gás natural, em percentual superior ao da alíquota vigente por ocasião da publicação deste artigo.",
+          "literal": "(Incluído pela Lei Complementar nº 194, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "201",
+            "ano": 2023
+          },
+          "trecho": "…superior ao da alíquota vigente por ocasião da publicação deste artigo. (Incluído pela Lei Complementar nº 194, de 2022)",
+          "literal": "(Revogado pela Lei Complementar nº 201, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "194",
+            "ano": 2022
+          },
+          "trecho": "… (ad rem) a que se refere a alínea b do inciso V do caput do art. 3º da Lei Complementar nº 192, de 11 de março de 2022.",
+          "literal": "(Incluído pela Lei Complementar nº 194, de 2022)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "92",
+            "ano": 1997
+          },
+          "trecho": "…crédito as mercadorias destinadas ao uso ou consumo do estabelecimento, nele entradas a partir de 1º de janeiro de 2000;",
+          "literal": "(Redação dada pela LCP nº 92, de 23.12.1997)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "99",
+            "ano": 1999
+          },
+          "trecho": "…crédito as mercadorias destinadas ao uso ou consumo do estabelecimento, nele entradas a partir de 1o de janeiro de 2003;",
+          "literal": "(Redação dada pela LCP nº 99, de 20.12.1999)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "114",
+            "ano": 2002
+          },
+          "trecho": "…crédito as mercadorias destinadas ao uso ou consumo do estabelecimento, nele entradas a partir de 1o de janeiro de 2007;",
+          "literal": "(Redação dada pela Lcp 114, de 16.12.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "122",
+            "ano": 2006
+          },
+          "trecho": "… crédito as mercadorias destinadas ao uso ou consumo do estabelecimento nele entradas a partir de 1o de janeiro de 2011;",
+          "literal": "(Redação dada pela Lcp nº 122, de 2006)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "138",
+            "ano": 2010
+          },
+          "trecho": "… crédito as mercadorias destinadas ao uso ou consumo do estabelecimento nele entradas a partir de 1o de janeiro de 2020;",
+          "literal": "(Redação dada pela Lcp nº 138, de 2010)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "171",
+            "ano": 2019
+          },
+          "trecho": "… crédito as mercadorias destinadas ao uso ou consumo do estabelecimento nele entradas a partir de 1º de janeiro de 2033;",
+          "literal": "(Redação dada pela Lei Complementar nº 171, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "II – somente dará direito a crédito a entrada de energia elétrica no estabelecimento:",
+          "literal": "(Redação dada pela LCP nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "a) quando for objeto de operação de saída de energia elétrica;",
+          "literal": "(Incluída pela LCP nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "b) quando consumida no processo de industrialização;",
+          "literal": "(Incluída pela LCP nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "… resultar em operação de saída ou prestação para o exterior, na proporção destas sobre as saídas ou prestações totais; e",
+          "literal": "(Incluída pela LCP nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "d) a partir de 1o de janeiro de 2003, nas demais hipóteses;",
+          "literal": "(Incluída pela LCP nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "114",
+            "ano": 2002
+          },
+          "trecho": "d) a partir de 1o de janeiro de 2007, nas demais hipóteses;",
+          "literal": "(Redação dada pela Lcp 114, de 16.12.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "122",
+            "ano": 2006
+          },
+          "trecho": "d) a partir de 1o de janeiro de 2011, nas demais hipóteses;",
+          "literal": "(Redação dada pela Lcp nº 122, de 2006)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "138",
+            "ano": 2010
+          },
+          "trecho": "d) a partir de 1o de janeiro de 2020 nas demais hipóteses;",
+          "literal": "(Redação dada pela Lcp nº 138, de 2010)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "171",
+            "ano": 2019
+          },
+          "trecho": "d) a partir de 1º de janeiro de 2033, nas demais hipóteses;",
+          "literal": "(Redação dada pela Lei Complementar nº 171, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "IV – somente dará direito a crédito o recebimento de serviços de comunicação utilizados pelo estabelecimento:",
+          "literal": "(Incluído pela LCP nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "a) ao qual tenham sido prestados na execução de serviços da mesma natureza;",
+          "literal": "(Incluída pela LCP nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "…o resultar em operação de saída ou prestação para o exterior, na proporção desta sobre as saídas ou prestações totais; e",
+          "literal": "(Incluída pela LCP nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "102",
+            "ano": 2000
+          },
+          "trecho": "c) a partir de 1o de janeiro de 2003, nas demais hipóteses.",
+          "literal": "(Incluída pela LCP nº 102, de 11.7.2000)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "114",
+            "ano": 2002
+          },
+          "trecho": "c) a partir de 1o de janeiro de 2007, nas demais hipóteses.",
+          "literal": "(Redação dada pela Lcp 114, de 16.12.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "122",
+            "ano": 2006
+          },
+          "trecho": "c) a partir de 1o de janeiro de 2011, nas demais hipóteses.",
+          "literal": "(Redação dada pela Lcp nº 122, de 2006)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "138",
+            "ano": 2010
+          },
+          "trecho": "c) a partir de 1o de janeiro de 2020 nas demais hipóteses.",
+          "literal": "(Redação dada pela Lcp nº 138, de 2010)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "171",
+            "ano": 2019
+          },
+          "trecho": "c) a partir de 1º de janeiro de 2033, nas demais hipóteses.",
+          "literal": "(Redação dada pela Lei Complementar nº 171, de 2019)"
+        }
+      ]
+    },
+    "34": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 34.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "36": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "115",
+            "ano": 2000
+          },
+          "trecho": "A N E X O",
+          "literal": "(Redação dada pela LCP nº 115, de 26.12.2000)"
+        }
+      ]
+    }
+  }
+}

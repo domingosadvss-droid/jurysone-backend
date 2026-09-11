@@ -1,0 +1,1874 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "CPC",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_cpc.json",
+      "colecao": "artigos",
+      "sha256": "35ce81a56df154ebd04df30c94fdfb360ec975ddf82cc96860cccc42f8e8f36c",
+      "total_registros": 1073,
+      "gerado_em": "2026-08-31T20:53:13+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 54,
+      "anotacoes": 164,
+      "anotacoes_sem_diploma_nomeado": 60
+    }
+  },
+  "vigencia": {
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "… juízes e os tribunais atenderão, preferencialmente, à ordem cronológica de conclusão para proferir sentença ou acórdão.",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…ialmente, à ordem cronológica de conclusão para proferir sentença ou acórdão. (Redação dada pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 35.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "53": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.894",
+            "ano": 2019
+          },
+          "trecho": "…o da vítima de violência doméstica e familiar, nos termos da Lei nº 11.340, de 7 de agosto de 2006 (Lei Maria da Penha);",
+          "literal": "(Incluída pela Lei nº 13.894, de 2019)"
+        }
+      ]
+    },
+    "63": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.879",
+            "ano": 2024
+          },
+          "trecho": "…ncia de uma das partes ou com o local da obrigação, ressalvada a pactuação consumerista, quando favorável ao consumidor.",
+          "literal": "(Redação dada pela Lei nº 14.879, de 4 de junho de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.879",
+            "ano": 2024
+          },
+          "trecho": "… o negócio jurídico discutido na demanda, constitui prática abusiva que justifica a declinação de competência de ofício.",
+          "literal": "(Incluído pela Lei nº 14.879, de 4 de junho de 2024)"
+        }
+      ]
+    },
+    "75": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.341",
+            "ano": 2022
+          },
+          "trecho": "…o Município, por seu prefeito, procurador ou Associação de Representação de Municípios, quando expressamente autorizada;",
+          "literal": "(Redação dada pela Lei nº 14.341, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.341",
+            "ano": 2022
+          },
+          "trecho": "…fe do Poder Executivo municipal, com indicação específica do direito ou da obrigação a ser objeto das medidas judiciais.",
+          "literal": "(Incluído pela Lei nº 14.341, de 2022)"
+        }
+      ]
+    },
+    "77": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…rio e, no caso do § 6º do art. 246 deste Código, da Administração Tributária, para recebimento de citações e intimações.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "82": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.109",
+            "ano": 2025
+          },
+          "trecho": "…rocessuais, e caberá ao réu ou executado suprir, ao final do processo, o seu pagamento, se tiver dado causa ao processo.",
+          "literal": "(Incluído pela Lei nº 15.109, de 2025)"
+        }
+      ]
+    },
+    "85": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "…os dos §§ 2º e 3º, é proibida a apreciação equitativa, salvo nas hipóteses expressamente previstas no § 8º deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "… advocatícios ou o limite mínimo de 10% (dez por cento) estabelecido no § 2º deste artigo, aplicando-se o que for maior.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 20º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.365",
+            "ano": 2022
+          },
+          "trecho": "… §§ 2º, 3º, 4º, 5º, 6º, 6º-A, 8º, 8º-A, 9º e 10 deste artigo aplica-se aos honorários fixados por arbitramento judicial.",
+          "literal": "(Incluído pela Lei nº 14.365, de 2022)"
+        }
+      ]
+    },
+    "107": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.793",
+            "ano": 2019
+          },
+          "trecho": "§ 5º O disposto no inciso I do caput deste artigo aplica-se integralmente a processos eletrônicos.",
+          "literal": "(Incluído pela Lei nº 13.793, de 2019)"
+        }
+      ]
+    },
+    "153": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "…nderá, preferencialmente, à ordem cronológica de recebimento para publicação e efetivação dos pronunciamentos judiciais.",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…ca de recebimento para publicação e efetivação dos pronunciamentos judiciais. (Redação dada pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "231": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…guinte à confirmação, na forma prevista na mensagem de citação, do recebimento da citação realizada por meio eletrônico.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "238": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "Parágrafo único. A citação será efetivada em até 45 (quarenta e cinco) dias a partir da propositura da ação.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "246": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…icos indicados pelo citando no banco de dados do Poder Judiciário, conforme regulamento do Conselho Nacional de Justiça.",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "I - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "II - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "III - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "IV - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "V - (revogado).",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…trônicos, para efeito de recebimento de citações e intimações, as quais serão efetuadas preferencialmente por esse meio.",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…nfirmação, em até 3 (três) dias úteis, contados do recebimento da citação eletrônica, implicará a realização da citação:",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "I - pelo correio;",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "II - por oficial de justiça;",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "III - pelo escrivão ou chefe de secretaria, se o citando comparecer em cartório;",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "IV - por edital.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…e artigo deverá apresentar justa causa para a ausência de confirmação do recebimento da citação enviada eletronicamente.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…or da causa, deixar de confirmar no prazo legal, sem justa causa, o recebimento da citação recebida por meio eletrônico.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "… recebimento e de código identificador que permitirá a sua identificação na página eletrônica do órgão judicial citante.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…o sistema integrado da Rede Nacional para a Simplificação do Registro e da Legalização de Empresas e Negócios (Redesim).",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "… do sistema integrado da Redesim, nos termos da legislação aplicável ao sigilo fiscal e ao tratamento de dados pessoais.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "247": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "Art. 247. A citação será feita por meio eletrônico ou pelo correio para qualquer comarca do País, exceto:",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "313": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.363",
+            "ano": 2016
+          },
+          "trecho": "…pelo parto ou pela concessão de adoção, quando a advogada responsável pelo processo constituir a única patrona da causa;",
+          "literal": "(Incluído pela Lei nº 13.363, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.363",
+            "ano": 2016
+          },
+          "trecho": "X - quando o advogado responsável pelo processo constituir o único patrono da causa e tornar-se pai.",
+          "literal": "(Incluído pela Lei nº 13.363, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.363",
+            "ano": 2016
+          },
+          "trecho": "…omprove a realização do parto, ou de termo judicial que tenha concedido a adoção, desde que haja notificação ao cliente.",
+          "literal": "(Incluído pela Lei nº 13.363, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.363",
+            "ano": 2016
+          },
+          "trecho": "…omprove a realização do parto, ou de termo judicial que tenha concedido a adoção, desde que haja notificação ao cliente.",
+          "literal": "(Incluído pela Lei nº 13.363, de 2016)"
+        }
+      ]
+    },
+    "333": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 333.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "397": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…escrição, tão completa quanto possível, do documento ou da coisa, ou das categorias de documentos ou de coisas buscados;",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…a finalidade da prova, com indicação dos fatos que se relacionam com o documento ou com a coisa, ou com suas categorias;",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…coisa existe, ainda que a referência seja a categoria de documentos ou de coisas, e se acha em poder da parte contrária.",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "499": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.833",
+            "ano": 2024
+          },
+          "trecho": "…ão da obrigação em perdas e danos, o juiz concederá, primeiramente, a faculdade para o cumprimento da tutela específica.",
+          "literal": "(Incluído pela Lei nº 14.833, de 2024)"
+        }
+      ]
+    },
+    "515": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso X",
+          "diploma": null,
+          "trecho": "X -",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "521": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "III – pender o agravo do art. 1.042;",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III – pender o agravo do art. 1.042; (Redação dada pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "537": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "…ndo ser depositada em juízo, permitido o levantamento do valor após o trânsito em julgado da sentença favorável à parte.",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…vantamento do valor após o trânsito em julgado da sentença favorável à parte. (Redação dada pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "698": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.894",
+            "ano": 2019
+          },
+          "trecho": "…arte vítima de violência doméstica e familiar, nos termos da Lei nº 11.340, de 7 de agosto de 2006 (Lei Maria da Penha).",
+          "literal": "(Incluído pela Lei nº 13.894, de 2019)"
+        }
+      ]
+    },
+    "699-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.713",
+            "ano": 2023
+          },
+          "trecho": "…lência doméstica ou familiar, fixando o prazo de 5 (cinco) dias para a apresentação de prova ou de indícios pertinentes.",
+          "literal": "(Incluído pela Lei nº 14.713, de 2023)"
+        }
+      ]
+    },
+    "784": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.711",
+            "ano": 2023
+          },
+          "trecho": "…umento que materialize o direito de ressarcimento da seguradora contra tomadores de seguro-garantia e seus garantidores;",
+          "literal": "(Incluído pela Lei nº 14.711, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…prevista em lei, dispensada a assinatura de testemunhas quando sua integridade for conferida por provedor de assinatura.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        }
+      ]
+    },
+    "799": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…ção-base, bem como, se for o caso, do titular de lajes anteriores, quando a penhora recair sobre o direito real de laje;",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "XI - requerer a intimação do titular das lajes, quando a penhora recair sobre a construção-base.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        }
+      ]
+    },
+    "895": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "921": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "III - quando não for localizado o executado ou bens penhoráveis;",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "… do devedor ou de bens penhoráveis, e será suspensa, por uma única vez, pelo prazo máximo previsto no § 1º deste artigo.",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…trição patrimonial, se necessária, desde que o credor cumpra os prazos previstos na lei processual ou fixados pelo juiz.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…5 (quinze) dias, poderá, de ofício, reconhecer a prescrição no curso do processo e extingui-lo, sem ônus para as partes.",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…ia de efetivo prejuízo, que será presumido apenas em caso de inexistência da intimação de que trata o § 4º deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "§ 7º Aplica-se o disposto neste artigo ao cumprimento de sentença de que trata o art. 523 deste Código.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "937": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso VII",
+          "diploma": null,
+          "trecho": "VII -",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "945": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "Art. 945.",
+          "literal": "(Revogado pela Lei nº 13.256, de 2016)"
+        }
+      ]
+    },
+    "966": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "…considerado a existência de distinção entre a questão discutida no processo e o padrão decisório que lhe deu fundamento.",
+          "literal": "(Incluído pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "…ntre a questão discutida no processo e o padrão decisório que lhe deu fundamento. (Incluído pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "…uação particularizada por hipótese fática distinta ou de questão jurídica não examinada, a impor outra solução jurídica.",
+          "literal": "(Incluído pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "…ca distinta ou de questão jurídica não examinada, a impor outra solução jurídica. (Incluído pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "988": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "… enunciado de súmula vinculante e de decisão do Supremo Tribunal Federal em controle concentrado de constitucionalidade;",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "…o do Supremo Tribunal Federal em controle concentrado de constitucionalidade; (Redação dada pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "…ão proferido em julgamento de incidente de resolução de demandas repetitivas ou de incidente de assunção de competência;",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "…resolução de demandas repetitivas ou de incidente de assunção de competência; (Redação dada pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "§ 5º É inadmissível a reclamação:",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5º É inadmissível a reclamação: (Redação dada pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "I – proposta após o trânsito em julgado da decisão reclamada;",
+          "literal": "(Incluído pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I – proposta após o trânsito em julgado da decisão reclamada; (Incluído pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "…oferido em julgamento de recursos extraordinário ou especial repetitivos, quando não esgotadas as instâncias ordinárias.",
+          "literal": "(Incluído pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…ordinário ou especial repetitivos, quando não esgotadas as instâncias ordinárias. (Incluído pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "1003": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.939",
+            "ano": 2024
+          },
+          "trecho": "…al determinará a correção do vício formal, ou poderá desconsiderá-lo caso a informação já conste do processo eletrônico.",
+          "literal": "(Redação dada pela Lei nº 14.939, de 2024)"
+        }
+      ]
+    },
+    "1015": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso XII",
+          "diploma": null,
+          "trecho": "XII -",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "1029": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "( Revogado )"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "§ 2º ( Revogado ).",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º ( Revogado ). (Redação dada pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "…da decisão de admissão do recurso e sua distribuição, ficando o relator designado para seu exame prevento para julgá-lo;",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…tribuição, ficando o relator designado para seu exame prevento para julgá-lo; (Redação dada pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "…icação da decisão de admissão do recurso, assim como no caso de o recurso ter sido sobrestado, nos termos do art. 1.037.",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "…ssim como no caso de o recurso ter sido sobrestado, nos termos do art. 1.037. (Redação dada pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "1030": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "…inze) dias, findo o qual os autos serão conclusos ao presidente ou ao vice-presidente do tribunal recorrido, que deverá:",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…clusos ao presidente ou ao vice-presidente do tribunal recorrido, que deverá: (Redação dada pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "I – negar seguimento:",
+          "literal": "(Incluído pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I – negar seguimento: (Incluído pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "… acórdão que esteja em conformidade com entendimento do Supremo Tribunal Federal exarado no regime de repercussão geral;",
+          "literal": "(Incluída pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "… entendimento do Supremo Tribunal Federal exarado no regime de repercussão geral; (Incluída pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "…al Federal ou do Superior Tribunal de Justiça, respectivamente, exarado no regime de julgamento de recursos repetitivos;",
+          "literal": "(Incluída pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "…ustiça, respectivamente, exarado no regime de julgamento de recursos repetitivos; (Incluída pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "…u do Superior Tribunal de Justiça exarado, conforme o caso, nos regimes de repercussão geral ou de recursos repetitivos;",
+          "literal": "(Incluído pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…do, conforme o caso, nos regimes de repercussão geral ou de recursos repetitivos; (Incluído pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "…ibunal Federal ou pelo Superior Tribunal de Justiça, conforme se trate de matéria constitucional ou infraconstitucional;",
+          "literal": "(Incluído pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "…l de Justiça, conforme se trate de matéria constitucional ou infraconstitucional; (Incluído pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "…r o recurso como representativo de controvérsia constitucional ou infraconstitucional, nos termos do § 6º do art. 1.036;",
+          "literal": "(Incluído pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "…rovérsia constitucional ou infraconstitucional, nos termos do § 6º do art. 1.036; (Incluído pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "…missibilidade e, se positivo, remeter o feito ao Supremo Tribunal Federal ou ao Superior Tribunal de Justiça, desde que:",
+          "literal": "(Incluído pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "a) o recurso ainda não tenha sido submetido ao regime de repercussão geral ou de julgamento de recursos repetitivos;",
+          "literal": "(Incluída pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "…ubmetido ao regime de repercussão geral ou de julgamento de recursos repetitivos; (Incluída pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "b) o recurso tenha sido selecionado como representativo da controvérsia; ou",
+          "literal": "(Incluída pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b) o recurso tenha sido selecionado como representativo da controvérsia; ou (Incluída pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "c) o tribunal recorrido tenha refutado o juízo de retratação.",
+          "literal": "(Incluída pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "c) o tribunal recorrido tenha refutado o juízo de retratação. (Incluída pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "… de inadmissibilidade proferida com fundamento no inciso V caberá agravo ao tribunal superior, nos termos do art. 1.042.",
+          "literal": "(Incluído pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…damento no inciso V caberá agravo ao tribunal superior, nos termos do art. 1.042. (Incluído pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "§ 2º Da decisão proferida com fundamento nos incisos I e III caberá agravo interno, nos termos do art. 1.021.",
+          "literal": "(Incluído pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…m fundamento nos incisos I e III caberá agravo interno, nos termos do art. 1.021. (Incluído pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "1035": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II –",
+          "literal": "( Revogado )"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "II – ( Revogado );",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II – ( Revogado ); (Redação dada pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "…icar entendimento firmado em regime de repercussão geral ou em julgamento de recursos repetitivos caberá agravo interno.",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "…rcussão geral ou em julgamento de recursos repetitivos caberá agravo interno. (Redação dada pela Lei nº 13.256, de 2016)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 10º",
+          "diploma": null,
+          "trecho": "§ 10.",
+          "literal": "( Revogado )"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "§ 10. ( Revogado ).",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        }
+      ]
+    },
+    "1036": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "§ 3º Da decisão que indeferir o requerimento referido no § 2º caberá apenas agravo interno.",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        }
+      ]
+    },
+    "1037": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "§ 2º",
+          "literal": "(Revogado pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "§ 5º",
+          "literal": "(Revogado pela Lei nº 13.256, de 2016)"
+        }
+      ]
+    },
+    "1038": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "§ 3º O conteúdo do acórdão abrangerá a análise dos fundamentos relevantes da tese jurídica discutida.",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        }
+      ]
+    },
+    "1041": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "…vo o juízo de admissibilidade, determinar a remessa do recurso ao tribunal superior para julgamento das demais questões.",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        }
+      ]
+    },
+    "1042": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "…do fundada na aplicação de entendimento firmado em regime de repercussão geral ou em julgamento de recursos repetitivos.",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I –",
+          "literal": "( Revogado )"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "I – ( Revogado );",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II –",
+          "literal": "( Revogado )"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "II – ( Revogado );",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III –",
+          "literal": "( Revogado )"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "III – ( Revogado ).",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "( Revogado )"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "§ 1º ( Revogado ):",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I –",
+          "literal": "( Revogado )"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "I – ( Revogado );",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II –",
+          "literal": "( Revogado )"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "II – ( Revogado ):",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a)",
+          "literal": "( Revogada )"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "a) ( Revogada );",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "( Revogada )"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "b) ( Revogada ).",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "…repercussão geral e de recursos repetitivos, inclusive quanto à possibilidade de sobrestamento e do juízo de retratação.",
+          "literal": "(Redação dada pela Lei nº 13.256, de 2016)"
+        }
+      ]
+    },
+    "1043": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "II -",
+          "literal": "(Revogado pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "IV -",
+          "literal": "(Revogado pela Lei nº 13.256, de 2016)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.256",
+            "ano": 2016
+          },
+          "trecho": "§ 5º",
+          "literal": "(Revogado pela Lei nº 13.256, de 2016)"
+        }
+      ]
+    },
+    "1048": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.894",
+            "ano": 2019
+          },
+          "trecho": "…te a vítima de violência doméstica e familiar, nos termos da Lei nº 11.340, de 7 de agosto de 2006 (Lei Maria da Penha).",
+          "literal": "(Incluído pela Lei nº 13.894, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.133",
+            "ano": 2021
+          },
+          "trecho": "…nas normas gerais de licitação e contratação a que se refere o inciso XXVII do caput do art. 22 da Constituição Federal.",
+          "literal": "(Incluído pela Lei nº 14.133, de 2021)"
+        }
+      ]
+    },
+    "1055": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 1.055.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "1060": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 1.060. O inciso II do art. 14 da Lei nº 9.289, de 4 de julho de 1996, passa a vigorar com a seguinte redação:",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "1061": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… § 3º do art. 33 da Lei nº 9.307, de 23 de setembro de 1996 (Lei de Arbitragem), passa a vigorar com a seguinte redação:",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "1063": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.976",
+            "ano": 2024
+          },
+          "trecho": "… o processamento e o julgamento das causas previstas no inciso II do art. 275 da Lei nº 5.869, de 11 de janeiro de 1973.",
+          "literal": "(Redação dada pela Lei nº 14.976, de 2024)"
+        }
+      ]
+    },
+    "1064": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 1.064. O caput do art. 48 da Lei nº 9.099, de 26 de setembro de 1995, passa a vigorar com a seguinte redação:",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "1065": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 1.065. O art. 50 da Lei nº 9.099, de 26 de setembro de 1995, passa a vigorar com a seguinte redação:",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "1066": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 1.066. O art. 83 da Lei nº 9.099, de 26 de setembro de 1995, passam a vigorar com a seguinte redação:",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "1067": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…t. 1.067. O art. 275 da Lei nº 4.737, de 15 de julho de 1965 (Código Eleitoral), passa a vigorar com a seguinte redação:",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "1068": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… caput do art. 2.027 da Lei nº 10.406, de 10 de janeiro de 2002 (Código Civil), passam a vigorar com a seguinte redação:",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "1071": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…a Lei nº 6.015, de 31 de dezembro de 1973 (Lei de Registros Públicos), passa a vigorar acrescida do seguinte art. 216-A:",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "1072": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 1.072. Revogam-se:",
+          "literal": "(Vigência)"
+        }
+      ]
+    }
+  }
+}

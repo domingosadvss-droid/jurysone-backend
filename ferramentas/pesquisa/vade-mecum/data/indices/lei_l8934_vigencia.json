@@ -1,0 +1,1196 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L8934",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l8934.json",
+      "colecao": "artigos",
+      "sha256": "fc4a37206a37079709eb18a1b198dee9564696a2a6de3d9f24c33d00844f43c2",
+      "total_registros": 71,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 39,
+      "anotacoes": 91,
+      "anotacoes_sem_diploma_nomeado": 10
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.833",
+            "ano": 2019
+          },
+          "trecho": "…odo o território nacional, de forma sistêmica, por órgãos federais, estaduais e distrital, com as seguintes finalidades:",
+          "literal": "(Redação dada pela Lei nº 13.833,de 2019)"
+        }
+      ]
+    },
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Lei nº 13.874, de 2019)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.833",
+            "ano": 2019
+          },
+          "trecho": "I - o Departamento Nacional de Registro Empresarial e Integração, órgão central do Sinrem, com as seguintes funções:",
+          "literal": "(Redação dada pela Lei nº 13.833,de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.833",
+            "ano": 2019
+          },
+          "trecho": "a) supervisora, orientadora, coordenadora e normativa, na área técnica; e",
+          "literal": "(Redação dada pela Lei nº 13.833,de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.833",
+            "ano": 2019
+          },
+          "trecho": "b) supletiva, na área administrativa; e",
+          "literal": "(Redação dada pela Lei nº 13.833,de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.833",
+            "ano": 2019
+          },
+          "trecho": "Subseção I",
+          "literal": "(Redação dada pela Lei nº 13.833,de 2019)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…ital da Secretaria Especial de Desburocratização, Gestão e Governo Digital do Ministério da Economia tem por finalidade:",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…de sucursal ou de estabelecimento no País por sociedade estrangeira, ressalvada a competência de outros órgãos federais;",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.833",
+            "ano": 2019
+          },
+          "trecho": "… e publicações e realizar reuniões sobre temas pertinentes ao Registro Público de Empresas Mercantis e Atividades Afins.",
+          "literal": "(Redação dada pela Lei nº 13.833,de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…iculação e a supervisão dos órgãos e das entidades envolvidos na integração para o registro e a legalização de empresas;",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "XIII - quanto à integração para o registro e a legalização de empresas:",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "… deles decorrentes, em articulação com outros órgãos e entidades públicas, inclusive estaduais, distritais e municipais;",
+          "literal": "(Incluída pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "b) (VETADO);",
+          "literal": "(Incluída pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "c)",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "c) (VETADO); e",
+          "literal": "(Incluída pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…iculação com órgãos e com entidades públicas e privadas, nacionais e estrangeiras, no âmbito de sua área de competência;",
+          "literal": "(Incluída pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "… Mercantis e Atividades Afins, propor os planos de ação, as diretrizes e as normas e implementar as medidas necessárias;",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…ar as ações dos órgãos incumbidos da execução dos serviços do Registro Público de Empresas Mercantis e Atividades Afins;",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…ara o registro e para a legalização de empresas, em articulação com outros órgãos e observadas as competências destes; e",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…ionadas com a desburocratização do registro público de empresas e destinadas à melhoria do ambiente de negócios no País.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…ecimento de novos dados ou informações, bem como a cobrança de preço pela inclusão das informações no cadastro nacional.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.833",
+            "ano": 2019
+          },
+          "trecho": "…vo ente federativo e, tecnicamente, ao Departamento Nacional de Registro Empresarial e Integração, nos termos desta Lei.",
+          "literal": "(Redação dada pela Lei nº 13.833,de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.833",
+            "ano": 2019
+          },
+          "trecho": "Parágrafo único. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.833,de 2019)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.194",
+            "ano": 2001
+          },
+          "trecho": "…io, composto de Vogais e respectivos suplentes, será constituído pelo mínimo de onze e no máximo de vinte e três Vogais.",
+          "literal": "(Redação dada pela Lei nº 10.194, de 14.2.2001)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.833",
+            "ano": 2019
+          },
+          "trecho": "…o em contrário, pelos governos dos Estados e do Distrito Federal, dentre brasileiros que atendam às seguintes condições:",
+          "literal": "(Redação dada pela Lei nº 13.833,de 2019)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.194",
+            "ano": 2001
+          },
+          "trecho": "…o suplente, representando a União, por nomeação do Ministro de Estado do Desenvolvimento, Indústria e Comércio Exterior;",
+          "literal": "(Redação dada pela Lei nº 10.194, de 14.2.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.829",
+            "ano": 1999
+          },
+          "trecho": "…te indicação, em lista tríplice, do Conselho Seccional ou Regional do Órgão Corporativo dessas categorias profissionais;",
+          "literal": "(Redação dada pela Lei nº 9.829, de 1999)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.833",
+            "ano": 2019
+          },
+          "trecho": "… vogais e suplentes serão designados, nos Estados e no Distrito Federal, por livre escolha dos respectivos governadores.",
+          "literal": "(Redação dada pela Lei nº 13.833,de 2019)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.260",
+            "ano": 2025
+          },
+          "trecho": "…os, permitida apenas uma recondução, exceto nos casos dos mandatos de presidente e vice-presidente do colégio de vogais.",
+          "literal": "(Redação dada pela Lei nº 15.260, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.260",
+            "ano": 2025
+          },
+          "trecho": "…o de presidente e vice-presidente das juntas comerciais, nos termos do art. 22 desta Lei, sem limitação para recondução.",
+          "literal": "(Incluído pela Lei nº 15.260, de 2025)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.260",
+            "ano": 2025
+          },
+          "trecho": "…ação para os cargos em comissão de presidente e vice-presidente das juntas comerciais dos Estados e do Distrito Federal.",
+          "literal": "(Redação dada pela Lei nº 15.260, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.260",
+            "ano": 2025
+          },
+          "trecho": "… para os referidos cargos em comissão, as funções de presidente e vice-presidente do colégio de vogais, respectivamente.",
+          "literal": "(Incluído pela Lei nº 15.260, de 2025)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.833",
+            "ano": 2019
+          },
+          "trecho": "…ral, e a escolha deverá recair sobre brasileiros de notória idoneidade moral e com conhecimentos em direito empresarial.",
+          "literal": "(Redação dada pela Lei nº 13.833,de 2019)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.833",
+            "ano": 2019
+          },
+          "trecho": "…um) ou mais procuradores e chefiadas pelo procurador que for designado pelo governador do Estado ou do Distrito Federal.",
+          "literal": "(Redação dada pela Lei nº 13.833,de 2019)"
+        }
+      ]
+    },
+    "31": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…s decisórios serão publicados em sítio da rede mundial de computadores da junta comercial do respectivo ente federativo.",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…serão levados automaticamente a registro se puderem ser obtidos de outras bases de dados disponíveis em órgãos públicos.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…mpresarial e Integração definirá os atos, os documentos e as declarações que contenham informações meramente cadastrais.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…lei, não designarem o respectivo capital e a declaração de seu objeto, cuja indicação no nome empresarial é facultativa;",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "IV - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "V - os atos de empresas mercantis com nome idêntico a outro já existente;",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VIII",
+          "diploma": null,
+          "trecho": "VIII -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "VIII - (revogado).",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…gistro e da Legalização de Empresas e Negócios (Redesim) a respeito dos registros sobre os quais manifestarem interesse.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "… empresariais por semelhança poderão ser questionados pelos interessados, a qualquer tempo, por meio de recurso ao Drei.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "35-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…CNPJ) como nome empresarial, seguido da partícula identificadora do tipo societário ou jurídico, quando exigida por lei.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.194",
+            "ano": 2001
+          },
+          "trecho": "…e não estar impedido de exercer o comércio ou a administração de sociedade mercantil, em virtude de condenação criminal;",
+          "literal": "(Redação dada pela Lei nº 10.194, de 14.2.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "… as informações sobre os seus titulares e administradores, bem como sobre a forma de representação da empresa mercantil;",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "39-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "147",
+            "ano": 2014
+          },
+          "trecho": "…os documentos de empresas de qualquer porte realizada por meio de sistemas públicos eletrônicos dispensa qualquer outra.",
+          "literal": "(Incluído pela Lei Complementar nº 147, de 2014)"
+        }
+      ]
+    },
+    "39-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "147",
+            "ano": 2014
+          },
+          "trecho": "…ação de documentos e da autoria de que trata esta Lei poderá ser realizada por meio eletrônico, na forma do regulamento.",
+          "literal": "(Incluído pela Lei Complementar nº 147, de 2014)"
+        }
+      ]
+    },
+    "41": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "a) dos atos de constituição de sociedades anônimas;",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…rados arquivados, mediante provocação dos interessados, sem prejuízo do exame das formalidades legais pela procuradoria.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        }
+      ]
+    },
+    "42": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…. Os vogais e servidores habilitados a proferir decisões singulares serão designados pelo presidente da junta comercial.",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…rados arquivados, mediante provocação dos interessados, sem prejuízo do exame das formalidades legais pela procuradoria.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…stos no inciso I do caput do art. 41 desta Lei terá o registro deferido automaticamente caso cumpridos os requisitos de:",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "… aprovação da consulta prévia da viabilidade do nome empresarial e da viabilidade de localização, quando o ato exigir; e",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…aria de Governo Digital da Secretaria Especial de Desburocratização, Gestão e Governo Digital do Ministério da Economia.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "… o registro deferido automaticamente no caso de utilização pelo requerente do instrumento padrão estabelecido pelo Drei.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…egais será feita posteriormente, no prazo de 2 (dois) dias úteis, contado da data do deferimento automático do registro.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "§ 6º Após a análise de que trata o § 5º deste artigo, a identificação da existência de vício acarretará:",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "I - o cancelamento do arquivamento, se o vício for insanável; ou",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "II - a observação do procedimento estabelecido pelo Drei, se o vício for sanável.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        }
+      ]
+    },
+    "43": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "Art. 43.",
+          "literal": "(Revogado pela Lei nº 13.874, de 2019)"
+        }
+      ]
+    },
+    "44": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "III - Recurso ao Departamento Nacional de Registro Empresarial e Integração.",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        }
+      ]
+    },
+    "45": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.598",
+            "ano": 2007
+          },
+          "trecho": "… da exigência para apreciação pela autoridade recorrida em 3 (três) dias úteis ou 5 (cinco) dias úteis, respectivamente.",
+          "literal": "(Redação dada pela Lei nº 11.598, de 2007)"
+        }
+      ]
+    },
+    "47": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…lenário cabe recurso ao Departamento Nacional de Registro Empresarial e Integração como última instância administrativa.",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "Parágrafo único. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        }
+      ]
+    },
+    "52": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 52.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "54": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "… à vista da apresentação da folha do Diário Oficial, em sua versão eletrônica, dispensada a juntada da mencionada folha.",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        }
+      ]
+    },
+    "55": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…a federal, bem como especificar os atos a serem observados pelas juntas comerciais na elaboração de suas tabelas locais.",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "§ 1º As isenções de preços de serviços restringem-se aos casos previstos em lei.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "… registro do empresário individual, da empresa individual de responsabilidade limitada (Eireli) e da sociedade limitada.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        }
+      ]
+    },
+    "56": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "… comerciais não serão retirados, em qualquer hipótese, de suas dependências, ressalvado o disposto no art. 57 desta Lei.",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "57": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…por meios tecnológicos mais avançados, poderão ser eliminados pelas juntas comerciais, conforme disposto em regulamento.",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…ocuradores das empresas ou outros interessados retirarem, facultativamente, a documentação original, sem qualquer custo.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "58": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "Art. 58.",
+          "literal": "(Revogado pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "60": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "Art. 60.",
+          "literal": "(Revogado pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "61": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.833",
+            "ano": 2019
+          },
+          "trecho": "…disposição dos órgãos ou das entidades de que trata este artigo os seus serviços de cadastramento de empresas mercantis.",
+          "literal": "(Redação dada pela Lei nº 13.833,de 2019)"
+        }
+      ]
+    },
+    "62": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.833",
+            "ano": 2019
+          },
+          "trecho": "Art. 62.",
+          "literal": "(Revogado pela Lei nº 13.833,de 2019)"
+        }
+      ]
+    },
+    "63": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "Art. 63. Os atos levados a arquivamento nas juntas comerciais são dispensados de reconhecimento de firma.",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "§ 1º A cópia de documento, autenticada na forma prevista em lei, dispensará nova conferência com o documento original.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…izada por meio de comparação entre o documento original e a sua cópia pelo servidor a quem o documento seja apresentado.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…do ou o contador da parte interessada declarar, sob sua responsabilidade pessoal, a autenticidade da cópia do documento.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        }
+      ]
+    },
+    "64": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…gistro público competente, dos bens com que o subscritor tiver contribuído para a formação ou para o aumento do capital.",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "65-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…ídicas poderão ser realizados também por meio de sistema eletrônico criado e mantido pela administração pública federal.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        }
+      ]
+    },
+    "66": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 66.",
+          "literal": "(Vetado)"
+        }
+      ]
+    }
+  }
+}

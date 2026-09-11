@@ -1,0 +1,1374 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L12414",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l12414.json",
+      "colecao": "artigos",
+      "sha256": "ccc68be462f28549d013cdf4641724050bb01259ab4c80efa693c2607ab45096",
+      "total_registros": 20,
+      "gerado_em": "2026-08-31T20:53:32+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 13,
+      "anotacoes": 143,
+      "anotacoes_sem_diploma_nomeado": 76
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…banco de dados, bem como pela coleta, pelo armazenamento, pela análise e pelo acesso de terceiros aos dados armazenados;",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…nto, pela análise e pelo acesso de terceiros aos dados armazenados; (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "III - cadastrado: pessoa natural ou jurídica cujas informações tenham sido incluídas em banco de dados;",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "…jurídica cujas informações tenham sido incluídas em banco de dados; (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "… do Brasil e os prestadores de serviços continuados de água, esgoto, eletricidade, gás, telecomunicações e assemelhados;",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "…e água, esgoto, eletricidade, gás, telecomunicações e assemelhados; (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…, relativos às operações de crédito e obrigações de pagamento adimplidas ou em andamento por pessoa natural ou jurídica.",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso VII",
+          "diploma": null,
+          "trecho": "…agamento adimplidas ou em andamento por pessoa natural ou jurídica. (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "Art. 4º O gestor está autorizado, nas condições estabelecidas nesta Lei, a:",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…O gestor está autorizado, nas condições estabelecidas nesta Lei, a: (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "I - abrir cadastro em banco de dados com informações de adimplemento de pessoas naturais e jurídicas;",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "… dados com informações de adimplemento de pessoas naturais e jurídicas; (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "II - fazer anotações no cadastro de que trata o inciso I do caput deste artigo;",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…er anotações no cadastro de que trata o inciso I do caput deste artigo; (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "III - compartilhar as informações cadastrais e de adimplemento armazenadas com outros bancos de dados; e",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "… cadastrais e de adimplemento armazenadas com outros bancos de dados; e (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "IV - disponibilizar a consulentes:",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV - disponibilizar a consulentes: (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "a) a nota ou pontuação de crédito elaborada com base nas informações de adimplemento armazenadas; e",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "…édito elaborada com base nas informações de adimplemento armazenadas; e (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "b) o histórico de crédito, mediante prévia autorização específica do cadastrado.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "…órico de crédito, mediante prévia autorização específica do cadastrado. (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "§ 1º (Revogado) .",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º (Revogado) . (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "§ 2º (Revogado) .",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º (Revogado) . (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "§ 4º A comunicação ao cadastrado deve:",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º A comunicação ao cadastrado deve: (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "I - ocorrer em até 30 (trinta) dias após a abertura do cadastro no banco de dados, sem custo para o cadastrado;",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "… a abertura do cadastro no banco de dados, sem custo para o cadastrado; (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "II - ser realizada pelo gestor, diretamente ou por intermédio de fontes; e",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…- ser realizada pelo gestor, diretamente ou por intermédio de fontes; e (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "III - informar de maneira clara e objetiva os canais disponíveis para o cancelamento do cadastro no banco de dados.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "…s canais disponíveis para o cancelamento do cadastro no banco de dados. (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…nsada a comunicação de que trata o § 4º deste artigo caso o cadastrado já tenha cadastro aberto em outro banco de dados.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "…igo caso o cadastrado já tenha cadastro aberto em outro banco de dados. (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "… ser utilizados os dados pessoais, como endereço residencial, comercial, eletrônico, fornecidos pelo cadastrado à fonte.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "…residencial, comercial, eletrônico, fornecidos pelo cadastrado à fonte. (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…lentes 60 (sessenta) dias após a abertura do cadastro, observado o disposto no § 8º deste artigo e no art. 15 desta Lei.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "…stro, observado o disposto no § 8º deste artigo e no art. 15 desta Lei. (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…s para comprovar a autenticidade e a validade da autorização de que trata a alínea b do inciso IV do caput deste artigo.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "…autorização de que trata a alínea b do inciso IV do caput deste artigo. (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "I - obter o cancelamento ou a reabertura do cadastro, quando solicitado;",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…bter o cancelamento ou a reabertura do cadastro, quando solicitado; (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…endo ao gestor manter sistemas seguros, por telefone ou por meio eletrônico, de consulta às informações pelo cadastrado;",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…ou por meio eletrônico, de consulta às informações pelo cadastrado; (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…ter, em até 10 (dez) dias, sua correção ou seu cancelamento em todos os bancos de dados que compartilharam a informação;",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "…amento em todos os bancos de dados que compartilharam a informação; (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…nformado previamente sobre a identidade do gestor e sobre o armazenamento e o objetivo do tratamento dos dados pessoais;",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "…obre o armazenamento e o objetivo do tratamento dos dados pessoais; (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…razo para disponibilização das informações de que tratam os incisos II e IV do caput deste artigo será de 10 (dez) dias.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "… tratam os incisos II e IV do caput deste artigo será de 10 (dez) dias. (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…cancelamento e a reabertura de cadastro somente serão processados mediante solicitação gratuita do cadastrado ao gestor.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…erão processados mediante solicitação gratuita do cadastrado ao gestor. (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…icitação de que trata o § 4º deste artigo a qualquer gestor de banco de dados, por meio telefônico, físico e eletrônico.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "…uer gestor de banco de dados, por meio telefônico, físico e eletrônico. (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…º O gestor que receber a solicitação de que trata o § 4º deste artigo é obrigado a, no prazo de até 2 (dois) dias úteis:",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "… o § 4º deste artigo é obrigado a, no prazo de até 2 (dois) dias úteis: (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "I - encerrar ou reabrir o cadastro, conforme solicitado; e",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I - encerrar ou reabrir o cadastro, conforme solicitado; e (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…I - transmitir a solicitação aos demais gestores, que devem também atender, no mesmo prazo, à solicitação do cadastrado.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "… que devem também atender, no mesmo prazo, à solicitação do cadastrado. (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "… que tenha manifestado previamente, por meio telefônico, físico ou eletrônico, a vontade de não ter aberto seu cadastro.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "…fônico, físico ou eletrônico, a vontade de não ter aberto seu cadastro. (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…, inclusive para a composição de nota ou pontuação de crédito de terceiros cadastrados, na forma do art. 7º-A desta Lei.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "…o de crédito de terceiros cadastrados, na forma do art. 7º-A desta Lei. (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "… de todos os consulentes que tiveram acesso a qualquer informação sobre ele nos 6 (seis) meses anteriores à solicitação;",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "…r informação sobre ele nos 6 (seis) meses anteriores à solicitação; (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "… a lista dos órgãos governamentais aos quais poderá ele recorrer, caso considere que esses direitos foram infringidos; e",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "…le recorrer, caso considere que esses direitos foram infringidos; e (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "VI - confirmação de cancelamento do cadastro.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "VI - confirmação de cancelamento do cadastro. (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…o para atendimento das informações de que tratam os incisos II, III, IV e V do caput deste artigo será de 10 (dez) dias.",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…ncisos II, III, IV e V do caput deste artigo será de 10 (dez) dias. (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "7-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…pontuação de crédito de pessoa cadastrada em banco de dados de que trata esta Lei, não podem ser utilizadas informações:",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…o de dados de que trata esta Lei, não podem ser utilizadas informações: (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…s à origem social e étnica, à saúde, à informação genética, ao sexo e às convicções políticas, religiosas e filosóficas;",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "… genética, ao sexo e às convicções políticas, religiosas e filosóficas; (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "II - de pessoas que não tenham com o cadastrado relação de parentesco de primeiro grau ou de dependência econômica; e",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…o relação de parentesco de primeiro grau ou de dependência econômica; e (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "III - relacionadas ao exercício regular de direito pelo cadastrado, previsto no inciso II do caput do art. 5º desta Lei.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "…o pelo cadastrado, previsto no inciso II do caput do art. 5º desta Lei. (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…reensão, a sua política de coleta e utilização de dados pessoais para fins de elaboração de análise de risco de crédito.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "… dados pessoais para fins de elaboração de análise de risco de crédito. (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…ficação, na forma de regulamentação a ser expedida pelo Poder Executivo. (Incluído pela Lei Complementar nº 166, de 2019",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "I - (revogado) ;",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I - (revogado) ; (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "II - (revogado) ;",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II - (revogado) ; (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "IV - atualizar e corrigir informações enviadas aos gestores, em prazo não superior a 10 (dez) dias;",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "…ações enviadas aos gestores, em prazo não superior a 10 (dez) dias; (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…s ou realizar operações que impeçam, limitem ou dificultem a transmissão a banco de dados de informações de cadastrados.",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "…ultem a transmissão a banco de dados de informações de cadastrados. (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…lhamento de informações de adimplemento entre gestores é permitido na forma do inciso III do caput do art. 4º desta Lei.",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…s é permitido na forma do inciso III do caput do art. 4º desta Lei. (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…ntuais prejuízos a que der causa e ao dever de receber e processar impugnações ou cancelamentos e realizar retificações.",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…r e processar impugnações ou cancelamentos e realizar retificações. (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…ormações cadastrais nos demais bancos de dados com os quais compartilhou informações, sem nenhum ônus para o cadastrado.",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "… quais compartilhou informações, sem nenhum ônus para o cadastrado. (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "§ 3º (Revogado) .",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º (Revogado) . (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…s de dados indicados, na forma do regulamento, informação sobre o adimplemento das obrigações financeiras do cadastrado.",
+          "literal": "(Revogado pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…formação sobre o adimplemento das obrigações financeiras do cadastrado. (Revogado pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "Parágrafo único. É vedada a anotação de informação sobre serviço de telefonia móvel na modalidade pós-paga.",
+          "literal": "(Revogado pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "… de informação sobre serviço de telefonia móvel na modalidade pós-paga. (Revogado pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…utras operações com características de concessão de crédito somente aos gestores registrados no Banco Central do Brasil.",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "§ 1º (Revogado) .",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º (Revogado) . (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "§ 2º (Revogado) .",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º (Revogado) . (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…izadas a funcionar pelo Banco Central do Brasil, deverá ocorrer apenas entre gestores registrados na forma deste artigo.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…deverá ocorrer apenas entre gestores registrados na forma deste artigo. (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…tro no Banco Central do Brasil, assegurado o devido processo legal, na forma da Lei nº 9.784, de 29 de janeiro de 1999 .",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "…do processo legal, na forma da Lei nº 9.784, de 29 de janeiro de 1999 . (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…forma e no prazo que estabelecer, as informações necessárias para o desempenho das atribuições de que trata este artigo.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…rocesso administrativo sancionador, regime de administração especial temporária, intervenção e liquidação extrajudicial.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "…inistração especial temporária, intervenção e liquidação extrajudicial. (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…midor (SNDC), na forma do art. 17 desta Lei, das penalidades cabíveis por violação das normas de proteção do consumidor.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "…penalidades cabíveis por violação das normas de proteção do consumidor. (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "Art. 13. O Poder Executivo regulamentará o disposto nesta Lei, em especial quanto:",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…r Executivo regulamentará o disposto nesta Lei, em especial quanto: (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "I - ao uso, à guarda, ao escopo e ao compartilhamento das informações recebidas por bancos de dados;",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…po e ao compartilhamento das informações recebidas por bancos de dados; (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…sive com relação à comunicação aos órgãos responsáveis pela sua fiscalização, nos termos do § 1º do art. 17 desta Lei; e",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…áveis pela sua fiscalização, nos termos do § 1º do art. 17 desta Lei; e (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "III - ao disposto nos arts. 5º e 7º-A desta Lei.",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III - ao disposto nos arts. 5º e 7º-A desta Lei. (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…ausarem ao cadastrado, nos termos da Lei nº 8.078, de 11 de setembro de 1990 (Código de Proteção e Defesa do Consumidor)",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… 11 de setembro de 1990 (Código de Proteção e Defesa do Consumidor) (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…lar os cadastros de pessoas que solicitaram o cancelamento, conforme disposto no inciso I do caput do art. 5º desta Lei.",
+          "literal": "(Redação dada pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…mento, conforme disposto no inciso I do caput do art. 5º desta Lei. (Redação dada pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "17-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "166",
+            "ano": 2019
+          },
+          "trecho": "…da Lei, sem prejuízo do disposto na Lei nº 8.078, de 11 de setembro de 1990 (Código de Proteção e Defesa do Consumidor).",
+          "literal": "(Incluído pela Lei Complementar nº 166, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… de 11 de setembro de 1990 (Código de Proteção e Defesa do Consumidor). (Incluído pela Lei Complementar nº 166, de 2019)",
+          "literal": "(Vigência)"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,3661 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "CE",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_ce.json",
+      "colecao": "artigos",
+      "sha256": "abe6f36777458d36b187b1f00fd4d046f1809acd209cc9393296b7848c40cf97",
+      "total_registros": 387,
+      "gerado_em": "2026-08-31T20:53:11+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 101,
+      "anotacoes": 288,
+      "anotacoes_sem_diploma_nomeado": 13
+    }
+  },
+  "vigencia": {
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "… recolhidas a estabelecimento prisional, enquanto perdurar a privação de liberdade, ainda que sem condenação definitiva.",
+          "literal": "(Incluído pela Lei nº 15.358, de 2026)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…0 (dez) por cento sobre o salário-mínimo da região, imposta pelo juiz eleitoral e cobrada na forma prevista no art. 367.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 1966)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.690",
+            "ano": 2023
+          },
+          "trecho": "IV -",
+          "literal": "(Revogado pela Lei nº 14.690, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.663",
+            "ano": 1988
+          },
+          "trecho": "…multa ou não se justificar no prazo de 6 (seis) meses, a contar da data da última eleição a que deveria ter comparecido.",
+          "literal": "(Incluído pela Lei nº 7.663, de 1988)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "…ciso V do § 1o não se aplica ao eleitor no exterior que requeira novo passaporte para identificação e retorno ao Brasil.",
+          "literal": "(Incluído pela Lei nº 13.165, de 2015)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…, imposta pelo juiz e cobrada no ato da inscrição eleitoral através de selo federal inutilizado no próprio requerimento.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.041",
+            "ano": 1995
+          },
+          "trecho": "…a inscrição eleitoral até o centésimo primeiro dia anterior à eleição subseqüente à data em que completar dezenove anos.",
+          "literal": "(Incluído pela Lei nº 9.041, de 1995)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "… desconto de qualquer afastamento nem mesmo o decorrente de licença, férias, ou licença especial, salvo no caso do § 3º.",
+          "literal": "(Incluído pela Lei nº 4.961, de 1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…eto quando com períodos de férias coletivas, coincidir a realização de eleição, apuração ou encerramento de alistamento.",
+          "literal": "(Incluído pela Lei nº 4.961, de 1966)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "…cônjuge ou o parente consanguíneo ou afim, até o segundo grau, de candidato a cargo eletivo registrado na circunscrição.",
+          "literal": "(Redação dada pela Lei nº 13.165, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…No caso de recondução para o segundo biênio observar-se-ão as mesmas formalidades indispensáveis à primeira investidura.",
+          "literal": "(Incluído pela Lei nº 4.961, de 1966)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.191",
+            "ano": 1984
+          },
+          "trecho": "Art. 16. Compõe-se o Tribunal Superior Eleitoral:",
+          "literal": "(Redação dada pela Lei nº 7.191, de 1984)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.191",
+            "ano": 1984
+          },
+          "trecho": "I - mediante eleição, pelo voto secreto:",
+          "literal": "(Redação dada pela Lei nº 7.191, de 1984)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.191",
+            "ano": 1984
+          },
+          "trecho": "a) de três juizes, dentre os Ministros do Supremo Tribunal Federal; e",
+          "literal": "(Redação dada pela Lei nº 7.191, de 1984)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.191",
+            "ano": 1984
+          },
+          "trecho": "b) de dois juizes, dentre os membros do Tribunal Federal de Recursos;",
+          "literal": "(Redação dada pela Lei nº 7.191, de 1984)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.191",
+            "ano": 1984
+          },
+          "trecho": "…ica, de dois entre seis advogados de notável saber jurídico e idoneidade moral, indicados pelo Supremo Tribunal Federal.",
+          "literal": "(Redação dada pela Lei nº 7.191, de 1984)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.191",
+            "ano": 1984
+          },
+          "trecho": "… até o quarto grau, seja o vínculo legítimo ou ilegítimo, excluindo-se neste caso o que tiver sido escolhido por último.",
+          "literal": "(Redação dada pela Lei nº 7.191, de 1984)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.191",
+            "ano": 1984
+          },
+          "trecho": "…tude de contrato com a administração pública; ou que exerça mandato de caráter político, federal, estadual ou municipal.",
+          "literal": "(Redação dada pela Lei nº 7.191, de 1984)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea h",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "… dias da conclusão ao relator, formulados por partido, candidato, Ministério Público ou parte legitimamente interessada.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea i",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "… próprios juizes que, no prazo de trinta dias a contar da conclusão, não houverem julgado os feitos a eles distribuídos.",
+          "literal": "(Incluído pela Lei nº 4.961, de 1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea j",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "86",
+            "ano": 1996
+          },
+          "trecho": "…to e vinte dias de decisão irrecorrível, possibilitando-se o exercício do mandato eletivo até o seu trânsito em julgado.",
+          "literal": "(Incluído pela LCP nº 86, de 1996)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…uas próprias decisões ou das decisões dos Tribunais Regionais que o solicitarem, e para garantir a votação e a apuração;",
+          "literal": "(Redação dada pela Lei nº 4.961, de 1966)"
+        }
+      ]
+    },
+    "23-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.211",
+            "ano": 2021
+          },
+          "trecho": "…das em lei, sendo vedado ao Tribunal Superior Eleitoral tratar de matéria relativa à organização dos partidos políticos.",
+          "literal": "(Incluído pela Lei nº 14.211, de 2021)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.191",
+            "ano": 1984
+          },
+          "trecho": "Art. 25. Os Tribunais Regionais Eleitorais compor-se-ão:",
+          "literal": "(Redação dada pela Lei nº 7.191, de 1984)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.191",
+            "ano": 1984
+          },
+          "trecho": "I - mediante eleição, pelo voto secreto:",
+          "literal": "(Redação dada pela Lei nº 7.191, de 1984)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.191",
+            "ano": 1984
+          },
+          "trecho": "a) de dois juizes, dentre os desembargadores do Tribunal de Justiça;",
+          "literal": "(Redação dada pela Lei nº 7.191, de 1984)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.191",
+            "ano": 1984
+          },
+          "trecho": "b) de dois juizes de direito, escolhidos pelo Tribunal de Justiça;",
+          "literal": "(Redação dada pela Lei nº 7.191, de 1984)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.191",
+            "ano": 1984
+          },
+          "trecho": "II - do juiz federal e, havendo mais de um, do que for escolhido pelo Tribunal Federal de Recursos; e",
+          "literal": "(Redação dada pela Lei nº 7.191, de 1984)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.191",
+            "ano": 1984
+          },
+          "trecho": "…República de dois dentre seis cidadãos de notável saber jurídico e idoneidade moral, indicados pelo Tribunal de Justiça.",
+          "literal": "(Incluído pela Lei nº 7.191, de 1984)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "§ 3º No caso previsto no parágrafo anterior será observado o disposto no parágrafo único do art. 20.",
+          "literal": "(Incluído pela Lei nº 4.961, de 1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "…ro, anulação geral de eleições ou perda de diplomas somente poderão ser tomadas com a presença de todos os seus membros.",
+          "literal": "(Incluído pela Lei nº 13.165, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "§ 5o No caso do § 4o, se ocorrer impedimento de algum juiz, será convocado o suplente da mesma classe.",
+          "literal": "(Incluído pela Lei nº 13.165, de 2015)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea g",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…andidato Ministério Público ou parte legitimamente interessada sem prejuízo das sanções decorrentes do excesso de prazo.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 1966)"
+        }
+      ]
+    },
+    "30": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.868",
+            "ano": 1994
+          },
+          "trecho": "XI -",
+          "literal": "(Revogado pela Lei nº 8.868, de 1994)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…desde que o menor número de candidatos às eleições proporcionais justifique a supressão, observadas as seguintes normas:",
+          "literal": "(Incluído pela Lei nº 4.961, de 1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…alquer candidato ou partido poderá requerer ao Tribunal Regional que suprima a exigência dos mapas parciais de apuração;",
+          "literal": "(Incluído pela Lei nº 4.961, de 1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…lquer candidato ou partido poderá, no prazo de três dias, recorrer para o Tribunal Superior, que decidirá em cinco dias;",
+          "literal": "(Incluído pela Lei nº 4.961, de 1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "c) a supressão dos mapas parciais de apuração só será admitida até seis meses antes da data da eleição;",
+          "literal": "(Incluído pela Lei nº 4.961, de 1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…) os boletins e mapas de apuração serão impressos pelos Tribunais Regionais, depois de aprovados pelo Tribunal Superior;",
+          "literal": "(Incluído pela Lei nº 4.961, de 1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…odelos que aprovar, acompanhados das sugestões ou impugnações formuladas pelos partidos, à decisão do Tribunal Superior.",
+          "literal": "(Incluído pela Lei nº 4.961, de 1966)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.868",
+            "ano": 1994
+          },
+          "trecho": "VII -",
+          "literal": "(Revogado pela Lei nº 8.868, de 1994)"
+        }
+      ]
+    },
+    "45": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…ito o recebimento, cancelando-se o título cuja assinatura não for idêntica à do requerimento de inscrição e à do recibo.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 1966)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…assinatura não for idêntica à do requerimento de inscrição e do recibo ou o fizerem a pessoa não autorizada por escrito.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 1966)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…ão assinados pelo juiz eleitoral depois de preenchidos pelo cartório e de deferido o pedido, sob as penas do artigo 293.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "§ 12. É obrigatória a remessa ao Tribunal Regional da ficha do eleitor, após a expedição do seu título.",
+          "literal": "(Incluído pela Lei nº 4.961, de 1966)"
+        }
+      ]
+    },
+    "46": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…ção de seção diferente daquela a que devesse corresponder a residência indicada no pedido de inscrição ou transferência.",
+          "literal": "(Incluído pela Lei nº 4.961, de 1966)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…otar. E, uma vez datado e assinado pelo presidente da mesa receptora, servirá também de prova de haver o eleitor votado.",
+          "literal": "(Renumerado do § 4º pela Lei nº 4.961, de 1966)"
+        }
+      ]
+    },
+    "47": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.018",
+            "ano": 1974
+          },
+          "trecho": "…to de certidão aos alistandos, desde que provem carência de recursos, ou aos Delegados de Partido, para fins eleitorais.",
+          "literal": "(Incluído pela Lei nº 6.018, de 1974)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…leitoral, onde o cidadão ou o delegado de partido deixará expresso o pedido de certidão para fins eleitorais, datando-o.",
+          "literal": "(Incluído como § 1º pela Lei nº 4.961, de 1966 e renumerado do § 1º pela Lei nº 6.018, de 1974)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "… quinze dias da data do pedido, concederá a certidão, ou justificará, perante o Juiz Eleitoral por que deixa de fazê-lo.",
+          "literal": "(Incluído como § 2º pela Lei nº 4.961, de 1966 e renumerado do § 2º pela Lei nº 6.018, de 1974)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "§ 4º A infração ao disposto neste artigo sujeitará o escrivão às penas do Art. 293.",
+          "literal": "(Incluído como § 3º pela Lei nº 4.961, de 1966 e renumerado do § 3º pela Lei nº 6.018, de 1974)"
+        }
+      ]
+    },
+    "51": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.914",
+            "ano": 1989
+          },
+          "trecho": "Art. 51.",
+          "literal": "(Revogado pela Lei nº 7.914, de 1989)"
+        }
+      ]
+    },
+    "55": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…ral de servidor público civil, militar, autárquico, ou de membro de sua família, por motivo de remoção ou transferência.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 1966)"
+        }
+      ]
+    },
+    "57": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…rensa oficial na Capital, e em cartório nas demais localidades, podendo os interessados impugná-lo no prazo de dez dias.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 1966)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…isposto neste artigo o pedido deverá ser desde logo decidido, devendo o despacho do juiz ser publicado pela mesma forma.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 1966)"
+        }
+      ]
+    },
+    "62": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.868",
+            "ano": 1994
+          },
+          "trecho": "Art. 62.",
+          "literal": "(Revogado pela Lei nº 8.868, de 1994)"
+        }
+      ]
+    },
+    "63": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.868",
+            "ano": 1994
+          },
+          "trecho": "Art. 63.",
+          "literal": "(Revogado pela Lei nº 8.868, de 1994)"
+        }
+      ]
+    },
+    "64": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.868",
+            "ano": 1994
+          },
+          "trecho": "Art. 64.",
+          "literal": "(Revogado pela Lei nº 8.868, de 1994)"
+        }
+      ]
+    },
+    "65": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.868",
+            "ano": 1994
+          },
+          "trecho": "Art. 65.",
+          "literal": "(Revogado pela Lei nº 8.868, de 1994)"
+        }
+      ]
+    },
+    "71": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.663",
+            "ano": 1988
+          },
+          "trecho": "V - deixar de votar em 3 (três) eleições consecutivas.",
+          "literal": "(Redação dada pela Lei nº 7.663, de 27.5.1988)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "VI - a prisão provisória, em quaisquer de suas modalidades.",
+          "literal": "(Incluído pela Lei nº 15.358, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…e, baixar, com o cancelamento de ofício das inscrições correspondentes aos títulos que não forem apresentados à revisão.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "83": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.534",
+            "ano": 1978
+          },
+          "trecho": "Art. 83. Na eleição direta para o Senado Federal, para Prefeito e Vice-Prefeito, adotar-se-á o princípio majoritário.",
+          "literal": "(Redação dada pela Lei nº 6.534, de 26.5.1978)"
+        }
+      ]
+    },
+    "91": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.211",
+            "ano": 2021
+          },
+          "trecho": "§ 3º É facultado aos partidos políticos celebrar coligações no registro de candidatos às eleições majoritárias.",
+          "literal": "(Incluído pela Lei nº 14.211, de 2021)"
+        }
+      ]
+    },
+    "92": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.504",
+            "ano": 1997
+          },
+          "trecho": "Art. 92.",
+          "literal": "(Revogado pela Lei nº 9.504, de 30.9.1997)"
+        }
+      ]
+    },
+    "93": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "…go eletivo terminará, improrrogavelmente, às dezenove horas do dia 15 de agosto do ano em que se realizarem as eleições.",
+          "literal": "(Redação dada pela Lei nº 13.165, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "…ue tiverem sido impugnados, devem estar julgados pelas instâncias ordinárias, e publicadas as decisões a eles relativas.",
+          "literal": "(Redação dada pela Lei nº 13.165, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "…rias para a escolha dos candidatos serão realizadas, no máximo, até 5 de agosto do ano em que se realizarem as eleições.",
+          "literal": "(Redação dada pela Lei nº 13.165, de 2015)"
+        }
+      ]
+    },
+    "94": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…para que se verifique se o candidato está no gozo dos direitos políticos (Art. 132, III, e 135 da Constituição Federal);",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "100": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.015",
+            "ano": 1982
+          },
+          "trecho": "…o, por sorteio, em sessão realizada com a presença dos Delegados de Partido, uma série de números a partir de 100 (cem).",
+          "literal": "(Redação dada pela Lei nº 7.015, de 16.7.1982)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.015",
+            "ano": 1982
+          },
+          "trecho": "… 1º A sessão a que se refere o caput deste artigo será anunciada aos Partidos com antecedência mínima de 5 (cinco) dias.",
+          "literal": "(Redação dada pela Lei nº 7.015, de 16.7.1982)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.015",
+            "ano": 1982
+          },
+          "trecho": "…a dos candidatos sortearão, por sua vez, em cada Estado e município, os números que devam corresponder a cada candidato.",
+          "literal": "(Redação dada pela Lei nº 7.015, de 16.7.1982)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.015",
+            "ano": 1982
+          },
+          "trecho": "…imeiro Partido corresponda o número 101 (cento e um), ao do segundo Partido 201 (duzentos e um), e assim sucessivamente.",
+          "literal": "(Redação dada pela Lei nº 7.015, de 16.7.1982)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.015",
+            "ano": 1982
+          },
+          "trecho": "…1 (dois mil e um) a 2.100 (dois mil e cem), para reiniciá-la em 2.101 (dois mil cento e um), a partir do décimo Partido.",
+          "literal": "(Redação dada pela Lei nº 7.015, de 16.7.1982)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.015",
+            "ano": 1982
+          },
+          "trecho": "…s parágrafos anteriores, e de maneira que a todos os candidatos sejam atribuídos sempre número de 4 (quatro) algarismos.",
+          "literal": "(Redação dada pela Lei nº 7.015, de 16.7.1982)"
+        }
+      ]
+    },
+    "101": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.553",
+            "ano": 1978
+          },
+          "trecho": "Art. 101. Pode qualquer candidato requerer, em petição com firma reconhecida, o cancelamento do registro do seu nome.",
+          "literal": "(Redação dada pela Lei nº 6.553, de 19.8.1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.553",
+            "ano": 1978
+          },
+          "trecho": "… em eleições proporcionais quanto majoritárias, as substituições e indicações se processarão pelas Comissões Executivas.",
+          "literal": "(Incluído pela Lei nº 6.553, de 19.8.1978)"
+        }
+      ]
+    },
+    "105": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.211",
+            "ano": 2021
+          },
+          "trecho": "Art. 105.",
+          "literal": "(Revogado pela Lei nº 14.211, de 2021)"
+        }
+      ]
+    },
+    "106": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.504",
+            "ano": 1997
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Lei nº 9.504, de 30.9.1997)"
+        }
+      ]
+    },
+    "107": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.211",
+            "ano": 2021
+          },
+          "trecho": "…rtidário dividindo-se pelo quociente eleitoral o número de votos válidos dados sob a mesma legenda, desprezada a fração.",
+          "literal": "(Redação dada pela Lei nº 14.211, de 2021)"
+        }
+      ]
+    },
+    "108": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.211",
+            "ano": 2021
+          },
+          "trecho": "…toral, tantos quantos o respectivo quociente partidário indicar, na ordem da votação nominal que cada um tenha recebido.",
+          "literal": "(Redação dada pela Lei nº 14.211, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "…o da exigência de votação nominal mínima a que se refere o caput serão distribuídos de acordo com as regras do art. 109.",
+          "literal": "(Incluído pela Lei nº 13.165, de 2015)"
+        }
+      ]
+    },
+    "109": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "… da exigência de votação nominal mínima a que se refere o art. 108 serão distribuídos de acordo com as seguintes regras:",
+          "literal": "(Redação dada pela Lei nº 13.165, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.211",
+            "ano": 2021
+          },
+          "trecho": "…ar a maior média um dos lugares a preencher, desde que tenha candidato que atenda à exigência de votação nominal mínima;",
+          "literal": "(Redação dada pela Lei nº 14.211, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "II - repetir-se-á a operação para cada um dos lugares a preencher;",
+          "literal": "(Redação dada pela Lei nº 13.165, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.211",
+            "ano": 2021
+          },
+          "trecho": "…duas exigências do inciso I deste caput, as cadeiras serão distribuídas aos partidos que apresentarem as maiores médias.",
+          "literal": "(Redação dada pela Lei nº 14.211, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.211",
+            "ano": 2021
+          },
+          "trecho": "…mento dos lugares com que cada partido for contemplado far-se-á segundo a ordem de votação recebida por seus candidatos.",
+          "literal": "(Redação dada pela Lei nº 14.211, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.211",
+            "ano": 2021
+          },
+          "trecho": "… eleitoral, e os candidatos que tenham obtido votos em número igual ou superior a 20% (vinte por cento) desse quociente.",
+          "literal": "(Redação dada pela Lei nº 14.211, de 2021)"
+        }
+      ]
+    },
+    "111": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.211",
+            "ano": 2021
+          },
+          "trecho": "…çar o quociente eleitoral, considerar-se-ão eleitos, até serem preenchidos todos os lugares, os candidatos mais votados.",
+          "literal": "(Redação dada pela Lei nº 14.211, de 2021)"
+        }
+      ]
+    },
+    "112": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "… definição dos suplentes da representação partidária, não há exigência de votação nominal mínima prevista pelo art. 108.",
+          "literal": "(Incluído pela Lei nº 13.165, de 2015)"
+        }
+      ]
+    },
+    "120": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…uiz eleitoral sessenta dias antes da eleição, em audiência pública, anunciado pelo menos com cinco dias de antecedência.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "127": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "IX - anotar o não comparecimento do eleitor no verso da fôlha individual de votação.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "133": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.055",
+            "ano": 1974
+          },
+          "trecho": "… parte, pelo respectivo Tribunal Regional Eleitoral em decisão fundamentada e aprovada pelo Tribunal Superior Eleitoral.",
+          "literal": "(Redação dada pela Lei nº 6.055, de 17.6.1974)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "VI -",
+          "literal": "(Revogado pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "VI - sobrecartas maiores para os votos impugnados ou sôbre os quais haja dúvida;",
+          "literal": "(Renumerado do Inciso VII pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "VII - cédulas oficiais;",
+          "literal": "(Renumerado do Inciso VIII pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "VIII - sobrecartas especiais para remessa à Junta Eleitoral dos documentos relativos à eleição;",
+          "literal": "(Renumerado do Inciso IX pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "IX - senhas para serem distribuídas aos eleitores;",
+          "literal": "(Renumerado do Inciso X pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "X - tinta, canetas, penas, lápis e papel, necessários aos trabalhos;",
+          "literal": "(Renumerado do Inciso XI pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "XI - fôlhas apropriadas para impugnação e fôlhas para observação de fiscais de partidos;",
+          "literal": "(Renumerado do Inciso XII pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "XII - modêlo da ata a ser lavrada pela mesa receptora;",
+          "literal": "(Renumerado do Inciso XIII pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso XIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "XIII - material necessário para vedar, após a votação, a fenda da urna;",
+          "literal": "(Renumerado do Inciso XIV pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "XIV - um exemplar das Instruções do Tribunal Superior Eleitoral;",
+          "literal": "(Renumerado do Inciso XV pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso XV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "XV - material necessário à contagem dos votos quando autorizada;",
+          "literal": "(Renumerado do Inciso XVI pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "XVI - outro qualquer material que o Tribunal Regional julgue necessário ao regular funcionamento da mesa.",
+          "literal": "(Renumerado do Inciso XVII pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "135": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…ural privada, mesmo existindo no local prédio público, incorrendo o juiz nas penas do Art. 312, em caso de infringência.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.146",
+            "ano": 2015
+          },
+          "trecho": "…or com deficiência ou com mobilidade reduzida, inclusive em seu entorno e nos sistemas de transporte que lhe dão acesso.",
+          "literal": "(Redação dada pela Lei nº 13.146, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "…da, inclusive em seu entorno e nos sistemas de transporte que lhe dão acesso. (Redação dada pela Lei nº 13.146, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6oB",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.226",
+            "ano": 2001
+          },
+          "trecho": "§ 6oB (VETADO)",
+          "literal": "(Incluído pela Lei nº 10.226, de 15 de maio de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "… eleitoral, dentro de três dias a contar da publicação, devendo a decisão ser proferida dentro de quarenta e oito horas.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…leitoral caberá recurso para o Tribunal Regional, interposto dentro de três dias, devendo no mesmo prazo, ser resolvido.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.336",
+            "ano": 1976
+          },
+          "trecho": "…eridos nos §§ 7º e 8º deste artigo, não mais poderá ser alegada, no processo eleitoral, a proibição contida em seu § 5º.",
+          "literal": "(Incluído pela Lei nº 6.336, de 1º.6.1976)"
+        }
+      ]
+    },
+    "143": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…votado os eleitores que já se encontravam presentes no momento da abertura dos trabalhos, ou no encerramento da votação.",
+          "literal": "(Renumerado do parágrafo único pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…o juiz eleitoral da zona, seus auxiliares de serviço, os eleitores de idade avançada os enfermos e as mulheres grávidas.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "145": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…ial esteja visada na forma do artigo 131, § 3º; quando eleitores de outras seções, seus votos serão tomados em separado.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "§ 1º",
+          "literal": "(Revogado pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "§ 3º",
+          "literal": "(Revogado pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.504",
+            "ano": 1995
+          },
+          "trecho": "IX - os policiais militares em serviço.",
+          "literal": "(Incluído pela Lei nº 9.504, de 9.5.1995)"
+        }
+      ]
+    },
+    "146": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.434",
+            "ano": 1985
+          },
+          "trecho": "b) escrevendo o nome, o prenome, ou o número do candidato de sua preferência nas eleições proporcionais.",
+          "literal": "(Redação dada pela Lei nº 7.434, de 19.12.1985)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.989",
+            "ano": 1982
+          },
+          "trecho": "c) escrevendo apenas a sigla do partido de sua preferência, se pretender votar só na legenda;",
+          "literal": "(Revogado pela Lei nº 6.989, de 5.5.1982)"
+        }
+      ]
+    },
+    "148": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "§ 4º",
+          "literal": "(Revogado pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "§ 4º (Revogado pela Lei nº 4.961, de 4.5.1966) § 5º",
+          "literal": "(Revogado pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "151": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.914",
+            "ano": 1989
+          },
+          "trecho": "Art. 151.",
+          "literal": "(Revogado pela Lei nº 7.914, de 7.12.1989)"
+        }
+      ]
+    },
+    "154": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…destinada à assinatura do eleitor, a falta verificada, por meio de breve registro, que autenticará com a sua assinatura.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "157": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.914",
+            "ano": 1989
+          },
+          "trecho": "Art. 157.",
+          "literal": "(Revogado pela Lei nº 7.914, de 7.12.1989)"
+        }
+      ]
+    },
+    "159": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…e o Tribunal Regional, mencionando-se as horas ou dias necessários para o adiamento que não poderá exceder a cinco dias.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…ir na apuração devendo o seu presidente remeter, imediatamente ao Tribunal Regional, todo o material relativo à votação.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "§ 4º Ocorrendo a hipótese prevista no parágrafo anterior, competirá ao Tribunal Regional fazer a apuração.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…os prazos fixados neste artigo estarão sujeitos à multa de dois a dez salários-mínimos, aplicada pelo Tribunal Regional.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "165": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "XI - se consta nas folhas individuais de votação dos eleitores faltosos o devido registro de sua falta.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "166": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "Art. 166. Aberta a urna, a Junta verificará se o número de cédulas oficiais corresponde ao de votantes.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "… oficiais encontradas na urna não constituirá motivo de nulidade da votação, desde que não resulte de fraude comprovada.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "167": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "I - examinar as sobrecartas brancas contidas na urna, anulando os votos referentes aos eleitores que não podiam votar;",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "II - misturar as cédulas oficiais dos que podiam votar com as demais existentes na urna.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "III -",
+          "literal": "(Revogado pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "III - (Revogado pela Lei nº 4.961, de 4.5.1966) IV",
+          "literal": "(Revogado pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "169": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…rtidão da decisão recorrida; se interpostos verbalmente, constará também da certidão o trecho correspondente do boletim.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "172": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…hará o recurso e deverá ser rubricado pelo juiz eleitoral, pelo recorrente e pelos delegados de partido que o desejarem.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "173": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.978",
+            "ano": 1982
+          },
+          "trecho": "…ção, poderá ser utilizado sistema eletrônico, a critério do Tribunal Superior Eleitoral e na forma por ele estabelecida.",
+          "literal": "(Incluído pela Lei nº 6.978, de 19.1.1982)"
+        }
+      ]
+    },
+    "174": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.055",
+            "ano": 1974
+          },
+          "trecho": "…ugar correspondente à indicação do voto, um carimbo com a expressão \"em branco\", além da rubrica do presidente da turma.",
+          "literal": "(Redação dada pela Lei nº 6.055, de 17.6.1974)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.055",
+            "ano": 1974
+          },
+          "trecho": "§ 2º O mesmo processo será adaptado para o voto nulo.",
+          "literal": "(Incluído pela Lei nº 6.055, de 17.6.1974)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "… sob as penas do Art. 345, sem que os votos em branco da anterior estejam todos registrados pela forma referida no § 1º.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966 e renumerado do § 2º pela Lei nº 6.055, de 17.6.1974)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "§ 4º As questões relativas às cédulas somente poderão ser suscitadas nessa oportunidade.",
+          "literal": "(Renumerado do parágrafo único para § 3º pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "175": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": null
+          },
+          "trecho": "§ 2º Serão nulos os votos, em cada eleição pelo sistema proporcional:",
+          "literal": "(Renumerado do § 3º pela Lei nº 4.961, de 4 5.66)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": null
+          },
+          "trecho": "…suficiente para distinguí-lo de outro candidato ao mesmo cargo, mas de outro partido, e o eleitor não indicar a legenda;",
+          "literal": "(Renumerado do § 3º pela Lei nº 4.961, de 4 5.66)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": null
+          },
+          "trecho": "… pertencentes a partidos diversos, ou, indicando apenas os números, o fizer também de candidatos de partidos diferentes;",
+          "literal": "(Renumerado do § 3º pela Lei nº 4.961, de 4 5.66)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": null
+          },
+          "trecho": "…se possa identificar o de sua preferência, escrever duas ou mais legendas diferentes no espaço relativo à mesma eleição.",
+          "literal": "(Renumerado do § 3º pela Lei nº 4.961, de 4 5.66)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.989",
+            "ano": 1982
+          },
+          "trecho": "IV-",
+          "literal": "(Incluído pela Lei nº 6.989, de 5.5.1982 e restabelecido pela Lei nº 7.332, de 1º.7.1985)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": null
+          },
+          "trecho": "§ 3º Serão nulos, para todos os efeitos, os votos dados a candidatos inelegíveis ou não registrados. :",
+          "literal": "(Renumerado do § 4º pela Lei nº 4.961, de 4 5.66)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.179",
+            "ano": 1983
+          },
+          "trecho": "…o alcançado pela sentença, caso em que os votos serão contados para o partido pelo qual tiver sido feito o seu registro.",
+          "literal": "(Incluído pela Lei nº 7.179, de 19.12.1983)"
+        }
+      ]
+    },
+    "176": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.037",
+            "ano": 1990
+          },
+          "trecho": "Art. 176. Contar-se-á o voto apenas para a legenda, nas eleições pelo sistema proporcional:",
+          "literal": "(Redação dada pela Lei nº 8.037, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.037",
+            "ano": 1990
+          },
+          "trecho": "I - se o eleitor escrever apenas a sigla partidária, não indicando o candidato de sua preferência;",
+          "literal": "(Redação dada pela Lei nº 8.037, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.037",
+            "ano": 1990
+          },
+          "trecho": "II - se o eleitor escrever o nome de mais de um candidato do mesmo Partido;",
+          "literal": "(Redação dada pela Lei nº 8.037, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.037",
+            "ano": 1990
+          },
+          "trecho": "III - se o eleitor, escrevendo apenas os números, indicar mais de um candidato do mesmo Partido;",
+          "literal": "(Redação dada pela Lei nº 8.037, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.037",
+            "ano": 1990
+          },
+          "trecho": "…r o candidato através do nome ou do número com clareza suficiente para distingui-lo de outro candidato do mesmo Partido.",
+          "literal": "(Redação dada pela Lei nº 8.037, de 1990)"
+        }
+      ]
+    },
+    "177": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.037",
+            "ano": 1990
+          },
+          "trecho": "… Na contagem dos votos para as eleições realizadas pelo sistema proporcional observar-se-ão, ainda, as seguintes normas:",
+          "literal": "(Redação dada pela Lei nº 8.037, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.037",
+            "ano": 1990
+          },
+          "trecho": "…missão ou erro de grafia do nome ou prenome não invalidará o voto, desde que seja possível a identificação do candidato;",
+          "literal": "(Redação dada pela Lei nº 8.037, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.037",
+            "ano": 1990
+          },
+          "trecho": "…mesma legenda ou não, contar-se-á o voto para o candidato cujo nome foi escrito, bem como para a legenda a que pertence;",
+          "literal": "(Redação dada pela Lei nº 8.037, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.037",
+            "ano": 1990
+          },
+          "trecho": "…úmero de um candidato e a legenda de outro Partido, contar-se-á o voto para o candidato cujo nome ou número foi escrito;",
+          "literal": "(Redação dada pela Lei nº 8.037, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.037",
+            "ano": 1990
+          },
+          "trecho": "…édula referente a Deputado Estadual ou vice-versa, o voto será contado para o candidato cujo nome ou número foi escrito;",
+          "literal": "(Redação dada pela Lei nº 8.037, de 1990)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.037",
+            "ano": 1990
+          },
+          "trecho": "…ara o qual o candidato foi registrado, será o voto computado para o candidato e respectiva legenda, conforme o registro.",
+          "literal": "(Incluído pela Lei nº 8.037, de 1990)"
+        }
+      ]
+    },
+    "184": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…votações apuradas para cada legenda e candidato e os votos não apurados com a declaração dos motivos porque o não foram.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…delegados e fiscais de Partido, por via postal ou sob protocolo, conforme fôr mais rápida e segura a chegada ao destino.",
+          "literal": "(Renumerado do parágrafo único pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…os membros da Junta estarão sujeitos à multa correspondente à metade do salário-mínimo regional por dia de retardamento.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…a apreender e enviar imediatamente, transferindo-se para o Tribunal Regional a competência para decidir sôbre os mesmos.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "185": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.055",
+            "ano": 1974
+          },
+          "trecho": "…a do Juiz Eleitoral e em ato público, vedado a qualquer pessoa inclusive ao Juiz, o seu exame na ocasião da incineração.",
+          "literal": "(Redação dada pela Lei nº 6.055, de 17.6.1974)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.977",
+            "ano": 1989
+          },
+          "trecho": "…zar a reciclagem industrial das cédulas, em proveito do ensino público de primeiro grau ou de instituições beneficentes.",
+          "literal": "(Incluído pela Lei nº 7.977, de 27.12.1989)"
+        }
+      ]
+    },
+    "198": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…om a necessária antecedência, o Tribunal Superior poderá conceder prorrogação desse prazo, uma só vez e por quinze dias.",
+          "literal": "(Renumerado do parágrafo único e alterado pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…legal, seus membros estarão sujeitos à multa correspondente à metade do salário-mínimo regional por dia de retardamento.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "200": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "… relatório com a proposta das modificações que julgar procedentes, ou com a justificação da improcedência das argüições.",
+          "literal": "(Renumerado do parágrafo único pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "… Apuradora, e, se as deferir, voltará o relatório à Comissão para que sejam feitas as alterações resultantes da decisão.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "220": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "V - quando a seção eleitoral tiver sido localizada com infração do disposto nos §§ 4º e 5º do art. 135.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "221": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "I - quando houver extravio de documento reputado essencial;",
+          "literal": "(Renumerado do inciso II pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…ou sofrer restrição o direito de fiscalizar, e o fato constar da ata ou de protesto interposto, por escrito, no momento:",
+          "literal": "(Renumerado do inciso III pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "III - quando votar, sem as cautelas do Art. 147, § 2º.",
+          "literal": "(Renumerado do inciso IV pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "222": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "§ 1º",
+          "literal": "(Revogado pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "§ 1º (Revogado pela Lei nº 4.961, de 4.5.1966) I -",
+          "literal": "(Revogado pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "§ 1º (Revogado pela Lei nº 4.961, de 4.5.1966) I - (Revogado pela Lei nº 4.961, de 4.5.1966) II -",
+          "literal": "(Revogado pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…º 4.961, de 4.5.1966) I - (Revogado pela Lei nº 4.961, de 4.5.1966) II - (Revogado pela Lei nº 4.961, de 4.5.1966) III -",
+          "literal": "(Revogado pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "… 4.961, de 4.5.1966) II - (Revogado pela Lei nº 4.961, de 4.5.1966) III - (Revogado pela Lei nº 4.961, de 4.5.1966) IV -",
+          "literal": "(Revogado pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "… 4.961, de 4.5.1966) III - (Revogado pela Lei nº 4.961, de 4.5.1966) IV - (Revogado pela Lei nº 4.961, de 4.5.1966) § 2º",
+          "literal": "(Revogado pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "223": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…m recurso interposto fora do prazo. Perdido o prazo numa fase própria, só em outra que se apresentar poderá ser argüida.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "224": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "…rio acarreta, após o trânsito em julgado, a realização de novas eleições, independentemente do número de votos anulados.",
+          "literal": "(Incluído pela Lei nº 13.165, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "§ 4o A eleição a que se refere o § 3o correrá a expensas da Justiça Eleitoral e será:",
+          "literal": "(Incluído pela Lei nº 13.165, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "I - indireta, se a vacância do cargo ocorrer a menos de seis meses do final do mandato;",
+          "literal": "(Incluído pela Lei nº 13.165, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "II - direta, nos demais casos.",
+          "literal": "(Incluído pela Lei nº 13.165, de 2015)"
+        }
+      ]
+    },
+    "233-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "…dual e Deputado Distrital em urnas especialmente instaladas nas capitais e nos Municípios com mais de cem mil eleitores.",
+          "literal": "(Redação dada pela Lei nº 13.165, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "§ 1o O exercício do direito previsto neste artigo sujeita-se à observância das regras seguintes:",
+          "literal": "(Incluído pela Lei nº 13.165, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "…eitoral no período de até quarenta e cinco dias da data marcada para a eleição, indicando o local em que pretende votar;",
+          "literal": "(Incluído pela Lei nº 13.165, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "…eleitoral somente é assegurado o direito à habilitação para votar em trânsito nas eleições para Presidente da República;",
+          "literal": "(Incluído pela Lei nº 13.165, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "…as eleições para Presidente da República, Governador, Senador, Deputado Federal, Deputado Estadual e Deputado Distrital.",
+          "literal": "(Incluído pela Lei nº 13.165, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "…ipais mencionados no § 8o do mesmo art. 144, poderão votar em trânsito se estiverem em serviço por ocasião das eleições.",
+          "literal": "(Incluído pela Lei nº 13.165, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "…eições, a listagem dos que estarão em serviço no dia da eleição com indicação das seções eleitorais de origem e destino.",
+          "literal": "(Incluído pela Lei nº 13.165, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "…nas seções eleitorais indicadas nas listagens mencionadas no § 3o independentemente do número de eleitores do Município.",
+          "literal": "(Incluído pela Lei nº 13.165, de 2015)"
+        }
+      ]
+    },
+    "240": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "Art. 240. A propaganda de candidatos a cargos eletivos somente é permitida após o dia 15 de agosto do ano da eleição.",
+          "literal": "(Redação dada pela Lei nº 13.165, de 2015)"
+        }
+      ]
+    },
+    "241": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.891",
+            "ano": 2013
+          },
+          "trecho": "… candidatos e aos respectivos partidos, não alcançando outros partidos, mesmo quando integrantes de uma mesma coligação.",
+          "literal": "(Incluído pela Lei nº 12.891, de 2013)"
+        }
+      ]
+    },
+    "242": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.476",
+            "ano": 1986
+          },
+          "trecho": "… meios publicitários destinados a criar, artificialmente, na opinião pública, estados mentais, emocionais ou passionais.",
+          "literal": "(Redação dada pela Lei nº 7.476, de 15.5.1986)"
+        }
+      ]
+    },
+    "243": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.192",
+            "ano": 2021
+          },
+          "trecho": "…ie a condição de mulher ou estimule sua discriminação em razão do sexo feminino, ou em relação à sua cor, raça ou etnia.",
+          "literal": "(Incluído pela Lei nº 14.192, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…te, quando responsável por ação ou omissão a quem que favorecido pelo crime, haja de qualquer modo contribuído para êle.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…a reparação do dano moral, referido no parágrafo anterior, os artigos. 81 a 88 da Lei nº 4.117, de 27 de agôsto de 1962.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…, televisão, ou alto-falante, aplicando-se, no que couber, os artigos. 90 e 96 da Lei nº 4.117, de 27 de agôsto de 1962.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "246": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.504",
+            "ano": 1997
+          },
+          "trecho": "Art. 246.",
+          "literal": "(Revogado pela Lei nº 9.504, de 30.9.1997)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.504",
+            "ano": 1997
+          },
+          "trecho": "Art. 246. (Revogado pela Lei nº 9.504, de 30.9.1997) Art. 247.",
+          "literal": "(Revogado pela Lei nº 9.504, de 30.9.1997)"
+        }
+      ]
+    },
+    "250": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.504",
+            "ano": 1997
+          },
+          "trecho": "Art. 250.",
+          "literal": "(Revogado pela Lei nº 9.504, de 30.9.1997)"
+        }
+      ]
+    },
+    "252": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.538",
+            "ano": 1977
+          },
+          "trecho": "Art. 252.",
+          "literal": "(Revogado pelo Decreto-Lei nº 1.538, de 14.4.1977)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.538",
+            "ano": 1977
+          },
+          "trecho": "Art. 252. (Revogado pelo Decreto-Lei nº 1.538, de 14.4.1977) Art. 253.",
+          "literal": "(Revogado pelo Decreto-Lei nº 1.538, de 14.4.1977)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.538",
+            "ano": 1977
+          },
+          "trecho": "…Revogado pelo Decreto-Lei nº 1.538, de 14.4.1977) Art. 253. (Revogado pelo Decreto-Lei nº 1.538, de 14.4.1977) Art. 254.",
+          "literal": "(Revogado pelo Decreto-Lei nº 1.538, de 14.4.1977)"
+        }
+      ]
+    },
+    "256": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…amente registrados, telefones necessários, mediante requerimento do respectivo presidente e pagamento das taxas devidas.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…ixará as instruções necessárias ao cumprimento do disposto no parágrafo anterior fixado as condições a serem observadas.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "257": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "…icação por ofício, telegrama, ou, em casos especiais, a critério do presidente do Tribunal, através de cópia do acórdão.",
+          "literal": "(Redação dada pela Lei nº 13.165, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "…gistro, afastamento do titular ou perda de mandato eletivo será recebido pelo Tribunal competente com efeito suspensivo.",
+          "literal": "(Incluído pela Lei nº 13.165, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "…dará preferência ao recurso sobre quaisquer outros processos, ressalvados os de habeas corpus e de mandado de segurança.",
+          "literal": "(Incluído pela Lei nº 13.165, de 2015)"
+        }
+      ]
+    },
+    "262": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.891",
+            "ano": 2013
+          },
+          "trecho": "…omente nos casos de inelegibilidade superveniente ou de natureza constitucional e de falta de condição de elegibilidade.",
+          "literal": "(Redação dada pela Lei nº 12.891, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.877",
+            "ano": 2019
+          },
+          "trecho": "…idatura, se formulada no âmbito do processo de registro, não poderá ser deduzida no recurso contra expedição de diploma.",
+          "literal": "(Incluído pela Lei nº 13.877, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.877",
+            "ano": 2019
+          },
+          "trecho": "… data fixada para que os partidos políticos e as coligações apresentem os seus requerimentos de registros de candidatos.",
+          "literal": "(Incluído pela Lei nº 13.877, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.877",
+            "ano": 2019
+          },
+          "trecho": "…rá suspenso no período compreendido entre os dias 20 de dezembro e 20 de janeiro, a partir do qual retomará seu cômputo.",
+          "literal": "(Incluído pela Lei nº 13.877, de 2019)"
+        }
+      ]
+    },
+    "266": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "… vedado por lei, dependentes de prova a ser determinada pelo Tribunal, bastar-lhe-á indicar os meios a elas conducentes.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "267": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "… multa de dez por cento do salário-mínimo regional por dia de retardamento, salvo se entender de reformar a sua decisão.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "268": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…nenhuma alegação escrita ou nenhum documento poderá ser oferecido por qualquer das partes, salvo o disposto no art. 270.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "270": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…ibunal Regional deferi-la-á em vinte e quatro horas da conclusão, realizado-se ela no prazo improrrogável de cinco dias.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…e o juiz eleitoral da zona, com citação dos partidos que concorreram ao pleito e do representante do Ministério Público.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "… do interessado, nas vinte e quatro horas seguintes, presentes à primeira sessão do Tribunal, que deliberará a respeito.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…m demora, vista dos autos, por vinte e quatro horas, seguidamente, ao recorrente e ao recorrido para dizerem a respeito.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "§ 4º Findo o prazo acima, serão os autos conclusos ao relator.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "275": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "Art. 275. São admissíveis embargos de declaração nas hipóteses previstas no Código de Processo Civil.",
+          "literal": "(Redação dada pela Lei nº 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…s embargos de declaração nas hipóteses previstas no Código de Processo Civil. (Redação dada pela Lei nº 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "…de publicação da decisão embargada, em petição dirigida ao juiz ou relator, com a indicação do ponto que lhes deu causa.",
+          "literal": "(Redação dada pela Lei nº 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…ção dirigida ao juiz ou relator, com a indicação do ponto que lhes deu causa. (Redação dada pela Lei nº 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "§ 2o Os embargos de declaração não estão sujeitos a preparo.",
+          "literal": "(Redação dada pela Lei nº 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2o Os embargos de declaração não estão sujeitos a preparo. (Redação dada pela Lei nº 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "§ 3o O juiz julgará os embargos em 5 (cinco) dias.",
+          "literal": "(Redação dada pela Lei nº 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3o O juiz julgará os embargos em 5 (cinco) dias. (Redação dada pela Lei nº 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "§ 4o Nos tribunais:",
+          "literal": "(Redação dada pela Lei nº 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4o Nos tribunais: (Redação dada pela Lei nº 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "I - o relator apresentará os embargos em mesa na sessão subsequente, proferindo voto;",
+          "literal": "(Incluído pela Lei nº 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…o relator apresentará os embargos em mesa na sessão subsequente, proferindo voto; (Incluído pela Lei nº 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "II - não havendo julgamento na sessão referida no inciso I, será o recurso incluído em pauta;",
+          "literal": "(Incluído pela Lei nº 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…endo julgamento na sessão referida no inciso I, será o recurso incluído em pauta; (Incluído pela Lei nº 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "III - vencido o relator, outro será designado para lavrar o acórdão.",
+          "literal": "(Incluído pela Lei nº 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III - vencido o relator, outro será designado para lavrar o acórdão. (Incluído pela Lei nº 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "§ 5o Os embargos de declaração interrompem o prazo para a interposição de recurso.",
+          "literal": "(Incluído pela Lei nº 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "… 5o Os embargos de declaração interrompem o prazo para a interposição de recurso. (Incluído pela Lei nº 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "…l, em decisão fundamentada, condenará o embargante a pagar ao embargado multa não excedente a 2 (dois) salários-mínimos.",
+          "literal": "(Incluído pela Lei nº 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "… embargante a pagar ao embargado multa não excedente a 2 (dois) salários-mínimos. (Incluído pela Lei nº 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "…reiteração de embargos de declaração manifestamente protelatórios, a multa será elevada a até 10 (dez) salários-mínimos.",
+          "literal": "(Incluído pela Lei nº 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "…nifestamente protelatórios, a multa será elevada a até 10 (dez) salários-mínimos. (Incluído pela Lei nº 13.105, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "294": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.868",
+            "ano": 1994
+          },
+          "trecho": "Art. 294.",
+          "literal": "(Revogado pela Lei nº 8.868, de 14.4.1994)"
+        }
+      ]
+    },
+    "302": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.064",
+            "ano": 1969
+          },
+          "trecho": "…to a concentração de eleitores, sob qualquer forma, inclusive o fornecimento gratuito de alimento e transporte coletivo:",
+          "literal": "(Redação dada pelo Decreto-Lei nº 1.064, de 24.10.1969)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.064",
+            "ano": 1969
+          },
+          "trecho": "Pena - reclusão de quatro (4) a seis (6) anos e pagamento de 200 a 300 dias-multa. (",
+          "literal": "(Redação dada pelo Decreto-Lei nº 1.064, de 24.10.1969)"
+        }
+      ]
+    },
+    "322": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.504",
+            "ano": 1997
+          },
+          "trecho": "Art. 322.",
+          "literal": "(Revogado pela Lei nº 9.504, de 30.9.1997)"
+        }
+      ]
+    },
+    "323": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.192",
+            "ano": 2021
+          },
+          "trecho": "…, fatos que sabe inverídicos em relação a partidos ou a candidatos e capazes de exercer influência perante o eleitorado:",
+          "literal": "(Redação dada pela Lei nº 14.192, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.192",
+            "ano": 2021
+          },
+          "trecho": "Parágrafo único. Revogado.",
+          "literal": "(Redação dada pela Lei nº 14.192, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.192",
+            "ano": 2021
+          },
+          "trecho": "…º Nas mesmas penas incorre quem produz, oferece ou vende vídeo com conteúdo inverídico acerca de partidos ou candidatos.",
+          "literal": "(Incluído pela Lei nº 14.192, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.192",
+            "ano": 2021
+          },
+          "trecho": "§ 2º Aumenta-se a pena de 1/3 (um terço) até metade se o crime:",
+          "literal": "(Incluído pela Lei nº 14.192, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.192",
+            "ano": 2021
+          },
+          "trecho": "…ido por meio da imprensa, rádio ou televisão, ou por meio da internet ou de rede social, ou é transmitido em tempo real;",
+          "literal": "(Incluído pela Lei nº 14.192, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.192",
+            "ano": 2021
+          },
+          "trecho": "II - envolve menosprezo ou discriminação à condição de mulher ou à sua cor, raça ou etnia.",
+          "literal": "(Incluído pela Lei nº 14.192, de 2021)"
+        }
+      ]
+    },
+    "326-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.834",
+            "ano": 2019
+          },
+          "trecho": "…inistrativa, atribuindo a alguém a prática de crime ou ato infracional de que o sabe inocente, com finalidade eleitoral:",
+          "literal": "(Incluído pela Lei nº13.834, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.834",
+            "ano": 2019
+          },
+          "trecho": "Pena - reclusão, de 2 (dois) a 8 (oito) anos, e multa.",
+          "literal": "(Incluído pela Lei nº13.834, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.834",
+            "ano": 2019
+          },
+          "trecho": "§ 1º A pena é aumentada de sexta parte, se o agente se serve do anonimato ou de nome suposto.",
+          "literal": "(Incluído pela Lei nº13.834, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.834",
+            "ano": 2019
+          },
+          "trecho": "§ 2º A pena é diminuída de metade, se a imputação é de prática de contravenção.",
+          "literal": "(Incluído pela Lei nº13.834, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.834",
+            "ano": 2019
+          },
+          "trecho": "…om finalidade eleitoral, divulga ou propala, por qualquer meio ou forma, o ato ou fato que lhe foi falsamente atribuído.",
+          "literal": "(Incluído pela Lei nº13.834, de 2019)"
+        }
+      ]
+    },
+    "326-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.192",
+            "ano": 2021
+          },
+          "trecho": "… ou etnia, com a finalidade de impedir ou de dificultar a sua campanha eleitoral ou o desempenho de seu mandato eletivo.",
+          "literal": "(Incluído pela Lei nº 14.192, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.192",
+            "ano": 2021
+          },
+          "trecho": "Pena - reclusão, de 1 (um) a 4 (quatro) anos, e multa.",
+          "literal": "(Incluído pela Lei nº 14.192, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.192",
+            "ano": 2021
+          },
+          "trecho": "Parágrafo único. Aumenta-se a pena em 1/3 (um terço), se o crime é cometido contra mulher:",
+          "literal": "(Incluído pela Lei nº 14.192, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.192",
+            "ano": 2021
+          },
+          "trecho": "I - gestante;",
+          "literal": "(Incluído pela Lei nº 14.192, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.192",
+            "ano": 2021
+          },
+          "trecho": "II - maior de 60 (sessenta) anos;",
+          "literal": "(Incluído pela Lei nº 14.192, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.192",
+            "ano": 2021
+          },
+          "trecho": "III - com deficiência.",
+          "literal": "(Incluído pela Lei nº 14.192, de 2021)"
+        }
+      ]
+    },
+    "327": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.192",
+            "ano": 2021
+          },
+          "trecho": "…As penas cominadas nos arts. 324, 325 e 326 aumentam-se de 1/3 (um terço) até metade, se qualquer dos crimes é cometido:",
+          "literal": "(Redação dada pela Lei nº 14.192, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.192",
+            "ano": 2021
+          },
+          "trecho": "IV - com menosprezo ou discriminação à condição de mulher ou à sua cor, raça ou etnia;",
+          "literal": "(Incluído pela Lei nº 14.192, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.192",
+            "ano": 2021
+          },
+          "trecho": "V - por meio da internet ou de rede social ou com transmissão em tempo real.",
+          "literal": "(Incluído pela Lei nº 14.192, de 2021)"
+        }
+      ]
+    },
+    "328": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.504",
+            "ano": 1997
+          },
+          "trecho": "Art. 328.",
+          "literal": "(Revogado pela Lei nº 9.504, de 30.9.1997)"
+        }
+      ]
+    },
+    "329": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.504",
+            "ano": 1997
+          },
+          "trecho": "Art. 329.",
+          "literal": "(Revogado pela Lei nº 9.504, de 30.9.1997)"
+        }
+      ]
+    },
+    "333": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.504",
+            "ano": 1997
+          },
+          "trecho": "Art. 333.",
+          "literal": "(Revogado pela Lei nº 9.504, de 30.9.1997)"
+        }
+      ]
+    },
+    "345": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…Eleitoral, nos prazos legais, os deveres impostos por êste Código, se a infração não estiver sujeita a outra penalidade:",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "Pena - pagamento de trinta a noventa dias-multa.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "354-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.488",
+            "ano": 2017
+          },
+          "trecho": "…o exerça essa função, de bens, recursos ou valores destinados ao financiamento eleitoral, em proveito próprio ou alheio:",
+          "literal": "(Incluído pela Lei nº 13.488, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.488",
+            "ano": 2017
+          },
+          "trecho": "Pena - reclusão, de dois a seis anos, e multa.",
+          "literal": "(Incluído pela Lei nº 13.488, de 2017)"
+        }
+      ]
+    },
+    "359": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.732",
+            "ano": 2003
+          },
+          "trecho": "…ignará dia e hora para o depoimento pessoal do acusado, ordenando a citação deste e a notificação do Ministério Público.",
+          "literal": "(Redação dada pela Lei nº 10.732, de 5.9.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.732",
+            "ano": 2003
+          },
+          "trecho": "…grafo único. O réu ou seu defensor terá o prazo de 10 (dez) dias para oferecer alegações escritas e arrolar testemunhas.",
+          "literal": "(Incluído pela Lei nº 10.732, de 5.9.2003)"
+        }
+      ]
+    },
+    "367": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "… efeito de cobrança mediante executivo fiscal desde que inscritas em livro próprio na Secretaria do Tribunal competente.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…o juiz, ou Tribunal considerar que, em virtude da situação econômica do infrator, é ineficaz, embora aplicada no máximo.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "§ 3º O alistando, ou o eleitor, que comprovar devidamente o seu estado de pobreza, ficará isento do pagamento de multa.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…gamento de emolumentos, custas, despesas e multas, tanto as administrativas como as penais, devidas à Justiça Eleitoral.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…olhimento, se a Justiça Eleitoral não dispuser de sêlo eleitoral em quantidade suficiente para atender aos interessados.",
+          "literal": "(Incluído pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    },
+    "368-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.165",
+            "ano": 2015
+          },
+          "trecho": "…68-A. A prova testemunhal singular, quando exclusiva, não será aceita nos processos que possam levar à perda do mandato.",
+          "literal": "(Incluído pela Lei nº 13.165, de 2015)"
+        }
+      ]
+    },
+    "374": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "…es nos mencionados órgãos não tiverem as férias que lhes couberem, poderão gozá-las no ano seguinte , acumuladas ou não.",
+          "literal": "(Redação dada pela Lei nº 4.961, de 4.5.1966)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.961",
+            "ano": 1966
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Lei nº 4.961, de 4.5.1966)"
+        }
+      ]
+    }
+  }
+}

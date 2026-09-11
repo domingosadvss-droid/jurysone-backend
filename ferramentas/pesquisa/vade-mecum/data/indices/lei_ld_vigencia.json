@@ -1,0 +1,2950 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "LD",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_ld.json",
+      "colecao": "artigos",
+      "sha256": "79c9a6ce7911737608ce87ec44163d1d716e280e95bf7a69bf610ae5dccc99d5",
+      "total_registros": 99,
+      "gerado_em": "2026-08-31T20:53:14+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 47,
+      "anotacoes": 257,
+      "anotacoes_sem_diploma_nomeado": 38
+    }
+  },
+  "vigencia": {
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…ncluindo-se nele, por adesão, os Sistemas de Políticas Públicas sobre Drogas dos Estados, Distrito Federal e Municípios.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…º O Sisnad atuará em articulação com o Sistema Único de Saúde - SUS, e com o Sistema Único de Assistência Social - SUAS.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 6º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "7-A": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 7º-A.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "Art. 7º-A. (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 8º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "8-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "Art. 8º-A. Compete à União:",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "I - formular e coordenar a execução da Política Nacional sobre Drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…laborar o Plano Nacional de Políticas sobre Drogas, em parceria com Estados, Distrito Federal, Municípios e a sociedade;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "III - coordenar o Sisnad;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "IV - estabelecer diretrizes sobre a organização e funcionamento do Sisnad e suas normas de referência;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…ões estratégicas, metas, prioridades, indicadores e definir formas de financiamento e gestão das políticas sobre drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "VI –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "VI – (VETADO);",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso VII",
+          "diploma": null,
+          "trecho": "VII –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "VII – (VETADO);",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "VIII - promover a integração das políticas sobre drogas com os Estados, o Distrito Federal e os Municípios;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…istrito Federal e Municípios, a execução das políticas sobre drogas, observadas as obrigações dos integrantes do Sisnad;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…estabelecer formas de colaboração com Estados, Distrito Federal e Municípios para a execução das políticas sobre drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "… - garantir publicidade de dados e informações sobre repasses de recursos para financiamento das políticas sobre drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…nacionais de prevenção, tratamento, acolhimento, reinserção social e econômica e repressão ao tráfico ilícito de drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "XIII - adotar medidas de enfretamento aos crimes transfronteiriços; e",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "XIV - estabelecer uma política nacional de controle de fronteiras, visando a coibir o ingresso de drogas no País.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        }
+      ]
+    },
+    "8-B": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 8º-B .",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "Art. 8º-B . (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        }
+      ]
+    },
+    "8-C": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 8º-C.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "Art. 8º-C. (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        }
+      ]
+    },
+    "8-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "Art. 8º-D. São objetivos do Plano Nacional de Políticas sobre Drogas, dentre outros:",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…sporto e lazer, visando à prevenção do uso de drogas, atenção e reinserção social dos usuários ou dependentes de drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "II - viabilizar a ampla participação social na formulação, implementação e avaliação das políticas sobre drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…ojetos articulados com os estabelecimentos de ensino, com a sociedade e com a família para a prevenção do uso de drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "… dependente de drogas, promovendo programas que priorizem a melhoria de sua escolarização e a qualificação profissional;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "V - promover o acesso do usuário ou dependente de drogas a todos os serviços públicos;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "VI - estabelecer diretrizes para garantir a efetividade dos programas, ações e projetos das políticas sobre drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…ção de serviço de atendimento telefônico com orientações e informações para apoio aos usuários ou dependentes de drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…erção profissional da pessoa que haja cumprido o plano individual de atendimento nas fases de tratamento ou acolhimento;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…mia ao usuário ou dependente de drogas egresso de tratamento ou acolhimento, observando-se as especificidades regionais;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "… - propor a formulação de políticas públicas que conduzam à efetivação das diretrizes e princípios previstos no art. 22;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "XI - articular as instâncias de saúde, assistência social e de justiça no enfrentamento ao abuso de drogas; e",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "XII - promover estudos e avaliação dos resultados das políticas sobre drogas.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        }
+      ]
+    },
+    "8-E": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…selhos de políticas sobre drogas, constituídos por Estados, Distrito Federal e Municípios, terão os seguintes objetivos:",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "I - auxiliar na elaboração de políticas sobre drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…vernamentais no planejamento e na execução das políticas sobre drogas, visando à efetividade das políticas sobre drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…s voltados à prevenção, tratamento, acolhimento, reinserção social e econômica e repressão ao tráfico ilícito de drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "IV - promover a realização de estudos, com o objetivo de subsidiar o planejamento das políticas sobre drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…ção do usuário ou dependente de drogas no processo social, econômico, político e cultural no respectivo ente federado; e",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…volver outras atividades relacionadas às políticas sobre drogas em consonância com o Sisnad e com os respectivos planos.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        }
+      ]
+    },
+    "8-F": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 8º-F.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "Art. 8º-F. (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 9º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 10.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 11.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 12.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 13.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 14.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 15.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "19-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…rt. 19-A. Fica instituída a Semana Nacional de Políticas sobre Drogas, comemorada anualmente, na quarta semana de junho.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 1º No período de que trata o caput , serão intensificadas as ações de:",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "I - difusão de informações sobre os problemas decorrentes do uso de drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "II - promoção de eventos para o debate público sobre as políticas sobre drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "… - difusão de boas práticas de prevenção, tratamento, acolhimento e reinserção social e econômica de usuários de drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "IV - divulgação de iniciativas, ações e campanhas de prevenção do uso indevido de drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "V - mobilização da comunidade para a participação nas ações de prevenção e enfrentamento às drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…ro de 1996 - Lei de Diretrizes e Bases da Educação Nacional , na realização de atividades de prevenção ao uso de drogas.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "VII - estímulo à capacitação técnica e profissional;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "VIII - efetivação de políticas de reinserção social voltadas à educação continuada e ao trabalho;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "IX - observância do plano individual de atendimento na forma do art. 23-B desta Lei;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…tação adequada ao usuário ou dependente de drogas quanto às consequências lesivas do uso de drogas, ainda que ocasional.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        }
+      ]
+    },
+    "22-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…ad terão atendimento nos programas de educação profissional e tecnológica, educação de jovens e adultos e alfabetização.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        }
+      ]
+    },
+    "22-B": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 22-B.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.581",
+            "ano": 2025
+          },
+          "trecho": "… da universalidade e da integralidade e com o disposto nos incisos I, II, III, IV, IX e X do caput do art. 22 desta Lei.",
+          "literal": "(Incluído pela Lei nº 15.581, de 2025)"
+        }
+      ]
+    },
+    "23-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "… nos termos de normas dispostas pela União e articuladas com os serviços de assistência social e em etapas que permitam:",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "I - articular a atenção com ações preventivas que atinjam toda a população;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…imento individualizado ao usuário ou dependente de drogas com abordagem preventiva e, sempre que indicado, ambulatorial;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…o de programas que articulem educação, capacitação para o trabalho, esporte, cultura e acompanhamento individualizado; e",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "IV - acompanhar os resultados pelo SUS, Suas e Sisnad, de forma articulada.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 1º Caberá à União dispor sobre os protocolos técnicos de tratamento, em âmbito nacional.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…strado no Conselho Regional de Medicina - CRM do Estado onde se localize o estabelecimento no qual se dará a internação.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 3º São considerados 2 (dois) tipos de internação:",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "I - internação voluntária: aquela que se dá com o consentimento do dependente de drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…, com exceção de servidores da área de segurança pública, que constate a existência de motivos que justifiquem a medida.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 4º A internação voluntária:",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "I - deverá ser precedida de declaração escrita da pessoa solicitante de que optou por este regime de tratamento;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…ar-se-á por determinação do médico responsável ou por solicitação escrita da pessoa que deseja interromper o tratamento.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 5º A internação involuntária:",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "I - deve ser realizada após a formalização da decisão por médico responsável;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…se comprovada da impossibilidade de utilização de outras alternativas terapêuticas previstas na rede de atenção à saúde;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…ecessário à desintoxicação, no prazo máximo de 90 (noventa) dias, tendo seu término determinado pelo médico responsável;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "IV - a família ou o representante legal poderá, a qualquer tempo, requerer ao médico a interrupção do tratamento.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…ção, em qualquer de suas modalidades, só será indicada quando os recursos extra-hospitalares se mostrarem insuficientes.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…a Pública e a outros órgãos de fiscalização, por meio de sistema informatizado único, na forma do regulamento desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…ma referido no § 7º e o acesso será permitido apenas às pessoas autorizadas a conhecê-las, sob pena de responsabilidade.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 9º É vedada a realização de qualquer modalidade de internação nas comunidades terapêuticas acolhedoras.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…roteção e os direitos das pessoas portadoras de transtornos mentais e redireciona o modelo assistencial em saúde mental.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        }
+      ]
+    },
+    "23-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "Art. 23-B . O atendimento ao usuário ou dependente de drogas na rede de atenção à saúde dependerá de:",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "I - avaliação prévia por equipe técnica multidisciplinar e multissetorial; e",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "II - elaboração de um Plano Individual de Atendimento - PIA.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…equipe técnica subsidiará a elaboração e execução do projeto terapêutico individual a ser adotado, levantando no mínimo:",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "I - o tipo de droga e o padrão de seu uso; e",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "II - o risco à saúde física e mental do usuário ou dependente de drogas ou das pessoas com as quais convive.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 2º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…, administrativa e criminal, nos termos da Lei nº 8.069, de 13 de julho de 1990 - Estatuto da Criança e do Adolescente .",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "… terapêutico que atender o usuário ou dependente de drogas e será atualizado ao longo das diversas fases do atendimento.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 5º Constarão do plano individual, no mínimo:",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "I - os resultados da avaliação multidisciplinar;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "II - os objetivos declarados pelo atendido;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "III - a previsão de suas atividades de integração social ou capacitação profissional;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "IV - atividades de integração e apoio à família;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "V - formas de participação da família para efetivo cumprimento do plano individual;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "VI - designação do projeto terapêutico mais adequado para o cumprimento do previsto no plano; e",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "VII - as medidas específicas de atenção à saúde do atendido.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 6º O PIA será elaborado no prazo de até 30 (trinta) dias da data do ingresso no atendimento.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…º As informações produzidas na avaliação e as registradas no plano individual de atendimento são consideradas sigilosas.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        }
+      ]
+    },
+    "26-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "Art. 26-A. O acolhimento do usuário ou dependente de drogas na comunidade terapêutica acolhedora caracteriza-se por:",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "I - oferta de projetos terapêuticos ao usuário ou dependente de drogas que visam à abstinência;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…r escrito, entendida como uma etapa transitória para a reinserção social e econômica do usuário ou dependente de drogas;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…o do desenvolvimento pessoal, vocacionada para acolhimento ao usuário ou dependente de drogas em vulnerabilidade social;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "IV - avaliação médica prévia;",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "V - elaboração de plano individual de atendimento na forma do art. 23-B desta Lei; e",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "VI - vedação de isolamento físico do usuário ou dependente de drogas.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…e que mereçam atenção médico-hospitalar contínua ou de emergência, caso em que deverão ser encaminhadas à rede de saúde.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 2º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 3º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 4º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 5º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.961",
+            "ano": 2014
+          },
+          "trecho": "…o das condições encontradas, com a delimitação do local, asseguradas as medidas necessárias para a preservação da prova.",
+          "literal": "(Redação dada pela Lei nº 12.961, de 2014)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.961",
+            "ano": 2014
+          },
+          "trecho": "§ 1º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 12.961, de 2014)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.961",
+            "ano": 2014
+          },
+          "trecho": "§ 2º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 12.961, de 2014)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…mentar, a agente policial disfarçado, quando presentes elementos probatórios razoáveis de conduta criminal preexistente.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        }
+      ]
+    },
+    "40-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "…consecução das condutas previstas no art. 2º da lei que institui o marco legal do combate ao crime organizado no Brasil.",
+          "literal": "(Incluído pela Lei nº 15.358, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.358",
+            "ano": 2026
+          },
+          "trecho": "…e ligado ao comércio ilícito de entorpecentes ou de o artefato ter sido utilizado para assegurar o sucesso da mercancia.",
+          "literal": "(Incluído pela Lei nº 15.358, de 2026)"
+        }
+      ]
+    },
+    "50": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.961",
+            "ano": 2014
+          },
+          "trecho": "…ção e determinará a destruição das drogas apreendidas, guardando-se amostra necessária à realização do laudo definitivo.",
+          "literal": "(Incluído pela Lei nº 12.961, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.961",
+            "ano": 2014
+          },
+          "trecho": "…delegado de polícia competente no prazo de 15 (quinze) dias na presença do Ministério Público e da autoridade sanitária.",
+          "literal": "(Incluído pela Lei nº 12.961, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.961",
+            "ano": 2014
+          },
+          "trecho": "…a no § 3º , sendo lavrado auto circunstanciado pelo delegado de polícia, certificando-se neste a destruição total delas.",
+          "literal": "(Incluído pela Lei nº 12.961, de 2014)"
+        }
+      ]
+    },
+    "50-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.961",
+            "ano": 2014
+          },
+          "trecho": "…stra necessária à realização do laudo definitivo, aplicando-se, no que couber, o procedimento dos §§ 3º a 5º do art. 50.",
+          "literal": "(Incluído pela Lei nº 12.961, de 2014)"
+        }
+      ]
+    },
+    "58": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.961",
+            "ano": 2014
+          },
+          "trecho": "…ará que se proceda na forma do art. 32, § 1º , desta Lei, preservando-se, para eventual contraprova, a fração que fixar.",
+          "literal": "(Revogado pela Lei nº 12.961, de 2014)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.961",
+            "ano": 2014
+          },
+          "trecho": "…valor da substância ou do produto o indicar, precedendo a medida a elaboração e juntada aos autos do laudo toxicológico.",
+          "literal": "(Revogado pela Lei nº 12.961, de 2014)"
+        }
+      ]
+    },
+    "60": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…endo-se na forma dos arts. 125 e seguintes do Decreto-Lei nº 3.689, de 3 de outubro de 1941 - Código de Processo Penal .",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 1º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 2º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "… de Processo Penal , o juiz poderá determinar a prática de atos necessários à conservação dos bens, direitos ou valores.",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "… ser suspensa pelo juiz, ouvido o Ministério Público, quando a sua execução imediata puder comprometer as investigações.",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.322",
+            "ano": 2022
+          },
+          "trecho": "…origem lícita do bem ou do valor objeto da decisão, exceto no caso de veículo apreendido em transporte de droga ilícita.",
+          "literal": "(Incluído pela Lei nº 14.322, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.322",
+            "ano": 2022
+          },
+          "trecho": "…a ilícita, cuja destinação observará o disposto nos arts. 61 e 62 desta Lei, ressalvado o direito de terceiro de boa-fé.",
+          "literal": "(Incluído pela Lei nº 14.322, de 2022)"
+        }
+      ]
+    },
+    "60-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…mobiliários ou cheques emitidos como ordem de pagamento, será determinada, imediatamente, a conversão em moeda nacional.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…rá encaminhada a instituição financeira ou equiparada para alienação na forma prevista pelo Conselho Monetário Nacional.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…a que se refere o § 1º, a moeda estrangeira será custodiada pela instituição financeira até decisão sobre o seu destino.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…existência de valor de mercado, a moeda poderá ser doada à representação diplomática do seu país de origem ou destruída.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…essenta dias, à Caixa Econômica Federal para que se proceda à alienação ou custódia, de acordo com o previsto nesta Lei.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        }
+      ]
+    },
+    "61": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.322",
+            "ano": 2022
+          },
+          "trecho": "…i será imediatamente comunicada pela autoridade de polícia judiciária responsável pela investigação ao juízo competente.",
+          "literal": "(Redação dada pela Lei nº 14.322, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…terminará a alienação dos bens apreendidos, excetuadas as armas, que serão recolhidas na forma da legislação específica.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "… a descrição e especificação dos objetos, as informações sobre quem os tiver sob custódia e o local em que se encontrem.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "… sejam necessários conhecimentos especializados, por avaliador nomeado pelo juiz, em prazo não superior a 10 (dez) dias.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…a se manifestarem no prazo de 5 (cinco) dias e, dirimidas eventuais divergências, homologará o valor atribuído aos bens.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 5º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…depositados em conta judicial remunerada e, após sentença condenatória transitada em julgado, serão revertidos ao Funad.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…a e, após sentença condenatória transitada em julgado, serão revertidos ao Funad. (Incluído pela Lei nº 13.840, de 2019)",
+          "literal": "(Revogado pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…nteriores, sem prejuízo da cobrança de débitos fiscais, os quais permanecem sob responsabilidade do antigo proprietário.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…débitos fiscais, os quais permanecem sob responsabilidade do antigo proprietário. (Incluído pela Lei nº 13.840, de 2019)",
+          "literal": "(Revogado pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…depositada em conta judicial remunerada, e, após sentença condenatória com trânsito em julgado, será revertida ao Funad.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…, e, após sentença condenatória com trânsito em julgado, será revertida ao Funad. (Incluído pela Lei nº 13.840, de 2019)",
+          "literal": "(Revogado pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "§ 6º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "§ 7º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "§ 7º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "§ 8º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "§ 8º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "§ 9º O Ministério Público deve fiscalizar o cumprimento da regra estipulada no § 1º deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "§ 10. Aplica-se a todos os tipos de bens confiscados a regra estabelecida no § 1º deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "… assegurada a venda pelo maior lance, por preço não inferior a 50% (cinquenta por cento) do valor da avaliação judicial.",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "…nda e aos órgãos de registro e controle que efetuem as averbações necessárias, tão logo tenha conhecimento da apreensão.",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "… pagamento de multas, encargos e tributos anteriores, sem prejuízo de execução fiscal em relação ao antigo proprietário.",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "…pagamento não podem ser cobrados do arrematante ou do órgão público alienante como condição para regularização dos bens.",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "…, a autoridade de trânsito ou o órgão congênere competente para o registro poderá emitir novos identificadores dos bens.",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        }
+      ]
+    },
+    "62": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…ervação, mediante autorização judicial, ouvido o Ministério Público e garantida a prévia avaliação dos respectivos bens.",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…ob sua responsabilidade e com o objetivo de sua conservação, mediante autorização judicial, ouvido o Ministério Público.",
+          "literal": "(Revogado pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "§ 1º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "…ias, avalie a existência do interesse público mencionado no caput deste artigo e indique o órgão que deve receber o bem.",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "… os órgãos de segurança pública que participaram das ações de investigação ou repressão ao crime que deu causa à medida.",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "… uso de bens deverá conter a descrição do bem e a respectiva avaliação e indicar o órgão responsável por sua utilização.",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…r ao juiz periodicamente, ou a qualquer momento quando por este solicitado, informações sobre seu estado de conservação.",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…res à decisão de utilização do bem até o trânsito em julgado da decisão que decretar o seu perdimento em favor da União.",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…uperior àquela esperada em razão do transcurso do tempo e do uso, poderá o interessado requerer nova avaliação judicial.",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…ão de que trata o § 5º, o ente federado ou a entidade que utilizou o bem indenizará o detentor ou proprietário dos bens.",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "§ 7º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 7º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "§ 8º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 8º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 9º",
+          "diploma": null,
+          "trecho": "§ 9º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 9º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 10º",
+          "diploma": null,
+          "trecho": "§ 10.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 10. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 11º",
+          "diploma": null,
+          "trecho": "§ 11.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 11. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "… pagamento de multas, encargos e tributos anteriores, sem prejuízo de execução fiscal em relação ao antigo proprietário.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "… trata o § 12, a autoridade de trânsito ou o órgão de registro equivalente poderá emitir novos identificadores dos bens.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        }
+      ]
+    },
+    "62-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…nvertidos, serão efetuados na Caixa Econômica Federal, por meio de documento de arrecadação destinado a essa finalidade.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…dependentemente de qualquer formalidade, no prazo de vinte e quatro horas, contado do momento da realização do depósito.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "… dias úteis, acrescido de juros, na forma estabelecida pelo § 4º do art. 39 da Lei nº 9.250, de 26 de dezembro de 1995 .",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…pósito será transformado em pagamento definitivo, respeitados os direitos de eventuais lesados e de terceiros de boa-fé.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…judicial, serão efetuados como anulação de receita do Fundo Nacional Antidrogas no exercício em que ocorrer a devolução.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "§ 5º A Caixa Econômica Federal manterá o controle dos valores depositados ou devolvidos.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        }
+      ]
+    },
+    "63": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "Art. 63. Ao proferir a sentença, o juiz decidirá sobre:",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "I - o perdimento do produto, bem, direito ou valor apreendido ou objeto de medidas assecuratórias; e",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "II - o levantamento dos valores depositados em conta remunerada e a liberação dos bens utilizados nos termos do art. 62.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…bjeto de medidas assecuratórias, após decretado seu perdimento em favor da União, serão revertidos diretamente ao Funad.",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…ncontram e a entidade ou o órgão em cujo poder estejam, para os fins de sua destinação nos termos da legislação vigente.",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…º A Senad poderá firmar convênios de cooperação, a fim de dar imediato cumprimento ao estabelecido no § 2º deste artigo.",
+          "literal": "(Revogado pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "§ 3º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "§ 4º-A. Antes de encaminhar os bens ao órgão gestor do Funad, o juíz deve:",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "…ãos de registro e controle que efetuem as averbações necessárias, caso não tenham sido realizadas quando da apreensão; e",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "…nio da União a incorporação e entrega do imóvel, tornando-o livre e desembaraçado de quaisquer ônus para sua destinação.",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "§ 5º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…nham sido objeto de medidas assecuratórias ou os valores depositados que não forem reclamados serão revertidos ao Funad.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        }
+      ]
+    },
+    "63-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "… pessoal do acusado, podendo o juiz determinar a prática de atos necessários à conservação de bens, direitos ou valores.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        }
+      ]
+    },
+    "63-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…ficientes à reparação dos danos e ao pagamento de prestações pecuniárias, multas e custas decorrentes da infração penal.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        }
+      ]
+    },
+    "63-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…não leiloados em caráter cautelar, cujo perdimento seja decretado em favor da União, por meio das seguintes modalidades:",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "I - alienação, mediante:",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "a) licitação;",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…om encargo a entidades ou órgãos públicos que contribuam para o alcance das finalidades do Fundo Nacional Antidrogas; ou",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "c) venda direta, observado o disposto no inciso II do caput do art. 24 da Lei nº 8.666, de 21 de junho de 1993 ;",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "… - incorporação ao patrimônio de órgão da administração pública, observadas as finalidades do Fundo Nacional Antidrogas;",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "III - destruição; ou",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "IV - inutilização.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…lotes, assegurada a venda pelo maior lance, por preço que não seja inferior a cinquenta por cento do valor da avaliação.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…tios eletrônicos oficiais, principalmente no Município em que será realizado, dispensada a publicação em diário oficial.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…o pública, a publicidade dada pelo sistema substituirá a publicação em diário oficial e em jornais de grande circulação.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "… pagamento de multas, encargos e tributos anteriores, sem prejuízo de execução fiscal em relação ao antigo proprietário.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…ótese do § 4º, a autoridade de trânsito ou o órgão de registro equivalente poderá emitir novos identificadores dos bens.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "…ião, dos Estados, do Distrito Federal ou dos Municípios, a fim de dar imediato cumprimento ao estabelecido neste artigo.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "… iniciativa privada para a execução das ações de avaliação, administração e alienação dos bens a que se refere esta Lei.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        }
+      ]
+    },
+    "63-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "885",
+            "ano": 2019
+          },
+          "trecho": "… de delitos e atos ilícitos e estabelecer os valores abaixo dos quais se deve proceder à sua destruição ou inutilização.",
+          "literal": "(Incluído pela Medida Provisória nº 885, de 2019)"
+        }
+      ]
+    },
+    "63-E": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "…da a sub-rogação sobre o valor da arrematação para saldar eventuais multas, encargos ou tributos pendentes de pagamento.",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "…único. O disposto no caput deste artigo não prejudica o ajuizamento de execução fiscal em relação aos antigos devedores.",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        }
+      ]
+    },
+    "63-F": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "…ns correspondentes à diferença entre o valor do patrimônio do condenado e aquele compatível com o seu rendimento lícito.",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "…e indiquem conduta criminosa habitual, reiterada ou profissional do condenado ou sua vinculação a organização criminosa.",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "§ 2º Para efeito da perda prevista no caput deste artigo, entende-se por patrimônio do condenado todos os bens:",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "…u sobre os quais tenha domínio e benefício direto ou indireto, na data da infração penal, ou recebidos posteriormente; e",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "…nsferidos a terceiros a título gratuito ou mediante contraprestação irrisória, a partir do início da atividade criminal.",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.886",
+            "ano": 2019
+          },
+          "trecho": "§ 3º O condenado poderá demonstrar a inexistência da incompatibilidade ou a procedência lícita do patrimônio.",
+          "literal": "(Incluído pela Lei nº 13.886, de 2019)"
+        }
+      ]
+    },
+    "67-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "… às suas instalações, à documentação e a todos os elementos necessários à efetiva fiscalização pelos órgãos competentes.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        }
+      ]
+    },
+    "71": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 71.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "72": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…rimento do Ministério Público, determinará a destruição das amostras guardadas para contraprova, certificando nos autos.",
+          "literal": "(Redação dada pela Lei nº 13.840, de 2019)"
+        }
+      ]
+    },
+    "73": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.219",
+            "ano": 2010
+          },
+          "trecho": "…vo de prevenir o uso indevido delas e de possibilitar a atenção e reinserção social de usuários e dependentes de drogas.",
+          "literal": "(Redação dada pela Lei nº 12.219, de 2010)"
+        }
+      ]
+    }
+  }
+}

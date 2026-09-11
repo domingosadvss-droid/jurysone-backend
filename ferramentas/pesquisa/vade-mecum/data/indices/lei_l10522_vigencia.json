@@ -1,0 +1,3330 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L10522",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l10522.json",
+      "colecao": "artigos",
+      "sha256": "285c9e62181ac2a853fe52dc86d4aff7e43ad80559696fe475119592f9a0165e",
+      "total_registros": 68,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 44,
+      "anotacoes": 286,
+      "anotacoes_sem_diploma_nomeado": 19
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "a) cancelada no Cadastro de Pessoas Físicas – CPF;",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "…icípios, conforme convênio firmado com a União, representada pela Procuradoria-Geral da Fazenda Nacional, nesse sentido;",
+          "literal": "(Incluído pela Lei nº 14.973, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "IV – estejam inscritas na dívida ativa de autarquias profissionais e conselhos de classe;",
+          "literal": "(Incluído pela Lei nº 14.973, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "V – estejam irregulares perante o Fundo de Garantia do Tempo de Serviço (FGTS).",
+          "literal": "(Incluído pela Lei nº 14.973, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "225",
+            "ano": 2026
+          },
+          "trecho": "VI - sejam enquadradas como devedores contumazes, na forma da legislação específica.",
+          "literal": "(Incluído pela Lei Complementar nº 225, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "…a existência do débito passível de inscrição naquele Cadastro, fornecendo-se todas as informações pertinentes ao débito.",
+          "literal": "(Redação dada pela Lei nº 14.973, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…imento ao devedor da existência do débito ou da sua inscrição em Dívida Ativa atenderá ao disposto no § 2o deste artigo.",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "…ncisos III e IV do caput deste artigo poderá estabelecer regras de cooperação que favoreçam a recuperação desses ativos.",
+          "literal": "(Incluído pela Lei nº 14.973, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "225",
+            "ano": 2026
+          },
+          "trecho": "…a a inclusão e a exclusão do contribuinte da condição de devedor contumaz, para fins de registro da informação no Cadin.",
+          "literal": "(Incluído pela Lei Complementar nº 225, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "225",
+            "ano": 2026
+          },
+          "trecho": "…ção, a sincronização e o compartilhamento obrigatório, gratuito e tempestivo dos dados de que trata o § 10 deste artigo.",
+          "literal": "(Incluído pela Lei Complementar nº 225, de 2026)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…orientações de natureza normativa, inclusive quanto ao disciplinamento das respectivas inclusões e exclusões no sistema.",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.690",
+            "ano": 2023
+          },
+          "trecho": "§ 2º O disposto no § 1º deste artigo aplica-se:",
+          "literal": "(Redação dada pela Lei nº 14.690, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.690",
+            "ano": 2023
+          },
+          "trecho": "I - aos mini e pequenos produtores rurais;",
+          "literal": "(Incluído pela Lei nº 14.690, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.690",
+            "ano": 2023
+          },
+          "trecho": "…rativas e associações da agricultura familiar de que trata o § 4º do art. 3º da Lei nº 11.326, de 24 de julho de 2006; e",
+          "literal": "(Incluído pela Lei nº 14.690, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.690",
+            "ano": 2023
+          },
+          "trecho": "…esas de pequeno porte nos termos do inciso II do caput do art. 3º da Lei Complementar nº 123, de 14 de dezembro de 2006.",
+          "literal": "(Incluído pela Lei nº 14.690, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "…§ 1º deste artigo terá validade de 60 (sessenta) dias contados da data da consulta de inexistência de registro no Cadin.",
+          "literal": "(Redação dada pela Lei nº 14.973, de 2024)"
+        }
+      ]
+    },
+    "6-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "…constitui fator impeditivo para a realização de qualquer dos atos previstos nos incisos I, II e III do caput do art. 6º.",
+          "literal": "(Incluído pela Lei nº 14.973, de 2024)"
+        }
+      ]
+    },
+    "7-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "…eral, nos limites de suas competências, poderão, em favor das pessoas físicas e jurídicas domiciliadas em área atingida:",
+          "literal": "(Incluído pela Lei nº 14.973, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "I – suspender os prazos de inclusão de novos registros no Cadin;",
+          "literal": "(Incluído pela Lei nº 14.973, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "II – prorrogar a dispensa de que trata o § 3º do art. 4º;",
+          "literal": "(Incluído pela Lei nº 14.973, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "…. 6º, a consulta prévia ao Cadin em relação a auxílios e financiamentos relacionados aos esforços de superação da crise.",
+          "literal": "(Incluído pela Lei nº 14.973, de 2024)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.637",
+            "ano": 2002
+          },
+          "trecho": "… até sessenta parcelas mensais, a exclusivo critério da autoridade fazendária, na forma e condições previstas nesta Lei.",
+          "literal": "(Redação dada pela Lei nº 10.637, de 30.12.2002)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "10-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…o tributária, constituídos ou não, inscritos ou não em dívida ativa, mediante a opção por uma das seguintes modalidades:",
+          "literal": "(Redação dada pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "I - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "II - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "III - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "IV - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…adas de modo a observar os seguintes percentuais mínimos, aplicados sobre o valor da dívida consolidada no parcelamento:",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "a) da primeira à décima segunda prestação: 0,5% (cinco décimos por cento);",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "b) da décima terceira à vigésima quarta prestação: 0,6% (seis décimos por cento);",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "… diante: percentual correspondente ao saldo remanescente, em até 96 (noventa e seis) prestações mensais e sucessivas; ou",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…parcelas, calculadas de modo a observar os seguintes percentuais mínimos, aplicados sobre o saldo da dívida consolidada:",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "a) da primeira à décima segunda prestação: 0,5% (cinco décimos por cento);",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "b) da décima terceira à vigésima quarta prestação: 0,6% (seis décimos por cento);",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…stação em diante: percentual correspondente ao saldo remanescente, em até 60 (sessenta) prestações mensais e sucessivas.",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "§ 1º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…omisso a que se refere o § 2º-A deste artigo, sob pena de indeferimento ou de exclusão do parcelamento, conforme o caso.",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…e prejuízo fiscal e de base de cálculo negativa da CSLL, será determinado por meio da aplicação das seguintes alíquotas:",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "I - 25% (vinte e cinco por cento) sobre o montante do prejuízo fiscal;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…idas nos incisos I, II, III, IV, V, VI, VII e X do § 1º do art. 1º da Lei Complementar nº 105, de 10 de janeiro de 2001;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…so das pessoas jurídicas referidas no inciso IX do § 1º do art. 1º da Lei Complementar nº 105, de 10 de janeiro de 2001;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "IV - 9% (nove por cento) sobre a base de cálculo negativa da CSLL, no caso das demais pessoas jurídicas.",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "… abrangerá a totalidade dos débitos exigíveis em nome do sujeito passivo, observadas as seguintes condições e ressalvas:",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…s parcelamentos ou que comprovadamente sejam objeto de discussão judicial poderão ser excluídos, estes últimos mediante:",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "a) o oferecimento de garantia idônea e suficiente, aceita pela Fazenda Nacional em juízo; ou",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "b) a apresentação de decisão judicial em vigor e eficaz que determine a suspensão de sua exigibilidade;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…ive por meio da expropriação, se não houver a suspensão da exigibilidade ou a extinção do crédito em discussão judicial;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…pósitos judiciais regidos pela Lei nº 9.703, de 17 de novembro de 1998, e pela Lei nº 12.099, de 27 de novembro de 2009.",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…ulativamente, que renunciou às alegações de direito sobre as quais se fundam a ação judicial e o recurso administrativo.",
+          "literal": "(Redação dada pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…derir ao parcelamento de que trata este artigo, o sujeito passivo firmará termo de compromisso, no qual estará previsto:",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…bre extratos de fundos ou aplicações financeiras e sobre eventual comprometimento de recebíveis e demais ativos futuros;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…nte o período de vigência do plano de recuperação judicial, sem prejuízo do disposto no inciso III do § 4º deste artigo;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "III - o dever de manter a regularidade fiscal;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "IV - o cumprimento regular das obrigações para com o Fundo de Garantia do Tempo de Serviço (FGTS).",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "§ 2º-B. Para fins do disposto no inciso II do § 2º-A deste artigo:",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "I - a amortização do saldo devedor implicará redução proporcional da quantidade de parcelas vincendas;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "… entre o valor total do passivo fiscal e o valor total de dívidas do devedor, na data do pedido de recuperação judicial.",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…rcelamentos em curso, independentemente da modalidade, e solicitar o parcelamento nos termos estabelecidos neste artigo.",
+          "literal": "(Redação dada pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "§ 4º Implicará a exclusão do sujeito passivo do parcelamento:",
+          "literal": "(Redação dada pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "I - a falta de pagamento de 6 (seis) parcelas consecutivas ou de 9 (nove) parcelas alternadas;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "II - a falta de pagamento de 1 (uma) até 5 (cinco) parcelas, conforme o caso, se todas as demais estiverem pagas;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…orma de fraudar o cumprimento do parcelamento, observado, no que couber, o disposto no inciso II do § 2º-A deste artigo;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "IV - a decretação de falência ou extinção, pela liquidação, da pessoa jurídica optante;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "V - a concessão de medida cautelar fiscal, nos termos da Lei nº 8.397, de 6 de janeiro de 1992;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…no Cadastro Nacional da Pessoa Jurídica (CNPJ), nos termos dos arts. 80 e 81 da Lei nº 9.430, de 27 de dezembro de 1996;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…extinção sem resolução do mérito ou a não concessão da recuperação judicial, bem como a convolação desta em falência; ou",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…o descumprimento de quaisquer das condições previstas neste artigo, inclusive quanto ao disposto no § 2º-A deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "§ 4º-A. São consequências da exclusão prevista no § 4º deste artigo:",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…de constrição e de alienação pelos juízos que as processam, ressalvada a hipótese prevista no inciso IV deste parágrafo;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "II - a execução automática das garantias;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…lores liquidados com os créditos, na hipótese de parcelamento na modalidade prevista no inciso VI do caput deste artigo;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "IV - a faculdade de a Fazenda Nacional requerer a convolação da recuperação judicial em falência.",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…tos constituídos, inscritos ou não em dívida ativa da União, poderão ser incluídos até a data do pedido de parcelamento.",
+          "literal": "(Redação dada pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…eração dos bens e dos direitos do devedor ou de seus responsáveis que tenham sido constituídos em garantia dos créditos.",
+          "literal": "(Redação dada pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "… caput deste artigo observará as demais condições previstas nesta Lei, ressalvado o disposto nos seguintes dispositivos:",
+          "literal": "(Redação dada pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "I - § 1º do art. 11;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "II - inciso II do § 1º do art. 12;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "III - inciso VIII do caput do art. 14;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "IV - § 2º do art. 14-A.",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…de pequeno porte farão jus a prazos 20% (vinte por cento) superiores àqueles regularmente concedidos às demais empresas.",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…das fundações públicas federais, ressalvada a modalidade de parcelamento de que trata o inciso VI do caput deste artigo.",
+          "literal": "(Redação dada pela Lei nº 14.112, de 2020)"
+        }
+      ]
+    },
+    "10-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…ecutivas, calculadas de modo a observar os seguintes percentuais mínimos, aplicados sobre o valor da dívida consolidada:",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "I - da primeira à sexta prestação: 3% (três por cento);",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "II - da sétima à décima segunda prestação: 6% (seis por cento);",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "… prestação em diante: percentual correspondente ao saldo remanescente, em até 12 (doze) prestações mensais e sucessivas.",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…to aos incisos V e VI do caput, ao § 1º-B e ao inciso III do § 4º-A, aplica-se ao parcelamento de que trata este artigo.",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…de pequeno porte farão jus a prazos 20% (vinte por cento) superiores àqueles regularmente concedidos às demais empresas.",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        }
+      ]
+    },
+    "10-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…ativa a créditos inscritos em dívida ativa da União, nos termos da Lei nº 13.988, de 14 de abril de 2020, observado que:",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…(cento e vinte) meses, observado, no que couber, o disposto no § 3º do art. 11 da Lei nº 13.988, de 14 de abril de 2020;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "II - o limite máximo para reduções será de até 70% (setenta por cento);",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…da atividade empresarial, da razoável duração dos processos e da eficiência, e utilizados como parâmetros, entre outros:",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "a) a recuperabilidade do crédito, inclusive considerando eventual prognóstico em caso de falência;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "b) a proporção entre o passivo fiscal e o restante das dívidas do sujeito passivo; e",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "c) o porte e a quantidade de vínculos empregatícios mantidos pela pessoa jurídica;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…nálise da proposta de transação, ainda que esta tenha sido rejeitada, será encaminhada ao juízo da recuperação judicial;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…bre extratos de fundos ou aplicações financeiras e sobre eventual comprometimento de recebíveis e demais ativos futuros;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "b) manter regularidade fiscal perante a União;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "c) manter o Certificado de Regularidade do FGTS;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…ção da transação em caso de alienação ou de oneração de bens ou direitos integrantes do respectivo ativo não circulante;",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…salvo oposição justificada por parte da Procuradoria-Geral da Fazenda Nacional, a ser apreciada pelo respectivo juízo; e",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "VII - a rescisão da transação por inadimplemento de parcelas somente ocorrerá nas seguintes hipóteses:",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "a) falta de pagamento de 6 (seis) parcelas consecutivas ou de 9 (nove) parcelas alternadas; e",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "b) falta de pagamento de 1 (uma) até 5 (cinco) parcelas, conforme o caso, se todas as demais estiverem pagas.",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…icial desenvolve projetos sociais, nos termos da regulamentação a que se refere a Lei nº 13.988, de 14 de abril de 2020.",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…ste artigo aplica-se, no que couber, aos créditos de qualquer natureza das autarquias e das fundações públicas federais.",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…poder de polícia, não será aplicável o disposto no inciso I do § 2º do art. 11 da Lei nº 13.988, de 14 de abril de 2020.",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.112",
+            "ano": 2020
+          },
+          "trecho": "…Municípios poderão, por lei de iniciativa própria, autorizar que o disposto neste artigo seja aplicado a seus créditos.",
+          "literal": "(Incluído pela Lei nº 14.112, de 2020)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…imeira prestação, conforme o montante do débito e o prazo solicitado, observado o disposto no § 1o do art. 13 desta Lei.",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 4o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 5o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 6o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "§ 7o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 7o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "§ 8o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 8o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 9º",
+          "diploma": null,
+          "trecho": "§ 9o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 9o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "… suficiente para a exigência do crédito tributário, podendo a exatidão dos valores parcelados ser objeto de verificação.",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 1o Cumpridas as condições estabelecidas no art. 11 desta Lei, o parcelamento será:",
+          "literal": "(incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "I – consolidado na data do pedido; e",
+          "literal": "(incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…o prazo de 90 (noventa) dias, contado da data do pedido de parcelamento sem que a Fazenda Nacional tenha se pronunciado.",
+          "literal": "(incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…deferido o pedido, o devedor fica obrigado a recolher, a cada mês, como antecipação, valor correspondente a uma parcela.",
+          "literal": "(incluído pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…é o mês anterior ao do pagamento, e de 1% (um por cento) relativamente ao mês em que o pagamento estiver sendo efetuado.",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…stação será fixado em ato conjunto do Secretário da Receita Federal do Brasil e do Procurador-Geral da Fazenda Nacional.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…parcelamento de débito inscrito em Dívida Ativa da União, o devedor pagará custas, emolumentos e demais encargos legais.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "13-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "… aplicando-se-lhe o disposto no caput do art. 10, nos arts. 11 e 12, no § 2o do art. 13 e nos arts. 14 e 14-B desta Lei.",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.345",
+            "ano": 2006
+          },
+          "trecho": "§ 1o O valor da parcela será determinado pela divisão do montante do débito consolidado pelo número de parcelas.",
+          "literal": "(Incluído pela Lei nº 11.345, de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.345",
+            "ano": 2006
+          },
+          "trecho": "…s previstos na Lei no 8.036, de 11 de maio de 1990, e, se for o caso, no Decreto-Lei no 1.025, de 21 de outubro de 1969.",
+          "literal": "(Incluído pela Lei nº 11.345, de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.345",
+            "ano": 2006
+          },
+          "trecho": "…go, delegar competência para regulamentar e autorizar o parcelamento dos débitos não inscritos em dívida ativa da União.",
+          "literal": "(Incluído pela Lei nº 11.345, de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.345",
+            "ano": 2006
+          },
+          "trecho": "…e refere este artigo inscritos em dívida ativa da União compete privativamente à Procuradoria-Geral da Fazenda Nacional.",
+          "literal": "(Incluído pela Lei nº 11.345, de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 5o É vedado o reparcelamento de débitos a que se refere o caput, exceto quando inscritos em Dívida Ativa da União.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "I – tributos passíveis de retenção na fonte, de desconto de terceiros ou de sub-rogação;",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "IV – tributos devidos no registro da Declaração de Importação;",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…Nordeste – FINOR, Fundo de Investimento da Amazônia – FINAM e Fundo de Recuperação do Estado do Espírito Santo – FUNRES;",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…J e da Contribuição Social sobre o Lucro Líquido – CSLL, na forma do art. 2o da Lei no 9.430, de 27 de dezembro de 1996;",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…l obrigatório da pessoa física relativo a rendimentos de que trata o art. 8o da Lei no 7.713, de 22 de dezembro de 1988;",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…te pago parcelamento anterior relativo ao mesmo tributo ou exação, salvo nas hipóteses previstas no art. 14-A desta Lei;",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "IX – tributos devidos por pessoa jurídica com falência decretada ou por pessoa física com insolvência civil decretada; e",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…i no 10.931, de 2 de agosto de 2004, pela incorporadora optante do Regime Especial Tributário do Patrimônio de Afetação.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "Parágrafo único. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "14-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…te artigo, será admitido reparcelamento de débitos constantes de parcelamento em andamento ou que tenha sido rescindido.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 1o No reparcelamento de que trata o caput deste artigo poderão ser incluídos novos débitos.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…de reparcelamento previsto neste artigo fica condicionada ao recolhimento da primeira parcela em valor correspondente a:",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "I – 10% (dez por cento) do total dos débitos consolidados; ou",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "II – 20% (vinte por cento) do total dos débitos consolidados, caso haja débito com histórico de reparcelamento anterior.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…bsidiariamente aos pedidos de que trata este artigo as demais disposições relativas ao parcelamento previstas nesta Lei.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "14-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "… do débito para inscrição em Dívida Ativa da União ou prosseguimento da execução, conforme o caso, a falta de pagamento:",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "I – de 3 (três) parcelas, consecutivas ou não; ou",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "II – de 1 (uma) parcela, estando pagas todas as demais.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "14-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…to da primeira prestação em confissão de dívida e instrumento hábil e suficiente para a exigência do crédito tributário.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "… único. Ao parcelamento de que trata o caput deste artigo não se aplicam as vedações estabelecidas no art. 14 desta Lei.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "14-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "… estes autorizem a retenção do Fundo de Participação dos Estados – FPE ou do Fundo de Participação dos Municípios – FPM.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…retenção prevista no caput deste artigo, sem prejuízo da cobrança ou restituição ou compensação de eventuais diferenças.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "14-E": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…onal divulgarão, em seus sítios na internet, demonstrativos dos parcelamentos concedidos no âmbito de suas competências.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "14-F": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…da Nacional, no âmbito de suas competências, editarão atos necessários à execução do parcelamento de que trata esta Lei.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.051",
+            "ano": 2004
+          },
+          "trecho": "X – à Cota de Contribuição revigorada pelo art. 2o do Decreto-Lei no 2.295, de 21 de novembro de 1986.",
+          "literal": "(Incluído pela Lei nº 11.051, de 2004)"
+        }
+      ]
+    },
+    "18-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…conomia, que deverão ser observados nos atos administrativos, normativos e decisórios praticados pelos referidos órgãos.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…que inexista outro fundamento relevante, na hipótese em que a ação ou a decisão judicial ou administrativa versar sobre:",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…er, vigente e aprovado, pelo Procurador-Geral da Fazenda Nacional, que conclua no mesmo sentido do pleito do particular;",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.788",
+            "ano": 2013
+          },
+          "trecho": "III - (VETADO).",
+          "literal": "(Incluído pela Lei nº 12.788, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…a sobre o qual exista súmula ou parecer do Advogado-Geral da União que conclua no mesmo sentido do pleito do particular;",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…remo Tribunal Federal em sentido desfavorável à Fazenda Nacional em sede de controle concentrado de constitucionalidade;",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…al Superior Eleitoral ou pela Turma Nacional de Uniformização de Jurisprudência, no âmbito de suas competências, quando:",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "a) for definido em sede de repercussão geral ou recurso repetitivo; ou",
+          "literal": "(Incluída pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "… sentido desfavorável à Fazenda Nacional, conforme critérios definidos em ato do Procurador-Geral da Fazenda Nacional; e",
+          "literal": "(Incluída pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "VII - tema que seja objeto de súmula da administração tributária federal de que trata o art. 18-A desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "§ 1o Nas matérias de que trata este artigo, o Procurador da Fazenda Nacional que atuar no feito deverá, expressamente:",
+          "literal": "(Redação dada pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "… em embargos à execução fiscal e exceções de pré-executividade, hipóteses em que não haverá condenação em honorários; ou",
+          "literal": "(Incluído pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "II - manifestar o seu desinteresse em recorrer, quando intimado da decisão judicial.",
+          "literal": "(Incluído pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "§ 3º (Revogado);",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "§ 4º (Revogado);",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "§ 5º (Revogado);",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6o -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.788",
+            "ano": 2013
+          },
+          "trecho": "§ 6o - (VETADO).",
+          "literal": "(Incluído pela Lei nº 12.788, de 2013)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "§ 7º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "§ 7º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…nal que examina a juridicidade de proposições normativas não se enquadra no disposto no inciso II do caput deste artigo.",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…ma ou da jurisprudência consolidada, desde que inexista outro fundamento relevante que justifique a impugnação em juízo.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "§ 10. O disposto neste artigo estende-se, no que couber, aos demais meios de impugnação às decisões judiciais.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…s da Procuradoria-Geral da Fazenda Nacional devam atuar na qualidade de representante judicial ou de autoridade coatora.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "… processuais com fundamento no disposto no art. 190 da Lei nº 13.105, de 16 de março de 2015 (Código de Processo Civil).",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…rídicos processuais em seu âmbito de atuação, inclusive na cobrança administrativa ou judicial da dívida ativa da União.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        }
+      ]
+    },
+    "19-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…eral do Brasil não constituirão os créditos tributários relativos aos temas de que trata o art. 19 desta Lei, observado:",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…e terá concordância com a sua aplicação pela Secretaria Especial da Receita Federal do Brasil do Ministério da Economia;",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…o por despacho do Presidente da República, terá concordância com a sua aplicação pelo Ministro de Estado da Economia; ou",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "… Lei, a Procuradoria-Geral da Fazenda Nacional deverá manifestar-se sobre as matérias abrangidas por esses dispositivos.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "… estiverem vinculados, inclusive para fins de revisão de ofício do lançamento e de repetição de indébito administrativa.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…em laudos periciais para atestar a existência de condições que gerem isenção de tributos, aos serviços médicos oficiais.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        }
+      ]
+    },
+    "19-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…nsados de constituir e de promover a cobrança com fundamento nas hipóteses de dispensa de que trata o art. 19 desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…fo único. A aplicação do disposto no caput deste artigo observará, no que couber, as disposições do art. 19-A desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        }
+      ]
+    },
+    "19-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…dos em fase de cumprimento de sentença, a fim de atender a critérios de racionalidade, de economicidade e de eficiência.",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…to no caput deste artigo inclui o estabelecimento de parâmetros de valor para a dispensa da prática de atos processuais.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "§ 2º A aplicação do disposto neste artigo não implicará o reconhecimento da procedência do pedido formulado pelo autor.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…plica-se, inclusive, à atuação da Procuradoria-Geral da Fazenda Nacional no âmbito do contencioso administrativo fiscal.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        }
+      ]
+    },
+    "19-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.375",
+            "ano": 2022
+          },
+          "trecho": "…ral e à Procuradoria-Geral do Banco Central do Brasil, sem prejuízo do disposto na Lei nº 9.469, de 10 de julho de 1997.",
+          "literal": "(Redação dada pela Lei nº 14.375, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…eral ou pela Procuradoria-Geral do Banco Central do Brasil, aplica-se, no que couber, o disposto no art. 19-B desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "§ 2º Ato do Advogado-Geral da União disciplinará o disposto neste artigo.",
+          "literal": "(Incluído pela Lei nº 13.874, de 2019)"
+        }
+      ]
+    },
+    "19-E": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "Art. 19-E.",
+          "literal": "(Revogado pela Lei nº 14.689, de 2023)"
+        }
+      ]
+    },
+    "19-F": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…atar, por meio de processo licitatório ou credenciamento, serviços de terceiros para auxiliar sua atividade de cobrança.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…xecuções fiscais, incluídas atividades de depósito, de guarda, de transporte, de conservação e de alienação desses bens.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…ser por taxa de êxito, desde que demonstrada a sua maior adequação ao interesse público e às práticas usuais de mercado.",
+          "literal": "(Incluído pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.874",
+            "ano": 2019
+          },
+          "trecho": "…ela cobrados, de valor consolidado igual ou inferior àquele estabelecido em ato do Procurador-Geral da Fazenda Nacional.",
+          "literal": "(Redação dada pela Lei nº 13.874, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.033",
+            "ano": 2004
+          },
+          "trecho": "… versem exclusivamente sobre honorários devidos à Fazenda Nacional de valor igual ou inferior a R$ 1.000,00 (mil reais).",
+          "literal": "(Redação dada pela Lei nº 11.033, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.043",
+            "ano": 2014
+          },
+          "trecho": "§ 3o",
+          "literal": "(Revogado pela Lei nº 13.043, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.033",
+            "ano": 2004
+          },
+          "trecho": "…trata o limite indicado no caput deste artigo, será considerada a soma dos débitos consolidados das inscrições reunidas.",
+          "literal": "(Incluído pela Lei nº 11.033, de 2004)"
+        }
+      ]
+    },
+    "20-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.649",
+            "ano": 2012
+          },
+          "trecho": "…a a não opor embargos, quando o valor pleiteado pelo exequente for inferior àquele fixado em ato do Ministro da Fazenda.",
+          "literal": "(Incluído pela Lei nº 12.649, de 2012)"
+        }
+      ]
+    },
+    "20-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.606",
+            "ano": 2018
+          },
+          "trecho": "…dias, efetuar o pagamento do valor atualizado monetariamente, acrescido de juros, multa e demais encargos nela indicados",
+          "literal": "(Incluído pela Lei nº 13.606, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.606",
+            "ano": 2018
+          },
+          "trecho": "… postal para o endereço do devedor e será considerada entregue depois de decorridos quinze dias da respectiva expedição.",
+          "literal": "(Incluído pela Lei nº 13.606, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.606",
+            "ano": 2018
+          },
+          "trecho": "…o Presume-se válida a notificação expedida para o endereço informado pelo contribuinte ou responsável à Fazenda Pública.",
+          "literal": "(Incluído pela Lei nº 13.606, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.606",
+            "ano": 2018
+          },
+          "trecho": "§ 3o Não pago o débito no prazo fixado no caput deste artigo, a Fazenda Pública poderá:",
+          "literal": "(Incluído pela Lei nº 13.606, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.606",
+            "ano": 2018
+          },
+          "trecho": "…os que operam bancos de dados e cadastros relativos a consumidores e aos serviços de proteção ao crédito e congêneres; e",
+          "literal": "(Incluído pela Lei nº 13.606, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.606",
+            "ano": 2018
+          },
+          "trecho": "…idão de dívida ativa nos órgãos de registro de bens e direitos sujeitos a arresto ou penhora, tornando-os indisponíveis.",
+          "literal": "(Incluído pela Lei nº 13.606, de 2018)"
+        }
+      ]
+    },
+    "20-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.606",
+            "ano": 2018
+          },
+          "trecho": "…ômica dos devedores ou corresponsáveis, desde que úteis à satisfação integral ou parcial dos débitos a serem executados.",
+          "literal": "(Incluído pela Lei nº 13.606, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.606",
+            "ano": 2018
+          },
+          "trecho": "…zamento da ação de que trata o caput deste artigo, observados os critérios de racionalidade, economicidade e eficiência.",
+          "literal": "(Incluído pela Lei nº 13.606, de 2018)"
+        }
+      ]
+    },
+    "20-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.606",
+            "ano": 2018
+          },
+          "trecho": "…s e demais responsáveis, a Procuradoria-Geral da Fazenda Nacional poderá, a critério exclusivo da autoridade fazendária:",
+          "literal": "(Incluído pela Lei nº 13.606, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.606",
+            "ano": 2018
+          },
+          "trecho": "I - notificar as pessoas de que trata o caput deste artigo ou terceiros para prestar depoimentos ou esclarecimentos;",
+          "literal": "(Incluído pela Lei nº 13.606, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.606",
+            "ano": 2018
+          },
+          "trecho": "…ca direta, indireta ou fundacional, de qualquer dos Poderes da União, dos Estados, do Distrito Federal e dos Municípios;",
+          "literal": "(Incluído pela Lei nº 13.606, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.606",
+            "ano": 2018
+          },
+          "trecho": "…da ativa da União, ajuizado ou não, observadas, no que couber, as disposições da Lei no 9.784, de 29 de janeiro de 1999.",
+          "literal": "(Incluído pela Lei nº 13.606, de 2018)"
+        }
+      ]
+    },
+    "20-E": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.606",
+            "ano": 2018
+          },
+          "trecho": "… Fazenda Nacional editará atos complementares para o fiel cumprimento do disposto nos arts. 20-B, 20-C e 20-D desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.606, de 2018)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…ção fiscal poderão ser subscritos manualmente, ou por chancela mecânica ou eletrônica, observadas as disposições legais.",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.810",
+            "ano": 2013
+          },
+          "trecho": "…dimplementos objetos de registro no Cadin e no Sistema Integrado de Administração Financeira do Governo Federal - SIAFI.",
+          "literal": "(Redação dada pela Lei nº 12.810, de 2013)"
+        }
+      ]
+    },
+    "26-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.810",
+            "ano": 2013
+          },
+          "trecho": "…al estará sujeito a prestar contas da sua boa e regular aplicação, observando-se o disposto nos §§ 1o a 10 deste artigo.",
+          "literal": "(Incluído pela Lei nº 12.810, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.810",
+            "ano": 2013
+          },
+          "trecho": "…rma específica disporá sobre o prazo para prestação de contas e instauração de tomada de contas especial, se for o caso.",
+          "literal": "(Incluído pela Lei nº 12.810, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.810",
+            "ano": 2013
+          },
+          "trecho": "…ndimentos da aplicação no mercado financeiro, atualizados monetariamente e acrescidos de juros de mora, na forma da lei.",
+          "literal": "(Incluído pela Lei nº 12.810, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.810",
+            "ano": 2013
+          },
+          "trecho": "…conta única do Tesouro deverá ocorrer sem a incidência de juros de mora, mas com os rendimentos da aplicação financeira.",
+          "literal": "(Incluído pela Lei nº 12.810, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.810",
+            "ano": 2013
+          },
+          "trecho": "… de contas, o concedente deverá apreciá-la aprovando ou rejeitando, total ou parcialmente, as contas, de forma motivada.",
+          "literal": "(Incluído pela Lei nº 12.810, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.810",
+            "ano": 2013
+          },
+          "trecho": "… procedimento de apuração no qual sejam garantidos oportunizados o contraditório e a ampla defesa das partes envolvidas.",
+          "literal": "(Incluído pela Lei nº 12.810, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.810",
+            "ano": 2013
+          },
+          "trecho": "…mplementadas medidas administrativas ou judiciais para recuperação dos valores, sob pena de responsabilização solidária.",
+          "literal": "(Incluído pela Lei nº 12.810, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.810",
+            "ano": 2013
+          },
+          "trecho": "…tas dos recursos provenientes de convênios, contratos de repasse e termos de parcerias firmados pelos seus antecessores.",
+          "literal": "(Incluído pela Lei nº 12.810, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.810",
+            "ano": 2013
+          },
+          "trecho": "…justificativas que demonstrem o impedimento de prestar contas e solicitação de instauração de tomada de contas especial.",
+          "literal": "(Incluído pela Lei nº 12.810, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.810",
+            "ano": 2013
+          },
+          "trecho": "…gistro de inadimplência do órgão ou entidade será suspenso, no prazo de até 48 (quarenta e oito) horas, pelo concedente.",
+          "literal": "(Incluído pela Lei nº 12.810, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.810",
+            "ano": 2013
+          },
+          "trecho": "…a registro de inadimplência no sistema de gestão do instrumento e a forma de notificação prévia com os referidos prazos.",
+          "literal": "(Incluído pela Lei nº 12.810, de 2013)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.788",
+            "ano": 2013
+          },
+          "trecho": "…prolatadas pela Secretaria da Receita Federal do Brasil, em processos relativos a tributos administrados por esse órgão:",
+          "literal": "(Redação dada pela Lei nº 12.788, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.788",
+            "ano": 2013
+          },
+          "trecho": "I - quando se tratar de pedido de restituição de tributos;",
+          "literal": "(Incluído pela Lei nº 12.788, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.788",
+            "ano": 2013
+          },
+          "trecho": "…rializados - IPI, da Contribuição para o PIS/Pasep e da Contribuição para o Financiamento da Seguridade Social - COFINS;",
+          "literal": "(Incluído pela Lei nº 12.788, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.788",
+            "ano": 2013
+          },
+          "trecho": "III - quando se tratar de reembolso do salário-família e do salário-maternidade;",
+          "literal": "(Incluído pela Lei nº 12.788, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.788",
+            "ano": 2013
+          },
+          "trecho": "IV - quando se tratar de homologação de compensação;",
+          "literal": "(Incluído pela Lei nº 12.788, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.788",
+            "ano": 2013
+          },
+          "trecho": "V - nos casos de redução de penalidade por retroatividade benigna; e",
+          "literal": "(Incluído pela Lei nº 12.788, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.788",
+            "ano": 2013
+          },
+          "trecho": "…de inconstitucionalidade, em súmula vinculante proferida pelo Supremo Tribunal Federal e no disposto no § 6o do art. 19.",
+          "literal": "(Incluído pela Lei nº 12.788, de 2013)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 33.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.548",
+            "ano": 2011
+          },
+          "trecho": "…tral do Brasil passíveis de inscrição e cobrança como Dívida Ativa e não pagos nos prazos previstos serão acrescidos de:",
+          "literal": "(Redação dada pela Lei nº 12.548, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.548",
+            "ano": 2011
+          },
+          "trecho": "…is, acumulada mensalmente, até o último dia do mês anterior ao do pagamento, e de 1% (um por cento) no mês do pagamento;",
+          "literal": "(Redação dada pela Lei nº 12.548, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.548",
+            "ano": 2011
+          },
+          "trecho": "…l, até o limite de 20% (vinte por cento), incidente sobre o valor atualizado na forma do inciso I do caput deste artigo.",
+          "literal": "(Redação dada pela Lei nº 12.548, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.548",
+            "ano": 2011
+          },
+          "trecho": "…r contam-se do primeiro dia do mês subsequente ao do vencimento, previsto na intimação da decisão de primeira instância.",
+          "literal": "(Redação dada pela Lei nº 12.548, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.548",
+            "ano": 2011
+          },
+          "trecho": "…a forma e condições por ele estabelecidas, incidindo sobre cada parcela a pagar os juros de mora previstos neste artigo.",
+          "literal": "(Redação dada pela Lei nº 12.548, de 2011)"
+        }
+      ]
+    },
+    "37-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…rão acrescidos de juros e multa de mora, calculados nos termos e na forma da legislação aplicável aos tributos federais.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "… do devedor em honorários advocatícios, calculado nos termos e na forma da legislação aplicável à Dívida Ativa da União.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 2o O disposto neste artigo não se aplica aos créditos do Banco Central do Brasil.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "37-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…ias e fundações públicas federais, de qualquer natureza, poderão ser parcelados em até 60 (sessenta) prestações mensais.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…os §§ 11 e 12 do art. 10 da Lei no 10.480, de 2 de julho de 2002, e do art. 22 da Lei no 11.457, de 16 de março de 2007.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…to da primeira prestação, conforme o montante do débito e o prazo solicitado, observado o disposto no § 9o deste artigo.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "… Enquanto não deferido o pedido, o devedor fica obrigado a recolher, a cada mês, o valor correspondente a uma prestação.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 4o O não cumprimento do disposto neste artigo implicará o indeferimento do pedido.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…de não manifestação da autoridade competente no prazo de 90 (noventa) dias, contado da data da protocolização do pedido.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…mento hábil e suficiente para exigência do crédito, podendo a exatidão dos valores parcelados ser objeto de verificação.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 7o O débito objeto de parcelamento será consolidado na data do pedido.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 8o O devedor pagará as custas, emolumentos e demais encargos legais.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 9o O valor mínimo de cada prestação mensal será definido por ato do Procurador-Geral Federal.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…é o mês anterior ao do pagamento, e de 1% (um por cento) relativamente ao mês em que o pagamento estiver sendo efetuado.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…o pagas todas as demais, implicará a imediata rescisão do parcelamento e, conforme o caso, o prosseguimento da cobrança.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…o o pagamento da primeira prestação em confissão de dívida e instrumento hábil e suficiente para a exigência do crédito.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…tiva das autarquias e fundações públicas federais, constantes de parcelamento em andamento ou que tenha sido rescindido.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…ormalização do pedido de reparcelamento fica condicionada ao recolhimento da primeira parcela em valor correspondente a:",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "I – 10% (dez por cento) do total dos débitos consolidados; ou",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "II – 20% (vinte por cento) do total dos débitos consolidados, caso haja débito com histórico de reparcelamento anterior.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…e reparcelamento, naquilo que não os contrariar, as demais disposições relativas ao parcelamento previstas neste artigo.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 16º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…rante as Procuradorias Regionais Federais, as Procuradorias Federais nos Estados e as Procuradorias Seccionais Federais.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 17º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…mente às Procuradorias Regionais Federais, às Procuradorias Federais nos Estados e às Procuradorias Seccionais Federais.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 18º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 18. A Procuradoria-Geral Federal editará atos necessários à execução do parcelamento de que trata este artigo.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 19º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…vulgará, no sítio da Advocacia-Geral da União, demonstrativos dos parcelamentos concedidos no âmbito de sua competência.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 20º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…e artigo aplicam-se subsidiariamente as regras previstas nesta Lei para o parcelamento dos créditos da Fazenda Nacional.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "37-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…de pessoas físicas ou jurídicas que tenham débito inscrito em Dívida Ativa das autarquias e fundações públicas federais.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    }
+  }
+}

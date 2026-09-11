@@ -1,0 +1,663 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L8245",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l8245.json",
+      "colecao": "artigos",
+      "sha256": "f069429c904ac8d2998bb60c18812c689167e101c46444ebdf8db32004614943",
+      "total_registros": 91,
+      "gerado_em": "2026-08-21T22:36:32+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 18,
+      "anotacoes": 51,
+      "anotacoes_sem_diploma_nomeado": 7
+    }
+  },
+  "vigencia": {
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.744",
+            "ano": 2012
+          },
+          "trecho": "…ulta pactuada, proporcional ao período de cumprimento do contrato, ou, na sua falta, a que for judicialmente estipulada.",
+          "literal": "(Redação dada pela Lei nº 12.744, de 2012)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "… união estável, a locação residencial prosseguirá automaticamente com o cônjuge ou companheiro que permanecer no imóvel.",
+          "literal": "(Redação dada pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…t. 11, a sub-rogação será comunicada por escrito ao locador e ao fiador, se esta for a modalidade de garantia locatícia.",
+          "literal": "(Incluído pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "… sub-rogado, ficando responsável pelos efeitos da fiança durante 120 (cento e vinte) dias após a notificação ao locador.",
+          "literal": "(Incluído pela Lei nº 12.112, de 2009)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "§ 3o (VETADO)",
+          "literal": "(Incluído pela Lei nº 12.112, de 2009)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.931",
+            "ano": 2004
+          },
+          "trecho": "…condição constar expressamente em cláusula contratual específica, destacando-se das demais por sua apresentação gráfica.",
+          "literal": "(Incluído pela Lei nº 10.931, de 2004)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "IV - cessão fiduciária de quotas de fundo de investimento.",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        }
+      ]
+    },
+    "39": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "… estende até a efetiva devolução do imóvel, ainda que prorrogada a locação por prazo indeterminado, por força desta Lei.",
+          "literal": "(Redação dada pela Lei nº 12.112, de 2009)"
+        }
+      ]
+    },
+    "40": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "II – ausência, interdição, recuperação judicial, falência ou insolvência do fiador, declaradas judicialmente;",
+          "literal": "(Redação dada pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "VIII - exoneração de garantia constituída por quotas de fundo de investimento;",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "IX - liquidação ou encerramento do fundo de investimento de que trata o inciso IV do art. 37 desta Lei.",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…eração, ficando obrigado por todos os efeitos da fiança, durante 120 (cento e vinte) dias após a notificação ao locador.",
+          "literal": "(Incluído pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…r o locatário para apresentar nova garantia locatícia no prazo de 30 (trinta) dias, sob pena de desfazimento da locação.",
+          "literal": "(Incluído pela Lei nº 12.112, de 2009)"
+        }
+      ]
+    },
+    "53": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.256",
+            "ano": 1996
+          },
+          "trecho": "…pelo Poder Público, bem como por entidades religiosas devidamente registradas, o contrato somente poderá ser rescindido.",
+          "literal": "(Redação dada pela Lei nº 9.256, de 9.1.1996)"
+        }
+      ]
+    },
+    "54-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.744",
+            "ano": 2012
+          },
+          "trecho": "…evalecerão as condições livremente pactuadas no contrato respectivo e as disposições procedimentais previstas nesta Lei.",
+          "literal": "(Incluído pela Lei nº 12.744, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.744",
+            "ano": 2012
+          },
+          "trecho": "…convencionada a renúncia ao direito de revisão do valor dos aluguéis durante o prazo de vigência do contrato de locação.",
+          "literal": "(Incluído pela Lei nº 12.744, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.744",
+            "ano": 2012
+          },
+          "trecho": "… a multa convencionada, que não excederá, porém, a soma dos valores dos aluguéis a receber até o termo final da locação.",
+          "literal": "(Incluído pela Lei nº 12.744, de 2012)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.744",
+            "ano": 2012
+          },
+          "trecho": "§ 3o (VETADO).",
+          "literal": "(Incluído pela Lei nº 12.744, de 2012)"
+        }
+      ]
+    },
+    "59": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…co, que não possam ser normalmente executadas com a permanência do locatário, ou, podendo, ele se recuse a consenti-las;",
+          "literal": "(Incluído pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…evisto no parágrafo único do art. 40, sem apresentação de nova garantia apta a manter a segurança inaugural do contrato;",
+          "literal": "(Incluído pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…ido proposta a ação em até 30 (trinta) dias do termo ou do cumprimento de notificação comunicando o intento de retomada;",
+          "literal": "(Incluído pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…o art. 37, por não ter sido contratada ou em caso de extinção ou pedido de exoneração dela, independentemente de motivo.",
+          "literal": "(Incluído pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…lo, efetuar depósito judicial que contemple a totalidade dos valores devidos, na forma prevista no inciso II do art. 62.",
+          "literal": "(Incluído pela Lei nº 12.112, de 2009)"
+        }
+      ]
+    },
+    "62": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…guel provisório, de diferenças de aluguéis, ou somente de quaisquer dos acessórios da locação, observar-se-á o seguinte:",
+          "literal": "(Redação dada pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…para responderem ao pedido de cobrança, devendo ser apresentado, com a inicial, cálculo discriminado do valor do débito;",
+          "literal": "(Redação dada pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…tado da citação, o pagamento do débito atualizado, independentemente de cálculo e mediante depósito judicial, incluídos:",
+          "literal": "(Redação dada pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…igida ao locatário ou diretamente ao patrono deste, por carta ou publicação no órgão oficial, a requerimento do locador;",
+          "literal": "(Redação dada pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…plementado o depósito, o pedido de rescisão prosseguirá pela diferença, podendo o locador levantar a quantia depositada;",
+          "literal": "(Redação dada pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…catário já houver utilizado essa faculdade nos 24 (vinte e quatro) meses imediatamente anteriores à propositura da ação.",
+          "literal": "(Redação dada pela Lei nº 12.112, de 2009)"
+        }
+      ]
+    },
+    "63": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…, que conterá o prazo de 30 (trinta) dias para a desocupação voluntária, ressalvado o disposto nos parágrafos seguintes.",
+          "literal": "(Redação dada pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "b) o despejo houver sido decretado com fundamento no art. 9o ou no § 2o do art. 46.",
+          "literal": "(Redação dada pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.256",
+            "ano": 1996
+          },
+          "trecho": "… citação e a sentença de primeira instância houver decorrido mais de um ano, hipótese em que o prazo será de seis meses.",
+          "literal": "(Redação dada pela Lei nº 9.256, de 9.1.1996)"
+        }
+      ]
+    },
+    "64": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…o não inferior a 6 (seis) meses nem superior a 12 (doze) meses do aluguel, atualizado até a data da prestação da caução.",
+          "literal": "(Redação dada pela Lei nº 12.112, de 2009)"
+        }
+      ]
+    },
+    "68": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "Art. 68. Na ação revisional de aluguel, que terá o rito sumário, observar-se-á o seguinte:",
+          "literal": "(Redação dada pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…mo pelo locatário, ou nos que indicar, fixará aluguel provisório, que será devido desde a citação, nos seguintes moldes:",
+          "literal": "(Redação dada pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "a) em ação proposta pelo locador, o aluguel provisório não poderá ser excedente a 80% (oitenta por cento) do pedido;",
+          "literal": "(Incluída pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…ação proposta pelo locatário, o aluguel provisório não poderá ser inferior a 80% (oitenta por cento) do aluguel vigente;",
+          "literal": "(Incluída pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…ssível, determinará a realização de perícia, se necessária, designando, desde logo, audiência de instrução e julgamento;",
+          "literal": "(Redação dada pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…inciso III deste artigo interrompe o prazo para interposição de recurso contra a decisão que fixar o aluguel provisório.",
+          "literal": "(Incluído pela Lei nº 12.112, de 2009)"
+        }
+      ]
+    },
+    "71": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "… carteira de identidade, comprovando, desde logo, mesmo que não haja alteração do fiador, a atual idoneidade financeira;",
+          "literal": "(Redação dada pela Lei nº 12.112, de 2009)"
+        }
+      ]
+    },
+    "74": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "…dado de despejo, que conterá o prazo de 30 (trinta) dias para a desocupação voluntária, se houver pedido na contestação.",
+          "literal": "(Redação dada pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "§ 1o (VETADO)",
+          "literal": "(Incluído dada pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "§ 2o (VETADO)",
+          "literal": "(Incluído dada pela Lei nº 12.112, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.112",
+            "ano": 2009
+          },
+          "trecho": "§ 3o (VETADO)",
+          "literal": "(Incluído dada pela Lei nº 12.112, de 2009)"
+        }
+      ]
+    },
+    "87": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 87.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "88": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 88.",
+          "literal": "(Vetado)"
+        }
+      ]
+    }
+  }
+}
