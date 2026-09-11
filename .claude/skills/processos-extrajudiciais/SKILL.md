@@ -19,10 +19,7 @@ Identifica quando um caso pode ser resolvido pela via extrajudicial (mais rápid
    - **Inventário/partilha**: todos os herdeiros são capazes (maiores e sem incapacidade)? Há consenso sobre a partilha? Não há testamento (ou, se houver, foi previamente registrado/homologado)? → Se sim, extrajudicial é possível; se não, indicar via judicial.
    - **Divórcio/separação**: casal sem filhos menores ou incapazes, consenso sobre partilha de bens, guarda e alimentos (se houver filhos maiores)? → Se sim, cabe escritura pública.
    - **Usucapião**: posse mansa, pacífica e ininterrupta pelo prazo exigido pela modalidade, ata notarial comprovando a posse, planta e memorial descritivo do imóvel assinados por profissional habilitado, anuência dos confrontantes.
-2. **Documentação necessária**:
-   - Inventário: certidão de óbito, documentos pessoais dos herdeiros, certidão de propriedade dos bens, certidão negativa de débitos.
-   - Divórcio: certidão de casamento, documentos pessoais, pacto antenupcial (se houver), descrição dos bens a partilhar.
-   - Usucapião: ata notarial, planta/memorial, certidões dos confrontantes e do imóvel.
+2. **Documentação necessária** por tipo de ato (inventário, divórcio, usucapião): checklist completo em [references/checklist-documentos-por-ato.md](references/checklist-documentos-por-ato.md).
 3. **Minuta da escritura pública**: estruturar com qualificação completa das partes, descrição do ato (partilha, divórcio, reconhecimento de usucapião), termos e condições acordados, e cláusulas de praxe do tabelionato.
 4. **Se não elegível para via extrajudicial**: explicar objetivamente ao cliente por que o caso precisa ir para o judicial (ex.: há incapaz, há discordância) e direcionar para a skill de peticionamento cível correspondente.
 

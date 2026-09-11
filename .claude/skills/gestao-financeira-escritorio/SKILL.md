@@ -14,12 +14,7 @@ Apoia a gestão do escritório como negócio: precificação e cobrança de hono
 - **Honorários sucumbenciais** (art. 85 CPC): pertencem ao advogado, natureza alimentar, devem ser considerados separadamente do honorário contratual na gestão financeira.
 
 ## Fluxo de trabalho
-1. **Estrutura de contrato de honorários** — definir e formalizar sempre por escrito:
-   - Honorário fixo (valor certo por serviço/consulta)
-   - Honorário de êxito (percentual sobre o proveito econômico obtido)
-   - Honorário misto (entrada fixa + êxito reduzido)
-   - Honorário mensal/contínuo (assessoria recorrente)
-   - Sempre prever forma de reajuste, condições de rescisão e o que ocorre com honorários já vencidos em caso de destituição.
+1. **Estrutura de contrato de honorários** — definir e formalizar sempre por escrito (fixo, êxito, misto ou mensal/contínuo), sempre prevendo forma de reajuste, condições de rescisão e o que ocorre com honorários já vencidos em caso de destituição. Esqueleto completo: [references/modelo-contrato-honorarios.md](references/modelo-contrato-honorarios.md).
 2. **Controle de fluxo de caixa**: organizar entradas (honorários recebidos, êxitos, mensalidades) e saídas (despesas fixas — aluguel, folha; variáveis — custas, diligências) em base mensal, projetando saldo futuro.
 3. **Controle de inadimplência**: listar clientes com parcelas em atraso, tempo de atraso, e sugerir régua de cobrança (lembrete amigável → notificação formal → negativação/execução do contrato, conforme o valor envolvido).
 4. **Indicadores de produtividade e rentabilidade**:

@@ -25,14 +25,8 @@ Analisa minutas contratuais em busca de riscos jurídicos, ambiguidades e desequ
    - Confidencialidade e propriedade intelectual, se aplicável
    - Foro de eleição e lei aplicável
    - LGPD: cláusula de tratamento de dados pessoais, se houver
-3. **Red flags comuns a sinalizar**:
-   - Cláusulas de renúncia unilateral de direitos
-   - Multa desproporcional ou só aplicável a uma das partes
-   - Prazo de rescisão excessivamente curto para uma das partes
-   - Ausência de cláusula de reajuste em contratos de longo prazo
-   - Cláusula de eleição de foro distante/inconveniente para a parte mais fraca
-   - Cláusulas potencialmente abusivas sob o CDC (inversão de ônus, renúncia a direito, vantagem excessiva)
-4. **Redigir sugestões de ajuste** com a cláusula original, o risco identificado e a redação alternativa proposta — nunca reescrever o contrato inteiro sem justificar cada mudança.
+3. **Classificar cada cláusula de risco por severidade** — CRÍTICO / ALTO / MÉDIO / BAIXO — usando o catálogo completo em [references/red-flags-clausulas.md](references/red-flags-clausulas.md).
+4. **Redigir sugestões de ajuste** com a cláusula original, a severidade, o risco identificado e a redação alternativa proposta — nunca reescrever o contrato inteiro sem justificar cada mudança.
 5. **Comparação de versões**: quando houver duas minutas, apontar objetivamente as diferenças materiais (não apenas redacionais) e o impacto de cada uma para o cliente.
 
 ## Alertas

@@ -24,7 +24,7 @@ Redige petições trabalhistas (reclamatória e contestação) e organiza cálcu
    - FGTS + multa de 40% (se aplicável)
    - Horas extras + reflexos (DSR, 13º, férias, FGTS)
    - Adicional noturno, insalubridade, periculosidade, se houver
-4. **Montar a reclamatória**: qualificação, breve resumo do vínculo (admissão, função, salário, jornada, rescisão), fundamentação de cada pedido com base no fato narrado, pedidos líquidos (obrigatório no sumaríssimo), valor da causa.
+4. **Montar a reclamatória**: qualificação, breve resumo do vínculo (admissão, função, salário, jornada, rescisão), fundamentação de cada pedido com base no fato narrado, pedidos líquidos (obrigatório no sumaríssimo), valor da causa. Esqueleto completo: [references/modelo-reclamatoria.md](references/modelo-reclamatoria.md).
 5. **Contestação** (quando defendendo o empregador): impugnação específica de cada verba, teses de prescrição, compensação de valores já pagos, documentos de contraprova (ponto, recibos).
 
 ## Alertas

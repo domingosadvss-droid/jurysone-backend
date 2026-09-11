@@ -14,14 +14,9 @@ Cobre licitações públicas (Lei 14.133/2021), contratos administrativos e defe
 - **Súmulas e jurisprudência do TCU**: parâmetro de controle para direcionamento de edital, restrição à competitividade, sobrepreço.
 
 ## Fluxo de trabalho
-1. **Análise de edital** — checklist de red flags de direcionamento/restrição indevida:
-   - Exigências de qualificação técnica desproporcionais ao objeto
-   - Marca específica sem justificativa técnica (art. 41 e vedações correlatas)
-   - Prazo de execução incompatível com o objeto
-   - Critérios de julgamento que favoreçam um concorrente específico
-   - Exigência de atestados com quantitativos exagerados
+1. **Análise de edital**: checklist completo de admissibilidade e pontos de atenção em [references/checklist-edital.md](references/checklist-edital.md); catálogo de padrões de direcionamento/restrição indevida em [references/red-flags-direcionamento.md](references/red-flags-direcionamento.md).
 2. **Mapear artigos-chave aplicáveis ao caso** (ETP — Estudo Técnico Preliminar, termo de referência, matriz de risco) antes de redigir a peça.
-3. **Impugnação/recurso administrativo**: identificar prazo (contado da publicação/notificação), fundamentar com o artigo da Lei 14.133/2021 violado + jurisprudência do TCU quando pertinente, pedido claro (retificação de edital, anulação do certame, habilitação/desclassificação).
+3. **Impugnação/recurso administrativo**: identificar prazo (contado da publicação/notificação), fundamentar com o artigo da Lei 14.133/2021 violado + entendimento do TCU quando pertinente ([references/jurisprudencia-tcu.md](references/jurisprudencia-tcu.md)). Esqueleto de peça pronto para adaptar: [references/modelo-impugnacao-recurso.md](references/modelo-impugnacao-recurso.md).
 4. **Defesa em processo administrativo sancionatório**: verificar garantia de contraditório e ampla defesa (Lei 9.784/1999), prazo de defesa prévia, proporcionalidade da sanção proposta frente ao histórico contratual.
 5. **Mandado de segurança**: avaliar cabimento quando esgotada ou inócua a via administrativa e houver direito líquido e certo violado por ato de autoridade pública, respeitando o prazo decadencial de 120 dias.
 

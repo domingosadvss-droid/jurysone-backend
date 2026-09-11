@@ -26,7 +26,8 @@ Apoia a etapa final do fluxo processual: garantir que a peça esteja pronta para
    - Sinalizar prazo fatal com antecedência (recomendar protocolo com folga de segurança, nunca no último minuto)
    - Registrar o prazo em formato de checklist/agenda: processo, ato a praticar, prazo final, responsável
 3. **Triagem de intimações recebidas**: para cada intimação, extrair: número do processo, tipo de ato exigido (contestar, recorrer, manifestar-se, comparecer), prazo, e classificar por urgência.
-4. **Geração de peça compatível com o sistema**: ajustar formatação (petição em página A4, fonte legível, sem elementos que quebrem a extração de texto) para os sistemas que exigem PDF pesquisável.
+4. **Geração de peça compatível com o sistema**: ajustar formatação (petição em página A4, fonte legível, sem elementos que quebrem a extração de texto) para os sistemas que exigem PDF pesquisável. Particularidades de cada sistema (PJe, e-SAJ, Projudi, eproc): [references/tabela-prazos-por-sistema.md](references/tabela-prazos-por-sistema.md).
+5. **Conferir número de processo suspeito de erro de digitação**: use [scripts/validador_cnj.py](scripts/validador_cnj.py) para validar o dígito verificador do número único (padrão CNJ, Resolução 65/2008) antes de usá-lo numa peça ou consulta.
 
 ## Alertas
 - Nunca informar um prazo como "definitivo" sem que o usuário confirme a data exata de intimação/publicação — a contagem correta depende desse marco inicial.

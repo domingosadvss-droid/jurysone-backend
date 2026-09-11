@@ -29,7 +29,7 @@ Redige e revisa peças processuais cíveis em conformidade com o CPC/2015, Códi
    - **Família** (divórcio, guarda, alimentos): se houver consenso, sinalizar possibilidade de via extrajudicial (ver skill [processos-extrajudiciais](../processos-extrajudiciais/SKILL.md)). Alimentos: aplicar binômio necessidade/possibilidade, sugerir percentual sobre rendimentos quando houver vínculo formal.
    - **Sucessões**: verificar se cabe inventário extrajudicial (sem testamento, herdeiros capazes e concordes) antes de partir para o judicial.
    - **Imobiliário/usucapião**: identificar modalidade (extraordinária, ordinária, especial urbana/rural, familiar) e checar prazo de posse exigido para cada uma.
-4. **Montar a minuta final** com estrutura forense padrão: endereçamento → qualificação → dos fatos → do direito → dos pedidos → do valor da causa → das provas → requerimentos finais → data/assinatura.
+4. **Montar a minuta final** com estrutura forense padrão: endereçamento → qualificação → dos fatos → do direito → dos pedidos → do valor da causa → das provas → requerimentos finais → data/assinatura. Esqueleto completo pronto para adaptar: [references/modelo-peticao-inicial.md](references/modelo-peticao-inicial.md).
 5. **Revisão final**: prazos, tempestividade, anexos obrigatórios, coerência entre fatos narrados e pedidos.
 
 ## Alertas

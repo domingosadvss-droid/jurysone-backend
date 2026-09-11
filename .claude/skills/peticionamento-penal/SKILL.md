@@ -20,7 +20,7 @@ Apoia a defesa criminal em todas as fases: investigação (inquérito/flagrante)
    - Houve excesso de prazo ou violação de direitos na abordagem?
    - Cabe relaxamento (ilegalidade), liberdade provisória (com ou sem fiança) ou conversão em preventiva?
    - Presentes os requisitos do art. 312 CPP para preventiva (garantia da ordem pública, instrução criminal, aplicação da lei penal)?
-3. **Resposta à acusação** (art. 396-A CPP, prazo 10 dias): arguir preliminares (nulidades, ilegitimidade, inépcia da denúncia), teses de mérito (negativa de autoria, excludentes de ilicitude/culpabilidade), rol de testemunhas.
+3. **Resposta à acusação** (art. 396-A CPP, prazo 10 dias): arguir preliminares (nulidades, ilegitimidade, inépcia da denúncia), teses de mérito (negativa de autoria, excludentes de ilicitude/culpabilidade), rol de testemunhas. Esqueleto completo: [references/modelo-resposta-acusacao.md](references/modelo-resposta-acusacao.md).
 4. **Habeas corpus**: usar quando houver constrangimento ilegal manifesto (prisão sem fundamentação idônea, excesso de prazo, ausência de justa causa). Estruturar: fatos, ilegalidade apontada, pedido liminar + definitivo.
 5. **Recursos**: apelação (art. 593 CPP), RESE (art. 581), embargos de declaração — sempre checar prazo e cabimento antes de sugerir a via recursal.
 

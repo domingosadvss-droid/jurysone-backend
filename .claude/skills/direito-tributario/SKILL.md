@@ -15,7 +15,7 @@ Cobre planejamento tributário (elisão fiscal lícita), defesa administrativa e
 - Tributos comuns: IRPF/IRPJ, ICMS, ISS, IPTU, ITBI, ITCMD, contribuições previdenciárias — cada um com legislação e prazos próprios (checar a esfera federativa aplicável).
 
 ## Fluxo de trabalho
-1. **Diagnóstico**: identificar o tributo, a esfera (federal/estadual/municipal), a fase (autuação, execução fiscal, planejamento preventivo) e prazos em curso.
+1. **Diagnóstico**: identificar o tributo, a esfera (federal/estadual/municipal), a fase (autuação, execução fiscal, planejamento preventivo) e prazos em curso. Tabela rápida de tributos comuns, prazos e índices: [references/tabela-tributos-prazos.md](references/tabela-tributos-prazos.md).
 2. **Planejamento tributário**: avaliar regime tributário mais vantajoso (Simples Nacional, Lucro Presumido, Lucro Real) conforme faturamento e atividade; identificar oportunidades lícitas de elisão fiscal — nunca sugerir simulação ou evasão fiscal.
 3. **Defesa contra autuação**:
    - Checar decadência (5 anos do fato gerador) e prescrição (5 anos da constituição definitiva do crédito)

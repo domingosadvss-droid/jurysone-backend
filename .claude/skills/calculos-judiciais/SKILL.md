@@ -28,7 +28,8 @@ Monta planilhas e memórias de cálculo para liquidação de sentença, atualiza
    - Cobrança cumulada de comissão de permanência com outros encargos (vedada pela Súmula 472 STJ)
    - Tarifas não previstas em contrato ou não informadas previamente (TAC, seguro embutido sem anuência)
    - Venda casada de produtos (vedada pelo CDC)
-5. **Montar a planilha/memória de cálculo**: mês a mês ou evento a evento, mostrando principal, índice aplicado, juros e valor atualizado — sempre com transparência total da metodologia usada, para permitir conferência.
+5. **Montar a planilha/memória de cálculo**: mês a mês ou evento a evento, mostrando principal, índice aplicado, juros e valor atualizado — sempre com transparência total da metodologia usada, para permitir conferência. Use [scripts/calculo_juros_correcao.py](scripts/calculo_juros_correcao.py) para gerar a memória de cálculo automaticamente — informe principal, datas, tabela de índices mensais vigente (obtida no IBGE/BACEN, o script não traz índices pré-carregados) e a taxa de juros.
+6. **Suspeita de capitalização/anatocismo em contrato bancário**: use [scripts/detector_capitalizacao.py](scripts/detector_capitalizacao.py) para comparar a taxa anual contratada com a taxa que resultaria de capitalização mensal composta, e para varrer o texto do contrato em busca de termos de risco (comissão de permanência, tarifas cumuladas etc.).
 
 ## Alertas
 - Sempre declarar explicitamente qual índice e qual taxa de juros foram usados e por quê — nunca apresentar um número final sem a memória de cálculo.

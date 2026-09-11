@@ -18,12 +18,7 @@ Apoia a captação, triagem e conversão de clientes para o escritório, sempre 
    - Topo: conteúdo informativo (blog, redes sociais, SEO) educando sobre direitos — nunca "propaganda de caso vencido" ou comparação com concorrentes.
    - Meio: formulário/WhatsApp/chat para o lead deixar contato e um resumo do problema.
    - Fundo: triagem humana ou assistida (ver script abaixo) → agendamento de consulta.
-2. **Script de triagem inicial** (para recepção humana ou chatbot) — coletar de forma objetiva:
-   - Nome e contato
-   - Área do problema (cível, trabalhista, família, penal, etc.)
-   - Resumo do caso em 2-3 frases
-   - Urgência (há prazo correndo? prisão em curso? audiência marcada?)
-   - Já tem advogado atuando no caso? (evitar captação de cliente de outro advogado, vedada pela ética)
+2. **Script de triagem inicial** (para recepção humana ou chatbot) — coletar nome, contato, área do problema, resumo do caso, urgência e se já há advogado atuando (evitar captação de cliente de outro advogado, vedada pela ética). Roteiros prontos por área (cível, família, trabalhista, penal, empresarial): [references/roteiros-triagem-por-area.md](references/roteiros-triagem-por-area.md).
 3. **Qualificação do lead**: classificar por área, urgência e viabilidade (ex.: prazo prescricional já vencido = sinalizar antes de agendar reunião paga).
 4. **CRM jurídico — estrutura sugerida de pipeline**: Lead recebido → Triagem → Consulta agendada → Proposta de honorários enviada → Contrato assinado → Cliente ativo. Cada etapa deve ter responsável e prazo de follow-up definidos.
 5. **Conteúdo de marketing**: gerar posts/textos sempre em tom informativo-educacional (ex.: "o que fazer se você foi demitido sem justa causa"), nunca em tom de propaganda de resultado ou urgência artificial ("ligue agora e ganhe sua causa").
