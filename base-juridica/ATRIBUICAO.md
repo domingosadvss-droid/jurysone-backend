@@ -61,6 +61,20 @@ oficial não cobre (timeouts reais, geo-bloqueio, paginação, formatos de data,
 de movimento). Projeto independente, sem afiliação com o CNJ — as APIs são públicas,
 sem SLA nem versionamento formal, e podem mudar sem aviso.
 
+## Fonte adicional — public-apis
+
+A skill `apis-publicas-uteis` (`.claude/skills/apis-publicas-uteis`) é uma curadoria
+própria, selecionada e reorganizada a partir do catálogo:
+
+- Repositório: https://github.com/public-apis/public-apis
+- Licença: MIT
+
+Não é uma cópia do catálogo completo (que tem milhares de entradas em dezenas de
+categorias) — é um subconjunto pequeno, filtrado e comentado especificamente para
+as necessidades do JurysOne (dados jurídicos/empresariais brasileiros, financeiro,
+geração/processamento de documento). Para o catálogo integral, consultar o
+repositório original.
+
 ## Como isso se relaciona com as 12 skills próprias do escritório
 
 As 12 skills criadas para o JurysOne (`peticionamento-civel`, `peticionamento-trabalhista`,
