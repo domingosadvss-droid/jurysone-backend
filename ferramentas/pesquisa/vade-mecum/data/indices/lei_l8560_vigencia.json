@@ -1,0 +1,116 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L8560",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l8560.json",
+      "colecao": "artigos",
+      "sha256": "7de52d474187d319bc6f8f4e3140894af42a6ee699f1ff18f43a114fd572f103",
+      "total_registros": 11,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 2,
+      "anotacoes": 6,
+      "anotacoes_sem_diploma_nomeado": 0
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12",
+            "ano": null
+          },
+          "trecho": "…mparecimento ou a recusa do suposto pai em assumir a paternidade a ele atribuída, a criança for encaminhada para adoção.",
+          "literal": "(Redação dada pela Lei nº 12,010, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12",
+            "ano": null
+          },
+          "trecho": "…de a quem tenha legítimo interesse de intentar investigação, visando a obter o pretendido reconhecimento da paternidade.",
+          "literal": "(Incluído pela Lei nº 12,010, de 2009)"
+        }
+      ]
+    },
+    "2-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.004",
+            "ano": 2009
+          },
+          "trecho": "…o de paternidade, todos os meios legais, bem como os moralmente legítimos, serão hábeis para provar a verdade dos fatos.",
+          "literal": "(Incluído pela Lei nº 12.004, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.004",
+            "ano": 2009
+          },
+          "trecho": "…exame de código genético - DNA gerará a presunção da paternidade, a ser apreciada em conjunto com o contexto probatório.",
+          "literal": "(Incluído pela Lei nº 12.004, de 2009)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.138",
+            "ano": 2021
+          },
+          "trecho": "…presunção da paternidade, a ser apreciada em conjunto com o contexto probatório. (Incluído pela Lei nº 12.004, de 2009).",
+          "literal": "(Renumerado do parágrafo único, pela Lei nº 14.138, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.138",
+            "ano": 2021
+          },
+          "trecho": "… mais distantes, importando a recusa em presunção da paternidade, a ser apreciada em conjunto com o contexto probatório.",
+          "literal": "(Incluído pela Lei nº 14.138, de 2021)"
+        }
+      ]
+    }
+  }
+}

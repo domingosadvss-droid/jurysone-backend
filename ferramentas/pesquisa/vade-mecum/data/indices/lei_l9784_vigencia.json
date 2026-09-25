@@ -1,0 +1,606 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L9784",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l9784.json",
+      "colecao": "artigos",
+      "sha256": "5180fc4ca3eb875ccd64e2f6abc0f1e4c0e07def2bbcfd6fc28464552f36f47b",
+      "total_registros": 80,
+      "gerado_em": "2026-08-21T22:36:29+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 11,
+      "anotacoes": 49,
+      "anotacoes_sem_diploma_nomeado": 7
+    }
+  },
+  "vigencia": {
+    "49-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "…rticipação de 3 (três) ou mais setores, órgãos ou entidades poderão ser tomadas mediante decisão coordenada, sempre que:",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "I - for justificável pela relevância da matéria; e",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "II - houver discordância que prejudique a celeridade do processo administrativo decisório.",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "…a, observada a natureza do objeto e a compatibilidade do procedimento e de sua formalização com a legislação pertinente.",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "§ 2º (VETADO).",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "§ 3º (VETADO).",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "§ 4º A decisão coordenada não exclui a responsabilidade originária de cada órgão ou autoridade envolvida.",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "…ia, com utilização, sempre que necessário, da simplificação do procedimento e da concentração das instâncias decisórias.",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "§ 6º Não se aplica a decisão coordenada aos processos administrativos:",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "I - de licitação;",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "II - relacionados ao poder sancionador; ou",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "III - em que estejam envolvidas autoridades de Poderes distintos.",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        }
+      ]
+    },
+    "49-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "…litar-se a participar da decisão coordenada, na qualidade de ouvintes, os interessados de que trata o art. 9º desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "…r direito a voz, será deferida por decisão irrecorrível da autoridade responsável pela convocação da decisão coordenada.",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        }
+      ]
+    },
+    "49-C": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 49-C.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "Art. 49-C. (VETADO).",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        }
+      ]
+    },
+    "49-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "Art. 49-D. Os participantes da decisão coordenada deverão ser intimados na forma do art. 26 desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        }
+      ]
+    },
+    "49-E": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "…e o tema atinente à respectiva competência, a fim de subsidiar os trabalhos e integrar o processo da decisão coordenada.",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "…ico. O documento previsto no caput deste artigo abordará a questão objeto da decisão coordenada e eventuais precedentes.",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        }
+      ]
+    },
+    "49-F": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "…ões, de forma fundamentada, acompanhado das propostas de solução e de alteração necessárias para a resolução da questão.",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "Parágrafo único. Não poderá ser arguida matéria estranha ao objeto da convocação.",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        }
+      ]
+    },
+    "49-G": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "…rt. 49-G. A conclusão dos trabalhos da decisão coordenada será consolidada em ata, que conterá as seguintes informações:",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "I - relato sobre os itens da pauta;",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "II - síntese dos fundamentos aduzidos;",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "III - síntese das teses pertinentes ao objeto da convocação;",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "…das orientações, das diretrizes, das soluções ou das propostas de atos governamentais relativos ao objeto da convocação;",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "V - posicionamento dos participantes para subsidiar futura atuação governamental em matéria idêntica ou similar; e",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "VI - decisão de cada órgão ou entidade relativa à matéria sujeita à sua competência.",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "…entação da decisão da autoridade ou do agente a respeito de matéria de competência do órgão ou da entidade representada.",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "§ 2º (VETADO).",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.210",
+            "ano": 2021
+          },
+          "trecho": "…decisão coordenada e o órgão e o local em que se encontra a ata em seu inteiro teor, para conhecimento dos interessados.",
+          "literal": "(Incluído pela Lei nº 14.210, de 2021)"
+        }
+      ]
+    },
+    "56": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.417",
+            "ano": 2006
+          },
+          "trecho": "… encaminhar o recurso à autoridade superior, as razões da aplicabilidade ou inaplicabilidade da súmula, conforme o caso.",
+          "literal": "(Incluído pela Lei nº 11.417, de 2006)"
+        }
+      ]
+    },
+    "64-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.417",
+            "ano": 2006
+          },
+          "trecho": "…ompetente para decidir o recurso explicitará as razões da aplicabilidade ou inaplicabilidade da súmula, conforme o caso.",
+          "literal": "(Incluído pela Lei nº 11.417, de 2006)"
+        }
+      ]
+    },
+    "64-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.417",
+            "ano": 2006
+          },
+          "trecho": "…s administrativas em casos semelhantes, sob pena de responsabilização pessoal nas esferas cível, administrativa e penal.",
+          "literal": "(Incluído pela Lei nº 11.417, de 2006)"
+        }
+      ]
+    },
+    "69-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.008",
+            "ano": 2009
+          },
+          "trecho": "…na tramitação, em qualquer órgão ou instância, os procedimentos administrativos em que figure como parte ou interessado:",
+          "literal": "(Incluído pela Lei nº 12.008, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.008",
+            "ano": 2009
+          },
+          "trecho": "I - pessoa com idade igual ou superior a 60 (sessenta) anos;",
+          "literal": "(Incluído pela Lei nº 12.008, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.008",
+            "ano": 2009
+          },
+          "trecho": "II - pessoa portadora de deficiência, física ou mental;",
+          "literal": "(Incluído pela Lei nº 12.008, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.008",
+            "ano": 2009
+          },
+          "trecho": "III – (VETADO)",
+          "literal": "(Incluído pela Lei nº 12.008, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.008",
+            "ano": 2009
+          },
+          "trecho": "…ave, com base em conclusão da medicina especializada, mesmo que a doença tenha sido contraída após o início do processo.",
+          "literal": "(Incluído pela Lei nº 12.008, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.008",
+            "ano": 2009
+          },
+          "trecho": "…a condição, deverá requerê-lo à autoridade administrativa competente, que determinará as providências a serem cumpridas.",
+          "literal": "(Incluído pela Lei nº 12.008, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.008",
+            "ano": 2009
+          },
+          "trecho": "§ 2o Deferida a prioridade, os autos receberão identificação própria que evidencie o regime de tramitação prioritária.",
+          "literal": "(Incluído pela Lei nº 12.008, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.008",
+            "ano": 2009
+          },
+          "trecho": "§ 3o (VETADO)",
+          "literal": "(Incluído pela Lei nº 12.008, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.008",
+            "ano": 2009
+          },
+          "trecho": "§ 4o (VETADO)",
+          "literal": "(Incluído pela Lei nº 12.008, de 2009)"
+        }
+      ]
+    }
+  }
+}

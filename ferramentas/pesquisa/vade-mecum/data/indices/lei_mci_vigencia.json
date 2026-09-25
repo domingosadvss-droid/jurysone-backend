@@ -1,0 +1,923 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "MCI",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_mci.json",
+      "colecao": "artigos",
+      "sha256": "95db7c78df8fb529315eedc6e6101adc1b0a4c44353abce9a87c8a00ae616d0c",
+      "total_registros": 37,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 11,
+      "anotacoes": 76,
+      "anotacoes_sem_diploma_nomeado": 2
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…rasileiro ou, no mínimo, uma pessoa jurídica integrante do mesmo grupo econômico possua estabelecimento situado no País.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…cações de internet - o conjunto de funcionalidades que podem ser acessadas por meio de um terminal conectado à internet;",
+          "literal": "(Redação dada pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…ações referentes à data e à hora de uso de uma determinada aplicação de internet a partir de um determinado endereço IP;",
+          "literal": "(Redação dada pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…zada, mediante a oferta de serviços ao público brasileiro com, no mínimo, dez milhões de usuários registrados no País; e",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…mento ou suspensão, total ou parcial, dos serviços e das funcionalidades de conta ou perfil de usuário de redes sociais.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…chamadas de voz, assim como aquelas que tenham como principal finalidade a viabilização do comércio de bens ou serviços.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.709",
+            "ano": 2018
+          },
+          "trecho": "… as hipóteses de guarda obrigatória de registros previstas nesta Lei e na que dispõe sobre a proteção de dados pessoais;",
+          "literal": "(Redação dada pela Lei nº 13.709, de 2018)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso X",
+          "diploma": null,
+          "trecho": "…stros previstas nesta Lei e na que dispõe sobre a proteção de dados pessoais; (Redação dada pela Lei nº 13.709, de 2018)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "8-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "… provedores de redes sociais, são assegurados os seguintes direitos, sem prejuízo do disposto na Seção I deste Capítulo:",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…ios e os procedimentos utilizados para a decisão humana ou automatizada, ressalvados os segredos comercial e industrial;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…provedor de redes sociais oferecer, no mínimo, um canal eletrônico de comunicação dedicado ao exercício desses direitos;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…sponibilizado pelo usuário, em particular de dados pessoais, textos, imagens, dentre outros, quando houver requerimento;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…l ou do conteúdo no mesmo estado em que se encontrava, na hipótese de moderação indevida pelo provedor de redes sociais;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…parcial, de serviços e funcionalidades da conta ou do perfil, exceto por justa causa, observado o disposto no art. 8º-B;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "… ou bloqueio da divulgação de conteúdo gerado pelo usuário, exceto por justa causa, observado o disposto no art. 8º-C; e",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "VII - acesso a resumo dos termos de uso da rede social, com destaque às regras de maior significância para o usuário.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…nsura de ordem política, ideológica, científica, artística ou religiosa, observado o disposto nos art. 8º-B e art. 8º-C.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        }
+      ]
+    },
+    "8-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…cionalidades da conta ou do perfil de usuário de redes sociais somente poderá ser realizado com justa causa e motivação.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "§ 1º Considera-se caracterizada a justa causa nas seguintes hipóteses:",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "I - inadimplemento do usuário;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…anar o público, ressalvados o direito ao uso de nome social e à pseudonímia e o explícito ânimo humorístico ou paródico;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…ama de computador ou tecnologia para simular ou substituir atividades humanas na distribuição de conteúdo em provedores;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "IV - prática reiterada das condutas previstas no art. 8º-C;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…utos ou serviços que violem patente, marca registrada, direito autoral ou outros direitos de propriedade intelectual; ou",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "VI - cumprimento de determinação judicial.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…a exclusão, do cancelamento ou da suspensão, total ou parcial, dos serviços e das funcionalidades da conta ou do perfil.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "§ 3º A notificação de que trata o § 2º:",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "I - poderá ocorrer por meio eletrônico, de acordo com as regras de uso da rede social;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "… exclusão, ao cancelamento ou à suspensão, total ou parcial, dos serviços e das funcionalidades da conta ou do perfil; e",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…anais eletrônicos de comunicação e procedimentos para a contestação e a eventual revisão pelo provedor de redes sociais.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…entante legal ou de seus herdeiros, ressalvadas as hipóteses de guarda obrigatória de registros previstas na legislação.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        }
+      ]
+    },
+    "8-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…são ou o bloqueio da divulgação de conteúdo gerado por usuário somente poderá ser realizado com justa causa e motivação.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "§ 1º Considera-se caracterizada a justa causa nas seguintes hipóteses:",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "… - quando o conteúdo publicado pelo usuário estiver em desacordo com o disposto na Lei nº 8.069, de 13 de julho de 1990;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "II - quando a divulgação ou a reprodução configurar:",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "a) nudez ou representações explícitas ou implícitas de atos sexuais;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "… vida, pedofilia, terrorismo, tráfico ou quaisquer outras infrações penais sujeitas à ação penal pública incondicionada;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "c) apoio, recrutamento, promoção ou ajuda a organizações criminosas ou terroristas ou a seus atos;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…iolência, inclusive por razões de discriminação ou preconceito de raça, cor, sexo, etnia, religião ou orientação sexual;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "e) promoção, ensino, incentivo ou apologia à fabricação ou ao consumo, explícito ou implícito, de drogas ilícitas;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "f) prática, apoio, promoção ou incitação de atos de violência contra animais;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea g",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…formação com o objetivo de roubar credenciais, invadir sistemas, comprometer dados pessoais ou causar danos a terceiros;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea h",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "h) prática, apoio, promoção ou incitação de atos contra a segurança pública, defesa nacional ou segurança do Estado;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea i",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…mação com o objetivo de violar patente, marca registrada, direito autoral ou outros direitos de propriedade intelectual;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea j",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…Conselho Nacional de Autorregulamentação Publicitária referentes a conteúdo ou material publicitário ou propagandístico;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea k",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…quivo ou programa projetado para interromper, destruir ou limitar a funcionalidade de qualquer recurso de computador; ou",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…lação à intimidade, à privacidade, à imagem, à honra, à proteção de seus dados pessoais ou à propriedade intelectual; ou",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "IV - cumprimento de determinação judicial.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "§ 2º O usuário deverá ser notificado da exclusão, da suspensão ou do bloqueio da divulgação de conteúdo por ele gerado.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "§ 3º A notificação de que trata o § 2º:",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "I - poderá ocorrer por meio eletrônico, de acordo com as regras de uso da rede social;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "II - ocorrerá de forma prévia ou concomitante à exclusão, à suspensão ou ao bloqueio da divulgação de conteúdo; e",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…anais eletrônicos de comunicação e procedimentos para a contestação e a eventual revisão pelo provedor de redes sociais.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "… a requerimento do próprio usuário, ressalvadas as hipóteses de guarda obrigatória de registros previstas na legislação.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        }
+      ]
+    },
+    "8-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "Art. 8º-D Para aplicação do disposto nos art. 8º-B e art. 8º-C, será considerada motivada a decisão que:",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…de serviços ou do termo de uso relativo aos serviços fornecidos pelo provedor de aplicações de internet que foi violada;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…I - especificar a postagem ou a conduta considerada afrontosa ao contrato de prestação de serviços ou ao termo de uso; e",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "III - informar o fundamento jurídico da decisão.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…te serviço ao público brasileiro ou pelo menos uma integrante do mesmo grupo econômico possua estabelecimento no Brasil.",
+          "literal": "(Revogado pela Medida Provisória nº 1.068, de 2021)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…istas nos arts. 10 e 11 ficam sujeitas, conforme o caso, às seguintes sanções, aplicadas de forma isolada ou cumulativa:",
+          "literal": "(Revogado pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "I - advertência, com indicação de prazo para adoção de medidas corretivas;",
+          "literal": "(Revogado pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "… condição econômica do infrator e o princípio da proporcionalidade entre a gravidade da falta e a intensidade da sanção;",
+          "literal": "(Revogado pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "III - suspensão temporária das atividades que envolvam os atos previstos no art. 11; ou",
+          "literal": "(Revogado pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "IV - proibição de exercício das atividades que envolvam os atos previstos no art. 11.",
+          "literal": "(Revogado pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…amente pelo pagamento da multa de que trata o caput sua filial, sucursal, escritório ou estabelecimento situado no País.",
+          "literal": "(Revogado pela Medida Provisória nº 1.068, de 2021)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.709",
+            "ano": 2018
+          },
+          "trecho": "…ado consentimento pelo seu titular, exceto nas hipóteses previstas na Lei que dispõe sobre a proteção de dados pessoais.",
+          "literal": "(Redação dada pela Lei nº 13.709, de 2018)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…nas hipóteses previstas na Lei que dispõe sobre a proteção de dados pessoais. (Redação dada pela Lei nº 13.709, de 2018)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "28-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "… previstas nos art. 8º-A, art. 8º-B, art. 8º-C, art. 10 e art. 11 ficam sujeitas, conforme o caso, às seguintes sanções:",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "I - advertência, com indicação de prazo para adoção de medidas corretivas;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "… condição econômica do infrator e o princípio da proporcionalidade entre a gravidade da falta e a intensidade da sanção;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "III - multa diária, observado o limite total a que se refere o inciso II;",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "IV - suspensão temporária das atividades que envolvam os atos previstos no art. 11; ou",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "V - proibição de exercício das atividades que envolvam os atos previstos no art. 11.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…te pelo pagamento da multa de que trata o caput a filial, a sucursal, o escritório ou o estabelecimento situado no País.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…ias, isolada ou cumulativamente, inclusive por medida cautelar, antecedente ou incidente de procedimento administrativo.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…uliaridades do caso concreto, e dependerão de procedimento administrativo, assegurados a ampla defesa e o contraditório.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        }
+      ]
+    }
+  }
+}

@@ -1,10 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
+import { calcularVencimento } from '../../utils/calculadora-prazos';
 
 interface FindAllFilters {
   escritorioId: string;
   page?: number;
   limit?: number;
+  processoId?: string;
 }
 
 interface PaginatedResponse<T> {
@@ -14,69 +16,49 @@ interface PaginatedResponse<T> {
   pages: number;
 }
 
-interface UrgencyCount {
-  hoje: number;
-  amanha: number;
-  esta_semana: number;
-}
-
 @Injectable()
 export class PrazosService {
   constructor(private prisma: PrismaService) {}
 
   async findAll(filters: FindAllFilters): Promise<PaginatedResponse<any>> {
-    const { escritorioId, page = 1, limit = 10 } = filters;
+    const { escritorioId, page = 1, limit = 20, processoId } = filters;
     const skip = (page - 1) * limit;
 
-    const where = {
-      escritorioId,
-      deletedAt: null,
-    };
+    const where: any = { escritorioId, deletedAt: null };
+    if (processoId) where.processoId = processoId;
 
     const [data, total] = await Promise.all([
       this.prisma.prazo.findMany({
         where,
         skip,
         take: limit,
-        include: {
-          processo: true,
-        },
+        include: { processo: true },
         orderBy: { dataPrazo: 'asc' },
       }),
       this.prisma.prazo.count({ where }),
     ]);
 
-    const pages = Math.ceil(total / limit);
-
-    return {
-      data,
-      total,
-      page,
-      pages,
-    };
+    return { data, total, page, pages: Math.ceil(total / limit) };
   }
 
   async findById(id: string): Promise<any> {
     return this.prisma.prazo.findUnique({
       where: { id },
-      include: {
-        processo: true,
-      },
+      include: { processo: true },
     });
   }
 
   async create(dto: any): Promise<any> {
     return this.prisma.prazo.create({
       data: {
-        descricao: dto.descricao,
-        dataPrazo: new Date(dto.dataPrazo),
-        tipo: dto.tipo,
-        processoId: dto.processoId,
+        descricao:    dto.descricao,
+        dataPrazo:    new Date(dto.dataPrazo),
+        tipo:         dto.tipo ?? 'judicial',
+        status:       dto.status ?? 'pendente',
+        processoId:   dto.processoId ?? null,
         escritorioId: dto.escritorioId,
       },
-      include: {
-        processo: true,
-      },
+      include: { processo: true },
     });
   }
 
@@ -84,149 +66,101 @@ export class PrazosService {
     return this.prisma.prazo.update({
       where: { id },
       data: {
-        descricao: dto.descricao,
-        dataPrazo: dto.dataPrazo ? new Date(dto.dataPrazo) : undefined,
-        tipo: dto.tipo,
+        descricao:  dto.descricao,
+        dataPrazo:  dto.dataPrazo ? new Date(dto.dataPrazo) : undefined,
+        tipo:       dto.tipo,
+        status:     dto.status,
       },
-      include: {
-        processo: true,
-      },
+      include: { processo: true },
     });
   }
 
   async remove(id: string): Promise<any> {
     return this.prisma.prazo.update({
       where: { id },
-      data: {
-        deletedAt: new Date(),
-      },
+      data: { deletedAt: new Date() },
     });
   }
 
   async findHoje(escritorioId: string): Promise<any[]> {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+    const amanha = new Date(hoje.getTime() + 86_400_000);
 
     return this.prisma.prazo.findMany({
-      where: {
-        escritorioId,
-        dataPrazo: {
-          gte: today,
-          lt: tomorrow,
-        },
-        deletedAt: null,
-      },
-      include: {
-        processo: true,
-      },
+      where: { escritorioId, dataPrazo: { gte: hoje, lt: amanha }, deletedAt: null },
+      include: { processo: true },
       orderBy: { dataPrazo: 'asc' },
     });
   }
 
-  async findProximos(escritorioId: string, dias: number = 7): Promise<any[]> {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const futuro = new Date(today.getTime() + dias * 24 * 60 * 60 * 1000);
+  async findProximos(escritorioId: string, dias = 7): Promise<any[]> {
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+    const futuro = new Date(hoje.getTime() + dias * 86_400_000);
 
     return this.prisma.prazo.findMany({
-      where: {
-        escritorioId,
-        dataPrazo: {
-          gte: today,
-          lte: futuro,
-        },
-        deletedAt: null,
-      },
-      include: {
-        processo: true,
-      },
+      where: { escritorioId, dataPrazo: { gte: hoje, lte: futuro }, deletedAt: null },
+      include: { processo: true },
       orderBy: { dataPrazo: 'asc' },
     });
   }
 
   async findAtrasados(escritorioId: string): Promise<any[]> {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
 
     return this.prisma.prazo.findMany({
-      where: {
-        escritorioId,
-        dataPrazo: { lt: today },
-        deletedAt: null,
-      },
-      include: {
-        processo: true,
-      },
+      where: { escritorioId, dataPrazo: { lt: hoje }, status: 'pendente', deletedAt: null },
+      include: { processo: true },
       orderBy: { dataPrazo: 'asc' },
     });
   }
 
-  async countUrgentes(escritorioId: string): Promise<UrgencyCount> {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
-    const weekLater = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+  async countUrgentes(escritorioId: string) {
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+    const amanha     = new Date(hoje.getTime() + 86_400_000);
+    const depoisAmanha = new Date(amanha.getTime() + 86_400_000);
+    const semana     = new Date(hoje.getTime() + 7 * 86_400_000);
 
-    const [hoje, amanha, esta_semana] = await Promise.all([
-      this.prisma.prazo.count({
-        where: {
-          escritorioId,
-          dataPrazo: {
-            gte: today,
-            lt: tomorrow,
-          },
-          deletedAt: null,
-        },
-      }),
-      this.prisma.prazo.count({
-        where: {
-          escritorioId,
-          dataPrazo: {
-            gte: tomorrow,
-            lt: new Date(tomorrow.getTime() + 24 * 60 * 60 * 1000),
-          },
-          deletedAt: null,
-        },
-      }),
-      this.prisma.prazo.count({
-        where: {
-          escritorioId,
-          dataPrazo: {
-            gte: today,
-            lte: weekLater,
-          },
-          deletedAt: null,
-        },
-      }),
+    const base = { escritorioId, status: 'pendente', deletedAt: null } as const;
+
+    const [hoje_n, amanha_n, esta_semana] = await Promise.all([
+      this.prisma.prazo.count({ where: { ...base, dataPrazo: { gte: hoje, lt: amanha } } }),
+      this.prisma.prazo.count({ where: { ...base, dataPrazo: { gte: amanha, lt: depoisAmanha } } }),
+      this.prisma.prazo.count({ where: { ...base, dataPrazo: { gte: hoje, lte: semana } } }),
     ]);
 
-    return {
-      hoje,
-      amanha,
-      esta_semana,
-    };
+    return { hoje: hoje_n, amanha: amanha_n, esta_semana };
   }
 
-  async sendAlertas(escritorioId: string): Promise<void> {
-    // Find prazos that need alerts
-    const hoje = await this.findHoje(escritorioId);
-    const proximosDias = await this.findProximos(escritorioId, 3);
+  /**
+   * Calcula a data de vencimento sem persistir.
+   * Body: { dataPublicacao, diasPrazo, tipoPrazo? }
+   */
+  async calcular(body: any) {
+    const { dataPublicacao, diasPrazo, tipoPrazo = 'util' } = body;
 
-    // Create notifications for each prazo
-    // This is a placeholder - you would implement actual notification logic
-    const prazosParaAlertar = [...hoje, ...proximosDias];
-
-    for (const prazo of prazosParaAlertar) {
-      // Create notification in database
-      // You would implement this based on your Notificacao model
-      await this.createNotification(prazo);
+    if (!dataPublicacao || !diasPrazo) {
+      return { erro: 'dataPublicacao e diasPrazo são obrigatórios' };
     }
-  }
 
-  private async createNotification(prazo: any): Promise<void> {
-    // Placeholder for notification creation
-    // Implement based on your Notificacao model and business logic
-    console.log(`Alerta criado para prazo: ${prazo.descricao}`);
+    const resultado = await calcularVencimento({
+      dataPublicacao: new Date(dataPublicacao),
+      diasPrazo:      Number(diasPrazo),
+      tipoPrazo,
+    });
+
+    return {
+      dataPublicacao,
+      diasPrazo,
+      tipoPrazo,
+      dataVencimento:      resultado.dataVencimento.toISOString().slice(0, 10),
+      dataInicioPrazo:     resultado.dataInicioPrazo.toISOString().slice(0, 10),
+      diasUteis:           resultado.diasUteis,
+      diasCorridos:        resultado.diasCorridos,
+      feriadosNoPeriodo:   resultado.feriadosNoPeriodo,
+    };
   }
 }

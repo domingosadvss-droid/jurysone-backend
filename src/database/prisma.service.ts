@@ -42,7 +42,13 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
   }
 
   async onModuleInit() {
-    await this.$connect();
+    try {
+      await this.$connect();
+    } catch (err: any) {
+      // Não crashar na inicialização — o app sobe e serve o frontend mesmo sem DB.
+      // Cada query vai falhar individualmente até a conexão ser estabelecida.
+      console.error('[PrismaService] DB connection failed on startup:', err?.message ?? err);
+    }
   }
 
   async onModuleDestroy() {

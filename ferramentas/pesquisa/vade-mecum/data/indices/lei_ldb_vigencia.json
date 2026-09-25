@@ -1,0 +1,4282 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "LDB",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_ldb.json",
+      "colecao": "artigos",
+      "sha256": "ae89f90eaf58f30f8eb56f2e1e4ca5cc40cdf347966fdf638e5553ec635003b2",
+      "total_registros": 121,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 75,
+      "anotacoes": 361,
+      "anotacoes_sem_diploma_nomeado": 26
+    }
+  },
+  "vigencia": {
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "…rática do ensino público, na forma desta Lei e da legislação dos respectivos Estados e Municípios e do Distrito Federal;",
+          "literal": "(Redação dada pela Lei nº 14.644, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "XII - consideração com a diversidade étnico-racial.",
+          "literal": "(Incluído pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.632",
+            "ano": 2018
+          },
+          "trecho": "XIII - garantia do direito à educação e à aprendizagem ao longo da vida.",
+          "literal": "(Incluído pela Lei nº 13.632, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.191",
+            "ano": 2021
+          },
+          "trecho": "…to à diversidade humana, linguística, cultural e identitária das pessoas surdas, surdo-cegas e com deficiência auditiva.",
+          "literal": "(Incluído pela Lei nº 14.191, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "XV – garantia do direito de acesso a informações públicas sobre a gestão da educação.",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "… - educação básica obrigatória e gratuita dos 4 (quatro) aos 17 (dezessete) anos de idade, organizada da seguinte forma:",
+          "literal": "(Redação dada pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "a) pré-escola;",
+          "literal": "(Incluído pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "b) ensino fundamental;",
+          "literal": "(Incluído pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "c) ensino médio;",
+          "literal": "(Incluído pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "II - educação infantil gratuita às crianças de até 5 (cinco) anos de idade;",
+          "literal": "(Redação dada pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…dades ou superdotação, transversal a todos os níveis, etapas e modalidades, preferencialmente na rede regular de ensino;",
+          "literal": "(Redação dada pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "IV - acesso público e gratuito aos ensinos fundamental e médio para todos os que não os concluíram na idade própria;",
+          "literal": "(Redação dada pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…básica, por meio de programas suplementares de material didático-escolar, transporte, alimentação e assistência à saúde;",
+          "literal": "(Redação dada pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.333",
+            "ano": 2022
+          },
+          "trecho": "…íficas de cada estudante, inclusive mediante a provisão de mobiliário, equipamentos e materiais pedagógicos apropriados;",
+          "literal": "(Redação dada pela Lei nº 14.333, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.700",
+            "ano": 2008
+          },
+          "trecho": "…ino fundamental mais próxima de sua residência a toda criança a partir do dia em que completar 4 (quatro) anos de idade.",
+          "literal": "(Incluído pela Lei nº 11.700, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.407",
+            "ano": 2022
+          },
+          "trecho": "…sitos indispensáveis para a efetivação dos direitos e objetivos de aprendizagem e para o desenvolvimento dos indivíduos.",
+          "literal": "(Incluído pela Lei nº 14.407, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.533",
+            "ano": 2023
+          },
+          "trecho": "…gital de jovens e adultos, criação de conteúdos digitais, comunicação e colaboração, segurança e resolução de problemas.",
+          "literal": "(Incluído pela Lei nº 14.533, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.276",
+            "ano": 2025
+          },
+          "trecho": "XIII - água potável e infraestrutura física e sanitária adequadas no ambiente escolar.",
+          "literal": "(Incluído pela Lei nº 15.276, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.533",
+            "ano": 2023
+          },
+          "trecho": "…çam os papéis de docência e aprendizagem do professor e do aluno e que criem espaços coletivos de mútuo desenvolvimento.",
+          "literal": "(Incluído pela Lei nº 14.533, de 2023)"
+        }
+      ]
+    },
+    "4-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.716",
+            "ano": 2018
+          },
+          "trecho": "…iciliar por tempo prolongado, conforme dispuser o Poder Público em regulamento, na esfera de sua competência federativa.",
+          "literal": "(Incluído pela Lei nº 13.716, de 2018)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…ntidade de classe ou outra legalmente constituída e, ainda, o Ministério Público, acionar o poder público para exigi-lo.",
+          "literal": "(Redação dada pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "§ 1o O poder público, na esfera de sua competência federativa, deverá:",
+          "literal": "(Redação dada pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…ualmente as crianças e adolescentes em idade escolar, bem como os jovens e adultos que não concluíram a educação básica;",
+          "literal": "(Redação dada pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.685",
+            "ano": 2023
+          },
+          "trecho": "…dem de colocação e, sempre que possível, por unidade escolar, bem como divulgar os critérios para a elaboração da lista.",
+          "literal": "(Incluído pela Lei nº 14.685, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "…mento escolar nas instituições de ensino, diretamente realizadas por ele ou em parceria com organizações internacionais.",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.017",
+            "ano": 2024
+          },
+          "trecho": "…al e dos exames e sistemas de avaliação da educação básica, considerado todo o processo de realização dessas atividades.",
+          "literal": "(Incluído pela Lei nº 15.017, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.017",
+            "ano": 2024
+          },
+          "trecho": "…fundamental de acesso à informação de que trata a Lei nº 12.527, de 18 de novembro de 2011 (Lei de Acesso à Informação).",
+          "literal": "(Incluído pela Lei nº 15.017, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.017",
+            "ano": 2024
+          },
+          "trecho": "…ilhados, sempre que possível, de forma anonimizada, observados os parâmetros para anonimização previstos em regulamento.",
+          "literal": "(Incluído pela Lei nº 15.017, de 2024)"
+        }
+      ]
+    },
+    "5-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.017",
+            "ano": 2024
+          },
+          "trecho": "…8º do art. 5º desta Lei às informações educacionais do censo, dos exames e do sistema de avaliação da educação superior.",
+          "literal": "(Incluído pela Lei nº 15.017, de 2024)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…ever dos pais ou responsáveis efetuar a matrícula das crianças na educação básica a partir dos 4 (quatro) anos de idade.",
+          "literal": "(Redação dada pela Lei nº 12.796, de 2013)"
+        }
+      ]
+    },
+    "7-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.796",
+            "ano": 2019
+          },
+          "trecho": "…aluno, uma das seguintes prestações alternativas, nos termos do inciso VIII do caput do art. 5º da Constituição Federal:",
+          "literal": "(Incluído pela Lei nº 13.796, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…ernativas, nos termos do inciso VIII do caput do art. 5º da Constituição Federal: (Incluído pela Lei nº 13.796, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.796",
+            "ano": 2019
+          },
+          "trecho": "…a ser realizada em data alternativa, no turno de estudo do aluno ou em outro horário agendado com sua anuência expressa;",
+          "literal": "(Incluído pela Lei nº 13.796, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "… turno de estudo do aluno ou em outro horário agendado com sua anuência expressa; (Incluído pela Lei nº 13.796, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.796",
+            "ano": 2019
+          },
+          "trecho": "…ou outra modalidade de atividade de pesquisa, com tema, objetivo e data de entrega definidos pela instituição de ensino.",
+          "literal": "(Incluído pela Lei nº 13.796, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…quisa, com tema, objetivo e data de entrega definidos pela instituição de ensino. (Incluído pela Lei nº 13.796, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.796",
+            "ano": 2019
+          },
+          "trecho": "§ 1º A prestação alternativa deverá observar os parâmetros curriculares e o plano de aula do dia da ausência do aluno.",
+          "literal": "(Incluído pela Lei nº 13.796, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…bservar os parâmetros curriculares e o plano de aula do dia da ausência do aluno. (Incluído pela Lei nº 13.796, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.796",
+            "ano": 2019
+          },
+          "trecho": "…a este artigo substituirá a obrigação original para todos os efeitos, inclusive regularização do registro de frequência.",
+          "literal": "(Incluído pela Lei nº 13.796, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…riginal para todos os efeitos, inclusive regularização do registro de frequência. (Incluído pela Lei nº 13.796, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.796",
+            "ano": 2019
+          },
+          "trecho": "…dois) anos, as providências e adaptações necessárias à adequação de seu funcionamento às medidas previstas neste artigo.",
+          "literal": "(Incluído pela Lei nº 13.796, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…s necessárias à adequação de seu funcionamento às medidas previstas neste artigo. (Incluído pela Lei nº 13.796, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.796",
+            "ano": 2019
+          },
+          "trecho": "§ 4º O disposto neste artigo não se aplica ao ensino militar a que se refere o art. 83 desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.796, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…neste artigo não se aplica ao ensino militar a que se refere o art. 83 desta Lei. (Incluído pela Lei nº 13.796, de 2019)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.234",
+            "ano": 2015
+          },
+          "trecho": "…cadastramento e atendimento, na educação básica e na educação superior, de alunos com altas habilidades ou superdotação;",
+          "literal": "(Incluído pela Lei nº 13.234, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.645",
+            "ano": 2023
+          },
+          "trecho": "… de ensino, processo nacional de avaliação das instituições e dos cursos de educação profissional técnica e tecnológica;",
+          "literal": "(Incluído pela Lei nº 14.645, de 2023)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.061",
+            "ano": 2009
+          },
+          "trecho": "…amental e oferecer, com prioridade, o ensino médio a todos que o demandarem, respeitado o disposto no art. 38 desta Lei;",
+          "literal": "(Redação dada pela Lei nº 12.061, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.862",
+            "ano": 2024
+          },
+          "trecho": "… da rede estadual, permitindo aos respectivos professores, em trechos autorizados, o uso de assentos vagos nos veículos;",
+          "literal": "(Redação dada pela Lei nº 14.862, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "VIII – instituir, na forma da lei de que trata o art. 14, Conselhos Escolares e Fóruns dos Conselhos Escolares.",
+          "literal": "(Incluído pela Lei nº 14.644, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.862",
+            "ano": 2024
+          },
+          "trecho": "…o VI do caput do art. 11 desta Lei seja cumprido da forma que melhor atenda aos interesses dos alunos e dos professores.",
+          "literal": "(Incluído pela Lei nº 14.862, de 2024)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.369",
+            "ano": 2026
+          },
+          "trecho": "…om recursos acima dos percentuais mínimos vinculados pela Constituição Federal à manutenção e desenvolvimento do ensino;",
+          "literal": "(Redação dada pela Lei nº 15.369, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.862",
+            "ano": 2024
+          },
+          "trecho": "…da rede municipal, permitindo aos respectivos professores, em trechos autorizados, o uso de assentos vagos nos veículos;",
+          "literal": "(Redação dada pela Lei nº 14.862, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "VII – instituir, na forma da lei de que trata o art. 14, Conselhos Escolares e Fóruns dos Conselhos Escolares.",
+          "literal": "(Incluído pela Lei nº 14.644, de 2023)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.013",
+            "ano": 2009
+          },
+          "trecho": "…onsáveis legais, sobre a frequência e rendimento dos alunos, bem como sobre a execução da proposta pedagógica da escola;",
+          "literal": "(Redação dada pela Lei nº 12.013, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.231",
+            "ano": 2025
+          },
+          "trecho": "VIII - notificar ao Conselho Tutelar do Município:",
+          "literal": "(Redação dada pela Lei nº 15.231, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.231",
+            "ano": 2025
+          },
+          "trecho": "…a relação dos alunos que apresentem quantidade de faltas acima de 30% (trinta por cento) do percentual permitido em lei;",
+          "literal": "(Incluído pela Lei nº 15.231, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.231",
+            "ano": 2025
+          },
+          "trecho": "…asos de violência que envolvam seus alunos, especialmente automutilações, tentativas de suicídio e suicídios consumados;",
+          "literal": "(Incluído pela Lei nº 15.231, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.663",
+            "ano": 2018
+          },
+          "trecho": "…o e de combate a todos os tipos de violência, especialmente a intimidação sistemática (bullying), no âmbito das escolas;",
+          "literal": "(Incluído pela Lei nº 13.663, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.663",
+            "ano": 2018
+          },
+          "trecho": "X - estabelecer ações destinadas a promover a cultura de paz nas escolas.",
+          "literal": "(Incluído pela Lei nº 13.663, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.840",
+            "ano": 2019
+          },
+          "trecho": "…I - promover ambiente escolar seguro, adotando estratégias de prevenção e enfrentamento ao uso ou dependência de drogas.",
+          "literal": "(Incluído pela Lei nº 13.840, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "XII – instituir, na forma da lei de que trata o art. 14, os Conselhos Escolares.",
+          "literal": "(Incluído pela Lei nº 14.644, de 2023)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "…mocrática do ensino público na educação básica, de acordo com as suas peculiaridades e conforme os seguintes princípios:",
+          "literal": "(Redação dada pela Lei nº 14.644, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "…participação das comunidades escolar e local em Conselhos Escolares e em Fóruns dos Conselhos Escolares ou equivalentes.",
+          "literal": "(Redação dada pela Lei nº 14.644, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "…cola, membro nato, e de representantes das comunidades escolar e local, eleitos por seus pares nas seguintes categorias:",
+          "literal": "(Incluído pela Lei nº 14.644, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "I – professores, orientadores educacionais, supervisores e administradores escolares;",
+          "literal": "(Incluído pela Lei nº 14.644, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "II – demais servidores públicos que exerçam atividades administrativas na escola;",
+          "literal": "(Incluído pela Lei nº 14.644, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "III – estudantes;",
+          "literal": "(Incluído pela Lei nº 14.644, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "IV – pais ou responsáveis;",
+          "literal": "(Incluído pela Lei nº 14.644, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "V – membros da comunidade local.",
+          "literal": "(Incluído pela Lei nº 14.644, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "…as diferentes instâncias decisórias, com vistas a melhorar a qualidade da educação, norteado pelos seguintes princípios:",
+          "literal": "(Incluído pela Lei nº 14.644, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "I – democratização da gestão;",
+          "literal": "(Incluído pela Lei nº 14.644, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "II – democratização do acesso e permanência;",
+          "literal": "(Incluído pela Lei nº 14.644, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "III – qualidade social da educação.",
+          "literal": "(Incluído pela Lei nº 14.644, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "§ 3º O Fórum dos Conselhos Escolares será composto de:",
+          "literal": "(Incluído pela Lei nº 14.644, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "I – 2 (dois) representantes do órgão responsável pelo sistema de ensino;",
+          "literal": "(Incluído pela Lei nº 14.644, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "II – 2 (dois) representantes de cada Conselho Escolar da circunscrição de atuação do Fórum dos Conselhos Escolares.",
+          "literal": "(Incluído pela Lei nº 14.644, de 2023)"
+        }
+      ]
+    },
+    "14-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "…cia e o acesso à informação, devendo disponibilizar ao público, em meio eletrônico, informações acessíveis referentes a:",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "… caso de instituições federais, especificação da reserva de vagas, nos termos da Lei nº 12.711, de 29 de agosto de 2012;",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "II – bolsas e auxílios para estudo e pesquisa concedidos a estudantes, a professores e a pesquisadores;",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "…s de pesquisa, extensão e inovação tecnológica finalizados e em andamento, no caso de instituições de educação superior;",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "IV – estatísticas relativas a fluxo e a rendimento escolares;",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "…eiros ou creditícios, discriminados de acordo com a denominação a eles atribuída nos diplomas legais que os instituíram;",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "…educação, observadas as disposições da Lei nº 13.709, de 14 de agosto de 2018 (Lei Geral de Proteção de Dados Pessoais);",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "…utas e atas das reuniões do Conselho Nacional de Educação e dos conselhos de educação dos Estados e do Distrito Federal.",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.868",
+            "ano": 2019
+          },
+          "trecho": "II - as instituições de educação superior mantidas pela iniciativa privada;",
+          "literal": "(Redação dada pela Lei nº 13.868, de 2019)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.868",
+            "ano": 2019
+          },
+          "trecho": "III - comunitárias, na forma da lei.",
+          "literal": "(Incluído pela Lei nº 13.868, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.868",
+            "ano": 2019
+          },
+          "trecho": "…aput deste artigo podem qualificar-se como confessionais, atendidas a orientação confessional e a ideologia específicas.",
+          "literal": "(Incluído pela Lei nº 13.868, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.868",
+            "ano": 2019
+          },
+          "trecho": "…o a que se referem os incisos II e III do caput deste artigo podem ser certificadas como filantrópicas, na forma da lei.",
+          "literal": "(Incluído pela Lei nº 13.868, de 2019)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.868",
+            "ano": 2019
+          },
+          "trecho": "Art. 20.",
+          "literal": "(Revogado pela Lei nº 13.868, de 2019)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.407",
+            "ano": 2022
+          },
+          "trecho": "… a formação de leitores, como requisitos essenciais para o cumprimento das finalidades constantes do caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.407, de 2022)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…no mínimo, 200 (duzentos) dias de efetivo trabalho escolar, excluído o tempo reservado aos exames finais, quando houver;",
+          "literal": "(Redação dada pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…va para 1.400 (mil e quatrocentas) horas, considerados os prazos e as metas estabelecidos no Plano Nacional de Educação.",
+          "literal": "(Redação dada pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.415",
+            "ano": 2017
+          },
+          "trecho": "…ção de jovens e adultos e de ensino noturno regular, adequado às condições do educando, conforme o inciso VI do art. 4o.",
+          "literal": "(Incluído pela Lei nº 13.415, de 2017)"
+        }
+      ]
+    },
+    "25-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.360",
+            "ano": 2026
+          },
+          "trecho": "…ibilidade, acesso a energia elétrica, abastecimento de água tratada, esgotamento sanitário e manejo de resíduos sólidos.",
+          "literal": "(Incluído pela Lei nº 15.360, de 2026)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…e diversificada, exigida pelas características regionais e locais da sociedade, da cultura, da economia e dos educandos.",
+          "literal": "(Redação dada pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.415",
+            "ano": 2017
+          },
+          "trecho": "…o da arte, especialmente em suas expressões regionais, constituirá componente curricular obrigatório da educação básica.",
+          "literal": "(Redação dada pela Lei nº 13.415, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.793",
+            "ano": 2003
+          },
+          "trecho": "…ta pedagógica da escola, é componente curricular obrigatório da educação básica, sendo sua prática facultativa ao aluno:",
+          "literal": "(Redação dada pela Lei nº 10.793, de 1º.12.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.793",
+            "ano": 2003
+          },
+          "trecho": "I – que cumpra jornada de trabalho igual ou superior a seis horas;",
+          "literal": "(Incluído pela Lei nº 10.793, de 1º.12.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.793",
+            "ano": 2003
+          },
+          "trecho": "II – maior de trinta anos de idade;",
+          "literal": "(Incluído pela Lei nº 10.793, de 1º.12.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.793",
+            "ano": 2003
+          },
+          "trecho": "…ue estiver prestando serviço militar inicial ou que, em situação similar, estiver obrigado à prática da educação física;",
+          "literal": "(Incluído pela Lei nº 10.793, de 1º.12.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.793",
+            "ano": 2003
+          },
+          "trecho": "IV – amparado pelo Decreto-Lei no 1.044, de 21 de outubro de 1969;",
+          "literal": "(Incluído pela Lei nº 10.793, de 1º.12.2003)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.793",
+            "ano": 2003
+          },
+          "trecho": "V – (VETADO)",
+          "literal": "(Incluído pela Lei nº 10.793, de 1º.12.2003)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.793",
+            "ano": 2003
+          },
+          "trecho": "VI – que tenha prole.",
+          "literal": "(Incluído pela Lei nº 10.793, de 1º.12.2003)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.415",
+            "ano": 2017
+          },
+          "trecho": "§ 5º No currículo do ensino fundamental, a partir do sexto ano, será ofertada a língua inglesa.",
+          "literal": "(Redação dada pela Lei nº 13.415, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.278",
+            "ano": 2016
+          },
+          "trecho": "… dança, a música e o teatro são as linguagens que constituirão o componente curricular de que trata o § 2o deste artigo.",
+          "literal": "(Redação dada pela Lei nº 13.278, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…nsino, projetos e pesquisas envolvendo temas transversais que componham os currículos de que trata o caput deste artigo.",
+          "literal": "(Redação dada pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.006",
+            "ano": 2014
+          },
+          "trecho": "…ntar integrado à proposta pedagógica da escola, sendo a sua exibição obrigatória por, no mínimo, 2 (duas) horas mensais.",
+          "literal": "(Incluído pela Lei nº 13.006, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.164",
+            "ano": 2021
+          },
+          "trecho": "…iretrizes da legislação correspondente e a produção e distribuição de material didático adequado a cada nível de ensino.",
+          "literal": "(Redação dada pela Lei nº 14.164, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.666",
+            "ano": 2018
+          },
+          "trecho": "§ 9º-A. A educação alimentar e nutricional será incluída entre os temas transversais de que trata o caput.",
+          "literal": "(Incluído pela Lei nº 13.666, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.468",
+            "ano": 2026
+          },
+          "trecho": "…omponente curricular obrigatório no âmbito do estudo da realidade social e política a que se refere o § 1º deste artigo.",
+          "literal": "(Incluído pela Lei nº 15.468, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.415",
+            "ano": 2017
+          },
+          "trecho": "…Curricular dependerá de aprovação do Conselho Nacional de Educação e de homologação pelo Ministro de Estado da Educação.",
+          "literal": "(Incluído pela Lei nº 13.415, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.533",
+            "ano": 2023
+          },
+          "trecho": "…rogramação, robótica e outras competências digitais, será componente curricular do ensino fundamental e do ensino médio.",
+          "literal": "(Incluído pela Lei nº 14.533, de 2023)"
+        }
+      ]
+    },
+    "26-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.645",
+            "ano": 2008
+          },
+          "trecho": "… e de ensino médio, públicos e privados, torna-se obrigatório o estudo da história e cultura afro-brasileira e indígena.",
+          "literal": "(Redação dada pela Lei nº 11.645, de 2008)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.645",
+            "ano": 2008
+          },
+          "trecho": "…ade nacional, resgatando as suas contribuições nas áreas social, econômica e política, pertinentes à história do Brasil.",
+          "literal": "(Redação dada pela Lei nº 11.645, de 2008)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.645",
+            "ano": 2008
+          },
+          "trecho": "… âmbito de todo o currículo escolar, em especial nas áreas de educação artística e de literatura e história brasileiras.",
+          "literal": "(Redação dada pela Lei nº 11.645, de 2008)"
+        }
+      ]
+    },
+    "26-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.986",
+            "ano": 2024
+          },
+          "trecho": "…gatória a inclusão de abordagens fundamentadas nas experiências e nas perspectivas femininas nos conteúdos curriculares.",
+          "literal": "(Incluído pela Lei nº 14.986, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.986",
+            "ano": 2024
+          },
+          "trecho": "…buições, as vivências e as conquistas femininas nas áreas científica, social, artística, cultural, econômica e política.",
+          "literal": "(Incluído pela Lei nº 14.986, de 2024)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.767",
+            "ano": 2023
+          },
+          "trecho": "…ades e interesses dos alunos das escolas do campo, com possibilidade de uso, dentre outras, da pedagogia da alternância;",
+          "literal": "(Redação dada pela Lei nº 14.767, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.960",
+            "ano": 2014
+          },
+          "trecho": "…sentada pela Secretaria de Educação, a análise do diagnóstico do impacto da ação e a manifestação da comunidade escolar.",
+          "literal": "(Incluído pela Lei nº 12.960, de 2014)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…nco) anos, em seus aspectos físico, psicológico, intelectual e social, complementando a ação da família e da comunidade.",
+          "literal": "(Redação dada pela Lei nº 12.796, de 2013)"
+        }
+      ]
+    },
+    "30": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "II - pré-escolas, para as crianças de 4 (quatro) a 5 (cinco) anos de idade.",
+          "literal": "(Redação dada pela Lei nº 12.796, de 2013)"
+        }
+      ]
+    },
+    "31": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "Art. 31. A educação infantil será organizada de acordo com as seguintes regras comuns:",
+          "literal": "(Redação dada pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…mento e registro do desenvolvimento das crianças, sem o objetivo de promoção, mesmo para o acesso ao ensino fundamental;",
+          "literal": "(Incluído pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…orária mínima anual de 800 (oitocentas) horas, distribuída por um mínimo de 200 (duzentos) dias de trabalho educacional;",
+          "literal": "(Incluído pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…ento à criança de, no mínimo, 4 (quatro) horas diárias para o turno parcial e de 7 (sete) horas para a jornada integral;",
+          "literal": "(Incluído pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…cia pela instituição de educação pré-escolar, exigida a frequência mínima de 60% (sessenta por cento) do total de horas;",
+          "literal": "(Incluído pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "V - expedição de documentação que permita atestar os processos de desenvolvimento e aprendizagem da criança.",
+          "literal": "(Incluído pela Lei nº 12.796, de 2013)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.274",
+            "ano": 2006
+          },
+          "trecho": "…to na escola pública, iniciando-se aos 6 (seis) anos de idade, terá por objetivo a formação básica do cidadão, mediante:",
+          "literal": "(Redação dada pela Lei nº 11.274, de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.525",
+            "ano": 2007
+          },
+          "trecho": "… que institui o Estatuto da Criança e do Adolescente, observada a produção e distribuição de material didático adequado.",
+          "literal": "(Incluído pela Lei nº 11.525, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.472",
+            "ano": 2011
+          },
+          "trecho": "§ 6º O estudo sobre os símbolos nacionais será incluído como tema transversal nos currículos do ensino fundamental.",
+          "literal": "(Incluído pela Lei nº 12.472, de 2011)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.475",
+            "ano": 1997
+          },
+          "trecho": "…fundamental, assegurado o respeito à diversidade cultural religiosa do Brasil, vedadas quaisquer formas de proselitismo.",
+          "literal": "(Redação dada pela Lei nº 9.475, de 22.7.1997)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.475",
+            "ano": 1997
+          },
+          "trecho": "…a a definição dos conteúdos do ensino religioso e estabelecerão as normas para a habilitação e admissão dos professores.",
+          "literal": "(Incluído pela Lei nº 9.475, de 22.7.1997)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.475",
+            "ano": 1997
+          },
+          "trecho": "…ntidade civil, constituída pelas diferentes denominações religiosas, para a definição dos conteúdos do ensino religioso.",
+          "literal": "(Incluído pela Lei nº 9.475, de 22.7.1997)"
+        }
+      ]
+    },
+    "35-A": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "Art. 35-A.",
+          "literal": "(Revogado Lei nº 14.945, de 2024)"
+        }
+      ]
+    },
+    "35-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "Art. 35-B. O currículo do ensino médio será composto de formação geral básica e de itinerários formativos.",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…s estabelecimentos que ofertem ensino médio estruturarão suas propostas pedagógicas considerando os seguintes elementos:",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "I – promoção de metodologias investigativas no processo de ensino e aprendizagem;",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "II – conexão dos processos de ensino e aprendizagem com a vida comunitária e social em cada território;",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "III – reconhecimento do trabalho e de seu caráter formativo; e",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…rentes saberes com base nas áreas do conhecimento e, quando for o caso, no currículo da formação técnica e profissional.",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…ório, pela participação cidadã e pela preparação para o mundo do trabalho, de forma ambiental e socialmente responsável.",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…diado por tecnologia, na forma de regulamento elaborado com a participação dos sistemas estaduais e distrital de ensino.",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…ntes em experiências extraescolares, mediante formas de comprovação definidas pelos sistemas de ensino e que considerem:",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…balho remunerado ou trabalho voluntário supervisionado, desde que explicitada a relação com o currículo do ensino médio;",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…usão de cursos de qualificação profissional, desde que comprovada por certificação emitida de acordo com a legislação; e",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…vada em projetos de extensão universitária ou de iniciação científica ou em atividades de direção em grêmios estudantis.",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        }
+      ]
+    },
+    "35-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…diante articulação da Base Nacional Comum Curricular e da parte diversificada de que trata o caput do art. 26 desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…tudos de conteúdos da Base Nacional Comum Curricular diretamente relacionados à formação técnica profissional oferecida.",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        }
+      ]
+    },
+    "35-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "… e objetivos de aprendizagem, conforme diretrizes do Conselho Nacional de Educação, nas seguintes áreas do conhecimento:",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…uagens e suas tecnologias, integrada pela língua portuguesa e suas literaturas, língua inglesa, artes e educação física;",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "II – matemática e suas tecnologias;",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "III – ciências da natureza e suas tecnologias, integrada por biologia, física e química;",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "IV – ciências humanas e sociais aplicadas, integrada por filosofia, geografia, história e sociologia.",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…mum Curricular a que se refere o caput deste artigo deverá ser cumprida integralmente ao longo da formação geral básica.",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…nsino médio será ministrado em língua portuguesa, assegurada às comunidades indígenas a utilização das línguas maternas.",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…encialmente o espanhol, de acordo com a disponibilidade de oferta, locais e horários definidos pelos sistemas de ensino.",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        }
+      ]
+    },
+    "36": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…conforme a relevância para o contexto local e a possibilidade dos sistemas de ensino, consideradas as seguintes ênfases:",
+          "literal": "(Redação dada pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.415",
+            "ano": 2017
+          },
+          "trecho": "I - linguagens e suas tecnologias;",
+          "literal": "(Redação dada pela Lei nº 13.415, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.415",
+            "ano": 2017
+          },
+          "trecho": "II - matemática e suas tecnologias;",
+          "literal": "(Redação dada pela Lei nº 13.415, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.415",
+            "ano": 2017
+          },
+          "trecho": "III - ciências da natureza e suas tecnologias;",
+          "literal": "(Redação dada pela Lei nº 13.415, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.415",
+            "ano": 2017
+          },
+          "trecho": "IV - ciências humanas e sociais aplicadas;",
+          "literal": "(Redação dada pela Lei nº 13.415, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…cional de Cursos Técnicos (CNCT) referido no § 3º do art. 42-A e o disposto nos arts. 36-A, 36-B, 36-C e 36-D desta Lei.",
+          "literal": "(Redação dada pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "§ 1º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…cisos I, II, III e IV do caput, ressalvada a formação técnica e profissional prevista no inciso V do caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "§ 2º",
+          "literal": "(Revogado pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…, 2 (dois) itinerários formativos com ênfases distintas, excetuadas as que oferecerem a formação técnica e profissional.",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…agem a serem considerados nos itinerários formativos, reconhecidas as especificidades da educação indígena e quilombola.",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "… prevista no caput do art. 35-D desta Lei e das diretrizes nacionais de aprofundamento previstas no § 2º-B deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…ção de programas e de projetos destinados à orientação dos estudantes no processo de escolha dos itinerários formativos.",
+          "literal": "(Incluído pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "§ 3o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "§ 4º",
+          "literal": "(Revogado pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "… de vagas na rede, possibilitarão ao aluno concluinte ou egresso do ensino médio cursar um segundo itinerário formativo.",
+          "literal": "(Redação dada pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "… de educação profissional, preferencialmente públicas, observados os limites estabelecidos na legislação, e considerará:",
+          "literal": "(Redação dada pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.415",
+            "ano": 2017
+          },
+          "trecho": "…arcerias e fazendo uso, quando aplicável, de instrumentos estabelecidos pela legislação sobre aprendizagem profissional;",
+          "literal": "(Incluído pela Lei nº 13.415, de 2017)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II –",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "II – (revogado).",
+          "literal": "(Redação dada pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.415",
+            "ano": 2017
+          },
+          "trecho": "…serção no Catálogo Nacional dos Cursos Técnicos, no prazo de cinco anos, contados da data de oferta inicial da formação.",
+          "literal": "(Incluído pela Lei nº 13.415, de 2017)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "§ 8º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "§ 8º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "…a para matrícula de alunos nesse turno, na forma da regulamentação a ser estabelecida pelo respectivo sistema de ensino.",
+          "literal": "(Incluído Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.415",
+            "ano": 2017
+          },
+          "trecho": "…dos em nível superior ou em outros cursos ou formações para os quais a conclusão do ensino médio seja etapa obrigatória.",
+          "literal": "(Incluído pela Lei nº 13.415, de 2017)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 10º",
+          "diploma": null,
+          "trecho": "§ 10.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "§ 10. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 11º",
+          "diploma": null,
+          "trecho": "§ 11.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "§ 11. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.945, de 2024)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 12º",
+          "diploma": null,
+          "trecho": "§ 12.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.945",
+            "ano": 2024
+          },
+          "trecho": "§ 12. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.945, de 2024)"
+        }
+      ]
+    },
+    "36-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "…ítulo, o ensino médio, atendida a formação geral do educando, poderá prepará-lo para o exercício de profissões técnicas.",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "…nos próprios estabelecimentos de ensino médio ou em cooperação com instituições especializadas em educação profissional.",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        }
+      ]
+    },
+    "36-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "Art. 36-B. A educação profissional técnica de nível médio será desenvolvida nas seguintes formas:",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "I - articulada com o ensino médio;",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "II - subseqüente, em cursos destinados a quem já tenha concluído o ensino médio.",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.645",
+            "ano": 2023
+          },
+          "trecho": "§ 1º A educação profissional técnica de nível médio deverá observar:",
+          "literal": "(Redação dada pela Lei nº 14.645, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "… objetivos e definições contidos nas diretrizes curriculares nacionais estabelecidas pelo Conselho Nacional de Educação;",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "II - as normas complementares dos respectivos sistemas de ensino;",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "III - as exigências de cada instituição de ensino, nos termos de seu projeto pedagógico.",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.645",
+            "ano": 2023
+          },
+          "trecho": "…m ser oferecidas em articulação com a aprendizagem profissional, nos termos da Lei nº 10.097, de 19 de dezembro de 2000.",
+          "literal": "(Incluído pela Lei nº 14.645, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.645",
+            "ano": 2023
+          },
+          "trecho": "…sional técnica de nível médio for oferecida em articulação com a aprendizagem profissional, poderá haver aproveitamento:",
+          "literal": "(Incluído pela Lei nº 14.645, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.645",
+            "ano": 2023
+          },
+          "trecho": "… técnica de nível médio, para efeito de cumprimento do contrato de aprendizagem profissional, nos termos de regulamento;",
+          "literal": "(Incluído pela Lei nº 14.645, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.645",
+            "ano": 2023
+          },
+          "trecho": "…erário da formação técnica e profissional ou na educação profissional técnica de nível médio, nos termos de regulamento.",
+          "literal": "(Incluído pela Lei nº 14.645, de 2023)"
+        }
+      ]
+    },
+    "36-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "…nal técnica de nível médio articulada, prevista no inciso I do caput do art. 36-B desta Lei, será desenvolvida de forma:",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "…tação profissional técnica de nível médio, na mesma instituição de ensino, efetuando-se matrícula única para cada aluno;",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "… ingresse no ensino médio ou já o esteja cursando, efetuando-se matrículas distintas para cada curso, e podendo ocorrer:",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "a) na mesma instituição de ensino, aproveitando-se as oportunidades educacionais disponíveis;",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "b) em instituições de ensino distintas, aproveitando-se as oportunidades educacionais disponíveis;",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "…iante convênios de intercomplementaridade, visando ao planejamento e ao desenvolvimento de projeto pedagógico unificado.",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        }
+      ]
+    },
+    "36-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "…ível médio, quando registrados, terão validade nacional e habilitarão ao prosseguimento de estudos na educação superior.",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "…ão para o trabalho após a conclusão, com aproveitamento, de cada etapa que caracterize uma qualificação para o trabalho.",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.632",
+            "ano": 2018
+          },
+          "trecho": "…nsinos fundamental e médio na idade própria e constituirá instrumento para a educação e a aprendizagem ao longo da vida.",
+          "literal": "(Redação dada pela Lei nº 13.632, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "…ucação de jovens e adultos deverá articular-se, preferencialmente, com a educação profissional, na forma do regulamento.",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        }
+      ]
+    },
+    "39": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "…onal, integra-se aos diferentes níveis e modalidades de educação e às dimensões do trabalho, da ciência e da tecnologia.",
+          "literal": "(Redação dada pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "…litando a construção de diferentes itinerários formativos, observadas as normas do respectivo sistema e nível de ensino.",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "§ 2º A educação profissional e tecnológica abrangerá os seguintes cursos:",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "I – de formação inicial e continuada ou qualificação profissional;",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "II – de educação profissional técnica de nível médio;",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "III – de educação profissional tecnológica de graduação e pós-graduação.",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "…rísticas e duração, de acordo com as diretrizes curriculares nacionais estabelecidas pelo Conselho Nacional de Educação.",
+          "literal": "(Incluído pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.645",
+            "ano": 2023
+          },
+          "trecho": "…ca de nível médio, sempre que o curso desse nível e o de nível superior sejam de áreas afins, nos termos de regulamento.",
+          "literal": "(Incluído pela Lei nº 14.645, de 2023)"
+        }
+      ]
+    },
+    "41": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "… no trabalho, poderá ser objeto de avaliação, reconhecimento e certificação para prosseguimento ou conclusão de estudos.",
+          "literal": "(Redação dada pela Lei nº 11.741, de 2008)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "Parágrafo único. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 11.741, de 2008)"
+        }
+      ]
+    },
+    "42": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.741",
+            "ano": 2008
+          },
+          "trecho": "…os à comunidade, condicionada a matrícula à capacidade de aproveitamento e não necessariamente ao nível de escolaridade.",
+          "literal": "(Redação dada pela Lei nº 11.741, de 2008)"
+        }
+      ]
+    },
+    "42-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.645",
+            "ano": 2023
+          },
+          "trecho": "…a viabilizar itinerários formativos contínuos e trajetórias progressivas de formação entre todos os níveis educacionais.",
+          "literal": "(Incluído pela Lei nº 14.645, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.645",
+            "ano": 2023
+          },
+          "trecho": "…incremental de experiências, certificações e conhecimentos desenvolvidos ao longo da trajetória individual do estudante.",
+          "literal": "(Incluído pela Lei nº 14.645, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.645",
+            "ano": 2023
+          },
+          "trecho": "§ 2º O itinerário referido no § 1º deste artigo poderá integrar um ou mais eixos tecnológicos.",
+          "literal": "(Incluído pela Lei nº 14.645, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.645",
+            "ano": 2023
+          },
+          "trecho": "…os tecnológicos, de forma a permitir sua equivalência para o aproveitamento de estudos entre os níveis médio e superior.",
+          "literal": "(Incluído pela Lei nº 14.645, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.645",
+            "ano": 2023
+          },
+          "trecho": "…CBO) e a dinâmica do mundo do trabalho, manterá e periodicamente atualizará os catálogos referidos no § 3º deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.645, de 2023)"
+        }
+      ]
+    },
+    "42-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.645",
+            "ano": 2023
+          },
+          "trecho": "…mico e produtivo local e nacional, a inserção dos egressos no mundo do trabalho e as condições institucionais de oferta.",
+          "literal": "(Incluído pela Lei nº 14.645, de 2023)"
+        }
+      ]
+    },
+    "43": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.174",
+            "ano": 2015
+          },
+          "trecho": "…ealização de pesquisas pedagógicas e o desenvolvimento de atividades de extensão que aproximem os dois níveis escolares.",
+          "literal": "(Incluído pela Lei nº 13.174, de 2015)"
+        }
+      ]
+    },
+    "44": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.632",
+            "ano": 2007
+          },
+          "trecho": "…dam aos requisitos estabelecidos pelas instituições de ensino, desde que tenham concluído o ensino médio ou equivalente;",
+          "literal": "(Redação dada pela Lei nº 11.632, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.826",
+            "ano": 2019
+          },
+          "trecho": "…penho em provas, exames e demais atividades da seleção e a sua posição na ordem de classificação de todos os candidatos.",
+          "literal": "(Redação dada pela Lei nº 13.826, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.184",
+            "ano": 2015
+          },
+          "trecho": "…nferior a dez salários mínimos, ou ao de menor renda familiar, quando mais de um candidato preencher o critério inicial.",
+          "literal": "(Incluído pela Lei nº 13.184, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.415",
+            "ano": 2017
+          },
+          "trecho": "…seletivo referido no inciso II considerará as competências e as habilidades definidas na Base Nacional Comum Curricular.",
+          "literal": "(Incluído pela lei nº 13.415, de 2017)"
+        }
+      ]
+    },
+    "46": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.530",
+            "ano": 2017
+          },
+          "trecho": "…ação poderá resultar em redução de vagas autorizadas e em suspensão temporária de novos ingressos e de oferta de cursos.",
+          "literal": "(Incluído pela Lei nº 13.530, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.530",
+            "ano": 2017
+          },
+          "trecho": "…e 3o deste artigo por outras medidas, desde que adequadas para superação das deficiências e irregularidades constatadas.",
+          "literal": "(Incluído pela Lei nº 13.530, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.530",
+            "ano": 2017
+          },
+          "trecho": "…al deverão adotar os critérios definidos pela União para autorização de funcionamento de curso de graduação em Medicina.",
+          "literal": "(Incluído pela Lei nº 13.530, de 2017)"
+        }
+      ]
+    },
+    "47": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.168",
+            "ano": 2015
+          },
+          "trecho": "…a cumprir as respectivas condições, e a publicação deve ser feita, sendo as 3 (três) primeiras formas concomitantemente:",
+          "literal": "(Redação dada pela lei nº 13.168, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.168",
+            "ano": 2015
+          },
+          "trecho": "… - em página específica na internet no sítio eletrônico oficial da instituição de ensino superior, obedecido o seguinte:",
+          "literal": "(Incluído pela lei nº 13.168, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.168",
+            "ano": 2015
+          },
+          "trecho": "a) toda publicação a que se refere esta Lei deve ter como título “Grade e Corpo Docente”;",
+          "literal": "(Incluída pela lei nº 13.168, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.168",
+            "ano": 2015
+          },
+          "trecho": "…sso seletivo e outras com a mesma finalidade, deve conter a ligação desta com a página específica prevista neste inciso;",
+          "literal": "(Incluída pela lei nº 13.168, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.168",
+            "ano": 2015
+          },
+          "trecho": "…uperior não possua sítio eletrônico, deve criar página específica para divulgação das informações de que trata esta Lei;",
+          "literal": "(Incluída pela lei nº 13.168, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.168",
+            "ano": 2015
+          },
+          "trecho": "d) a página específica deve conter a data completa de sua última atualização;",
+          "literal": "(Incluída pela lei nº 13.168, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.168",
+            "ano": 2015
+          },
+          "trecho": "…em toda propaganda eletrônica da instituição de ensino superior, por meio de ligação para a página referida no inciso I;",
+          "literal": "(Incluído pela lei nº 13.168, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.168",
+            "ano": 2015
+          },
+          "trecho": "III - em local visível da instituição de ensino superior e de fácil acesso ao público;",
+          "literal": "(Incluído pela lei nº 13.168, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.168",
+            "ano": 2015
+          },
+          "trecho": "…da semestralmente ou anualmente, de acordo com a duração das disciplinas de cada curso oferecido, observando o seguinte:",
+          "literal": "(Incluído pela lei nº 13.168, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.168",
+            "ano": 2015
+          },
+          "trecho": "a) caso o curso mantenha disciplinas com duração diferenciada, a publicação deve ser semestral;",
+          "literal": "(Incluída pela lei nº 13.168, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.168",
+            "ano": 2015
+          },
+          "trecho": "b) a publicação deve ser feita até 1 (um) mês antes do início das aulas;",
+          "literal": "(Incluída pela lei nº 13.168, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.168",
+            "ano": 2015
+          },
+          "trecho": "…dança na grade do curso ou no corpo docente até o início das aulas, os alunos devem ser comunicados sobre as alterações;",
+          "literal": "(Incluída pela lei nº 13.168, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.168",
+            "ano": 2015
+          },
+          "trecho": "V - deve conter as seguintes informações:",
+          "literal": "(Incluído pela lei nº 13.168, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.168",
+            "ano": 2015
+          },
+          "trecho": "a) a lista de todos os cursos oferecidos pela instituição de ensino superior;",
+          "literal": "(Incluída pela lei nº 13.168, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.168",
+            "ano": 2015
+          },
+          "trecho": "b) a lista das disciplinas que compõem a grade curricular de cada curso e as respectivas cargas horárias;",
+          "literal": "(Incluída pela lei nº 13.168, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.168",
+            "ano": 2015
+          },
+          "trecho": "…brangendo a qualificação profissional do docente e o tempo de casa do docente, de forma total, contínua ou intermitente.",
+          "literal": "(Incluída pela lei nº 13.168, de 2015)"
+        }
+      ]
+    },
+    "53": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.490",
+            "ano": 2017
+          },
+          "trecho": "…rsidades, caberá aos seus colegiados de ensino e pesquisa decidir, dentro dos recursos orçamentários disponíveis, sobre:",
+          "literal": "(Redação dada pela Lei nº 13.490, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.490",
+            "ano": 2017
+          },
+          "trecho": "I - criação, expansão, modificação e extinção de cursos;",
+          "literal": "(Redação dada pela Lei nº 13.490, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.490",
+            "ano": 2017
+          },
+          "trecho": "II - ampliação e diminuição de vagas;",
+          "literal": "(Redação dada pela Lei nº 13.490, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.490",
+            "ano": 2017
+          },
+          "trecho": "III - elaboração da programação dos cursos;",
+          "literal": "(Redação dada pela Lei nº 13.490, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.490",
+            "ano": 2017
+          },
+          "trecho": "IV - programação das pesquisas e das atividades de extensão;",
+          "literal": "(Redação dada pela Lei nº 13.490, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.490",
+            "ano": 2017
+          },
+          "trecho": "V - contratação e dispensa de professores;",
+          "literal": "(Redação dada pela Lei nº 13.490, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.490",
+            "ano": 2017
+          },
+          "trecho": "VI - planos de carreira docente.",
+          "literal": "(Redação dada pela Lei nº 13.490, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.490",
+            "ano": 2017
+          },
+          "trecho": "…usive monetárias, podem ser dirigidas a setores ou projetos específicos, conforme acordo entre doadores e universidades.",
+          "literal": "(Incluído pela Lei nº 13.490, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.490",
+            "ano": 2017
+          },
+          "trecho": "…as doações devem ser dirigidos ao caixa único da instituição, com destinação garantida às unidades a serem beneficiadas.",
+          "literal": "(Incluído pela Lei nº 13.490, de 2017)"
+        }
+      ]
+    },
+    "56": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "…a de órgãos colegiados deliberativos, dos quais participarão os segmentos da comunidade institucional, local e regional.",
+          "literal": "(Redação dada pela Lei nº 15.001, de 2024)"
+        }
+      ]
+    },
+    "58": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…r de ensino, para educandos com deficiência, transtornos globais do desenvolvimento e altas habilidades ou superdotação.",
+          "literal": "(Redação dada pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.632",
+            "ano": 2018
+          },
+          "trecho": "…ção infantil e estende-se ao longo da vida, observados o inciso III do art. 4º e o parágrafo único do art. 60 desta Lei.",
+          "literal": "(Redação dada pela Lei nº 13.632, de 2018)"
+        }
+      ]
+    },
+    "59": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…o assegurarão aos educandos com deficiência, transtornos globais do desenvolvimento e altas habilidades ou superdotação:",
+          "literal": "(Redação dada pela Lei nº 12.796, de 2013)"
+        }
+      ]
+    },
+    "59-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.234",
+            "ano": 2015
+          },
+          "trecho": "… fim de fomentar a execução de políticas públicas destinadas ao desenvolvimento pleno das potencialidades desse alunado.",
+          "literal": "(Incluído pela Lei nº 13.234, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.234",
+            "ano": 2015
+          },
+          "trecho": "…ro e as políticas de desenvolvimento das potencialidades do alunado de que trata o caput serão definidos em regulamento.",
+          "literal": "(Incluído pela Lei nº 13.234, de 2015)"
+        }
+      ]
+    },
+    "60": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…perdotação na própria rede pública regular de ensino, independentemente do apoio às instituições previstas neste artigo.",
+          "literal": "(Redação dada pela Lei nº 12.796, de 2013)"
+        }
+      ]
+    },
+    "60-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.191",
+            "ano": 2021
+          },
+          "trecho": "…ilidades ou superdotação ou com outras deficiências associadas, optantes pela modalidade de educação bilíngue de surdos.",
+          "literal": "(Incluído pela Lei nº 14.191, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.191",
+            "ano": 2021
+          },
+          "trecho": "…mo o atendimento educacional especializado bilíngue, para atender às especificidades linguísticas dos estudantes surdos.",
+          "literal": "(Incluído pela Lei nº 14.191, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.191",
+            "ano": 2021
+          },
+          "trecho": "… A oferta de educação bilíngue de surdos terá início ao zero ano, na educação infantil, e se estenderá ao longo da vida.",
+          "literal": "(Incluído pela Lei nº 14.191, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.191",
+            "ano": 2021
+          },
+          "trecho": "…de 2015 (Estatuto da Pessoa com Deficiência), que incluem, para os surdos oralizados, o acesso a tecnologias assistivas.",
+          "literal": "(Incluído pela Lei nº 14.191, de 2021)"
+        }
+      ]
+    },
+    "60-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.191",
+            "ano": 2021
+          },
+          "trecho": "…ncias associadas materiais didáticos e professores bilíngues com formação e especialização adequadas, em nível superior.",
+          "literal": "(Incluído pela Lei nº 14.191, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.191",
+            "ano": 2021
+          },
+          "trecho": "…dica dos professores a que se refere o caput deste artigo serão ouvidas as entidades representativas das pessoas surdas.",
+          "literal": "(Incluído pela Lei nº 14.191, de 2021)"
+        }
+      ]
+    },
+    "61": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.014",
+            "ano": 2009
+          },
+          "trecho": "… da educação escolar básica os que, nela estando em efetivo exercício e tendo sido formados em cursos reconhecidos, são:",
+          "literal": "(Redação dada pela Lei nº 12.014, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.014",
+            "ano": 2009
+          },
+          "trecho": "…ofessores habilitados em nível médio ou superior para a docência na educação infantil e nos ensinos fundamental e médio;",
+          "literal": "(Redação dada pela Lei nº 12.014, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.014",
+            "ano": 2009
+          },
+          "trecho": "…ejamento, supervisão, inspeção e orientação educacional, bem como com títulos de mestrado ou doutorado nas mesmas áreas;",
+          "literal": "(Redação dada pela Lei nº 12.014, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.014",
+            "ano": 2009
+          },
+          "trecho": "III – trabalhadores em educação, portadores de diploma de curso técnico ou superior em área pedagógica ou afim.",
+          "literal": "(Incluído pela Lei nº 12.014, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.415",
+            "ano": 2017
+          },
+          "trecho": "…u privada ou das corporações privadas em que tenham atuado, exclusivamente para atender ao inciso V do caput do art. 36;",
+          "literal": "(Incluído pela lei nº 13.415, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.415",
+            "ano": 2017
+          },
+          "trecho": "…rofissionais graduados que tenham feito complementação pedagógica, conforme disposto pelo Conselho Nacional de Educação.",
+          "literal": "(Incluído pela lei nº 13.415, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.326",
+            "ano": 2026
+          },
+          "trecho": "…e suas atividades, bem como aos objetivos das diferentes etapas e modalidades da educação básica, terá como fundamentos:",
+          "literal": "(Redação dada pela Lei nº 15.326, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.014",
+            "ano": 2009
+          },
+          "trecho": "…ida formação básica, que propicie o conhecimento dos fundamentos científicos e sociais de suas competências de trabalho;",
+          "literal": "(Incluído pela Lei nº 12.014, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.014",
+            "ano": 2009
+          },
+          "trecho": "II – a associação entre teorias e práticas, mediante estágios supervisionados e capacitação em serviço;",
+          "literal": "(Incluído pela Lei nº 12.014, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.014",
+            "ano": 2009
+          },
+          "trecho": "III – o aproveitamento da formação e experiências anteriores, em instituições de ensino e em outras atividades.",
+          "literal": "(Incluído pela Lei nº 12.014, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.679",
+            "ano": 2023
+          },
+          "trecho": "…rtigo para identificação de maus-tratos, de negligência e de violência sexual praticados contra crianças e adolescentes.",
+          "literal": "(Incluído pela Lei nº 14.679, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.326",
+            "ano": 2026
+          },
+          "trecho": "…nte com as crianças educandas, com formação no magistério ou em curso de nível superior e aprovados em concurso público.",
+          "literal": "(Incluído pela Lei nº 15.326, de 2026)"
+        }
+      ]
+    },
+    "62": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.415",
+            "ano": 2017
+          },
+          "trecho": "…na educação infantil e nos cinco primeiros anos do ensino fundamental, a oferecida em nível médio, na modalidade normal.",
+          "literal": "(Redação dada pela lei nº 13.415, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.056",
+            "ano": 2009
+          },
+          "trecho": "…egime de colaboração, deverão promover a formação inicial, a continuada e a capacitação dos profissionais de magistério.",
+          "literal": "(Incluído pela Lei nº 12.056, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.056",
+            "ano": 2009
+          },
+          "trecho": "…tinuada e a capacitação dos profissionais de magistério poderão utilizar recursos e tecnologias de educação a distância.",
+          "literal": "(Incluído pela Lei nº 12.056, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.056",
+            "ano": 2009
+          },
+          "trecho": "…o dará preferência ao ensino presencial, subsidiariamente fazendo uso de recursos e tecnologias de educação a distância.",
+          "literal": "(Incluído pela Lei nº 12.056, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…dores de acesso e permanência em cursos de formação de docentes em nível superior para atuar na educação básica pública.",
+          "literal": "(Incluído pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…docência a estudantes matriculados em cursos de licenciatura, de graduação plena, nas instituições de educação superior.",
+          "literal": "(Incluído pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…equisito para o ingresso em cursos de graduação para formação de docentes, ouvido o Conselho Nacional de Educação - CNE.",
+          "literal": "(Incluído pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "§ 7º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "§ 7º (VETADO).",
+          "literal": "(Incluído pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.415",
+            "ano": 2017
+          },
+          "trecho": "§ 8º Os currículos dos cursos de formação de docentes terão por referência a Base Nacional Comum Curricular.",
+          "literal": "(Incluído pela lei nº 13.415, de 2017)"
+        }
+      ]
+    },
+    "62-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…se-á por meio de cursos de conteúdo técnico-pedagógico, em nível médio ou superior, incluindo habilitações tecnológicas.",
+          "literal": "(Incluído pela Lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…ior, incluindo cursos de educação profissional, cursos superiores de graduação plena ou tecnológicos e de pós-graduação.",
+          "literal": "(Incluído pela Lei nº 12.796, de 2013)"
+        }
+      ]
+    },
+    "62-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.478",
+            "ano": 2017
+          },
+          "trecho": "…ucação básica a cursos superiores de pedagogia e licenciatura será efetivado por meio de processo seletivo diferenciado.",
+          "literal": "(Incluído pela Lei nº 13.478, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.478",
+            "ano": 2017
+          },
+          "trecho": "… concurso público, tenham pelo menos três anos de exercício da profissão e não sejam portadores de diploma de graduação.",
+          "literal": "(Incluído pela Lei nº 13.478, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.478",
+            "ano": 2017
+          },
+          "trecho": "…ão sempre que acorrerem aos certames interessados em número superior ao de vagas disponíveis para os respectivos cursos.",
+          "literal": "(Incluído pela Lei nº 13.478, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.478",
+            "ano": 2017
+          },
+          "trecho": "…esso os professores que optarem por cursos de licenciatura em matemática, física, química, biologia e língua portuguesa.",
+          "literal": "(Incluído pela Lei nº 13.478, de 2017)"
+        }
+      ]
+    },
+    "67": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.462",
+            "ano": 2026
+          },
+          "trecho": "…lificação, cursos de pós-graduação lato sensu e stricto sensu e período para realização de pesquisa na área da educação;",
+          "literal": "(Redação dada pela Lei nº 15.462, de 2026)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.301",
+            "ano": 2006
+          },
+          "trecho": "…ara o exercício profissional de quaisquer outras funções de magistério, nos termos das normas de cada sistema de ensino.",
+          "literal": "(Renumerado pela Lei nº 11.301, de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.301",
+            "ano": 2006
+          },
+          "trecho": "…luídas, além do exercício da docência, as de direção de unidade escolar e as de coordenação e assessoramento pedagógico.",
+          "literal": "(Incluído pela Lei nº 11.301, de 2006)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "…to Federal e aos Municípios na elaboração de concursos públicos para provimento de cargos dos profissionais da educação.",
+          "literal": "(Incluído pela Lei nº 12.796, de 2013)"
+        }
+      ]
+    },
+    "69": {
+      "situacao": "vigencia_encerrada",
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…nsferências constitucionais, na manutenção e desenvolvimento do ensino público. (Vide Medida Provisória nº 773, de 2017)",
+          "literal": "(Vigência encerrada)"
+        }
+      ]
+    },
+    "70": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.560",
+            "ano": 2023
+          },
+          "trecho": "…u mostras de ciências da natureza ou humanas, matemática, língua portuguesa ou língua estrangeira, literatura e cultura.",
+          "literal": "(Incluído pela Lei nº 14.560, de 2023)"
+        }
+      ]
+    },
+    "72": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "Art. 72. As receitas e as despesas com manutenção e desenvolvimento do ensino serão apuradas e publicadas:",
+          "literal": "(Redação dada pela Lei nº 15.001, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "I – nos balanços do poder público e nos relatórios a que se refere o § 3º do art. 165 da Constituição Federal;",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "…ítios eletrônicos do Ministério da Educação e dos órgãos gestores da educação pública de cada ente federado subnacional.",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "Parágrafo único. Deverão ser publicados, de forma específica, dados relativos a:",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "I – receitas próprias, de convênios ou de doações das instituições federais de ensino;",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "…sos do Fundo de Manutenção e Desenvolvimento da Educação Básica e de Valorização dos Profissionais da Educação (Fundeb);",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "III – repasses de recursos públicos a instituições de ensino conveniadas para oferta da educação escolar.",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        }
+      ]
+    },
+    "77": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "…ra governamental, ou seu cônjuge, companheiro ou parente em linha reta, colateral ou por afinidade, até o terceiro grau.",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "…s deverão disponibilizar ao público, em meio eletrônico, nos termos de regulamento, informações acessíveis referentes a:",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "I – recursos financeiros públicos diretamente recebidos e objetivos a serem alcançados por meio da sua utilização;",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "II – caso certificadas como entidades beneficentes, nos termos da Lei Complementar nº 187, de 16 de dezembro de 2021:",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "a) comprovação da certificação e respectivo prazo de validade;",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.001",
+            "ano": 2024
+          },
+          "trecho": "…m o disposto na Lei Complementar nº 187, de 16 de dezembro de 2021, bem como os critérios utilizados para sua concessão.",
+          "literal": "(Incluído pela Lei nº 15.001, de 2024)"
+        }
+      ]
+    },
+    "78-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.191",
+            "ano": 2021
+          },
+          "trecho": "…izantes, surdos com altas habilidades ou superdotação ou com outras deficiências associadas, com os seguintes objetivos:",
+          "literal": "(Incluído pela Lei nº 14.191, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.191",
+            "ano": 2021
+          },
+          "trecho": "…e suas memórias históricas, a reafirmação de suas identidades e especificidades e a valorização de sua língua e cultura;",
+          "literal": "(Incluído pela Lei nº 14.191, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.191",
+            "ano": 2021
+          },
+          "trecho": "…sso às informações e conhecimentos técnicos e científicos da sociedade nacional e demais sociedades surdas e não surdas.",
+          "literal": "(Incluído pela Lei nº 14.191, de 2021)"
+        }
+      ]
+    },
+    "79": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.416",
+            "ano": 2011
+          },
+          "trecho": "…ferta de ensino e de assistência estudantil, assim como de estímulo à pesquisa e desenvolvimento de programas especiais.",
+          "literal": "(Incluído pela Lei nº 12.416, de 2011)"
+        }
+      ]
+    },
+    "79-A": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 79-A.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.639",
+            "ano": 2003
+          },
+          "trecho": "Art. 79-A. (VETADO)",
+          "literal": "(Incluído pela Lei nº 10.639, de 9.1.2003)"
+        }
+      ]
+    },
+    "79-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.639",
+            "ano": 2003
+          },
+          "trecho": "Art. 79-B. O calendário escolar incluirá o dia 20 de novembro como ‘Dia Nacional da Consciência Negra’.",
+          "literal": "(Incluído pela Lei nº 10.639, de 9.1.2003)"
+        }
+      ]
+    },
+    "79-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.191",
+            "ano": 2021
+          },
+          "trecho": "…ucação bilíngue e intercultural às comunidades surdas, com desenvolvimento de programas integrados de ensino e pesquisa.",
+          "literal": "(Incluído pela Lei nº 14.191, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.191",
+            "ano": 2021
+          },
+          "trecho": "…rticipação das comunidades surdas, de instituições de ensino superior e de entidades representativas das pessoas surdas.",
+          "literal": "(Incluído pela Lei nº 14.191, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.191",
+            "ano": 2021
+          },
+          "trecho": "§ 2º Os programas a que se refere este artigo, incluídos no Plano Nacional de Educação, terão os seguintes objetivos:",
+          "literal": "(Incluído pela Lei nº 14.191, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.191",
+            "ano": 2021
+          },
+          "trecho": "I - fortalecer as práticas socioculturais dos surdos e a Língua Brasileira de Sinais;",
+          "literal": "(Incluído pela Lei nº 14.191, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.191",
+            "ano": 2021
+          },
+          "trecho": "…m deficiência auditiva sinalizantes, surdos com altas habilidades ou superdotação ou com outras deficiências associadas;",
+          "literal": "(Incluído pela Lei nº 14.191, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.191",
+            "ano": 2021
+          },
+          "trecho": "…urrículos, métodos, formação e programas específicos, neles incluídos os conteúdos culturais correspondentes aos surdos;",
+          "literal": "(Incluído pela Lei nº 14.191, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.191",
+            "ano": 2021
+          },
+          "trecho": "IV - elaborar e publicar sistematicamente material didático bilíngue, específico e diferenciado.",
+          "literal": "(Incluído pela Lei nº 14.191, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.191",
+            "ano": 2021
+          },
+          "trecho": "…ensino bilíngue e de assistência estudantil, assim como de estímulo à pesquisa e desenvolvimento de programas especiais.",
+          "literal": "(Incluído pela Lei nº 14.191, de 2021)"
+        }
+      ]
+    },
+    "80": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.603",
+            "ano": 2012
+          },
+          "trecho": "…ens e em outros meios de comunicação que sejam explorados mediante autorização, concessão ou permissão do poder público;",
+          "literal": "(Redação dada pela Lei nº 12.603, de 2012)"
+        }
+      ]
+    },
+    "81-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.952",
+            "ano": 2024
+          },
+          "trecho": "…A. Os sistemas de ensino estabelecerão, para a educação básica e superior, regime escolar especial para o atendimento a:",
+          "literal": "(Incluído pela Lei nº 14.952, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.952",
+            "ano": 2024
+          },
+          "trecho": "…tar as aulas em razão de tratamento de saúde ou de condição de saúde que impossibilite o acesso à instituição de ensino;",
+          "literal": "(Incluído pela Lei nº 14.952, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.952",
+            "ano": 2024
+          },
+          "trecho": "II - mães estudantes lactantes;",
+          "literal": "(Incluído pela Lei nº 14.952, de 2024)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.952",
+            "ano": 2024
+          },
+          "trecho": "III - (VETADO).",
+          "literal": "(Incluído pela Lei nº 14.952, de 2024)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.952",
+            "ano": 2024
+          },
+          "trecho": "§ 1º (VETADO).",
+          "literal": "(Incluído pela Lei nº 14.952, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.952",
+            "ano": 2024
+          },
+          "trecho": "…ondição necessária para garantir a continuidade e a permanência de suas atividades escolares, nos termos de regulamento.",
+          "literal": "(Incluído pela Lei nº 14.952, de 2024)"
+        }
+      ]
+    },
+    "82": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.788",
+            "ano": 2008
+          },
+          "trecho": "…s de ensino estabelecerão as normas de realização de estágio em sua jurisdição, observada a lei federal sobre a matéria.",
+          "literal": "(Redação dada pela Lei nº 11.788, de 2008)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.788",
+            "ano": 2008
+          },
+          "trecho": "Parágrafo único. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 11.788, de 2008)"
+        }
+      ]
+    },
+    "87": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "§ 2º (Revogado).",
+          "literal": "(Redação dada pela lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.330",
+            "ano": 2006
+          },
+          "trecho": "§ 3º O Distrito Federal, cada Estado e Município, e, supletivamente, a União, devem:",
+          "literal": "(Redação dada pela Lei nº 11.330, de 2006)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "I - (revogado);",
+          "literal": "(Redação dada pela lei nº 12.796, de 2013)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "§ 4º (Revogado)",
+          "literal": "(Redação dada pela lei nº 12.796, de 2013)"
+        }
+      ]
+    },
+    "87-A": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 87-A.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.796",
+            "ano": 2013
+          },
+          "trecho": "Art. 87-A. (VETADO).",
+          "literal": "(Incluído pela lei nº 12.796, de 2013)"
+        }
+      ]
+    },
+    "90-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.644",
+            "ano": 2023
+          },
+          "trecho": "… dos Conselhos Escolares já instituídos continuarão a observar as normas expedidas pelos respectivos sistemas de ensino.",
+          "literal": "(Incluído pela Lei nº 14.644, de 2023)"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,2081 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L8080",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l8080.json",
+      "colecao": "artigos",
+      "sha256": "1f7f7b382e3ab6fda65f60408d7546001faae03fdd12f12233ea95d16a727d67",
+      "total_registros": 89,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 56,
+      "anotacoes": 171,
+      "anotacoes_sem_diploma_nomeado": 30
+    }
+  },
+  "vigencia": {
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.864",
+            "ano": 2013
+          },
+          "trecho": "…e, o trabalho, a renda, a educação, a atividade física, o transporte, o lazer e o acesso aos bens e serviços essenciais.",
+          "literal": "(Redação dada pela Lei nº 12.864, de 2013)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.572",
+            "ano": 2023
+          },
+          "trecho": "c) de saúde do trabalhador;",
+          "literal": "(Redação dada pela Lei nº 14.572, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.572",
+            "ano": 2023
+          },
+          "trecho": "e) de saúde bucal;",
+          "literal": "(Incluída pela Lei nº 14.572, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.471",
+            "ano": 2026
+          },
+          "trecho": "f) de promoção do desenvolvimento produtivo, tecnológico e da inovação do Complexo Econômico-Industrial da Saúde (Ceis);",
+          "literal": "(Incluída pela Lei nº 15.471, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.715",
+            "ano": 2023
+          },
+          "trecho": "…política de informação e assistência toxicológica e de logística de antídotos e medicamentos utilizados em intoxicações.",
+          "literal": "(Incluído pela Lei nº 14.715, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.471",
+            "ano": 2026
+          },
+          "trecho": "…compra do SUS, o financiamento, a regulação, o desenvolvimento científico, tecnológico e industrial e outros incentivos.",
+          "literal": "(Incluído pela Lei nº 15.471, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.572",
+            "ano": 2023
+          },
+          "trecho": "…cuperação e reabilitação odontológica, individual e coletiva, inseridas no contexto da integralidade da atenção à saúde.",
+          "literal": "(Incluído pela Lei nº 14.572, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.715",
+            "ano": 2023
+          },
+          "trecho": "…cas decorrentes da exposição a substâncias químicas, medicamentos e toxinas de animais peçonhentos e de plantas tóxicas.",
+          "literal": "(Incluído pela Lei nº 14.715, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.471",
+            "ano": 2026
+          },
+          "trecho": "…oros, hemoderivados, dispositivos médicos, insumos farmacêuticos ativos, componentes e insumos críticos para a produção.",
+          "literal": "(Incluído pela Lei nº 15.471, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.654",
+            "ano": 2023
+          },
+          "trecho": "…tos das farmácias públicas que estiverem sob sua gestão, com atualização quinzenal, de forma acessível ao cidadão comum.",
+          "literal": "(Incluído pela Lei nº 14.654, de 2023)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.427",
+            "ano": 2017
+          },
+          "trecho": "…mpanhamento psicológico e cirurgias plásticas reparadoras, em conformidade com a Lei nº 12.845, de 1º de agosto de 2013.",
+          "literal": "(Redação dada pela Lei nº 13.427, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.679",
+            "ano": 2023
+          },
+          "trecho": "… atenção à identificação de maus-tratos, de negligência e de violência sexual praticados contra crianças e adolescentes.",
+          "literal": "(Incluído pela Lei nº 14.679, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.126",
+            "ano": 2025
+          },
+          "trecho": "XVI – atenção humanizada.",
+          "literal": "(Incluído pela Lei nº 15.126, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.847",
+            "ano": 2024
+          },
+          "trecho": "…ue garantam sua privacidade e restrição do acesso de terceiros não autorizados pela paciente, em especial o do agressor.",
+          "literal": "(Incluído pela Lei nº 14.847, de 2024)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 11.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "14-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.466",
+            "ano": 2011
+          },
+          "trecho": "…s como foros de negociação e pactuação entre gestores, quanto aos aspectos operacionais do Sistema Único de Saúde (SUS).",
+          "literal": "(Incluído pela Lei nº 12.466, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.466",
+            "ano": 2011
+          },
+          "trecho": "Parágrafo único. A atuação das Comissões Intergestores Bipartite e Tripartite terá por objetivo:",
+          "literal": "(Incluído pela Lei nº 12.466, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.466",
+            "ano": 2011
+          },
+          "trecho": "…SUS, em conformidade com a definição da política consubstanciada em planos de saúde, aprovados pelos conselhos de saúde;",
+          "literal": "(Incluído pela Lei nº 12.466, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.466",
+            "ano": 2011
+          },
+          "trecho": "…saúde, principalmente no tocante à sua governança institucional e à integração das ações e serviços dos entes federados;",
+          "literal": "(Incluído pela Lei nº 12.466, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.466",
+            "ano": 2011
+          },
+          "trecho": "…ia e contrarreferência e demais aspectos vinculados à integração das ações e serviços de saúde entre os entes federados.",
+          "literal": "(Incluído pela Lei nº 12.466, de 2011)"
+        }
+      ]
+    },
+    "14-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.466",
+            "ano": 2011
+          },
+          "trecho": "… de matérias referentes à saúde e declarados de utilidade pública e de relevante função social, na forma do regulamento.",
+          "literal": "(Incluído pela Lei nº 12.466, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.466",
+            "ano": 2011
+          },
+          "trecho": "…cional de Saúde, para auxiliar no custeio de suas despesas institucionais, podendo ainda celebrar convênios com a União.",
+          "literal": "(Incluído pela Lei nº 12.466, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.466",
+            "ano": 2011
+          },
+          "trecho": "…atérias referentes à saúde, desde que vinculados institucionalmente ao Conasems, na forma que dispuserem seus estatutos.",
+          "literal": "(Incluído pela Lei nº 12.466, de 2011)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.572",
+            "ano": 2023
+          },
+          "trecho": "Art. 16. À direção nacional do SUS compete:",
+          "literal": "(Redação dada pela Lei nº 14.572, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.572",
+            "ano": 2023
+          },
+          "trecho": "XX - definir as diretrizes e as normas para a estruturação física e organizacional dos serviços de saúde bucal.",
+          "literal": "(Incluído pela Lei nº 14.572, de 2023)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.141",
+            "ano": 2021
+          },
+          "trecho": "…capar do controle da direção estadual do Sistema Único de Saúde (SUS) ou que representem risco de disseminação nacional.",
+          "literal": "(Renumerado do parágrafo único pela Lei nº 14.141, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.141",
+            "ano": 2021
+          },
+          "trecho": "…poderá ser adotado procedimento simplificado para a remessa de patrimônio genético ao exterior, na forma do regulamento.",
+          "literal": "(Incluído pela Lei nº 14.141, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.141",
+            "ano": 2021
+          },
+          "trecho": "…atrimônio genético de que trata o § 2º deste artigo serão repartidos nos termos da Lei nº 13.123, de 20 de maio de 2015.",
+          "literal": "(Incluído pela Lei nº 14.141, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.301",
+            "ano": 2025
+          },
+          "trecho": "… atenção especializada nos Estados, no Distrito Federal e nos Municípios, conforme regulamento do gestor federal do SUS.",
+          "literal": "(Incluído pela Medida Provisória nº 1.301, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.233",
+            "ano": 2025
+          },
+          "trecho": "… atenção especializada nos Estados, no Distrito Federal e nos Municípios, conforme regulamento do gestor federal do SUS.",
+          "literal": "(Incluído pela Lei nº 15.233, de 2025)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.572",
+            "ano": 2023
+          },
+          "trecho": "c) de alimentação e nutrição;",
+          "literal": "(Redação dada pela Lei nº 14.572, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.572",
+            "ano": 2023
+          },
+          "trecho": "e) de saúde bucal;",
+          "literal": "(Incluída pela Lei nº 14.572, de 2023)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.572",
+            "ano": 2023
+          },
+          "trecho": "Art. 18. À direção municipal do SUS compete:",
+          "literal": "(Redação dada pela Lei nº 14.572, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.572",
+            "ano": 2023
+          },
+          "trecho": "d) de saneamento básico;",
+          "literal": "(Redação dada pela Lei nº 14.572, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.572",
+            "ano": 2023
+          },
+          "trecho": "f) de saúde bucal;",
+          "literal": "(Incluída pela Lei nº 14.572, de 2023)"
+        }
+      ]
+    },
+    "19-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.836",
+            "ano": 1999
+          },
+          "trecho": "… das populações indígenas, em todo o território nacional, coletiva ou individualmente, obedecerão ao disposto nesta Lei.",
+          "literal": "(Incluído pela Lei nº 9.836, de 1999)"
+        }
+      ]
+    },
+    "19-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.836",
+            "ano": 1999
+          },
+          "trecho": "…o e definido por esta Lei, e pela Lei no 8.142, de 28 de dezembro de 1990, com o qual funcionará em perfeita integração.",
+          "literal": "(Incluído pela Lei nº 9.836, de 1999)"
+        }
+      ]
+    },
+    "19-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.836",
+            "ano": 1999
+          },
+          "trecho": "Art. 19-C. Caberá à União, com seus recursos próprios, financiar o Subsistema de Atenção à Saúde Indígena.",
+          "literal": "(Incluído pela Lei nº 9.836, de 1999)"
+        }
+      ]
+    },
+    "19-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.836",
+            "ano": 1999
+          },
+          "trecho": "…promoverá a articulação do Subsistema instituído por esta Lei com os órgãos responsáveis pela Política Indígena do País.",
+          "literal": "(Incluído pela Lei nº 9.836, de 1999)"
+        }
+      ]
+    },
+    "19-E": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.836",
+            "ano": 1999
+          },
+          "trecho": "…outras instituições governamentais e não-governamentais poderão atuar complementarmente no custeio e execução das ações.",
+          "literal": "(Incluído pela Lei nº 9.836, de 1999)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.021",
+            "ano": 2020
+          },
+          "trecho": "…Federal e os Municípios, sempre que houver necessidade de atenção secundária e terciária fora dos territórios indígenas.",
+          "literal": "(Incluído pela Lei nº 14.021, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.021",
+            "ano": 2020
+          },
+          "trecho": "§ 2º Em situações emergenciais e de calamidade pública:",
+          "literal": "(Incluído pela Lei nº 14.021, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.021",
+            "ano": 2020
+          },
+          "trecho": "…stos nos planos de saúde dos Distritos Sanitários Especiais Indígenas (Dseis) ao Subsistema de Atenção à Saúde Indígena;",
+          "literal": "(Incluído pela Lei nº 14.021, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.021",
+            "ano": 2020
+          },
+          "trecho": "…cretarias Municipais e Estaduais de Saúde, explicitados os fluxos e as referências para o atendimento em tempo oportuno.",
+          "literal": "(Incluído pela Lei nº 14.021, de 2020)"
+        }
+      ]
+    },
+    "19-F": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.836",
+            "ano": 1999
+          },
+          "trecho": "…eamento básico, nutrição, habitação, meio ambiente, demarcação de terras, educação sanitária e integração institucional.",
+          "literal": "(Incluído pela Lei nº 9.836, de 1999)"
+        }
+      ]
+    },
+    "19-G": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.836",
+            "ano": 1999
+          },
+          "trecho": "…. 19-G. O Subsistema de Atenção à Saúde Indígena deverá ser, como o SUS, descentralizado, hierarquizado e regionalizado.",
+          "literal": "(Incluído pela Lei nº 9.836, de 1999)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.836",
+            "ano": 1999
+          },
+          "trecho": "§ 1o O Subsistema de que trata o caput deste artigo terá como base os Distritos Sanitários Especiais Indígenas.",
+          "literal": "(Incluído pela Lei nº 9.836, de 1999)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.021",
+            "ano": 2020
+          },
+          "trecho": "…da declaração de raça ou cor, garantindo a identificação de todos os indígenas atendidos nos sistemas públicos de saúde.",
+          "literal": "(Incluído pela Lei nº 14.021, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.021",
+            "ano": 2020
+          },
+          "trecho": "…A União deverá integrar os sistemas de informação da rede do SUS com os dados do Subsistema de Atenção à Saúde Indígena.",
+          "literal": "(Incluído pela Lei nº 14.021, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.836",
+            "ano": 1999
+          },
+          "trecho": "… populações indígenas, para propiciar essa integração e o atendimento necessário em todos os níveis, sem discriminações.",
+          "literal": "(Incluído pela Lei nº 9.836, de 1999)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.836",
+            "ano": 1999
+          },
+          "trecho": "…ntros especializados, de acordo com suas necessidades, compreendendo a atenção primária, secundária e terciária à saúde.",
+          "literal": "(Incluído pela Lei nº 9.836, de 1999)"
+        }
+      ]
+    },
+    "19-H": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.836",
+            "ano": 1999
+          },
+          "trecho": "…icas de saúde, tais como o Conselho Nacional de Saúde e os Conselhos Estaduais e Municipais de Saúde, quando for o caso.",
+          "literal": "(Incluído pela Lei nº 9.836, de 1999)"
+        }
+      ]
+    },
+    "19-I": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.424",
+            "ano": 2002
+          },
+          "trecho": "Art. 19-I. São estabelecidos, no âmbito do Sistema Único de Saúde, o atendimento domiciliar e a internação domiciliar.",
+          "literal": "(Incluído pela Lei nº 10.424, de 2002)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.424",
+            "ano": 2002
+          },
+          "trecho": "…icos, psicológicos e de assistência social, entre outros necessários ao cuidado integral dos pacientes em seu domicílio.",
+          "literal": "(Incluído pela Lei nº 10.424, de 2002)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.424",
+            "ano": 2002
+          },
+          "trecho": "…ão realizados por equipes multidisciplinares que atuarão nos níveis da medicina preventiva, terapêutica e reabilitadora.",
+          "literal": "(Incluído pela Lei nº 10.424, de 2002)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.424",
+            "ano": 2002
+          },
+          "trecho": "…ção domiciliares só poderão ser realizados por indicação médica, com expressa concordância do paciente e de sua família.",
+          "literal": "(Incluído pela Lei nº 10.424, de 2002)"
+        }
+      ]
+    },
+    "19-J": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.737",
+            "ano": 2023
+          },
+          "trecho": "…se acompanhar por pessoa maior de idade, durante todo o período do atendimento, independentemente de notificação prévia.",
+          "literal": "(Redação dada pela Lei nº 14.737, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.108",
+            "ano": 2005
+          },
+          "trecho": "§ 1o O acompanhante de que trata o caput deste artigo será indicado pela parturiente.",
+          "literal": "(Incluído pela Lei nº 11.108, de 2005)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.737",
+            "ano": 2023
+          },
+          "trecho": "…l, e estará obrigado a preservar o sigilo das informações de saúde de que tiver conhecimento em razão do acompanhamento.",
+          "literal": "(Redação dada pela Lei nº 14.737, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.108",
+            "ano": 2005
+          },
+          "trecho": "…itos de que trata este artigo constarão do regulamento da lei, a ser elaborado pelo órgão competente do Poder Executivo.",
+          "literal": "(Incluído pela Lei nº 11.108, de 2005)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.737",
+            "ano": 2023
+          },
+          "trecho": "…de outro, independentemente de justificativa, registrando-se o nome escolhido no documento gerado durante o atendimento.",
+          "literal": "(Redação dada pela Lei nº 14.737, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.737",
+            "ano": 2023
+          },
+          "trecho": "… seus direitos, com no mínimo 24 (vinte e quatro) horas de antecedência, assinada por ela e arquivada em seu prontuário.",
+          "literal": "(Incluído pela Lei nº 14.737, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.895",
+            "ano": 2013
+          },
+          "trecho": "…os a manter, em local visível de suas dependências, aviso informando sobre o direito estabelecido no caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 12.895, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.737",
+            "ano": 2023
+          },
+          "trecho": "… obrigadas a manter, em local visível de suas dependências, aviso que informe sobre o direito estabelecido neste artigo.",
+          "literal": "(Redação dada pela Lei nº 14.737, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.737",
+            "ano": 2023
+          },
+          "trecho": "…cientes, devidamente justificadas pelo corpo clínico, somente será admitido acompanhante que seja profissional de saúde.",
+          "literal": "(Incluído pela Lei nº 14.737, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.737",
+            "ano": 2023
+          },
+          "trecho": "…autorizados a agir na proteção e defesa da saúde e da vida da paciente, ainda que na ausência do acompanhante requerido.",
+          "literal": "(Incluído pela Lei nº 14.737, de 2023)"
+        }
+      ]
+    },
+    "19-L": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 19-L.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.108",
+            "ano": 2005
+          },
+          "trecho": "Art. 19-L. (VETADO)",
+          "literal": "(Incluído pela Lei nº 11.108, de 2005)"
+        }
+      ]
+    },
+    "19-M": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "Art. 19-M. A assistência terapêutica integral a que se refere a alínea d do inciso I do art. 6o consiste em:",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "… para a doença ou o agravo à saúde a ser tratado ou, na falta do protocolo, em conformidade com o disposto no art. 19-P;",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        }
+      ]
+    },
+    "19-N": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "Art. 19-N. Para os efeitos do disposto no art. 19-M, são adotadas as seguintes definições:",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "I - produtos de interesse para a saúde: órteses, próteses, bolsas coletoras e equipamentos médicos;",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "…ontrole clínico; e o acompanhamento e a verificação dos resultados terapêuticos, a serem seguidos pelos gestores do SUS.",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        }
+      ]
+    },
+    "19-O": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "…o de intolerância ou reação adversa relevante, provocadas pelo medicamento, produto ou procedimento de primeira escolha.",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "…ividade e custo-efetividade para as diferentes fases evolutivas da doença ou do agravo à saúde de que trata o protocolo.",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.379",
+            "ano": 2026
+          },
+          "trecho": "…ividade e custo-efetividade para as diferentes fases evolutivas da doença ou do agravo à saúde de que trata o protocolo.",
+          "literal": "(Redação dada pela Lei nº 15.379, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.379",
+            "ano": 2026
+          },
+          "trecho": "…tilização de imunoterapia quando se mostrar superior ou mais segura que as opções tradicionais, na forma do regulamento.",
+          "literal": "(Incluído pela Lei nº 15.379, de 2026)"
+        }
+      ]
+    },
+    "19-P": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "Art. 19-P. Na falta de protocolo clínico ou de diretriz terapêutica, a dispensação será realizada:",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "…cias estabelecidas nesta Lei, e a responsabilidade pelo fornecimento será pactuada na Comissão Intergestores Tripartite;",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "…los gestores estaduais do SUS, e a responsabilidade pelo fornecimento será pactuada na Comissão Intergestores Bipartite;",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "…s pelos gestores municipais do SUS, e a responsabilidade pelo fornecimento será pactuada no Conselho Municipal de Saúde.",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        }
+      ]
+    },
+    "19-Q": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "…utica, são atribuições do Ministério da Saúde, assessorado pela Comissão Nacional de Incorporação de Tecnologias no SUS.",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "… Conselho Nacional de Saúde e de 1 (um) representante, especialista na área, indicado pelo Conselho Federal de Medicina.",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.655",
+            "ano": 2023
+          },
+          "trecho": "…onselho Federal de Medicina e de 1 (um) representante, especialista na área, indicado pela Associação Médica Brasileira.",
+          "literal": "(Redação dada pela Lei nº 14.655, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "§ 2o O relatório da Comissão Nacional de Incorporação de Tecnologias no SUS levará em consideração, necessariamente:",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "…nto, produto ou procedimento objeto do processo, acatadas pelo órgão competente para o registro ou a autorização de uso;",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "…ias já incorporadas, inclusive no que se refere aos atendimentos domiciliar, ambulatorial ou hospitalar, quando cabível.",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.313",
+            "ano": 2022
+          },
+          "trecho": "…s, inclusive em relação aos indicadores e parâmetros de custo-efetividade utilizados em combinação com outros critérios.",
+          "literal": "(Incluído pela Lei nº 14.313, de 2022)"
+        }
+      ]
+    },
+    "19-R": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "… foi protocolado o pedido, admitida a sua prorrogação por 90 (noventa) dias corridos, quando as circunstâncias exigirem.",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "… observará, no que couber, o disposto na Lei no 9.784, de 29 de janeiro de 1999, e as seguintes determinações especiais:",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "…s de produtos, na forma do regulamento, com informações necessárias para o atendimento do disposto no § 2o do art. 19-Q;",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "II - (VETADO);",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "…onsulta pública que inclua a divulgação do parecer emitido pela Comissão Nacional de Incorporação de Tecnologias no SUS;",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "IV - realização de audiência pública, antes da tomada de decisão, se a relevância da matéria justificar o evento.",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.313",
+            "ano": 2022
+          },
+          "trecho": "V - distribuição aleatória, respeitadas a especialização e a competência técnica requeridas para a análise da matéria;",
+          "literal": "(Incluído pela Lei nº 14.313, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.313",
+            "ano": 2022
+          },
+          "trecho": "VI - publicidade dos atos processuais.",
+          "literal": "(Incluído pela Lei nº 14.313, de 2022)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "§ 2o (VETADO).",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.758",
+            "ano": 2023
+          },
+          "trecho": "…uando se tratar de análise de medicamento, de produto ou de procedimento relacionado à assistência da pessoa com câncer.",
+          "literal": "(Incluído pela Lei nº 14.758, de 2023)"
+        }
+      ]
+    },
+    "19-S": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 19-S.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "Art. 19-S. (VETADO).",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        }
+      ]
+    },
+    "19-T": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "Art. 19-T. São vedados, em todas as esferas de gestão do SUS:",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "…ento clínico ou cirúrgico experimental, ou de uso não autorizado pela Agência Nacional de Vigilância Sanitária - ANVISA;",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "…ão, o pagamento, o ressarcimento ou o reembolso de medicamento e produto, nacional ou importado, sem registro na Anvisa.",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.313",
+            "ano": 2022
+          },
+          "trecho": "Parágrafo único. Excetuam-se do disposto neste artigo:",
+          "literal": "(Incluído pela Lei nº 14.313, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.313",
+            "ano": 2022
+          },
+          "trecho": "…cácia, a acurácia, a efetividade e a segurança, e esteja padronizado em protocolo estabelecido pelo Ministério da Saúde;",
+          "literal": "(Incluído pela Lei nº 14.313, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.313",
+            "ano": 2022
+          },
+          "trecho": "…inistério da Saúde e suas entidades vinculadas, nos termos do § 5º do art. 8º da Lei nº 9.782, de 26 de janeiro de 1999.",
+          "literal": "(Incluído pela Lei nº 14.313, de 2022)"
+        }
+      ]
+    },
+    "19-U": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.401",
+            "ano": 2011
+          },
+          "trecho": "…e interesse para a saúde ou procedimentos de que trata este Capítulo será pactuada na Comissão Intergestores Tripartite.",
+          "literal": "(Incluído pela Lei nº 12.401, de 2011)"
+        }
+      ]
+    },
+    "19-V": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.912",
+            "ano": 2024
+          },
+          "trecho": "…s riscos dessa prática, especialmente quanto à ingestão de antibióticos ou de medicamentos sujeitos a controle especial.",
+          "literal": "(Incluído pela Lei nº 14.912, de 2024)"
+        }
+      ]
+    },
+    "19-W": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.977",
+            "ano": 2025
+          },
+          "trecho": "… produzir os princípios ativos destinados ao tratamento das doenças determinadas socialmente, nos termos de regulamento.",
+          "literal": "(Incluído pela Lei nº 14.977, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.977",
+            "ano": 2025
+          },
+          "trecho": "…vistas à adaptação de sua linha produtiva e à aquisição de tecnologias e processos direcionados à produção farmoquímica.",
+          "literal": "(Incluído pela Lei nº 14.977, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.977",
+            "ano": 2025
+          },
+          "trecho": "…sferência dessa tecnologia e do conhecimento para os laboratórios de natureza pública capacitados na forma deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.977, de 2025)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…ireta ou indireta, inclusive controle, de empresas ou de capital estrangeiro na assistência à saúde nos seguintes casos:",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…cionais vinculados à Organização das Nações Unidas, de entidades de cooperação técnica e de financiamento e empréstimos;",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "II - pessoas jurídicas destinadas a instalar, operacionalizar ou explorar:",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "a) hospital geral, inclusive filantrópico, hospital especializado, policlínica, clínica geral e clínica especializada; e",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "b) ações e pesquisas de planejamento familiar;",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…ucrativa, por empresas, para atendimento de seus empregados e dependentes, sem qualquer ônus para a seguridade social; e",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "IV - demais casos previstos em legislação específica.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3°",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.820",
+            "ano": 2024
+          },
+          "trecho": "… a preservação do valor real destinado à remuneração de serviços, observada a disponibilidade orçamentária e financeira.",
+          "literal": "(Incluído pela Lei nº 14.820, de 2024)"
+        }
+      ]
+    },
+    "26-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "…a área da saúde regulamentadas pelos órgãos competentes do Poder Executivo federal e obedecerá aos seguintes princípios:",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "I - autonomia do profissional de saúde;",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "…reito de recusa ao atendimento na modalidade telessaúde, com a garantia do atendimento presencial sempre que solicitado;",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "IV - dignidade e valorização do profissional de saúde;",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "V - assistência segura e com qualidade ao paciente;",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "VI - confidencialidade dos dados;",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "VII - promoção da universalização do acesso dos brasileiros às ações e aos serviços de saúde;",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "VIII - estrita observância das atribuições legais de cada profissão;",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "IX - responsabilidade digital.",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        }
+      ]
+    },
+    "26-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "… transmissão segura de dados e informações de saúde, por meio de textos, de sons, de imagens ou outras formas adequadas.",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "…atos do profissional de saúde, quando praticados na modalidade telessaúde, terão validade em todo o território nacional.",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        }
+      ]
+    },
+    "26-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "… procedimento, e poderá indicar a utilização de atendimento presencial ou optar por ele, sempre que entender necessário.",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        }
+      ]
+    },
+    "26-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "…rões normativos adotados para as modalidades de atendimento presencial, no que não colidirem com os preceitos desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        }
+      ]
+    },
+    "26-E": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "… Único de Saúde (SUS) quanto às condições para seu funcionamento, observada a competência dos demais órgãos reguladores.",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        }
+      ]
+    },
+    "26-F": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "…iço de telessaúde deverá demonstrar a imprescindibilidade da medida para que sejam evitados danos à saúde dos pacientes.",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        }
+      ]
+    },
+    "26-G": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "Art. 26-G. A prática da telessaúde deve seguir as seguintes determinações:",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "…timento livre e esclarecido do paciente, ou de seu representante legal, e sob responsabilidade do profissional de saúde;",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "…idor) e, nas hipóteses cabíveis, aos ditames da Lei nº 13.787, de 27 de dezembro de 2018 (Lei do Prontuário Eletrônico).",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        }
+      ]
+    },
+    "26-H": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.510",
+            "ano": 2022
+          },
+          "trecho": "…r do profissional de saúde que exercer a profissão em outra jurisdição exclusivamente por meio da modalidade telessaúde.",
+          "literal": "(Incluído pela Lei nº 14.510, de 2022)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 29.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6º",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "141",
+            "ano": 2012
+          },
+          "trecho": "…ribuída segundo o quociente de sua divisão pelo número de habitantes, independentemente de qualquer procedimento prévio.",
+          "literal": "(Revogado pela Lei Complementar nº 141, de 2012)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5º",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "39": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 39.",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "§ 7º",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "40": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 40.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "42": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 42.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "44": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 44.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "47-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.301",
+            "ano": 2025
+          },
+          "trecho": "…espera para a realização de consultas, procedimentos, exames e demais ações e serviços da atenção especializada à saúde.",
+          "literal": "(Incluído pela Medida Provisória nº 1.301, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.301",
+            "ano": 2025
+          },
+          "trecho": "…atendimento aos princípios e os parâmetros estabelecidos pela Lei nº 13.709, de 14 de agosto de 2018, quando aplicáveis.",
+          "literal": "(Incluído pela Medida Provisória nº 1.301, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.301",
+            "ano": 2025
+          },
+          "trecho": "…formações da regulação assistencial em seu âmbito de gestão e enviar, obrigatoriamente, os dados ao Ministério da Saúde.",
+          "literal": "(Incluído pela Medida Provisória nº 1.301, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.301",
+            "ano": 2025
+          },
+          "trecho": "…didos, na forma prevista no regulamento de que trata o § 1º, para os entes federativos que cumprirem o disposto no § 2º.",
+          "literal": "(Incluído pela Medida Provisória nº 1.301, de 2025)"
+        }
+      ]
+    },
+    "48": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 48.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "49": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 49.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "51": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 51.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "53": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 53.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "53-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…gica e de diagnóstico por imagem e são livres à participação direta ou indireta de empresas ou de capitais estrangeiros.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        }
+      ]
+    }
+  }
+}

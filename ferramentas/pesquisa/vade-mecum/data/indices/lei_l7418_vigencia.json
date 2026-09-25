@@ -1,0 +1,283 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L7418",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l7418.json",
+      "colecao": "artigos",
+      "sha256": "a9c8f6e5a37049b377de45f7ccd6d911b02acef12fc32eb31fee32e3d1f7f3f4",
+      "total_registros": 12,
+      "gerado_em": "2026-08-21T22:36:34+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 12,
+      "anotacoes": 17,
+      "anotacoes_sem_diploma_nomeado": 1
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 1º Fica instituído o vale-transporte,",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.619",
+            "ano": 1987
+          },
+          "trecho": "…ão de linhas regulares e com tarifas fixadas pela autoridade competente, excluídos os serviços seletivos e os especiais.",
+          "literal": "(Redação dada pela Lei nº 7.619, de 30.9.1987)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.165-36",
+            "ano": 2001
+          },
+          "trecho": "§ 1º -",
+          "literal": "(Revogado pela Medida Provisória nº 2.165-36, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.619",
+            "ano": 1987
+          },
+          "trecho": "§ 2º -",
+          "literal": "(Revogado pela Lei nº 7.619, de 30.9.1987)"
+        }
+      ]
+    },
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.619",
+            "ano": 1987
+          },
+          "trecho": "… Vale-Transporte, concedido nas condições e limites definidos, nesta Lei, no que se refere à contribuição do empregador:",
+          "literal": "(Renumerado do art . 3º, pela Lei 7.619, de 30.9.1987)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.619",
+            "ano": 1987
+          },
+          "trecho": "Art. 3º",
+          "literal": "(Renumerado do art . 4º, pela Lei 7.619, de 30.9.1987)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.532",
+            "ano": 1997
+          },
+          "trecho": "Art. 3º (Renumerado do art . 4º, pela Lei 7.619, de 30.9.1987)",
+          "literal": "(Revogado pela Lei nº 9.532, de 1997)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.619",
+            "ano": 1987
+          },
+          "trecho": "…slocamentos do trabalhador no percurso residência-trabalho e vice-versa, no serviço de transporte que melhor se adequar.",
+          "literal": "(Renumerado do art . 5º, pela Lei 7.619, de 30.9.1987)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.619",
+            "ano": 1987
+          },
+          "trecho": "… disposição dos empregadores em geral e assumindo os custos dessa obrigação, sem repassá-los para a tarifa dos serviços.",
+          "literal": "(Renumerado do art . 6º, pela Lei 7.619, de 30.9.1987)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.855",
+            "ano": null
+          },
+          "trecho": "…to de vendas para cada grupo de cem mil habitantes na localidade, que comercializarão todos os tipos de Vale-Transporte.",
+          "literal": "(Redação dada pela Lei nº 7.855, de 24.10.89)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.619",
+            "ano": 1987
+          },
+          "trecho": "…lta ou insuficiência de estoque de Vales-Transporte necessários ao atendimento da demanda e ao funcionamento do sistema.",
+          "literal": "(Renumerado do art . 7º, pela Lei 7.619, de 30.9.1987)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.619",
+            "ano": 1987
+          },
+          "trecho": "…ardados os direitos adquiridos do trabalhador, se superiores aos instituídos nesta Lei, vedada a cumulação de vantagens.",
+          "literal": "(Renumerado do art . 8º, pela Lei 7.619, de 30.9.1987)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.619",
+            "ano": 1987
+          },
+          "trecho": "…os próprios ou contratados, em veículos adequados ao transporte coletivo, o deslocamento integral de seus trabalhadores.",
+          "literal": "(Renumerado do art . 9º, pela Lei 7.619, de 30.9.1987)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.619",
+            "ano": 1987
+          },
+          "trecho": "Art. 9 - Os Vales-Transporte anteriores perdem sua validade decorridos 30 (trinta) dias da data de reajuste tarifário.",
+          "literal": "(Renumerado do art . 10, pela Lei 7.619, de 30.9.1987)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.619",
+            "ano": 1987
+          },
+          "trecho": "Art. 10 - O Poder Executivo regulamentará a presente Lei no prazo de 45 (quarenta e cinco) dias.",
+          "literal": "(Renumerado do art . 11, pela Lei 7.619, de 30.9.1987)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.619",
+            "ano": 1987
+          },
+          "trecho": "Art. 11 - Esta Lei entra em vigor na data de sua publicação.",
+          "literal": "(Renumerado do art . 12, pela Lei 7.619, de 30.9.1987)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.619",
+            "ano": 1987
+          },
+          "trecho": "Art. 12 - Revogam-se as disposições em contrário.",
+          "literal": "(Renumerado do art . 13, pela Lei 7.619, de 30.9.1987)"
+        }
+      ]
+    }
+  }
+}

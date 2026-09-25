@@ -16,10 +16,17 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
-  const app = await NestFactory.create(AppModule);
+  // rawBody: true — necessário para validação HMAC-SHA256 do webhook Meta/WhatsApp
+  const app = await NestFactory.create(AppModule, { rawBody: true });
 
   // ── Segurança ────────────────────────────────────────────────────────────
-  app.use(helmet());
+  // CSP desabilitado: os HTMLs usam scripts inline e CDNs (Tailwind, Chart.js, etc.)
+  // Os demais headers do Helmet (X-Frame, HSTS, etc.) permanecem ativos.
+  app.use(helmet({ contentSecurityPolicy: false }));
+
+  // Aumenta limite do body para 10mb (payload do dashboard pode ser grande)
+  app.use(express.json({ limit: '10mb' }));
+  app.use(express.urlencoded({ limit: '10mb', extended: true }));
   const isProduction = process.env.NODE_ENV === 'production';
   const allowedOrigins = [
     ...(isProduction ? [] : ['http://localhost:3000']), // Remove localhost em prod
@@ -49,6 +56,15 @@ async function bootstrap() {
 
   // ── Servir Frontend (HTML estático) ──────────────────────────────────────
   const publicPath = path.join(__dirname, '..', 'public');
+
+  // Redireciona a raiz "/" para o login (o cliente já logado é redirecionado ao dashboard pelo login.html)
+  app.use((req: any, res: any, next: any) => {
+    if (req.path === '/' && req.method === 'GET') {
+      return res.redirect(302, '/login.html');
+    }
+    next();
+  });
+
   app.use(express.static(publicPath));
 
   // ── Prefixo global da API ────────────────────────────────────────────────
@@ -79,7 +95,7 @@ async function bootstrap() {
   await app.listen(port);
 
   logger.log(`🚀 JurysOne API rodando em http://localhost:${port}/api`);
-  logger.log(`🔒 Ambiente: ${isProduction ? 'PRODUCTION (Swagger desabilited)' : 'DEVELOPMENT'}`);
+  logger.log(`🔒 Ambiente: ${isProduction ? 'PRODUCTION (Swagger disabled)' : 'DEVELOPMENT'}`);
   logger.log(`⏰ Cron de notificações: ativo (a cada 5 min)`);
 }
 

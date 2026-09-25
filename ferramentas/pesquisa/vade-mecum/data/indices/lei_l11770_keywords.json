@@ -1,0 +1,47 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L11770",
+    "gerado_em": "2026-07-19",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indices_derivados.py",
+      "versao": "1.0.0",
+      "algoritmo": "tokens-texto-integral-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "normalizacao": "NFD, remoção de diacríticos, minúsculas",
+        "tamanho_minimo_token": 3,
+        "stopwords": "nenhuma — fidelidade à busca em texto integral do motor",
+        "ordem": "primeira ocorrência no texto do dispositivo",
+        "duplicatas": "removidas por dispositivo",
+        "escopo": "dispositivos fora do índice curado indexes.keywords do diploma"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l11770.json",
+      "colecao": "artigos",
+      "sha256": "cc6c5b797f7fc08da799d46285af39207c02198aed97b1f7fee2128350b414d0",
+      "total_registros": 9,
+      "gerado_em": "2026-08-21T22:36:34+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "complementar ao índice curado indexes.keywords; a união cobre todos os dispositivos publicados (1:1)",
+      "dispositivos_indexados": 9,
+      "dispositivos_no_indice_curado": 0
+    }
+  },
+  "tokens": {
+    "1": "art instituido programa empresa cidada destinado prorrogar redacao dada pela lei 257 2016 producao efeito por sessenta dias duracao licenca maternidade prevista inciso xviii caput constituicao federal incluido quinze paternidade nos termos desta alem dos cinco estabelecidos ato das disposicoes constitucionais transitorias prorrogacao que trata este artigo sera garantida empregada pessoa juridica aderir desde requeira ate final primeiro mes apos parto concedida imediatamente fruicao empregado prazo dois uteis comprove participacao atividade orientacao sobre responsavel mesma proporcao adotar obtiver guarda judicial para fins adocao crianca podera ser compartilhada entre requerente ambos sejam empregados aderente decisao seja adotada conjuntamente forma estabelecida regulamento medida provisoria 116 2022 hipotese usufruida pelo somente termino requerida com trinta antecedencia deste 457",
+    "1-A": "art fica empresa participante programa cidada autorizada substituir periodo prorrogacao licenca maternidade que trata inciso caput pela reducao jornada trabalho cinquenta por cento pelo vinte dias incluido medida provisoria 116 2022 sao requisitos para efetuar substituicao pagamento integral salario empregada empregado acordo individual firmado entre empregador podera ser concedida forma prevista",
+    "2": "art administracao publica direta indireta fundacional autorizada instituir programa que garanta prorrogacao licenca maternidade para suas servidoras nos termos preve desta lei",
+    "3": "art durante periodo prorrogacao licenca maternidade paternidade redacao dada pela lei 257 2016 producao efeito empregada tera direito remuneracao integral nos mesmos moldes devidos percepcao salario pago pelo regime geral previdencia social rgps incluido empregado",
+    "4": "art periodo prorrogacao licenca maternidade paternidade que trata esta lei empregada empregado nao poderao exercer nenhuma atividade remunerada crianca devera ser mantida sob seus cuidados redacao dada pela 257 2016 producao efeito paragrafo unico caso descumprimento disposto caput deste artigo perderao direito",
+    "5": "art pessoa juridica tributada com base lucro real podera deduzir imposto devido cada periodo apuracao total remuneracao integral empregada empregado pago nos dias prorrogacao sua licenca maternidade paternidade vedada deducao como despesa operacional redacao dada pela lei 257 2016 producao efeito paragrafo unico vetado",
+    "6": "art vetado",
+    "7": "art poder executivo com vistas cumprimento disposto inciso caput nos arts lei complementar 101 maio 2000 estimara montante renuncia fiscal decorrente nesta incluira demonstrativo que refere 165 constituicao federal acompanhara projeto orcamentaria cuja apresentacao der apos decorridos sessenta dias publicacao desta",
+    "8": "art esta lei entra vigor data sua publicacao produzindo efeitos partir primeiro dia exercicio subsequente aquele que for implementado disposto seu brasilia setembro 2008 187o independencia 120o republica luiz inacio lula silva guido mantega carlos lupi jose pimentel este texto nao substitui publicado dou"
+  }
+}

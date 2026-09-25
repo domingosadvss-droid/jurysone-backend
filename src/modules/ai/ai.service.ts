@@ -1,31 +1,44 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { GoogleGenerativeAI, GenerativeModel } from '@google/generative-ai';
+import { GoogleGenAI } from '@google/genai';
 import { PrismaService } from '../../database/prisma.service';
+import { ChavesService } from '../chaves/chaves.service';
+
+const GEMINI_MODEL = 'gemini-2.5-flash';
 
 @Injectable()
 export class AiService {
-  private _model: GenerativeModel | null = null;
+  private _client: GoogleGenAI | null = null;
   private readonly logger = new Logger(AiService.name);
 
   constructor(
     private config: ConfigService,
     private prisma: PrismaService,
+    private chavesService: ChavesService,
   ) {
     const key = this.config.get<string>('GEMINI_API_KEY');
     if (key) {
-      const genAI = new GoogleGenerativeAI(key);
-      this._model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+      this._client = new GoogleGenAI({ apiKey: key });
+      this.logger.log(`Gemini ${GEMINI_MODEL} inicializado via variável de ambiente.`);
     } else {
-      this.logger.warn('GEMINI_API_KEY não configurada — funcionalidades de IA estarão indisponíveis.');
+      this.logger.warn('GEMINI_API_KEY não configurada no ambiente — tentará carregar do banco de dados na primeira chamada.');
     }
   }
 
-  private get model(): GenerativeModel {
-    if (!this._model) {
-      throw new Error('GEMINI_API_KEY não configurada. Configure a variável de ambiente no Railway Dashboard.');
+  /** Retorna o cliente Gemini, inicializando com chave do banco se necessário */
+  private async getClient(officeId?: string): Promise<GoogleGenAI> {
+    if (this._client) return this._client;
+
+    if (officeId) {
+      const key = await this.chavesService.getChave(officeId, 'gemini');
+      if (key) {
+        this._client = new GoogleGenAI({ apiKey: key });
+        this.logger.log(`Gemini ${GEMINI_MODEL} inicializado via chave do banco de dados.`);
+        return this._client;
+      }
     }
-    return this._model;
+
+    throw new Error('GEMINI_API_KEY não configurada. Acesse Configurações → Integrações e salve sua chave Gemini.');
   }
 
   // ─── Analisar processo ────────────────────────────────────────────────────
@@ -33,7 +46,7 @@ export class AiService {
     const process = await this.prisma.process.findFirst({
       where: { id: processId, officeId },
       include: {
-        client: { select: { name: true } },
+        client:    { select: { name: true } },
         movements: { orderBy: { date: 'desc' }, take: 20 },
       },
     });
@@ -56,10 +69,10 @@ ${movimentsText || 'Nenhum andamento registrado.'}
 
 PERGUNTA: ${question}`;
 
-    const result = await this.model.generateContent(prompt);
-    const answer = result.response.text();
-    const usage = result.response.usageMetadata;
-    const totalTokens = (usage?.promptTokenCount || 0) + (usage?.candidatesTokenCount || 0);
+    const ai     = await this.getClient(officeId);
+    const result = await ai.models.generateContent({ model: GEMINI_MODEL, contents: prompt });
+    const answer      = result.text ?? '';
+    const totalTokens = result.usageMetadata?.totalTokenCount ?? 0;
 
     await this.prisma.aiInteraction.create({
       data: {
@@ -67,7 +80,7 @@ PERGUNTA: ${question}`;
         processId,
         question,
         answer,
-        model: 'gemini-1.5-flash',
+        model:      GEMINI_MODEL,
         tokensUsed: totalTokens,
       },
     });
@@ -86,14 +99,15 @@ ${JSON.stringify(processData, null, 2)}
 Inclua: qualificação das partes, fundamentos de direito, pedidos claros.
 Seções: I - DOS FATOS, II - DO DIREITO, III - DOS PEDIDOS`;
 
-    const result = await this.model.generateContent(prompt);
-    return result.response.text();
+    const ai     = await this.getClient(officeId);
+    const result = await ai.models.generateContent({ model: GEMINI_MODEL, contents: prompt });
+    return result.text ?? '';
   }
 
   // ─── Análise de Risco ──────────────────────────────────────────────────────
   async analyzeRisk(processId: string, officeId: string) {
     const process = await this.prisma.process.findFirst({
-      where: { id: processId, officeId },
+      where:   { id: processId, officeId },
       include: { movements: { orderBy: { date: 'desc' }, take: 30 } },
     });
 
@@ -104,12 +118,13 @@ Movimentações: ${process.movements.map((m) => m.description).join(' | ')}
 
 JSON esperado: { "riskLevel": "ALTO|MEDIO|BAIXO", "score": 0-100, "mainRisks": ["string"], "recommendations": ["string"] }`;
 
-    const result = await this.model.generateContent(prompt);
-    const text = result.response.text().replace(/```json|```/g, '').trim();
+    const ai     = await this.getClient(officeId);
+    const result = await ai.models.generateContent({ model: GEMINI_MODEL, contents: prompt });
+    const text   = (result.text ?? '').replace(/```json|```/g, '').trim();
     return JSON.parse(text);
   }
 
-  // ─── Embeddings (não suportado nativamente pelo Gemini free tier) ──────────
+  // ─── Embeddings ───────────────────────────────────────────────────────────
   async generateEmbedding(_text: string): Promise<number[]> {
     this.logger.warn('generateEmbedding: configure um modelo de embeddings dedicado para busca semântica.');
     return [];

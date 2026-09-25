@@ -1,0 +1,4685 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "DL1598",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_dl1598.json",
+      "colecao": "artigos",
+      "sha256": "413538db8ff442c9af997d548b438bad0a5657d8f885a4600cf786445b24e1c7",
+      "total_registros": 71,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 46,
+      "anotacoes": 465,
+      "anotacoes_sem_diploma_nomeado": 175
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…mais sociedades com sede no País podem optar pela tributação em conjunto, desde que satisfaçam aos seguintes requisitos:",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…s afiliadas de grupo de sociedades constituído nos termos do Capítulo XXI da Lei nº 6.404, de 15 de dezembro de 1976; ou",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…a titular, direta ou indiretamente, de 80% ou mais do capital com direito a voto da sociedade ou sociedades controladas.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "… término do período-base da incidência do imposto anual e no início do exercício financeiro em que o imposto for devido.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…ão recíproca entre controladas, as ações com direito a voto ou quotas do capital de uma controlada possuídas pela outra.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…entação, no prazo legal, de declaração de rendimentos firmada por todas as sociedades que formarem o conjunto (art. 2º).",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…ades continuarão a ser tributadas em conjunto, até que este seja dissolvido, com observância do disposto nos §§ 3º e 4º.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…- O conjunto pode ser acrescido de outra ou outras sociedades que exerçam a opção, firmando a declaração de rendimentos.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…-lei nº 1.648, de 1978). § 3º - O conjunto pode ser dissolvido, voltando as sociedades a ser tributadas individualmente:",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…item I), ou se o grupo de sociedades a que pertençam as afiliadas tributadas em conjunto for acrescido de nova afiliada;",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…1978). b) se sociedade tributada em conjunto deixar de ser controlada pela outra, nas condições do item II do artigo 2º;",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…sto (art. 30) e que torne a tributação em conjunto mais onerosa do que a decorrente da aplicação da legislação anterior.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…dissolvido a partir do exercício financeiro em que uma das sociedades passe a ser tributada a alíquota diferente de 30%.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…vê-lo mediante notificação na declaração de rendimentos, voltando a ser tributadas em separado no exercício subseqüente.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…poderão, nos termos deste artigo e satisfeitos os requisitos do artigo 2º, exercer opção para formação de novo conjunto.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…ndimentos e ao pagamento das multas, juros de mora e correção monetária decorrentes do descumprimento dessas obrigações.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "… 1º), bem como à prestação de informação e declaração na forma dos atos normativos expedidos peIo Ministério da Fazenda.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…derá ser atribuído a uma sociedade ônus superior ao que estaria sujeita se fosse tributada como contribuinte individual.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…icílio tributário de cada uma das sociedades com relação às suas obrigações tributárias e às mutações do seu patrimônio.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…ido submetido à incidência do imposto anual, será computado, segundo a divisão do patrimônio prevista nos atos da cisão:",
+          "literal": "(Revogado pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…no período-base em curso da sociedade que incorporar parcela do patrimônio da sociedade cindida, no caso de cisão total;",
+          "literal": "(Revogado pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "… seu patrimônio, ou no primeiro período-base da sociedade constituída em decorrência da cisão, no caso de cisão parcial.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.730, 1979)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.450",
+            "ano": 1985
+          },
+          "trecho": "…scalização do contribuinte durante o curso do período-base ou antes do término da ocorrência do fato gerador do imposto.",
+          "literal": "(Redação dada pela Lei nº 7.450, de 1985)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.450",
+            "ano": 1985
+          },
+          "trecho": "…mitida ou da dedução indevida, lançada e exigível ainda que não tenha terminado o período-base de incidência do imposto.",
+          "literal": "(Redação dada pela Lei nº 7.450, de 1985)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…bservância das disposições da lei comercial e das normas expedidas pelo Ministro da Fazenda, demonstrações consolidadas.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…scrituração prevista neste artigo deverá ser entregue em meio digital ao Sistema Público de Escrituração Digital - SPED.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "…á ser entregue em meio digital ao Sistema Público de Escrituração Digital - SPED. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "I - de apuração do lucro real, que será entregue em meio digital, e no qual:",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I - de apuração do lucro real, que será entregue em meio digital, e no qual: (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "b) será transcrita a demonstração do lucro real e a apuração do Imposto sobre a Renda;",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "…ranscrita a demonstração do lucro real e a apuração do Imposto sobre a Renda; (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "II - razão auxiliar em ORTN (art. 42).",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II - razão auxiliar em ORTN (art. 42). (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…orar o livro de que trata o inciso I do caput, de forma integrada às escriturações comercial e fiscal, que discriminará:",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…ut, de forma integrada às escriturações comercial e fiscal, que discriminará: (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…s do plano de contas e indicação discriminada por lançamento correspondente na escrituração comercial, quando presentes;",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "…da por lançamento correspondente na escrituração comercial, quando presentes; (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "d) a apuração do Imposto sobre a Renda devido, com a discriminação das deduções, quando aplicáveis; e",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea d",
+          "diploma": null,
+          "trecho": "…osto sobre a Renda devido, com a discriminação das deduções, quando aplicáveis; e (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "e) demais informações econômico-fiscais da pessoa jurídica.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea e",
+          "diploma": null,
+          "trecho": "e) demais informações econômico-fiscais da pessoa jurídica. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "449",
+            "ano": 2008
+          },
+          "trecho": "…tar da escrituração contábil, ou forem diferentes dos lançamentos dessa escrituração, serão efetuados exclusivamente em:",
+          "literal": "(Redação dada pela Medida Provisória nº 449, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "449",
+            "ano": 2008
+          },
+          "trecho": "…xclusivamente em: (Redação dada pela Medida Provisória nº 449, de 2008) I - livros ou registros contábeis auxiliares; ou",
+          "literal": "(Incluído pela Medida Provisória nº 449, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "449",
+            "ano": 2008
+          },
+          "trecho": "…cluído pela Medida Provisória nº 449, de 2008) II - livros fiscais, inclusive no livro de que trata o inciso I do caput.",
+          "literal": "(Incluído pela Medida Provisória nº 449, de 2008)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…tar da escrituração contábil, ou forem diferentes dos lançamentos dessa escrituração, serão efetuados exclusivamente em:",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "I – livros ou registros contábeis auxiliares; ou",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "II – livros fiscais, inclusive no livro de que trata o inciso I do caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "449",
+            "ano": 2008
+          },
+          "trecho": "§ 3o O disposto no § 2o será disciplinado pela Secretaria da Receita Federal do Brasil.",
+          "literal": "(Incluído pela Medida Provisória nº 449, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 3o O disposto no § 2o deste artigo será disciplinado pela Secretaria da Receita Federal do Brasil.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 3o O disposto neste artigo será disciplinado em ato normativo da Secretaria da Receita Federal do Brasil.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…erá disciplinado em ato normativo da Secretaria da Receita Federal do Brasil. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…sposto na alínea “b” do § 1o, considera-se conta analítica aquela que registra em último nível os lançamentos contábeis.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…-se conta analítica aquela que registra em último nível os lançamentos contábeis. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "8-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ue se refere o seu § 3o, ou que o apresentar com inexatidões, incorreções ou omissões, fica sujeito às seguintes multas:",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…entar com inexatidões, incorreções ou omissões, fica sujeito às seguintes multas: (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…a 10% (dez por cento) relativamente às pessoas jurídicas que deixarem de apresentar ou apresentarem em atraso o livro; e",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…pessoas jurídicas que deixarem de apresentar ou apresentarem em atraso o livro; e (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "II - 3% (três por cento), não inferior a R$ 100,00 (cem reais), do valor omitido, inexato ou incorreto.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…o), não inferior a R$ 100,00 (cem reais), do valor omitido, inexato ou incorreto. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 1o A multa de que trata o inciso I do caput será limitada em:",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1o A multa de que trata o inciso I do caput será limitada em: (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…nterior tiverem auferido receita bruta total, igual ou inferior a R$ 3.600.000,00 (três milhões e seiscentos mil reais);",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…total, igual ou inferior a R$ 3.600.000,00 (três milhões e seiscentos mil reais); (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "… milhões de reais) para as pessoas jurídicas que não se enquadrarem na hipótese de que trata o inciso I deste parágrafo.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…dicas que não se enquadrarem na hipótese de que trata o inciso I deste parágrafo. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 2o A multa de que trata o inciso I do caput será reduzida:",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2o A multa de que trata o inciso I do caput será reduzida: (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "I - em 90% (noventa por cento), quando o livro for apresentado em até 30 (trinta) dias após o prazo;",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "… por cento), quando o livro for apresentado em até 30 (trinta) dias após o prazo; (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "II - em 75% (setenta e cinco por cento), quando o livro for apresentado em até 60 (sessenta) dias após o prazo;",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…or cento), quando o livro for apresentado em até 60 (sessenta) dias após o prazo; (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "III - à metade, quando o livro for apresentado depois do prazo, mas antes de qualquer procedimento de ofício; e",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "… for apresentado depois do prazo, mas antes de qualquer procedimento de ofício; e (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "IV - em 25% (vinte e cinco por cento), se houver a apresentação do livro no prazo fixado em intimação.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "…cinco por cento), se houver a apresentação do livro no prazo fixado em intimação. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 3o A multa de que trata o inciso II do caput:",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3o A multa de que trata o inciso II do caput: (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "… o sujeito passivo corrigir as inexatidões, incorreções ou omissões antes de iniciado qualquer procedimento de ofício; e",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…ões, incorreções ou omissões antes de iniciado qualquer procedimento de ofício; e (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…a em 50% (cinquenta por cento) se forem corrigidas as inexatidões, incorreções ou omissões no prazo fixado em intimação.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "… corrigidas as inexatidões, incorreções ou omissões no prazo fixado em intimação. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…pecial de Liquidação e de Custódia - Selic, até o termo final de encerramento do período a que se refere a escrituração.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…lic, até o termo final de encerramento do período a que se refere a escrituração. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…livro de que trata o inciso I do caput do art. 8o da presente Lei de acordo com as disposições da legislação tributária.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "…do art. 8o da presente Lei de acordo com as disposições da legislação tributária. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…s operações consideradas nesse resultado e não recebida até a data do balanço de encerramento do mesmo exercício social;",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.648, de 1978)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "Art. 12. A receita bruta compreende:",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 12. A receita bruta compreende: (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "I - o produto da venda de bens nas operações de conta própria;",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I - o produto da venda de bens nas operações de conta própria; (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "II - o preço da prestação de serviços em geral;",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II - o preço da prestação de serviços em geral; (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "III - o resultado auferido nas operações de conta alheia; e",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III - o resultado auferido nas operações de conta alheia; e (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "IV - as receitas da atividade ou objeto principal da pessoa jurídica não compreendidas nos incisos I a III.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "…ade ou objeto principal da pessoa jurídica não compreendidas nos incisos I a III. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 1o A receita líquida será a receita bruta diminuída de:",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1o A receita líquida será a receita bruta diminuída de: (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "I - devoluções e vendas canceladas;",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I - devoluções e vendas canceladas; (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "II - descontos concedidos incondicionalmente;",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II - descontos concedidos incondicionalmente; (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "III - tributos sobre ela incidentes; e",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III - tributos sobre ela incidentes; e (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…o inciso VIII do caput do art. 183 da Lei no 6.404, de 15 de dezembro de 1976, das operações vinculadas à receita bruta.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "…ei no 6.404, de 15 de dezembro de 1976, das operações vinculadas à receita bruta. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…ta controlador da companhia, se a efetividade da entrega e a origem dos recursos não forem comprovadamente demonstradas.",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ente, do comprador ou contratante pelo vendedor dos bens ou pelo prestador dos serviços na condição de mero depositário.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…vendedor dos bens ou pelo prestador dos serviços na condição de mero depositário. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "… do art. 183 da Lei nº 6.404, de 15 de dezembro de 1976, das operações previstas no caput, observado o disposto no § 4o.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "…dezembro de 1976, das operações previstas no caput, observado o disposto no § 4o. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…e depreciação, amortização e exaustão gerados por bem objeto de arrendamento mercantil, na pessoa jurídica arrendatária.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…erados por bem objeto de arrendamento mercantil, na pessoa jurídica arrendatária. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…, no período de apuração em que o encargo de depreciação, amortização ou exaustão for apropriado como custo de produção.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…go de depreciação, amortização ou exaustão for apropriado como custo de produção. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.959",
+            "ano": 1989
+          },
+          "trecho": "…ça em relação à avaliação procedida pelos critérios anteriores, cabendo à autoridade fiscal provar a eventual diferença.",
+          "literal": "(Redação dada pela Lei nº 7.959, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.541",
+            "ano": 1992
+          },
+          "trecho": "…os ou produzidos mais recentemente, admitida, ainda a avaliação com base no preço de venda, subtraída a margem de lucro.",
+          "literal": "(Redação dada pela Lei nº 8.541, de 1992)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "… tiver valor unitário não superior a R$ 1.200,00 (mil e duzentos reais) ou prazo de vida útil não superior a 1 (um) ano.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…00,00 (mil e duzentos reais) ou prazo de vida útil não superior a 1 (um) ano. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "… registrados no ativo diferido, que contribuirão para a formação do resultado de mais de um exercício social, tais como:",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…tribuirão para a formação do resultado de mais de um exercício social, tais como: (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "a) os juros durante o período de construção e pré-operação;",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a) os juros durante o período de construção e pré-operação; (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "… acionistas durante o período que anteceder o início das operações sociais, ou de implantação do empreendimento inicial;",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "…eder o início das operações sociais, ou de implantação do empreendimento inicial; (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "c) os custos, despesas e outros encargos com a reestruturação, reorganização ou modernização da empresa.",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "…e outros encargos com a reestruturação, reorganização ou modernização da empresa. (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.541",
+            "ano": 1992
+          },
+          "trecho": "Art 16 - Os tributos são dedutíveis como custo ou despesa operacional no período-base de incidência:",
+          "literal": "(Revogado pela Lei nº 8.541, de 1992)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.541",
+            "ano": 1992
+          },
+          "trecho": "…orrer a fato gerador da obrigação tributária, se o contribuinte apurar os resultados segundo o regime de competência; ou",
+          "literal": "(Revogado pela Lei nº 8.541, de 1992)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.541",
+            "ano": 1992
+          },
+          "trecho": "II - em que forem pagos, se o contribuinte apurar os resultados segundo o regime de caixa.",
+          "literal": "(Revogado pela Lei nº 8.541, de 1992)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.541",
+            "ano": 1992
+          },
+          "trecho": "…esa o imposto de renda de que for sujeito passivo como contribuinte ou como responsável em substituição ao contribuinte.",
+          "literal": "(Revogado pela Lei nº 8.541, de 1992)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.541",
+            "ano": 1992
+          },
+          "trecho": "…buinte, como fonte pagadora, tiver o dever legal de reter e recolher, ainda que o contribuinte assuma o ônus do imposto.",
+          "literal": "(Revogado pela Lei nº 8.541, de 1992)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.541",
+            "ano": 1992
+          },
+          "trecho": "… ou deduzidos como despesas operacionais, salvo os pagos na importação de bens, que se acrescerão ao custo de aquisição.",
+          "literal": "(Revogado pela Lei nº 8.541, de 1992)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.541",
+            "ano": 1992
+          },
+          "trecho": "…e natureza compensatória e as impostas por infrações de que não resultem falta ou insuficiência de pagamento de tributo.",
+          "literal": "(Revogado pela Lei nº 8.541, de 1992)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "… pagos ou incorridos pelo contribuinte são dedutíveis como custo ou despesa operacional, observadas as seguintes normas:",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…são dedutíveis como custo ou despesa operacional, observadas as seguintes normas: (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…e debêntures ou títulos de crédito deverão ser apropriados, pro rata tempore, nos exercícios sociais a que competirem; e",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "…rão ser apropriados, pro rata tempore, nos exercícios sociais a que competirem; e (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "… como custo do ativo, desde que incorridos até o momento em que os referidos bens estejam prontos para seu uso ou venda.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "…dos até o momento em que os referidos bens estejam prontos para seu uso ou venda. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…encargo associado a empréstimo aquele em que o tomador deve necessariamente incorrer para fins de obtenção dos recursos.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…m que o tomador deve necessariamente incorrer para fins de obtenção dos recursos. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ados quando o respectivo ativo for realizado, inclusive mediante depreciação, amortização, exaustão, alienação ou baixa.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…izado, inclusive mediante depreciação, amortização, exaustão, alienação ou baixa. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.959",
+            "ano": 1989
+          },
+          "trecho": "Art. 19. Considera-se lucro da exploração o lucro líquido do período-base, ajustado pela exclusão dos seguintes valores:",
+          "literal": "(Redação dada pela Lei nº 7.959, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.303",
+            "ano": 1986
+          },
+          "trecho": "…oma das despesas financeiras (art. 17, parágrafo único) com as variações monetárias passivas (art. 18, parágrafo único).",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.303, de 1986)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "114",
+            "ano": 1989
+          },
+          "trecho": "…ra-se receita ou despesa financeira a parcela que exceder, no mesmo período, à correção monetária dos valores aplicados;",
+          "literal": "(Redação dada pela Medida Provisória nº 114, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.959",
+            "ano": 1989
+          },
+          "trecho": "…ra-se receita ou despesa financeira a parcela que exceder, no mesmo período, à correção monetária dos valores aplicados;",
+          "literal": "(Redação dada pela Lei nº 7.959, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…as receitas ou outras despesas de que trata o inciso IV do caput do art. 187 da Lei no 6.404, de 15 de dezembro de 1976;",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.065",
+            "ano": 1983
+          },
+          "trecho": "… parte das variações monetárias ativas (art.18) que exceder as variações monetárias passivas (art. 18, parágrafo único).",
+          "literal": "(Incluído pelo Decreto-lei nº 2.065, de 1983)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.065",
+            "ano": 1983
+          },
+          "trecho": "…parte das variações monetárias ativas (art. 18) que exceder as variações monetárias passivas (art. 18, parágrafo único).",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.065, de 1983)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.303",
+            "ano": 1986
+          },
+          "trecho": "…e exceder as variações monetárias passivas (art. 18, parágrafo único). (Redação dada pelo Decreto-lei nº 2.065, de 1983)",
+          "literal": "(Revogado pelo Decreto-lei nº 2.303, de 1986)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…edidas como estímulo à implantação ou expansão de empreendimentos econômicos, e as doações, feitas pelo poder público; e",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "…xpansão de empreendimentos econômicos, e as doações, feitas pelo poder público; e (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.789",
+            "ano": 2023
+          },
+          "trecho": "…empreendimentos econômicos, e as doações, feitas pelo poder público; e (Incluído pela Lei nº 12.973, de 2014) (Vigência)",
+          "literal": "(Revogado Lei nº 14.789, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "VI - ganhos ou perdas decorrentes de avaliação de ativo ou passivo com base no valor justo.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "…s ou perdas decorrentes de avaliação de ativo ou passivo com base no valor justo. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…o de 1969; 1º do Decreto-lei nº 1.328, de 20 de maio de 1974; e 1º e 2º do Decreto-lei nº 1.564, de 29 de julho de 1977;",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "… maio de 1974; e 1º e 2º do Decreto-lei nº 1.564, de 29 de julho de 1977; (Redação dada pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "… 27 de junho de 1963; 35 da Lei nº 5.508, de 11 de outubro de 1968; e 22 do Decreto-lei nº 756, de 11 de agosto de 1969;",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "… de outubro de 1968; e 22 do Decreto-lei nº 756, de 11 de agosto de 1969; (Redação dada pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "c) a isenção de que trata o artigo 80 do Decreto-lei nº 221, de 28 de fevereiro de 1967;",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "… que trata o artigo 80 do Decreto-lei nº 221, de 28 de fevereiro de 1967; (Redação dada pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "d) as isenções de que tratam os artigos 2º e 3º do Decreto-lei nº 1.191, de 27 de outubro de 1971;",
+          "literal": "(Incluído pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea d",
+          "diploma": null,
+          "trecho": "… tratam os artigos 2º e 3º do Decreto-lei nº 1.191, de 27 de outubro de 1971; (Incluído pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "e) a redução da alíquota do imposto de que tratam os artigos 4º a 6º do Decreto-lei nº 1.439, de 30 de dezembro de 1975.",
+          "literal": "(Incluído pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea e",
+          "diploma": null,
+          "trecho": "…tratam os artigos 4º a 6º do Decreto-lei nº 1.439, de 30 de dezembro de 1975. (Incluído pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…iunda das vendas correspondentes às atividades monopolizadas, e o total da receita líquida de vendas da pessoa jurídica.",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.730, de 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…opolizadas, e o total da receita líquida de vendas da pessoa jurídica. (Redação dada pelo Decreto-lei nº 1.730, de 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…de capital da pessoa jurídica, que somente poderá ser utilizada para absorção de prejuízos ou aumento do capital social.",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…da pessoa jurídica, que somente poderá ser utilizada para absorção de prejuízos ou aumento do capital social. (Vigência)",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.730, de 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…da para absorção de prejuízos ou aumento do capital social. (Vigência) (Redação dada pelo Decreto-lei nº 1.730, de 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…vos fiscais de que trata o art. 195-A da Lei no 6.404, de 15 de dezembro de 1976, que poderá ser utilizada somente para:",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…i no 6.404, de 15 de dezembro de 1976, que poderá ser utilizada somente para: (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…de que anteriormente já tenham sido totalmente absorvidas as demais Reservas de Lucros, com exceção da Reserva Legal; ou",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…almente absorvidas as demais Reservas de Lucros, com exceção da Reserva Legal; ou (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "II - aumento do capital social.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II - aumento do capital social. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º - Consideram-se distribuição do valor do imposto:",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…iedade dissolvida, até o valor do saldo da reserva de que trata o art. 195-A da Lei nº 6.404, de 15 de dezembro de 1976.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "…reserva de que trata o art. 195-A da Lei nº 6.404, de 15 de dezembro de 1976. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "…iver deixado de pagar, sem prejuízo da incidência do imposto sobre o lucro distribuído, como rendimento do beneficiário.",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ibuída ou valor da reserva não constituída, não recomposta ou absorvida indevidamente, o imposto que deixou de ser pago.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "… não recomposta ou absorvida indevidamente, o imposto que deixou de ser pago. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…re o lucro da exploração, referido neste artigo, das atividades industriais, agrícolas, pecuárias e de serviços básicos.",
+          "literal": "(Incluído pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "…tigo, das atividades industriais, agrícolas, pecuárias e de serviços básicos. (Incluído pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ratam o inciso VIII do caput do art. 183 e o inciso III do caput do art. 184 da Lei no 6.404, de 15 de dezembro de 1976.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "…3 e o inciso III do caput do art. 184 da Lei no 6.404, de 15 de dezembro de 1976. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…to que deixou de ser pago na forma prevista no § 3o, a constituição da reserva deverá ocorrer nos períodos subsequentes.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "…ista no § 3o, a constituição da reserva deverá ocorrer nos períodos subsequentes. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…iso I do § 3o, a pessoa jurídica deverá recompor a reserva à medida que forem apurados lucros nos períodos subsequentes.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 9º",
+          "diploma": null,
+          "trecho": "… recompor a reserva à medida que forem apurados lucros nos períodos subsequentes. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…to pelo valor de patrimônio líquido deverá, por ocasião da aquisição da participação, desdobrar o custo de aquisição em:",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… por ocasião da aquisição da participação, desdobrar o custo de aquisição em: (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…uidos da investida, na proporção da porcentagem da participação adquirida, e o valor de que trata o inciso I do caput; e",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…agem da participação adquirida, e o valor de que trata o inciso I do caput; e (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…diferença entre o custo de aquisição do investimento e o somatório dos valores de que tratam os incisos I e II do caput.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "… investimento e o somatório dos valores de que tratam os incisos I e II do caput. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 1o Os valores de que tratam os incisos I a III do caput serão registrados em subcontas distintas.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "… tratam os incisos I a III do caput serão registrados em subcontas distintas. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 2º - O lançamento do ágio ou deságio deverá indicar, dentre os seguintes, seu fundamento econômico:",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…do ágio ou deságio deverá indicar, dentre os seguintes, seu fundamento econômico: (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…lor de mercado de bens do ativo da coligada ou controlada superior ou inferior ao custo registrado na sua contabilidade;",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "…gada ou controlada superior ou inferior ao custo registrado na sua contabilidade; (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "b) valor de rentabilidade da coligada ou controlada, com base em previsão dos resultados nos exercícios futuros;",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "…ligada ou controlada, com base em previsão dos resultados nos exercícios futuros; (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "c) fundo de comércio, intangíveis e outras razões econômicas.",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "c) fundo de comércio, intangíveis e outras razões econômicas. (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…de Títulos e Documentos, até o último dia útil do 13o (décimo terceiro) mês subsequente ao da aquisição da participação.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…til do 13o (décimo terceiro) mês subsequente ao da aquisição da participação. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…liação segundo o mesmo critério seja necessária para determinar o valor de patrimônio líquido da coligada ou controlada.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…o de participação societária sujeita à avaliação pelo valor do patrimônio líquido exige o reconhecimento e a mensuração:",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "…avaliação pelo valor do patrimônio líquido exige o reconhecimento e a mensuração: (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "I - primeiramente, dos ativos identificáveis adquiridos e dos passivos assumidos a valor justo; e",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…e, dos ativos identificáveis adquiridos e dos passivos assumidos a valor justo; e (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "II - posteriormente, do ágio por rentabilidade futura (goodwill) ou do ganho proveniente de compra vantajosa.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "… por rentabilidade futura (goodwill) ou do ganho proveniente de compra vantajosa. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…investimento, será computado na determinação do lucro real no período de apuração da alienação ou baixa do investimento.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "…nação do lucro real no período de apuração da alienação ou baixa do investimento. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "… disposto neste artigo, podendo estabelecer formas alternativas de registro e de apresentação do laudo previsto no § 3o.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "…ecer formas alternativas de registro e de apresentação do laudo previsto no § 3o. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…a investida, de acordo com o disposto no art. 248 da Lei no 6.404, de 15 de dezembro de 1976, e com as seguintes normas:",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…t. 248 da Lei no 6.404, de 15 de dezembro de 1976, e com as seguintes normas: (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…a lei comercial, inclusive quanto à dedução das participações nos resultados e da provisão para o imposto sobre a renda;",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "… das participações nos resultados e da provisão para o imposto sobre a renda; (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…cete da investida os ajustes necessários para eliminar as diferenças relevantes decorrentes da diversidade de critérios;",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…ra eliminar as diferenças relevantes decorrentes da diversidade de critérios; (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…do contribuinte, deverá ser ajustado para registrar os efeitos relevantes de fatos extraordinários ocorridos no período;",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "…egistrar os efeitos relevantes de fatos extraordinários ocorridos no período; (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…vam ser avaliados pelo valor de patrimônio líquido para efeito de determinar o valor de patrimônio líquido da investida;",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "…líquido para efeito de determinar o valor de patrimônio líquido da investida; (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ônio líquido ajustado de acordo com os números anteriores da porcentagem da participação do contribuinte na investida; e",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "…ros anteriores da porcentagem da participação do contribuinte na investida; e (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ntroladas e coligadas, domiciliadas no exterior, aplicam-se as normas da legislação correspondente do país de domicílio.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "…exterior, aplicam-se as normas da legislação correspondente do país de domicílio. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…do de acordo com o disposto no art. 21, mediante lançamento da diferença a débito ou a crédito da conta de investimento.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…iante lançamento da diferença a débito ou a crédito da conta de investimento. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "… ser registrados pelo contribuinte como diminuição do valor do investimento, e não influenciarão as contas de resultado.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "…inuição do valor do investimento, e não influenciarão as contas de resultado. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.981",
+            "ano": 1995
+          },
+          "trecho": "…il de 1990), poderá, quando da conclusão da operação de venda, ser estornada em contrapartida da conta de investimentos.",
+          "literal": "(Incluído pela Lei nº 8.981, de 1995)"
+        }
+      ]
+    },
+    "24-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…estida, deverá ser compensada pela baixa do respectivo saldo da mais-valia de que trata o inciso II do caput do art. 20.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…a do respectivo saldo da mais-valia de que trata o inciso II do caput do art. 20. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…base no valor justo, em condições de permitir a determinação da parcela realizada, liquidada ou baixada em cada período.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…rmitir a determinação da parcela realizada, liquidada ou baixada em cada período. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…a determinação do lucro real nos períodos de apuração em que a investida computar o ganho na determinação do lucro real.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…os de apuração em que a investida computar o ganho na determinação do lucro real. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…computado na determinação do lucro real do período de apuração em que o contribuinte alienar ou liquidar o investimento.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "… do período de apuração em que o contribuinte alienar ou liquidar o investimento. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 4o A Secretaria da Receita Federal do Brasil irá disciplinar o controle em subcontas de que trata este artigo.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…deral do Brasil irá disciplinar o controle em subcontas de que trata este artigo. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "24-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…stida, deverá ser compensada pela baixa do respectivo saldo da menos-valia de que trata o inciso II do caput do art. 20.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… do respectivo saldo da menos-valia de que trata o inciso II do caput do art. 20. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…base no valor justo, em condições de permitir a determinação da parcela realizada, liquidada ou baixada em cada período.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…rmitir a determinação da parcela realizada, liquidada ou baixada em cada período. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…a determinação do lucro real nos períodos de apuração em que a investida computar a perda na determinação do lucro real.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…os de apuração em que a investida computar a perda na determinação do lucro real. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…computada na determinação do lucro real do período de apuração em que o contribuinte alienar ou liquidar o investimento.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "… do período de apuração em que o contribuinte alienar ou liquidar o investimento. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…denciada por meio de subconta na forma prevista no § 1o, a perda será considerada indedutível na apuração do lucro real.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…prevista no § 1o, a perda será considerada indedutível na apuração do lucro real. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 5o A Secretaria da Receita Federal do Brasil disciplinará o controle em subcontas de que trata este artigo.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "… Federal do Brasil disciplinará o controle em subcontas de que trata este artigo. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "Redução da Mais ou Menos-Valia e do Goodwill",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "Redução da Mais ou Menos-Valia e do Goodwill (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…putada na determinação do lucro real pela diferença entre o montante da amortização e o da participação do contribuinte:",
+          "literal": "(Revogado pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…olada na alienação ou baixa dos bens do ativo cujo valor tenha constituído o fundamento econômico do ágio ou deságio; ou",
+          "literal": "(Revogado pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…i nº 1.730, 1979) b) no valor realizado pela coligada ou controlada na depreciação, amortização ou exaustão desses bens.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…etras b e c de § 2º de artigo 20 não serão computadas na determinação do lucro real, ressalvado o disposto no artigo 33.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.730, 1979)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "Atividade Imobiliária - Permuta - Determinação do Custo e Apuração do Lucro Bruto",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "Atividade Imobiliária - Permuta - Determinação do Custo e Apuração do Lucro Bruto (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…ter, com observância das normas seguintes, registro permanente de estoques para determinar o custo dos imóveis vendidos:",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…artigo 39. (Vide Decreto-lei nº 1.648, de 1978). (Vide Decreto-lei nº 2.064, de1983) (Vide Decreto-lei nº 2.065, de1983)",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "…de 1978). (Vide Decreto-lei nº 2.064, de1983) (Vide Decreto-lei nº 2.065, de1983) (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…o a qualquer título, ou quando, a qualquer tempo, for classificada no ativo não circulante investimentos ou imobilizado.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…uer tempo, for classificada no ativo não circulante investimentos ou imobilizado. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 4o O disposto no § 3o será disciplinado pela Secretaria da Receita Federal do Brasil.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "… disposto no § 3o será disciplinado pela Secretaria da Receita Federal do Brasil. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… ou contratados, os orçados para a conclusão das obras ou melhoramentos que estiver contratualmente obrigado a realizar.",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…terminação do lucro real, ser reconhecido proporcionalmente à receita de venda recebida, observadas as seguintes normas:",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…roporcionalmente à receita de venda recebida, observadas as seguintes normas: (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ros, para a qual serão transferidos a receita de venda e o custo do imóvel, inclusive o orçado (art. 28), se for o caso.",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…eceita de venda e o custo do imóvel, inclusive o orçado (art. 28), se for o caso. (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…o, será computada, na determinação do lucro real, parte do lucro bruto proporcional à receita recebida no mesmo período;",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "… real, parte do lucro bruto proporcional à receita recebida no mesmo período; (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…do período de apuração desse reajustamento, a diferença de custo correspondente à parte da receita de venda já recebida;",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "… a diferença de custo correspondente à parte da receita de venda já recebida; (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ciso III do caput deverão ser realizados no livro de apuração do lucro real de que trata o inciso I do caput do art. 8o.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "…s no livro de apuração do lucro real de que trata o inciso I do caput do art. 8o. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.429",
+            "ano": 1988
+          },
+          "trecho": "…siva as atualizações monetárias do custo contratado e do custo orçado, desde que o critério seja aplicado uniformemente.",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.429, de 1988)"
+        }
+      ]
+    },
+    "30": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…nto (art. 2º) será determinada de acordo com as seguintes normas e a regulamentação expedida pelo Ministério da Fazenda:",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…ado na consolidação dos resultados de todas as sociedades (art. 7º, § 5º), ajustado nos termos do disposto no artigo 6º;",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…as em cada sociedade, cujos limites sejam fixados na lei em função de elementos do seu patrimônio ou das suas operações;",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "… 1978). III - o limite de dedução de contribuições e doações poderá ser calculado com base no lucro líquido do conjunto;",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…al poderão ser compensados os prejuízos de qualquer das sociedades do conjunto, observado o prazo previsto no artigo 65.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…de 1978). Parágrafo único - O imposto incide à alíquota de 32% sobre o lucro real das sociedades tributadas em conjunto.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.648, de 1978)"
+        }
+      ]
+    },
+    "31": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…exaustão, ou na liquidação de bens do ativo não circulante, classificados como investimentos, imobilizado ou intangível.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… não circulante, classificados como investimentos, imobilizado ou intangível. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…, diminuído, se for o caso, da depreciação, amortização ou exaustão acumulada e das perdas estimadas no valor de ativos.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "… amortização ou exaustão acumulada e das perdas estimadas no valor de ativos. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…ra efeito de determinar o lucro real, reconhecer o lucro na proporção da parcela do preço recebida em cada período-base.",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…to de determinar o lucro real, reconhecer o lucro na proporção da parcela do preço recebida em cada período de apuração.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "… lucro na proporção da parcela do preço recebida em cada período de apuração. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…lor contábil (§ 1º), diminuído da provisão para perdas (art. 32) que tiver sido computada na determinação do lucro real.",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…são para perdas (art. 32) que tiver sido computada na determinação do lucro real. (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…o real deverá ser adicionada na apuração do imposto no período de apuração em que ocorrer a alienação ou baixa do ativo.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "…o do imposto no período de apuração em que ocorrer a alienação ou baixa do ativo. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 7o A Secretaria da Receita Federal do Brasil, no âmbito de suas atribuições, disciplinará o disposto neste artigo.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "…l do Brasil, no âmbito de suas atribuições, disciplinará o disposto neste artigo. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…valor de investimentos será, para efeito de determinar o lucro real, adicionada ao lucro líquido do exercício, salvo se:",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…o de determinar o lucro real, adicionada ao lucro líquido do exercício, salvo se: (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "I - constituída depois de 3 anos da aquisição do investimento; e",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I - constituída depois de 3 anos da aquisição do investimento; e (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "II - a perda for comprovada como permanente assim entendida a de impossível ou improvável recuperação.",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…rovada como permanente assim entendida a de impossível ou improvável recuperação. (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 1º - Cabe à pessoa jurídica o ônus da prova da perda permanente que justifique a constituição da provisão.",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…ca o ônus da prova da perda permanente que justifique a constituição da provisão. (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…lucro real, a provisão para perda de participação societária na parte que corresponder ao ágio de que trata o artigo 20.",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…ão societária na parte que corresponder ao ágio de que trata o artigo 20. (Redação dada pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ia na parte que corresponder ao ágio de que trata o artigo 20. (Redação dada pelo Decreto-lei nº 1.730, 1979) (Vigência)",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "… que trata o artigo 20. (Redação dada pelo Decreto-lei nº 1.730, 1979) (Vigência) (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…decurso desse prazo, para efeito de determinar o lucro real, desde que observado o disposto no item II e nos §§ 1º e 2º.",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…erminar o lucro real, desde que observado o disposto no item II e nos §§ 1º e 2º. (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…idação do investimento avaliado pelo valor de patrimônio líquido (art. 20), será a soma algébrica dos seguintes valores:",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…de patrimônio líquido (art. 20), será a soma algébrica dos seguintes valores: (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…cial do contribuinte, excluídos os computados, nos exercícios financeiros de 1979 e 1980, na determinação do lucro real.",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…nos exercícios financeiros de 1979 e 1980, na determinação do lucro real. (Redação dada pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…da que tenham sido realizados na escrituração comercial do contribuinte, conforme previsto no art. 25 deste Decreto-Lei;",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…ão comercial do contribuinte, conforme previsto no art. 25 deste Decreto-Lei; (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…amento nas letras b e c do § 2º do artigo 20, ainda que tenha sido amortizado na escrituração comercial do contribuinte;",
+          "literal": "(Revogado pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "IV - provisão para perdas (art. 32) que tiver sido computada na determinação do lucro real.",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "…são para perdas (art. 32) que tiver sido computada na determinação do lucro real. (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 1º - Os valores de que tratam os itens II a IV serão corrigidos monetariamente.",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º - Os valores de que tratam os itens II a IV serão corrigidos monetariamente. (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "…erda de capital por variação na porcentagem de participação do contribuinte no capital social da coligada ou controlada.",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…decorrente de ganho ou perda por variação na porcentagem de participação do contribuinte no capital social da investida.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…a porcentagem de participação do contribuinte no capital social da investida. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "34": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…alor de acervo líquido que as substituir será computado na determinação do lucro real de acordo com as seguintes normas:",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…r será computado na determinação do lucro real de acordo com as seguintes normas: (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…determinar o lucro real, optar pelo tratamento da diferença como ativo diferido, amortizável no prazo máximo de 10 anos;",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…tamento da diferença como ativo diferido, amortizável no prazo máximo de 10 anos; (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…º e 2º, diferir a tributação sobre a parte do ganho de capital em bens do ativo permanente, até que esse seja realizado.",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…rte do ganho de capital em bens do ativo permanente, até que esse seja realizado. (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…tribuinte somente poderá diferir a tributação da parte do ganho de capital correspondente a bens do ativo permanente se:",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…utação da parte do ganho de capital correspondente a bens do ativo permanente se: (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…e corresponder o ganho de capital diferido, de modo a permitir a determinação do valor realizado em cada período-base; e",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "…ido, de modo a permitir a determinação do valor realizado em cada período-base; e (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…o a correção monetária anual, por ocasião do balanço, aos mesmos coeficientes aplicados na correção do ativo permanente.",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "…ão do balanço, aos mesmos coeficientes aplicados na correção do ativo permanente. (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ou liquidação, ou através de quotas de depreciação, amortização ou exaustão deduzidas como custo ou despesa operacional.",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…depreciação, amortização ou exaustão deduzidas como custo ou despesa operacional. (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "… 6.404, de 15 de dezembro de 1976, não será computada no lucro real enquanto mantida em conta de reserva de reavaliação.",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…putada no lucro real enquanto mantida em conta de reserva de reavaliação. (Redação dada pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "§ 1º - O valor da reserva será computado na determinação do lucro real:",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º - O valor da reserva será computado na determinação do lucro real: (Redação dada pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "a) no período-base em que a reserva for utilizada para aumento do capital social, no montante capitalizado;",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "…a for utilizada para aumento do capital social, no montante capitalizado; (Redação dada pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…íodo-base, no montante do aumento do valor dos bens reavaliados que tenha sido realizado no período, inclusive mediante:",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "…bens reavaliados que tenha sido realizado no período, inclusive mediante: (Redação dada pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "1 - alienação, sob qualquer forma;",
+          "literal": "(Incluído pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "1 - alienação, sob qualquer forma; (Incluído pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "2 - depreciação, amortização ou exaustão;",
+          "literal": "(Incluído pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "2 - depreciação, amortização ou exaustão; (Incluído pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "3 - baixa por perecimento;",
+          "literal": "(Incluído pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "3 - baixa por perecimento; (Incluído pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "4 - transferência do ativo permanente para o ativo circulante ou realizável a longo prazo.",
+          "literal": "(Incluído pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "…ncia do ativo permanente para o ativo circulante ou realizável a longo prazo. (Incluído pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.430",
+            "ano": 1996
+          },
+          "trecho": "…vo permanente para o ativo circulante ou realizável a longo prazo. (Incluído pelo Decreto-lei nº 1.730, 1979) (Vigência)",
+          "literal": "(Revogado pela Lei nº 9.430, de 1996)"
+        }
+      ]
+    },
+    "36": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…dos por companhia, não será computada na determinação do lucro real enquanto mantida em conta de reserva de reavaliação.",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "Parágrafo único - O valor da reserva deverá ser computado na determinação do lucro real:",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "… - O valor da reserva deverá ser computado na determinação do lucro real: (Redação dada pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "a) na alienação ou liquidação da participação societária ou dos valores mobiliários, pelo montante realizado;",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "…ticipação societária ou dos valores mobiliários, pelo montante realizado; (Redação dada pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "b) quando a reserva for utilizada para aumento do capital social, pela importância capitalizada;",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "… utilizada para aumento do capital social, pela importância capitalizada; (Redação dada pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…inte, que corresponder à participação ou aos valores mobiliários adquiridos com o aumento do valor dos bens do ativo; ou",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "…lores mobiliários adquiridos com o aumento do valor dos bens do ativo; ou (Redação dada pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…zar o valor dos bens, na forma do 1º, letra b , do artigo 35, ou com eles integralizar capital de outra pessoa jurídica.",
+          "literal": "(Incluída pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea d",
+          "diploma": null,
+          "trecho": "… b , do artigo 35, ou com eles integralizar capital de outra pessoa jurídica. (Incluída pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…ciedade resultante da fusão ou incorporação, na sociedade cindida ou em uma ou mais das sociedades resultantes da cisão.",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "38": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "III - prêmio na emissão de debêntures;",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III - prêmio na emissão de debêntures; (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…ntos econômicos, e as doações, feitas pelo Poder Público, não serão computadas na determinação do lucro real, desde que:",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…r Público, não serão computadas na determinação do lucro real, desde que: (Redação dada pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.185",
+            "ano": 2023
+          },
+          "trecho": "…não serão computadas na determinação do lucro real, desde que: (Redação dada pelo Decreto-lei nº 1.730, 1979) (Vigência)",
+          "literal": "(Revogado pela Medida Provisória nº 1.185, de 2023)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.789",
+            "ano": 2023
+          },
+          "trecho": "…dada pelo Decreto-lei nº 1.730, 1979) (Vigência) (Revogado pela Medida Provisória nº 1.185, de 2023) Produção de efeitos",
+          "literal": "(Revogado pela Lei nº 14.789, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…izada para absorver prejuízos ou ser incorporada ao capital social, observado o disposto nos §§ 3º e 4º do artigo 19; ou",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "…a ao capital social, observado o disposto nos §§ 3º e 4º do artigo 19; ou (Redação dada pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.185",
+            "ano": 2023
+          },
+          "trecho": "…l social, observado o disposto nos §§ 3º e 4º do artigo 19; ou (Redação dada pelo Decreto-lei nº 1.730, 1979) (Vigência)",
+          "literal": "(Revogado pela Medida Provisória nº 1.185, de 2023)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.789",
+            "ano": 2023
+          },
+          "trecho": "…dada pelo Decreto-lei nº 1.730, 1979) (Vigência) (Revogado pela Medida Provisória nº 1.185, de 2023) Produção de efeitos",
+          "literal": "(Revogado pela Lei nº 14.789, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…ntir a exatidão do balanço do contribuinte e utilizadas para absorver superveniências passivas ou insuficiências ativas.",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "…ilizadas para absorver superveniências passivas ou insuficiências ativas. (Redação dada pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.185",
+            "ano": 2023
+          },
+          "trecho": "…ra absorver superveniências passivas ou insuficiências ativas. (Redação dada pelo Decreto-lei nº 1.730, 1979) (Vigência)",
+          "literal": "(Revogado pela Medida Provisória nº 1.185, de 2023)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.789",
+            "ano": 2023
+          },
+          "trecho": "…dada pelo Decreto-lei nº 1.730, 1979) (Vigência) (Revogado pela Medida Provisória nº 1.185, de 2023) Produção de efeitos",
+          "literal": "(Revogado pela Lei nº 14.789, de 2023)"
+        }
+      ]
+    },
+    "38-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ubscrição contabilizados no patrimônio líquido, poderão ser excluídos, na determinação do lucro real, quando incorridos.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…líquido, poderão ser excluídos, na determinação do lucro real, quando incorridos. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "38-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…uídos na determinação do lucro real e da base de cálculo de Contribuição Social sobre o Lucro Líquido quando incorridos.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…a base de cálculo de Contribuição Social sobre o Lucro Líquido quando incorridos. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…tribuições para o PIS/Pasep e Cofins, ser excluídos ou deduzidos como despesas de operações de intermediação financeira.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…er excluídos ou deduzidos como despesas de operações de intermediação financeira. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "… O disposto neste artigo não se aplica aos instrumentos previstos no art. 15 da Lei no 6.404, de 15 de dezembro de 1976.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…aos instrumentos previstos no art. 15 da Lei no 6.404, de 15 de dezembro de 1976. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ido, os valores mencionados no caput e anteriormente deduzidos deverão ser adicionados nas respectivas bases de cálculo.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…anteriormente deduzidos deverão ser adicionados nas respectivas bases de cálculo. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "52": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.733",
+            "ano": 1979
+          },
+          "trecho": "…pela diminuição das variações monetárias e das correções monetárias prefixadas computadas no lucro líquido do exercício.",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.733, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.733",
+            "ano": 1979
+          },
+          "trecho": "…eder o das ativas com o valor das despesas de correção monetária prefixada que exceder o das receitas da mesma natureza.",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.733, de 1979)"
+        }
+      ]
+    },
+    "53": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "1 - O valor contábil do ativo permanente no início do exercício;",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.648, de 1978)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.648",
+            "ano": 1978
+          },
+          "trecho": "1 - valor contábil dos bens do ativo permanente existentes no início do exercício e baixados no curso deste;",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.648, de 1978)"
+        }
+      ]
+    },
+    "54": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.287",
+            "ano": 1986
+          },
+          "trecho": "…orreção monetária do ativo permanente ao montante necessário para compensar a correção das contas do patrimônio líquido.",
+          "literal": "(Revogado pelo Decreto-Lei nº 2.287, de 1986)"
+        }
+      ]
+    },
+    "59": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.654",
+            "ano": 1978
+          },
+          "trecho": "…8, pelo Banco Central do Brasil, e o requerimento de conversão seja apresentado a esse órgão até 31 de dezembro de 1979;",
+          "literal": "(Redação dada pelo Decreto-Lei nº 1.654, de 1978)"
+        }
+      ]
+    },
+    "60": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art 60 - Presume-se distribuição disfarçada de lucros no negócio pelo qual a pessoa jurídica:",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.064",
+            "ano": 1983
+          },
+          "trecho": "… parte das variações monetárias ativas (art.18) que exceder as variações monetárias passivas (art. 18, parágrafo único).",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.064, de 1983)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.064",
+            "ano": 1983
+          },
+          "trecho": "…ntajosas para a pessoa ligada do que as que prevaleçam no mercado ou em que a pessoa jurídica contrataria com terceiros;",
+          "literal": "(Incluído pelo Decreto-lei nº 2.064, de 1983)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.065",
+            "ano": 1983
+          },
+          "trecho": "…ntajosas para a pessoa ligada do que as que prevaleçam no mercado ou em que a pessoa jurídica contrataria com terceiros;",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.065, de 1983)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.064",
+            "ano": 1983
+          },
+          "trecho": "…to, desde que realizadas nas condições que prevaleçam no mercado, ou em que a pessoa jurídica contrataria com terceiros.",
+          "literal": "(Incluído pelo Decreto-lei nº 2.064, de 1983)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.065",
+            "ano": 1983
+          },
+          "trecho": "…to, desde que realizadas nas condições que prevaleçam no mercado, ou em que a pessoa jurídica contrataria com terceiros.",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.065, de 1983)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.064",
+            "ano": 1983
+          },
+          "trecho": "…até o 3º grau, inclusive afim, das pessoas de que trata a letra a . § 3º - Considera-se pessoa ligada à pessoa jurídica:",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.064, de 1983)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.064",
+            "ano": 1983
+          },
+          "trecho": "…pessoa jurídica: (Redação dada pelo Decreto-lei nº 2.064, de 1983) a) o sócio desta, mesmo quando outra pessoa jurídica;",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.064, de 1983)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.064",
+            "ano": 1983
+          },
+          "trecho": "…a pessoa jurídica; (Redação dada pelo Decreto-lei nº 2.064, de 1983) b) o administrador ou o titular da pessoa jurídica;",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.064, de 1983)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.064",
+            "ano": 1983
+          },
+          "trecho": "…ro grau, inclusive os afins, do sócio pessoa física de que trata a letra a e das demais pessoas mencionadas na letra b.\"",
+          "literal": "(Incluído pelo Decreto-lei nº 2.064, de 1983)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.065",
+            "ano": 1983
+          },
+          "trecho": "§ 3º Considera-se pessoa ligada à pessoa jurídica:",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.065, de 1983)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.065",
+            "ano": 1983
+          },
+          "trecho": "a) o sócio desta, mesmo quando outra pessoa jurídica;",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.065, de 1983)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.065",
+            "ano": 1983
+          },
+          "trecho": "b) o administrador ou o titutlar da pessoa jurídica;",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.065, de 1983)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.065",
+            "ano": 1983
+          },
+          "trecho": "…grau, inclusive os afins, do sócio pessoa física de que trata a letra \"a\" e das demais pessoas mencionadas na letra \"b\".",
+          "literal": "(Incluída pelo Decreto-lei nº 2.065, de 1983)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.064",
+            "ano": 1983
+          },
+          "trecho": "…empréstimo, o disposto no item V aplicar-se-á a partir da formação do lucro ou da reserva, até o montante do empréstimo.",
+          "literal": "(Incluído pelo Decreto-lei nº 2.064, de 1983)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.065",
+            "ano": 1983
+          },
+          "trecho": "…empréstimo, o disposto no item V aplicar-se-á a partir da formação do lucro ou da reserva, até o montante do empréstimo.",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.065, de 1983)"
+        }
+      ]
+    },
+    "61": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… lucros se a companhia contrata com o acionista controlador, ou com seu parente até o terceiro grau, inclusive os afins:",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "62": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art 62 - Para efeito de determinar o lucro real da pessoa jurídica:",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.064",
+            "ano": 1983
+          },
+          "trecho": "…feito de correção monetária do patrimônio líquido, deduzida dos lucros acumulados ou reservas de lucros, exceto a legal.",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.064, de 1983)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.065",
+            "ano": 1983
+          },
+          "trecho": "…feito de correção monetária do patrimônio líquido, deduzida dos lucros acumulados ou reservas de lucros, exceto a legal.",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.065, de 1983)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.064",
+            "ano": 1983
+          },
+          "trecho": "…mportâncias pagas ou creditadas à pessoa ligada, que caracterizarem as condições de favorecimento, não serão dedutíveis.",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.064, de 1983)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.065",
+            "ano": 1983
+          },
+          "trecho": "…mportâncias pagas ou creditadas à pessoa ligada, que caracterizarem as condições de favorecimento, não serão dedutíveis.",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.065, de 1983)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.064",
+            "ano": 1983
+          },
+          "trecho": "…cios econômicos da distribuição, ou cujo cônjuge ou parente até o 3º grau, inclusive os afins, auferiu esses benefícios.",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.064, de 1983)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.065",
+            "ano": 1983
+          },
+          "trecho": "…cios econômicos da distribuição, ou cujo cônjuge ou parente até o 3º grau, inclusive os afins, auferiu esses benefícios.",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.065, de 1983)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.064",
+            "ano": 1983
+          },
+          "trecho": "… do fato gerador do imposto da pessoa jurídica ou da pessoa física beneficiária dos lucros distribuídos disfarçadamente.",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.064, de 1983)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.065",
+            "ano": 1983
+          },
+          "trecho": "… do fato gerador do imposto da pessoa jurídica ou da pessoa física beneficiária dos lucros distribuídos disfarçadamente.",
+          "literal": "(Redação dada pelo Decreto-lei nº 2.065, de 1983)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.064",
+            "ano": 1983
+          },
+          "trecho": "…ambém responsável pelo imposto e multa devidos pela pessoa jurídica em decorrência da distribuição disfarçada de lucros.",
+          "literal": "(Revogado pelo Decreto-lei nº 2.064, de 1983)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.065",
+            "ano": 1983
+          },
+          "trecho": "… pela pessoa jurídica em decorrência da distribuição disfarçada de lucros. (Revogado pelo Decreto-lei nº 2.064, de 1983)",
+          "literal": "(Revogado pelo Decreto-lei nº 2.065, de 1983)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.064",
+            "ano": 1983
+          },
+          "trecho": "… do fato gerador do imposto da pessoa jurídica ou da pessoa física beneficiária dos lucros distribuídos disfarçadamente.",
+          "literal": "(Revogado pelo Decreto-lei nº 2.064, de 1983)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "2.065",
+            "ano": 1983
+          },
+          "trecho": "… ou da pessoa física beneficiária dos lucros distribuídos disfarçadamente. (Revogado pelo Decreto-lei nº 2.064, de 1983)",
+          "literal": "(Revogado pelo Decreto-lei nº 2.065, de 1983)"
+        }
+      ]
+    },
+    "64": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…smo grupo ou sob controle comum, quando a medida atender a interesses de segurança e fortalecimento da empresa nacional.",
+          "literal": "(Redação dada pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "…a atender a interesses de segurança e fortalecimento da empresa nacional. (Redação dada pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.870",
+            "ano": 1981
+          },
+          "trecho": "… interesses de segurança e fortalecimento da empresa nacional. (Redação dada pelo Decreto-lei nº 1.730, 1979) (Vigência)",
+          "literal": "(Revogado pelo Decreto-lei nº 1.870, 1981)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "… dos atos da operação, às sociedades resultantes de cisão e à que incorporar parcela do patrimônio de sociedade cindida.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "§ 6º - O prazo para compensação de prejuízos não se aplica no caso de massa falida.",
+          "literal": "(Renumerado do § 7º pelo Decreto-lei nº 1.730, 1979)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "…ara compensação de prejuízos não se aplica no caso de massa falida. (Renumerado do § 7º pelo Decreto-lei nº 1.730, 1979)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.730",
+            "ano": 1979
+          },
+          "trecho": "…u sob controle comum, quando a medida atender a interesses de segurança e fortalecimento do sistema financeira nacional.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.730, 1979)"
+        }
+      ]
+    },
+    "65": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art 65 - O imposto incide, à alíquota de 25%, sobre os lucros e reservas que excedam do capital social das companhias.",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.713",
+            "ano": 1988
+          },
+          "trecho": "…O imposto incide, à alíquota de 25%, sobre os lucros e reservas que excedam do capital social das companhias. (Vigência)",
+          "literal": "(Revogado pela Lei nº 7.713, de 1988)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.713",
+            "ano": 1988
+          },
+          "trecho": "…s pelo pagamento do imposto as companhias ou sociedades anônimas com sede no País, exceto as sociedades de investimento.",
+          "literal": "(Revogado pela Lei nº 7.713, de 1988)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.713",
+            "ano": 1988
+          },
+          "trecho": "…bilidade presumida, para os acionistas, de lucros ou reservas de lucros que a companhia tem o dever legal de distribuir.",
+          "literal": "(Revogado pela Lei nº 7.713, de 1988)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.713",
+            "ano": 1988
+          },
+          "trecho": "…sso de lucros ou as reservas de lucros à integralização ou aumento do capital social, ou à distribuição como dividendos.",
+          "literal": "(Revogado pela Lei nº 7.713, de 1988)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.713",
+            "ano": 1988
+          },
+          "trecho": "…a-se dentro de 30 dias, se nesse prazo a companhia não efetivar, pelo seu órgão competente, o aumento do capital social.",
+          "literal": "(Revogado pela Lei nº 7.713, de 1988)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.713",
+            "ano": 1988
+          },
+          "trecho": "…da autoridade que negar aprovação do aumento, se nesse prazo a companhia não distribuir o excesso de lucros ou reservas.",
+          "literal": "(Revogado pela Lei nº 7.713, de 1988)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.713",
+            "ano": 1988
+          },
+          "trecho": "…o se reunir ou não deliberar sobre a demonstração de resultados e destinação do excesso de lucros ou reservas de lucros.",
+          "literal": "(Revogado pela Lei nº 7.713, de 1988)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.713",
+            "ano": 1988
+          },
+          "trecho": "…e lucros ou reservas de lucros. (Revogado pela Lei nº 7.713, de 1988) § 7º - Para os efeitos do disposto deste Capítulo:",
+          "literal": "(Revogado pela Lei nº 7.713, de 1988)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.713",
+            "ano": 1988
+          },
+          "trecho": "…ervas de lucros a realizar, das reservas para contingências e das reservas constituídas nos termos do § 2º do artigo 15;",
+          "literal": "(Revogado pela Lei nº 7.713, de 1988)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.713",
+            "ano": 1988
+          },
+          "trecho": "…nços levantados antes de 1º de janeiro de 1977 e os que já tenham sofrido a incidência do imposto em exercício anterior;",
+          "literal": "(Revogado pela Lei nº 7.713, de 1988)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.713",
+            "ano": 1988
+          },
+          "trecho": "… compreende o saldo da reserva de capital formado com a correção monetária do capital realizado, ainda não capitalizado.",
+          "literal": "(Revogado pela Lei nº 7.713, de 1988)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.713",
+            "ano": 1988
+          },
+          "trecho": "… nº 7.713, de 1988) § 8º - O imposto será recolhido no mês seguinte ao em que se completar a ocorrência do fato gerador.",
+          "literal": "(Revogado pela Lei nº 7.713, de 1988)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.713",
+            "ano": 1988
+          },
+          "trecho": "… imposto é o montante dos lucros acumulados e das reservas de lucros que excederem do valor do capital social realizado.",
+          "literal": "(Revogado pela Lei nº 7.713, de 1988)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…a este Capítulo será compensado com o que for devido na distribuição, como dividendo, dos lucros ou reservas tributados.",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.713",
+            "ano": 1988
+          },
+          "trecho": "…tulo será compensado com o que for devido na distribuição, como dividendo, dos lucros ou reservas tributados. (Vigência)",
+          "literal": "(Revogado pela Lei nº 7.713, de 1988)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.713",
+            "ano": 1988
+          },
+          "trecho": "… com o que for obrigada a pagar, como contribuinte ou responsável, em qualquer outra incidência do imposto de renda, se:",
+          "literal": "(Revogado pela Lei nº 7.713, de 1988)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.713",
+            "ano": 1988
+          },
+          "trecho": "…u reservas tributados não forem sujeitos a retenção do imposto na fonte, ou sofrerem retenção a alíquota inferior a 25%;",
+          "literal": "(Revogado pela Lei nº 7.713, de 1988)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.713",
+            "ano": 1988
+          },
+          "trecho": "…evogado pela Lei nº 7.713, de 1988) b) os lucros ou reservas tributados forem capitalizados ou absorvidos por prejuízos.",
+          "literal": "(Revogado pela Lei nº 7.713, de 1988)"
+        }
+      ]
+    }
+  }
+}

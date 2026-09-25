@@ -17,19 +17,29 @@
 import {
   Controller, Get, Post, Patch, Delete,
   Body, Param, Query, UseGuards, Request,
-  HttpCode, HttpStatus, Res,
+  HttpCode, HttpStatus, Res, Logger,
+  UseInterceptors, UploadedFile, BadRequestException,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { memoryStorage } from 'multer';
 import { ApiTags, ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { EsignService } from './esign.service';
+import { ChavesService } from '../chaves/chaves.service';
+import { DocxGerarService } from '../documentos/docx-gerar.service';
 
 @ApiTags('E-Sign — Assinatura Digital')
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
 @Controller('esign')
 export class EsignController {
+  private readonly logger = new Logger(EsignController.name);
 
-  constructor(private readonly esignService: EsignService) {}
+  constructor(
+    private readonly esignService: EsignService,
+    private readonly chavesService: ChavesService,
+    private readonly docxGerarService: DocxGerarService,
+  ) {}
 
   /* ──────────────────── ENVELOPES ───────────────────────────── */
 
@@ -65,24 +75,393 @@ export class EsignController {
   @Post('envelopes')
   async createEnvelope(
     @Request() req: any,
-    @Body() dto: {
-      title: string;
-      documento_id?: string;
-      documento_url?: string;
-      tipo: 'simples' | 'icp_brasil';
-      signatarios: Array<{
-        nome: string;
-        email: string;
-        cpf?: string;
-        papel: 'signatario' | 'aprovador' | 'testemunha' | 'notificado';
-        ordem: number;
-        notificacao: 'email' | 'whatsapp' | 'sms';
-      }>;
-      expira_em?: string;
-      mensagem?: string;
-    },
+    @Body() dto: Record<string, any>,
   ) {
-    return this.esignService.createEnvelope(req.user, dto);
+    const escritorioId = req.user.escritorioId ?? req.user.officeId;
+
+    // Detecta payload com signers (enviado pelo frontend ao criar envelope)
+    const hasSigners = !!dto.signers;
+
+    if (hasSigners) {
+      // ── ClickSign API ────────────────────────────────────────────────────
+      const clickToken = await this.chavesService.getChave(escritorioId, 'clicksign');
+      this.logger.log(`[ClickSign] Token obtido: ${clickToken ? clickToken.substring(0,8)+'...' : 'NULO'}`);
+
+      if (clickToken) {
+        try {
+          const base = (process.env.CLICKSIGN_URL || 'https://sandbox.clicksign.com').replace(/\/$/, '');
+          const qs   = `?access_token=${clickToken}`;
+          this.logger.log(`[ClickSign] Base URL: ${base}`);
+
+          const deadline = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+            .toISOString().replace('Z', '-03:00');
+
+          // 1. Criar documento
+          const safeName = (dto.name || 'contrato')
+            .normalize('NFD').replace(/[\u0300-\u036f]/g, '')  // remove acentos
+            .replace(/[^a-z0-9_\-]/gi, '_')
+            .substring(0, 60);
+          const docPath = `/${Date.now()}_${safeName}.pdf`;
+
+          const docBody: any = {
+            document: {
+              path: docPath,
+              deadline_at: deadline,
+              auto_close: true,
+              locale: 'pt-BR',
+              sequence_enabled: false,
+            },
+          };
+          // ── Se dados_cliente presentes: gera 4 PDFs em envelope único via API v3 ──
+          this.logger.log(`[ClickSign] dados_cliente presente: ${!!dto.dados_cliente?.clienteNome} | clienteNome: ${dto.dados_cliente?.clienteNome || 'AUSENTE'}`);
+          if (dto.dados_cliente?.clienteNome) {
+            try {
+              const dc  = dto.dados_cliente;
+              const s   = (dto.signers || [])[0] || {};
+              const dadosDocx = {
+                clienteNome:        dc.clienteNome,
+                clienteCPF:         dc.clienteCPF || dc.clienteCpf || '',
+                clienteRG:          dc.clienteRG || '',
+                clienteRGOrgao:     dc.clienteRGOrgao || 'SSP/SC',
+                clienteNaciona:     dc.clienteNaciona || dc.clienteNacionalidade || 'brasileiro(a)',
+                clienteEstadoCivil: dc.clienteEstadoCivil || '',
+                clienteProfissao:   dc.clienteProfissao || '',
+                clienteRua:         dc.clienteRua || dc.clienteEndereco || '',
+                clienteNum:         dc.clienteNum || '',
+                clienteCompl:       dc.clienteCompl || '',
+                clienteBairro:      dc.clienteBairro || '',
+                clienteCidade:      dc.clienteCidade || '',
+                clienteEstado:      dc.clienteEstado || 'SC',
+                clienteCEP:         dc.clienteCEP || '',
+                objetoAcao:         dc.objetoAcao || '',
+                tipoHonorario:      dc.tipoHonorario || 'percentual',
+                percHonorarios:     String(Number(dc.percHonorarios) || 30),
+                valorHonorarios:    String(Number(dc.valorHonorarios) || 0),
+                parcelas:           dc.numParcelas ? `${dc.numParcelas} parcelas` : '',
+                cidade:             dc.clienteCidade || 'Balneário Camboriú',
+              };
+
+              // Gera os 4 DOCX (com tag {{~position_sign_cliente}} na linha de assinatura)
+              const [b1, b2, b3, b4] = await Promise.all([
+                this.docxGerarService.gerarDocumento('contrato',         dadosDocx),
+                this.docxGerarService.gerarDocumento('procuracao',       dadosDocx),
+                this.docxGerarService.gerarDocumento('hipossuficiencia', dadosDocx),
+                this.docxGerarService.gerarDocumento('renuncia',         dadosDocx),
+              ]);
+              // signPage: página provável da linha de assinatura em cada documento
+              const docs = [
+                { nome: 'Contrato_de_Prestacao_de_Servicos', base64: b1.toString('base64'), signPage: 3 },
+                { nome: 'Procuracao_Ad_Judicia',             base64: b2.toString('base64'), signPage: 2 },
+                { nome: 'Declaracao_de_Hipossuficiencia',    base64: b3.toString('base64'), signPage: 1 },
+                { nome: 'Carta_de_Renuncia',                 base64: b4.toString('base64'), signPage: 1 },
+              ];
+              this.logger.log(`[ClickSign v3] 4 DOCX gerados para ${dc.clienteNome}`);
+
+              // Headers v3: Authorization sem Bearer, Content-Type json:api
+              const hdrs = {
+                'Authorization': clickToken,
+                'Content-Type': 'application/vnd.api+json',
+                'Accept': 'application/vnd.api+json',
+              };
+              const v3 = `${base}/api/v3`;
+
+              // ── 1. Criar envelope ──
+              const envResp = await fetch(`${v3}/envelopes`, {
+                method: 'POST', headers: hdrs,
+                body: JSON.stringify({ data: { type: 'envelopes', attributes: { name: `Documentos — ${dc.clienteNome}` } } }),
+              });
+              const envText = await envResp.text();
+              this.logger.log(`[ClickSign v3] Envelope: ${envResp.status} — ${envText.substring(0, 300)}`);
+              if (!envResp.ok) throw new Error(`ClickSign v3: falha ao criar envelope — ${envText}`);
+              const envId = (JSON.parse(envText) as any)?.data?.id;
+              if (!envId) throw new Error(`ClickSign v3: envId nulo — resposta: ${envText}`);
+              this.logger.log(`[ClickSign v3] ✅ Envelope criado: ${envId}`);
+
+              // ── 2. Adicionar os 4 documentos ao envelope ──
+              const docsMeta: { id: string; signPage: number }[] = [];
+              for (const doc of docs) {
+                const dResp = await fetch(`${v3}/envelopes/${envId}/documents`, {
+                  method: 'POST', headers: hdrs,
+                  body: JSON.stringify({ data: { type: 'documents', attributes: { filename: `${doc.nome}.docx`, content_base64: `data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,${doc.base64}` } } }),
+                });
+                const dText = await dResp.text();
+                this.logger.log(`[ClickSign v3] Doc '${doc.nome}': ${dResp.status} — ${dText.substring(0, 200)}`);
+                if (!dResp.ok) { this.logger.warn(`[ClickSign v3] Falha doc ${doc.nome}: ${dText}`); continue; }
+                const dId = (JSON.parse(dText) as any)?.data?.id;
+                if (dId) docsMeta.push({ id: dId, signPage: doc.signPage });
+              }
+              this.logger.log(`[ClickSign v3] ${docsMeta.length} de ${docs.length} docs adicionados ao envelope`);
+              if (docsMeta.length === 0) throw new Error('ClickSign v3: nenhum documento adicionado ao envelope');
+
+              // ── 3. Adicionar signatário ──
+              const nameWords  = (s.name || dc.clienteNome || '').replace(/[^a-zA-ZÀ-ÿ\s]/g, '').trim().split(/\s+/).filter((w: string) => w.length > 0);
+              const signerName  = nameWords.length >= 2 ? nameWords.join(' ') : `${nameWords[0] || 'Cliente'} Signatario`;
+              const signerEmail = s.email || dc.clienteEmail || dc.email || '';
+              const phoneRaw    = (s.phone_number || s.telefone || dc.clienteTelefone || '').replace(/\D/g, '');
+              this.logger.log(`[ClickSign v3] Signatário: nome="${signerName}" email="${signerEmail}"`);
+
+              const sigAttrs: any = { name: signerName, email: signerEmail };
+              if (phoneRaw.length >= 10) sigAttrs.phone_number = phoneRaw;
+
+              const sigResp = await fetch(`${v3}/envelopes/${envId}/signers`, {
+                method: 'POST', headers: hdrs,
+                body: JSON.stringify({ data: { type: 'signers', attributes: sigAttrs } }),
+              });
+              const sigText = await sigResp.text();
+              this.logger.log(`[ClickSign v3] Signatário resp: ${sigResp.status} — ${sigText.substring(0, 300)}`);
+              if (!sigResp.ok) throw new Error(`ClickSign v3: falha ao criar signatário — ${sigText}`);
+              const signerId = (JSON.parse(sigText) as any)?.data?.id;
+              if (!signerId) throw new Error(`ClickSign v3: signerId nulo — resposta: ${sigText}`);
+
+              // ── 4. Criar requisitos por documento (qualificação + autenticação + assinatura + rubrica) ──
+              const rubrErrors: string[] = [];
+              for (const { id: dId, signPage } of docsMeta) {
+                // Qualificação: papel do signatário
+                const qualResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
+                  method: 'POST', headers: hdrs,
+                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'agree', role: 'sign' }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
+                });
+                const qualText = await qualResp.text();
+                this.logger.log(`[ClickSign v3] Qualificação doc ${dId}: ${qualResp.status} — ${qualText.substring(0, 200)}`);
+
+                // Autenticação: token por email
+                const authResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
+                  method: 'POST', headers: hdrs,
+                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'provide_evidence', auth: 'email' }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
+                });
+                const authText = await authResp.text();
+                this.logger.log(`[ClickSign v3] Autenticação doc ${dId}: ${authResp.status} — ${authText.substring(0, 200)}`);
+
+                // Campo visual de assinatura com coordenadas (tenta posicionar na linha de assinatura)
+                const signAttrs: any = { action: 'sign', page: signPage, x: 0.05, y: 0.77, width: 0.35, height: 0.08 };
+                const signResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
+                  method: 'POST', headers: hdrs,
+                  body: JSON.stringify({ data: { type: 'requirements', attributes: signAttrs, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
+                });
+                const signText = await signResp.text();
+                this.logger.log(`[ClickSign v3] Sign coord p${signPage} doc ${dId}: ${signResp.status} — ${signText.substring(0, 300)}`);
+                if (!signResp.ok) {
+                  rubrErrors.push(`sign doc ${dId}: ${signResp.status} — ${signText.substring(0, 200)}`);
+                  // Fallback: sign sem coordenadas
+                  const signFbResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
+                    method: 'POST', headers: hdrs,
+                    body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'sign' }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
+                  });
+                  this.logger.log(`[ClickSign v3] Sign fallback doc ${dId}: ${signFbResp.status}`);
+                }
+
+                // Rubrica em todas as páginas
+                const rubrResp = await fetch(`${v3}/envelopes/${envId}/requirements`, {
+                  method: 'POST', headers: hdrs,
+                  body: JSON.stringify({ data: { type: 'requirements', attributes: { action: 'rubricate', kind: 'initials', pages: 'all' }, relationships: { document: { data: { type: 'documents', id: dId } }, signer: { data: { type: 'signers', id: signerId } } } } }),
+                });
+                const rubrText = await rubrResp.text();
+                this.logger.log(`[ClickSign v3] Rubrica doc ${dId}: ${rubrResp.status} — ${rubrText.substring(0, 300)}`);
+                if (!rubrResp.ok) rubrErrors.push(`rubr doc ${dId}: ${rubrResp.status} — ${rubrText.substring(0, 200)}`);
+              }
+
+              // ── 5. Ativar envelope ──
+              const actResp = await fetch(`${v3}/envelopes/${envId}`, {
+                method: 'PATCH', headers: hdrs,
+                body: JSON.stringify({ data: { id: envId, type: 'envelopes', attributes: { status: 'running' } } }),
+              });
+              const actText = await actResp.text();
+              this.logger.log(`[ClickSign v3] Ativação: ${actResp.status} — ${actText.substring(0, 300)}`);
+              if (!actResp.ok) throw new Error(`ClickSign v3: falha ao ativar envelope — ${actText}`);
+
+              // ── 6. Notificar signatários (enviar email com link de assinatura) ──
+              const notifResp = await fetch(`${v3}/envelopes/${envId}/notifications`, {
+                method: 'POST', headers: hdrs,
+                body: JSON.stringify({ data: { type: 'notifications', attributes: { message: null } } }),
+              });
+              const notifText = await notifResp.text();
+              this.logger.log(`[ClickSign v3] Notificação: ${notifResp.status} — ${notifText.substring(0, 200)}`);
+
+              const signUrl = `${base}/sign/${signerId}`;
+              this.logger.log(`[ClickSign v3] ✅ Envelope ${envId} ativo | signatário=${signerId}`);
+              return {
+                token:       envId,
+                name:        `Documentos — ${dc.clienteNome}`,
+                status_name: 'pending',
+                signers:     [{ token: signerId, sign_url: signUrl, name: signerName, email: signerEmail }],
+                _provider:   'clicksign_v3',
+                _rubrErrors: rubrErrors.length > 0 ? rubrErrors : undefined,
+              };
+            } catch (err) {
+              this.logger.error(`[ClickSign v3] Falha: ${err.message}`);
+              throw new Error(`Falha ao enviar documentos ClickSign: ${err.message}`);
+            }
+          }
+
+          // ── Fluxo padrão (sem dados_cliente): 1 documento via base64 ──
+          if (dto.base64_pdf) {
+            const b64 = dto.base64_pdf.startsWith('data:')
+              ? dto.base64_pdf
+              : `data:application/pdf;base64,${dto.base64_pdf}`;
+            docBody.document.content_base64 = b64;
+            this.logger.log(`[ClickSign] PDF base64 do frontend: ${Math.round(b64.length / 1024)}KB`);
+          } else if (dto.url_pdf) {
+            docBody.document.content_base64 = dto.url_pdf;
+          }
+
+          this.logger.log(`[ClickSign] Criando documento: POST ${base}/api/v1/documents`);
+          const docResp = await fetch(`${base}/api/v1/documents${qs}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(docBody),
+          });
+
+          const docRespText = await docResp.text();
+          this.logger.log(`[ClickSign] Resposta documento: ${docResp.status} — ${docRespText.substring(0, 300)}`);
+
+          if (!docResp.ok) {
+            throw new Error(`ClickSign criar documento: ${docResp.status} — ${docRespText}`);
+          }
+
+          const docData = JSON.parse(docRespText) as any;
+          const docKey  = docData.document?.key;
+          this.logger.log(`[ClickSign] ✅ Documento criado: key=${docKey}`);
+
+          // 2. Criar signatários e vinculá-los
+          const signersOut: any[] = [];
+          for (const s of (dto.signers || [])) {
+            const phoneRaw = (s.phone_number || s.telefone || '').replace(/\D/g, '');
+            // ClickSign v1 exige nome com pelo menos duas palavras, sem números
+            const cleanedName = (s.name || '')
+              .replace(/[^a-zA-ZÀ-ÿ\s]/g, '')  // remove números e caracteres especiais
+              .trim();
+            const nameWords = cleanedName.split(/\s+/).filter(w => w.length > 0);
+            const signerName = nameWords.length >= 2
+              ? nameWords.join(' ')
+              : nameWords.length === 1 ? `${nameWords[0]} Signatario` : 'Cliente Signatario';
+            const hasPhone = phoneRaw.length >= 10;
+            const signerBody: any = {
+              signer: {
+                email:            s.email,
+                name:             signerName,
+                auths:            ['email'],
+                has_documentation: false,
+              },
+            };
+            if (hasPhone) signerBody.signer.phone_number = phoneRaw;
+
+            this.logger.log(`[ClickSign] Criando signatário: ${s.email}`);
+            const sigResp = await fetch(`${base}/api/v1/signers${qs}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(signerBody),
+            });
+            const sigRespText = await sigResp.text();
+            this.logger.log(`[ClickSign] Resposta signatário: ${sigResp.status} — ${sigRespText.substring(0,200)}`);
+            if (!sigResp.ok) {
+              this.logger.warn(`[ClickSign] Falha ao criar signatário ${s.email}: ${sigRespText}`);
+              continue;
+            }
+            const sigData = JSON.parse(sigRespText) as any;
+            const sigKey  = sigData.signer?.key;
+
+            // Vincular signatário ao documento
+            this.logger.log(`[ClickSign] Vinculando signatário ${sigKey} ao doc ${docKey}`);
+            const listResp = await fetch(`${base}/api/v1/lists${qs}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                list: {
+                  document_key: docKey,
+                  signer_key:   sigKey,
+                  sign_as:      'sign',
+                  refusable:    false,
+                  message:      dto.message || 'Por favor, assine o contrato',
+                },
+              }),
+            });
+            const listRespText = await listResp.text();
+            this.logger.log(`[ClickSign] Resposta list: ${listResp.status} — ${listRespText.substring(0,200)}`);
+            const listData = listResp.ok ? JSON.parse(listRespText) as any : {};
+            const signUrl  = listData.list?.url || `${base}/sign/${sigKey}`;
+
+            // Enviar notificação por e-mail
+            const notifResp = await fetch(`${base}/api/v1/notifications${qs}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                notification: {
+                  document_key: docKey,
+                  signer_key:   sigKey,
+                  url:          signUrl,
+                  message:      dto.message || 'Por favor, assine o contrato de honorários',
+                },
+              }),
+            });
+            const notifText = await notifResp.text().catch(() => '');
+            this.logger.log(`[ClickSign] Notificação e-mail: ${notifResp.status} — ${notifText.substring(0,100)}`);
+
+            // Notificação por WhatsApp (se telefone disponível)
+            if (hasPhone) {
+              const whatsResp = await fetch(`${base}/api/v1/notifications${qs}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  notification: {
+                    document_key: docKey,
+                    signer_key:   sigKey,
+                    url:          signUrl,
+                    message:      dto.message || 'Por favor, assine o contrato de honorários',
+                    delivery:     'whatsapp',
+                  },
+                }),
+              });
+              const whatsText = await whatsResp.text().catch(() => '');
+              this.logger.log(`[ClickSign] Notificação WhatsApp: ${whatsResp.status} — ${whatsText.substring(0,100)}`);
+            }
+
+            signersOut.push({ token: sigKey, sign_url: signUrl, name: s.name, email: s.email });
+          }
+
+          this.logger.log(`[ClickSign] ✅ Envelope criado com ${signersOut.length} signatário(s)`);
+          // Retorna formato compatível com o frontend
+          return {
+            token: docKey,
+            name: docData.document?.filename || dto.name,
+            status_name: 'pending',
+            signers: signersOut,
+            _provider: 'clicksign',
+          };
+        } catch (e: any) {
+          this.logger.error(`[ClickSign] ❌ Falha: ${e.message}`);
+          // Expõe o erro no response para debug (não bloqueia o fallback)
+          (dto as any)._clicksign_error = e.message;
+        }
+      } else {
+        this.logger.warn('[ClickSign] Token não configurado — usando envelope local');
+      }
+
+      // Fallback: envelope local
+      const envelope = await this.esignService.createEnvelope(req.user, {
+        title: dto.name || 'Documento para Assinatura',
+        tipo: 'simples',
+        signatarios: (dto.signers || []).map((s: any, i: number) => ({
+          nome: s.name,
+          email: s.email,
+          papel: 'signatario' as const,
+          ordem: i + 1,
+          notificacao: 'email' as const,
+        })),
+        mensagem: dto.message,
+      });
+
+      return {
+        token: (envelope as any).id,
+        name: (envelope as any).titulo,
+        status_name: 'pending',
+        signers: [],
+        _local: true,
+        _clicksign_error: (dto as any)._clicksign_error ?? null,
+      };
+    }
+
+    // Formato interno do backend
+    return this.esignService.createEnvelope(req.user, dto as any);
   }
 
   /**
@@ -252,15 +631,120 @@ export class EsignController {
     return this.esignService.usarTemplate(req.user, id, dto);
   }
 
+  /* ──────────────────── MODELOS DE DOCUMENTOS (PDF próprio) ─── */
+
+  /**
+   * GET /esign/modelos
+   * Lista modelos de PDF cadastrados pelo escritório
+   */
+  @Get('modelos')
+  async listarModelos(@Request() req: any) {
+    return this.esignService.getTemplates(req.user.officeId);
+  }
+
+  /**
+   * POST /esign/modelos/upload
+   * Faz upload de um PDF como modelo de documento
+   * Form-data: { tipo: string, arquivo: File }
+   * Tipos válidos: contrato_honorarios | procuracao | declaracao_hipossuficiencia | questionario_juridico
+   */
+  @Post('modelos/upload')
+  @UseInterceptors(FileInterceptor('arquivo', { storage: memoryStorage() }))
+  async uploadModelo(
+    @Request() req: any,
+    @UploadedFile() file: Express.Multer.File,
+    @Body('tipo') tipo: string,
+  ) {
+    if (!file) throw new BadRequestException('Nenhum arquivo enviado');
+    if (file.mimetype !== 'application/pdf') {
+      throw new BadRequestException('Apenas arquivos PDF são aceitos');
+    }
+    const tiposValidos = [
+      'contrato_honorarios',
+      'procuracao',
+      'declaracao_hipossuficiencia',
+      'questionario_juridico',
+    ];
+    if (!tiposValidos.includes(tipo)) {
+      throw new BadRequestException(`Tipo inválido. Use: ${tiposValidos.join(', ')}`);
+    }
+    return this.esignService.uploadTemplate(
+      req.user.officeId,
+      tipo,
+      file.buffer,
+      file.originalname,
+    );
+  }
+
+  /**
+   * DELETE /esign/modelos/:tipo
+   * Remove modelo de PDF de um tipo específico
+   */
+  @Delete('modelos/:tipo')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async removerModelo(
+    @Request() req: any,
+    @Param('tipo') tipo: string,
+  ) {
+    return this.esignService.deleteTemplate(req.user.officeId, tipo);
+  }
+
   /* ──────────────────── DASHBOARD ───────────────────────────── */
 
   /**
    * GET /esign/stats
    * Estatísticas de assinaturas: pendentes, concluídos, expirados, taxa de conclusão
-   * NOVA FUNCIONALIDADE
    */
   @Get('stats')
   async getStats(@Request() req: any) {
     return this.esignService.getStats(req.user.officeId);
+  }
+
+  /**
+   * GET /esign/diagnostico
+   * Diagnóstico da integração ClickSign: token, URL, conexão
+   */
+  @Get('diagnostico')
+  async diagnostico(@Request() req: any) {
+    const escritorioId = req.user.escritorioId ?? req.user.officeId;
+    const clickToken = await this.chavesService.getChave(escritorioId, 'clicksign');
+    const base = (process.env.CLICKSIGN_URL || 'https://sandbox.clicksign.com').replace(/\/$/, '');
+    const v3 = `${base}/api/v3`;
+
+    const resultado: any = {
+      token_configurado: !!clickToken,
+      token_primeiros_chars: clickToken ? clickToken.substring(0, 8) + '...' : null,
+      clicksign_url: base,
+      env_CLICKSIGN_URL: process.env.CLICKSIGN_URL || '(não definido — usando sandbox)',
+      env_CLICKSIGN_API_TOKEN: process.env.CLICKSIGN_API_TOKEN ? process.env.CLICKSIGN_API_TOKEN.substring(0, 8) + '...' : '(não definido)',
+    };
+
+    if (!clickToken) {
+      resultado.erro = 'Token ClickSign não configurado. Configure em Integrações ou defina a env var CLICKSIGN_API_TOKEN.';
+      return resultado;
+    }
+
+    // Testa conexão: lista envelopes (não cria nada)
+    try {
+      const hdrs = {
+        'Authorization': clickToken,
+        'Content-Type': 'application/vnd.api+json',
+        'Accept': 'application/vnd.api+json',
+      };
+      const testResp = await fetch(`${v3}/envelopes?page[size]=1`, { method: 'GET', headers: hdrs });
+      const testText = await testResp.text();
+      resultado.conexao_status = testResp.status;
+      resultado.conexao_ok = testResp.ok;
+      if (!testResp.ok) {
+        resultado.conexao_erro = testText.substring(0, 300);
+        resultado.dica = base.includes('app.clicksign.com')
+          ? 'Token de SANDBOX não funciona em app.clicksign.com — defina CLICKSIGN_URL=https://sandbox.clicksign.com ou use token de produção'
+          : 'Token inválido ou expirado — verifique em Integrações';
+      }
+    } catch (e) {
+      resultado.conexao_erro = e.message;
+    }
+
+    return resultado;
   }
 }

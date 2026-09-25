@@ -1,0 +1,1752 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L8629",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l8629.json",
+      "colecao": "artigos",
+      "sha256": "39321830b40c774e72acb2b932e3f019542d6b38899b0ca04f829e7acb6b6218",
+      "total_registros": 36,
+      "gerado_em": "2026-08-21T22:36:32+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 27,
+      "anotacoes": 147,
+      "anotacoes_sem_diploma_nomeado": 10
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…levantamento de dados e informações, mediante prévia comunicação escrita ao proprietário, preposto ou seu representante.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…er publicado, por três vezes consecutivas, em jornal de grande circulação na capital do Estado de localização do imóvel.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…ocorrida até seis meses após a data da comunicação para levantamento de dados e informações de que tratam os §§ 2o e 3o.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "… de fiscalização decorrente do exercício de poder de polícia, será dispensada a comunicação de que tratam os §§ 2o e 3o.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "… e administrativa de quem concorra com qualquer ato omissivo ou comissivo que propicie o descumprimento dessas vedações.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…tros cidadãos em cárcere privado, ou de quaisquer outros atos de violência real ou pessoal praticados em tais situações.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…s públicos, ou em conflito agrário ou fundiário de caráter coletivo, não receberá, a qualquer título, recursos públicos.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "… assistirá ao Poder Público o direito de retenção, bem assim o de rescisão do contrato, convênio ou instrumento similar.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        }
+      ]
+    },
+    "2-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…to do cadastro do imóvel no Sistema Nacional de Cadastro Rural, sem prejuízo das demais sanções penais e civis cabíveis.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…umulada do Índice Geral de Preços - Disponibilidade Interna - IGP-DI, da Fundação Getúlio Vargas, no respectivo período.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 3º",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "a) de área até quatro módulos fiscais, respeitada a fração mínima de parcelamento;",
+          "literal": "(Redação dada pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "c)",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "… reforma agrária a pequena e a média propriedade rural, desde que o seu proprietário não possua outra propriedade rural.",
+          "literal": "(Redação dada pela nº Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…tema Nacional de Cadastro Rural (SNCR) de informações específicas sobre imóveis rurais com área de até um módulo fiscal.",
+          "literal": "(Incluído pela pela Lei nº 13.465, de 2017)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "I - do segundo ao décimo quinto ano, quando emitidos para indenização de imóvel com área de até setenta módulos fiscais;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…avo ano, quando emitidos para indenização de imóvel com área acima de setenta e até cento e cinqüenta módulos fiscais; e",
+          "literal": "(Redação dada pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…gundo ao vigésimo ano, quando emitidos para indenização de imóvel com área superior a cento e cinqüenta módulos fiscais.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…veis em parcelas anuais, iguais e sucessivas, a partir do segundo ano de sua emissão, observadas as seguintes condições:",
+          "literal": "(Redação dada pela nº Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "I - imóveis com área de até três mil hectares, no prazo de cinco anos;",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "II - imóveis com área superior a três mil hectares:",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "a) o valor relativo aos primeiros três mil hectares, no prazo de cinco anos;",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "b) o valor relativo à área superior a três mil e até dez mil hectares, em dez anos;",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "c) o valor relativo à área superior a dez mil hectares até quinze mil hectares, em quinze anos; e",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "d) o valor da área que exceder quinze mil hectares, em vinte anos.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…e que o proprietário concorde em receber o pagamento do valor das benfeitorias úteis e necessárias integralmente em TDA.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…os mantendo-se a mesma proporcionalidade estabelecida para aqueles relativos ao valor da terra e suas acessões naturais.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…do Programa Nacional de Reforma Agrária, o pagamento poderá ser feito em dinheiro, na forma estabelecida em regulamento.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…fertado pelo expropriante, corrigido monetariamente, a diferença será paga na forma do art. 100 da Constituição Federal.",
+          "literal": "(Incluído pela nº Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…para os títulos da dívida agrária depositados como oferta inicial para a terra nua, vedado o cálculo de juros compostos.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…nentes, tecnicamente conduzidas e devidamente comprovadas, mediante documentação e Anotação de Responsabilidade Técnica.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.757",
+            "ano": 2023
+          },
+          "trecho": "…s de 5 (cinco) anos deverão, a pedido do proprietário, ser atualizados de acordo com as condições atuais da propriedade.",
+          "literal": "(Redação dada pela Lei nº 14.757, de 2023)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "… na forma estabelecida em regulamento, no mínimo seis meses antes da comunicação de que tratam os §§ 2o e 3o do art. 2o.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.183-56, de 2001)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6º",
+          "literal": "(Vetado.)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.119",
+            "ano": 2021
+          },
+          "trecho": "…protegidas pela legislação ambiental e não submetidas a exploração nos termos do inciso IV do § 3º do art. 6º desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.119, de 2021)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "… Estado do Desenvolvimento Agrário e da Agricultura e do Abastecimento, ouvido o Conselho Nacional de Política Agrícola.",
+          "literal": "(Redação dada Medida Provisória nº 2.183-56, de 2001)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…uídas as terras e acessões naturais, matas e florestas e as benfeitorias indenizáveis, observados os seguintes aspectos:",
+          "literal": "(Redação dada Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "I - localização do imóvel;",
+          "literal": "(Incluído dada Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "II - aptidão agrícola;",
+          "literal": "(Incluído dada Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "III - dimensão do imóvel;",
+          "literal": "(Incluído dada Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "IV - área ocupada e ancianidade das posses;",
+          "literal": "(Incluído dada Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "V - funcionalidade, tempo de uso e estado de conservação das benfeitorias.",
+          "literal": "(Incluído dada Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…o do valor das benfeitorias indenizáveis a serem pagas em dinheiro, obtendo-se o preço da terra a ser indenizado em TDA.",
+          "literal": "(Redação dada Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…utro tipo de vegetação natural, não podendo o preço apurado superar, em qualquer hipótese, o preço de mercado do imóvel.",
+          "literal": "(Redação dada Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…bscritor, civil, penal e administrativamente, pela superavaliação comprovada ou fraude na identificação das informações.",
+          "literal": "(Incluído dada Medida Provisória nº 2.183-56, de 2001)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 14.",
+          "literal": "(Vetado.)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 15.",
+          "literal": "(Vetado.)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…s deverá ser realizado em terras economicamente úteis, de preferência na região por eles habitada, observado o seguinte:",
+          "literal": "(Redação dada pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "… reforma agrária será precedida de estudo sobre a viabilidade econômica e a potencialidade de uso dos recursos naturais;",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…anto ao preço a ser pago pelo órgão federal executor do programa de reforma agrária e com relação aos recursos naturais;",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…de Assentamento - PDA, que orientará a fixação de normas técnicas para a sua implantação e os respectivos investimentos;",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…orma agrária, somente aqueles que satisfizerem os requisitos fixados para seleção e classificação previstos nesta Lei; e",
+          "literal": "(Redação dada pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…e créditos de instalação e a conclusão dos investimentos, bem como com a outorga do instrumento definitivo de titulação.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "§ 1º (Vetado).",
+          "literal": "(Incluído pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "…do caput, fica o Poder Executivo autorizado a conceder créditos de instalação aos assentados, nos termos do regulamento.",
+          "literal": "(Incluído pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "…tituição financeira federal para a operacionalização da concessão referida no inciso V do caput, dispensada a licitação.",
+          "literal": "(Incluído pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "…t adequar-se-ão às disponibilidades orçamentárias e financeiras do órgão responsável pela execução do referido programa.",
+          "literal": "(Incluído pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "…s, termos, condições, rebates para liquidação e procedimentos simplificados para o cumprimento do disposto neste artigo.",
+          "literal": "(Incluído pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "… projeto de assentamento que atingir o prazo de quinze anos de sua implantação, salvo por decisão fundamentada do Incra.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…tos que, em 1o de junho de 2017, contarem com quinze anos ou mais de criação, deverão ser consolidados em até três anos.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…ivas do título de domínio ou da Concessão de Direito Real de Uso (CDRU), autorizada a cobrança da dívida na forma legal.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "…so ou concessão de direito real de uso - CDRU instituído pelo art. 7o do Decreto-Lei no 271, de 28 de fevereiro de 1967.",
+          "literal": "(Incluído pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "… data de celebração do contrato de concessão de uso ou de outro instrumento equivalente, observado o disposto nesta Lei.",
+          "literal": "(Redação dada pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "…te e dos concessionários, assegurando-se a estes o direito de adquirir título de domínio ou a CDRU nos termos desta Lei.",
+          "literal": "(Redação dada pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "…rma individual ou coletiva, após a realização dos serviços de medição e demarcação topográfica do imóvel a ser alienado.",
+          "literal": "(Redação dada pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…dos títulos de domínio e da CDRU aos beneficiários dos projetos de assentamento do Programa Nacional de Reforma Agrária.",
+          "literal": "(Redação dada pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "… fundiária elaborada pelo Incra, com base nos valores de imóveis avaliados para a reforma agrária, conforme regulamento.",
+          "literal": "(Redação dada pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "…entar no 93, de 4 de fevereiro de 1998, e alcançarão os títulos de domínio cujos prazos de carência ainda não expiraram.",
+          "literal": "(Redação dada pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "…amento criados em terras devolutas discriminadas e registradas em nome do Incra ou da União, ocorrerá de forma gratuita.",
+          "literal": "(Redação dada pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "§ 8o São considerados não reembolsáveis:",
+          "literal": "(Incluído pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "I - os valores relativos às obras de infraestrutura de interesse coletivo;",
+          "literal": "(Incluído pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "II - aos custos despendidos com o plano de desenvolvimento do assentamento; e",
+          "literal": "(Incluído pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "III - aos serviços de medição e demarcação topográficos.",
+          "literal": "(Incluído pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "…ciários com o cumprimento das obrigações estabelecidas com fundamento no inciso V do art. 17 desta Lei e no regulamento.",
+          "literal": "(Incluído pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "…eiros ou legatários receberão o imóvel, cuja transferência será processada administrativamente, não podendo fracioná-lo.",
+          "literal": "(Incluído pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "§ 11. Os herdeiros ou legatários que adquirirem, por sucessão, a posse do imóvel não poderão fracioná-lo.",
+          "literal": "(Incluído pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "…ridas por outros meios e de beneficiários da reforma agrária e disponibilizará os dados na rede mundial de computadores.",
+          "literal": "(Incluído pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…a ausência de cônjuge ou companheiro, ou ao homem e à mulher, obrigatoriamente, nos casos de casamento ou união estável.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…torga coletiva a que se refere o § 3o deste artigo não permite a titulação, provisória ou definitiva, a pessoa jurídica.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "… regulamento e vedada a restituição de valores já pagos que eventualmente excedam o valor devido após o reenquadramento.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        }
+      ]
+    },
+    "18-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "…de Reforma Agrária não poderão ter área superior a 2 (dois) módulos fiscais ou inferior à fração mínima de parcelamento.",
+          "literal": "(Incluído pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…m que ocorreram desmembramentos ou remembramentos após a concessão de uso, desde que observados os seguintes requisitos:",
+          "literal": "(Redação dada pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…até quatro módulos fiscais por beneficiário, observado o disposto no art. 8o da Lei no 5.868, de 12 de dezembro de 1972;",
+          "literal": "(Redação dada pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "II - o beneficiário não possua outro imóvel a qualquer título;",
+          "literal": "(Incluído pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "III - o beneficiário preencha os requisitos exigidos no art. 3o da Lei no 11.326, de 24 de julho de 2006; e",
+          "literal": "(Incluído pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…to ou o remembramento seja anterior ao período de dois anos, contado retroativamente a partir de 22 de dezembro de 2016.",
+          "literal": "(Redação dada pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "… 2o O beneficiário titulado nos termos do § 1o não fará jus aos créditos de instalação de que trata o art. 17 desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…os concedidos nos termos do § 1o deste artigo são inegociáveis pelo prazo de dez anos, contado da data de sua expedição.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        }
+      ]
+    },
+    "18-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "… da área, nos termos estabelecidos em regulamento, sem prejuízo de eventual responsabilização nas esferas cível e penal.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "… Agrária será realizado por projeto de assentamento, observada a seguinte ordem de preferência na distribuição de lotes:",
+          "literal": "(Redação dada pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…parcela na qual se situe a sede do imóvel, hipótese em que esta será excluída da indenização devida pela desapropriação;",
+          "literal": "(Redação dada pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…e trabalham no imóvel desapropriado como posseiros, assalariados, parceiros ou arrendatários, identificados na vistoria;",
+          "literal": "(Redação dada pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…ndígena, criação de unidades de conservação, titulação de comunidade quilombola ou de outras ações de interesse público;",
+          "literal": "(Redação dada pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "… em situação de vulnerabilidade social que não se enquadre nas hipóteses previstas nos incisos I, II e III deste artigo;",
+          "literal": "(Redação dada pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "V - ao trabalhador rural vítima de trabalho em condição análoga à de escravo;",
+          "literal": "(Redação dada pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "VI - aos que trabalham como posseiros, assalariados, parceiros ou arrendatários em outros imóveis rurais;",
+          "literal": "(Redação dada pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "VII - aos ocupantes de áreas inferiores à fração mínima de parcelamento.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "… Município em que será instalado o projeto de assentamento, bem como nos Municípios limítrofes, na forma do regulamento.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…sso de seleção será restrito às famílias que já residam na área, observadas as vedações constantes do art. 20 desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…r substituição dos beneficiários originários dos lotes, nas hipóteses de desistência, abandono ou reintegração de posse.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…ecífico para os lotes vagos no projeto de assentamento em decorrência de desistência, abandono ou reintegração de posse.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…ro Único para Programas Sociais do Governo Federal (CadÚnico), ou em outro cadastro equivalente definido em regulamento.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        }
+      ]
+    },
+    "19-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…. 19, classificar os candidatos a beneficiários do Programa Nacional de Reforma Agrária, segundo os seguintes critérios:",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…mília mais numerosa cujos membros se proponham a exercer a atividade agrícola na área objeto do projeto de assentamento;",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…que se localize a área objeto do projeto de assentamento para o qual se destine a seleção, ou nos Municípios limítrofes;",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "III - família chefiada por mulher;",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…ampamento situado no Município em que se localize a área objeto do projeto de assentamento ou nos Municípios limítrofes;",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "… entre dezoito e vinte e nove anos idade de pais assentados que residam na área objeto do mesmo projeto de assentamento;",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…ambientais estabelecidos por regulamento, de acordo com as áreas de reforma agrária para as quais a seleção é realizada.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…egulamento estabelecerá a pontuação a ser conferida aos candidatos de acordo com os critérios definidos por este artigo.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…a mulher, independentemente do estado civil, seja responsável pela maior parte do sustento material de seus dependentes.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "§ 3o Em caso de empate, terá preferência o candidato de maior idade.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "Art. 20. Não poderá ser selecionado como beneficiário dos projetos de assentamento a que se refere esta Lei quem:",
+          "literal": "(Redação dada pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "I - for ocupante de cargo, emprego ou função pública remunerada;",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…programa de reforma agrária, de regularização fundiária ou de crédito fundiário sem consentimento de seu órgão executor;",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "… o desapropriado do imóvel e o agricultor cuja propriedade seja insuficiente para o sustento próprio e o de sua família;",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "IV - for proprietário, cotista ou acionista de sociedade empresária em atividade;",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "V - for menor de dezoito anos não emancipado na forma da lei civil; ou",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…roveniente de atividade não agrária superior a três salários mínimos mensais ou superior a um salário mínimo per capita.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.757",
+            "ano": 2023
+          },
+          "trecho": "… o exercício do cargo, emprego ou função pública for compatível com a exploração da parcela, não se aplica ao candidato:",
+          "literal": "(Redação dada pela Lei nº 14.757, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.757",
+            "ano": 2023
+          },
+          "trecho": "I - agente comunitário de saúde ou agente de combate às endemias;",
+          "literal": "(Incluído pela Lei nº 14.757, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.757",
+            "ano": 2023
+          },
+          "trecho": "II - profissional da educação;",
+          "literal": "(Incluído pela Lei nº 14.757, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.757",
+            "ano": 2023
+          },
+          "trecho": "III - profissional de ciências agrárias;",
+          "literal": "(Incluído pela Lei nº 14.757, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.757",
+            "ano": 2023
+          },
+          "trecho": "…e outros serviços de interesse comunitário à comunidade rural ou à vizinhança da área objeto do projeto de assentamento.",
+          "literal": "(Incluído pela Lei nº 14.757, de 2023)"
+        }
+      ]
+    },
+    "20-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.757",
+            "ano": 2023
+          },
+          "trecho": "…ítulo, desde que se enquadre como beneficiário da reforma agrária e ocupe e explore a parcela há, no mínimo, 1 (um) ano.",
+          "literal": "(Incluído pela Lei nº 14.757, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.757",
+            "ano": 2023
+          },
+          "trecho": "…rágrafo único. Fica vedada uma terceira obtenção de terras em assentamento de reforma agrária por parte do beneficiário.",
+          "literal": "(Incluído pela Lei nº 14.757, de 2023)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "… por intermédio de cooperativas, e o de não ceder o seu uso a terceiros, a qualquer título, pelo prazo de 10 (dez) anos.",
+          "literal": "(Redação dada pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…co. A família beneficiária poderá celebrar o contrato de integração de que trata a Lei no 13.288, de 16 de maio de 2016.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "…enante ou concedente, no caso de descumprimento de quaisquer das obrigações assumidas pelo adquirente ou concessionário.",
+          "literal": "(Redação dada pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…poderá ser alienado se a nova área titulada não vier a integrar imóvel rural com área superior a quatro módulos fiscais.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…urbana ou de expansão urbana, o Incra deverá priorizar a análise do requerimento de liberação das condições resolutivas.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        }
+      ]
+    },
+    "22-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…loração individual ou coletiva ou doadas em benefício da comunidade de assentados, na forma estabelecida em regulamento.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "… ser compatíveis com as ações da política agrícola, das políticas sociais e das constantes no Plano Plurianual da União.",
+          "literal": "(Redação dada pela Lei nº 13.001, de 2014)"
+        }
+      ]
+    },
+    "26-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.183-56",
+            "ano": 2001
+          },
+          "trecho": "…lumentos para registro de títulos translativos de domínio de imóveis rurais desapropriados para fins de reforma agrária.",
+          "literal": "(Incluído pela Medida Provisória nº 2.183-56, de 2001)"
+        }
+      ]
+    },
+    "26-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.757",
+            "ano": 2023
+          },
+          "trecho": "…e em projeto de assentamento que tenha sido ocupado sem autorização, observado o disposto nos arts. 20 e 20-A desta Lei.",
+          "literal": "(Redação dada pela Lei nº 14.757, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.757",
+            "ano": 2023
+          },
+          "trecho": "…em estiver na posse plena do lote ou, de ofício, pelo Incra, desde que atendidas cumulativamente as seguintes condições:",
+          "literal": "(Redação dada pela Lei nº 14.757, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.757",
+            "ano": 2023
+          },
+          "trecho": "I - criação do projeto de assentamento há mais de 2 (dois) anos;",
+          "literal": "(Redação dada pela Lei nº 14.757, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.757",
+            "ano": 2023
+          },
+          "trecho": "I-A - ocupação e exploração da parcela diretamente pelo interessado há, no mínimo, 1 (um) ano;",
+          "literal": "(Incluído pela Lei nº 14.757, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…s na parcela elencados na lista de selecionados de que trata o § 3o do art. 19 desta Lei para o projeto de assentamento;",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "III - observância pelo interessado dos requisitos de elegibilidade para ser beneficiário da reforma agrária; e",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…ato de concessão de uso, dos débitos relativos ao crédito de instalação reembolsável concedido ao beneficiário original.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…e que trata o § 1o deste artigo, o Incra celebrará contrato de concessão de uso nos termos do § 2o do art. 18 desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,495 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L4320",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l4320.json",
+      "colecao": "artigos",
+      "sha256": "bdbe0869145a8e267185d5d9b4753005c6a1b70146f7ff4c9fa5cb69f5feea52",
+      "total_registros": 92,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 6,
+      "anotacoes": 39,
+      "anotacoes_sem_diploma_nomeado": 1
+    }
+  },
+  "vigencia": {
+    "10": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 10.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "1.939",
+            "ano": 1982
+          },
+          "trecho": "Art. 11 - A receita classificar-se-á nas seguintes categorias econômicas: Receitas Correntes e Receitas de Capital.",
+          "literal": "(Redação dada pelo Decreto Lei nº 1.939, de 1982)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "1.939",
+            "ano": 1982
+          },
+          "trecho": "…outras pessoas de direito público ou privado, quando destinadas a atender despesas classificáveis em Despesas Correntes.",
+          "literal": "(Redação dada pelo Decreto Lei nº 1.939, de 1982)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "1.939",
+            "ano": 1982
+          },
+          "trecho": "…rivado, destinados a atender despesas classificáveis em Despesas de Capital e, ainda, o superavit do Orçamento Corrente.",
+          "literal": "(Redação dada pelo Decreto Lei nº 1.939, de 1982)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "1.939",
+            "ano": 1982
+          },
+          "trecho": "… despesas correntes, apurado na demonstração a que se refere o Anexo nº 1, não constituirá item de receita orçamentária.",
+          "literal": "(Redação dada pelo Decreto Lei nº 1.939, de 1982)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "1.939",
+            "ano": 1982
+          },
+          "trecho": "§ 4º - A classificação da receita obedecerá ao seguinte esquema:",
+          "literal": "(Redação dada pelo Decreto Lei nº 1.939, de 1982)"
+        }
+      ]
+    },
+    "39": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "1.735",
+            "ano": 1979
+          },
+          "trecho": "…ibutária, serão escriturados como receita do exercício em que forem arrecadados, nas respectivas rubricas orçamentárias.",
+          "literal": "(Redação dada pelo Decreto Lei nº 1.735, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "1.735",
+            "ano": 1979
+          },
+          "trecho": "…tiva, em registro próprio, após apurada a sua liquidez e certeza, e a respectiva receita será escriturada a esse título.",
+          "literal": "(Incluído pelo Decreto Lei nº 1.735, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "1.735",
+            "ano": 1979
+          },
+          "trecho": "…ngeira, de subrogação de hipoteca, fiança, aval ou outra garantia, de contratos em geral ou de outras obrigações legais.",
+          "literal": "(Incluído pelo Decreto Lei nº 1.735, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "1.735",
+            "ano": 1979
+          },
+          "trecho": "…nversão, a atualização monetária e os juros de mora, de acordo com preceitos legais pertinentes aos débitos tributários.",
+          "literal": "(Incluído pelo Decreto Lei nº 1.735, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "1.735",
+            "ano": 1979
+          },
+          "trecho": "…t. 1º do Decreto-lei nº 1.025, de 21 de outubro de 1969, e o art. 3º do Decreto-lei nº 1.645, de 11 de dezembro de 1978.",
+          "literal": "(Incluído pelo Decreto Lei nº 1.735, de 1979)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "1.735",
+            "ano": 1979
+          },
+          "trecho": "§ 5º - A Dívida Ativa da União será apurada e inscrita na Procuradoria da Fazenda Nacional.",
+          "literal": "(Incluído pelo Decreto Lei nº 1.735, de 1979)"
+        }
+      ]
+    },
+    "39-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "…soas jurídicas de direito privado ou a fundos de investimento regulamentados pela Comissão de Valores Mobiliários (CVM).",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "§ 1º Para fins do disposto no caput, a cessão dos direitos creditórios deverá:",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "… a natureza do crédito de que se tenha originado o direito cedido, mantendo as garantias e os privilégios desse crédito;",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "… termos avençados originalmente entre a Fazenda Pública ou o órgão da administração pública e o devedor ou contribuinte;",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "…pública a prerrogativa de cobrança judicial e extrajudicial dos créditos de que se tenham originado os direitos cedidos;",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "…do que a obrigação de pagamento dos direitos creditórios cedidos permaneça, a todo tempo, com o devedor ou contribuinte;",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "…créditos já constituídos e reconhecidos pelo devedor ou contribuinte, inclusive mediante a formalização de parcelamento;",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "…ca do ente, pelo chefe do Poder Executivo ou por autoridade administrativa a quem se faça a delegação dessa competência;",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "…der Executivo, ressalvado o caso em que o integral pagamento pela cessão dos direitos creditórios ocorra após essa data.",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "…ará a base de cálculo das vinculações constitucionais no exercício financeiro em que o contribuinte efetuar o pagamento.",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "… poderá abranger percentuais do crédito que, por força de regras constitucionais, pertençam a outros entes da Federação.",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "…de maio de 2000 (Lei de Responsabilidade Fiscal), sendo consideradas operação de venda definitiva de patrimônio público.",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "…ciso IV do art. 167 da Constituição Federal aos créditos originados de impostos, respeitados os §§ 2º e 3º deste artigo.",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "… cento) desse montante a despesas associadas a regime de previdência social, e o restante, a despesas com investimentos.",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "…o de sociedade de propósito específico, criada para esse fim pelo ente cedente, dispensada, nessa hipótese, a licitação.",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "§ 8º É vedado a instituição financeira controlada pelo ente federado cedente:",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "I - participar de operação de aquisição primária dos direitos creditórios desse ente;",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "II - adquirir ou negociar direitos creditórios desse ente em mercado secundário;",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "III - realizar operação lastreada ou garantida pelos direitos creditórios desse ente.",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "…nstituição financeira pública de participar da estruturação financeira da operação, atuando como prestadora de serviços.",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "…ação da respectiva lei federal, estadual, distrital ou municipal que conceder a autorização legislativa para a operação.",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        }
+      ]
+    },
+    "59": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.397",
+            "ano": 1976
+          },
+          "trecho": "Art. 59 - O empenho da despesa não poderá exceder o limite dos créditos concedidos.",
+          "literal": "(Redação dada pela Lei nº 6.397, de 1976)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.397",
+            "ano": 1976
+          },
+          "trecho": "…cípios empenhar, no último mês do mandato do Prefeito, mais do que o duodécimo da despesa prevista no orçamento vigente.",
+          "literal": "(Incluído pela Lei nº 6.397, de 1976)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.397",
+            "ano": 1976
+          },
+          "trecho": "…o período, assumir, por qualquer forma, compromissos financeiros para execução depois do término do mandato do Prefeito.",
+          "literal": "(Incluído pela Lei nº 6.397, de 1976)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.397",
+            "ano": 1976
+          },
+          "trecho": "§ 3º As disposições dos parágrafos anteriores não se aplicam nos casos comprovados de calamidade pública.",
+          "literal": "(Incluído pela Lei nº 6.397, de 1976)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.397",
+            "ano": 1976
+          },
+          "trecho": "…ízo da responsabilidade do Prefeito nos termos do Art. 1º, inciso V, do Decreto-lei n.º 201, de 27 de fevereiro de 1967.",
+          "literal": "(Incluído pela Lei nº 6.397, de 1976)"
+        }
+      ]
+    },
+    "114": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "4.489",
+            "ano": 1964
+          },
+          "trecho": "…964 para o fim da elaboração dos orçamentos e a partir de 1º de janeiro de 1965, quanto às demais atividades estatuídas.",
+          "literal": "(Redação dada pela Lei nº 4.489, de 1964)"
+        }
+      ]
+    }
+  }
+}

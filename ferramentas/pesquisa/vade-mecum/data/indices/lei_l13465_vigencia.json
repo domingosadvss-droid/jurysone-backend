@@ -1,0 +1,713 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L13465",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l13465.json",
+      "colecao": "artigos",
+      "sha256": "06182e89d70c9190b6f027a0a4c3307fb603238139952af7f327a92479ee9c2d",
+      "total_registros": 111,
+      "gerado_em": "2026-08-21T22:36:32+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 18,
+      "anotacoes": 61,
+      "anotacoes_sem_diploma_nomeado": 22
+    }
+  },
+  "vigencia": {
+    "3-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.757",
+            "ano": 2023
+          },
+          "trecho": "…ficiário, podendo abranger até 100% (cem por cento) do valor dos itens objeto de financiamento, na forma do regulamento;",
+          "literal": "(Redação dada pela Lei nº 14.757, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.757",
+            "ano": 2023
+          },
+          "trecho": "…ografia e Estatística (IBGE) ou por índice que venha a substituí-lo, ou ainda mediante proposta do órgão gestor do FTRA.",
+          "literal": "(Redação dada pela Lei nº 14.757, de 2023)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5º",
+          "literal": "(Revogado)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "20.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "… projeto de regularização fundiária e, na hipótese de o Município ter órgão ambiental capacitado, à aprovação ambiental.",
+          "literal": "(Redação dada pela Lei nº 14.118, de 2021)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "I - o beneficiário não seja concessionário, foreiro ou proprietário exclusivo de imóvel urbano ou rural;",
+          "literal": "(Redação dada pela Lei nº 14.118, de 2021)"
+        }
+      ]
+    },
+    "30": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…rizados a instaurar, processar e aprovar a Reurb-S ou a Reurb-E e a utilizar os demais instrumentos previstos nesta Lei.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "996",
+            "ano": 2020
+          },
+          "trecho": "… projeto de regularização fundiária e da implantação da infraestrutura essencial obedecerão aos seguintes procedimentos:",
+          "literal": "(Revogado pela Medida Provisória nº 996, de 2020)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "996",
+            "ano": 2020
+          },
+          "trecho": "I - na Reurb-S:",
+          "literal": "(Revogado pela Medida Provisória nº 996, de 2020)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "996",
+            "ano": 2020
+          },
+          "trecho": "…ndiária nos termos do ajuste que venha a ser celebrado e a implantação da infraestrutura essencial, quando necessária; e",
+          "literal": "(Revogado pela Medida Provisória nº 996, de 2020)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "…rado e a implantação da infraestrutura essencial, quando necessária; e (Revogado pela Medida Provisória nº 996, de 2020)",
+          "literal": "(Revogado pela Lei nº 14.118, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "996",
+            "ano": 2020
+          },
+          "trecho": "… elaborar e custear o projeto de regularização fundiária e a implantação da infraestrutura essencial, quando necessária;",
+          "literal": "(Revogado pela Medida Provisória nº 996, de 2020)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "…diária e a implantação da infraestrutura essencial, quando necessária; (Revogado pela Medida Provisória nº 996, de 2020)",
+          "literal": "(Revogado pela Lei nº 14.118, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "996",
+            "ano": 2020
+          },
+          "trecho": "…urb-E, a regularização fundiária será contratada e custeada por seus potenciais beneficiários ou requerentes privados; e",
+          "literal": "(Revogado pela Medida Provisória nº 996, de 2020)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "996",
+            "ano": 2020
+          },
+          "trecho": "… de regularização fundiária e da implantação da infraestrutura essencial, com posterior cobrança aos seus beneficiários.",
+          "literal": "(Revogado pela Medida Provisória nº 996, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "996",
+            "ano": 2020
+          },
+          "trecho": "… projeto de regularização fundiária e da implantação da infraestrutura essencial obedecerão aos seguintes procedimentos:",
+          "literal": "(Incluído pela Medida Provisória nº 996, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "996",
+            "ano": 2020
+          },
+          "trecho": "… elaborar e custear o projeto de regularização fundiária e a implantação da infraestrutura essencial, quando necessária;",
+          "literal": "(Incluído pela Medida Provisória nº 996, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "996",
+            "ano": 2020
+          },
+          "trecho": "…urb-E, a regularização fundiária será contratada e custeada por seus potenciais beneficiários ou requerentes privados; e",
+          "literal": "(Incluído pela Medida Provisória nº 996, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "996",
+            "ano": 2020
+          },
+          "trecho": "… de regularização fundiária e da implantação da infraestrutura essencial, com posterior cobrança aos seus beneficiários.",
+          "literal": "(Incluído pela Medida Provisória nº 996, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "… projeto de regularização fundiária e da implantação da infraestrutura essencial obedecerão aos seguintes procedimentos:",
+          "literal": "(Incluído pela Lei nº 14.118, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "… elaborar e custear o projeto de regularização fundiária e a implantação da infraestrutura essencial, quando necessária;",
+          "literal": "(Redação dada pela Lei nº 14.118, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "a) (revogada);",
+          "literal": "(Redação dada pela Lei nº 14.118, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "b) (revogada);",
+          "literal": "(Redação dada pela Lei nº 14.118, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "996",
+            "ano": 2020
+          },
+          "trecho": "…mados promover, às suas expensas, os projetos e os demais documentos técnicos necessários à regularização de seu imóvel.",
+          "literal": "(Incluído pela Medida Provisória nº 996, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "…s à regularização de seu imóvel, inclusive as obras de infraestrutura essencial nos termos do § 1º do art. 36 desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.118, de 2021)"
+        }
+      ]
+    },
+    "36": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "… a emissão da Certidão de Regularização Fundiária (CRF), a anuência dos autores ou de quem detenha os direitos autorais.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…a para as obras de infraestrutura essenciais, consignando-se o poder público como beneficiário da garantia estabelecida.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…ização, assim como arcar com os ônus de sua manutenção, podendo utilizar-se de recursos financeiros públicos e privados.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…Fundo de Desenvolvimento Social (FDS), bem como por outras fontes de financiamento públicas, privadas ou internacionais.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…s, inclusive sociedades de economia mista, que operem na execução de política habitacional e de infraestruturas conexas.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…rt. 17 da Lei nº 9.514, de 20 de novembro de 1997, e deverão ser incluídas na Certidão de Regularização Fundiária (CRF).",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…a Reurb poderá ser realizado adotando-se como critério as áreas dos imóveis regularizados, individualmente considerados.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        }
+      ]
+    },
+    "37-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…de viabilizar a elaboração de projetos, a indenização e a realização das obras de infraestrutura em projetos de Reurb-S.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…a ao proprietário a possibilidade de transferência do potencial construtivo do bem doado ou desapropriado amigavelmente.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        }
+      ]
+    },
+    "44": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "… o futuro proprietário será oportunamente citado na matrícula quando do envio de listas complementares de beneficiários.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        }
+      ]
+    },
+    "54": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "996",
+            "ano": 2020
+          },
+          "trecho": "…alquer título terão suas matrículas abertas em nome do adquirente, conforme procedimento previsto nos art. 84 e art. 98.",
+          "literal": "(Redação dada pela Medida Provisória nº 996, de 2020)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "… título terão suas matrículas abertas em nome do adquirente, conforme procedimento previsto nos arts. 84 e 98 desta Lei.",
+          "literal": "(Redação dada pela Lei nº 14.118, de 2021)"
+        }
+      ]
+    },
+    "56": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "39.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "76": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.085",
+            "ano": 2021
+          },
+          "trecho": "…b serão feitos por meio eletrônico, nos termos do disposto no art. 37 a art. 41 da Lei nº 11.977, de 7 de julho de 2009.",
+          "literal": "(Redação dada Pela Medida Provisória nº 1.085, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…rrentes da Reurb serão feitos por meio eletrônico, nos termos dos arts. 37 a 41 da Lei nº 11.977, de 7 de julho de 2009.",
+          "literal": "(Redação dada pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "§ 8º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "…onado pelas unidades do serviço de registro de imóveis dos Estados e do Distrito Federal referidas no § 5º deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.118, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "… dos recursos e as despesas do gestor, sem prejuízo da fiscalização ordinária e própria como for prevista nos estatutos.",
+          "literal": "(Incluído pela Lei nº 14.118, de 2021)"
+        }
+      ]
+    },
+    "81": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(revogado)"
+        }
+      ]
+    },
+    "92": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado)"
+        }
+      ]
+    },
+    "93": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único .",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5º",
+          "literal": "(Revogado)"
+        }
+      ]
+    },
+    "109": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V -",
+          "literal": "(VETADO)"
+        }
+      ]
+    }
+  }
+}

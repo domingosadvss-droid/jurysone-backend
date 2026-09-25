@@ -1,0 +1,591 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L9717",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l9717.json",
+      "colecao": "artigos",
+      "sha256": "61ad0d9690660bb8214b6a5bea7b63f23dbf72fa19f3f367bcceaa9dc8997bc3",
+      "total_registros": 15,
+      "gerado_em": "2026-08-21T22:36:33+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 13,
+      "anotacoes": 46,
+      "anotacoes_sem_diploma_nomeado": 5
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.187-13",
+            "ano": 2001
+          },
+          "trecho": "…nicial e em cada balanço utilizando-se parâmetros gerais, para a organização e revisão do plano de custeio e benefícios;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.187-13, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.187-13",
+            "ano": 2001
+          },
+          "trecho": "…vas estabelecidas no art. 6º, inciso VIII, desta Lei, observado os limites de gastos estabelecidos em parâmetros gerais;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.187-13, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.887",
+            "ano": 2004
+          },
+          "trecho": "…amento no art. 40 da Constituição Federal, respeitado, em qualquer hipótese, o limite previsto no § 2o do citado artigo;",
+          "literal": "(Redação dada pela Lei nº 10.887, de 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.887",
+            "ano": 2004
+          },
+          "trecho": "…a Constituição Federal, o § 5º do art. 2º e o § 1º do art. 3º da Emenda Constitucional nº 41, de 19 de dezembro de 2003.",
+          "literal": "(Redação dada pela Lei nº 10.887, de 2004)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "… disposições estabelecidas no art. 6º desta Lei relativas aos fundos com finalidade previdenciária por eles instituídos.",
+          "literal": "(Renumerado do parágrafo único pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…entre si e com o regime geral de previdência social, sob pena de incidirem nas sanções de que trata o art. 7º desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        }
+      ]
+    },
+    "1-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.187-13",
+            "ano": 2001
+          },
+          "trecho": "…o ou entidade de outro ente da federação, com ou sem ônus para o cessionário, permanecerá vinculado ao regime de origem.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.187-13, de 2001)"
+        }
+      ]
+    },
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.887",
+            "ano": 2004
+          },
+          "trecho": "…servidores não poderá ser inferior ao valor da contribuição do servidor ativo, nem superior ao dobro desta contribuição.",
+          "literal": "(Redação dada pela Lei nº 10.887, de 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.887",
+            "ano": 2004
+          },
+          "trecho": "…entuais insuficiências financeiras do respectivo regime próprio, decorrentes do pagamento de benefícios previdenciários.",
+          "literal": "(Redação dada pela Lei nº 10.887, de 2004)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.887",
+            "ano": 2004
+          },
+          "trecho": "…emonstrativo financeiro e orçamentário da receita e despesa previdenciárias acumuladas no exercício financeiro em curso.",
+          "literal": "(Redação dada pela Lei nº 10.887, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3o",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.887",
+            "ano": 2004
+          },
+          "trecho": "§ 3o (revogado)",
+          "literal": "(Redação dada pela Lei nº 10.887, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4o",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.887",
+            "ano": 2004
+          },
+          "trecho": "§ 4o (revogado)",
+          "literal": "(Redação dada pela Lei nº 10.887, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5o",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.887",
+            "ano": 2004
+          },
+          "trecho": "§ 5o (revogado)",
+          "literal": "(Redação dada pela Lei nº 10.887, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6o",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.887",
+            "ano": 2004
+          },
+          "trecho": "§ 6o (revogado)",
+          "literal": "(Redação dada pela Lei nº 10.887, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "§ 7o",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.887",
+            "ano": 2004
+          },
+          "trecho": "§ 7o (revogado)",
+          "literal": "(Redação dada pela Lei nº 10.887, de 2004)"
+        }
+      ]
+    },
+    "2-A": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.887",
+            "ano": 2004
+          },
+          "trecho": "Art. 2o-A.",
+          "literal": "(Revogado pela Lei nº 10.887, de 2004)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.887",
+            "ano": 2004
+          },
+          "trecho": "… sobre as pensões, as mesmas alíquotas aplicadas às remunerações dos servidores em atividade do respectivo ente estatal.",
+          "literal": "(Redação dada pela Lei nº 10.887, de 2004)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.887",
+            "ano": 2004
+          },
+          "trecho": "Art. 4º",
+          "literal": "(Revogado pela Lei nº 10.887, de 2004)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.187-13",
+            "ano": 2001
+          },
+          "trecho": "… especial, nos termos do § 4º do art. 40 da Constituição Federal, até que lei complementar federal discipline a matéria.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.187-13, de 2001)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.187-13",
+            "ano": 2001
+          },
+          "trecho": "I -",
+          "literal": "(Revogado pela Medida Provisória nº 2.187-13, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.187-13",
+            "ano": 2001
+          },
+          "trecho": "III -",
+          "literal": "(Revogado pela Medida Provisória nº 2.187-13, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…, na forma do inciso IV do caput deste artigo, o Conselho Monetário Nacional deverá considerar, entre outros requisitos:",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…s regimes e dos recursos aplicados, exigindo a observância dos princípios de segurança, proteção e prudência financeira;",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…riência de atuação, solidez patrimonial, volume de recursos sob administração e outros destinados à mitigação de riscos.",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "IV -",
+          "literal": "(Revogado pela Lei nº 13.846, de 2019)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…iplinar estabelecido na Lei Complementar nº 109, de 29 de maio de 2001, e seu regulamento, e conforme diretrizes gerais.",
+          "literal": "(Redação dada pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…a dos fatos irregulares, assegurados ao acusado o contraditório e a ampla defesa, em conformidade com diretrizes gerais.",
+          "literal": "(Renumerado do parágrafo único pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "… estatal e respectivo regime próprio de previdência social, diretamente ou por intermédio de pessoa jurídica contratada.",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        }
+      ]
+    },
+    "8-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…elo ressarcimento dos prejuízos decorrentes de aplicação em desacordo com a legislação vigente a que tiverem dado causa.",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        }
+      ]
+    },
+    "8-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "… dirigentes da unidade gestora do regime próprio de previdência social deverão atender aos seguintes requisitos mínimos:",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "… Lei Complementar nº 64, de 18 de maio de 1990, observados os critérios e prazos previstos na referida Lei Complementar;",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "II - possuir certificação e habilitação comprovadas, nos termos definidos em parâmetros gerais;",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…rcício de atividade nas áreas financeira, administrativa, contábil, jurídica, de fiscalização, atuarial ou de auditoria;",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "IV - ter formação superior.",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…conselhos deliberativo e fiscal e do comitê de investimentos da unidade gestora do regime próprio de previdência social.",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…alho do Ministério da Economia, em relação aos regimes próprios de previdência social e aos seus fundos previdenciários:",
+          "literal": "(Redação dada pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "I - a orientação, a supervisão, a fiscalização e o acompanhamento;",
+          "literal": "(Redação dada pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "… dos fundos previdenciários, para preservação do caráter contributivo e solidário e do equilíbrio financeiro e atuarial;",
+          "literal": "(Redação dada pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…es, por servidor credenciado, e a aplicação de penalidades, por órgão próprio, nos casos previstos no art. 8º desta Lei;",
+          "literal": "(Redação dada pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…ios, dos critérios e exigências aplicáveis aos regimes próprios de previdência social e aos seus fundos previdenciários.",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…de e nos critérios por ela definidos, dados e informações sobre o regime próprio de previdência social e seus segurados.",
+          "literal": "(Redação dada pela Lei nº 13.846, de 2019)"
+        }
+      ]
+    }
+  }
+}

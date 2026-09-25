@@ -1,0 +1,164 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "LEF",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_lef.json",
+      "colecao": "artigos",
+      "sha256": "f80018cacc13c082d247dbe37b3685d2f5822bdb6f0d8fa9a26a6e526dcc9d90",
+      "total_registros": 42,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 5,
+      "anotacoes": 9,
+      "anotacoes_sem_diploma_nomeado": 0
+    }
+  },
+  "vigencia": {
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.043",
+            "ano": 2014
+          },
+          "trecho": "II - penhora, se não for paga a dívida, nem garantida a execução, por meio de depósito, fiança ou seguro garantia;",
+          "literal": "(Redação dada pela Lei nº 13.043, de 2014)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.043",
+            "ano": 2014
+          },
+          "trecho": "II - oferecer fiança bancária ou seguro garantia;",
+          "literal": "(Redação dada pela Lei nº 13.043, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.043",
+            "ano": 2014
+          },
+          "trecho": "…s autos a prova do depósito, da fiança bancária, do seguro garantia ou da penhora dos bens do executado ou de terceiros.",
+          "literal": "(Redação dada pela Lei nº 13.043, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.043",
+            "ano": 2014
+          },
+          "trecho": "… da execução, por meio de depósito em dinheiro, fiança bancária ou seguro garantia, produz os mesmos efeitos da penhora.",
+          "literal": "(Redação dada pela Lei nº 13.043, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "…lmente, após o trânsito em julgado de decisão de mérito em desfavor do contribuinte, vedada a sua liquidação antecipada.",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.043",
+            "ano": 2014
+          },
+          "trecho": "I - ao executado, a substituição da penhora por depósito em dinheiro, fiança bancária ou seguro garantia; e",
+          "literal": "(Redação dada pela Lei nº 13.043, de 2014)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.043",
+            "ano": 2014
+          },
+          "trecho": "II - da juntada da prova da fiança bancária ou do seguro garantia;",
+          "literal": "(Redação dada pela Lei nº 13.043, de 2014)"
+        }
+      ]
+    },
+    "40": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.051",
+            "ano": 2004
+          },
+          "trecho": "…, depois de ouvida a Fazenda Pública, poderá, de ofício, reconhecer a prescrição intercorrente e decretá-la de imediato.",
+          "literal": "(Incluído pela Lei nº 11.051, de 2004)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.960",
+            "ano": 2009
+          },
+          "trecho": "…nsada no caso de cobranças judiciais cujo valor seja inferior ao mínimo fixado por ato do Ministro de Estado da Fazenda.",
+          "literal": "(Incluído pela Lei nº 11.960, de 2009)"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1438 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "CTN",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_ctn.json",
+      "colecao": "artigos",
+      "sha256": "366671730d324e3bc1e628e1dc65b1873389589149ad35b80563c52955a6f0da",
+      "total_registros": 209,
+      "gerado_em": "2026-08-31T20:53:13+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 37,
+      "anotacoes": 111,
+      "anotacoes_sem_diploma_nomeado": 2
+    }
+  },
+  "vigencia": {
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "IV - cobrar impostos e a contribuição de que trata o inciso V do art. 195 da Constituição Federal sobre:",
+          "literal": "(Redação dada pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "b) entidades religiosas e templos de qualquer culto, inclusive suas organizações assistenciais e beneficentes;",
+          "literal": "(Redação dada pela Lei Complementar nº 214, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "…s de educação e de assistência social, sem fins lucrativos, observados os requisitos fixados na Seção II deste Capítulo;",
+          "literal": "(Redação dada pela Lei Complementar nº 104, de 2001)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "I – não distribuírem qualquer parcela de seu patrimônio ou de suas rendas, a qualquer título;",
+          "literal": "(Redação dada pela Lcp nº 104, de 2001)"
+        }
+      ]
+    },
+    "18-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "194",
+            "ano": 2022
+          },
+          "trecho": "…porte coletivo são considerados bens e serviços essenciais e indispensáveis, que não podem ser tratados como supérfluos.",
+          "literal": "(Incluído pela Lei Complementar nº 194, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "194",
+            "ano": 2022
+          },
+          "trecho": "Parágrafo único. Para efeito do disposto neste artigo:",
+          "literal": "(Incluído pela Lei Complementar nº 194, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "194",
+            "ano": 2022
+          },
+          "trecho": "…s no caput deste artigo em patamar superior ao das operações em geral, considerada a essencialidade dos bens e serviços;",
+          "literal": "(Incluído pela Lei Complementar nº 194, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "194",
+            "ano": 2022
+          },
+          "trecho": "…otas reduzidas em relação aos bens referidos no caput deste artigo, como forma de beneficiar os consumidores em geral; e",
+          "literal": "(Incluído pela Lei Complementar nº 194, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "201",
+            "ano": 2023
+          },
+          "trecho": "III -",
+          "literal": "(Revogado pela Lei Complementar nº 201, de 2023)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…Bens Imóveis e de Direitos a Eles Relativos, de competência dos Municípios e do Distrito Federal, tem como fato gerador:",
+          "literal": "(Redação dada pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…roso, da propriedade ou do domínio útil de bens imóveis por natureza ou por acessão física, como definidos na lei civil;",
+          "literal": "(Redação dada pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "… inter vivos, a qualquer título, por ato oneroso, de direitos reais sobre imóveis, exceto os direitos reais de garantia;",
+          "literal": "(Redação dada pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…- a cessão inter vivos, por ato oneroso, de direitos relativos às transmissões referidas nos incisos I e II deste caput.",
+          "literal": "(Redação dada pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "Parágrafo único. (Revogado).",
+          "literal": "(Redação dada pela Lei Complementar nº 227, de 2026)"
+        }
+      ]
+    },
+    "35-A": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 35-A.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "Art. 35-A. (VETADO).",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        }
+      ]
+    },
+    "38": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…fins do caput deste artigo, o valor pelo qual o bem ou direito seria negociado à vista, em condições normais de mercado.",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…e se refere o § 1º deste artigo, será estimado por meio de critérios técnicos, considerando pelo menos um dos seguintes:",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "I - análise de preços praticados no mercado imobiliário;",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "II - informações prestadas pelos serviços notariais e registrais e por agentes financeiros;",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…localização, tipologia, destinação, padrão e área de terreno e construção, entre outras características do bem imóvel; e",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "IV - outros parâmetros técnicos usualmente observados na avaliação de imóveis.",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…tação de avaliação contraditória em procedimento específico, nos termos da legislação específica municipal ou distrital.",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…s tributárias dos Municípios e do Distrito Federal, sob pena de multa prevista em lei específica municipal ou distrital.",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        }
+      ]
+    },
+    "39": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "Art. 39.",
+          "literal": "(Revogado pela Lei Complementar nº 227, de 2026)"
+        }
+      ]
+    },
+    "41": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "Art. 41. O imposto compete ao Município da situação do bem, ou ao Distrito Federal.",
+          "literal": "(Redação dada pela Lei Complementar nº 227, de 2026)"
+        }
+      ]
+    },
+    "43": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "…eceita ou do rendimento, da localização, condição jurídica ou nacionalidade da fonte, da origem e da forma de percepção.",
+          "literal": "(Incluído pela Lcp nº 104, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "…á as condições e o momento em que se dará sua disponibilidade, para fins de incidência do imposto referido neste artigo.",
+          "literal": "(Incluído pela Lcp nº 104, de 2001)"
+        }
+      ]
+    },
+    "78": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Ato Complementar",
+            "numero": "31",
+            "ano": 1966
+          },
+          "trecho": "…orização do Poder Público, à tranqüilidade pública ou ao respeito à propriedade e aos direitos individuais ou coletivos.",
+          "literal": "(Redação dada pelo Ato Complementar nº 31, de 1966)"
+        }
+      ]
+    },
+    "82-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…servação de logradouros públicos, observado o disposto nos incisos I e III do caput do art. 150 da Constituição Federal.",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "§ 1º Para os fins do disposto no caput deste artigo, considera-se:",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…douros públicos e equipamentos públicos comunitários e urbanos, em qualquer área do território municipal ou distrital; e",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…tros integrados de operação e controle e à integração de sistemas de gestão de monitoramento pela administração pública.",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…2º É facultada a cobrança da contribuição a que se refere o caput deste artigo na fatura de consumo de energia elétrica.",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        }
+      ]
+    },
+    "86": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "143",
+            "ano": 2013
+          },
+          "trecho": "Art. 86.",
+          "literal": "(Revogado pela Lei Complementar nº 143, de 2013)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "143",
+            "ano": 2013
+          },
+          "trecho": "Art. 86. (Revogado pela Lei Complementar nº 143, de 2013) (Produção de efeito) Art. 87.",
+          "literal": "(Revogado pela Lei Complementar nº 143, de 2013)"
+        }
+      ]
+    },
+    "88": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "143",
+            "ano": 2013
+          },
+          "trecho": "Art. 88.",
+          "literal": "(Revogado pela Lei Complementar nº 143, de 2013)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "143",
+            "ano": 2013
+          },
+          "trecho": "Art. 88. (Revogado pela Lei Complementar nº 143, de 2013) (Produção de efeito) Art. 89.",
+          "literal": "(Revogado pela Lei Complementar nº 143, de 2013)"
+        }
+      ]
+    },
+    "91": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Ato Complementar",
+            "numero": "35",
+            "ano": 1967
+          },
+          "trecho": "Art. 91. Do Fundo de Participação dos Municípios a que se refere o art. 86, serão atribuídos:",
+          "literal": "(Redação dada pelo Ato Complementar nº 35, de 1967)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Ato Complementar",
+            "numero": "35",
+            "ano": 1967
+          },
+          "trecho": "I - 10% (dez por cento) aos Municípios das Capitais dos Estados;",
+          "literal": "(Redação dada pelo Ato Complementar nº 35, de 1967)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Ato Complementar",
+            "numero": "35",
+            "ano": 1967
+          },
+          "trecho": "II - 90% (noventa por cento) aos demais Municípios do País.",
+          "literal": "(Redação dada pelo Ato Complementar nº 35, de 1967)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Ato Complementar",
+            "numero": "35",
+            "ano": 1967
+          },
+          "trecho": "… distribuída proporcionalmente a um coeficiente individual de participação, resultante do produto dos seguintes fatôres:",
+          "literal": "(Redação dada pelo Ato Complementar nº 35, de 1967)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Ato Complementar",
+            "numero": "35",
+            "ano": 1967
+          },
+          "trecho": "a) fator representativo da população, assim estabelecido:",
+          "literal": "(Redação dada pelo Ato Complementar nº 35, de 1967)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Ato Complementar",
+            "numero": "35",
+            "ano": 1967
+          },
+          "trecho": "b) Fator representativo do inverso da renda per capita do respectivo Estado, de conformidade com o disposto no art. 90.",
+          "literal": "(Redação dada pelo Ato Complementar nº 35, de 1967)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "1.881",
+            "ano": 1981
+          },
+          "trecho": "…ágrafo, far-se-á atribuindo-se a cada Município um coeficiente individual de participação determinado na forma seguinte:",
+          "literal": "(Redação dada pelo Decreto Lei nº 1.881, de 1981)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "59",
+            "ano": 1988
+          },
+          "trecho": "…com base em dados oficiais de população produzidos pela Fundação Instituto Brasileiro de Geografia e Estatística - IBGE.",
+          "literal": "(Redação dada pela Lei Complementar nº 59, de 1988)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "91",
+            "ano": 1997
+          },
+          "trecho": "§§ 4º e 5º",
+          "literal": "(Revogados pela Lei Complementar nº 91, de 1997)"
+        }
+      ]
+    },
+    "92": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "143",
+            "ano": 2013
+          },
+          "trecho": "…vistos no art. 159, inciso I, alíneas “a”, “b” e “d”, da Constituição Federal que prevalecerão no exercício subsequente:",
+          "literal": "(Redação dada pela Lei Complementar nº 143, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "143",
+            "ano": 2013
+          },
+          "trecho": "I - até o último dia útil do mês de março de cada exercício financeiro, para cada Estado e para o Distrito Federal;",
+          "literal": "(Incluído pela Lei Complementar nº 143, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "143",
+            "ano": 2013
+          },
+          "trecho": "II - até o último dia útil de cada exercício financeiro, para cada Município.",
+          "literal": "(Incluído pela Lei Complementar nº 143, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "143",
+            "ano": 2013
+          },
+          "trecho": "…r, transcorrido o prazo fixado no inciso I do caput, a criação de novo Estado a ser implantado no exercício subsequente.",
+          "literal": "(Incluído pela Lei Complementar nº 143, de 2013)"
+        }
+      ]
+    },
+    "93": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "143",
+            "ano": 2013
+          },
+          "trecho": "Art. 93.",
+          "literal": "(Revogado pela Lei Complementar nº 143, de 2013)"
+        }
+      ]
+    },
+    "94": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "143",
+            "ano": 2013
+          },
+          "trecho": "Art. 94.",
+          "literal": "(Revogado pela Lei Complementar nº 143, de 2013)"
+        }
+      ]
+    },
+    "95": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "143",
+            "ano": 2013
+          },
+          "trecho": "Art. 95.",
+          "literal": "(Revogado pela Lei Complementar nº 143, de 2013)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Ato Complementar",
+            "numero": "35",
+            "ano": 1967
+          },
+          "trecho": "Art. 95. (Revogado pela Lei Complementar nº 143, de 2013) (Produção de efeito) Parágrafo único.",
+          "literal": "(Revogado pelo Ato Complementar nº 35, de 1967)"
+        }
+      ]
+    },
+    "116": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "…dos elementos constitutivos da obrigação tributária, observados os procedimentos a serem estabelecidos em lei ordinária.",
+          "literal": "(Incluído pela Lcp nº 104, de 2001)"
+        }
+      ]
+    },
+    "131": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "28",
+            "ano": 1966
+          },
+          "trecho": "I - o adquirente ou remitente, pelos tributos relativos aos bens adquiridos ou remidos;",
+          "literal": "(Redação dada pelo Decreto Lei nº 28, de 1966)"
+        }
+      ]
+    },
+    "133": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "§ 1o O disposto no caput deste artigo não se aplica na hipótese de alienação judicial:",
+          "literal": "(Incluído pela Lcp nº 118, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "I – em processo de falência;",
+          "literal": "(Incluído pela Lcp nº 118, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "II – de filial ou unidade produtiva isolada, em processo de recuperação judicial.",
+          "literal": "(Incluído pela Lcp nº 118, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "§ 2o Não se aplica o disposto no § 1o deste artigo quando o adquirente for:",
+          "literal": "(Incluído pela Lcp nº 118, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "… da sociedade falida ou em recuperação judicial, ou sociedade controlada pelo devedor falido ou em recuperação judicial;",
+          "literal": "(Incluído pela Lcp nº 118, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "…o 4o (quarto) grau, consangüíneo ou afim, do devedor falido ou em recuperação judicial ou de qualquer de seus sócios; ou",
+          "literal": "(Incluído pela Lcp nº 118, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "…dentificado como agente do falido ou do devedor em recuperação judicial com o objetivo de fraudar a sucessão tributária.",
+          "literal": "(Incluído pela Lcp nº 118, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "…o, somente podendo ser utilizado para o pagamento de créditos extraconcursais ou de créditos que preferem ao tributário.",
+          "literal": "(Incluído pela Lcp nº 118, de 2005)"
+        }
+      ]
+    },
+    "151": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "V – a concessão de medida liminar ou de tutela antecipada, em outras espécies de ação judicial;",
+          "literal": "(Incluído pela Lcp nº 104, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "VI – o parcelamento.",
+          "literal": "(Incluído pela Lcp nº 104, de 2001)"
+        }
+      ]
+    },
+    "155-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "Art. 155-A. O parcelamento será concedido na forma e condição estabelecidas em lei específica.",
+          "literal": "(Incluído pela Lcp nº 104, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "…1o Salvo disposição de lei em contrário, o parcelamento do crédito tributário não exclui a incidência de juros e multas.",
+          "literal": "(Incluído pela Lcp nº 104, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "§ 2o Aplicam-se, subsidiariamente, ao parcelamento as disposições desta Lei, relativas à moratória.",
+          "literal": "(Incluído pela Lcp nº 104, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "…o Lei específica disporá sobre as condições de parcelamento dos créditos tributários do devedor em recuperação judicial.",
+          "literal": "(Incluído pela Lcp nº 118, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "…eração judicial, não podendo, neste caso, ser o prazo de parcelamento inferior ao concedido pela lei federal específica.",
+          "literal": "(Incluído pela Lcp nº 118, de 2005)"
+        }
+      ]
+    },
+    "156": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "XI – a dação em pagamento em bens imóveis, na forma e condições estabelecidas em lei.",
+          "literal": "(Incluído pela Lcp nº 104, de 2001)"
+        }
+      ]
+    },
+    "174": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "I – pelo despacho do juiz que ordenar a citação em execução fiscal;",
+          "literal": "(Redação dada pela Lcp nº 118, de 2005)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "II - pelo protesto judicial ou extrajudicial;",
+          "literal": "(Redação dada pela Lei Complementar nº 208, de 2024)"
+        }
+      ]
+    },
+    "178": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "24",
+            "ano": 1975
+          },
+          "trecho": "…as condições, pode ser revogada ou modificada por lei, a qualquer tempo, observado o disposto no inciso III do art. 104.",
+          "literal": "(Redação dada pela Lei Complementar nº 24, de 1975)"
+        }
+      ]
+    },
+    "185": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "…or sujeito passivo em débito para com a Fazenda Pública, por crédito tributário regularmente inscrito como dívida ativa.",
+          "literal": "(Redação dada pela Lcp nº 118, de 2005)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "…ca na hipótese de terem sido reservados, pelo devedor, bens ou rendas suficientes ao total pagamento da dívida inscrita.",
+          "literal": "(Redação dada pela Lcp nº 118, de 2005)"
+        }
+      ]
+    },
+    "185-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "… mercado bancário e do mercado de capitais, a fim de que, no âmbito de suas atribuições, façam cumprir a ordem judicial.",
+          "literal": "(Incluído pela Lcp nº 118, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "…l, devendo o juiz determinar o imediato levantamento da indisponibilidade dos bens ou valores que excederem esse limite.",
+          "literal": "(Incluído pela Lcp nº 118, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "…go enviarão imediatamente ao juízo a relação discriminada dos bens e direitos cuja indisponibilidade houverem promovido.",
+          "literal": "(Incluído pela Lcp nº 118, de 2005)"
+        }
+      ]
+    },
+    "186": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "…u o tempo de sua constituição, ressalvados os créditos decorrentes da legislação do trabalho ou do acidente de trabalho.",
+          "literal": "(Redação dada pela Lcp nº 118, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "Parágrafo único. Na falência:",
+          "literal": "(Incluído pela Lcp nº 118, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "…eis de restituição, nos termos da lei falimentar, nem aos créditos com garantia real, no limite do valor do bem gravado;",
+          "literal": "(Incluído pela Lcp nº 118, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "… – a lei poderá estabelecer limites e condições para a preferência dos créditos decorrentes da legislação do trabalho; e",
+          "literal": "(Incluído pela Lcp nº 118, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "III – a multa tributária prefere apenas aos créditos subordinados.",
+          "literal": "(Incluído pela Lcp nº 118, de 2005)"
+        }
+      ]
+    },
+    "187": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "… sujeita a concurso de credores ou habilitação em falência, recuperação judicial, concordata, inventário ou arrolamento.",
+          "literal": "(Redação dada pela Lcp nº 118, de 2005)"
+        }
+      ]
+    },
+    "188": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "…. São extraconcursais os créditos tributários decorrentes de fatos geradores ocorridos no curso do processo de falência.",
+          "literal": "(Redação dada pela Lcp nº 118, de 2005)"
+        }
+      ]
+    },
+    "191": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "Art. 191. A extinção das obrigações do falido requer prova de quitação de todos os tributos.",
+          "literal": "(Redação dada pela Lcp nº 118, de 2005)"
+        }
+      ]
+    },
+    "191-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "118",
+            "ano": 2005
+          },
+          "trecho": "…ende da apresentação da prova de quitação de todos os tributos, observado o disposto nos arts. 151, 205 e 206 desta Lei.",
+          "literal": "(Incluído pela Lcp nº 118, de 2005)"
+        }
+      ]
+    },
+    "198": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "…econômica ou financeira do sujeito passivo ou de terceiros e sobre a natureza e o estado de seus negócios ou atividades.",
+          "literal": "(Redação dada pela Lcp nº 104, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "§ 1o Excetuam-se do disposto neste artigo, além dos casos previstos no art. 199, os seguintes:",
+          "literal": "(Redação dada pela Lcp nº 104, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "I – requisição de autoridade judiciária no interesse da justiça;",
+          "literal": "(Incluído pela Lcp nº 104, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "…va, com o objetivo de investigar o sujeito passivo a que se refere a informação, por prática de infração administrativa.",
+          "literal": "(Incluído pela Lcp nº 104, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "…essoalmente à autoridade solicitante, mediante recibo, que formalize a transferência e assegure a preservação do sigilo.",
+          "literal": "(Incluído pela Lcp nº 104, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "§ 3o Não é vedada a divulgação de informações relativas a:",
+          "literal": "(Incluído pela Lcp nº 104, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "I – representações fiscais para fins penais;",
+          "literal": "(Incluído pela Lcp nº 104, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "II – inscrições na Dívida Ativa da Fazenda Pública;",
+          "literal": "(Incluído pela Lcp nº 104, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "187",
+            "ano": 2021
+          },
+          "trecho": "III - parcelamento ou moratória; e",
+          "literal": "(Redação dada pela Lei Complementar nº 187, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "187",
+            "ano": 2021
+          },
+          "trecho": "IV - incentivo, renúncia, benefício ou imunidade de natureza tributária cujo beneficiário seja pessoa jurídica.",
+          "literal": "(Incluído pela Lei Complementar nº 187, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "…ou privados, que, inclusive por obrigação legal, operem cadastros e registros ou controlem operações de bens e direitos.",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "208",
+            "ano": 2024
+          },
+          "trecho": "…sando ao compartilhamento de bases de dados de natureza cadastral e patrimonial de seus administrados e supervisionados.",
+          "literal": "(Incluído pela Lei Complementar nº 208, de 2024)"
+        }
+      ]
+    },
+    "199": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "104",
+            "ano": 2001
+          },
+          "trecho": "…nvênios, poderá permutar informações com Estados estrangeiros no interesse da arrecadação e da fiscalização de tributos.",
+          "literal": "(Incluído pela Lcp nº 104, de 2001)"
+        }
+      ]
+    },
+    "217": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "27",
+            "ano": 1966
+          },
+          "trecho": "…parágrafo único, bem como a do art. 54 da Lei 5.025, de 10 de junho de 1966, não excluem a incidência e a exigibilidade:",
+          "literal": "(Incluído pelo Decreto-lei nº 27, de 1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "27",
+            "ano": 1966
+          },
+          "trecho": "…ntes, da Consolidação das Leis do Trabalho, sem prejuízo do disposto no art. 16 da Lei 4.589, de 11 de dezembro de 1964;",
+          "literal": "(Incluído pelo Decreto-lei nº 27, de 1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "27",
+            "ano": 1966
+          },
+          "trecho": "… integram a contribuição da União para a previdência social, de que trata o art. 157, item XVI, da Constituição Federal;",
+          "literal": "(Incluído pelo Decreto-lei nº 27, de 1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "27",
+            "ano": 1966
+          },
+          "trecho": "…Fundo de Assistência\" e \"Previdência do Trabalhador Rural\", de que trata o art. 158 da Lei 4.214, de 2 de março de 1963;",
+          "literal": "(Incluído pelo Decreto-lei nº 27, de 1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "27",
+            "ano": 1966
+          },
+          "trecho": "…ibuição destinada ao Fundo de Garantia do Tempo de Serviço, criada pelo art. 2º da Lei 5.107, de 13 de setembro de 1966;",
+          "literal": "(Incluído pelo Decreto-lei nº 27, de 1966)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "27",
+            "ano": 1966
+          },
+          "trecho": "…orrentes do disposto nos arts 22 e 23 da Lei 5.107, de 13 de setembro de 1966, e outras de fins sociais criadas por lei.",
+          "literal": "(Incluído pelo Decreto-lei nº 27, de 1966)"
+        }
+      ]
+    },
+    "218": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "27",
+            "ano": 1966
+          },
+          "trecho": "… dia 1º de janeiro de 1967, revogadas as disposições em contrário, especialmente a Lei n. 854, de 10 de outubro de 1949.",
+          "literal": "(Renumerado do art. 217 pelo Decreto-lei nº 27, de 1966)"
+        }
+      ]
+    }
+  }
+}

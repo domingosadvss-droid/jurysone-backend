@@ -1,0 +1,2398 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "LOAS",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_loas.json",
+      "colecao": "artigos",
+      "sha256": "e8231c772a729b9bb583063b5472f49a8739949b8c425a65387272e8ba604e70",
+      "total_registros": 71,
+      "gerado_em": "2026-08-21T22:36:33+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 53,
+      "anotacoes": 199,
+      "anotacoes_sem_diploma_nomeado": 24
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "Art. 2o A assistência social tem por objetivos:",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…a proteção social, que visa à garantia da vida, à redução de danos e à prevenção da incidência de riscos, especialmente:",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "a) a proteção à família, à maternidade, à infância, à adolescência e à velhice;",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "b) o amparo às crianças e aos adolescentes carentes;",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "c) a promoção da integração ao mercado de trabalho;",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "d) a habilitação e reabilitação das pessoas com deficiência e a promoção de sua integração à vida comunitária; e",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…ficiência e ao idoso que comprovem não possuir meios de prover a própria manutenção ou de tê-la provida por sua família;",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…lmente a capacidade protetiva das famílias e nela a ocorrência de vulnerabilidades, de ameaças, de vitimizações e danos;",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…II - a defesa de direitos, que visa a garantir o pleno acesso aos direitos no conjunto das provisões socioassistenciais.",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…ociais e provimento de condições para atender contingências sociais e promovendo a universalização dos direitos sociais.",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…ento e assessoramento aos beneficiários abrangidos por esta Lei, bem como as que atuam na defesa e garantia de direitos.",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…speitadas as deliberações do Conselho Nacional de Assistência Social (CNAS), de que tratam os incisos I e II do art. 18.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…stência social, nos termos desta Lei, e respeitadas as deliberações do CNAS, de que tratam os incisos I e II do art. 18.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…stência social, nos termos desta Lei, e respeitadas as deliberações do CNAS, de que tratam os incisos I e II do art. 18.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…tema descentralizado e participativo, denominado Sistema Único de Assistência Social (Suas), com os seguintes objetivos:",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…to e a cooperação técnica entre os entes federativos que, de modo articulado, operam a proteção social não contributiva;",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…rar a rede pública e privada de serviços, programas, projetos e benefícios de assistência social, na forma do art. 6o-C;",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "IV - definir os níveis de gestão, respeitadas as diversidades regionais e municipais;",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "V - implementar a gestão do trabalho e a educação permanente na assistência social;",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "VI - estabelecer a gestão integrada de serviços e benefícios; e",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "VII - afiançar a vigilância socioassistencial e a garantia de direitos.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…o a proteção à família, à maternidade, à infância, à adolescência e à velhice e, como base de organização, o território.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…pectivos conselhos de assistência social e pelas entidades e organizações de assistência social abrangidas por esta Lei.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…ância coordenadora da Política Nacional de Assistência Social é o Ministério do Desenvolvimento Social e Combate à Fome.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.714",
+            "ano": 2018
+          },
+          "trecho": "…a Política Nacional de Assistência Social normatizar e padronizar o emprego e a divulgação da identidade visual do Suas.",
+          "literal": "(Incluído pela Lei nº 13.714, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.714",
+            "ano": 2018
+          },
+          "trecho": "…estatais, entidades e organizações de assistência social, serviços, programas, projetos e benefícios vinculados ao Suas.",
+          "literal": "(Incluído pela Lei nº 13.714, de 2018)"
+        }
+      ]
+    },
+    "6-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "Art. 6o-A. A assistência social organiza-se pelos seguintes tipos de proteção:",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…l por meio do desenvolvimento de potencialidades e aquisições e do fortalecimento de vínculos familiares e comunitários;",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…ialidades e aquisições e a proteção de famílias e indivíduos para o enfrentamento das situações de violação de direitos.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…assistência social que identifica e previne as situações de risco e vulnerabilidade social e seus agravos no território.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "6-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…ou pelas entidades e organizações de assistência social vinculadas ao Suas, respeitadas as especificidades de cada ação.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…rio do Desenvolvimento Social e Combate à Fome de que a entidade de assistência social integra a rede socioassistencial.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "§ 2o Para o reconhecimento referido no § 1o, a entidade deverá cumprir os seguintes requisitos:",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "I - constituir-se em conformidade com o disposto no art. 3o;",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "II - inscrever-se em Conselho Municipal ou do Distrito Federal, na forma do art. 9o;",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "III - integrar o sistema de cadastro de entidades de que trata o inciso XI do art. 19.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…tes da capacidade instalada, aos beneficiários abrangidos por esta Lei, observando-se as disponibilidades orçamentárias.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…o será informado ao Ministério do Desenvolvimento Social e Combate à Fome pelo órgão gestor local da assistência social.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "6-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "… (Creas), respectivamente, e pelas entidades sem fins lucrativos de assistência social de que trata o art. 3o desta Lei.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…de abrangência e à prestação de serviços, programas e projetos socioassistenciais de proteção social básica às famílias.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "… social, por violação de direitos ou contingência, que demandam intervenções especializadas da proteção social especial.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…políticas públicas e articulam, coordenam e ofertam os serviços, programas, projetos e benefícios da assistência social.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "6-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…pção e atendimento reservado das famílias e indivíduos, assegurada a acessibilidade às pessoas idosas e com deficiência.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "6-E": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "… ações, conforme percentual apresentado pelo Ministério do Desenvolvimento Social e Combate à Fome e aprovado pelo CNAS.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…tipos e modalidades de atendimento e as aquisições que devem ser garantidas aos usuários, conforme deliberações do CNAS.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "6-F": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.601",
+            "ano": 2023
+          },
+          "trecho": "…formações para a identificação e a caracterização socioeconômica das famílias de baixa renda, nos termos do regulamento.",
+          "literal": "(Redação dada pela Lei nº 14.601, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.284",
+            "ano": 2021
+          },
+          "trecho": "…unidades públicas de que tratam os §§ 1º e 2º do art. 6º-C desta Lei ou, nos termos do regulamento, por meio eletrônico.",
+          "literal": "(Incluído pela Lei nº 14.284, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.601",
+            "ano": 2023
+          },
+          "trecho": "…adÚnico poderá ser obrigatória para acesso a programas sociais do governo federal, na forma estabelecida em regulamento.",
+          "literal": "(Redação dada pela Lei nº 14.601, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.601",
+            "ano": 2023
+          },
+          "trecho": "…ados constantes do Cadastro Nacional de Informações Sociais (CNIS), de que trata a Lei nº 8.213, de 24 de julho de 1991.",
+          "literal": "(Incluído pela Lei nº 14.601, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.601",
+            "ano": 2023
+          },
+          "trecho": "…conforme termo de adesão do ente federativo ao CadÚnico, do qual constará cláusula de compromisso com o sigilo de dados.",
+          "literal": "(Incluído pela Lei nº 14.601, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.601",
+            "ano": 2023
+          },
+          "trecho": "… civil poderá cooperar com a identificação de pessoas que precisem ser inscritas no CadÚnico, nos termos do regulamento.",
+          "literal": "(Incluído pela Lei nº 14.601, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.077",
+            "ano": 2024
+          },
+          "trecho": "… as quais serão objeto de checagem em outras bases de dados, nos termos estabelecidos em ato do Poder Executivo federal.",
+          "literal": "(Redação dada pela Lei nº 15.077, de 2024)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.101",
+            "ano": 2009
+          },
+          "trecho": "§ 3º",
+          "literal": "(Revogado pela Lei nº 12.101, de 2009)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…automática, o aprimoramento da gestão, os serviços, os programas e os projetos de assistência social em âmbito nacional;",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…valiação da política de assistência social e assessorar Estados, Distrito Federal e Municípios para seu desenvolvimento.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "12-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…ados, dos Municípios e do Distrito Federal, destinado, sem prejuízo de outras ações a serem definidas em regulamento, a:",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…nitoramento dos serviços, programas, projetos e benefícios de assistência social, bem como na articulação intersetorial;",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "II - incentivar a obtenção de resultados qualitativos na gestão estadual, municipal e do Distrito Federal do Suas; e",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "… - calcular o montante de recursos a serem repassados aos entes federados a título de apoio financeiro à gestão do Suas.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…regulamento, serão considerados como prestação de contas dos recursos a serem transferidos a título de apoio financeiro.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "… art. 8o da Lei no 10.836, de 9 de janeiro de 2004, e serão efetivadas por meio de procedimento integrado àquele índice.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "§ 3o (VETADO).",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…e pessoal efetivo e de gratificações de qualquer natureza a servidor público estadual, municipal ou do Distrito Federal.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…cios eventuais de que trata o art. 22, mediante critérios estabelecidos pelos Conselhos Estaduais de Assistência Social;",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…a, o aprimoramento da gestão, os serviços, os programas e os projetos de assistência social em âmbito regional ou local;",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…zar o monitoramento e a avaliação da política de assistência social e assessorar os Municípios para seu desenvolvimento.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…uais de que trata o art. 22, mediante critérios estabelecidos pelos Conselhos de Assistência Social do Distrito Federal;",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "… - cofinanciar o aprimoramento da gestão, os serviços, os programas e os projetos de assistência social em âmbito local;",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "VII - realizar o monitoramento e a avaliação da política de assistência social em seu âmbito.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…ios eventuais de que trata o art. 22, mediante critérios estabelecidos pelos Conselhos Municipais de Assistência Social;",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "… - cofinanciar o aprimoramento da gestão, os serviços, os programas e os projetos de assistência social em âmbito local;",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "VII - realizar o monitoramento e a avaliação da política de assistência social em seu âmbito.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "… As instâncias deliberativas do Suas, de caráter permanente e composição paritária entre governo e sociedade civil, são:",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…rias de conselheiros representantes do governo ou da sociedade civil, quando estiverem no exercício de suas atribuições.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…erão ser instituídos, respectivamente, pelos Estados, pelo Distrito Federal e pelos Municípios, mediante lei específica.",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.101",
+            "ano": 2009
+          },
+          "trecho": "…ertificação das entidades e organizações de assistência social no Ministério do Desenvolvimento Social e Combate à Fome;",
+          "literal": "(Redação dada pela Lei nº 12.101, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.101",
+            "ano": 2009
+          },
+          "trecho": "…ntes e encaminhá-lo para conhecimento dos Conselhos de Assistência Social dos Estados, Municípios e do Distrito Federal;",
+          "literal": "(Redação dada pela Lei nº 12.101, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.720",
+            "ano": 1991
+          },
+          "trecho": "…que terá a atribuição de avaliar a situação da assistência social e propor diretrizes para o aperfeiçoamento do sistema;",
+          "literal": "(Redação dada pela Lei nº 9.720, de 26.4.1991)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso VII",
+          "diploma": null,
+          "trecho": "VII -",
+          "literal": "(Vetado.)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.101",
+            "ano": 2009
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Lei nº 12.101, de 2009)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.714",
+            "ano": 2018
+          },
+          "trecho": "…ncia com a diretriz de articulação das ações de assistência social e de saúde a que se refere o inciso XII deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.714, de 2018)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…cinco) anos ou mais que comprovem não possuir meios de prover a própria manutenção nem de tê-la provida por sua família.",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "… padrasto, os irmãos solteiros, os filhos e enteados solteiros e os menores tutelados, desde que vivam sob o mesmo teto.",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.146",
+            "ano": 2015
+          },
+          "trecho": "… barreiras, pode obstruir sua participação plena e efetiva na sociedade em igualdade de condições com as demais pessoas.",
+          "literal": "(Redação dada pela Lei nº 13.146, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…plena e efetiva na sociedade em igualdade de condições com as demais pessoas. (Redação dada pela Lei nº 13.146, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.077",
+            "ano": 2024
+          },
+          "trecho": "…cial do benefício de que trata este artigo a pessoa com deficiência fica sujeita a avaliação, nos termos de regulamento.",
+          "literal": "(Incluído pela Lei nº 15.077, de 2024)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º-B.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.077",
+            "ano": 2024
+          },
+          "trecho": "§ 2º-B. (VETADO).",
+          "literal": "(Incluído pela Lei nº 15.077, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "…eficiência ou a pessoa idosa com renda familiar mensal per capita igual ou inferior a 1/4 (um quarto) do salário-mínimo.",
+          "literal": "(Redação dada pela Lei nº 14.176, de 2021)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I –",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "I – (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.176, de 2021)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.982",
+            "ano": 2020
+          },
+          "trecho": "II - (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.982, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.077",
+            "ano": 2024
+          },
+          "trecho": "…no § 14 deste artigo, nos termos estabelecidos em ato do Poder Executivo federal, vedadas deduções não previstas em lei.",
+          "literal": "(Incluído pela Lei nº 15.077, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.601",
+            "ano": 2023
+          },
+          "trecho": "…VI do caput do art. 203 da Constituição Federal e o caput e o § 1º do art. 1º da Lei nº 10.835, de 8 de janeiro de 2004.",
+          "literal": "(Redação dada pela Lei nº 14.601, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…de longa permanência não prejudica o direito do idoso ou da pessoa com deficiência ao benefício de prestação continuada.",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.470",
+            "ano": 2011
+          },
+          "trecho": "…avaliação social realizadas por médicos peritos e por assistentes sociais do Instituto Nacional de Seguro Social - INSS.",
+          "literal": "(Redação dada pela Lei nº 12.470, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.441",
+            "ano": 2022
+          },
+          "trecho": "…O INSS poderá celebrar parcerias para a realização da avaliação social, sob a supervisão do serviço social da autarquia.",
+          "literal": "(Incluído pela Lei nº 14.441, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.720",
+            "ano": 1998
+          },
+          "trecho": "…segurado, na forma prevista em regulamento, o seu encaminhamento ao município mais próximo que contar com tal estrutura.",
+          "literal": "(Incluído pela Lei nº 9.720, de 30.11.1998)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.720",
+            "ano": 1998
+          },
+          "trecho": "…u seu representante legal, sujeitando-se aos demais procedimentos previstos no regulamento para o deferimento do pedido.",
+          "literal": "(Incluído pela Lei nº 9.720, de 30.11.1998)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.809",
+            "ano": 2024
+          },
+          "trecho": "…prendizagem, não serão computados para fins de cálculo da renda familiar per capita a que se refere o § 3º deste artigo.",
+          "literal": "(Redação dada pela Lei nº 14.809, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.470",
+            "ano": 2011
+          },
+          "trecho": "…imento de longo prazo, para os fins do § 2o deste artigo, aquele que produza efeitos pelo prazo mínimo de 2 (dois) anos.",
+          "literal": "(Incluído pela Lei nº 12.470, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.146",
+            "ano": 2015
+          },
+          "trecho": "…ntos probatórios da condição de miserabilidade do grupo familiar e da situação de vulnerabilidade, conforme regulamento.",
+          "literal": "(Incluído pela Lei nº 13.146, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 11º",
+          "diploma": null,
+          "trecho": "…ilidade do grupo familiar e da situação de vulnerabilidade, conforme regulamento. (Incluído pela Lei nº 13.146, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "…er capita previsto no § 3º deste artigo para até 1/2 (meio) salário-mínimo, observado o disposto no art. 20-B desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.176, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 11º",
+          "diploma": null,
+          "trecho": "… para até 1/2 (meio) salário-mínimo, observado o disposto no art. 20-B desta Lei. (Incluído pela Lei nº 14.176, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "… (CPF) e no Cadastro Único para Programas Sociais do Governo Federal - Cadastro Único, conforme previsto em regulamento.",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "…N), do título eleitoral ou da Carteira Nacional de Habilitação (CNH), nos termos de ato conjunto dos órgãos competentes.",
+          "literal": "(Incluído pela Lei nº 14.973, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.077",
+            "ano": 2024
+          },
+          "trecho": "§ 12-B. Na impossibilidade de registro biométrico do requerente, ele será obrigatório ao responsável legal.",
+          "literal": "(Incluído pela Lei nº 15.077, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.982",
+            "ano": 2020
+          },
+          "trecho": "…nuada a outro idoso ou pessoa com deficiência da mesma família, no cálculo da renda a que se refere o § 3º deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.982, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.982",
+            "ano": 2020
+          },
+          "trecho": "…estação continuada será devido a mais de um membro da mesma família enquanto atendidos os requisitos exigidos nesta Lei.",
+          "literal": "(Incluído pela Lei nº 13.982, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 16º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.157",
+            "ano": 2025
+          },
+          "trecho": "…ndrome da imunodeficiência adquirida deverá ter a participação de pelo menos 1 (um) médico especialista em infectologia.",
+          "literal": "(Incluído pela Lei nº 15.157, de 2025)"
+        }
+      ]
+    },
+    "20-A": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "Art. 20-A.",
+          "literal": "(Revogado pela Lei nº 14.176, de 2021)"
+        }
+      ]
+    },
+    "20-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "…os para ampliação do critério de aferição da renda familiar mensal per capita de que trata o § 11-A do referido artigo:.",
+          "literal": "(Incluído pela Lei nº 14.176, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…ão da renda familiar mensal per capita de que trata o § 11-A do referido artigo:. (Incluído pela Lei nº 14.176, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "I – o grau da deficiência;.",
+          "literal": "(Incluído pela Lei nº 14.176, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I – o grau da deficiência;. (Incluído pela Lei nº 14.176, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "II – a dependência de terceiros para o desempenho de atividades básicas da vida diária; e.",
+          "literal": "(Incluído pela Lei nº 14.176, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…pendência de terceiros para o desempenho de atividades básicas da vida diária; e. (Incluído pela Lei nº 14.176, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "…lo SUS, ou com serviços não prestados pelo Suas, desde que comprovadamente necessários à preservação da saúde e da vida.",
+          "literal": "(Incluído pela Lei nº 14.176, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "…elo Suas, desde que comprovadamente necessários à preservação da saúde e da vida. (Incluído pela Lei nº 14.176, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "§ 1º A ampliação de que trata o caput deste artigo ocorrerá na forma de escalas graduais, definidas em regulamento.",
+          "literal": "(Incluído pela Lei nº 14.176, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…put deste artigo ocorrerá na forma de escalas graduais, definidas em regulamento. (Incluído pela Lei nº 14.176, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "…s dos incisos I e III do caput deste artigo, e à pessoa idosa os constantes dos incisos II e III do caput deste artigo..",
+          "literal": "(Incluído pela Lei nº 14.176, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…tigo, e à pessoa idosa os constantes dos incisos II e III do caput deste artigo.. (Incluído pela Lei nº 14.176, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "…i nº 13.146, de 6 de julho de 2015 (Estatuto da Pessoa com Deficiência), e do § 6º do art. 20 e do art. 40-B desta Lei..",
+          "literal": "(Incluído pela Lei nº 14.176, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…atuto da Pessoa com Deficiência), e do § 6º do art. 20 e do art. 40-B desta Lei.. (Incluído pela Lei nº 14.176, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "…de de comprovação, conforme critérios definidos em regulamento, de que os gastos efetivos ultrapassam os valores médios.",
+          "literal": "(Incluído pela Lei nº 14.176, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…efinidos em regulamento, de que os gastos efetivos ultrapassam os valores médios. (Incluído pela Lei nº 14.176, de 2021)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…ção e reabilitação, entre outras, não constituem motivo de suspensão ou cessação do benefício da pessoa com deficiência.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.470",
+            "ano": 2011
+          },
+          "trecho": "…ssoa com deficiência não impede nova concessão do benefício, desde que atendidos os requisitos definidos em regulamento.",
+          "literal": "(Redação dada pela Lei nº 12.470, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.156",
+            "ano": 2025
+          },
+          "trecho": "…s Zika, desde que o impedimento de que trata o § 2º do art. 20 desta Lei seja permanente, irreversível ou irrecuperável.",
+          "literal": "(Incluído pela Lei nº 15.156, de 2025)"
+        }
+      ]
+    },
+    "21-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.470",
+            "ano": 2011
+          },
+          "trecho": "…nte quando a pessoa com deficiência exercer atividade remunerada, inclusive na condição de microempreendedor individual.",
+          "literal": "(Incluído pela Lei nº 12.470, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.470",
+            "ano": 2011
+          },
+          "trecho": "…ão da deficiência e do grau de incapacidade para esse fim, respeitado o período de revisão previsto no caput do art. 21.",
+          "literal": "(Incluído pela Lei nº 12.470, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.470",
+            "ano": 2011
+          },
+          "trecho": "…do benefício de prestação continuada, limitado a 2 (dois) anos o recebimento concomitante da remuneração e do benefício.",
+          "literal": "(Incluído pela Lei nº 12.470, de 2011)"
+        }
+      ]
+    },
+    "21-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.077",
+            "ano": 2024
+          },
+          "trecho": "… a situação nos seguintes prazos, contados a partir da efetiva notificação bancária ou por outros canais de atendimento:",
+          "literal": "(Redação dada pela Lei nº 15.077, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "I – 45 (quarenta e cinco) dias para Municípios de pequeno porte;",
+          "literal": "(Incluído pela Lei nº 14.973, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "…ta) dias para Municípios de médio e grande porte ou metrópole, com população acima de 50.000 (cinquenta mil) habitantes.",
+          "literal": "(Incluído pela Lei nº 14.973, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "…por outros canais de atendimento, o crédito do benefício será bloqueado em 30 (trinta) dias após o envio da notificação.",
+          "literal": "(Incluído pela Lei nº 14.973, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "… não cumprimento do disposto no caput implicará a suspensão do benefício, desde que comprovada a ciência da notificação.",
+          "literal": "(Incluído pela Lei nº 14.973, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.973",
+            "ano": 2024
+          },
+          "trecho": "…nclusão ou a atualização no CadÚnico até o final do prazo de suspensão, sem que haja prejuízo no pagamento do benefício.",
+          "literal": "(Incluído pela Lei nº 14.973, de 2024)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…cidadãos e às famílias em virtude de nascimento, morte, situações de vulnerabilidade temporária e de calamidade pública.",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…s leis orçamentárias anuais, com base em critérios e prazos definidos pelos respectivos Conselhos de Assistência Social.",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…diários no valor de até 25% (vinte e cinco por cento) do salário-mínimo para cada criança de até 6 (seis) anos de idade.",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…r cumulados com aqueles instituídos pelas Leis no 10.954, de 29 de setembro de 2004, e no 10.458, de 14 de maio de 2002.",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…as ações, voltadas para as necessidades básicas, observem os objetivos, princípios e diretrizes estabelecidos nesta Lei.",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "§ 1o O regulamento instituirá os serviços socioassistenciais.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "§ 2o Na organização dos serviços da assistência social serão criados programas de amparo, entre outros:",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…to no art. 227 da Constituição Federal e na Lei no 8.069, de 13 de julho de 1990 (Estatuto da Criança e do Adolescente);",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "II - às pessoas que vivem em situação de rua.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.878",
+            "ano": 2024
+          },
+          "trecho": "…ições de longa permanência, nas quais o poder público apoiará o atendimento integral à saúde, na forma do regulamento.",
+          "literal": "(Incluído pela Lei nº 14.878, de 2024)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…com deficiência serão devidamente articulados com o benefício de prestação continuada estabelecido no art. 20 desta Lei.",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "24-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…vínculos familiares e a violência no âmbito de suas relações, garantindo o direito à convivência familiar e comunitária.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "Parágrafo único. Regulamento definirá as diretrizes e os procedimentos do Paif.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "24-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…lando os serviços socioassistenciais com as diversas políticas públicas e com órgãos do sistema de garantia de direitos.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "Parágrafo único. Regulamento definirá as diretrizes e os procedimentos do Paefi.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "24-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…com famílias e oferta de serviços socioeducativos para crianças e adolescentes que se encontrem em situação de trabalho.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…ferior a 16 (dezesseis) anos em situação de trabalho, ressalvada a condição de aprendiz, a partir de 14 (quatorze) anos.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…ico para Programas Sociais do Governo Federal (CadÚnico), com a devida identificação das situações de trabalho infantil.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "26-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "… de julho de 2015 (Estatuto da Pessoa com Deficiência), a pessoa com deficiência moderada ou grave que, cumulativamente:",
+          "literal": "(Incluído pela Lei nº 14.176, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…om Deficiência), a pessoa com deficiência moderada ou grave que, cumulativamente: (Incluído pela Lei nº 14.176, de 2021)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "26-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "…rimento, e o seu valor corresponderá a 50% (cinquenta por cento) do valor do benefício de prestação continuada em vigor.",
+          "literal": "(Incluído pela Lei nº 14.176, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…50% (cinquenta por cento) do valor do benefício de prestação continuada em vigor. (Incluído pela Lei nº 14.176, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.441",
+            "ano": 2022
+          },
+          "trecho": "…elo Ministério da Cidadania, de acumulação do benefício de prestação continuada com o exercício de atividade remunerada.",
+          "literal": "(Incluído pela Lei nº 14.441, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.441",
+            "ano": 2022
+          },
+          "trecho": "…dade remunerada, e o titular deverá ser notificado quanto à alteração do benefício e suas consequências administrativas.",
+          "literal": "(Incluído pela Lei nº 14.441, de 2022)"
+        }
+      ]
+    },
+    "26-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "Art. 26-C. O pagamento do auxílio-inclusão não será acumulado com o pagamento de:",
+          "literal": "(Incluído pela Lei nº 14.176, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 26-C. O pagamento do auxílio-inclusão não será acumulado com o pagamento de: (Incluído pela Lei nº 14.176, de 2021)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "26-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "Art. 26-D. O pagamento do auxílio-inclusão cessará na hipótese de o beneficiário:",
+          "literal": "(Incluído pela Lei nº 14.176, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 26-D. O pagamento do auxílio-inclusão cessará na hipótese de o beneficiário: (Incluído pela Lei nº 14.176, de 2021)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "26-E": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "…. O auxílio-inclusão não está sujeito a desconto de qualquer contribuição e não gera direito a pagamento de abono anual.",
+          "literal": "(Incluído pela Lei nº 14.176, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… desconto de qualquer contribuição e não gera direito a pagamento de abono anual. (Incluído pela Lei nº 14.176, de 2021)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "26-F": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "…t. 26-F. Compete ao Ministério da Cidadania a gestão do auxílio-inclusão, e ao INSS a sua operacionalização e pagamento.",
+          "literal": "(Incluído pela Lei nº 14.176, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…ania a gestão do auxílio-inclusão, e ao INSS a sua operacionalização e pagamento. (Incluído pela Lei nº 14.176, de 2021)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "26-G": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "…26-G. As despesas decorrentes do pagamento do auxílio-inclusão correrão à conta do orçamento do Ministério da Cidadania.",
+          "literal": "(Incluído pela Lei nº 14.176, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…nto do auxílio-inclusão correrão à conta do orçamento do Ministério da Cidadania. (Incluído pela Lei nº 14.176, de 2021)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "26-H": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "…ão do auxílio-inclusão, observado o disposto no § 2º do art. 26-G desta Lei, com vistas a seu aprimoramento e ampliação.",
+          "literal": "(Incluído pela Lei nº 14.176, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…posto no § 2º do art. 26-G desta Lei, com vistas a seu aprimoramento e ampliação. (Incluído pela Lei nº 14.176, de 2021)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "… governo gerir o Fundo de Assistência Social, sob orientação e controle dos respectivos Conselhos de Assistência Social.",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…peracionalização, prestação, aprimoramento e viabilização dos serviços, programas, projetos e benefícios desta política.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "28-A": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.813",
+            "ano": 2019
+          },
+          "trecho": "Art. 28-A",
+          "literal": "(Revogado pela Lei nº 13.813, de 2019)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.720",
+            "ano": 1998
+          },
+          "trecho": "…lo Ministério da Previdência e Assistência Social diretamente ao INSS, órgão responsável pela sua execução e manutenção.",
+          "literal": "(Incluído pela Lei nº 9.720, de 30.11.1998)"
+        }
+      ]
+    },
+    "30": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.720",
+            "ano": 1998
+          },
+          "trecho": "…stinados à Assistência Social, alocados em seus respectivos Fundos de Assistência Social, a partir do exercício de 1999.",
+          "literal": "(Incluído pela Lei nº 9.720, de 30.11.1998)"
+        }
+      ]
+    },
+    "30-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "… os fundos de assistência social e mediante alocação de recursos próprios nesses fundos nas 3 (três) esferas de governo.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…m-se como despesa pública com a seguridade social, na forma do art. 24 da Lei Complementar no 101, de 4 de maio de 2000.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "30-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "… e benefícios, por meio dos respectivos órgãos de controle, independentemente de ações do órgão repassador dos recursos.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "30-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…do à apreciação do respectivo Conselho de Assistência Social, que comprove a execução das ações na forma de regulamento.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…rsos oriundos do seu fundo de assistência social, para fins de análise e acompanhamento de sua boa e regular utilização.",
+          "literal": "(Incluído pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.077",
+            "ano": 2024
+          },
+          "trecho": "…entos em casos de curatela e tutela e o órgão de credenciamento, de pagamento e de fiscalização, dentre outros aspectos.",
+          "literal": "(Incluído pela Lei nº 15.077, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.077",
+            "ano": 2024
+          },
+          "trecho": "…evisão do benefício de prestação continuada previsto no art. 20 desta Lei, nos termos de ato do Poder Executivo federal.",
+          "literal": "(Incluído pela Lei nº 15.077, de 2024)"
+        }
+      ]
+    },
+    "36": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "…assados pelos poderes públicos terão a sua vinculação ao Suas cancelada, sem prejuízo de responsabilidade civil e penal.",
+          "literal": "(Redação dada pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.720",
+            "ano": 1998
+          },
+          "trecho": "…devendo o seu pagamento ser efetuado em até quarenta e cinco dias após cumpridas as exigências de que trata este artigo.",
+          "literal": "(Redação dada pela Lei nº 9.720, de 30.11.1998)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.720",
+            "ano": 1998
+          },
+          "trecho": "…ualização o mesmo critério adotado pelo INSS na atualização do primeiro pagamento de benefício previdenciário em atraso.",
+          "literal": "(Incluído pela Lei nº 9.720, de 30.11.1998)"
+        }
+      ]
+    },
+    "38": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.435",
+            "ano": 2011
+          },
+          "trecho": "Art. 38.",
+          "literal": "(Revogado pela Lei nº 12.435, de 2011)"
+        }
+      ]
+    },
+    "40-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.014",
+            "ano": 2014
+          },
+          "trecho": "… arts. 22, 24-C e 25 desta Lei serão pagos preferencialmente à mulher responsável pela unidade familiar, quando cabível.",
+          "literal": "(Incluído pela Lei nº 13.014, de 2014)"
+        }
+      ]
+    },
+    "40-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.077",
+            "ano": 2024
+          },
+          "trecho": "… a concessão do benefício, do código da Classificação Internacional de Doenças (CID), garantida a preservação do sigilo.",
+          "literal": "(Redação dada pela Lei nº 15.077, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.724",
+            "ano": 2023
+          },
+          "trecho": "…O INSS poderá celebrar parcerias para a realização da avaliação social, sob a supervisão do serviço social da autarquia.",
+          "literal": "(Incluído pela Lei nº 14.724, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.724",
+            "ano": 2023
+          },
+          "trecho": "… o uso de tecnologia de telemedicina ou por análise documental conforme situações e requisitos definidos em regulamento.",
+          "literal": "(Incluído pela Lei nº 14.724, de 2023)"
+        }
+      ]
+    },
+    "40-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.176",
+            "ano": 2021
+          },
+          "trecho": "… continuada ou do auxílio-inclusão poderão ser consignados no valor mensal desses benefícios, nos termos do regulamento.",
+          "literal": "(Incluído pela Lei nº 14.176, de 2021)"
+        }
+      ]
+    }
+  }
+}

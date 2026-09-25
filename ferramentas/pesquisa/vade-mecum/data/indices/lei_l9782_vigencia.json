@@ -1,0 +1,1511 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L9782",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l9782.json",
+      "colecao": "artigos",
+      "sha256": "339794a66767304b997c4dfdc5dc639e7a41402c3188c2ee95ce58a41f687ed4",
+      "total_registros": 49,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 26,
+      "anotacoes": 127,
+      "anotacoes_sem_diploma_nomeado": 14
+    }
+  },
+  "vigencia": {
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.039-24",
+            "ano": 2000
+          },
+          "trecho": "…rio da Saúde, com sede e foro no Distrito Federal, prazo de duração indeterminado e atuação em todo território nacional.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.039-24, de 2000)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "… duração indeterminado e atuação em todo território nacional. (Redação dada pela Medida Provisória nº 2.039-24, de 2000)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "… edição do regulamento marcará a instalação da Agência, investindo-a, automaticamente, no exercício de suas atribuições.",
+          "literal": "(Revogado pela Medida Provisória nº 2.190-34, de 2001)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…abricação, distribuição e importação dos produtos mencionados no art. 8o desta Lei e de comercialização de medicamentos;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…asileiro de Certificação - SBC, de produtos e serviços sob o regime de vigilância sanitária segundo sua classe de risco;",
+          "literal": "(Revogado pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…sse para o controle de riscos à saúde da população, bem como daqueles que impliquem a incorporação de novas tecnologias;",
+          "literal": "(Revogado pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso XIII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "XIII - exigir o credenciamento dos laboratórios públicos de análise fiscal no âmbito do SINMETRO;",
+          "literal": "(Revogado pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…torar a evolução dos preços de medicamentos, equipamentos, componentes, insumos e serviços de saúde, podendo para tanto:",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…serviços previstos neste inciso, mantendo o sigilo legal quando for o caso; (Vide Medida Provisória nº 1.912-9, de 1999)",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…serviços previstos neste inciso, mantendo o sigilo legal quando for o caso; (Vide Medida Provisória nº 1.912-9, de 1999)",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…s para, no prazo máximo de dez dias úteis, justificar a respectiva conduta; (Vide Medida Provisória nº 1.912-9, de 1999)",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "d) aplicar a penalidade prevista no art. 26 da Lei no 8.884, de 1994; (Vide Medida Provisória nº 1.912-9, de 1999)",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXVI",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…da e publicidade de produtos submetidos ao regime de vigilância sanitária; (Vide Medida Provisória nº 2.000-17, de 2000)",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXVII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…uvido o Departamento de Polícia Federal e a Secretaria da Receita Federal. (Vide Medida Provisória nº 2.134-31, de 2001)",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXVIII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "557",
+            "ano": 2011
+          },
+          "trecho": "…lidade Materna pelos estabelecimentos de saúde, públicos e privados, conveniados ou não ao Sistema Único de Saúde - SUS.",
+          "literal": "(Incluído pela Medida Provisória nº 557, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…o-ambulatorial-hospitalares, previstos nos §§ 2o e 3o do art. 8o, observadas as vedações definidas no § 1o deste artigo.",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…ção de atividades para Estados, Distrito Federal e Municípios, observadas as vedações relacionadas no § 1o deste artigo.",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…será efetivada somente após manifestação favorável dos respectivos Conselhos Estaduais, Distrital e Municipais de Saúde.",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…inspeções em plantas fabris por instituições nacionais ou internacionais credenciadas pela Agência para tais atividades.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…ltilaterais internacionais, para uso em programas de saúde pública pelo Ministério da Saúde e suas entidades vinculadas.",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…mpetências da Agência Nacional de Vigilância Sanitária, em casos específicos e que impliquem risco à saúde da população.",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "§ 7o O ato de que trata o § 6o deverá ser publicado no Diário Oficial da União.",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…nais alfandegados, serviços de transportes aquáticos, terrestres e aéreos. (Vide Medida Provisória nº 2.134-31, de 2001)",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…ral, dos Municípios, dos produtores, dos comerciantes, da comunidade científica e dos usuários, na forma do regulamento.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…mbros, sendo um deles o seu Diretor-Presidente, vedada a recondução, nos termos da Lei nº 9.986, de 18 de julho de 2000.",
+          "literal": "(Redação dada pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…ão Federal, para cumprimento de mandato de 5 (cinco) anos, observado o disposto na Lei nº 9.986, de 18 de julho de 2000.",
+          "literal": "(Redação dada pela Lei nº 13.848, de 2019)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…vestido na função por 5 (cinco) anos, vedada a recondução, observado o disposto na Lei nº 9.986, de 18 de julho de 2000.",
+          "literal": "(Redação dada pela Lei nº 13.848, de 2019)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…trativa, de condenação penal transitada em julgado e de descumprimento injustificado do contrato de gestão da autarquia.",
+          "literal": "(Revogado pela Lei nº 13.848, de 2019)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "Art. 15. Compete à Diretoria Colegiada: (Vide Medida Provisória nº 2.000-16, de 2000)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "I - definir as diretrizes estratégicas da Agência; (Vide Medida Provisória nº 2.000-16, de 2000)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…namentais destinadas a permitir à Agência o cumprimento de seus objetivos; (Vide Medida Provisória nº 2.000-16, de 2000)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "III - editar normas sobre matérias de competência da Agência; (Vide Medida Provisória nº 2.000-16, de 2000)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2017
+          },
+          "trecho": "…ico no setor regulado e de impacto na saúde pública, dispensada essa exigência nos casos de grave risco à saúde pública;",
+          "literal": "(Redação dada pela Lei nº 13.411, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "… pública, dispensada essa exigência nos casos de grave risco à saúde pública; (Redação dada pela Lei nº 13.411, de 2017)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "IV - cumprir e fazer cumprir as normas relativas à vigilância sanitária; (Vide Medida Provisória nº 2.000-16, de 2000)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "V - elaborar e divulgar relatórios periódicos sobre suas atividades; (Vide Medida Provisória nº 2.000-16, de 2000)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "… de recurso, as decisões da Agência, mediante provocação dos interessados; (Vide Medida Provisória nº 2.000-16, de 2000)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "… encaminhar os demonstrativos contábeis da Agência aos órgãos competentes. (Vide Medida Provisória nº 2.000-16, de 2000)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…romulgar o regimento interno, definir a área de atuação das unidades organizacionais e a estrutura executiva da Agência.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "… pelo menos, três Diretores, dentre eles o Diretor-Presidente ou seu substituto legal, e deliberará por maioria simples.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…o menos, 3 (três) Diretores, entre eles o Diretor-Presidente ou seu substituto legal, e deliberará por maioria absoluta.",
+          "literal": "(Redação dada pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…aticados pela Agência caberá recurso à Diretoria Colegiada, com efeito suspensivo, como última instância administrativa.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2017
+          },
+          "trecho": "…curso administrativo previsto no § 2o será de trinta dias, contados a partir da publicação oficial da decisão recorrida.",
+          "literal": "(Incluído pela Lei nº 13.411, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…erá de trinta dias, contados a partir da publicação oficial da decisão recorrida. (Incluído pela Lei nº 13.411, de 2017)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2017
+          },
+          "trecho": "… administrativo deverá ser publicada no prazo máximo de noventa dias, contados a partir da data de protocolo do recurso.",
+          "literal": "(Incluído pela Lei nº 13.411, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "… prazo máximo de noventa dias, contados a partir da data de protocolo do recurso. (Incluído pela Lei nº 13.411, de 2017)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2017
+          },
+          "trecho": "§ 5o O prazo previsto no § 4o poderá ser prorrogado por igual período, mediante publicação da respectiva justificação.",
+          "literal": "(Incluído pela Lei nº 13.411, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "…ser prorrogado por igual período, mediante publicação da respectiva justificação. (Incluído pela Lei nº 13.411, de 2017)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2017
+          },
+          "trecho": "…ade funcional do responsável ou dos responsáveis em cada uma das áreas especializadas incumbidas da análise do processo.",
+          "literal": "(Incluído pela Lei nº 13.411, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "…ponsáveis em cada uma das áreas especializadas incumbidas da análise do processo. (Incluído pela Lei nº 13.411, de 2017)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "Art. 16. Compete ao Diretor-Presidente: (Vide Medida Provisória nº 2.000-16, de 2000)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "I - representar a Agência em juízo ou fora dele; (Vide Medida Provisória nº 2.000-16, de 2000)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "II - presidir as reuniões da Diretoria Colegiada; (Vide Medida Provisória nº 2.000-16, de 2000)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…II - decidir ad referendum da Diretoria Colegiada as questões de urgência; (Vide Medida Provisória nº 2.000-16, de 2000)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "IV - decidir em caso de empate nas deliberações da Diretoria Colegiada; (Vide Medida Provisória nº 2.000-16, de 2000)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…nfiança, e exercer o poder disciplinar, nos termos da legislação em vigor; (Vide Medida Provisória nº 2.000-16, de 2000)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…o Consultivo os relatórios periódicos elaborados pela Diretoria Colegiada; (Vide Medida Provisória nº 2.000-16, de 2000)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "VII - assinar contratos, convênios e ordenar despesas; (Vide Medida Provisória nº 2.000-16, de 2000)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…e atuação das unidades organizacionais e a estrutura executiva da Agência; (Vide Medida Provisória nº 2.000-16, de 2000)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "IX - exercer a gestão operacional da Agência. (Vide Medida Provisória nº 2.000-16, de 2000)",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.986",
+            "ano": 2000
+          },
+          "trecho": "…anitária - FCVS de exercício privativo de servidores públicos, no quantitativo e valores previstos no Anexo I desta Lei.",
+          "literal": "(Revogado pela Lei nº 9.986, de 2000)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.986",
+            "ano": 2000
+          },
+          "trecho": "…stido em FCVS perceberá os vencimentos do cargo efetivo, acrescidos do valor da função para a qual tiver sido designado.",
+          "literal": "(Revogado pela Lei nº 9.986, de 2000)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.986",
+            "ano": 2000
+          },
+          "trecho": "… os níveis hierárquicos, os valores de retribuição correspondentes e o respectivo custo global estabelecidos no Anexo I.",
+          "literal": "(Revogado pela Lei nº 9.986, de 2000)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.986",
+            "ano": 2000
+          },
+          "trecho": "…I, do art. 102 da Lei nº 8.112, de 11 de dezembro de 1990, com as alterações da Lei nº 9.527, de 10 de dezembro de 1997.",
+          "literal": "(Revogado pela Lei nº 9.986, de 2000)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…cento e vinte dias seguintes à nomeação do Diretor-Presidente da autarquia. (Vide Medida Provisória nº 1.912-6, de 1999)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…te da autarquia. (Vide Medida Provisória nº 1.912-6, de 1999) (Redação dada pela Medida Provisória nº 2.190-34, de 2001)",
+          "literal": "(Revogado pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2017
+          },
+          "trecho": "…em como os indicadores que permitam quantificar, objetivamente, sua avaliação periódica, devendo especificar, no mínimo:",
+          "literal": "(Redação dada pela Lei nº 13.411, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "…icar, objetivamente, sua avaliação periódica, devendo especificar, no mínimo: (Redação dada pela Lei nº 13.411, de 2017)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…ivamente, sua avaliação periódica, devendo especificar, no mínimo: (Redação dada pela Lei nº 13.411, de 2017) (Vigência)",
+          "literal": "(Revogado pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2017
+          },
+          "trecho": "I - metas e prazos de desempenho administrativo, operacional e de fiscalização;",
+          "literal": "(Incluído pela Lei nº 13.411, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I - metas e prazos de desempenho administrativo, operacional e de fiscalização; (Incluído pela Lei nº 13.411, de 2017)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "… e prazos de desempenho administrativo, operacional e de fiscalização; (Incluído pela Lei nº 13.411, de 2017) (Vigência)",
+          "literal": "(Revogado pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2017
+          },
+          "trecho": "…previsão orçamentária e cronograma de desembolso financeiro dos recursos necessários ao cumprimento das metas pactuadas;",
+          "literal": "(Incluído pela Lei nº 13.411, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…esembolso financeiro dos recursos necessários ao cumprimento das metas pactuadas; (Incluído pela Lei nº 13.411, de 2017)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…inanceiro dos recursos necessários ao cumprimento das metas pactuadas; (Incluído pela Lei nº 13.411, de 2017) (Vigência)",
+          "literal": "(Revogado pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2017
+          },
+          "trecho": "III - obrigações e responsabilidades das partes em relação às metas pactuadas;",
+          "literal": "(Incluído pela Lei nº 13.411, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III - obrigações e responsabilidades das partes em relação às metas pactuadas; (Incluído pela Lei nº 13.411, de 2017)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…rigações e responsabilidades das partes em relação às metas pactuadas; (Incluído pela Lei nº 13.411, de 2017) (Vigência)",
+          "literal": "(Revogado pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2017
+          },
+          "trecho": "IV - sistemática de acompanhamento e avaliação;",
+          "literal": "(Incluído pela Lei nº 13.411, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV - sistemática de acompanhamento e avaliação; (Incluído pela Lei nº 13.411, de 2017)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "IV - sistemática de acompanhamento e avaliação; (Incluído pela Lei nº 13.411, de 2017) (Vigência)",
+          "literal": "(Revogado pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2017
+          },
+          "trecho": "V - medidas a serem adotadas em caso de descumprimento injustificado das metas e das obrigações pactuadas;",
+          "literal": "(Incluído pela Lei nº 13.411, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "…das em caso de descumprimento injustificado das metas e das obrigações pactuadas; (Incluído pela Lei nº 13.411, de 2017)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "… de descumprimento injustificado das metas e das obrigações pactuadas; (Incluído pela Lei nº 13.411, de 2017) (Vigência)",
+          "literal": "(Revogado pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2017
+          },
+          "trecho": "VI - período de vigência;",
+          "literal": "(Incluído pela Lei nº 13.411, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "VI - período de vigência; (Incluído pela Lei nº 13.411, de 2017)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "VI - período de vigência; (Incluído pela Lei nº 13.411, de 2017) (Vigência)",
+          "literal": "(Revogado pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2017
+          },
+          "trecho": "VII - requisitos e condições para revisão do contrato de gestão.",
+          "literal": "(Incluído pela Lei nº 13.411, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso VII",
+          "diploma": null,
+          "trecho": "VII - requisitos e condições para revisão do contrato de gestão. (Incluído pela Lei nº 13.411, de 2017)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "VII - requisitos e condições para revisão do contrato de gestão. (Incluído pela Lei nº 13.411, de 2017) (Vigência)",
+          "literal": "(Revogado pela Lei nº 13.848, de 2019)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.411",
+            "ano": 2017
+          },
+          "trecho": "…ão dos membros da Diretoria Colegiada pelo Presidente da República, mediante solicitação do Ministro de Estado da Saúde.",
+          "literal": "(Redação dada pela Lei nº 13.411, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…Presidente da República, mediante solicitação do Ministro de Estado da Saúde. (Redação dada pela Lei nº 13.411, de 2017)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…da República, mediante solicitação do Ministro de Estado da Saúde. (Redação dada pela Lei nº 13.411, de 2017) (Vigência)",
+          "literal": "(Revogado pela Lei nº 13.848, de 2019)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…s valores apurados em aplicações no mercado financeiro das receitas previstas nos incisos I a IV e VI a IX deste artigo.",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "§ 4º A taxa deverá ser recolhida nos termos dispostos em ato próprio da ANVISA.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…1976, à vista do interesse da saúde pública, estão isentos do pagamento da Taxa de Fiscalização de Vigilância Sanitária.",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…s e certificados aplicam-se as periodicidades e os valores estipulados para os atos iniciais na forma prevista no Anexo.",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "… Lei no 6.360, de 1976, no § 2o do art. 3o do Decreto-Lei no 986, de 21 de outubro de 1969, e § 3o do art. 41 desta Lei.",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.001",
+            "ano": 2014
+          },
+          "trecho": "…2006, e o empreendedor da economia solidária estão isentos do pagamento de Taxa de Fiscalização de Vigilância Sanitária.",
+          "literal": "(Incluído pela Lei nº 13.001, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "… funcionamento de empresas previstas nos subitens dos itens 3.1, 3.2, 5.1 e 7.1 do Anexo II, ficam isentas de renovação.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        }
+      ]
+    },
+    "30": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "… Autarquia, automaticamente, investida no exercício de suas atribuições, e extinta a Secretaria de Vigilância Sanitária.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…e Controle de Qualidade em Saúde, bem como suas atribuições institucionais, acervo patrimonial e dotações orçamentárias.",
+          "literal": "(Revogado pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…sário à manutenção das atividades do Instituto Nacional de Controle de Qualidade em Saúde, até a organização da Agência.",
+          "literal": "(Revogado pela Medida Provisória nº 2.190-34, de 2001)"
+        }
+      ]
+    },
+    "32-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.090",
+            "ano": 2009
+          },
+          "trecho": "…quisa mantidas pelo poder público e organismos internacionais com os quais o Brasil tenha acordos de cooperação técnica.",
+          "literal": "(Incluído pela Lei nº 12.090, de 2009)"
+        }
+      ]
+    },
+    "34": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.986",
+            "ano": 2000
+          },
+          "trecho": "…ntes da Administração Pública Federal direta, indireta ou fundacional, quaisquer que sejam as funções a serem exercidas.",
+          "literal": "(Revogado pela Lei nº 9.986, de 2000)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.986",
+            "ano": 2000
+          },
+          "trecho": "…e entidades do Poder Executivo Federal, e desde que aprovadas pelo Ministros de Estado da Saúde e do Orçamento e Gestão.",
+          "literal": "(Revogado pela Lei nº 9.986, de 2000)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.986",
+            "ano": 2000
+          },
+          "trecho": "…o, fica a Agência autorizada a complementá-la até o limite da remuneração do cargo efetivo percebida no órgão de origem.",
+          "literal": "(Revogado pela Lei nº 9.986, de 2000)"
+        }
+      ]
+    },
+    "36": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…e serviços de interesse para a saúde, imprescindíveis à implantação da Agência. (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…atividades de que trata o caput deste artigo, por período não superior a trinta e seis meses a contar de sua instalação.",
+          "literal": "(Revogado pela Lei 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…ser efetivada à vista de notória capacidade técnica ou científica do profissional, mediante análise do curriculum vitae.",
+          "literal": "(Revogado pela Lei 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…ze meses, podendo ser prorrogadas desde que sua duração não ultrapasse o termo final da autorização de que trata o § 1º.",
+          "literal": "(Revogado pela Lei 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…lores definidos em ato conjunto da ANVS e do órgão central do Sistema de Pessoal Civil da Administração Federal (SIPEC).",
+          "literal": "(Revogado pela Lei 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…ts. 5º e 6º, no parágrafo único do art. 7º, nos arts. 8º, 9º, 10, 11, 12 e 16 da Lei nº 8.745, de 9 de dezembro de 1993.",
+          "literal": "(Revogado pela Lei 10.871, de 2004)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.986",
+            "ano": 2000
+          },
+          "trecho": "…adro de pessoal da Agência poderá contar com servidores redistribuídos de órgãos e entidades do Poder Executivo Federal.",
+          "literal": "(Revogado pela Lei nº 9.986, de 2000)"
+        }
+      ]
+    },
+    "39": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…Gratificação de Desempenho de Atividade de Ciência e Tecnologia - GDCT, criada pela Lei nº 9.638, de 20 de maio de 1998.",
+          "literal": "(Revogado pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…mediário da carreira de Desenvolvimento Tecnológico em exercício de atividades inerentes às suas atribuições na Agência.",
+          "literal": "(Revogado pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…8, será devida a esses servidores em exercício de atividades inerentes às atribuições dos respectivos cargos na Agência.",
+          "literal": "(Revogado pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…gratificações referidas neste artigo serão observados os demais critérios e regras estabelecidos na legislação em vigor.",
+          "literal": "(Revogado pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "… Nacional de Controle de Qualidade em Saúde em 31 de dezembro de 1998, e que venham a ser redistribuídos para a Agência.",
+          "literal": "(Revogado pela Medida Provisória nº 2.190-34, de 2001)"
+        }
+      ]
+    },
+    "41": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…nas a plantas produtivas e a mercadorias destinadas a mercados externos, desde que não acarretem riscos à saúde pública.",
+          "literal": "(Renumerado do parágrafo único pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "§ 2o A regulamentação a que se refere o caput deste artigo atinge inclusive a isenção de registro.",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…mento pelos órgãos sanitários das Unidades Federativas em que se localizem. (Vide Medida Provisória nº 1.814-4, de 1999)",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        }
+      ]
+    },
+    "41-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "…oridade sobre o dos demais, conforme disposto em ato da Diretoria Colegiada da Agência Nacional de Vigilância Sanitária.",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        }
+      ]
+    },
+    "41-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "… taxa correspondente ao exame e à anuência prévia do conteúdo informativo pela Agência Nacional de Vigilância Sanitária.",
+          "literal": "(Incluído pela Medida Provisória nº 2.190-34, de 2001)"
+        }
+      ]
+    },
+    "46": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "ANEXO I (Vide Medida Provisória nº 1.912-7, de 1999) (Vide Medida Provisória nº 2.134-28, de 2001)",
+          "literal": "(Revogado pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.190-34",
+            "ano": 2001
+          },
+          "trecho": "ANEXO II",
+          "literal": "(Redação dada pela Medida Provisória nº 2.190-34, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.546",
+            "ano": 2011
+          },
+          "trecho": "…tro, revalidação ou renovação de registro de fumígenos, com exceção dos produtos destinados exclusivamente à exportação.",
+          "literal": "(Redação dada pela Lei nº 12.546, de 2011)"
+        }
+      ]
+    }
+  }
+}

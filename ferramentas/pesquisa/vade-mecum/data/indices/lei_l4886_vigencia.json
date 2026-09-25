@@ -1,0 +1,883 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L4886",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l4886.json",
+      "colecao": "artigos",
+      "sha256": "ec37fd4e1b23625b5a93bafb611d8d663b8643e5fbddfd67892bcee44c0b4488",
+      "total_registros": 49,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 16,
+      "anotacoes": 73,
+      "anotacoes_sem_diploma_nomeado": 10
+    }
+  },
+  "vigencia": {
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "supressao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "…elho Federal caberá recurso, sem efeito suspensivo, no prazo de trinta dias, para o Ministro da Indústria e do Comércio.",
+          "literal": "(Suprimido)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "I - elaborar o seu regimento interno;",
+          "literal": "(Renumerado pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "II - dirimir as dúvidas suscitadas pelos Conselhos Regionais;",
+          "literal": "(Renumerado pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "III - aprovar os regimentos internos dos Conselhos Regionais;",
+          "literal": "(Renumerado pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "IV - julgar quaisquer recursos relativos às decisões dos Conselhos Regionais;",
+          "literal": "(Renumerado pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "V - baixar instruções para a fiel observância da presente Lei;",
+          "literal": "(Renumerado pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "VI - elaborar o Código de Ética Profissional;",
+          "literal": "(Renumerado pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "VII - resolver os casos omissos.",
+          "literal": "(Renumerado pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "…egoria profissional nos respectivos Estados e necessidades de cada entidade, e respeitados os seguintes limites máximos:",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "a) anuidade para pessoas físicas – até R$ 300,00 (trezentos reais);",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "b) (VETADO);",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "c) anuidade para pessoas jurídicas, de acordo com as seguintes classes de capital social:",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "1. de R$ 1,00 (um real) a R$ 10.000,00 (dez mil reais) – até R$ 350,00 (trezentos e cinquenta reais);",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "…0.000,01 (dez mil reais e um centavo) a R$ 50.000,00 (cinquenta mil reais) – até R$ 420,00 (quatrocentos e vinte reais);",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "…0.000,01 (cinquenta mil reais e um centavo) a R$ 100.000,00 (cem mil reais) – até R$ 504,00 (quinhentos e quatro reais);",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "…0.000,01 (cem mil reais e um centavo) a R$ 300.000,00 (trezentos mil reais) – até R$ 604,00 (seiscentos e quatro reais);",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "…01 (trezentos mil reais e um centavo) a R$ 500.000,00 (quinhentos mil reais) – até R$ 920,00 (novecentos e vinte reais);",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "6. acima de R$ 500.000,00 (quinhentos mil reais) – até R$ 1.370,00 (mil, trezentos e setenta reais);",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "alínea d",
+          "diploma": null,
+          "trecho": "d)",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "d) (VETADO);",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "alínea e",
+          "diploma": null,
+          "trecho": "e)",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "e) (VETADO).",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "supressao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1o",
+          "literal": "(Suprimido)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "§ 1o (Suprimido)",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "… aos limites máximos estabelecidos neste artigo serão corrigidos anualmente pelo índice oficial de preços ao consumidor.",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "… descontos, vencendo-se a primeira em 30 de abril, a segunda em 31 de agosto e a terceira em 31 de dezembro de cada ano.",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "… concedido desconto de 20% (vinte por cento) até 31 de janeiro e 15% (quinze por cento) até 28 de fevereiro de cada ano.",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "…% (um por cento) de juros de mora por mês de atraso e atualização monetária pelo índice oficial de preços ao consumidor.",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "…l que não o da sua sede pagará anuidade em valor que não exceda a 50% (cinquenta por cento) do que for pago pela matriz.",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "§ 7o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "§ 7o (VETADO)",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "§ 8o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "§ 8o (VETADO)",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "…dente a 50% (cinquenta por cento) da anuidade devida pelos demais profissionais autônomos registrados no mesmo Conselho.",
+          "literal": "(Incluído pela Lei nº 12.246, de 2010)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.246",
+            "ano": 2010
+          },
+          "trecho": "…as físicas e jurídicas, registrados, servindo como título executivo extrajudicial a certidão relativa aos seus créditos.",
+          "literal": "(Redação dada pela Lei nº 12.246, de 2010)"
+        },
+        {
+          "tipo": "supressao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "…nimo vigente na região, quando se tratar, respectivamente, de representante comercial, pessoa física ou pessoa jurídica.",
+          "literal": "(Suprimido)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…orias dos Conselhos Regionais prestarão contas da sua gestão ao próprio conselho, até o dia 15 de fevereiro de cada ano.",
+          "literal": "(Redação dada pela Lei nº 8.420, de 8.5.1992)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "Art . 25. Os Conselhos Regionais prestarão contas até o último dia do mês de fevereiro de cada ano ao Conselho Federal.",
+          "literal": "(Redação dada pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…co. A Diretoria do Conselho Federal prestará contas ao respectivo plenário até o último dia do mês de março de cada ano.",
+          "literal": "(Redação dada pela Lei nº 8.420, de 8.5.1992)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…ato de representação comercial, além dos elementos comuns e outros a juízo dos interessados, constarão obrigatoriamente:",
+          "literal": "(Redação dada pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "d) indicação da zona ou zonas em que será exercida a representação;",
+          "literal": "(Redação dada pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea j",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…derá ser inferior a 1/12 (um doze avos) do total da retribuição auferida durante o tempo em que exerceu a representação.",
+          "literal": "(Redação dada pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…nsal da retribuição auferida até a data da rescisão, multiplicada pela metade dos meses resultantes do prazo contratual.",
+          "literal": "(Redação dada pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…rato com prazo determinado, uma vez prorrogado o prazo inicial, tácita ou expressamente, torna-se a prazo indeterminado.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…prazo indeterminado todo contrato que suceder, dentro de seis meses, a outro contrato, com ou sem determinação de prazo.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        }
+      ]
+    },
+    "31": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…entante à comissão pelos negócios aí realizados, ainda que diretamente pelo representado ou por intermédio de terceiros.",
+          "literal": "(Redação dada pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "Parágrafo único. A exclusividade de representação não se presume na ausência de ajustes expressos.",
+          "literal": "(Redação dada pela Lei nº 8.420, de 8.5.1992)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "Art. 32. O representante comercial adquire o direito às comissões quando do pagamento dos pedidos ou propostas.",
+          "literal": "(Redação dada pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…etuado até o dia 15 do mês subseqüente ao da liquidação da fatura, acompanhada das respectivas cópias das notas fiscais.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "§ 2° As comissões pagas fora do prazo previsto no parágrafo anterior deverão ser corrigidas monetariamente.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "§ 3° É facultado ao representante comercial emitir títulos de créditos para cobrança de comissões.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "§ 4° As comissões deverão ser calculadas pelo valor total das mercadorias.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…ição pendente, gerada por pedidos em carteira ou em fase de execução e recebimento, terá vencimento na data da rescisão.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6°",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "§ 6° (Vetado).",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "… ou indiretamente, a diminuição da média dos resultados auferidos pelo representante nos últimos seis meses de vigência.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…comissões para efeito tanto do pré-aviso como da indenização, prevista nesta lei, deverão ser corrigidos monetariamente.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        }
+      ]
+    },
+    "39": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…to sumaríssimo previsto no art. 275 do Código de Processo Civil, ressalvada a competência do Juizado de Pequenas Causas.",
+          "literal": "(Redação dada pela Lei nº 8.420, de 8.5.1992)"
+        }
+      ]
+    },
+    "41": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "supressao",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…io. § 2º A intervenção restringir-se-á a tornar efetivo o cumprimento da lei e cessará quando assegurada a sua execução.",
+          "literal": "(Suprimido)"
+        }
+      ]
+    },
+    "42": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…o representante contratar com outros representantes comerciais a execução dos serviços relacionados com a representação.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…omercial contratado dependerá da liquidação da conta de comissão devida pelo representando ao representante contratante.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…zação e aviso prévio, proporcionalmente às retribuições auferidas pelo representante contratado na vigência do contrato.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…justo pelo representante contratante, o representante contratado fará jus ao aviso prévio e indenização na forma da lei.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…a o art. 33 desta lei são aumentados em dez dias quando se tratar de contrato realizado entre representantes comerciais.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        }
+      ]
+    },
+    "43": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "Art. 43. É vedada no contrato de representação comercial a inclusão de cláusulas del credere.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        }
+      ]
+    },
+    "44": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…a mesma natureza dos créditos trabalhistas para fins de inclusão no pedido de falência ou plano de recuperação judicial.",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…entante comercial para pleitear a retribuição que lhe é devida e os demais direitos que lhe são garantidos por esta lei.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…ão do representante comercial para pleitear a retribuição que lhe é devida e os demais direitos garantidos por esta Lei.",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "45": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…porário do representante comercial que estiver em gozo do benefício de auxílio-doença concedido pela previdência social.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        }
+      ]
+    },
+    "46": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…om base na variação dos BTNs ou por outro indexador que venha a substituí-los e legislação ulterior aplicável à matéria.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        }
+      ]
+    },
+    "47": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "Art. 47. Compete ao Conselho Federal dos Representantes Comerciais fiscalizar a execução da presente lei.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.420",
+            "ano": 1992
+          },
+          "trecho": "…reunião plenária, assegurado, em qualquer caso, o direito de defesa. A intervenção cessará quando do cumprimento da lei.",
+          "literal": "(Incluído pela Lei nº 8.420, de 8.5.1992)"
+        }
+      ]
+    }
+  }
+}

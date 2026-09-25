@@ -1,0 +1,1531 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "LRF",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_lrf.json",
+      "colecao": "artigos",
+      "sha256": "29e1af5a84670994bb2237a998f788b36ef99e72edb4a33ef821b0104f853eb9",
+      "total_registros": 83,
+      "gerado_em": "2026-08-21T22:36:30+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 34,
+      "anotacoes": 127,
+      "anotacoes_sem_diploma_nomeado": 19
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "214",
+            "ano": 2025
+          },
+          "trecho": "…ção, e as contribuições mencionadas na alínea “a” do inciso I e no inciso II do art. 195, e no art. 239 da Constituição;",
+          "literal": "(Redação dada pela Lei Complementar nº 214, de 2025)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 3o",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "c)",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "alínea d",
+          "diploma": null,
+          "trecho": "d)",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "200",
+            "ano": 2023
+          },
+          "trecho": "… anteriores, e as estimativas para o exercício a que se refere a lei de diretrizes orçamentárias e para os subsequentes.",
+          "literal": "(Incluído pela Lei Complementar nº 200, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "200",
+            "ano": 2023
+          },
+          "trecho": "§ 5º No caso da União, o Anexo de Metas Fiscais do projeto de lei de diretrizes orçamentárias conterá também:",
+          "literal": "(Incluído pela Lei Complementar nº 200, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "200",
+            "ano": 2023
+          },
+          "trecho": "…que se referir e para os 3 (três) seguintes, com o objetivo de garantir sustentabilidade à trajetória da dívida pública;",
+          "literal": "(Incluído pela Lei Complementar nº 200, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "200",
+            "ano": 2023
+          },
+          "trecho": "…enários de referência, distinguindo-se as despesas primárias das financeiras e as obrigatórias daquelas discricionárias;",
+          "literal": "(Incluído pela Lei Complementar nº 200, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "200",
+            "ano": 2023
+          },
+          "trecho": "…cais consistentes com a estabilização da Dívida Bruta do Governo Geral (DBGG) em relação ao Produto Interno Bruto (PIB);",
+          "literal": "(Incluído pela Lei Complementar nº 200, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "200",
+            "ano": 2023
+          },
+          "trecho": "…p. (vinte e cinco centésimos ponto percentual) do PIB previsto no respectivo projeto de lei de diretrizes orçamentárias;",
+          "literal": "(Incluído pela Lei Complementar nº 200, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "200",
+            "ano": 2023
+          },
+          "trecho": "…II do caput do art. 163 da Constituição Federal e no art. 6º da Emenda Constitucional nº 126, de 21 de dezembro de 2022;",
+          "literal": "(Incluído pela Lei Complementar nº 200, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "200",
+            "ano": 2023
+          },
+          "trecho": "… das recomendações resultantes da avaliação das políticas públicas previstas no § 16 do art. 37 da Constituição Federal.",
+          "literal": "(Incluído pela Lei Complementar nº 200, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "200",
+            "ano": 2023
+          },
+          "trecho": "… Distrito Federal e os Municípios poderão adotar, total ou parcialmente, no que couber, o disposto no § 5º deste artigo.",
+          "literal": "(Incluído pela Lei Complementar nº 200, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "200",
+            "ano": 2023
+          },
+          "trecho": "… de quaisquer despesas primárias da apuração da meta de resultado primário dos orçamentos fiscal e da seguridade social.",
+          "literal": "(Incluído pela Lei Complementar nº 200, de 2023)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a)",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "… global de incentivos e benefícios de natureza tributária, financeira e creditícia e para pessoas físicas e jurídicas; e",
+          "literal": "(Incluído pela Lei Complementar nº 224, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "…sas primárias obrigatórias e discricionárias, no exercício de sua elaboração e para os 2 (dois) exercícios subsequentes.",
+          "literal": "(Incluído pela Lei Complementar nº 224, de 2025)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "§ 7o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "…as em anexos específicos com estimativa das renúncias no exercício de referência e nos 2 (dois) exercícios subsequentes.",
+          "literal": "(Incluído pela Lei Complementar nº 224, de 2025)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 6o",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "177",
+            "ano": 2021
+          },
+          "trecho": "…fico e tecnológico custeadas por fundo criado para tal finalidade e as ressalvadas pela lei de diretrizes orçamentárias.",
+          "literal": "(Redação dada pela Lei Complementar nº 177, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "200",
+            "ano": 2023
+          },
+          "trecho": "… conjunta com as comissões temáticas do Congresso Nacional ou equivalente nas Casas Legislativas estaduais e municipais.",
+          "literal": "(Redação dada pela Lei Complementar nº 200, de 2023)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "…os subsequentes e atender ao disposto na lei de diretrizes orçamentárias e a pelo menos 1 (uma) das seguintes condições:",
+          "literal": "(Redação dada pela Lei Complementar nº 224, de 2025)"
+        }
+      ]
+    },
+    "14-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "…tureza tributária que implique renúncia de receita e cujo beneficiário seja pessoa jurídica deverá estar acompanhada de:",
+          "literal": "(Incluído pela Lei Complementar nº 224, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "I - estimativa de quantitativo de beneficiários;",
+          "literal": "(Incluído pela Lei Complementar nº 224, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "II - prazo de vigência, que não poderá ser superior a 5 (cinco) anos;",
+          "literal": "(Incluído pela Lei Complementar nº 224, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "III - metas de desempenho, que deverão ser objetivas e quantificáveis, em dimensões econômicas, sociais e ambientais;",
+          "literal": "(Incluído pela Lei Complementar nº 224, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "IV - impacto previsto na redução das desigualdades regionais, se for o caso; e",
+          "literal": "(Incluído pela Lei Complementar nº 224, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "…de transparência e de monitoramento e avaliação de resultados em relação às metas de que trata o inciso III deste caput.",
+          "literal": "(Incluído pela Lei Complementar nº 224, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "…período em que vigorar o benefício, sem prejuízo de outras metas previstas na forma do inciso III do caput deste artigo.",
+          "literal": "(Incluído pela Lei Complementar nº 224, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "… do inciso III do caput deste artigo não tenham sido atingidas ou cuja avaliação de resultados não tenha sido realizada.",
+          "literal": "(Incluído pela Lei Complementar nº 224, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "…o e ao atingimento de metas de resultados definidas na forma do inciso III do caput deste artigo, a cada 5 (cinco) anos.",
+          "literal": "(Incluído pela Lei Complementar nº 224, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "…xecutivo multidisciplinar e especializado no monitoramento e avaliação de políticas públicas, nos termos de regulamento.",
+          "literal": "(Incluído pela Lei Complementar nº 224, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "§ 5º O disposto neste artigo:",
+          "literal": "(Incluído pela Lei Complementar nº 224, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "…islativa que conceda diferimento de tributos, ressalvado o diferimento que implique postergação do pagamento do tributo:",
+          "literal": "(Incluído pela Lei Complementar nº 224, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "… ou inferior a 60 (sessenta) meses, para pagamento de forma parcelada, contado daquele em que seria devido o tributo; ou",
+          "literal": "(Incluída pela Lei Complementar nº 224, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "… ao combate aos efeitos de situação de emergência ou estado de calamidade pública reconhecidos na forma da legislação; e",
+          "literal": "(Incluída pela Lei Complementar nº 224, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "…s previstos nos incisos I, II, IV e V do caput do art. 153 da Constituição Federal, na forma do § 1º do referido artigo.",
+          "literal": "(Incluído pela Lei Complementar nº 224, de 2025)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "178",
+            "ano": 2021
+          },
+          "trecho": "…rência com as dos 11 (onze) imediatamente anteriores, adotando-se o regime de competência, independentemente de empenho.",
+          "literal": "(Redação dada pela Lei Complementar nº 178, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "178",
+            "ano": 2021
+          },
+          "trecho": "…r dedução ou retenção, ressalvada a redução para atendimento ao disposto no art. 37, inciso XI, da Constituição Federal.",
+          "literal": "(Incluído pela Lei Complementar nº 178, de 2021)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "178",
+            "ano": 2021
+          },
+          "trecho": "…estora única ou fundo previsto no art. 249 da Constituição Federal, quanto à parcela custeada por recursos provenientes:",
+          "literal": "(Redação dada pela Lei Complementar nº 178, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "178",
+            "ano": 2021
+          },
+          "trecho": "…la orientação, pela supervisão e pelo acompanhamento dos regimes próprios de previdência social dos servidores públicos.",
+          "literal": "(Redação dada pela Lei Complementar nº 178, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "178",
+            "ano": 2021
+          },
+          "trecho": "… a dedução da parcela custeada com recursos aportados para a cobertura do déficit financeiro dos regimes de previdência.",
+          "literal": "(Incluído pela Lei Complementar nº 178, de 2021)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "178",
+            "ano": 2021
+          },
+          "trecho": "…pectivos servidores inativos e pensionistas, mesmo que o custeio dessas despesas esteja a cargo de outro Poder ou órgão.",
+          "literal": "(Incluído pela Lei Complementar nº 178, de 2021)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "Art. 21. É nulo de pleno direito:",
+          "literal": "(Redação dada pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "… desta Lei Complementar e o disposto no inciso XIII do caput do art. 37 e no § 1º do art. 169 da Constituição Federal; e",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "b) ao limite legal de comprometimento aplicado às despesas com pessoal inativo;",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "… pessoal nos 180 (cento e oitenta) dias anteriores ao final do mandato do titular de Poder ou órgão referido no art. 20;",
+          "literal": "(Redação dada pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "…elas a serem implementadas em períodos posteriores ao final do mandato do titular de Poder ou órgão referido no art. 20;",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "…rreiras do setor público, ou a edição de ato, por esses agentes, para nomeação de aprovados em concurso público, quando:",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "…o da despesa com pessoal nos 180 (cento e oitenta) dias anteriores ao final do mandato do titular do Poder Executivo; ou",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "…al que preveja parcelas a serem implementadas em períodos posteriores ao final do mandato do titular do Poder Executivo.",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "§ 1º As restrições de que tratam os incisos II, III e IV:",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "…r aplicadas inclusive durante o período de recondução ou reeleição para o cargo de titular do Poder ou órgão autônomo; e",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "II - aplicam-se somente aos titulares ocupantes de cargo eletivo dos Poderes referidos no art. 20.",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "…. 169 da Constituição Federal ou aqueles que, de qualquer modo, acarretem a criação ou o aumento de despesa obrigatória.",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "178",
+            "ano": 2021
+          },
+          "trecho": "…lcançada a redução no prazo estabelecido e enquanto perdurar o excesso, o Poder ou órgão referido no art. 20 não poderá:",
+          "literal": "(Redação dada pela Lei Complementar nº 178, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "178",
+            "ano": 2021
+          },
+          "trecho": "… crédito, ressalvadas as destinadas ao pagamento da dívida mobiliária e as que visem à redução das despesas com pessoal.",
+          "literal": "(Redação dada pela Lei Complementar nº 178, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "164",
+            "ano": 2018
+          },
+          "trecho": "…superior a 10% (dez por cento), em comparação ao correspondente quadrimestre do exercício financeiro anterior, devido a:",
+          "literal": "(Incluído pela Lei Complementar nº 164, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "164",
+            "ano": 2018
+          },
+          "trecho": "…erências recebidas do Fundo de Participação dos Municípios decorrente de concessão de isenções tributárias pela União; e",
+          "literal": "(Incluído pela Lei Complementar nº 164, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "164",
+            "ano": 2018
+          },
+          "trecho": "II – diminuição das receitas recebidas de royalties e participações especiais.",
+          "literal": "(Incluído pela Lei Complementar nº 164, de 2018)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "164",
+            "ano": 2018
+          },
+          "trecho": "… para este cálculo, a receita corrente líquida do quadrimestre correspondente do ano anterior atualizada monetariamente.",
+          "literal": "(Incluído pela Lei Complementar nº 164, de 2018)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "26-A": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 26-A.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "Art. 26-A. (VETADO).",
+          "literal": "(Incluído pela Lei Complementar nº 224, de 2025)"
+        }
+      ]
+    },
+    "31": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "178",
+            "ano": 2021
+          },
+          "trecho": "… crédito interna ou externa, inclusive por antecipação de receita, ressalvadas as para pagamento de dívidas mobiliárias;",
+          "literal": "(Redação dada pela Lei Complementar nº 178, de 2021)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "159",
+            "ano": 2017
+          },
+          "trecho": "… será de, no mínimo, 90 (noventa) dias e, no máximo, 270 (duzentos e setenta) dias, a critério do Ministério da Fazenda.",
+          "literal": "(Incluído pela Lei Complementar nº 159, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "178",
+            "ano": 2021
+          },
+          "trecho": "…enefício e o interesse econômico e social da operação e que não configure infração a dispositivo desta Lei Complementar.",
+          "literal": "(Incluído pela Lei Complementar nº 178, de 2021)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "178",
+            "ano": 2021
+          },
+          "trecho": "…amortização ou constituída a reserva de que trata o § 2º, aplicam-se ao ente as restrições previstas no § 3º do art. 23.",
+          "literal": "(Redação dada pela Lei Complementar nº 178, de 2021)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "206",
+            "ano": 2024
+          },
+          "trecho": "… ente da Federação afetado pelo estado de calamidade pública reconhecido pelo Congresso Nacional de que trata o art. 65;",
+          "literal": "(Redação dada pela Lei Complementar nº 206, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "212",
+            "ano": 2025
+          },
+          "trecho": "…ciar a estruturação de projetos ou a garantir contraprestações em contratos de parceria público-privada ou de concessão;",
+          "literal": "(Redação dada pela Lei Complementar nº 212, de 2025)"
+        }
+      ]
+    },
+    "40": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "178",
+            "ano": 2021
+          },
+          "trecho": "…deral e as normas emitidas pelo Ministério da Economia acerca da classificação de capacidade de pagamento dos mutuários.",
+          "literal": "(Redação dada pela Lei Complementar nº 178, de 2021)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "178",
+            "ano": 2021
+          },
+          "trecho": "…dade de pagamento de Estados e Municípios deverá ser precedida de consulta pública, assegurada a manifestação dos entes.",
+          "literal": "(Incluído pela Lei Complementar nº 178, de 2021)"
+        }
+      ]
+    },
+    "41": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 41.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "41-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "212",
+            "ano": 2025
+          },
+          "trecho": "…20, até a próxima apuração anual, a vedação à concessão ou à ampliação de incentivo ou benefício de natureza tributária.",
+          "literal": "(Incluído pela Lei Complementar nº 212, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "212",
+            "ano": 2025
+          },
+          "trecho": "…ágrafo único do art. 22, bem como a vedação à concessão ou à ampliação de incentivo ou benefício de natureza tributária.",
+          "literal": "(Incluído pela Lei Complementar nº 212, de 2025)"
+        }
+      ]
+    },
+    "42": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…ício seguinte sem que haja suficiente disponibilidade de caixa para este efeito. (Vide Lei Complementar nº 178, de 2021)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "48": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "131",
+            "ano": 2009
+          },
+          "trecho": "Parágrafo único. A transparência será assegurada também mediante:",
+          "literal": "(Redação dada pela Lei Complementar nº 131, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "156",
+            "ano": 2016
+          },
+          "trecho": "§ 1o A transparência será assegurada também mediante:",
+          "literal": "(Redação dada pela Lei Complementar nº 156, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "131",
+            "ano": 2009
+          },
+          "trecho": "…ncias públicas, durante os processos de elaboração e discussão dos planos, lei de diretrizes orçamentárias e orçamentos;",
+          "literal": "(Incluído pela Lei Complementar nº 131, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "131",
+            "ano": 2009
+          },
+          "trecho": "… real, de informações pormenorizadas sobre a execução orçamentária e financeira, em meios eletrônicos de acesso público;",
+          "literal": "(Incluído pela Lei Complementar nº 131, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "156",
+            "ano": 2016
+          },
+          "trecho": "…eal, de informações pormenorizadas sobre a execução orçamentária e financeira, em meios eletrônicos de acesso público; e",
+          "literal": "(Redação dada pela Lei Complementar nº 156, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "131",
+            "ano": 2009
+          },
+          "trecho": "…controle, que atenda a padrão mínimo de qualidade estabelecido pelo Poder Executivo da União e ao disposto no art. 48-A.",
+          "literal": "(Incluído pela Lei Complementar nº 131, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "224",
+            "ano": 2025
+          },
+          "trecho": "… aberto e padronizado, de dados atualizados sobre benefícios de natureza tributária, financeira e creditícia concedidos.",
+          "literal": "(Incluído pela Lei Complementar nº 224, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "156",
+            "ano": 2016
+          },
+          "trecho": "…elo órgão central de contabilidade da União, os quais deverão ser divulgados em meio eletrônico de amplo acesso público.",
+          "literal": "(Incluído pela Lei Complementar nº 156, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "156",
+            "ano": 2016
+          },
+          "trecho": "…do registro eletrônico centralizado e atualizado das dívidas públicas interna e externa, de que trata o § 4o do art. 32.",
+          "literal": "(Incluído pela Lei Complementar nº 156, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "156",
+            "ano": 2016
+          },
+          "trecho": "§ 4o A inobservância do disposto nos §§ 2o e 3o ensejará as penalidades previstas no § 2o do art. 51.",
+          "literal": "(Incluído pela Lei Complementar nº 156, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "156",
+            "ano": 2016
+          },
+          "trecho": "…os, a União, os Estados, o Distrito Federal e os Municípios cumprem o dever de ampla divulgação a que se refere o caput.",
+          "literal": "(Incluído pela Lei Complementar nº 156, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "156",
+            "ano": 2016
+          },
+          "trecho": "…emas únicos de execução orçamentária e financeira, mantidos e gerenciados pelo Poder Executivo, resguardada a autonomia.",
+          "literal": "(Incluído pela Lei Complementar nº 156, de 2016)"
+        }
+      ]
+    },
+    "48-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "131",
+            "ano": 2009
+          },
+          "trecho": "…rt. 48, os entes da Federação disponibilizarão a qualquer pessoa física ou jurídica o acesso a informações referentes a:",
+          "literal": "(Incluído pela Lei Complementar nº 131, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "131",
+            "ano": 2009
+          },
+          "trecho": "…tado, à pessoa física ou jurídica beneficiária do pagamento e, quando for o caso, ao procedimento licitatório realizado;",
+          "literal": "(Incluído pela Lei Complementar nº 131, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "131",
+            "ano": 2009
+          },
+          "trecho": "…a: o lançamento e o recebimento de toda a receita das unidades gestoras, inclusive referente a recursos extraordinários.",
+          "literal": "(Incluído pela Lei Complementar nº 131, de 2009)"
+        }
+      ]
+    },
+    "51": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "178",
+            "ano": 2021
+          },
+          "trecho": "§ 1º Os Estados e os Municípios encaminharão suas contas ao Poder Executivo da União até 30 de abril.",
+          "literal": "(Redação dada pela Lei Complementar nº 178, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…caminharão suas contas ao Poder Executivo da União até 30 de abril. (Redação dada pela Lei Complementar nº 178, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "178",
+            "ano": 2021
+          },
+          "trecho": "…ceba transferências voluntárias e contrate operações de crédito, exceto as destinadas ao pagamento da dívida mobiliária.",
+          "literal": "(Redação dada pela Lei Complementar nº 178, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…de crédito, exceto as destinadas ao pagamento da dívida mobiliária. (Redação dada pela Lei Complementar nº 178, de 2021)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "59": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "178",
+            "ano": 2021
+          },
+          "trecho": "…das as normas de padronização metodológica editadas pelo conselho de que trata o art. 67, com ênfase no que se refere a:",
+          "literal": "(Redação dada pela Lei Complementar nº 178, de 2021)"
+        }
+      ]
+    },
+    "63": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a)",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "64": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "212",
+            "ano": 2025
+          },
+          "trecho": "…nceira a que se refere o caput poderão ser prestadas para a modernização da gestão educacional dos Estados e Municípios.",
+          "literal": "(Incluído pela Lei Complementar nº 212, de 2025)"
+        }
+      ]
+    },
+    "65": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "… ou na integralidade do território nacional e enquanto perdurar a situação, além do previsto nos inciso I e II do caput:",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "…demais restrições aplicáveis à União, aos Estados, ao Distrito Federal e aos Municípios, bem como sua verificação, para:",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "a) contratação e aditamento de operações de crédito;",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "b) concessão de garantias;",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "c) contratação entre entes da Federação; e",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "d) recebimento de transferências voluntárias;",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "…o do art. 8º desta Lei Complementar, desde que os recursos arrecadados sejam destinados ao combate à calamidade pública;",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "…desde que o incentivo ou benefício e a criação ou o aumento da despesa sejam destinados ao combate à calamidade pública.",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "…º deste artigo, observados os termos estabelecidos no decreto legislativo que reconhecer o estado de calamidade pública:",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "I - aplicar-se-á exclusivamente:",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "… reconhecido o estado de calamidade pública pelo Congresso Nacional e enquanto perdurar o referido estado de calamidade;",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "…tão orçamentária e financeira necessários ao atendimento de despesas relacionadas ao cumprimento do decreto legislativo;",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "II - não afasta as disposições relativas a transparência, controle e fiscalização.",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "173",
+            "ano": 2020
+          },
+          "trecho": "…rtigo, a garantia será mantida, não sendo necessária a alteração dos contratos de garantia e de contragarantia vigentes.",
+          "literal": "(Incluído pela Lei Complementar nº 173, de 2020)"
+        }
+      ]
+    },
+    "65-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "195",
+            "ano": 2022
+          },
+          "trecho": "…que sejam autorizadas em acréscimo aos valores inicialmente previstos pelo Congresso Nacional na lei orçamentária anual.",
+          "literal": "(Incluído pela Lei Complementar nº 195, de 2022)"
+        }
+      ]
+    },
+    "73-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "131",
+            "ano": 2009
+          },
+          "trecho": "…ontas e ao órgão competente do Ministério Público o descumprimento das prescrições estabelecidas nesta Lei Complementar.",
+          "literal": "(Incluído pela Lei Complementar nº 131, de 2009)"
+        }
+      ]
+    },
+    "73-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "131",
+            "ano": 2009
+          },
+          "trecho": "…prazos para o cumprimento das determinações dispostas nos incisos II e III do parágrafo único do art. 48 e do art. 48-A:",
+          "literal": "(Incluído pela Lei Complementar nº 131, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "131",
+            "ano": 2009
+          },
+          "trecho": "I – 1 (um) ano para a União, os Estados, o Distrito Federal e os Municípios com mais de 100.000 (cem mil) habitantes;",
+          "literal": "(Incluído pela Lei Complementar nº 131, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "131",
+            "ano": 2009
+          },
+          "trecho": "II – 2 (dois) anos para os Municípios que tenham entre 50.000 (cinquenta mil) e 100.000 (cem mil) habitantes;",
+          "literal": "(Incluído pela Lei Complementar nº 131, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "131",
+            "ano": 2009
+          },
+          "trecho": "III – 4 (quatro) anos para os Municípios que tenham até 50.000 (cinquenta mil) habitantes.",
+          "literal": "(Incluído pela Lei Complementar nº 131, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "131",
+            "ano": 2009
+          },
+          "trecho": "…tados a partir da data de publicação da lei complementar que introduziu os dispositivos referidos no caput deste artigo.",
+          "literal": "(Incluído pela Lei Complementar nº 131, de 2009)"
+        }
+      ]
+    },
+    "73-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "131",
+            "ano": 2009
+          },
+          "trecho": "…s II e III do parágrafo único do art. 48 e no art. 48-A sujeita o ente à sanção prevista no inciso I do § 3o do art. 23.",
+          "literal": "(Incluído pela Lei Complementar nº 131, de 2009)"
+        }
+      ]
+    }
+  }
+}

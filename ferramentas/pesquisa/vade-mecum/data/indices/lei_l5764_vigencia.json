@@ -1,0 +1,233 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L5764",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l5764.json",
+      "colecao": "artigos",
+      "sha256": "35f972f00c4b3e2a567abc5322cdd457c3cc7390ccfe8c45d85fab06cb68f29c",
+      "total_registros": 119,
+      "gerado_em": "2026-08-31T20:53:32+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 10,
+      "anotacoes": 13,
+      "anotacoes_sem_diploma_nomeado": 0
+    }
+  },
+  "vigencia": {
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "130",
+            "ano": 2009
+          },
+          "trecho": "§ 3° Somente as cooperativas agrícolas mistas poderão criar e manter seção de crédito.",
+          "literal": "(Revogado pela Lei Complementar nº 130, de 20090)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "130",
+            "ano": 2009
+          },
+          "trecho": "…o de seções de crédito nas cooperativas agrícolas mistas será submetida à prévia autorização do Banco Central do Brasil.",
+          "literal": "(Revogado pela Lei Complementar nº 130, de 20090)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.806",
+            "ano": 2019
+          },
+          "trecho": "…I – se a cooperativa tem poder para agir como substituta processual de seus associados, na forma do art. 88-A desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.806, de 2019)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.195",
+            "ano": 2021
+          },
+          "trecho": "…de folhas soltas ou fichas ou em meio digital, nos termos de regulamento do órgão competente do Poder Executivo federal.",
+          "literal": "(Redação dada pela Lei nº 14.195, de 2021)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…restituição do capital integralizado pelo associado, em razão do seu desligamento, por demissão, exclusão ou eliminação.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        }
+      ]
+    },
+    "43-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "931",
+            "ano": 2020
+          },
+          "trecho": "…mpresarial e Integração da Secretaria Especial de Desburocratização, Gestão e Governo Digital do Ministério da Economia.",
+          "literal": "(Incluído pela Medida Provisória nº 931, de 2020)"
+        }
+      ]
+    },
+    "82": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.076",
+            "ano": 2004
+          },
+          "trecho": "… emissão de outros títulos decorrentes de suas atividades normais, aplicando-se, no que couber, a legislação específica.",
+          "literal": "(Redação dada pela Lei nº 11.076, de 2004)"
+        }
+      ]
+    },
+    "84": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "130",
+            "ano": 2009
+          },
+          "trecho": "…as cooperativas agrícolas mistas só poderão operar com associados, pessoas físicas, que de forma efetiva e predominante:",
+          "literal": "(Revogado pela Lei Complementar nº 130, de 20090)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "130",
+            "ano": 2009
+          },
+          "trecho": "…mentar nº 130, de 20090) I - desenvolvam, na área de ação da cooperativa, atividades agrícolas, pecuárias ou extrativas;",
+          "literal": "(Revogado pela Lei Complementar nº 130, de 20090)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "130",
+            "ano": 2009
+          },
+          "trecho": "…s; (Revogado pela Lei Complementar nº 130, de 20090) II - se dediquem a operações de captura e transformação do pescado.",
+          "literal": "(Revogado pela Lei Complementar nº 130, de 20090)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "130",
+            "ano": 2009
+          },
+          "trecho": "…s agrícolas, pecuárias ou extrativas na área de ação da cooperativa ou atividade de captura ou transformação do pescado.",
+          "literal": "(Revogado pela Lei Complementar nº 130, de 20090)"
+        }
+      ]
+    },
+    "86": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "130",
+            "ano": 2009
+          },
+          "trecho": "… agrícolas mistas, o disposto neste artigo só se aplicará com base em regras a serem estabelecidas pelo órgão normativo.",
+          "literal": "(Revogado pela Lei Complementar nº 130, de 20090)"
+        }
+      ]
+    },
+    "88-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.806",
+            "ano": 2019
+          },
+          "trecho": "…tada individualmente pelo associado ou por meio de assembleia geral que delibere sobre a propositura da medida judicial.",
+          "literal": "(Incluído pela Lei nº 13.806, de 2019)"
+        }
+      ]
+    }
+  }
+}

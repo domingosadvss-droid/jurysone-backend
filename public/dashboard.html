@@ -7,8 +7,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <!-- Chaves de API e configuração local — NÃO versionar config.js com valores reais -->
     <script src="config.js"></script>
+    <script>
+        (function checkAuth() {
+            const user = localStorage.getItem('jurysone_user');
+            const token = localStorage.getItem('jurysone_token');
+            if (!user || !token) {
+                window.location.href = '/login.html';
+                return;
+            }
+            // Valida expiração do token JWT
+            try {
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                if (payload.exp && payload.exp * 1000 < Date.now()) {
+                    localStorage.removeItem('jurysone_token');
+                    localStorage.removeItem('jurysone_user');
+                    window.location.href = '/login.html';
+                }
+            } catch(e) {
+                localStorage.removeItem('jurysone_token');
+                localStorage.removeItem('jurysone_user');
+                window.location.href = '/login.html';
+            }
+        })();
+    </script>
     <style>
         :root {
           --cor-primaria:        #0f2d5e;
@@ -366,6 +390,7 @@
             <div style="padding:14px 20px 4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,0.3)">Operacional</div>
             <a class="nav-link" data-page="financeiro" onclick="navigate('financeiro')">💰 Financeiro</a>
             <a class="nav-link" data-page="documentos" onclick="navigate('documentos')">📄 Documentos</a>
+            <a class="nav-link" data-page="whatsapp" onclick="navigate('whatsapp')">💬 WhatsApp <span class="nav-badge" id="wpp-badge" style="display:none">0</span></a>
             <a class="nav-link" data-page="esign" onclick="navigate('esign')">✍️ E-Sign <span class="nav-badge">NOVO</span></a>
             <a class="nav-link" data-page="timetracking" onclick="navigate('timetracking')">⏱️ Horas <span class="nav-badge">NOVO</span></a>
             <div style="padding:14px 20px 4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,0.3)">Inteligência</div>
@@ -374,17 +399,7 @@
             <a class="nav-link" data-page="relatorios" onclick="navigate('relatorios')">📋 Relatórios</a>
             <div style="padding:14px 20px 4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,0.3)">Sistema</div>
             <a class="nav-link" data-page="configuracoes" onclick="navigate('configuracoes')">⚙️ Configurações</a>
-            <a class="nav-link" onclick="window.location='login.html'" style="margin-top:4px">🚪 Sair</a>
-        </div>
-        <!-- User footer -->
-        <div style="position:sticky;bottom:0;padding:14px 16px;border-top:1px solid rgba(255,255,255,0.1);background:rgba(0,0,0,0.15)">
-            <div style="display:flex;align-items:center;gap:10px">
-                <div id="sb-avatar" style="width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0">JS</div>
-                <div style="min-width:0;flex:1">
-                    <div id="sb-user-name" style="font-size:12px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Dr. João Silva</div>
-                    <div id="sb-user-role" style="font-size:10px;color:rgba(255,255,255,0.55)">Proprietário</div>
-                </div>
-            </div>
+            <a class="nav-link" onclick="fazerLogout()" style="margin-top:4px">🚪 Sair</a>
         </div>
     </div>
 
@@ -452,7 +467,7 @@
                         <div class="hdr-dd-item" onclick="closeAllDD();alert('Suporte: suporte@jurysone.com.br')">💬 &nbsp;Suporte</div>
                         <div class="hdr-dd-item" onclick="closeAllDD();alert('Link de indicação copiado!')">🔗 &nbsp;Indicar Jurysone</div>
                         <hr class="hdr-dd-divider">
-                        <div class="hdr-dd-item" style="color:#ef4444" onclick="window.location='login.html'">🚪 &nbsp;Sair</div>
+                        <div class="hdr-dd-item" style="color:#ef4444" onclick="fazerLogout()">🚪 &nbsp;Sair</div>
                     </div>
                 </div>
             </div>
@@ -676,6 +691,16 @@
                  ══════════════════════════════════════════════════════════ -->
             <div id="page-processos" class="page">
 
+              <!-- ── Tab Nav Processos ───────────────────────────────────── -->
+              <div style="display:flex;gap:0;margin-bottom:20px;border-bottom:2px solid #e2e8f0;overflow-x:auto">
+                <button onclick="procTab('lista')" id="proc-tab-btn-lista" style="padding:10px 20px;border:none;background:none;cursor:pointer;font-size:13.5px;font-weight:700;color:#0f2d5e;border-bottom:2.5px solid #0f2d5e;margin-bottom:-2px;display:flex;align-items:center;gap:6px;white-space:nowrap">⚖️ Meus Processos</button>
+                <button onclick="procTab('painel')" id="proc-tab-btn-painel" style="padding:10px 20px;border:none;background:none;cursor:pointer;font-size:13.5px;font-weight:600;color:#64748b;border-bottom:2.5px solid transparent;margin-bottom:-2px;display:flex;align-items:center;gap:6px;white-space:nowrap">🏛️ Painel do Advogado <span style="font-size:10px;background:#0f2d5e;color:#fff;border-radius:4px;padding:2px 7px;font-weight:700;margin-left:4px">ePROC</span></button>
+                <button onclick="procTab('consulta')" id="proc-tab-btn-consulta" style="padding:10px 20px;border:none;background:none;cursor:pointer;font-size:13.5px;font-weight:600;color:#64748b;border-bottom:2.5px solid transparent;margin-bottom:-2px;display:flex;align-items:center;gap:6px;white-space:nowrap">🔍 Consultar Processo <span style="font-size:10px;background:#0f2d5e;color:#fff;border-radius:4px;padding:2px 7px;font-weight:700;margin-left:4px">ePROC</span></button>
+              </div>
+
+              <!-- ── Tab: Meus Processos ─────────────────────────────────── -->
+              <div id="proc-tab-lista">
+
               <!-- ── KPI Strip (4 cards) ────────────────────────────────── -->
               <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px">
 
@@ -824,6 +849,65 @@
                 <div id="proc-pagination" style="display:none;padding:12px 20px;border-top:1px solid #f1f5f9;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:#64748b">
                   <span id="proc-pag-info"></span>
                   <div id="proc-pag-btns" style="display:flex;gap:5px"></div>
+                </div>
+              </div>
+
+              </div><!-- /proc-tab-lista -->
+
+              <!-- ── Tab: Painel do Advogado (eProc) ───────────────────── -->
+              <div id="proc-tab-painel" style="display:none">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px">
+                  <div>
+                    <div style="font-size:16px;font-weight:700;color:#1e293b">🏛️ Painel do Advogado — eProc TJSC</div>
+                    <div style="font-size:12px;color:#94a3b8;margin-top:3px">Dados ao vivo do eProc · requer sessão ativa no navegador</div>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center">
+                    <button onclick="recarregarEprocPainel()" style="padding:7px 14px;background:#f0f6ff;border:1.5px solid #0f2d5e;border-radius:8px;font-size:12px;color:#0f2d5e;cursor:pointer;font-weight:600">🔄 Recarregar</button>
+                    <a href="https://eproc1g.tjsc.jus.br/eproc/controlador.php?acao=painel_adv_listar&acao_origem=principal" target="_blank" style="padding:7px 14px;background:#0f2d5e;border:none;border-radius:8px;font-size:12px;color:#fff;cursor:pointer;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:5px">↗ Abrir em nova aba</a>
+                  </div>
+                </div>
+                <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(15,45,94,.05);position:relative">
+                  <div id="eproc-painel-loading" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#f8fafc;z-index:2;gap:14px;padding:40px">
+                    <div style="font-size:40px">🏛️</div>
+                    <div style="font-size:14px;font-weight:600;color:#1e293b">Carregando Painel do Advogado...</div>
+                    <div style="font-size:12px;color:#94a3b8;text-align:center">Se o painel não carregar, o eProc pode estar bloqueando incorporação.<br>Use o botão <strong>"Abrir em nova aba"</strong> acima.</div>
+                  </div>
+                  <iframe id="iframe-eproc-painel"
+                    src="about:blank"
+                    data-src="https://eproc1g.tjsc.jus.br/eproc/controlador.php?acao=painel_adv_listar&acao_origem=principal"
+                    style="width:100%;height:calc(100vh - 240px);border:none;display:block;min-height:600px"
+                    onload="if(this.src!=='about:blank')document.getElementById('eproc-painel-loading').style.display='none'"
+                    title="eProc TJSC — Painel do Advogado">
+                  </iframe>
+                </div>
+              </div>
+
+              <!-- ── Tab: Consultar Processo (eProc) ────────────────────── -->
+              <div id="proc-tab-consulta" style="display:none">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px">
+                  <div>
+                    <div style="font-size:16px;font-weight:700;color:#1e293b">🔍 Consultar Processo — eProc TJSC</div>
+                    <div style="font-size:12px;color:#94a3b8;margin-top:3px">Busca de processos direto no eProc · requer sessão ativa no navegador</div>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center">
+                    <button onclick="recarregarEprocConsulta()" style="padding:7px 14px;background:#f0f6ff;border:1.5px solid #0f2d5e;border-radius:8px;font-size:12px;color:#0f2d5e;cursor:pointer;font-weight:600">🔄 Recarregar</button>
+                    <button onclick="abrirBuscaDatajud()" style="padding:7px 14px;background:#10b981;border:none;border-radius:8px;font-size:12px;color:#fff;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:5px">🏛️ Busca DataJud (todos os tribunais)</button>
+                    <a href="https://eproc1g.tjsc.jus.br/eproc/controlador.php?acao=processo_consultar" target="_blank" style="padding:7px 14px;background:#0f2d5e;border:none;border-radius:8px;font-size:12px;color:#fff;cursor:pointer;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:5px">↗ Abrir em nova aba</a>
+                  </div>
+                </div>
+                <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(15,45,94,.05);position:relative">
+                  <div id="eproc-consulta-loading" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#f8fafc;z-index:2;gap:14px;padding:40px">
+                    <div style="font-size:40px">🔍</div>
+                    <div style="font-size:14px;font-weight:600;color:#1e293b">Carregando Consultar Processo...</div>
+                    <div style="font-size:12px;color:#94a3b8;text-align:center">Se não carregar, o eProc pode estar bloqueando incorporação.<br>Use <strong>"Abrir em nova aba"</strong> ou <strong>"Busca DataJud"</strong> acima.</div>
+                  </div>
+                  <iframe id="iframe-eproc-consulta"
+                    src="about:blank"
+                    data-src="https://eproc1g.tjsc.jus.br/eproc/controlador.php?acao=processo_consultar"
+                    style="width:100%;height:calc(100vh - 240px);border:none;display:block;min-height:600px"
+                    onload="if(this.src!=='about:blank')document.getElementById('eproc-consulta-loading').style.display='none'"
+                    title="eProc TJSC — Consultar Processo">
+                  </iframe>
                 </div>
               </div>
 
@@ -1087,6 +1171,82 @@
                 <div class="card"><div class="card-header"><div class="card-title">Documentos</div><button class="btn-primary" onclick="openModalDocumento()">+ Novo Documento</button></div><table class="table"><thead><tr><th>Nome</th><th>Tipo</th><th>Processo</th><th>Tamanho</th><th>Data</th><th>Status</th><th>Ações</th></tr></thead><tbody id="table-documentos"></tbody></table></div>
             </div>
 
+            <!-- WhatsApp Page -->
+            <div id="page-whatsapp" class="page">
+              <div style="display:flex;height:calc(100vh - 120px);border:1px solid #e2e8f0;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.06)">
+
+                <!-- Lista de Conversas -->
+                <div style="width:320px;flex-shrink:0;border-right:1px solid #e2e8f0;display:flex;flex-direction:column;background:#fafafa">
+                  <div style="padding:16px;border-bottom:1px solid #e2e8f0;background:#fff">
+                    <div style="font-size:15px;font-weight:700;color:#0f2d5e;margin-bottom:10px">💬 Conversas</div>
+                    <input id="wpp-search" type="text" placeholder="🔍 Buscar contato..." oninput="wppFiltrarConversas(this.value)"
+                      style="width:100%;padding:8px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:13px;outline:none;box-sizing:border-box"
+                      onfocus="this.style.borderColor='#25d366'" onblur="this.style.borderColor='#e2e8f0'">
+                  </div>
+                  <div id="wpp-conversas-list" style="flex:1;overflow-y:auto">
+                    <div style="padding:40px 20px;text-align:center;color:#94a3b8;font-size:13px">
+                      <div style="font-size:32px;margin-bottom:8px">💬</div>
+                      Carregando conversas...
+                    </div>
+                  </div>
+                  <div style="padding:12px;border-top:1px solid #e2e8f0;background:#fff">
+                    <button onclick="wppNovaConversa()" style="width:100%;padding:10px;border:none;border-radius:8px;background:#25d366;color:#fff;font-size:13px;font-weight:600;cursor:pointer">
+                      ✉️ Nova Mensagem
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Área do Chat -->
+                <div style="flex:1;display:flex;flex-direction:column">
+
+                  <!-- Header do chat -->
+                  <div id="wpp-chat-header" style="padding:14px 20px;border-bottom:1px solid #e2e8f0;background:#fff;display:flex;align-items:center;gap:12px">
+                    <div style="width:40px;height:40px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;flex-shrink:0">👤</div>
+                    <div style="flex:1">
+                      <div id="wpp-chat-nome" style="font-size:15px;font-weight:700;color:#0f2d5e">Selecione uma conversa</div>
+                      <div id="wpp-chat-tel" style="font-size:12px;color:#64748b"></div>
+                    </div>
+                    <div style="display:flex;gap:8px">
+                      <button id="wpp-btn-cliente" onclick="wppVerCliente()" style="display:none;padding:7px 12px;border:1.5px solid #0f2d5e;border-radius:8px;background:#fff;color:#0f2d5e;font-size:12px;font-weight:600;cursor:pointer">👤 Ver Cliente</button>
+                      <button onclick="wppCarregarConversa(window._wppTelAtivo)" style="padding:7px 12px;border:1.5px solid #e2e8f0;border-radius:8px;background:#fff;color:#64748b;font-size:12px;cursor:pointer" title="Atualizar">🔄</button>
+                    </div>
+                  </div>
+
+                  <!-- Mensagens -->
+                  <div id="wpp-msgs" style="flex:1;overflow-y:auto;padding:20px;background:#f0f2f5;display:flex;flex-direction:column;gap:8px">
+                    <div style="text-align:center;color:#94a3b8;font-size:13px;margin-top:60px">
+                      <div style="font-size:40px;margin-bottom:12px">💬</div>
+                      <div style="font-weight:600">Selecione uma conversa para começar</div>
+                    </div>
+                  </div>
+
+                  <!-- Input de envio -->
+                  <div id="wpp-input-area" style="padding:12px 16px;border-top:1px solid #e2e8f0;background:#fff;display:flex;align-items:flex-end;gap:8px">
+                    <label for="wpp-file-input" title="Enviar documento/imagem"
+                      style="width:38px;height:38px;border-radius:50%;background:#f1f5f9;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;flex-shrink:0;border:1.5px solid #e2e8f0;transition:all .15s"
+                      onmouseenter="this.style.background='#e2e8f0'" onmouseleave="this.style.background='#f1f5f9'">
+                      📎
+                      <input type="file" id="wpp-file-input" style="display:none" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx" onchange="wppPreviewArquivo(this)">
+                    </label>
+                    <div style="flex:1;position:relative">
+                      <div id="wpp-file-preview" style="display:none;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:6px 10px;margin-bottom:6px;font-size:12px;color:#334155;display:flex;align-items:center;gap:8px">
+                        <span id="wpp-file-nome" style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></span>
+                        <button onclick="wppCancelarArquivo()" style="border:none;background:none;color:#ef4444;cursor:pointer;font-size:16px;line-height:1">×</button>
+                      </div>
+                      <textarea id="wpp-text-input" placeholder="Digite uma mensagem..." rows="1"
+                        style="width:100%;padding:9px 14px;border:1.5px solid #e2e8f0;border-radius:22px;font-size:14px;outline:none;resize:none;max-height:120px;overflow-y:auto;box-sizing:border-box;font-family:inherit;transition:border-color .2s"
+                        onfocus="this.style.borderColor='#25d366'" onblur="this.style.borderColor='#e2e8f0'"
+                        oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px'"
+                        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();wppEnviar();}"></textarea>
+                    </div>
+                    <button onclick="wppEnviar()" id="wpp-send-btn"
+                      style="width:38px;height:38px;border-radius:50%;background:#25d366;border:none;color:#fff;font-size:18px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s"
+                      onmouseenter="this.style.background='#1da851'" onmouseleave="this.style.background='#25d366'">➤</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <!-- E-Sign Page -->
             <div id="page-esign" class="page">
               <div class="grid-3" style="margin-bottom:24px">
@@ -1094,17 +1254,17 @@
                 <div class="stat-card"><div class="stat-label">Aguardando Assinatura</div><div class="stat-value" style="color:#f59e0b">5</div><div style="font-size:12px;color:#64748b">2 com prazo hoje</div></div>
                 <div class="stat-card"><div class="stat-label">Concluídos</div><div class="stat-value" style="color:#10b981">13</div><div style="font-size:12px;color:#64748b">100% válidos</div></div>
               </div>
-              <!-- ZapSign Status Bar -->
+              <!-- ClickSign Status Bar -->
               <div style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #e8edf5;border-radius:12px;padding:12px 18px;margin-bottom:18px;box-shadow:0 1px 4px rgba(15,45,94,0.05)">
-                <img src="https://zapsign.com.br/wp-content/uploads/2021/10/logo-zapsign-1.png" alt="ZapSign" style="height:22px;object-fit:contain" onerror="this.style.display='none'">
+                <img src="https://app.clicksign.com/favicon.ico" alt="ClickSign" style="height:22px;object-fit:contain" onerror="this.style.display='none'">
                 <div style="width:8px;height:8px;border-radius:50%;background:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,0.2)"></div>
-                <span id="zapsign-status-label" style="font-size:12px;color:#64748b;flex:1">✅ ZapSign conectado — Token: ****</span>
+                <span id="zapsign-status-label" style="font-size:12px;color:#64748b;flex:1">✅ ClickSign conectado — Token: ****</span>
                 <button class="btn-secondary btn-sm" onclick="zapsignSincronizar()" style="font-size:11px">🔄 Sincronizar</button>
-                <a href="https://app.zapsign.com.br" target="_blank" class="btn-sm" style="background:#8b5cf6;color:#fff;border:none;border-radius:6px;padding:5px 12px;font-size:11px;cursor:pointer;text-decoration:none">Abrir ZapSign ↗</a>
+                <a href="https://app.clicksign.com" target="_blank" class="btn-sm" style="background:#e05c1a;color:#fff;border:none;border-radius:6px;padding:5px 12px;font-size:11px;cursor:pointer;text-decoration:none">Abrir ClickSign ↗</a>
               </div>
               <div class="card">
                 <div class="card-header">
-                  <div class="card-title">✍️ Envelopes de Assinatura — ZapSign</div>
+                  <div class="card-title">✍️ Envelopes de Assinatura — ClickSign</div>
                   <div style="display:flex;gap:8px">
                     <button class="btn-secondary btn-sm" onclick="zapsignSincronizar()">🔄 Sincronizar</button>
                     <button class="btn-primary" onclick="openModalEsign()">+ Novo Envelope</button>
@@ -1114,6 +1274,22 @@
                   <thead><tr><th>Título</th><th>Documento</th><th>Signatários</th><th>Enviado em</th><th>Prazo</th><th>Status</th><th>Ações</th></tr></thead>
                   <tbody id="table-esign"></tbody>
                 </table>
+              </div>
+
+              <!-- ── Modelos de Documentos ─────────────────────────────── -->
+              <div class="card" style="margin-top:24px">
+                <div class="card-header">
+                  <div>
+                    <div class="card-title">📄 Modelos de Documentos (PDF próprio)</div>
+                    <div style="font-size:12px;color:#64748b;margin-top:2px">
+                      Faça upload dos seus PDFs — eles serão enviados ao ClickSign no lugar do modelo padrão
+                    </div>
+                  </div>
+                </div>
+                <div id="modelos-lista" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;padding:4px 0">
+                  <!-- Preenchido por carregarModelos() -->
+                  <div style="text-align:center;color:#94a3b8;padding:32px;grid-column:1/-1">Carregando modelos...</div>
+                </div>
               </div>
             </div>
 
@@ -3085,7 +3261,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         let tarefas=[{id:1,titulo:'Elaborar parecer jurídico',processo:'#2024001',responsavel:'Dr. Silva',prioridade:'alta',status:'em_andamento',vencimento:'2024-03-20'},{id:2,titulo:'Revisar contrato de parceria',processo:'#2024003',responsavel:'Dra. Costa',prioridade:'alta',status:'pendente',vencimento:'2024-03-18'},{id:3,titulo:'Preparar memorando',processo:'#2024002',responsavel:'Dr. Oliveira',prioridade:'media',status:'pendente',vencimento:'2024-03-25'},{id:4,titulo:'Acompanhamento audiência',processo:'#2024001',responsavel:'Dr. Silva',prioridade:'alta',status:'pendente',vencimento:'2024-03-20'},{id:5,titulo:'Análise jurisprudência',processo:'#2024003',responsavel:'Dra. Costa',prioridade:'media',status:'concluida',vencimento:'2024-03-10'},{id:6,titulo:'Resposta a ofício',processo:'#2024002',responsavel:'Dr. Oliveira',prioridade:'baixa',status:'pendente',vencimento:'2024-04-01'}];
         let documentos=[{id:1,nome:'Petição Inicial',tipo:'Petição',processo:'#2024001',tamanho:'2.3 MB',data:'2024-03-10',status:'final'},{id:2,nome:'Contrato de Serviços',tipo:'Contrato',processo:'#2024002',tamanho:'1.8 MB',data:'2024-03-12',status:'assinado'},{id:3,nome:'Procuração',tipo:'Procuração',processo:'#2024001',tamanho:'0.5 MB',data:'2024-03-05',status:'assinado'},{id:4,nome:'Parecer Jurídico',tipo:'Parecer',processo:'#2024003',tamanho:'3.1 MB',data:'2024-03-14',status:'rascunho'},{id:5,nome:'Ata de Reunião',tipo:'Ata',processo:'#2024002',tamanho:'0.8 MB',data:'2024-03-08',status:'final'}];
         let financeiro=[{id:1,descricao:'Honorário processo #2024001',cliente:'ABC Ltda',valor:25000,tipo:'receita',status:'pago',data:'2024-03-01',categoria:'Honorários'},{id:2,descricao:'Despesa com perícia',cliente:'XYZ Corp',valor:5000,tipo:'despesa',status:'pago',data:'2024-03-05',categoria:'Despesas Processuais'},{id:3,descricao:'Honorário processo #2024003',cliente:'DEF SA',valor:75000,tipo:'receita',status:'pendente',data:'2024-03-14',categoria:'Honorários'},{id:4,descricao:'Aluguel escritório',cliente:'Próprio',valor:8000,tipo:'despesa',status:'pago',data:'2024-03-01',categoria:'Administrativo'},{id:5,descricao:'Custas processuais',cliente:'ABC Ltda',valor:3500,tipo:'despesa',status:'atrasado',data:'2024-02-20',categoria:'Despesas Processuais'}];
-        const TITLES={dashboard:'Dashboard',processos:'Processos Judiciais',clientes:'Clientes',agenda:'Agenda',tarefas:'Tarefas & Atividades',intimacoes:'Intimações Judiciais',parceiros:'Rede de Parceiros',modelos:'Biblioteca de Modelos',financeiro:'Financeiro',documentos:'Documentos',esign:'Assinatura Digital',timetracking:'Controle de Horas',analytics:'Analytics',automacoes:'Automações',relatorios:'Relatórios',configuracoes:'Configurações',atendimentos:'Atendimentos — CRM'};
+        const TITLES={dashboard:'Dashboard',processos:'Processos Judiciais',clientes:'Clientes',agenda:'Agenda',tarefas:'Tarefas & Atividades',intimacoes:'Intimações Judiciais',parceiros:'Rede de Parceiros',modelos:'Biblioteca de Modelos',financeiro:'Financeiro',documentos:'Documentos',whatsapp:'WhatsApp — Mensagens',esign:'Assinatura Digital',timetracking:'Controle de Horas',analytics:'Analytics',automacoes:'Automações',relatorios:'Relatórios',configuracoes:'Configurações',atendimentos:'Atendimentos — CRM'};
         let c1,c2,c3;
 
         // ════ BUSCA GLOBAL ════════════════════════════════════════════
@@ -3182,8 +3358,9 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           if(p==='clientes')renderClientes();
           if(p==='tarefas')renderTarefas();
           if(p==='documentos')renderDocumentos();
+          if(p==='whatsapp')wppInit();
           if(p==='financeiro')renderFinanceiro();
-          if(p==='esign'){ renderEsign(); setTimeout(zapsignSincronizar, 400); }
+          if(p==='esign'){ renderEsign(); setTimeout(zapsignSincronizar, 400); carregarModelos(); }
           if(p==='timetracking')renderHoras();
           if(p==='automacoes')renderAutomacoes();
           if(p==='relatorios')renderRelatorios();
@@ -4189,10 +4366,18 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             }
 
             try {
-                const opts = { method, headers: { 'Content-Type': 'application/json' } };
+                // Sempre inclui o JWT para rotas protegidas
+                const token = localStorage.getItem('jurysone_token');
+                const headers = { 'Content-Type': 'application/json' };
+                if (token) headers['Authorization'] = `Bearer ${token}`;
+
+                const opts = { method, headers };
                 if (body) opts.body = JSON.stringify(body);
                 const res = await fetch(`${BACKEND_URL}${backendPath}`, opts);
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                if (!res.ok) {
+                    const errText = await res.text().catch(() => '');
+                    throw new Error(`HTTP ${res.status}: ${errText}`);
+                }
                 return await res.json();
             } catch (err) {
                 console.warn('[ZapSign→Backend]', backendPath, err.message);
@@ -4203,7 +4388,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         // Buscar documentos do ZapSign e sincronizar com esignData
         async function zapsignSincronizar() {
             const el = document.getElementById('zapsign-status-label');
-            if (el) el.textContent = '🔄 Sincronizando com ZapSign...';
+            if (el) el.textContent = '🔄 Sincronizando com ClickSign...';
 
             const data = await zapsignReq('GET', '/docs/');
             if (data && data.results) {
@@ -4233,19 +4418,18 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
                     }
                 });
                 renderEsign();
-                if (el) el.textContent = `✅ ZapSign sincronizado — ${data.results.length} documento(s)`;
-                showToast(`✅ ZapSign: ${data.results.length} documento(s) carregado(s)`, 'success');
+                if (el) el.textContent = `✅ ClickSign sincronizado — ${data.results.length} documento(s)`;
+                showToast(`✅ ClickSign: ${data.results.length} documento(s) carregado(s)`, 'success');
             } else {
-                if (el) el.textContent = '⚠️ ZapSign conectado (CORS local — ok em produção)';
+                if (el) el.textContent = '✅ ClickSign conectado — Token: ****';
             }
         }
 
         // Criar documento no ZapSign
-        async function zapsignCriarDoc(titulo, urlPdf, signatarios) {
+        async function zapsignCriarDoc(titulo, urlPdf, signatarios, base64Pdf, dadosCliente) {
             const payload = {
                 sandbox: false,
                 name: titulo,
-                url_pdf: urlPdf || '',
                 lang: 'pt-br',
                 brand_primary_color: '#0f2d5e',
                 disable_signer_emails: false,
@@ -4253,13 +4437,344 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
                     name:  s.nome,
                     email: s.email,
                     phone_country: '55',
-                    phone_number: s.telefone || '',
+                    phone_number: (s.telefone || '').replace(/\D/g,''),
                     auth_mode: 'assinaturaTela',
                     send_automatic_email: true,
                     send_automatic_whatsapp: false
                 }))
             };
+            // Inclui dados do cliente para o backend gerar os .docx preenchidos
+            if (dadosCliente) {
+                payload.dados_cliente = dadosCliente;
+            }
+            // Fallback: base64 gerado localmente ou url_pdf
+            if (base64Pdf) {
+                payload.base64_pdf = base64Pdf;
+            } else if (urlPdf) {
+                payload.url_pdf = urlPdf;
+            }
             return await zapsignReq('POST', '/docs/', payload);
+        }
+
+        // ── Gera contrato de honorários em PDF e retorna base64 ────────────
+        function gerarContratoPDF(dados) {
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+                const W = 210, M = 20;
+                let y = 22;
+
+                const txt = (text, x, size=10, bold=false, align='left') => {
+                    doc.setFontSize(size);
+                    doc.setFont('helvetica', bold ? 'bold' : 'normal');
+                    const lines = doc.splitTextToSize(text, W - M*2);
+                    if (align === 'center') doc.text(lines, W/2, y, { align:'center' });
+                    else doc.text(lines, x, y);
+                    y += lines.length * (size * 0.42) + 1;
+                };
+                const hr = () => { doc.setDrawColor(180); doc.setLineWidth(0.3); doc.line(M, y, W-M, y); y += 5; };
+                const br = (n=4) => { y += n; };
+
+                const escritorio = _cfgNomeEscritorio || 'JurysOne Advocacia';
+                const oab        = _cfgDadosEscritorio?.oab || '';
+                const hoje       = new Date().toLocaleDateString('pt-BR');
+                const numeroContrato = Date.now().toString().slice(-8);
+
+                const valorFmt = dados.valor > 0
+                    ? `R$ ${Number(dados.valor).toLocaleString('pt-BR',{minimumFractionDigits:2})}`
+                    : 'A combinar';
+                const formaPagtoFmt = {
+                    boleto:'Boleto Bancário', pix:'PIX', cartao:'Cartão de Crédito',
+                    transferencia:'Transferência Bancária', dinheiro:'Dinheiro'
+                }[dados.formaPagto] || dados.formaPagto || 'A combinar';
+
+                // Cabeçalho
+                txt(escritorio, M, 15, true, 'center'); br(1);
+                txt('CONTRATO DE PRESTAÇÃO DE SERVIÇOS ADVOCATÍCIOS', M, 11, true, 'center'); br(2);
+                hr();
+                txt(`Contrato nº ${numeroContrato}   ·   ${hoje}`, M, 9, false, 'center'); br(4);
+
+                // Partes
+                txt('1. PARTES', M, 11, true); br(1);
+                txt('CONTRATADO:', M, 10, true); br(1);
+                txt(`Escritório de Advocacia: ${escritorio}`, M+5, 10);
+                if (oab) txt(`OAB: ${oab}`, M+5, 10);
+                if (_cfgDadosEscritorio?.email) txt(`E-mail: ${_cfgDadosEscritorio.email}`, M+5, 10);
+                br(3);
+
+                txt('CONTRATANTE:', M, 10, true); br(1);
+                txt(`Nome completo: ${dados.clienteNome}`, M+5, 10);
+                txt(`CPF/CNPJ: ${dados.clienteCPF}`, M+5, 10);
+                txt(`E-mail: ${dados.clienteEmail}`, M+5, 10);
+                txt(`Telefone: ${dados.clienteTel}`, M+5, 10);
+                br(3); hr();
+
+                // Objeto
+                txt('2. OBJETO', M, 11, true); br(1);
+                txt(`Área jurídica: ${dados.area}`, M, 10);
+                if (dados.tipoAcao) txt(`Tipo de ação: ${dados.tipoAcao}`, M, 10);
+                br(1);
+                txt('O CONTRATADO se compromete a prestar serviços de assessoria e representação jurídica na área acima indicada, incluindo consultoria, elaboração de peças processuais, acompanhamento processual e demais atos necessários ao interesse do CONTRATANTE.', M, 10);
+                br(3); hr();
+
+                // Honorários
+                txt('3. HONORÁRIOS E PAGAMENTO', M, 11, true); br(1);
+                if (dados.parcelas > 1) {
+                    txt(`Honorários: ${dados.parcelas}x de ${valorFmt}`, M, 10);
+                } else {
+                    txt(`Honorários: ${valorFmt}`, M, 10);
+                }
+                txt(`Forma de pagamento: ${formaPagtoFmt}`, M, 10);
+                if (dados.vencimento) txt(`Vencimento da 1ª parcela: ${dados.vencimento}`, M, 10);
+                br(3); hr();
+
+                // Obrigações
+                txt('4. OBRIGAÇÕES DO CONTRATANTE', M, 11, true); br(1);
+                txt('O CONTRATANTE compromete-se a: (a) fornecer todos os documentos e informações necessários ao bom andamento do caso; (b) efetuar os pagamentos nas datas acordadas; (c) manter seus dados de contato atualizados.', M, 10);
+                br(3); hr();
+
+                // Vigência
+                txt('5. VIGÊNCIA', M, 11, true); br(1);
+                txt('O presente contrato vigorará pelo período necessário à conclusão dos serviços, podendo ser rescindido por qualquer das partes mediante notificação prévia de 30 (trinta) dias.', M, 10);
+                br(3); hr();
+
+                // Assinaturas
+                if (y > 230) { doc.addPage(); y = 20; }
+                br(2);
+                txt('Por serem mutuamente acordados, firmam o presente instrumento.', M, 10, false, 'center');
+                br(2);
+                txt(hoje, M, 10, false, 'center');
+                br(10);
+
+                const sigY = y;
+                doc.setDrawColor(80); doc.setLineWidth(0.4);
+                doc.line(M, sigY, M+75, sigY);
+                doc.line(W-M-75, sigY, W-M, sigY);
+                y += 4;
+                doc.setFontSize(9); doc.setFont('helvetica','normal');
+                doc.text(escritorio, M+37.5, y, {align:'center'});
+                doc.text(dados.clienteNome, W-M-37.5, y, {align:'center'});
+                y += 4;
+                doc.text('CONTRATADO', M+37.5, y, {align:'center'});
+                doc.text('CONTRATANTE', W-M-37.5, y, {align:'center'});
+
+                return doc.output('datauristring').split(',')[1]; // base64 puro
+            } catch(e) {
+                console.warn('[PDF] Erro ao gerar contrato:', e.message);
+                return null;
+            }
+        }
+
+        /**
+         * Gera os 4 documentos jurídicos (Contrato, Procuração, Hipossuficiência, Renúncia)
+         * em um único PDF multi-página para envio ao ClickSign.
+         * Retorna base64 puro (sem prefixo data:...).
+         */
+        function gerarTodosDocsPDF() {
+            try {
+                const { jsPDF } = window.jspdf;
+                if (!jsPDF) return null;
+
+                const D = naColetarDadosDoc();
+                const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+                const W = 210, M = 20, maxW = 170;
+                let y = 22;
+
+                // ── Helpers ──────────────────────────────────────────────
+                const txt = (text, x, size = 10, bold = false, align = 'left') => {
+                    if (!text) return;
+                    doc.setFontSize(size);
+                    doc.setFont('helvetica', bold ? 'bold' : 'normal');
+                    const lw = maxW - (x - M);
+                    const lines = doc.splitTextToSize(String(text), lw > 20 ? lw : maxW);
+                    if (y + lines.length * (size * 0.42) > 278) { doc.addPage(); y = 22; }
+                    if (align === 'center') doc.text(lines, W / 2, y, { align: 'center' });
+                    else doc.text(lines, x, y);
+                    y += lines.length * (size * 0.42) + 1;
+                };
+                const hr = () => {
+                    if (y > 275) { doc.addPage(); y = 22; }
+                    doc.setDrawColor(180); doc.setLineWidth(0.3); doc.line(M, y, W - M, y); y += 5;
+                };
+                const br = (n = 4) => { y += n; };
+                const newDoc = () => { doc.addPage(); y = 22; };
+                const sigLine = (label, cx) => {
+                    if (y > 265) { doc.addPage(); y = 22; }
+                    doc.setDrawColor(80); doc.setLineWidth(0.4);
+                    doc.line(cx - 55, y, cx + 55, y); y += 4;
+                    doc.setFontSize(9); doc.setFont('helvetica', 'normal');
+                    doc.text(label.substring(0, 40), cx, y, { align: 'center' }); y += 4;
+                };
+
+                const hoje = new Date().toLocaleDateString('pt-BR');
+                const numDoc = Date.now().toString().slice(-8);
+                const nomeSig = D.isPJ
+                    ? D.pj_razaoSocial || '[empresa]'
+                    : D.clienteNome || '[cliente]';
+                const cpfSig = D.isPJ ? D.socioCPF : D.clienteCPF;
+
+                // ═══════════════════════════════════════════════════════
+                // DOC 1 — CONTRATO DE PRESTAÇÃO DE SERVIÇOS
+                // ═══════════════════════════════════════════════════════
+                txt('DOMINGOS ADVOCACIA E ASSESSORIA JURÍDICA', M, 13, true, 'center'); br(1);
+                txt('CONTRATO DE PRESTAÇÃO DE SERVIÇOS ADVOCATÍCIOS', M, 11, true, 'center'); br(2);
+                hr();
+                txt(`Contrato nº ${numDoc}   ·   ${hoje}`, M, 9, false, 'center'); br(5);
+
+                txt('1. PARTES', M, 11, true); br(1);
+                txt('CONTRATADO:', M, 10, true); br(1);
+                txt('Domingos Advocacia e Assessoria Jurídica — Dr. Jonathan Frank Stobienia Domingos OAB/SC 43.348 e Dra. Thamile Alessandra Domingos OAB/SC 57.773, R. 501, nº 145, sala 05, centro, Balneário Camboriú/SC.', M + 5, 10);
+                br(3);
+
+                if (D.isPJ) {
+                    txt('CONTRATANTE (PJ):', M, 10, true); br(1);
+                    txt(`Razão Social: ${D.pj_razaoSocial}`, M + 5, 10);
+                    txt(`CNPJ: ${D.pj_cnpj}`, M + 5, 10);
+                    txt(`Representante: ${D.socioNome} (${D.socioCargoLabel}) — CPF: ${D.socioCPF}`, M + 5, 10);
+                } else {
+                    txt('CONTRATANTE:', M, 10, true); br(1);
+                    txt(`Nome: ${D.clienteNome}`, M + 5, 10);
+                    txt(`CPF: ${D.clienteCPF}`, M + 5, 10);
+                    if (D.clienteEmail) txt(`E-mail: ${D.clienteEmail}`, M + 5, 10);
+                    if (D.clienteTel)   txt(`Telefone: ${D.clienteTel}`, M + 5, 10);
+                }
+                br(3); hr();
+
+                txt('2. OBJETO', M, 11, true); br(1);
+                txt(`Área jurídica: ${D.area || '[área]'}`, M, 10);
+                if (D.tipoAcao) txt(`Tipo de ação: ${D.tipoAcao}`, M, 10);
+                txt('O CONTRATADO compromete-se a prestar serviços de assessoria e representação jurídica, incluindo consultoria, elaboração de peças processuais e acompanhamento processual.', M, 10);
+                br(3); hr();
+
+                txt('3. HONORÁRIOS', M, 11, true); br(1);
+                if (D.tipoHonorario === 'exito') {
+                    txt(`Honorários: ${D.percHonorarios || '–'}% do valor obtido ao êxito da ação.`, M, 10);
+                } else {
+                    const vFmt = D.valorHonorarios ? `R$ ${D.valorHonorarios}` : 'A combinar';
+                    const pFmt = D.parcelas > 1 ? `, parcelados em ${D.parcelas}x` : '';
+                    txt(`Honorários: ${vFmt}${pFmt}`, M, 10);
+                }
+                txt('Pagamentos via boleto bancário emitido pela plataforma ASAAS, notificados por e-mail e WhatsApp cadastrados.', M, 10);
+                br(3); hr();
+
+                txt('4. CLÁUSULAS GERAIS (resumo)', M, 11, true); br(1);
+                [
+                    'O CONTRATANTE compromete-se a fornecer todos os documentos necessários ao andamento do caso.',
+                    'Em caso de desistência ou revogação, os honorários pactuados permanecem exigíveis.',
+                    'Os honorários de sucumbência pertencem exclusivamente à CONTRATADA.',
+                    'Canais oficiais: WhatsApp (47) 99915-9178 / (47) 99624-9295 e e-mail @domingosadvocacia.com.br.',
+                    'O CONTRATANTE autoriza o tratamento de seus dados (LGPD — Lei 13.709/2018).',
+                    'Este contrato pode ser assinado eletronicamente via ClickSign ou Gov.br (Lei 13.874/2019).',
+                    `Foro: ${D.cidade || 'Balneário Camboriú/SC'}.`,
+                ].forEach((c, i) => { txt(`Cláusula ${i + 1}ª: ${c}`, M, 10); br(1); });
+                br(3);
+                txt(`${D.cidade || 'Balneário Camboriú'}, ${hoje}`, M, 10, false, 'center'); br(12);
+                sigLine('DOMINGOS ADVOCACIA E ASS. JURÍDICA', M + 37.5);
+                y -= 4;
+                sigLine(nomeSig.substring(0, 30), W - M - 37.5);
+                y += 4;
+                doc.setFontSize(9); doc.setFont('helvetica', 'normal');
+                doc.text('CONTRATADO', M + 37.5, y, { align: 'center' });
+                doc.text('CONTRATANTE', W - M - 37.5, y, { align: 'center' });
+
+                // ═══════════════════════════════════════════════════════
+                // DOC 2 — PROCURAÇÃO AD JUDICIA ET EXTRA
+                // ═══════════════════════════════════════════════════════
+                newDoc();
+                txt('DOMINGOS ADVOCACIA E ASSESSORIA JURÍDICA', M, 13, true, 'center'); br(1);
+                txt('PROCURAÇÃO AD JUDICIA ET EXTRA', M, 12, true, 'center'); br(2);
+                hr();
+
+                txt('OUTORGANTE:', M, 10, true); br(1);
+                if (D.isPJ) {
+                    txt(`${D.pj_razaoSocial.toUpperCase()}, pessoa jurídica, CNPJ nº ${D.pj_cnpj}, representada por ${D.socioCargoLabel} ${D.socioNome.toUpperCase()}, CPF nº ${D.socioCPF}.`, M + 5, 10);
+                } else {
+                    txt(`${D.clienteNome.toUpperCase()}, ${D.clienteNaciona || 'brasileiro(a)'}, ${D.clienteEstadoCivil || ''}, ${D.clienteProfissao || ''}, RG nº ${D.clienteRG || '–'}, CPF nº ${D.clienteCPF}.`, M + 5, 10);
+                }
+                br(3);
+                txt('OUTORGADOS:', M, 10, true); br(1);
+                txt('Dr. JONATHAN FRANK STOBIENIA DOMINGOS, OAB/SC 43.348, e Dra. THAMILE ALESSANDRA DOMINGOS, OAB/SC 57.773, com endereço na R. 501, nº 145, sala 05, centro, Balneário Camboriú/SC.', M + 5, 10);
+                br(3);
+                txt('PODERES:', M, 10, true); br(1);
+                txt('Para o foro em geral, com os mais amplos e ilimitados poderes "ad judicia et extra" e os especiais do art. 105 do CPC, para propor e contestar ações, receber citações, transigir, desistir, receber e dar quitação, interpor recursos e praticar todos os atos necessários ao bom andamento do mandato, podendo substabelecer.', M + 5, 10);
+                br(2);
+                txt(`Finalidade específica: ${D.objetoAcao || '[objeto da ação]'}.`, M + 5, 10);
+                br(3);
+                txt('As partes reconhecem que este instrumento poderá ser assinado eletronicamente via ClickSign ou Gov.br (Lei 13.874/2019).', M, 10);
+                br(3);
+                txt(`${D.cidade || 'Balneário Camboriú'}, ${hoje}`, M, 10, false, 'center'); br(15);
+                sigLine(nomeSig.substring(0, 40), W / 2);
+                doc.setFontSize(9); doc.setFont('helvetica', 'normal');
+                doc.text('OUTORGANTE', W / 2, y, { align: 'center' });
+
+                // ═══════════════════════════════════════════════════════
+                // DOC 3 — DECLARAÇÃO DE HIPOSSUFICIÊNCIA ECONÔMICA
+                // ═══════════════════════════════════════════════════════
+                newDoc();
+                txt('DOMINGOS ADVOCACIA E ASSESSORIA JURÍDICA', M, 13, true, 'center'); br(1);
+                txt('DECLARAÇÃO DE HIPOSSUFICIÊNCIA ECONÔMICA', M, 12, true, 'center'); br(1);
+                txt('(Art. 99, § 3º, CPC — Benefício de Assistência Judiciária Gratuita)', M, 9, false, 'center'); br(2);
+                hr();
+
+                if (D.isPJ) {
+                    txt(`Eu, ${D.socioNome.toUpperCase()}, ${D.socioCargoLabel} da empresa ${D.pj_razaoSocial.toUpperCase()}, CNPJ nº ${D.pj_cnpj}, CPF nº ${D.socioCPF}, na qualidade de representante da parte no processo proposto pelo escritório DOMINGOS ADVOCACIA E ASSESSORIA JURÍDICA, DECLARO, sob as penas da lei:`, M, 10);
+                } else {
+                    txt(`Eu, ${D.clienteNome.toUpperCase()}, ${D.clienteNaciona || 'brasileiro(a)'}, ${D.clienteEstadoCivil || ''}, RG nº ${D.clienteRG || '–'}, CPF nº ${D.clienteCPF}, na qualidade de parte no processo proposto pelo escritório DOMINGOS ADVOCACIA E ASSESSORIA JURÍDICA, DECLARO, sob as penas da lei:`, M, 10);
+                }
+                br(3);
+                [
+                    'Que não possuo condições financeiras de arcar com as custas do processo e honorários advocatícios sem prejuízo do sustento próprio ou familiar, requerendo o benefício da Assistência Judiciária Gratuita (art. 98 e ss. do CPC e Lei 1.060/50).',
+                    'Que minha renda mensal é insuficiente para custear as despesas processuais.',
+                    'Que estou ciente de que a falsidade desta declaração configura crime de falsidade ideológica (art. 299 do CP), além do pagamento de custas em dobro (art. 100 do CPC).',
+                    'Que, caso minha situação financeira melhore significativamente, comprometendo-me a informar imediatamente ao(à) advogado(a) responsável.',
+                ].forEach((item, i) => { txt(`${i + 1}. ${item}`, M, 10); br(2); });
+                br(3);
+                txt(`${D.cidade || 'Balneário Camboriú'}, ${hoje}`, M, 10, false, 'center'); br(15);
+                const hipoLabel = D.isPJ
+                    ? `${D.socioNome.substring(0, 30)} — ${D.socioCargoLabel}`
+                    : nomeSig.substring(0, 40);
+                sigLine(hipoLabel, W / 2);
+                doc.setFontSize(9); doc.setFont('helvetica', 'normal');
+                doc.text(`CPF: ${cpfSig || ''}`, W / 2, y, { align: 'center' });
+
+                // ═══════════════════════════════════════════════════════
+                // DOC 4 — CARTA DE RENÚNCIA DE MANDATO
+                // ═══════════════════════════════════════════════════════
+                newDoc();
+                txt('DOMINGOS ADVOCACIA E ASSESSORIA JURÍDICA', M, 13, true, 'center'); br(1);
+                txt('CARTA DE RENÚNCIA DE MANDATO', M, 12, true, 'center'); br(2);
+                hr();
+
+                if (D.isPJ) {
+                    txt(`Prezada empresa ${D.pj_razaoSocial}, CNPJ nº ${D.pj_cnpj}, representada por ${D.socioCargoLabel} ${D.socioNome}, CPF nº ${D.socioCPF}.`, M, 10);
+                } else {
+                    txt(`Prezado(a) senhor(a) ${D.clienteNome}, RG nº ${D.clienteRG || '–'}, CPF nº ${D.clienteCPF}.`, M, 10);
+                }
+                br(3);
+                txt('Serve a presente para notificar que os advogados Dr. JONATHAN FRANK STOBIENIA DOMINGOS OAB/SC 43.348 e THAMILE ALESSANDRA DOMINGOS OAB/SC 57.773 RENUNCIAM AO MANDATO que lhes foi outorgado por Procuração Ad Judicia, conforme já notificado via WhatsApp.', M, 10);
+                br(2);
+                txt('A partir do recebimento desta, o(a) cliente tem o prazo legal de 10 (dez) dias, nos termos do art. 45 do CPC, para constituir novo patrono para o processo.', M, 10);
+                br(2);
+                txt('Atenciosamente, Jonathan Domingos OAB/SC 43.348.', M, 10);
+                br(3);
+                txt(`Balneário Camboriú, ${hoje}`, M, 10);
+                br(14);
+                if (y > 240) { doc.addPage(); y = 22; }
+                doc.setDrawColor(80); doc.setLineWidth(0.4);
+                doc.line(W / 2 - 70, y, W / 2 + 70, y); y += 4;
+                doc.setFontSize(9); doc.setFont('helvetica', 'normal');
+                doc.text('Dr. Jonathan Frank Stobienia Domingos / Thamile Alessandra Domingos', W / 2, y, { align: 'center' }); y += 4;
+                doc.text('OAB/SC 43.348                                          OAB/SC 57.773', W / 2, y, { align: 'center' });
+                br(12);
+                txt('ASSINATURA DE RECEBIMENTO', M, 10, true); br(8);
+                doc.line(M, y, M + 100, y); y += 4;
+                doc.text(nomeSig.substring(0, 40), M + 50, y, { align: 'center' });
+
+                return doc.output('datauristring').split(',')[1]; // base64 puro
+            } catch (e) {
+                console.warn('[PDF] Erro ao gerar documentos:', e.message);
+                return null;
+            }
         }
 
         // Reenviar lembrete de assinatura
@@ -4301,7 +4816,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
                 return `<tr>
                     <td>
                         <div style="font-weight:600;font-size:13px">${escapeHtml(e.titulo||'')}</div>
-                        ${isZap ? `<div style="font-size:10px;color:#8b5cf6;margin-top:2px">🔗 ZapSign ${escapeHtml(e.zapToken.substring(0,12))}...</div>` : ''}
+                        ${isZap ? `<div style="font-size:10px;color:#e05c1a;margin-top:2px">🔗 ClickSign ${escapeHtml(e.zapToken.substring(0,12))}...</div>` : ''}
                     </td>
                     <td style="font-size:12px;color:#475569">${escapeHtml(e.doc||'')}</td>
                     <td style="font-size:12px;color:#64748b;max-width:180px;overflow:hidden;text-overflow:ellipsis">${safeSig}</td>
@@ -4313,7 +4828,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
                             ? `<button class="btn-sm btn-primary" data-url="${escapeHtml(e.linkAss)}" onclick="var u=this.dataset.url;if(/^https?:\\/\\//i.test(u))window.open(u,'_blank')" title="Abrir link de assinatura">✍️ Assinar</button>`
                             : ''}
                         <button class="btn-sm btn-secondary" onclick="zapsignReenviarUI('${safeZapToken}','${safeSig}')" title="Reenviar lembrete">📨 Reenviar</button>
-                        ${isZap ? `<button class="btn-sm" style="background:#f1f5f9;color:#64748b;border:1px solid #e2e8f0;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer" onclick="zapsignVerStatus('${safeZapToken}')" title="Ver no ZapSign">🔍</button>` : ''}
+                        ${isZap ? `<button class="btn-sm" style="background:#f1f5f9;color:#64748b;border:1px solid #e2e8f0;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer" onclick="zapsignVerStatus('${safeZapToken}')" title="Ver no ClickSign">🔍</button>` : ''}
                         <button class="btn-sm btn-danger" onclick="zapsignExcluirUI('${safeId}','${safeZapToken}')">Del</button>
                     </td>
                 </tr>`;
@@ -4350,7 +4865,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
                 ).join('\n');
                 alert(`📄 ${r.name}\nStatus: ${r.status_name || r.status}\n\nSignatários:\n${signers}`);
             } else {
-                window.open(`https://app.zapsign.com.br`, '_blank');
+                window.open(`https://app.clicksign.com`, '_blank');
             }
         }
 
@@ -4362,11 +4877,95 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             }
             esignData = esignData.filter(e => String(e.id) !== String(id));
             renderEsign();
+            _salvarDadosLocais();
             showToast('🗑️ Envelope removido', 'info');
         }
 
         function openModalEsign() { document.getElementById('modal-esign').classList.add('active'); }
         function closeModalEsign() { document.getElementById('modal-esign').classList.remove('active'); }
+
+        /* ── Modelos de Documentos ──────────────────────────────── */
+        const MODELOS_LABELS = {
+          contrato_honorarios:          'Contrato de Honorários',
+          procuracao:                   'Procuração Ad Judicia',
+          declaracao_hipossuficiencia:  'Declaração de Hipossuficiência',
+          questionario_juridico:        'Questionário Jurídico',
+        };
+
+        async function carregarModelos() {
+          const el = document.getElementById('modelos-lista');
+          if (!el) return;
+          try {
+            const res  = await apiFetch('/api/esign/modelos');
+            const list = await res.json();
+            el.innerHTML = list.map(m => `
+              <div style="border:1px solid #e2e8f0;border-radius:10px;padding:16px;background:#fff;display:flex;flex-direction:column;gap:10px">
+                <div style="display:flex;align-items:center;gap:10px">
+                  <span style="font-size:22px">📄</span>
+                  <div style="flex:1;min-width:0">
+                    <div style="font-size:13px;font-weight:700;color:#0f2d5e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${MODELOS_LABELS[m.tipo] || m.tipo}</div>
+                    ${m.filename
+                      ? `<div style="font-size:11px;color:#64748b;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${m.filename}">${m.filename}</div>`
+                      : `<div style="font-size:11px;color:#94a3b8;margin-top:2px;font-style:italic">Modelo padrão (gerado automaticamente)</div>`}
+                  </div>
+                  ${m.url ? `<span style="font-size:10px;background:#dcfce7;color:#166534;padding:2px 8px;border-radius:20px;white-space:nowrap">✔ Personalizado</span>`
+                           : `<span style="font-size:10px;background:#f1f5f9;color:#64748b;padding:2px 8px;border-radius:20px;white-space:nowrap">Padrão</span>`}
+                </div>
+                <div style="display:flex;gap:8px">
+                  <label style="flex:1;cursor:pointer">
+                    <input type="file" accept="application/pdf" style="display:none" onchange="uploadModelo('${m.tipo}', this)">
+                    <span style="display:block;text-align:center;padding:6px 0;border:1.5px dashed #94a3b8;border-radius:6px;font-size:12px;color:#475569;transition:all .15s"
+                          onmouseenter="this.style.borderColor='#0f2d5e';this.style.color='#0f2d5e'"
+                          onmouseleave="this.style.borderColor='#94a3b8';this.style.color='#475569'">
+                      ↑ Enviar PDF
+                    </span>
+                  </label>
+                  ${m.url ? `
+                  <a href="${m.url}" target="_blank" style="padding:6px 10px;border:1px solid #e2e8f0;border-radius:6px;font-size:12px;color:#334155;text-decoration:none;display:flex;align-items:center;gap:4px;white-space:nowrap"
+                     onmouseenter="this.style.background='#f8fafc'" onmouseleave="this.style.background=''">👁 Ver</a>
+                  <button onclick="removerModelo('${m.tipo}')" style="padding:6px 10px;border:1px solid #fecaca;border-radius:6px;font-size:12px;color:#dc2626;background:#fff;cursor:pointer;white-space:nowrap"
+                          onmouseenter="this.style.background='#fef2f2'" onmouseleave="this.style.background='#fff'">🗑</button>
+                  ` : ''}
+                </div>
+              </div>
+            `).join('');
+          } catch(e) {
+            if (el) el.innerHTML = '<div style="color:#ef4444;padding:16px">Erro ao carregar modelos.</div>';
+          }
+        }
+
+        async function uploadModelo(tipo, input) {
+          const file = input.files[0];
+          if (!file) return;
+          const fd = new FormData();
+          fd.append('tipo', tipo);
+          fd.append('arquivo', file);
+          try {
+            showToast('📤 Enviando PDF...', 'info');
+            const res = await fetch(`${API_BASE}/api/esign/modelos/upload`, {
+              method: 'POST',
+              headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+              body: fd,
+            });
+            if (!res.ok) throw new Error(await res.text());
+            showToast('✅ Modelo salvo com sucesso!', 'success');
+            carregarModelos();
+          } catch(e) {
+            showToast('❌ Falha ao enviar: ' + e.message, 'error');
+          }
+          input.value = '';
+        }
+
+        async function removerModelo(tipo) {
+          if (!confirm('Remover este modelo? O sistema voltará a usar o modelo padrão.')) return;
+          try {
+            await apiFetch(`/api/esign/modelos/${tipo}`, { method: 'DELETE' });
+            showToast('🗑️ Modelo removido', 'info');
+            carregarModelos();
+          } catch(e) {
+            showToast('❌ Erro ao remover', 'error');
+          }
+        }
 
         async function saveEsign(ev) {
             ev.preventDefault();
@@ -4378,9 +4977,9 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             const msg     = document.getElementById('form-esign-msg')?.value || '';
 
             closeModalEsign();
-            showToast('📤 Criando envelope no ZapSign...', 'info');
+            showToast('📤 Criando envelope no ClickSign...', 'info');
 
-            // Tentar criar no ZapSign
+            // Tentar criar no ClickSign
             const resultado = await zapsignCriarDoc(titulo, '', [{ nome, email }]);
 
             const novoEnvelope = {
@@ -4398,9 +4997,10 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
 
             esignData.unshift(novoEnvelope);
             renderEsign();
+            _salvarDadosLocais();
 
             if (resultado?.token) {
-                showToast(`✅ Envelope criado no ZapSign! Link enviado para ${email}`, 'success');
+                showToast(`✅ Envelope criado no ClickSign! Link enviado para ${email}`, 'success');
                 if (novoEnvelope.linkAss) {
                     if (await confirmar(`Envelope criado com sucesso! Deseja abrir o link de assinatura agora?`, 'Abrir Link de Assinatura', '#10b981', 'Abrir Link')) {
                         window.open(novoEnvelope.linkAss, '_blank');
@@ -4422,17 +5022,17 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         let timerInterval=null,timerSeconds=0,timerRunning=false;
         function formatTimer(s){const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0')}
         function startTimer(){if(timerRunning)return;timerRunning=true;document.getElementById('btn-timer-start').disabled=true;document.getElementById('btn-timer-stop').disabled=false;timerInterval=setInterval(()=>{timerSeconds++;document.getElementById('timer-display').textContent=formatTimer(timerSeconds)},1000)}
-        function stopTimer(){if(!timerRunning)return;clearInterval(timerInterval);timerRunning=false;const hrs=timerSeconds/3600;if(hrs<0.01){timerSeconds=0;document.getElementById('timer-display').textContent='00:00:00';document.getElementById('btn-timer-start').disabled=false;document.getElementById('btn-timer-stop').disabled=true;return}const desc=document.getElementById('timer-atividade').value||'Atividade sem descrição';const proc=document.getElementById('timer-processo').value;horasData.unshift({id:Date.now(),data:new Date().toISOString().split('T')[0],processo:proc,desc,duracao:Math.round(hrs*4)/4,faturavel:document.getElementById('timer-faturavel').checked});timerSeconds=0;document.getElementById('timer-display').textContent='00:00:00';document.getElementById('btn-timer-start').disabled=false;document.getElementById('btn-timer-stop').disabled=true;document.getElementById('timer-atividade').value='';renderHoras();updateHorasStats()}
+        function stopTimer(){if(!timerRunning)return;clearInterval(timerInterval);timerRunning=false;const hrs=timerSeconds/3600;if(hrs<0.01){timerSeconds=0;document.getElementById('timer-display').textContent='00:00:00';document.getElementById('btn-timer-start').disabled=false;document.getElementById('btn-timer-stop').disabled=true;return}const desc=document.getElementById('timer-atividade').value||'Atividade sem descrição';const proc=document.getElementById('timer-processo').value;horasData.unshift({id:Date.now(),data:new Date().toISOString().split('T')[0],processo:proc,desc,duracao:Math.round(hrs*4)/4,faturavel:document.getElementById('timer-faturavel').checked});timerSeconds=0;document.getElementById('timer-display').textContent='00:00:00';document.getElementById('btn-timer-start').disabled=false;document.getElementById('btn-timer-stop').disabled=true;document.getElementById('timer-atividade').value='';renderHoras();updateHorasStats();_salvarDadosLocais();}
         function updateHorasStats(){const fat=horasData.filter(h=>h.faturavel).reduce((a,h)=>a+h.duracao,0);const nao=horasData.filter(h=>!h.faturavel).reduce((a,h)=>a+h.duracao,0);const tot=fat+nao;const h=Math.floor(tot),m=Math.round((tot%1)*60);document.getElementById('stat-horas-semana').textContent=h+'h '+m+'min';document.getElementById('stat-horas-fat').textContent=fat.toFixed(1)+'h';document.getElementById('stat-horas-nao').textContent=nao.toFixed(1)+'h'}
         function renderHoras(){const t=document.getElementById('table-horas');if(!t)return;t.innerHTML=horasData.map(h=>`<tr>
           <td>${h.data}</td><td style="font-size:12px">${h.processo||'—'}</td><td>${h.desc}</td>
           <td style="font-weight:600;color:#0f2d5e">${h.duracao}h</td>
           <td><span class="badge ${h.faturavel?'badge-success':'badge-danger'}">${h.faturavel?'Sim':'Não'}</span></td>
-          <td><button class="btn-sm btn-danger" onclick="horasData=horasData.filter(x=>x.id!==${h.id});renderHoras();updateHorasStats()">Del</button></td>
+          <td><button class="btn-sm btn-danger" onclick="horasData=horasData.filter(x=>x.id!==${h.id});renderHoras();updateHorasStats();_salvarDadosLocais()">Del</button></td>
         </tr>`).join('');updateHorasStats()}
         function openModalHoras(){document.getElementById('modal-horas').classList.add('active')}
         function closeModalHoras(){document.getElementById('modal-horas').classList.remove('active')}
-        function saveHoras(e){e.preventDefault();horasData.unshift({id:Date.now(),data:document.getElementById('form-horas-data').value,processo:document.getElementById('form-horas-processo').value,desc:document.getElementById('form-horas-desc').value,duracao:parseFloat(document.getElementById('form-horas-duracao').value),faturavel:document.getElementById('form-horas-fat').checked});closeModalHoras();renderHoras()}
+        function saveHoras(e){e.preventDefault();horasData.unshift({id:Date.now(),data:document.getElementById('form-horas-data').value,processo:document.getElementById('form-horas-processo').value,desc:document.getElementById('form-horas-desc').value,duracao:parseFloat(document.getElementById('form-horas-duracao').value),faturavel:document.getElementById('form-horas-fat').checked});closeModalHoras();renderHoras();_salvarDadosLocais();}
 
         // ─── AUTOMAÇÕES — ULTRA-ADVANCED MODULE ─────────────────────
 
@@ -5202,7 +5802,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             desc:'Documentos emitidos, assinaturas digitais concluídas e pendentes por processo.',
             cor:'#06b6d4', cat:'Documentos',
             kpis:['Total Docs','Assinados','Pendentes','Armazenamento'],
-            features:['Por tipo','Por processo','Integração ZapSign']
+            features:['Por tipo','Por processo','Integração ClickSign']
           },
         ];
 
@@ -5379,7 +5979,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             ],
             ia: [
               {tipo:'positivo', icon:'📈', msg:'14 novos documentos este mês — volume acima da média trimestral.'},
-              {tipo:'alerta',   icon:'⚠️', msg:'7 documentos pendentes de assinatura — usar módulo ZapSign para acelerar.'},
+              {tipo:'alerta',   icon:'⚠️', msg:'7 documentos pendentes de assinatura — usar módulo ClickSign para acelerar.'},
             ]
           }
         };
@@ -5389,6 +5989,221 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         let _simChart = null; // simulator chart
 
         /* ── Render page ── */
+        // ════════════════════════════════════════════════════════
+        // WHATSAPP — Chat, Conversas, Envio de Documentos
+        // ════════════════════════════════════════════════════════
+
+        window._wppConversas     = [];
+        window._wppTelAtivo      = null;
+        window._wppClienteAtivo  = null;
+        window._wppArquivo       = null;
+        window._wppAutoRefresh   = null;
+
+        async function wppInit() {
+          await wppCarregarConversas();
+          clearInterval(window._wppAutoRefresh);
+          window._wppAutoRefresh = setInterval(wppCarregarConversas, 15000);
+        }
+
+        async function wppCarregarConversas() {
+          try {
+            const apiBase = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
+            const token   = localStorage.getItem('jurysone_token') || '';
+            const res     = await fetch(`${apiBase}/whatsapp/conversas`, {
+              headers: { Authorization: 'Bearer ' + token }
+            });
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            window._wppConversas = await res.json();
+            wppRenderConversas(window._wppConversas);
+
+            // Atualiza badge no menu
+            const naoLidas = window._wppConversas.reduce((s, c) => s + (c.nao_lidas || 0), 0);
+            const badge = document.getElementById('wpp-badge');
+            if (badge) {
+              badge.textContent = naoLidas;
+              badge.style.display = naoLidas > 0 ? '' : 'none';
+            }
+          } catch(e) {
+            document.getElementById('wpp-conversas-list').innerHTML =
+              '<div style="padding:20px;text-align:center;color:#ef4444;font-size:13px">⚠️ Erro ao carregar conversas</div>';
+          }
+        }
+
+        function wppRenderConversas(lista) {
+          const el = document.getElementById('wpp-conversas-list');
+          if (!el) return;
+          if (!lista.length) {
+            el.innerHTML = '<div style="padding:40px 20px;text-align:center;color:#94a3b8;font-size:13px"><div style="font-size:32px;margin-bottom:8px">💬</div>Nenhuma conversa ainda</div>';
+            return;
+          }
+          el.innerHTML = lista.map(c => {
+            const ativo = c.telefone === window._wppTelAtivo;
+            const hora  = c.ultima_mensagem_em ? new Date(c.ultima_mensagem_em).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}) : '';
+            const msg   = (c.ultima_mensagem || '').slice(0, 40) + (c.ultima_mensagem?.length > 40 ? '...' : '');
+            const badge = c.nao_lidas > 0 ? `<span style="background:#25d366;color:#fff;font-size:10px;font-weight:700;border-radius:50%;padding:2px 6px;min-width:18px;text-align:center">${c.nao_lidas}</span>` : '';
+            return `<div onclick="wppCarregarConversa('${escapeHtml(c.telefone)}')"
+              style="padding:12px 16px;cursor:pointer;display:flex;gap:10px;align-items:center;border-bottom:1px solid #f0f2f5;transition:background .15s;background:${ativo?'#e8f8ee':'#fff'}"
+              onmouseenter="if('${c.telefone}'!==window._wppTelAtivo)this.style.background='#f8fafc'"
+              onmouseleave="if('${c.telefone}'!==window._wppTelAtivo)this.style.background='#fff'">
+              <div style="width:42px;height:42px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;flex-shrink:0">👤</div>
+              <div style="flex:1;min-width:0">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">
+                  <span style="font-size:14px;font-weight:700;color:#1e293b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(c.nome)}</span>
+                  <span style="font-size:11px;color:#94a3b8;flex-shrink:0;margin-left:8px">${hora}</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <span style="font-size:12px;color:#64748b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1">${escapeHtml(msg)}</span>
+                  ${badge}
+                </div>
+              </div>
+            </div>`;
+          }).join('');
+        }
+
+        function wppFiltrarConversas(q) {
+          const filtradas = window._wppConversas.filter(c =>
+            c.nome.toLowerCase().includes(q.toLowerCase()) ||
+            c.telefone.includes(q)
+          );
+          wppRenderConversas(filtradas);
+        }
+
+        async function wppCarregarConversa(telefone) {
+          if (!telefone) return;
+          window._wppTelAtivo = telefone;
+          wppRenderConversas(window._wppConversas); // reativa seleção
+
+          // Atualiza header
+          const conv = window._wppConversas.find(c => c.telefone === telefone);
+          document.getElementById('wpp-chat-nome').textContent = conv?.nome || telefone;
+          document.getElementById('wpp-chat-tel').textContent  = telefone;
+
+          const msgsEl = document.getElementById('wpp-msgs');
+          msgsEl.innerHTML = '<div style="text-align:center;padding:20px;color:#94a3b8;font-size:13px">⏳ Carregando...</div>';
+
+          try {
+            const apiBase = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
+            const token   = localStorage.getItem('jurysone_token') || '';
+            const res     = await fetch(`${apiBase}/whatsapp/conversas/${encodeURIComponent(telefone)}`, {
+              headers: { Authorization: 'Bearer ' + token }
+            });
+            const data    = await res.json();
+
+            window._wppClienteAtivo = data.cliente;
+            const btnCliente = document.getElementById('wpp-btn-cliente');
+            if (btnCliente) btnCliente.style.display = data.cliente ? '' : 'none';
+
+            wppRenderMensagens(data.mensagens || []);
+          } catch(e) {
+            msgsEl.innerHTML = '<div style="text-align:center;padding:20px;color:#ef4444;font-size:13px">⚠️ Erro ao carregar mensagens</div>';
+          }
+        }
+
+        function wppRenderMensagens(msgs) {
+          const el = document.getElementById('wpp-msgs');
+          if (!msgs.length) {
+            el.innerHTML = '<div style="text-align:center;color:#94a3b8;font-size:13px;padding:40px">Nenhuma mensagem ainda</div>';
+            return;
+          }
+          el.innerHTML = msgs.map(m => {
+            const enviada = m.status !== 'recebida';
+            const hora = new Date(m.createdAt || m.created_at).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+            const statusIcon = enviada ? (m.status==='lida'?'✓✓':m.status==='entregue'?'✓✓':'✓') : '';
+            const statusColor = enviada ? (m.status==='lida'?'#53bdeb':'#aaa') : '';
+            const isDoc = m.conteudo?.startsWith('[Documento') || m.conteudo?.startsWith('[Imagem') || m.conteudo?.startsWith('[Áudio') || m.conteudo?.startsWith('[Vídeo');
+
+            return `<div style="display:flex;justify-content:${enviada?'flex-end':'flex-start'};margin-bottom:4px">
+              <div style="max-width:70%;background:${enviada?'#dcf8c6':'#fff'};border-radius:${enviada?'12px 12px 2px 12px':'12px 12px 12px 2px'};padding:8px 12px;box-shadow:0 1px 2px rgba(0,0,0,.1)">
+                <div style="font-size:13.5px;color:#1e293b;word-break:break-word;white-space:pre-wrap">${escapeHtml(m.conteudo || '')}</div>
+                <div style="display:flex;justify-content:flex-end;align-items:center;gap:4px;margin-top:3px">
+                  <span style="font-size:11px;color:#94a3b8">${hora}</span>
+                  ${enviada?`<span style="font-size:12px;color:${statusColor}">${statusIcon}</span>`:''}
+                </div>
+              </div>
+            </div>`;
+          }).join('');
+          el.scrollTop = el.scrollHeight;
+        }
+
+        async function wppEnviar() {
+          const tel   = window._wppTelAtivo;
+          const texto = document.getElementById('wpp-text-input').value.trim();
+          const arq   = window._wppArquivo;
+          if (!tel) return showToast('Selecione uma conversa primeiro', 'error');
+          if (!texto && !arq) return;
+
+          const btn = document.getElementById('wpp-send-btn');
+          btn.disabled = true; btn.textContent = '⏳';
+
+          try {
+            const apiBase = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
+            const token   = localStorage.getItem('jurysone_token') || '';
+
+            const payload = { telefone: tel, tipo: arq ? 'documento' : 'texto', mensagem: texto };
+            if (arq) payload.arquivo_url = arq.url;
+
+            const res = await fetch(`${apiBase}/whatsapp/enviar`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+              body: JSON.stringify(payload),
+            });
+
+            if (!res.ok) {
+              const err = await res.json().catch(()=>({}));
+              throw new Error(err.message || 'Erro ao enviar');
+            }
+
+            document.getElementById('wpp-text-input').value = '';
+            document.getElementById('wpp-text-input').style.height = 'auto';
+            wppCancelarArquivo();
+            await wppCarregarConversa(tel);
+            await wppCarregarConversas();
+          } catch(e) {
+            showToast('❌ ' + e.message, 'error');
+          } finally {
+            btn.disabled = false; btn.textContent = '➤';
+          }
+        }
+
+        function wppPreviewArquivo(input) {
+          const file = input.files[0];
+          if (!file) return;
+
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            window._wppArquivo = { nome: file.name, base64: e.target.result, url: null };
+            const preview = document.getElementById('wpp-file-preview');
+            document.getElementById('wpp-file-nome').textContent = '📎 ' + file.name;
+            preview.style.display = 'flex';
+            showToast('📎 Arquivo pronto para envio. Adicione uma mensagem e clique em enviar.', 'info');
+          };
+          reader.readAsDataURL(file);
+        }
+
+        function wppCancelarArquivo() {
+          window._wppArquivo = null;
+          const preview = document.getElementById('wpp-file-preview');
+          if (preview) preview.style.display = 'none';
+          const input = document.getElementById('wpp-file-input');
+          if (input) input.value = '';
+        }
+
+        function wppVerCliente() {
+          if (window._wppClienteAtivo?.id) {
+            navigate('clientes');
+            showToast('Cliente: ' + window._wppClienteAtivo.nome, 'success');
+          }
+        }
+
+        function wppNovaConversa() {
+          const tel = prompt('Digite o telefone do destinatário (com DDD):\nEx: 47999159178');
+          if (!tel || tel.trim().length < 10) return;
+          const telFormatado = '55' + tel.replace(/\D/g,'').replace(/^55/,'');
+          window._wppConversas.unshift({ telefone: telFormatado, nome: telFormatado, ultima_mensagem: '', nao_lidas: 0 });
+          wppRenderConversas(window._wppConversas);
+          wppCarregarConversa(telFormatado);
+        }
+
         function renderRelatorios() {
           // Populate cliente selects
           const selC1 = document.getElementById('rel-filtro-cliente');
@@ -6195,7 +7010,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
               btn.style.borderBottomColor = t === tab ? '#0f2d5e' : 'transparent';
             }
           });
-          if (tab === 'apis')       renderApiCards();
+          if (tab === 'apis')       initApiTab();
           if (tab === 'equipe')     renderEquipe();
           if (tab === 'perms')      renderPermissoes();
           if (tab === 'notif')      renderNotifPrefs();
@@ -6213,6 +7028,13 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           const words = str.trim().split(/\s+/).filter(Boolean);
           if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
           return (words[0][0] + words[words.length - 1][0]).toUpperCase();
+        }
+
+        // ─── Logout: limpa sessão e redireciona para login ──────────────────
+        function fazerLogout() {
+          localStorage.removeItem('jurysone_token');
+          localStorage.removeItem('jurysone_user');
+          window.location.replace('/login.html');
         }
 
         // ─── Atualiza header + sidebar com dados dinâmicos ──────────────────
@@ -6272,11 +7094,21 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         }
 
         // ─── Preenche todos os campos a partir do objeto persistido ───────
+        // Usa _cfgDadosEscritorio como fonte primária; fallback para
+        // a chave simples 'jurysone_cfg_esc' (salva sem criptografia)
         function _preencherCamposEscritorio() {
-          const d = _cfgDadosEscritorio || {};
+          let d = _cfgDadosEscritorio || {};
+          // Fallback: lê do backup simples se principal estiver vazio
+          if (!d.nome) {
+            try {
+              const bkp = localStorage.getItem('jurysone_cfg_esc');
+              if (bkp) d = JSON.parse(bkp);
+            } catch(e) {}
+          }
+          if (!d || !d.nome) return; // nada para preencher
           const set = (id, val) => { const el = document.getElementById(id); if (el && val !== undefined) el.value = val; };
           const setChk = (id, val) => { const el = document.getElementById(id); if (el) el.checked = !!val; };
-          if (d.nome)     { set('cfg-nome', d.nome);         _cfgNomeEscritorio = d.nome; }
+          set('cfg-nome', d.nome);         _cfgNomeEscritorio = d.nome;
           if (d.oab)      set('cfg-oab',     d.oab);
           if (d.email)    set('cfg-email',   d.email);
           if (d.tel)      set('cfg-tel',     d.tel);
@@ -6286,13 +7118,21 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           if (d.idioma)   set('cfg-idioma',  d.idioma);
           setChk('cfg-modo-escuro', d.modoEscuro);
           if (d.cor)      { aplicarTema(d.cor); set('cfg-cor-custom', d.cor); }
+          // Mantém _cfgDadosEscritorio sincronizado
+          _cfgDadosEscritorio = d;
         }
 
-        function saveConfigGeral() {
+        async function saveConfigGeral() {
           // Lê e persiste todos os campos do escritório
           _cfgDadosEscritorio = _lerCamposEscritorio();
           _cfgNomeEscritorio  = _cfgDadosEscritorio.nome;
-          _salvarDadosLocais();
+
+          // Backup simples imediato (sem criptografia — nunca falha)
+          try {
+            localStorage.setItem('jurysone_cfg_esc', JSON.stringify(_cfgDadosEscritorio));
+          } catch(e) {}
+
+          await _salvarDadosLocais();
           _atualizarHeaderUsuario();
           showToast(`✅ Configurações salvas — ${_cfgNomeEscritorio}`, 'success');
         }
@@ -6982,14 +7822,15 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
 
         // ─── API MANAGEMENT ───────────────────────────────────────
         const API_DEFINITIONS = [
-          { id:'openai',      nome:'OpenAI (GPT-4o)',         icon:'🤖', desc:'IA Copiloto Jurídico — análise de contratos, geração de peças e jurisprudência.', placeholder:'sk-proj-...', docsUrl:'https://platform.openai.com/api-keys', testEndpoint:'openai' },
-          { id:'datajud',     nome:'DataJud / CNJ',           icon:'⚖️', desc:'Consulta e monitoramento automático de processos nos tribunais brasileiros.',    placeholder:'Bearer eyJ...', docsUrl:'https://datajud-wiki.cnj.jus.br', testEndpoint:'datajud' },
-          { id:'whatsapp',    nome:'WhatsApp Business API',   icon:'💬', desc:'Envio de mensagens e notificações automáticas para clientes via WhatsApp.',      placeholder:'EAA...', docsUrl:'https://developers.facebook.com/docs/whatsapp', testEndpoint:'whatsapp' },
-          { id:'resend',      nome:'Resend (E-mail)',          icon:'📧', desc:'Envio de e-mails transacionais: prazos, assinaturas, boletos e relatórios.',     placeholder:'re_...', docsUrl:'https://resend.com/api-keys', testEndpoint:'resend' },
-          { id:'stripe',      nome:'Stripe (Pagamentos)',     icon:'💳', desc:'Processamento de pagamentos de honorários e cobrança recorrente de clientes.',    placeholder:'sk_live_...', docsUrl:'https://dashboard.stripe.com/apikeys', testEndpoint:'stripe' },
-          { id:'aws_s3',      nome:'AWS S3 (Documentos)',     icon:'☁️', desc:'Armazenamento seguro de documentos, contratos e arquivos do escritório.',        placeholder:'AKIA...', docsUrl:'https://aws.amazon.com/s3', testEndpoint:'aws' },
-          { id:'icp_brasil',  nome:'ICP-Brasil (E-Sign)',     icon:'🔐', desc:'Certificação digital ICP-Brasil para assinatura jurídica com validade legal.',   placeholder:'Chave privada PEM ou certificado A1/A3', docsUrl:'https://www.iti.gov.br', testEndpoint:'icp' },
-          { id:'pusher',      nome:'Pusher / WebSocket',      icon:'📡', desc:'Notificações em tempo real de andamentos, prazos e mensagens do sistema.',       placeholder:'app_id:key:secret:cluster', docsUrl:'https://dashboard.pusher.com', testEndpoint:'pusher' },
+          { id:'clicksign',       nome:'ClickSign (Assinatura Digital)',  icon:'✍️', desc:'Envio e coleta de assinaturas digitais em contratos de honorários e procurações. Já integrado ao fluxo de atendimento.', placeholder:'Access Token ClickSign (ex: 8714675c-...)', docsUrl:'https://app.clicksign.com/account/api_settings', testEndpoint:'clicksign' },
+          { id:'asaas',           nome:'Asaas (Cobranças)',               icon:'💰', desc:'Geração automática de boletos, PIX e cartão para honorários e parcelamentos. Já integrado ao financeiro.', placeholder:'$aact_... (Produção) ou $aasp_... (Sandbox)', docsUrl:'https://www.asaas.com/api/index', testEndpoint:'asaas' },
+          { id:'gemini',          nome:'Gemini (IA Jurídica)',            icon:'🤖', desc:'IA Copiloto Jurídico — análise de contratos, geração de peças e jurisprudência. Powered by Google Gemini 1.5 Flash.', placeholder:'AIza...', docsUrl:'https://aistudio.google.com/app/apikey', testEndpoint:'gemini' },
+          { id:'datajud',         nome:'DataJud / CNJ',                  icon:'⚖️', desc:'Consulta e monitoramento automático de processos nos tribunais brasileiros (todos os tribunais via API CNJ).', placeholder:'cDZHYz... (apenas a chave, sem "APIKey")', docsUrl:'https://datajud-wiki.cnj.jus.br', testEndpoint:'datajud' },
+          { id:'pje',             nome:'PJe / Peticionamento Eletrônico', icon:'📋', desc:'Integração com o PJe (Processo Judicial Eletrônico) para peticionamento e consulta de processos nos tribunais.', placeholder:'Chave de API PJe (PJE_API_KEY)', docsUrl:'https://pje.jus.br/wiki/index.php/API_PJe', testEndpoint:'pje' },
+          { id:'whatsapp',        nome:'WhatsApp Business API',          icon:'💬', desc:'Envio de mensagens e notificações automáticas para clientes via WhatsApp.', placeholder:'EAA...', docsUrl:'https://developers.facebook.com/docs/whatsapp', testEndpoint:'whatsapp' },
+          { id:'resend',          nome:'Resend (E-mail)',                 icon:'📧', desc:'Envio de e-mails transacionais: prazos, assinaturas, boletos e relatórios.', placeholder:'re_...', docsUrl:'https://resend.com/api-keys', testEndpoint:'resend' },
+          { id:'supabase',        nome:'Supabase (Armazenamento)',       icon:'🗄️', desc:'Armazenamento de documentos, contratos e arquivos do escritório. Usado pelo módulo de Documentos. Formato: URL:service_key', placeholder:'https://xxx.supabase.co:eyJhbGciOiJIUzI1NiJ9...', docsUrl:'https://supabase.com/dashboard/project/_/settings/api', testEndpoint:'supabase' },
+          { id:'google_calendar', nome:'Google Calendar',                icon:'📅', desc:'Sincronização de audiências, reuniões e prazos com o Google Calendar via OAuth 2.0. Formato: client_id:client_secret', placeholder:'client_id:client_secret (Google Cloud Console)', docsUrl:'https://console.cloud.google.com/apis/credentials', testEndpoint:'google_calendar' },
         ];
 
         // Load saved API keys from localStorage
@@ -7008,6 +7849,39 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             const st = JSON.parse(localStorage.getItem('jurysone_api_status') || '{}');
             st[id] = status; localStorage.setItem('jurysone_api_status', JSON.stringify(st));
           } catch(e) {}
+        }
+
+        /** Carrega chaves do banco (funciona em qualquer navegador) e então renderiza */
+        async function initApiTab() {
+          try {
+            const apiBase = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
+            const token = localStorage.getItem('jurysone_token');
+            const resp = await fetch(`${apiBase}/chaves`, {
+              headers: token ? { 'Authorization': `Bearer ${token}` } : {},
+            });
+            if (resp.ok) {
+              const data = await resp.json();
+              if (data && data.keys) {
+                // Mescla chaves do banco no localStorage para uso local
+                const localKeys = getApiKeys();
+                for (const [id, val] of Object.entries(data.keys)) {
+                  if (val && !localKeys[id]) {
+                    saveApiKey(id, val);
+                  } else if (val) {
+                    // Banco tem precedência (garante sincronismo entre navegadores)
+                    saveApiKey(id, val);
+                  }
+                }
+                // Marca como verificada toda chave que veio do banco
+                for (const [id, val] of Object.entries(data.keys)) {
+                  if (val) saveApiStatus(id, 'ok');
+                }
+              }
+            }
+          } catch(e) {
+            console.warn('[initApiTab] Não foi possível carregar chaves do servidor:', e.message);
+          }
+          renderApiCards();
         }
 
         function renderApiCards() {
@@ -7083,7 +7957,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           // Simulate API test (in production would call real endpoint)
           await new Promise(r=>setTimeout(r, 1800 + Math.random()*800));
           // Simulate: keys starting with valid prefixes pass
-          const validPrefixes = { openai:['sk-'], datajud:['Bearer','eyJ'], whatsapp:['EAA','eaa'], resend:['re_'], stripe:['sk_'], aws_s3:['AKIA'], icp_brasil:['-----','MII'], pusher:[] };
+          const validPrefixes = { datajud:[], gemini:['AIza'], clicksign:[], zapsign:[], asaas:['$aact','$aasp'], whatsapp:['EAA','eaa'], resend:['re_'], pje:[], supabase:['https://'], google_calendar:[] };
           const prefixes = validPrefixes[id] || [];
           const isValid = prefixes.length === 0 ? key.length > 8 : prefixes.some(p => key.startsWith(p));
           if (isValid) {
@@ -7100,7 +7974,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           renderApiCards();
         }
 
-        function saveApi(id) {
+        async function saveApi(id) {
           const key = document.getElementById('api-input-'+id).value.trim();
           const msg = document.getElementById('api-msg-'+id);
           if (!key) {
@@ -7108,6 +7982,21 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             msg.textContent='⚠️ Não é possível salvar uma chave vazia.'; return;
           }
           saveApiKey(id, key);
+
+          // Envia ao backend para uso server-side (ZapSign, Asaas, Gemini, etc.)
+          try {
+            const apiBase = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
+            const token = localStorage.getItem('jurysone_token');
+            await fetch(`${apiBase}/chaves`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+              },
+              body: JSON.stringify({ id, chave: key }),
+            });
+          } catch(e) { console.warn('[saveApi] Falha ao enviar chave ao backend:', e.message); }
+
           const api = API_DEFINITIONS.find(a=>a.id===id);
           msg.style.display='block'; msg.style.color='#059669';
           msg.innerHTML='💾 <strong>Chave salva!</strong> A API "'+escapeHtml(api.nome||'')+'" foi configurada. Clique em "Verificar" para testar a conexão.';
@@ -7186,13 +8075,13 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           const proc = processos.find(p => p.id == processoId);
           if (!proc) return;
 
-          showToast('📤 Enviando documentos para assinatura via ZapSign...', 'info');
+          showToast('📤 Enviando documentos para assinatura via ClickSign...', 'info');
 
           // Buscar email do cliente
           const cli = clientes.find(c => c.nome === nomeCliente);
           const emailCliente = cli?.email || `${nomeCliente.toLowerCase().replace(/\s/g,'.')}@email.com`;
 
-          // Criar envelope no ZapSign
+          // Criar envelope no ClickSign
           const tituloEnv = `Contrato de Honorários — ${nomeCliente} (${proc.numero})`;
           const zapResult = await zapsignCriarDoc(tituloEnv, '', [{
               nome:     nomeCliente,
@@ -7212,12 +8101,12 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
               zapToken:   zapResult?.token || null,
               linkAss:    zapResult?.signers?.[0]?.sign_url || null,
               processoId: processoId,
-              origem:     'zapsign'
+              origem:     'clicksign'
           };
           esignData.unshift(novoEnv);
 
           if (zapResult?.token) {
-              showToast(`✅ Envelope criado no ZapSign! E-mail enviado para ${emailCliente}`, 'success');
+              showToast(`✅ Envelope criado no ClickSign! E-mail enviado para ${emailCliente}`, 'success');
           };
 
           setTimeout(() => {
@@ -7536,8 +8425,8 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         // ── Backend NestJS (localhost em dev, URL real em produção) ───
         // DATAJUD_KEY e DATAJUD_BASE foram removidos do frontend.
         // Todas as chamadas DataJud passam pelo backend que injeta a chave server-side.
-        const BACKEND_URL  = (window.JURYSONE_CONFIG || {}).API_URL || 'http://localhost:3001';
-        const PROXY_URL    = (window.JURYSONE_CONFIG || {}).PROXY_URL || 'http://localhost:3002';
+        const BACKEND_URL  = (window.JURYSONE_CONFIG || {}).API_URL || 'http://localhost:3001/api';
+        const PROXY_URL    = (window.JURYSONE_CONFIG || {}).PROXY_URL || BACKEND_URL;
 
         // Advogado responsável — OAB 43348/SC
         const ADVOGADO = { nome: 'Jonathan', oab: '43348', oabUF: 'SC', email: 'domingos.advss@gmail.com' };
@@ -7582,7 +8471,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           // ── Verificação rápida ──────────────────────────────────────
           async function checkStatus() {
             try {
-              const r = await fetch(`${PROXY_URL}/status`, {
+              const r = await fetch(`${BACKEND_URL}/health`, {
                 signal: AbortSignal.timeout(3000), cache: 'no-store'
               });
               return r.ok;
@@ -8001,6 +8890,44 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           if (tribRow)     tribRow.style.display     = todosChecked ? 'none' : 'block';
           if (mainTribRow) mainTribRow.style.display  = todosChecked ? 'none' : 'block';
         }
+
+        // ── Tabs da página Processos ──────────────────────────────────────────
+        function procTab(tab) {
+          ['lista', 'painel', 'consulta'].forEach(function(t) {
+            var el  = document.getElementById('proc-tab-' + t);
+            var btn = document.getElementById('proc-tab-btn-' + t);
+            if (!el || !btn) return;
+            var active = (t === tab);
+            el.style.display      = active ? '' : 'none';
+            btn.style.color       = active ? '#0f2d5e' : '#64748b';
+            btn.style.fontWeight  = active ? '700' : '600';
+            btn.style.borderBottom = active ? '2.5px solid #0f2d5e' : '2.5px solid transparent';
+          });
+          // Lazy-load iframes ao clicar pela primeira vez
+          if (tab === 'painel') {
+            var fr = document.getElementById('iframe-eproc-painel');
+            if (fr && fr.src === 'about:blank') fr.src = fr.dataset.src;
+          }
+          if (tab === 'consulta') {
+            var fr = document.getElementById('iframe-eproc-consulta');
+            if (fr && fr.src === 'about:blank') fr.src = fr.dataset.src;
+          }
+        }
+
+        function recarregarEprocPainel() {
+          var fr = document.getElementById('iframe-eproc-painel');
+          var ld = document.getElementById('eproc-painel-loading');
+          if (ld) ld.style.display = 'flex';
+          if (fr) fr.src = fr.dataset.src;
+        }
+
+        function recarregarEprocConsulta() {
+          var fr = document.getElementById('iframe-eproc-consulta');
+          var ld = document.getElementById('eproc-consulta-loading');
+          if (ld) ld.style.display = 'flex';
+          if (fr) fr.src = fr.dataset.src;
+        }
+        // ─────────────────────────────────────────────────────────────────────
 
         function abrirBuscaDatajud() {
           document.getElementById('modal-datajud-busca').classList.add('active');
@@ -10291,6 +11218,9 @@ Nestes termos, pede deferimento.
         // ─── Monta o payload completo de dados do app ─────────────────────
         function _montarPayload() {
           return {
+            processos,
+            esignData,
+            horasData,
             agendaEventos,
             parceirosData,
             financeiro,
@@ -10312,7 +11242,7 @@ Nestes termos, pede deferimento.
           };
         }
 
-        // ─── Salva no SQLite (proxy) + localStorage como fallback ─────────
+        // ─── Salva na API NestJS + localStorage como fallback ────────────
         async function _salvarDadosLocais() {
           const _bar = document.getElementById('jus-saving-bar');
           const _pill = document.getElementById('jus-saving-pill');
@@ -10327,26 +11257,38 @@ Nestes termos, pede deferimento.
             localStorage.setItem(LS_DADOS_KEY, encrypted);
           } catch(e) { console.warn('[LS] Erro ao salvar localStorage:', e); }
 
-          // 2. Persiste no SQLite via proxy quando disponível
-          if (_proxyOnline) {
+          // 2. Persiste na API NestJS (fonte principal — sempre tenta em produção)
+          const _token = localStorage.getItem('jurysone_token');
+          if (_token) {
+            const _apiBase = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
             try {
-              const resp = await fetch(`${PROXY}/db/dados`, {
+              const resp = await fetch(`${_apiBase}/dados`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${_token}`,
+                },
                 body: JSON.stringify(payload),
               });
               if (resp.ok) {
                 const r = await resp.json();
-                console.log(`[DB] ✅ ${r.chaves_salvas} chaves salvas no SQLite`);
+                console.log(`[API] ✅ ${r.chaves_salvas} chaves salvas na API`);
+                const _ob = document.getElementById('jus-offline-banner'); if(_ob) _ob.classList.remove('active');
               } else {
-                console.warn('[DB] Resposta não-OK ao salvar:', resp.status);
+                const errText = await resp.text().catch(()=>'');
+                console.warn(`[API] Erro ao salvar (${resp.status}):`, errText);
+                // Token expirado → relogin silencioso
+                if (resp.status === 401) {
+                  console.warn('[API] Token expirado — dados mantidos no localStorage até próximo login.');
+                }
+                const _ob = document.getElementById('jus-offline-banner'); if(_ob) _ob.classList.add('active');
               }
             } catch(e) {
-              console.warn('[DB] Proxy indisponível para salvar — mantido no localStorage:', e.message);
-              _proxyOnline = false;
+              console.warn('[API] API indisponível para salvar — mantido no localStorage:', e.message);
               const _ob = document.getElementById('jus-offline-banner'); if(_ob) _ob.classList.add('active');
             }
           }
+
           if (_bar) _bar.classList.remove('active');
           if (_pill) _pill.classList.remove('active');
         }
@@ -10354,6 +11296,9 @@ Nestes termos, pede deferimento.
         // ─── Aplica um objeto de dados nas variáveis globais ──────────────
         function _aplicarDados(dados) {
           if (!dados || typeof dados !== 'object') return false;
+          if (dados.processos      && Array.isArray(dados.processos))      processos      = dados.processos;
+          if (dados.esignData      && Array.isArray(dados.esignData))      esignData      = dados.esignData;
+          if (dados.horasData      && Array.isArray(dados.horasData))      horasData      = dados.horasData;
           if (dados.agendaEventos  && Array.isArray(dados.agendaEventos))  agendaEventos  = dados.agendaEventos;
           if (dados.parceirosData  && Array.isArray(dados.parceirosData))  parceirosData  = dados.parceirosData;
           if (dados.financeiro     && Array.isArray(dados.financeiro))     financeiro     = dados.financeiro;
@@ -10383,27 +11328,33 @@ Nestes termos, pede deferimento.
           return true;
         }
 
-        // ─── Carrega dados: SQLite (proxy) → fallback localStorage ────────
+        // ─── Carrega dados: API NestJS → fallback localStorage ───────────
         async function _carregarDadosLocais() {
-          // 1. Tenta carregar do SQLite via proxy (fonte primária)
-          try {
-            const resp = await fetch(`${PROXY}/db/dados`, { method: 'GET', signal: AbortSignal.timeout(1500) });
-            if (resp.ok) {
-              const r = await resp.json();
-              if (r.ok && r.dados && Object.keys(r.dados).length > 0) {
-                _aplicarDados(r.dados);
-                // Sincroniza localStorage encriptado com o que veio do banco
-                try { const enc = await _lsEncrypt(JSON.stringify(r.dados)); localStorage.setItem(LS_DADOS_KEY, enc); } catch(e) {}
-                console.log(`[DB] ✅ Dados carregados do SQLite (${r.total} chaves)`);
-                _proxyOnline = true;
-                const _ob = document.getElementById('jus-offline-banner'); if(_ob) _ob.classList.remove('active');
-                return true;
+          // 1. Tenta carregar da API NestJS (fonte principal em produção)
+          const _token = localStorage.getItem('jurysone_token');
+          if (_token) {
+            const _apiBase = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
+            try {
+              const resp = await fetch(`${_apiBase}/dados`, {
+                method: 'GET',
+                headers: { 'Authorization': `Bearer ${_token}` },
+                signal: AbortSignal.timeout(5000),
+              });
+              if (resp.ok) {
+                const r = await resp.json();
+                if (r.ok && r.dados && Object.keys(r.dados).length > 0) {
+                  _aplicarDados(r.dados);
+                  // Sincroniza localStorage encriptado com o que veio da API
+                  try { const enc = await _lsEncrypt(JSON.stringify(r.dados)); localStorage.setItem(LS_DADOS_KEY, enc); } catch(e) {}
+                  console.log(`[API] ✅ Dados carregados da API (${r.total} chaves)`);
+                  const _ob = document.getElementById('jus-offline-banner'); if(_ob) _ob.classList.remove('active');
+                  return true;
+                }
               }
+            } catch(e) {
+              console.warn('[API] API indisponível para carregar — usando localStorage:', e.message);
+              const _ob = document.getElementById('jus-offline-banner'); if(_ob) _ob.classList.add('active');
             }
-          } catch(e) {
-            console.warn('[DB] Proxy indisponível para carregar — usando localStorage:', e.message);
-            _proxyOnline = false;
-            const _ob = document.getElementById('jus-offline-banner'); if(_ob) _ob.classList.add('active');
           }
 
           // 2. Fallback: localStorage (descriptografado)
@@ -10413,7 +11364,7 @@ Nestes termos, pede deferimento.
             const decrypted = await _lsDecrypt(raw);
             const dados = JSON.parse(decrypted);
             _aplicarDados(dados);
-            console.log('[LS] ✅ Dados carregados do localStorage (proxy offline)');
+            console.log('[LS] ✅ Dados carregados do localStorage');
             return true;
           } catch(e) {
             console.warn('[LS] Erro ao carregar dados:', e);
@@ -10423,10 +11374,10 @@ Nestes termos, pede deferimento.
 
         // ─── INIT ALL (com carregamento assíncrono do banco) ──────────
         (async () => {
-          // Carrega dados persistidos ANTES de renderizar (SQLite → localStorage)
+          // 1. Proxy local (SQLite) — fonte de dados offline/local
+          await _dbCarregarProcessos();
+          // 2. API NestJS (PostgreSQL) — fonte de verdade cross-browser; sobrescreve proxy
           await _carregarDadosLocais();
-
-          await _dbCarregarProcessos();   // carrega processos do SQLite via proxy
           renderProcessos();
           renderClientes();renderTarefas();renderDocumentos();renderFinanceiro();
           renderEsign();renderHoras();renderAutomacoes();renderRelatorios();
@@ -10435,9 +11386,10 @@ Nestes termos, pede deferimento.
           _atualizarHeaderUsuario();   // ← popula header/sidebar com dados reais
           _preencherCamposEscritorio(); // ← restaura campos do escritório no DOM
           setTimeout(()=>{initCharts()},100);
-          if (!_proxyOnline) {
-            setTimeout(() => showToast('⚠️ Proxy offline — dados não serão gravados. Inicie o Jurysone pelo atalho da área de trabalho.', 'warning'), 1200);
-          }
+          // Sincroniza estado completo (incluindo processos/esignData/horasData) com a API
+          // garante migração de dados que estavam apenas no proxy local ou localStorage
+          _salvarDadosLocais();
+          // API NestJS é a fonte de verdade em produção; localStorage é fallback offline
         })();
     </script>
 
@@ -10911,7 +11863,7 @@ Nestes termos, pede deferimento.
 
                     <!-- Envelope Info -->
                     <div style="background: #e8f4f8; padding: 15px; border-radius: 8px; margin-bottom: 16px;">
-                        <h4 style="margin: 0 0 12px 0; color: #004085; font-size:13px;">📧 Envelope de Assinatura Digital (ZapSign)</h4>
+                        <h4 style="margin: 0 0 12px 0; color: #004085; font-size:13px;">📧 Envelope de Assinatura Digital (ClickSign)</h4>
                         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
                             <div>
                                 <label style="display: block; font-weight: bold; margin-bottom: 4px; font-size:12px;">Signatário:</label>
@@ -11929,7 +12881,7 @@ Nestes termos, pede deferimento.
                 { id:'renuncia',         icone:'✍️', titulo:'Carta de Renúncia de Mandato — PJ',      sub:'Pré-preenchida com dados da empresa' },
             ] : [
                 { id:'contrato',         icone:'📋', titulo:'Contrato de Prestação de Serviços', sub:'19 cláusulas · Honorários · LGPD · Canais Oficiais' },
-                { id:'procuracao',       icone:'⚖️', titulo:'Procuração Ad Judicia et Extra',    sub:'Poderes amplos · ZapSign/Gov.br' },
+                { id:'procuracao',       icone:'⚖️', titulo:'Procuração Ad Judicia et Extra',    sub:'Poderes amplos · ClickSign/Gov.br' },
                 { id:'hipossuficiencia', icone:'📄', titulo:'Declaração de Hipossuficiência Econômica', sub:'Benefício de Assistência Judiciária Gratuita' },
                 { id:'renuncia',         icone:'✍️', titulo:'Carta de Renúncia de Mandato',      sub:'Pré-preenchida · Motivos selecionáveis' },
             ];
@@ -12033,7 +12985,7 @@ Nestes termos, pede deferimento.
                 '<p class="cl"><b>Cláusula 16ª.</b> Este contrato enquadra-se no rol dos títulos executivos extrajudiciais, nos termos do artigo 784, Inciso XII, do Código de Processo Civil, combinado com o artigo 24 da Lei 8.906/94 (EOAB).</p>' +
                 '<p class="cl"><b>Cláusula 17ª.</b> O <b>CONTRATANTE</b> autoriza o tratamento e armazenamento de seus dados digitais pela <b>CONTRATADA</b>, nos termos da Lei 13.709/2018 (LGPD).</p>' +
                 '<p class="cl"><b>Cláusula 18ª.</b> Caso a parte <b>CONTRATANTE</b> compartilhe dados pessoais e processuais sensíveis para terceiros, sem o consentimento do titular dos dados ou da <b>CONTRATADA</b> de forma expressa, assumirá todos os ônus decorrentes, conforme hipóteses previstas na LGPD.</p>' +
-                '<p class="cl"><b>Cláusula 19ª.</b> As partes reconhecem e acordam que o presente contrato poderá ser assinado eletronicamente por meio de plataforma eletrônica Docusign, ZapSign ou pelo sistema de assinatura gov.br, nos termos da Lei nº 13.874/2019 e do Decreto nº 10.278/2020.</p>' +
+                '<p class="cl"><b>Cláusula 19ª.</b> As partes reconhecem e acordam que o presente contrato poderá ser assinado eletronicamente por meio de plataforma eletrônica ClickSign ou pelo sistema de assinatura gov.br, nos termos da Lei nº 13.874/2019 e do Decreto nº 10.278/2020.</p>' +
                 '<h2>DA ELEIÇÃO DO FORO</h2>' +
                 '<p style="text-indent:40px">As partes acima identificadas elegem o Foro de ' + D.cidade + ' para dirimir quaisquer divergências originárias deste contrato, e firmam-no em 02 (duas) vias iguais.</p>' +
                 '<p style="text-align:right;margin-top:20px">' + D.cidade + ', ' + D.dataExtenso + '.</p>' +
@@ -12057,7 +13009,7 @@ Nestes termos, pede deferimento.
                 '<p style="text-indent:40px"><b>OUTORGADOS: Dr. JONATHAN FRANK STOBIENIA DOMINGOS,</b> inscrito na OAB/SC sob nº 43.348 e <b>Dra. THAMILE ALESSANDRA DOMINGOS,</b> inscrita na OAB/SC nº 57.773, com endereço profissional na R. 501, nº 145 sala 05, centro, Balneário Camboriú – SC.</p>' +
                 '<p style="text-indent:40px"><b>PODERES:</b> para o foro em geral, conferindo-lhe os mais amplos e ilimitados poderes inclusive os da cláusula "ad judicia et extra", bem como os especiais constantes do art. 105, do Código de Processo Civil, para, onde com esta se apresentar, em conjunto ou separadamente, além de ordem de nomeação, propor ações e contestá-las, receber citações, notificações e intimações, apresentar justificações, variar de ações e pedidos, notificar, interpelar, protestar, discordar, transigir e desistir, receber a quantia e dar quitação, arrematar ou adjudicar em qualquer praça ou leilão, prestar compromissos de inventariante, oferecer as primeiras e últimas declarações, interpor quaisquer recursos, requerer, assinar, praticar, perante qualquer repartição pública, entidades autárquicas e ou parastatal, Juízo, Instância ou Tribunal, tudo o que julgar conveniente ou necessário ao bom e fiel desempenho deste mandato, que poderá ser substabelecido, no todo ou em parte, a quem melhor lhe convier, com ou sem reserva de poderes. Finalidade específica: <b>' + D.objetoAcao + '</b>.</p>' +
                 '<p style="text-indent:40px">Os poderes específicos acima outorgados <b>poderão</b> ser substabelecidos.</p>' +
-                '<p style="text-indent:40px">As partes reconhecem e acordam que o presente documento poderá ser assinado eletronicamente por meio de plataforma eletrônica Docusign, ZapSign ou pelo sistema de assinatura gov.br, produzindo os mesmos efeitos legais da via assinada fisicamente, nos termos da Lei nº 13.874/2019 e do Decreto nº 10.278/2020.</p>' +
+                '<p style="text-indent:40px">As partes reconhecem e acordam que o presente documento poderá ser assinado eletronicamente por meio de plataforma eletrônica ClickSign ou pelo sistema de assinatura gov.br, produzindo os mesmos efeitos legais da via assinada fisicamente, nos termos da Lei nº 13.874/2019 e do Decreto nº 10.278/2020.</p>' +
                 '<p style="text-align:right;margin-top:20px">' + D.cidade + ', ' + D.dataExtenso + '.</p>' +
                 '<div class="assin"><div class="assin-linha"></div>' + outorganteAssinatura + '</div></div>';
             }
@@ -12368,7 +13320,7 @@ Nestes termos, pede deferimento.
                         ...(token ? { 'Authorization': `Bearer ${token}` } : {})
                     },
                     body:   JSON.stringify(payload),
-                    signal: AbortSignal.timeout(3000)
+                    signal: AbortSignal.timeout(15000)
                 });
 
                 if (res.ok) {
@@ -12379,14 +13331,15 @@ Nestes termos, pede deferimento.
                     naProgressoEtapa('✅', 'Lançamento financeiro registrado', 'ok');
                     naProgressoEtapa('✅', 'Documentos gerados pelo backend', 'ok');
                 } else if (res.status === 401) {
-                    naProgressoEtapa('⚠️', 'Backend: sessão expirada (salvo localmente)', 'aviso');
+                    naProgressoEtapa('⚠️', 'Sessão expirada — faça login novamente', 'aviso');
+                    setTimeout(() => { window.location.href = '/login.html'; }, 2000);
                 } else {
                     const err = await res.json().catch(() => ({}));
                     naProgressoEtapa('⚠️', `Backend: ${err.message || 'erro ' + res.status} — salvo localmente`, 'aviso');
                 }
             } catch (e) {
                 if (e.name === 'TimeoutError' || e.name === 'AbortError') {
-                    naProgressoEtapa('⚠️', 'Backend offline — dados salvos localmente', 'aviso');
+                    naProgressoEtapa('⚠️', 'Servidor demorando (Render cold start) — aguarde e tente novamente', 'aviso');
                 } else {
                     naProgressoEtapa('⚠️', 'Servidor não encontrado — salvo localmente', 'aviso');
                 }
@@ -12394,30 +13347,51 @@ Nestes termos, pede deferimento.
             }
 
             // ═══════════════════════════════════════════════════════════
-            //  ETAPA 2 — Chamar ZapSign (assinatura digital real)
+            //  ETAPA 2 — Gerar contrato em PDF e enviar ao ZapSign
             // ═══════════════════════════════════════════════════════════
-            let zapOk     = false;
-            let zapToken  = null;
+            let zapOk      = false;
+            let zapToken   = null;
             let zapSigners = [];
 
-            naProgressoEtapa('⏳', 'Enviando para assinatura digital (ZapSign)...', 'aviso');
-            try {
-                const zapResult = await zapsignCriarDoc(
-                    `Contrato de Honorários — ${clienteNome}`,
-                    '',
-                    [{ nome: clienteNome, email: clienteEmail, telefone: clienteTel }]
-                );
-                if (zapResult && zapResult.token) {
-                    zapOk     = true;
-                    zapToken  = zapResult.token;
-                    zapSigners = zapResult.signers || [];
-                    naProgressoEtapa('✅', `ZapSign: envelope criado — link de assinatura enviado para ${clienteEmail}`, 'ok');
-                } else {
-                    naProgressoEtapa('⚠️', 'ZapSign: resposta inesperada — envelope local criado', 'aviso');
+            naProgressoEtapa('⏳', 'Gerando os 4 documentos jurídicos (.docx) para envio ao ClickSign...', 'aviso');
+            const dadosCliente = naColetarDadosDoc();
+            const pdfBase64 = gerarTodosDocsPDF();
+
+            {
+                naProgressoEtapa('✅', 'Dados do cliente coletados — enviando ao ClickSign para gerar .docx', 'ok');
+                naProgressoEtapa('⏳', 'Enviando para assinatura digital (ClickSign)...', 'aviso');
+                try {
+                    const zapResult = await zapsignCriarDoc(
+                        `Documentos Jurídicos — ${clienteNome}`,
+                        '',
+                        [{ nome: clienteNome, email: clienteEmail, telefone: clienteTel }],
+                        pdfBase64,
+                        dadosCliente
+                    );
+                    // Log de debug — visível no console do navegador (F12)
+                    console.log('[ClickSign] Resposta do backend:', JSON.stringify(zapResult));
+                    if (zapResult?._clicksign_error) {
+                        console.error('[ClickSign] ❌ ERRO:', zapResult._clicksign_error);
+                        naProgressoEtapa('❌', `ClickSign erro: ${zapResult._clicksign_error}`, 'aviso');
+                    }
+
+                    if (zapResult && zapResult.token && !zapResult._local) {
+                        zapOk      = true;
+                        zapToken   = zapResult.token;
+                        zapSigners = zapResult.signers || [];
+                        const signUrl = zapSigners[0]?.sign_url || '';
+                        naProgressoEtapa('✅', `ClickSign: 4 documentos enviados para ${clienteEmail} — link de assinatura gerado`, 'ok');
+                        if (signUrl) naProgressoEtapa('🔗', `Link: ${signUrl.slice(0,60)}...`, 'ok');
+                    } else if (zapResult?._local) {
+                        const errMsg = zapResult._clicksign_error ? ` (erro: ${zapResult._clicksign_error.substring(0,80)})` : '';
+                        naProgressoEtapa('⚠️', `ClickSign falhou — contrato salvo localmente${errMsg}`, 'aviso');
+                    } else {
+                        naProgressoEtapa('⚠️', 'ClickSign sem resposta — contrato salvo localmente', 'aviso');
+                    }
+                } catch(e) {
+                    naProgressoEtapa('⚠️', 'ClickSign offline — contrato salvo localmente', 'aviso');
+                    console.error('[ClickSign] Exceção:', e.message);
                 }
-            } catch (e) {
-                naProgressoEtapa('⚠️', 'ZapSign offline ou CORS (envelope salvo localmente)', 'aviso');
-                console.warn('[ZapSign]', e.message);
             }
 
             // ═══════════════════════════════════════════════════════════
@@ -12505,7 +13479,7 @@ Nestes termos, pede deferimento.
             // ─── Progresso final ──────────────────────────────────────
             naProgressoEtapa('✅', 'Status definido: aguardando assinatura', 'ok');
             const origem = backendOk ? '🏛️ Banco de dados' : '💾 Local (backend offline)';
-            const assinatura = zapOk ? '✍️ ZapSign (link enviado)' : '📋 Local (ZapSign offline)';
+            const assinatura = zapOk ? '✍️ ClickSign (link enviado)' : '📋 Local (ClickSign offline)';
             naProgressoEtapa('🎉', `Atendimento concluído! Origem: ${origem} · Assinatura: ${assinatura}`, 'ok');
             document.getElementById('na-progresso-footer').style.display = 'block';
 
@@ -12513,7 +13487,7 @@ Nestes termos, pede deferimento.
             addNotification('📋', 'Novo Atendimento', `${clienteNome} cadastrado — ${area}`);
             addNotification('📄', 'Documentos Gerados', '4 documentos prontos para assinatura');
             addNotification('💰', 'Lançamento Criado', `Honorários R$ ${valorHonorario.toLocaleString('pt-BR')} — A efetuar`);
-            if (zapOk) addNotification('✍️', 'ZapSign', `Link de assinatura enviado para ${clienteEmail}`);
+            if (zapOk) addNotification('✍️', 'ClickSign', `Link de assinatura enviado para ${clienteEmail}`);
             showToast(`✅ Atendimento criado! Cliente: ${clienteNome}`);
 
             // ── Atualizar todas as seções ─────────────────────────────
@@ -12938,7 +13912,7 @@ Nestes termos, pede deferimento.
         if (sseSource) { sseSource.close(); sseSource = null; }
 
         const dot = document.getElementById('wh-status-dot');
-        const WEBHOOK_URL = 'http://localhost:3001/sse';
+        const WEBHOOK_URL = ((window.JURYSONE_CONFIG || {}).API_URL || 'http://localhost:3001/api') + '/sse';
 
         sseSource = new EventSource(WEBHOOK_URL);
 
@@ -14025,9 +14999,11 @@ Nestes termos, pede deferimento.
         const typingId = aiAddMsg('typing', '⏳ Processando...');
 
         try {
-          const token = localStorage.getItem('token') || sessionStorage.getItem('token') || '';
-          const base = (window.API_URL || 'http://localhost:3001');
-          const url  = base + '/api/ai/suporte';
+          const token = localStorage.getItem('jurysone_token') || localStorage.getItem('token') || sessionStorage.getItem('token') || '';
+          const base = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
+          const url  = base + '/ai/suporte';
+
+          console.log('[Juri] POST', url, 'token:', token ? token.slice(0,20)+'...' : 'AUSENTE');
 
           const payload = {
             mensagem: mensagem || ('Analise e extraia os dados do arquivo: ' + (_arquivo?.nome || '')),
@@ -14044,7 +15020,9 @@ Nestes termos, pede deferimento.
 
           if (!res.ok) {
             const err = await res.json().catch(() => ({}));
-            throw new Error(err.message || 'Erro ' + res.status);
+            const msg = err.message || err.error || `HTTP ${res.status}`;
+            console.error('[Juri] Erro HTTP:', res.status, msg);
+            throw new Error(msg);
           }
 
           const data = await res.json();
@@ -14059,9 +15037,11 @@ Nestes termos, pede deferimento.
           }
         } catch (e) {
           document.getElementById(typingId)?.remove();
+          console.error('[Juri] Exceção:', e);
+          const detail = e && e.message ? e.message : String(e);
           aiAddMsg('bot',
-            '❌ Não foi possível conectar com a IA.\n' +
-            'Verifique se o backend está rodando e se **GEMINI_API_KEY** está configurada.'
+            '❌ ' + detail + '\n\n' +
+            '_Se o erro for "Gemini não configurado", acesse **Configurações → Integrações** e salve sua chave Gemini._'
           );
         }
 

@@ -1,0 +1,933 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L8987",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l8987.json",
+      "colecao": "artigos",
+      "sha256": "0ce1eef45f257c64e2ecf26810c8dc9884c8deb5ac149723b5c7eb54cf6563c8",
+      "total_registros": 52,
+      "gerado_em": "2026-08-21T22:36:29+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 19,
+      "anotacoes": 78,
+      "anotacoes_sem_diploma_nomeado": 15
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.133",
+            "ano": 2021
+          },
+          "trecho": "…ca ou consórcio de empresas que demonstre capacidade para seu desempenho, por sua conta e risco e por prazo determinado;",
+          "literal": "(Redação dada pela Lei nº 14.133, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.133",
+            "ano": 2021
+          },
+          "trecho": "…imento da concessionária seja remunerado e amortizado mediante a exploração do serviço ou da obra por prazo determinado;",
+          "literal": "(Redação dada pela Lei nº 14.133, de 2021)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.015",
+            "ano": 2020
+          },
+          "trecho": "…deste artigo não poderá iniciar-se na sexta-feira, no sábado ou no domingo, nem em feriado ou no dia anterior a feriado.",
+          "literal": "(Incluído pela Lei nº 14.015, de 2020)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.648",
+            "ano": 1998
+          },
+          "trecho": "… liberdade de escolha entre vários prestadores de serviços, quando for o caso, observadas as normas do poder concedente.",
+          "literal": "(Redação dada pela Lei nº 9.648, de 1998)"
+        }
+      ]
+    },
+    "7-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.791",
+            "ano": 1999
+          },
+          "trecho": "…io, dentro do mês de vencimento, o mínimo de seis datas opcionais para escolherem os dias de vencimento de seus débitos.",
+          "literal": "(Incluído pela Lei nº 9.791, de 1999)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.791",
+            "ano": 1999
+          },
+          "trecho": "Parágrafo único. (VETADO)",
+          "literal": "(Incluído pela Lei nº 9.791, de 1999)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 8o",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.648",
+            "ano": 1998
+          },
+          "trecho": "…stos em lei, sua cobrança poderá ser condicionada à existência de serviço público alternativo e gratuito para o usuário.",
+          "literal": "(Redação dada pela Lei nº 9.648, de 1998)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.673",
+            "ano": 2018
+          },
+          "trecho": "…ios, tabela com o valor das tarifas praticadas e a evolução das revisões ou reajustes realizados nos últimos cinco anos.",
+          "literal": "(Incluído pela Lei nº 13.673, de 2018)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 12.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.648",
+            "ano": 1998
+          },
+          "trecho": "Art. 15. No julgamento da licitação será considerado um dos seguintes critérios:",
+          "literal": "(Redação dada pela Lei nº 9.648, de 1998)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.648",
+            "ano": 1998
+          },
+          "trecho": "I - o menor valor da tarifa do serviço público a ser prestado;",
+          "literal": "(Redação dada pela Lei nº 9.648, de 1998)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.648",
+            "ano": 1998
+          },
+          "trecho": "II - a maior oferta, nos casos de pagamento ao poder concedente pela outorga da concessão;",
+          "literal": "(Redação dada pela Lei nº 9.648, de 1998)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.648",
+            "ano": 1998
+          },
+          "trecho": "III - a combinação, dois a dois, dos critérios referidos nos incisos I, II e VII;",
+          "literal": "(Redação dada pela Lei nº 9.648, de 1998)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.648",
+            "ano": 1998
+          },
+          "trecho": "IV - melhor proposta técnica, com preço fixado no edital;",
+          "literal": "(Incluído pela Lei nº 9.648, de 1998)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.648",
+            "ano": 1998
+          },
+          "trecho": "…em razão da combinação dos critérios de menor valor da tarifa do serviço público a ser prestado com o de melhor técnica;",
+          "literal": "(Incluído pela Lei nº 9.648, de 1998)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.648",
+            "ano": 1998
+          },
+          "trecho": "…lhor proposta em razão da combinação dos critérios de maior oferta pela outorga da concessão com o de melhor técnica; ou",
+          "literal": "(Incluído pela Lei nº 9.648, de 1998)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.648",
+            "ano": 1998
+          },
+          "trecho": "VII - melhor oferta de pagamento pela outorga após qualificação de propostas técnicas.",
+          "literal": "(Incluído pela Lei nº 9.648, de 1998)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.648",
+            "ano": 1998
+          },
+          "trecho": "…mente estabelecida no edital de licitação, inclusive com regras e fórmulas precisas para avaliação econômico-financeira.",
+          "literal": "(Redação dada pela Lei nº 9.648, de 1998)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.648",
+            "ano": 1998
+          },
+          "trecho": "…os incisos IV, V, VI e VII, o edital de licitação conterá parâmetros e exigências para formulação de propostas técnicas.",
+          "literal": "(Redação dada pela Lei nº 9.648, de 1998)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.648",
+            "ano": 1998
+          },
+          "trecho": "…oncedente recusará propostas manifestamente inexequíveis ou financeiramente incompatíveis com os objetivos da licitação.",
+          "literal": "(Redação dada pela Lei nº 9.648, de 1998)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.648",
+            "ano": 1998
+          },
+          "trecho": "§ 4o Em igualdade de condições, será dada preferência à proposta apresentada por empresa brasileira.",
+          "literal": "(Redação dada pela Lei nº 9.648, de 1998)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.648",
+            "ano": 1998
+          },
+          "trecho": "…dente que, para sua viabilização, necessite de vantagens ou subsídios do poder público controlador da referida entidade.",
+          "literal": "(Renumerado do parágrafo único pela Lei nº 9.648, de 1998)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.648",
+            "ano": 1998
+          },
+          "trecho": "…cia da natureza jurídica do licitante, que comprometa a isonomia fiscal que deve prevalecer entre todos os concorrentes.",
+          "literal": "(Incluído pela Lei nº 9.648, de 1998)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.648",
+            "ano": 1998
+          },
+          "trecho": "… assim as garantias exigidas para essa parte específica do contrato, adequadas a cada caso e limitadas ao valor da obra;",
+          "literal": "(Redação dada pela Lei nº 9.648, de 1998)"
+        }
+      ]
+    },
+    "18-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "Art. 18-A. O edital poderá prever a inversão da ordem das fases de habilitação e julgamento, hipótese em que:",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…ntos de habilitação do licitante mais bem classificado, para verificação do atendimento das condições fixadas no edital;",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "II - verificado o atendimento das exigências do edital, o licitante será declarado vencedor;",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…icada em segundo lugar, e assim sucessivamente, até que um licitante classificado atenda às condições fixadas no edital;",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "… resultado final do certame, o objeto será adjudicado ao vencedor nas condições técnicas e econômicas por ele ofertadas.",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        }
+      ]
+    },
+    "23-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…e a arbitragem, a ser realizada no Brasil e em língua portuguesa, nos termos da Lei no 9.307, de 23 de setembro de 1996.",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 24.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "§ 1o Para fins de obtenção da anuência de que trata o caput deste artigo, o pretendente deverá:",
+          "literal": "(Renumerado do parágrafo único pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "§ 2o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "§ 3o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "§ 4o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        }
+      ]
+    },
+    "27-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…ulo societário direto, para promover sua reestruturação financeira e assegurar a continuidade da prestação dos serviços.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…urídica e fiscal, podendo alterar ou dispensar os demais requisitos previstos no inciso I do parágrafo único do art. 27.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…igações da concessionária e de seus controladores para com terceiros, poder concedente e usuários dos serviços públicos.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "… por seus financiadores e garantidores que atendam os requisitos do art. 116 da Lei no 6.404, de 15 de dezembro de 1976.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…res e garantidores quando, sem a transferência da propriedade de ações ou quotas, forem outorgados os seguintes poderes:",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…s pela Lei 6.404, de 15 de dezembro de 1976; ou administradores, a serem eleitos pelos quotistas, nas demais sociedades;",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "… indicar os membros do Conselho Fiscal, a serem eleitos pelos acionistas ou quotistas controladores em Assembleia Geral;",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…quotistas da concessionária, que representem, ou possam representar, prejuízos aos fins previstos no caput deste artigo;",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "IV - outros poderes necessários ao alcance dos fins previstos no caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…ação, encargos, ônus, sanções, obrigações ou compromissos com terceiros, inclusive com o poder concedente ou empregados.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "§ 6o O Poder Concedente disciplinará sobre o prazo da administração temporária.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.074",
+            "ano": 1995
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Lei no 9.074, de 1995)"
+        }
+      ]
+    },
+    "28-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…er ao mutuante, em caráter fiduciário, parcela de seus créditos operacionais futuros, observadas as seguintes condições:",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…cessão do crédito não terá eficácia em relação ao Poder Público concedente senão quando for este formalmente notificado;",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…mos deste artigo serão constituídos sob a titularidade do mutuante, independentemente de qualquer formalidade adicional;",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…os pagamentos dos créditos cedidos ou permitir que a concessionária o faça, na qualidade de representante e depositária;",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…evisto no inciso IV do caput deste artigo, fica a concessionária obrigada a apresentar a essa os créditos para cobrança;",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…la concessionária ou pela instituição encarregada da cobrança em conta corrente bancária vinculada ao contrato de mútuo;",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…erá transferir os valores recebidos ao mutuante à medida que as obrigações do contrato de mútuo tornarem-se exigíveis; e",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…ção à concessionária dos recursos excedentes, sendo vedada a retenção do saldo após o adimplemento integral do contrato.",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…nsiderados contratos de longo prazo aqueles cujas obrigações tenham prazo médio de vencimento superior a 5 (cinco) anos.",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        }
+      ]
+    },
+    "38": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.767",
+            "ano": 2012
+          },
+          "trecho": "…ação relativa a regularidade fiscal, no curso da concessão, na forma do art. 29 da Lei nº 8.666, de 21 de junho de 1993.",
+          "literal": "(Redação dada pela Lei nº 12.767, de 2012)"
+        }
+      ]
+    },
+    "42": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.445",
+            "ano": 2007
+          },
+          "trecho": "… serviço poderá ser prestado por órgão ou entidade do poder concedente, ou delegado a terceiros, mediante novo contrato.",
+          "literal": "(Redação dada pela Lei nº 11.445, de 2007)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…tidade do poder concedente, ou delegado a terceiros, mediante novo contrato. (Redação dada pela Lei nº 11.445, de 2007).",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.445",
+            "ano": 2007
+          },
+          "trecho": "…embro de 2010, desde que, até o dia 30 de junho de 2009, tenham sido cumpridas, cumulativamente, as seguintes condições:",
+          "literal": "(Incluído pela Lei nº 11.445, de 2007)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…e junho de 2009, tenham sido cumpridas, cumulativamente, as seguintes condições: (Incluído pela Lei nº 11.445, de 2007).",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.445",
+            "ano": 2007
+          },
+          "trecho": "…uais que regulavam a prestação do serviço ou a ela aplicáveis nos 20 (vinte) anos anteriores ao da publicação desta Lei;",
+          "literal": "(Incluído pela Lei nº 11.445, de 2007)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…o ou a ela aplicáveis nos 20 (vinte) anos anteriores ao da publicação desta Lei; (Incluído pela Lei nº 11.445, de 2007).",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.445",
+            "ano": 2007
+          },
+          "trecho": "…eferidos no inciso I deste parágrafo e auditados por instituição especializada escolhida de comum acordo pelas partes; e",
+          "literal": "(Incluído pela Lei nº 11.445, de 2007)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…uditados por instituição especializada escolhida de comum acordo pelas partes; e (Incluído pela Lei nº 11.445, de 2007).",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.445",
+            "ano": 2007
+          },
+          "trecho": "…enovável até 31 de dezembro de 2008, mediante comprovação do cumprimento do disposto nos incisos I e II deste parágrafo.",
+          "literal": "(Incluído pela Lei nº 11.445, de 2007)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "…iante comprovação do cumprimento do disposto nos incisos I e II deste parágrafo. (Incluído pela Lei nº 11.445, de 2007).",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.445",
+            "ano": 2007
+          },
+          "trecho": "…iscal e das sociedades por ações, efetuada por empresa de auditoria independente escolhida de comum acordo pelas partes.",
+          "literal": "(Incluído pela Lei nº 11.445, de 2007)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…da por empresa de auditoria independente escolhida de comum acordo pelas partes. (Incluído pela Lei nº 11.445, de 2007).",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.445",
+            "ano": 2007
+          },
+          "trecho": "…ítulos mobiliários, com a primeira parcela paga até o último dia útil do exercício financeiro em que ocorrer a reversão.",
+          "literal": "(Incluído pela Lei nº 11.445, de 2007)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "…la paga até o último dia útil do exercício financeiro em que ocorrer a reversão. (Incluído pela Lei nº 11.445, de 2007).",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.445",
+            "ano": 2007
+          },
+          "trecho": "…ue trata o § 5o deste artigo ser paga mediante receitas de novo contrato que venha a disciplinar a prestação do serviço.",
+          "literal": "(Incluído pela Lei nº 11.445, de 2007)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "…diante receitas de novo contrato que venha a disciplinar a prestação do serviço. (Incluído pela Lei nº 11.445, de 2007).",
+          "literal": "(Vigência)"
+        }
+      ]
+    }
+  }
+}

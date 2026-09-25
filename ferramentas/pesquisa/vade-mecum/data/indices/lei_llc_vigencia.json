@@ -1,0 +1,1200 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "LLC",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_llc.json",
+      "colecao": "artigos",
+      "sha256": "5470d6318b4146c095a22a435eb9f37ca864b7fa5bd15b19fc7d6c19c4e5bd09",
+      "total_registros": 196,
+      "gerado_em": "2026-08-31T20:53:14+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 33,
+      "anotacoes": 105,
+      "anotacoes_sem_diploma_nomeado": 40
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "alínea d",
+          "diploma": null,
+          "trecho": "d)",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso XXII",
+          "diploma": null,
+          "trecho": "…lto: aqueles cujo valor estimado supera R$ 200.000.000,00 (duzentos milhões de reais); (Vide Decreto nº 10.922, de 2021)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…perior à necessária para cumprir as finalidades às quais se destinam, vedada a aquisição de artigos de luxo. Regulamento",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XII",
+          "diploma": null,
+          "trecho": "XII -",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "… 300.000,00 (trezentos mil reais), o julgamento será por: (Promulgação partes vetadas) (Vide Decreto nº 10.922, de 2021)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "44-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.210",
+            "ano": 2025
+          },
+          "trecho": "…to no inciso II do art. 75 desta Lei deve levar em consideração o seu adequado aproveitamento ao longo de sua vida útil.",
+          "literal": "(Incluído pela Lei nº 15.210, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.210",
+            "ano": 2025
+          },
+          "trecho": "…ão da capacidade instalada para operação do equipamento ou o plano de atendimento aos requisitos necessários à operação.",
+          "literal": "(Incluído pela Lei nº 15.210, de 2025)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.210",
+            "ano": 2025
+          },
+          "trecho": "§ 2º (VETADO).",
+          "literal": "(Incluído pela Lei nº 15.210, de 2025)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.210",
+            "ano": 2025
+          },
+          "trecho": "§ 3º (VETADO).",
+          "literal": "(Incluído pela Lei nº 15.210, de 2025)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.210",
+            "ano": 2025
+          },
+          "trecho": "§ 4º (VETADO).",
+          "literal": "(Incluído pela Lei nº 15.210, de 2025)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.210",
+            "ano": 2025
+          },
+          "trecho": "§ 5º (VETADO).",
+          "literal": "(Incluído pela Lei nº 15.210, de 2025)"
+        }
+      ]
+    },
+    "46": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "§ 7º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "§ 8º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "53": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "54": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "70": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "…to para pesquisa e desenvolvimento até o valor de R$ 300.000,00 (trezentos mil reais). (Vide Decreto nº 10.922, de 2021)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "75": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…e obras e serviços de engenharia ou de serviços de manutenção de veículos automotores; (Vide Decreto nº 10.922, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…inferiores a R$ 50.000,00 (cinquenta mil reais), no caso de outros serviços e compras; (Vide Decreto nº 10.922, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "…so de obras e serviços de engenharia, ao valor de R$ 300.000,00 (trezentos mil reais); (Vide Decreto nº 10.922, de 2021)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.166",
+            "ano": 2023
+          },
+          "trecho": "…m data anterior à entrada em vigor desta Lei, desde que o preço contratado seja compatível com o praticado no mercado; e",
+          "literal": "(Redação dada pela Medida Provisória nº 1.166, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.628",
+            "ano": 2023
+          },
+          "trecho": "… em data anterior à entrada em vigor desta Lei, desde que o preço contratado seja compatível com o praticado no mercado;",
+          "literal": "(Redação dada pela Lei nº 14.628, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.471",
+            "ano": 2026
+          },
+          "trecho": "… em data anterior à entrada em vigor desta Lei, desde que o preço contratado seja compatível com o praticado no mercado;",
+          "literal": "(Redação dada pela Lei nº 15.471, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.166",
+            "ano": 2023
+          },
+          "trecho": "…odução de alimentos, para beneﬁciar as famílias rurais de baixa renda atingidas pela seca ou pela falta regular de água.",
+          "literal": "(Incluído pela Medida Provisória nº 1.166, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.628",
+            "ano": 2023
+          },
+          "trecho": "…de alimentos, a fim de beneficiar as famílias rurais de baixa renda atingidas pela seca ou pela falta regular de água; e",
+          "literal": "(Incluído pela Lei nº 14.628, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.628",
+            "ano": 2023
+          },
+          "trecho": "…assistência social e à efetivação de direitos sociais, dignidade humana, resgate social e melhoria da qualidade de vida.",
+          "literal": "(Incluído pela Lei nº 14.628, de 2023)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "…res de propriedade do órgão ou entidade contratante, incluído o fornecimento de peças. (Vide Decreto nº 10.922, de 2021)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "79": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.266",
+            "ano": 2025
+          },
+          "trecho": "…e a Administração visa a contratar bens e serviços comuns padronizados ofertados no Sistema de Compras Expressas (Sicx).",
+          "literal": "(Incluído pela Lei nº 15.266, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.266",
+            "ano": 2025
+          },
+          "trecho": "§ 1º Os procedimentos de credenciamento serão definidos em regulamento, observadas as seguintes regras:",
+          "literal": "(Redação dada pela Lei nº 15.266, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.266",
+            "ano": 2025
+          },
+          "trecho": "VII - na hipótese do inciso IV do caput deste artigo, regulamento do Poder Executivo federal disporá sobre:",
+          "literal": "(Incluído pela Lei nº 15.266, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.266",
+            "ano": 2025
+          },
+          "trecho": "a) as condições de admissão e de permanência dos fornecedores, observado o disposto no art. 87 desta Lei;",
+          "literal": "(Incluído pela Lei nº 15.266, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.266",
+            "ano": 2025
+          },
+          "trecho": "b) as regras para inclusão de bens e serviços e para formação e alteração dos preços;",
+          "literal": "(Incluído pela Lei nº 15.266, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.266",
+            "ano": 2025
+          },
+          "trecho": "c) os prazos e os métodos para entrega e recebimento dos bens e serviços;",
+          "literal": "(Incluído pela Lei nº 15.266, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.266",
+            "ano": 2025
+          },
+          "trecho": "d) as regras de instrução processual e de uso da plataforma;",
+          "literal": "(Incluído pela Lei nº 15.266, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.266",
+            "ano": 2025
+          },
+          "trecho": "e) as condições de pagamento, com prazo não superior a 30 (trinta) dias, contado do recebimento do bem ou serviço;",
+          "literal": "(Incluído pela Lei nº 15.266, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.266",
+            "ano": 2025
+          },
+          "trecho": "f) as sanções aplicáveis ao responsável por infrações, observado o disposto nos arts. 155 a 163 desta Lei.",
+          "literal": "(Incluído pela Lei nº 15.266, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.266",
+            "ano": 2025
+          },
+          "trecho": "… empresas públicas, para sociedades de economia mista e suas subsidiárias e para entidades privadas sem fins lucrativos.",
+          "literal": "(Incluído pela Lei nº 15.266, de 2025)"
+        }
+      ]
+    },
+    "86": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "§ 3º A faculdade de aderir à ata de registro de preços na condição de não participante poderá ser exercida:",
+          "literal": "(Redação dada pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "…unicipal, relativamente a ata de registro de preços de órgão ou entidade gerenciadora federal, estadual ou distrital; ou",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "…ou entidade gerenciadora municipal, desde que o sistema de registro de preços tenha sido formalizado mediante licitação.",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        }
+      ]
+    },
+    "90": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "…r da nova contratada, de eventual saldo a liquidar inscrito em despesas empenhadas ou em restos a pagar não processados.",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "…de para nova licitação, desde que identificada vantajosidade para a administração pública e mantido o objeto programado.",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        }
+      ]
+    },
+    "92": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "…destes, bem como qualquer outro evento contratual a cuja ocorrência esteja vinculada a emissão de documento de cobrança.",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        }
+      ]
+    },
+    "94": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "95": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…amento, assim entendidos aqueles de valor não superior a R$ 10.000,00 (dez mil reais). (Vide Decreto nº 10.922, de 2021)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "96": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "IV - título de capitalização custeado por pagamento único, com resgate pelo valor total.",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        }
+      ]
+    },
+    "105": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "…e encerrada a vigência destes, nem os vinculados a contratos rescindidos, nos casos dos §§ 8º e 9º do art. 90 desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        }
+      ]
+    },
+    "115": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "142": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "159": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "172": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 172.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "174": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.266",
+            "ano": 2025
+          },
+          "trecho": "VII – o Sicx.",
+          "literal": "(Incluído pela Lei nº 15.266, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.266",
+            "ano": 2025
+          },
+          "trecho": "…uncionalidades a que se refere o § 3º deste artigo serão os sistemas adotados e oferecidos pelo Poder Executivo federal.",
+          "literal": "(Incluído pela Lei nº 15.266, de 2025)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "175": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.266",
+            "ano": 2025
+          },
+          "trecho": "…trônico fornecido por pessoa jurídica de direito público ou privado, na forma de regulamento do Poder Executivo federal.",
+          "literal": "(Redação dada pela Lei nº 15.266, de 2025)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "184": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "§ 1º (VETADO).",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "…. 124 desta Lei, o valor global inicialmente pactuado demonstrar-se insuficiente para a execução do objeto, poderão ser:",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "I - utilizados saldos de recursos ou rendimentos de aplicação financeira;",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "II - aportados novos recursos pelo concedente;",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "III - reduzidas as metas e as etapas, desde que isso não comprometa a fruição ou a funcionalidade do objeto pactuado.",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "…s instrumentos celebrados com recursos de transferências voluntárias, para promover alterações em seu objeto, desde que:",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "…osição, remanejamento ou transferência de recursos de uma categoria de programação para outra ou de um órgão para outro;",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "II - seja apresentada justificativa objetiva pelo convenente; e",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "III - quando se tratar de obra, seja mantido o que foi pactuado quanto a suas características.",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "…alidade do objeto pactuado, devendo constar de demonstrativo específico que integrará as prestações de contas do ajuste.",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        }
+      ]
+    },
+    "184-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "…com valor global de até R$ 1.500.000,00 (um milhão e quinhentos mil reais), aplicar-se-á o seguinte regime simplificado:",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "I - o plano de trabalho aprovado conterá parâmetros objetivos para caracterizar o cumprimento do objeto;",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "II - a minuta dos instrumentos deverá ser simplificada;",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "III - a liberação dos recursos dar-se-á em parcela única;",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "… a verificação da execução do objeto ocorrerá mediante visita de constatação da compatibilidade com o plano de trabalho.",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "… o marco de execução de 100% (cem por cento) do cronograma físico, podendo ocorrer outras vistorias, quando necessárias.",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "…eto, e caberá à concedente ou mandatária verificar o cumprimento do objeto pactuado ao final da execução do instrumento.",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "…ov constituirão condição para a liberação da parcela única dos recursos de que trata o inciso III do caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.770",
+            "ano": 2023
+          },
+          "trecho": "…e artigo aplica-se aos convênios, contratos de repasse e instrumentos congêneres celebrados após a publicação desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.770, de 2023)"
+        }
+      ]
+    },
+    "188": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 188.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "191": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.167",
+            "ano": 2023
+          },
+          "trecho": "… licitar ou contratar diretamente de acordo com esta Lei ou de acordo com as leis citadas no referido inciso, desde que:",
+          "literal": "(Redação dada pela Medida Provisória nº 1.167, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.167",
+            "ano": 2023
+          },
+          "trecho": "I - a publicação do edital ou do ato autorizativo da contratação direta ocorra até 29 de dezembro de 2023; e",
+          "literal": "(Incluído pela Medida Provisória nº 1.167, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.167",
+            "ano": 2023
+          },
+          "trecho": "II -a opção escolhida seja expressamente indicada no edital ou no ato autorizativo da contratação direta.",
+          "literal": "(Incluído pela Medida Provisória nº 1.167, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.167",
+            "ano": 2023
+          },
+          "trecho": "…iso II do caput do art. 193, o respectivo contrato será regido pelas regras nelas previstas durante toda a sua vigência.",
+          "literal": "(Incluído pela Medida Provisória nº 1.167, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.167",
+            "ano": 2023
+          },
+          "trecho": "§ 2º É vedada a aplicação combinada desta Lei com as citadas no inciso II do caput do art. 193.",
+          "literal": "(Incluído pela Medida Provisória nº 1.167, de 2023)"
+        }
+      ]
+    },
+    "193": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.167",
+            "ano": 2023
+          },
+          "trecho": "II - em 30 de dezembro de 2023:",
+          "literal": "(Redação dada pela Medida Provisória nº 1.167, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.167",
+            "ano": 2023
+          },
+          "trecho": "a) a Lei nº 8.666, de 1993;",
+          "literal": "(Incluído pela Medida Provisória nº 1.167, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.167",
+            "ano": 2023
+          },
+          "trecho": "b) a Lei nº 10.520, de 2002; e",
+          "literal": "(Incluído pela Medida Provisória nº 1.167, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.167",
+            "ano": 2023
+          },
+          "trecho": "c) os art. 1º a art. 47-A da Lei nº 12.462, de 2011.",
+          "literal": "(Incluído pela Medida Provisória nº 1.167, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "198",
+            "ano": 2023
+          },
+          "trecho": "II - em 30 de dezembro de 2023:",
+          "literal": "(Redação dada pela Lei Complementar nº 198, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "198",
+            "ano": 2023
+          },
+          "trecho": "a) a Lei nº 8.666, de 21 de junho de 1993;",
+          "literal": "(Redação dada pela Lei Complementar nº 198, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "198",
+            "ano": 2023
+          },
+          "trecho": "b) a Lei nº 10.520, de 17 de julho de 2002; e",
+          "literal": "(Redação dada pela Lei Complementar nº 198, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "198",
+            "ano": 2023
+          },
+          "trecho": "c) os arts. 1º a 47-A da Lei nº 12.462, de 4 de agosto de 2011.",
+          "literal": "(Redação dada pela Lei Complementar nº 198, de 2023)"
+        }
+      ]
+    }
+  }
+}

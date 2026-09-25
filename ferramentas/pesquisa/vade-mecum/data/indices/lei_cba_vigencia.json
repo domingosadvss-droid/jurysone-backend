@@ -1,0 +1,4086 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "CBA",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_cba.json",
+      "colecao": "artigos",
+      "sha256": "6171e90652bbc92418ff8230a8012bd2376552a2f20ff3d6ccd57fa59bfdbd8b",
+      "total_registros": 326,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 129,
+      "anotacoes": 331,
+      "anotacoes_sem_diploma_nomeado": 60
+    }
+  },
+  "vigencia": {
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 2°",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 3°",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 2°",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "I - marcas de nacionalidade e matrícula e esteja munida dos respectivos certificados de matrícula e aeronavegabilidade;",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…io de Bordo da lista de passageiros, do manifesto de carga ou da relação de mala postal que, eventualmente, transportar.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…vil pode, por meio de regulamento, estabelecer as condições para os voos com certificado de aeronavegabilidade especial.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…s, a bordo de aeronave, poderá ser impedido quando a segurança da navegação aérea ou o interesse público assim o exigir.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…ridade de aviação civil e pelo Ministério da Justiça e Segurança Pública, podendo ser dispensada a autorização especial.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…xterior ou destino ao exterior fará, respectivamente, o primeiro pouso ou a última decolagem em aeroporto internacional.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…ortos internacionais, inclusive dos aeroportos domésticos utilizados como alternativos pelo tráfego aéreo internacional.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…orto alternativo, desde que não haja embarque ou desembarque de pessoas ou de cargas, observada a legislação específica.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…utorizada a transitar no espaço aéreo brasileiro, sem pousar no território subjacente, deverá seguir a rota determinada.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…dentro ou fora do aeródromo civil, devem obedecer às previsões regulamentares estabelecidas pela autoridade aeronáutica.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 2º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.978",
+            "ano": 2024
+          },
+          "trecho": "Art. 26. O sistema aeroportuário é constituído pelo conjunto de aeródromos brasileiros, nos quais estão incluídos:",
+          "literal": "(Redação dada pela Lei nº 14.978, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.978",
+            "ano": 2024
+          },
+          "trecho": "I - as pistas de pouso;",
+          "literal": "(Incluído pela Lei nº 14.978, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.978",
+            "ano": 2024
+          },
+          "trecho": "II - as pistas de táxi;",
+          "literal": "(Incluído pela Lei nº 14.978, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.978",
+            "ano": 2024
+          },
+          "trecho": "III - o pátio de estacionamento de aeronave;",
+          "literal": "(Incluído pela Lei nº 14.978, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.978",
+            "ano": 2024
+          },
+          "trecho": "IV - o terminal de carga;",
+          "literal": "(Incluído pela Lei nº 14.978, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.978",
+            "ano": 2024
+          },
+          "trecho": "V - o terminal de passageiros e suas facilidades.",
+          "literal": "(Incluído pela Lei nº 14.978, de 2024)"
+        }
+      ]
+    },
+    "30": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…0. A utilização de aeródromos civis deve obedecer às previsões regulamentares estabelecidas pela autoridade aeronáutica.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 1º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…iação civil regulamentará as operações de aeronaves que compreendam pouso ou decolagem em áreas distintas de aeródromos.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…s nacionais ou estrangeiras na realização de serviços internacionais serão classificados como aeroportos internacionais.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "34": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 34.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…, mantidos e operados por seus proprietários, obedecidos as instruções, as normas e os planos da autoridade aeronáutica.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "36": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…sujeitam-se às normas, instruções, coordenação e controle da autoridade aeronáutica, ressalvado o disposto no art. 36-A.",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 2°",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "36-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…gional, a integração social, o atendimento de comunidades isoladas, o acesso à saúde e o apoio a operações de segurança.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "38-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.319",
+            "ano": 2016
+          },
+          "trecho": "…̧ão, a ampliação da capacidade ou o regular funcionamento do aeroporto ou ocasionem riscos sanitários ou ambientais.",
+          "literal": "(Incluído pela Lei nº 13.319, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.319",
+            "ano": 2016
+          },
+          "trecho": "…ambém a aeronaves, equipamentos e outros bens integrantes de massa falida, mediante comunicação ao juízo competente.",
+          "literal": "(Incluído pela Lei nº 13.319, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.319",
+            "ano": 2016
+          },
+          "trecho": "…pelos proprietários dos bens e, em caso de falência, constituirão créditos extraconcursais a serem pagos pela massa.",
+          "literal": "(Incluído pela Lei nº 13.319, de 2016)"
+        }
+      ]
+    },
+    "39": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "IV - aos prestadores de serviços aéreos;",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.978",
+            "ano": 2024
+          },
+          "trecho": "V - ao terminal de carga;",
+          "literal": "(Redação dada pela Lei nº 14.978, de 2024)"
+        }
+      ]
+    },
+    "40": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…ara suas instalações de despacho, escritório, oficina e depósito ou para abrigo, reparação e abastecimento de aeronaves.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 1º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 5º O disposto neste artigo aplica-se às empresas de serviços auxiliares.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "41": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 41.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "44": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.133",
+            "ano": 2015
+          },
+          "trecho": "…ção de obstáculos será do proprietário, titular do domínio útil ou possuidor das propriedades a que se refere o art. 43.",
+          "literal": "(Incluído pela Lei nº 13.133, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.133",
+            "ano": 2015
+          },
+          "trecho": "…zo da instalação, manutenção ou reparo do equipamento de sinalização pela autoridade competente, a expensas do infrator.",
+          "literal": "(Incluído pela Lei nº 13.133, de 2015)"
+        }
+      ]
+    },
+    "67": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…os regulamentos referidos no art. 66 deste Código, ressalvada a operação com certificado de aeronavegabilidade especial.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 2º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 3º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…egulamentar os requisitos, as condições e as provas necessários à emissão do certificado de aeronavegabilidade especial.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "68": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…pensável para a obtenção do certificado de aeronavegabilidade, exceto para o certificado de aeronavegabilidade especial.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "… neste artigo aplica-se aos produtos aeronáuticos importados, nos termos estabelecidos pela autoridade de aviação civil.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "70": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 4°",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "72": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 72. O Registro Aeronáutico Brasileiro é público, único e centralizado e tem como atribuições:",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "… a ordem pública, assim como ao cadastramento geral, na forma disposta em regulamentação da autoridade de aviação civil;",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "V - proceder à matrícula de aeronave, por ocasião do primeiro registro no País;",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "VI - atribuir as marcas de nacionalidade e a matrícula identificadoras das aeronaves; e",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "VII - inscrever os documentos da aeronave relacionados a:",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "a) domínio;",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "b) demais direitos reais;",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "c) abandono;",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "d) perda;",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "e) extinção; e",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "f) alteração essencial.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 1º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…onfere nacionalidade brasileira à aeronave e substitui a matrícula anterior, sem prejuízo dos atos jurídicos realizados.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…egulamentado pela autoridade de aviação civil, que disciplinará seu funcionamento, seus requisitos e seus procedimentos.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "… e do pagamento das taxas a eles correspondentes, nos termos dispostos em regulamentação da autoridade de aviação civil.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "73": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 73.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "74": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 74.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "75": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 75.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "76": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 76.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "77": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 77 a 85.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "86": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1°",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3°",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4°",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5°",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6°",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "86-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…e tenham contribuído, direta ou indiretamente, para a ocorrência e da emissão de recomendações de segurança operacional.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "Parágrafo único. Em qualquer fase da investigação, poderão ser emitidas recomendações de segurança operacional.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "88-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…tros bens, unicamente em proveito da prevenção de acidentes aeronáuticos, incidentes aeronáuticos e ocorrências de solo.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "… ocorrência ou o agravamento das consequências de acidentes aeronáuticos, incidentes aeronáuticos e ocorrências de solo.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…à prevenção de novos acidentes ou incidentes aeronáuticos, sem prejuízo da comunicação à autoridade policial competente.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "88-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "… evento, sendo vedada a participação nestas de qualquer pessoa que esteja participando ou tenha participado da primeira.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "88-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…tos concomitantes ou não das demais investigações no tocante ao acesso e à guarda de itens de interesse da investigação.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "88-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "… de crime, relacionados ou não à cadeia de eventos do acidente, far-se-á a comunicação à autoridade policial competente.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "88-E": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…istas à disposição para os exames necessários às diligências sobre o acidente aeronáutico com aeronave civil, desde que:",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…ista, no quadro de pessoal do órgão solicitante, técnico capacitado ou equipamento apropriado para os exames requeridos;",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "II - a autoridade solicitante discrimine os exames a serem feitos;",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…e pessoal da autoridade de investigação Sipaer, técnico capacitado e equipamento apropriado para os exames requeridos; e",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "IV - a entidade solicitante custeie todas as despesas decorrentes da solicitação.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…à disposição pela autoridade de investigação Sipaer não poderá ter participado da investigação Sipaer do mesmo acidente.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "88-F": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…Comando Militar e, no caso de aeronave militar estrangeira, pelo Comando da Aeronáutica ou conforme os acordos vigentes.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "Parágrafo único. (VETADO).",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "88-G": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…ão da comissão de investigação Sipaer, cuja presidência caberá a profissional habilitado e com credencial Sipaer válida.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "… os laudos, autos de exames, inclusive autópsias, e cópias de outros documentos de interesse para a investigação Sipaer.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…o a dependências, equipamentos, documentos e quaisquer outros elementos necessários à investigação, onde se encontrarem.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…to nos §§ 1o e 2o deste artigo será apurada mediante processo administrativo disciplinar, se do fato não resultar crime.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…ão de representação judicial da União, aplicando-se a Lei no 5.869, de 11 de janeiro de 1973 - Código de Processo Civil.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…e investigação Sipaer terá prioridade no embarque em aeronaves civis brasileiras empregadas no transporte aéreo público.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…ncial emitida pela autoridade de investigação Sipaer, no aeroporto de embarque, ao representante da empresa requisitada.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "88-H": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…inado acidente aeronáutico e apresenta recomendações unicamente em proveito da segurança operacional da atividade aérea.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "… O relatório final de acidente com aeronave de Força Armada será aprovado pelo comandante do respectivo Comando Militar.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "88-I": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "Art. 88-I. São fontes Sipaer:",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "I - gravações das comunicações entre os órgãos de controle de tráfego aéreo e suas transcrições;",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "II - gravações das conversas na cabine de pilotagem e suas transcrições;",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "III - dados dos sistemas de notificação voluntária de ocorrências;",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "IV - gravações das comunicações entre a aeronave e os órgãos de controle de tráfego aéreo e suas transcrições;",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "V - gravações dos dados de voo e os gráficos e parâmetros deles extraídos ou transcritos ou extraídos e transcritos;",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "VI - dados dos sistemas automáticos e manuais de coleta de dados; e",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "VII - demais registros usados nas atividades Sipaer, incluindo os de investigação.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…igação Sipaer, a autoridade de investigação Sipaer terá precedência no acesso e na custódia das fontes citadas no caput.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "… procedimentos administrativos e somente serão fornecidas mediante requisição judicial, observado o art. 88-K desta Lei.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…ras atividades afetas ao Sipaer será espontânea e baseada na garantia legal de seu exclusivo uso para fins de prevenção.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "… de 1941 - Código de Processo Penal, e no art. 406 da Lei no 5.869, de 11 de janeiro de 1973 - Código de Processo Civil.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "88-J": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…permitido em inquérito ou em processo judicial ou procedimento administrativo estarão protegidas pelo sigilo processual.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "88-K": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…s oitiva do representante judicial da autoridade Sipaer, que deverá se pronunciar no prazo de 72 (setenta e duas) horas.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "88-L": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…dentes e às previsões legais, informações relativas às investigações Sipaer em andamento e às respectivas fontes Sipaer.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "88-M": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…ente aeronáutico ou ocorrência de solo poderá ser interditada pela autoridade de investigação Sipaer, observando-se que:",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…ção será assinado pela autoridade de investigação Sipaer e, se possível, pelo operador da aeronave ou seu representante;",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…e autorização da autoridade de investigação Sipaer, a aeronave interditada poderá funcionar para efeito de manutenção; e",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "III - o operador permanecerá responsável pelo adimplemento de quaisquer obrigações que incidam sobre a aeronave.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "88-N": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…tigação Sipaer, que deterá a guarda dos itens de interesse para a investigação até a sua liberação nos termos desta Lei.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "88-O": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "… autoridades aeronáuticas quanto por eventuais agentes de perícia criminal responsáveis pelas respectivas investigações.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "88-P": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…odendo haver manipulação ou retenção de quaisquer objetos do acidente com anuência da autoridade de investigação Sipaer.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "88-Q": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…oços e de bens transportados, em qualquer parte, será do explorador da aeronave, que arcará com as despesas decorrentes.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…nave ou dos seus destroços, caberá à administração do aeródromo fazê-lo, imputando-se àquele a indenização das despesas.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…ização do local, dos bens e dos destroços quando, pelo lugar ou estado em que se encontrarem, não puderem ser removidos.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "… houver, pelo responsável pela investigação policial, depois de observadas as demais exigências legais e regulamentares.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "88-R": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…0 (noventa) dias após a sua conclusão, por meio de pedido ao juiz da causa, que julgará sobre seu cabimento e interesse.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…os habilitados notificados da decisão de custódia, por meio de comunicação oficial da autoridade de investigação Sipaer.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "… do deferimento de sua custódia, e, se esgotado tal prazo, o próximo interessado, na ordem de preferência, será chamado.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…or meio de carta com aviso de recebimento, para proceder, em 90 (noventa) dias da notificação, à retirada dos destroços.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…do o prazo de 90 (noventa) dias para o proprietário proceder à retirada dos destroços, sob seus ônus e responsabilidade.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…ruidos pela autoridade de investigação Sipaer, sendo que, no último caso, os resíduos poderão ser alienados como sucata.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…e preferência, será considerada a data de ingresso do pedido judicial no protocolo da autoridade de investigação Sipaer.",
+          "literal": "(Incluído pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "89": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "Art. 89.",
+          "literal": "(Revogado pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "91": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "Art. 91.",
+          "literal": "(Revogado pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "92": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "Art. 92.",
+          "literal": "(Revogado pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Lei nº 12.970, de 2014)"
+        }
+      ]
+    },
+    "95": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "Art. 95. O Poder Executivo deverá instituir e regular comissão que tenha os seguintes objetivos:",
+          "literal": "(Redação dada pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "I - assessorar os órgãos governamentais, relativamente à política e aos critérios de segurança; e",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "II - promover a coordenação entre:",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "a) os serviços de controle de passageiros;",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "b) a administração aeroportuária;",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "c) o policiamento;",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "d) as empresas de transporte aéreo; e",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "e) as empresas de serviços auxiliares.",
+          "literal": "(Incluído pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "§ 1º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.047, de 2020)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.047",
+            "ano": 2020
+          },
+          "trecho": "…propor diretrizes destinadas a prevenir e a enfrentar ameaças e atos contra a aviação civil e as instalações correlatas.",
+          "literal": "(Redação dada pela Lei nº 14.047, de 2020)"
+        }
+      ]
+    },
+    "98": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 98.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "99": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 99.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "99-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…A formação e o treinamento de pessoal da aviação civil obedecerão aos regulamentos editados pela autoridade aeronáutica.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "102": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…s, conexos à navegação aérea ou à infraestrutura aeronáutica, serão aqueles assim definidos pela autoridade aeronáutica.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "I - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "II - (revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1°",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 2º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "106": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…egabilidade, de transferência por ato entre vivos, de constituição de hipoteca, de publicidade e de cadastramento geral.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 2º A autoridade de aviação civil poderá estabelecer exceções ao registro de que trata o § 1º deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "107": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.887",
+            "ano": 2013
+          },
+          "trecho": "§ 4°",
+          "literal": "(Revogado pela Lei nº 12.887, de 2013)"
+        }
+      ]
+    },
+    "109": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 109.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "113": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 113.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "116": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 116.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "117": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 117.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "118": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…or conta de quem a tenha contratado e as respectivas hipotecas poderão ser inscritos no Registro Aeronáutico Brasileiro.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 1º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 2º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 3º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "119": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 119.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "123": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "I - a pessoa natural ou jurídica prestadora de serviços aéreos;",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "… ou por meio de prepostos, para a realização de operações que não configurem a prestação de serviços aéreos a terceiros;",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "125": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 125.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "128": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…damento de aeronave será feito por instrumento público ou particular e será inscrito no Registro Aeronáutico Brasileiro.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "137": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 137.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "147": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 147.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "153": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 153.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "155": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 1°",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "156": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.319",
+            "ano": 2016
+          },
+          "trecho": "…enças específicas emitidas pela autoridade de aviação civil brasileira e reservada a brasileiros natos ou naturalizados.",
+          "literal": "(Redação dada pela Lei nº 13.319, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 2º A função não remunerada pode ser exercida por tripulantes habilitados, independentemente de sua nacionalidade.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "157": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…ipulantes estrangeiros em serviços aéreos brasileiros, desde que haja reciprocidade ou acordo bilateral sobre a matéria.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.143",
+            "ano": 2025
+          },
+          "trecho": "…ão estrangeira nos serviços aéreos prestados no País por operadores brasileiros ou estrangeiros nas seguintes hipóteses:",
+          "literal": "(Incluído pela Lei nº 15.143, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.143",
+            "ano": 2025
+          },
+          "trecho": "I - situação de emergência ou estado de calamidade pública reconhecidos pelo Poder Executivo federal; ou",
+          "literal": "(Incluído pela Lei nº 15.143, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.143",
+            "ano": 2025
+          },
+          "trecho": "…de emergência ambiental declarada nos termos do inciso IX do caput do art. 2º da Lei nº 8.745, de 9 de dezembro de 1993.",
+          "literal": "(Incluído pela Lei nº 15.143, de 2025)"
+        }
+      ]
+    },
+    "160": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "… de capacidade física serão concedidos pela autoridade de aviação civil, na forma disposta em regulamentação específica.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Parágrafo único. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "161": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 161.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "162": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 162.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "162-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…cidas por seu titular, desde que atendidos os requisitos estabelecidos em regulamentação da autoridade de aviação civil.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "172": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…nchimento do Diário de Bordo deve atender aos requisitos estabelecidos em regulamentação da autoridade de aviação civil.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Parágrafo único. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "173": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "174": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 174.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "174-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…conômicas de interesse público submetidas à regulação da autoridade de aviação civil, na forma da legislação específica.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…ulares e não regulares, observados os acordos internacionais dos quais a República Federativa do Brasil seja signatária.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "175": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 175.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "176": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 176.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "177": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 177 a 179 -",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "180": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 180 a 183",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "184": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.842",
+            "ano": 2019
+          },
+          "trecho": "Art. 184 a 186",
+          "literal": "(Revogado pela Lei nº 13.842, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 184 a 186 (Revogado pela Lei nº 13.842, de 2019) e",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "187": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 187 a 191.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "192": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…usão de serviços ou interesses deverão obedecer ao disposto em regulamentação específica da autoridade de aviação civil.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "193": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 193.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 193. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "193-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…ica, a exploração de serviços aéreos, observadas as disposições deste Código e as normas da autoridade de aviação civil.",
+          "literal": "(Incluído Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "194": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 194.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 194. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "195": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 195.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 195. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "196": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 196.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 196. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "198": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 198.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 198. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "199": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 199.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 199. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "200": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 200.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 200. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "201": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 201 a 202.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "203": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 203. Os serviços de transporte aéreo internacional podem ser realizados por empresas nacionais ou estrangeiras.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "204": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 204.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 204. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "205": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…autorização prévia de funcionamento de que trata o art. 1.134 da Lei nº 10.406, de 10 de janeiro de 2002 (Código Civil).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "I - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "II - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "III - (revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 1º (Revogado).",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…ira na Junta Comercial observará o disposto em ato do Departamento Nacional de Registro Empresarial e Integração (Drei).",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "206": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 206.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 206. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "207": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 207.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 207. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "208": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 208.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 208. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "209": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 209.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 209. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "210": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 210.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 210. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "211": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 211.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 211. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "212": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 212.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 212. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "213": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 213.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 213. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "214": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 214.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 214. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "216": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…rte doméstico são reservados a pessoas jurídicas constituídas sob as leis brasileiras, com sede e administração no País.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "217": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 217 a 221.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "222": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…orte aéreo, obriga-se o empresário a transportar passageiro, bagagem ou carga, por meio de aeronave, mediante pagamento.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "227": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…o devem fornecer às autoridades federais competentes, na forma da regulamentação, as informações pessoais do passageiro.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "232": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…regulamentará o tratamento a ser dispensado ao passageiro indisciplinado, inclusive em relação às providências cabíveis.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "… tenha praticado ato de indisciplina considerado gravíssimo, nos termos da regulamentação prevista no § 1º deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…de missão de Estado, possibilitado o estabelecimento de outras exceções na regulamentação prevista no § 1º deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…hados pelo prestador de serviços aéreos com seus congêneres, nos termos da regulamentação prevista no § 1º deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "251-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.034",
+            "ano": 2020
+          },
+          "trecho": "…nstração da efetiva ocorrência do prejuízo e de sua extensão pelo passageiro ou pelo expedidor ou destinatário de carga.",
+          "literal": "(Incluído pela Lei nº 14.034, de 2020)"
+        }
+      ]
+    },
+    "256": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.034",
+            "ano": 2020
+          },
+          "trecho": "a) (revogada);",
+          "literal": "(Redação dada pela Lei nº 14.034, de 2020)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "b)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.034",
+            "ano": 2020
+          },
+          "trecho": "b) (revogada).",
+          "literal": "(Redação dada pela Lei nº 14.034, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.034",
+            "ano": 2020
+          },
+          "trecho": "…e ou lesão resultar, exclusivamente, do estado de saúde do passageiro, ou se o acidente decorrer de sua culpa exclusiva;",
+          "literal": "(Incluído pela Lei nº 14.034, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.034",
+            "ano": 2020
+          },
+          "trecho": "… caso fortuito ou de força maior, foi impossível adotar medidas necessárias, suficientes e adequadas para evitar o dano.",
+          "literal": "(Incluído pela Lei nº 14.034, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.034",
+            "ano": 2020
+          },
+          "trecho": "…ste artigo, a ocorrência de 1 (um) ou mais dos seguintes eventos, desde que supervenientes, imprevisíveis e inevitáveis:",
+          "literal": "(Incluído pela Lei nº 14.034, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.034",
+            "ano": 2020
+          },
+          "trecho": "… à decolagem decorrentes de condições meteorológicas adversas impostas por órgão do sistema de controle do espaço aéreo;",
+          "literal": "(Incluído pela Lei nº 14.034, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.034",
+            "ano": 2020
+          },
+          "trecho": "II - restrições ao pouso ou à decolagem decorrentes de indisponibilidade da infraestrutura aeroportuária;",
+          "literal": "(Incluído pela Lei nº 14.034, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.034",
+            "ano": 2020
+          },
+          "trecho": "…utoridade de aviação civil ou de qualquer outra autoridade ou órgão da Administração Pública, que será responsabilizada;",
+          "literal": "(Incluído pela Lei nº 14.034, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.034",
+            "ano": 2020
+          },
+          "trecho": "…s de Governo que dela decorram, com vistas a impedir ou a restringir o transporte aéreo ou as atividades aeroportuárias.",
+          "literal": "(Incluído pela Lei nº 14.034, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.034",
+            "ano": 2020
+          },
+          "trecho": "…es de atraso e de interrupção do voo por período superior a 4 (quatro) horas de que tratam os arts. 230 e 231 desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.034, de 2020)"
+        }
+      ]
+    },
+    "264": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.034",
+            "ano": 2020
+          },
+          "trecho": "…o na entrega da carga foi causado pela ocorrência de 1 (um) ou mais dos eventos previstos no § 3º do art. 256 desta Lei;",
+          "literal": "(Redação dada pela Lei nº 14.034, de 2020)"
+        }
+      ]
+    },
+    "267": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…269, e, para isso, é obrigatório que contrate seguro, conforme previsto no inciso III do caput do art. 281 deste Código;",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "II - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "281": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "III - ao pessoal técnico a bordo, às pessoas e aos bens na superfície;",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 1º O recebimento do seguro exime o transportador da responsabilidade (artigo 250).",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "… for operada por órgão de segurança pública relacionado nos incisos I a VI do caput do art. 144 da Constituição Federal.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…aeronave não segurada nos termos do § 2º deste artigo deverá observar o disposto em tratados e em convenções aplicáveis.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "283": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 283.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "288": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…aplicáveis a cada conduta infracional, observado o processo de apuração e de julgamento previsto em regulamento próprio.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 1º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "§ 2º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…posto nos Capítulos II e III deste Título aplica-se tão somente às atribuições do Comando da Aeronáutica, no que couber.",
+          "literal": "(Incluído pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "289": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "II - suspensão de certificados, de licenças ou de autorizações;",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "III - cassação de certificados, de licenças ou de autorizações;",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "V - (revogado).",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "291": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…mitantemente à providência prevista no § 1º deste artigo, deverá tomar as medidas que possibilitem a continuação do voo.",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "299": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…trícula, de habilitação, de autorização ou de homologação expedidos segundo as regras deste Código, nos seguintes casos:",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "III - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "IV - (revogado);",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "302": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "e) utilizar ou empregar aeronave sem a necessária homologação do órgão competente, quando exigida;",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea w",
+          "diploma": null,
+          "trecho": "w)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea w",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "w) (revogada);",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "III - infrações imputáveis aos prestadores de serviços aéreos:",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "…lidação de serviços ou interesses, sem conhecimento ou consentimento expresso da autoridade aeronáutica, quando exigido;",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "f) explorar qualquer serviço aéreo sem a observância da regulação da autoridade aeronáutica;",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea i",
+          "diploma": null,
+          "trecho": "i)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea i",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "i) (revogada);",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea v",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.970",
+            "ano": 2014
+          },
+          "trecho": "…de informar à autoridade aeronáutica a ocorrência de incidente ou acidente envolvendo aeronave sob sua responsabilidade;",
+          "literal": "(Redação dada pela Lei nº 12.970, de 2014)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea y",
+          "diploma": null,
+          "trecho": "y)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea y",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "y) (revogada);",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea z",
+          "diploma": null,
+          "trecho": "z)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea z",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "z) (revogada);",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "e) executar qualquer serviço aéreo sem a observância da regulação da autoridade aeronáutica;",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea j",
+          "diploma": null,
+          "trecho": "j)",
+          "literal": "(revogada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea j",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "j) (revogada);",
+          "literal": "(Redação dada pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "303": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.614",
+            "ano": 1998
+          },
+          "trecho": "…os casos dos incisos do caput deste artigo e após autorização do Presidente da República ou autoridade por ele delegada.",
+          "literal": "(Incluído pela Lei nº 9.614, de 1998)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.614",
+            "ano": 1998
+          },
+          "trecho": "…3° A autoridade mencionada no § 1° responderá por seus atos quando agir com excesso de poder ou com espírito emulatório.",
+          "literal": "(Renumerado do § 2° para § 3º com nova redação pela Lei nº 9.614, de 1998)"
+        }
+      ]
+    },
+    "321": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.368",
+            "ano": 2022
+          },
+          "trecho": "Art. 321.",
+          "literal": "(Revogado pela Lei nº 14.368, de 2022)"
+        }
+      ]
+    },
+    "322": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…a de julgar, administrativamente, as infrações e demais questões dispostas neste Código, e mencionadas no seu artigo 1°,",
+          "literal": "(vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1°",
+          "literal": "(vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2°",
+          "literal": "(vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3°",
+          "literal": "(vetado)"
+        }
+      ]
+    }
+  }
+}

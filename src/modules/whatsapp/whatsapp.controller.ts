@@ -18,8 +18,11 @@
 import {
   Controller, Get, Post, Patch, Delete,
   Body, Param, Query, UseGuards, Request,
-  HttpCode, HttpStatus,
+  HttpCode, HttpStatus, Res, Headers, RawBodyRequest,
+  BadRequestException, Logger,
 } from '@nestjs/common';
+import { Response } from 'express';
+import * as crypto from 'crypto';
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { WhatsappService } from './whatsapp.service';
@@ -30,7 +33,23 @@ import { WhatsappService } from './whatsapp.service';
 @Controller('whatsapp')
 export class WhatsappController {
 
+  private readonly logger = new Logger(WhatsappController.name);
+
   constructor(private readonly service: WhatsappService) {}
+
+  /** Valida assinatura HMAC-SHA256 do Meta (X-Hub-Signature-256) */
+  private validarAssinaturaMeta(rawBody: Buffer, signature: string): boolean {
+    const appSecret = process.env.WHATSAPP_APP_SECRET;
+    if (!appSecret) return true; // sem segredo configurado, aceita (modo desenvolvimento)
+    if (!signature) return false;
+
+    const expected = 'sha256=' + crypto
+      .createHmac('sha256', appSecret)
+      .update(rawBody)
+      .digest('hex');
+
+    return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(signature));
+  }
 
   /* ──────────────────── MENSAGENS DIRETAS ───────────────────── */
 
@@ -72,6 +91,29 @@ export class WhatsappController {
     },
   ) {
     return this.service.enviarLote(req.user, dto);
+  }
+
+  /* ──────────────────── CONVERSAS (INBOX) ───────────────────── */
+
+  /**
+   * GET /whatsapp/conversas
+   * Lista de conversas agrupadas por telefone (inbox estilo WhatsApp)
+   */
+  @Get('conversas')
+  async listarConversas(@Request() req: any) {
+    return this.service.listarConversas(req.user.officeId);
+  }
+
+  /**
+   * GET /whatsapp/conversas/:telefone
+   * Mensagens de uma conversa específica
+   */
+  @Get('conversas/:telefone')
+  async getConversa(
+    @Request() req: any,
+    @Param('telefone') telefone: string,
+  ) {
+    return this.service.getConversa(req.user.officeId, telefone);
   }
 
   /* ──────────────────── HISTÓRICO ───────────────────────────── */
@@ -224,22 +266,47 @@ export class WhatsappController {
 
   /**
    * POST /whatsapp/webhook
-   * Webhook para receber mensagens do WhatsApp Business API
-   * (chamado pelo Meta/WhatsApp)
+   * Webhook para receber mensagens do WhatsApp Business API (Meta)
+   * Valida assinatura HMAC-SHA256 via X-Hub-Signature-256
    */
   @Post('webhook')
   @HttpCode(HttpStatus.OK)
-  async receberWebhook(@Body() payload: any) {
-    return this.service.processarWebhook(payload);
+  async receberWebhook(
+    @Request() req: RawBodyRequest<any>,
+    @Body() payload: any,
+    @Headers('x-hub-signature-256') signature: string,
+    @Res() res: Response,
+  ) {
+    // Validação de assinatura Meta
+    const rawBody = req.rawBody;
+    if (rawBody && signature) {
+      const valido = this.validarAssinaturaMeta(rawBody, signature);
+      if (!valido) {
+        this.logger.warn('[WhatsApp] Webhook com assinatura inválida rejeitado.');
+        return res.status(400).json({ error: 'Assinatura inválida' });
+      }
+    }
+
+    const result = await this.service.processarWebhook(payload);
+    return res.status(200).json(result);
   }
 
   /**
    * GET /whatsapp/webhook
-   * Verificação do webhook (Meta challenge)
+   * Verificação do webhook (Meta challenge — responde com número puro)
    */
   @Get('webhook')
-  verificarWebhook(@Query() query: { 'hub.verify_token': string; 'hub.challenge': string }) {
-    return this.service.verificarWebhook(query);
+  verificarWebhook(
+    @Query() query: { 'hub.verify_token': string; 'hub.challenge': string; 'hub.mode': string },
+    @Res() res: Response,
+  ) {
+    const result = this.service.verificarWebhook(query);
+    if (typeof result === 'string') {
+      // Meta espera o challenge como texto puro, não JSON
+      res.setHeader('Content-Type', 'text/plain');
+      return res.send(result);
+    }
+    return res.json(result);
   }
 
   /* ──────────────────── STATS ────────────────────────────────── */

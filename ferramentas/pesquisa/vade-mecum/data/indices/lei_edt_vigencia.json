@@ -1,0 +1,1256 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "EDT",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_edt.json",
+      "colecao": "artigos",
+      "sha256": "79df15297c03dd49f13e973819e5722703f1d7c0535e3b205c449025e3d58318",
+      "total_registros": 59,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 34,
+      "anotacoes": 98,
+      "anotacoes_sem_diploma_nomeado": 8
+    }
+  },
+  "vigencia": {
+    "1-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…rigentes, bem como daqueles que, de qualquer forma, promovem, organizam, coordenam ou participam dos eventos esportivos.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "2-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…de fato, que se organize para o fim de torcer e apoiar entidade de prática esportiva de qualquer natureza ou modalidade.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…rá manter cadastro atualizado de seus associados ou membros, o qual deverá conter, pelo menos, as seguintes informações:",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "I - nome completo;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "II - fotografia;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "III - filiação;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "IV - número do registro civil;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "V - número do CPF;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "VI - data de nascimento;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "VII - estado civil;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "VIII - profissão;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "IX - endereço completo; e",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "X - escolaridade.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 4o",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "… entidades de que trata o caput farão publicar na internet, em sítio da entidade responsável pela organização do evento:",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "I - a íntegra do regulamento da competição;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…I - as tabelas da competição, contendo as partidas que serão realizadas, com especificação de sua data, local e horário;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "III - o nome e as formas de contato do Ouvidor da Competição de que trata o art. 6o;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "IV - os borderôs completos das partidas;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "V - a escalação dos árbitros imediatamente após sua definição; e",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "VI - a relação dos nomes dos torcedores impedidos de comparecer ao local do evento desportivo.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…el, em caracteres facilmente legíveis, do lado externo de todas as entradas do local onde se realiza o evento esportivo.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…a de transação penal ou suspensão do processo que implique o impedimento do torcedor de frequentar estádios desportivos.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…as as informações de que trata o § 1o do art. 5o conterá, também, as manifestações e propostas do Ouvidor da Competição.",
+          "literal": "(Redação dada pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "… nome do Ouvidor da Competição sejam divulgados até 60 (sessenta) dias antes de seu início, na forma do § 1o do art. 5o.",
+          "literal": "(Redação dada pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…to definitivo da competição será divulgado, na forma do § 1o do art. 5o, 45 (quarenta e cinco) dias antes de seu início.",
+          "literal": "(Redação dada pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.117",
+            "ano": 2021
+          },
+          "trecho": "…er a integridade física e o bem-estar dos atletas, desde que aprovada pela maioria das agremiações partícipes do evento.",
+          "literal": "(Incluído pela Lei nº 14.117, de 2021)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.155",
+            "ano": 2015
+          },
+          "trecho": "…ins do disposto neste artigo, considera-se critério técnico a habilitação de entidade de prática desportiva em razão de:",
+          "literal": "(Redação dada pela Lei nº 13.155, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.155",
+            "ano": 2015
+          },
+          "trecho": "I - colocação obtida em competição anterior; e",
+          "literal": "(Incluído pela Lei nº 13.155, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.155",
+            "ano": 2015
+          },
+          "trecho": "II - cumprimento dos seguintes requisitos:",
+          "literal": "(Incluído pela Lei nº 13.155, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.155",
+            "ano": 2015
+          },
+          "trecho": "… apresentação de Certidão Negativa de Débitos relativos a Créditos Tributários Federais e à Dívida Ativa da União - CND;",
+          "literal": "(Incluído pela Lei nº 13.155, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.155",
+            "ano": 2015
+          },
+          "trecho": "b) apresentação de certificado de regularidade do Fundo de Garantia do Tempo de Serviço - FGTS; e",
+          "literal": "(Incluído pela Lei nº 13.155, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.155",
+            "ano": 2015
+          },
+          "trecho": "c) comprovação de pagamento dos vencimentos acertados em contratos de trabalho e dos contratos de imagem dos atletas.",
+          "literal": "(Incluído pela Lei nº 13.155, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.155",
+            "ano": 2015
+          },
+          "trecho": "…rincípio do acesso e do descenso e as seguintes determinações, sem prejuízo da perda de pontos, na forma do regulamento:",
+          "literal": "(Redação dada pela Lei nº 13.155, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.155",
+            "ano": 2015
+          },
+          "trecho": "…elecidos no inciso II do § 1o deste artigo participará da divisão imediatamente inferior à que se encontra classificada;",
+          "literal": "(Incluído pela Lei nº 13.155, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.155",
+            "ano": 2015
+          },
+          "trecho": "…ssificação do campeonato do ano anterior e desde que cumpridos os requisitos exigidos no inciso II do § 1o deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.155, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.155",
+            "ano": 2015
+          },
+          "trecho": "…Positiva com Efeitos de Negativa de Débitos relativos a Créditos Tributários Federais e à Dívida Ativa da União - CPEND.",
+          "literal": "(Incluído pela Lei nº 13.155, de 2015)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.155",
+            "ano": 2015
+          },
+          "trecho": "§ 6o (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.155, de 2015)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "§ 7o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.155",
+            "ano": 2015
+          },
+          "trecho": "§ 7o (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.155, de 2015)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "§ 8o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.155",
+            "ano": 2015
+          },
+          "trecho": "§ 8o (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.155, de 2015)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…ue trata o § 1o do art. 5o até as 14 (quatorze) horas do 3o (terceiro) dia útil subsequente ao da realização da partida.",
+          "literal": "(Redação dada pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…ireito a segurança nos locais onde são realizados os eventos esportivos antes, durante e após a realização das partidas.",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "13-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…o condições de acesso e permanência do torcedor no recinto esportivo, sem prejuízo de outras condições previstas em lei:",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "I - estar na posse de ingresso válido;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…portar objetos, bebidas ou substâncias proibidas ou suscetíveis de gerar ou possibilitar a prática de atos de violência;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "III - consentir com a revista pessoal de prevenção e segurança;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…tentar cartazes, bandeiras, símbolos ou outros sinais com mensagens ofensivas, inclusive de caráter racista ou xenófobo;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "V - não entoar cânticos discriminatórios, racistas ou xenófobos;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "VI - não arremessar objetos, de qualquer natureza, no interior do recinto esportivo;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…- não portar ou utilizar fogos de artifício ou quaisquer outros engenhos pirotécnicos ou produtores de efeitos análogos;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "VIII - não incitar e não praticar atos de violência no estádio, qualquer que seja a sua natureza; e",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "IX - não invadir e não incitar a invasão, de qualquer forma, da área restrita aos competidores.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.663",
+            "ano": 2012
+          },
+          "trecho": "…ar bandeiras, inclusive com mastro de bambu ou similares, para outros fins que não o da manifestação festiva e amigável.",
+          "literal": "(Incluído pela Lei nº 12.663, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…afastamento imediato do recinto, sem prejuízo de outras sanções administrativas, civis ou penais eventualmente cabíveis.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "§ 2o",
+          "literal": "(Revogado pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…a, transporte e demais contingências que possam ocorrer, das localidades em que se realizarão as partidas da competição.",
+          "literal": "(Redação dada pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…al técnica de informações, com infraestrutura suficiente para viabilizar o monitoramento por imagem do público presente.",
+          "literal": "(Redação dada pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 22. São direitos do torcedor partícipe:",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…tema eletrônico que viabilize a fiscalização e o controle da quantidade de público e do movimento financeiro da partida.",
+          "literal": "(Redação dada pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "… no § 2o não se aplica aos eventos esportivos realizados em estádios com capacidade inferior a 10.000 (dez mil) pessoas.",
+          "literal": "(Redação dada pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…I - tenham sido disponibilizados portões de acesso ao estádio em número inferior ao recomendado pela autoridade pública.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…pessoas deverão contar com meio de monitoramento por imagem das catracas, sem prejuízo do disposto no art. 18 desta Lei.",
+          "literal": "(Redação dada pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…fica dispensado na hipótese de evento esportivo realizado em estádio com capacidade inferior a 10.000 (dez mil) pessoas.",
+          "literal": "(Redação dada pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "31-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "… acidentes pessoais, tendo como beneficiária a equipe de arbitragem, quando exclusivamente no exercício dessa atividade.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.155",
+            "ano": 2015
+          },
+          "trecho": "…viamente selecionados, ou audiência pública transmitida ao vivo pela rede mundial de computadores, sob pena de nulidade.",
+          "literal": "(Redação dada pela Lei nº 13.155, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.155",
+            "ano": 2015
+          },
+          "trecho": "…ia pública serão realizados no mínimo quarenta e oito horas antes de cada rodada, em local e data previamente definidos.",
+          "literal": "(Redação dada pela Lei nº 13.155, de 2015)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… documento que contemple as diretrizes básicas de seu relacionamento com os torcedores, disciplinando, obrigatoriamente:",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "§ 2o As decisões de que trata o caput serão disponibilizadas no sítio de que trata o § 1o do art. 5o.",
+          "literal": "(Redação dada pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.155",
+            "ano": 2015
+          },
+          "trecho": "…esta Lei, observado o valor mínimo de R$ 100,00 (cem reais) e o valor máximo de R$ 2.000.000,00 (dois milhões de reais).",
+          "literal": "(Redação dada pela Lei nº 13.155, de 2015)"
+        }
+      ]
+    },
+    "38": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 38.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "39": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "Art. 39.",
+          "literal": "(Revogado pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "39-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.912",
+            "ano": 2019
+          },
+          "trecho": "…rá impedida, assim como seus associados ou membros, de comparecer a eventos esportivos pelo prazo de até 5 (cinco) anos.",
+          "literal": "(Redação dada pela Lei nº 13.912, de 2019)"
+        }
+      ]
+    },
+    "39-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "… seus associados ou membros no local do evento esportivo, em suas imediações ou no trajeto de ida e volta para o evento.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "39-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.912",
+            "ano": 2019
+          },
+          "trecho": "…sociados ou membros envolvidos, mesmo que em local ou data distintos dos relativos à competição esportiva, nos casos de:",
+          "literal": "(Incluído pela Lei nº 13.912, de 2019)"
+        }
+      ]
+    },
+    "41-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…o Distrito Federal para o processo, o julgamento e a execução das causas decorrentes das atividades reguladas nesta Lei.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "41-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…-B. Promover tumulto, praticar ou incitar a violência, ou invadir local restrito aos competidores em eventos esportivos:",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "Pena - reclusão de 1 (um) a 2 (dois) anos e multa.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "§ 1o Incorrerá nas mesmas penas o torcedor que:",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "… redor do local de realização do evento esportivo, ou durante o trajeto de ida e volta do local da realização do evento;",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…trajeto, em dia de realização de evento esportivo, quaisquer instrumentos que possam servir para a prática de violência.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…ser primário, ter bons antecedentes e não ter sido punido anteriormente pela prática de condutas previstas neste artigo.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "… esportivo, converter-se-á em privativa de liberdade quando ocorrer o descumprimento injustificado da restrição imposta.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…e as 2 (duas) horas posteriores à realização de partidas de entidade de prática desportiva ou de competição determinada.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…va de direito prevista no art. 76 da Lei no 9.099, de 26 de setembro de 1995, o juiz aplicará a sanção prevista no § 2o.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "41-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.155",
+            "ano": 2015
+          },
+          "trecho": "…ra qualquer ato ou omissão destinado a alterar ou falsear o resultado de competição esportiva ou evento a ela associado:",
+          "literal": "(Redação dada pela Lei nº 13.155, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "Pena - reclusão de 2 (dois) a 6 (seis) anos e multa.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "41-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.155",
+            "ano": 2015
+          },
+          "trecho": "…l ou não patrimonial com o fim de alterar ou falsear o resultado de uma competição desportiva ou evento a ela associado:",
+          "literal": "(Redação dada pela Lei nº 13.155, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "Pena - reclusão de 2 (dois) a 6 (seis) anos e multa.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "41-E": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.155",
+            "ano": 2015
+          },
+          "trecho": "…eio, ou contribuir para que se fraude, de qualquer forma, o resultado de competição esportiva ou evento a ela associado:",
+          "literal": "(Redação dada pela Lei nº 13.155, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "Pena - reclusão de 2 (dois) a 6 (seis) anos e multa.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "41-F": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "Art. 41-F. Vender ingressos de evento esportivo, por preço superior ao estampado no bilhete:",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "Pena - reclusão de 1 (um) a 2 (dois) anos e multa.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    },
+    "41-G": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "… 41-G. Fornecer, desviar ou facilitar a distribuição de ingressos para venda por preço superior ao estampado no bilhete:",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "Pena - reclusão de 2 (dois) a 4 (quatro) anos e multa.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.299",
+            "ano": 2010
+          },
+          "trecho": "…istribuição e venda de ingressos ou torcida organizada e se utilizar desta condição para os fins previstos neste artigo.",
+          "literal": "(Incluído pela Lei nº 12.299, de 2010)"
+        }
+      ]
+    }
+  }
+}

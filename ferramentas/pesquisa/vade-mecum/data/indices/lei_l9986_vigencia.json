@@ -1,0 +1,1605 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L9986",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l9986.json",
+      "colecao": "artigos",
+      "sha256": "59b2f7571bdb24378d4a9ad8ee904b9690f553e483d82d2f1077729b30a176e6",
+      "total_registros": 41,
+      "gerado_em": "2026-08-21T22:36:29+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 29,
+      "anotacoes": 132,
+      "anotacoes_sem_diploma_nomeado": 8
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…egislação trabalhista correlata, em regime de emprego público. (Vide ADIN 2310) (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "… que será composto de até 4 (quatro) Conselheiros ou Diretores e 1 (um) Presidente, Diretor-Presidente ou Diretor-Geral.",
+          "literal": "(Redação dada pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…cidentes, de modo que, sempre que possível, a cada ano, ocorra o término de um mandato e uma consequente nova indicação.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…erão a duração reduzida, a fim de viabilizar a observância à regra de não coincidência de que trata o § 1º deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…a estrutura organizacional de cada agência uma procuradoria, que a representará em juízo, uma ouvidoria e uma auditoria.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…iretor ou da Diretoria Colegiada, sem prejuízo das deliberações colegiadas para matérias definidas em regimento interno.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…ade, devendo ser atendidos 1 (um) dos requisitos das alíneas “a”, “b” e “c” do inciso I e, cumulativamente, o inciso II:",
+          "literal": "(Redação dada pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "I - ter experiência profissional de, no mínimo:",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…blico ou privado, no campo de atividade da agência reguladora ou em área a ela conexa, em função de direção superior; ou",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "b) 4 (quatro) anos ocupando pelo menos um dos seguintes cargos:",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…se como cargo de chefia superior aquele situado nos 2 (dois) níveis hierárquicos não estatutários mais altos da empresa;",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "2. cargo em comissão ou função de confiança equivalente a DAS-4 ou superior, no setor público;",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "3. cargo de docente ou de pesquisador no campo de atividade da agência reguladora ou em área conexa; ou",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "… 10 (dez) anos de experiência como profissional liberal no campo de atividade da agência reguladora ou em área conexa; e",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "II - ter formação acadêmica compatível com o cargo para o qual foi indicado.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "§ 1º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "§ 2º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "§ 3º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "§ 4º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…especificará, em cada caso, se a indicação é para Presidente, Diretor-Presidente, Diretor-Geral, Diretor ou Conselheiro.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "§ 6º (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…a no caput e exercido pelo prazo remanescente, admitida a recondução se tal prazo for igual ou inferior a 2 (dois) anos.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…e após o término do mandato anterior, independentemente da data de indicação, aprovação ou posse do membro do colegiado.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…o Diretor ou da Diretoria Colegiada indicado pelo Presidente, Diretor-Presidente ou Diretor-Geral da agência reguladora.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…olegiada das agências reguladoras será de 5 (cinco) anos, vedada a recondução, ressalvada a hipótese do § 7º do art. 5º.",
+          "literal": "(Redação dada pela Lei nº 13.848, de 2019)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "Art. 7o A lei de criação de cada Agência disporá sobre a forma da não-coincidência de mandato.",
+          "literal": "(Revogado pela Lei nº 13.848, de 2019)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "… período de 6 (seis) meses, contados da exoneração ou do término de seu mandato, assegurada a remuneração compensatória.",
+          "literal": "(Redação dada pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.216-37",
+            "ano": 2001
+          },
+          "trecho": "… fazendo jus a remuneração compensatória equivalente à do cargo de direção que exerceu e aos benefícios a ele inerentes.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.216-37, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.216-37",
+            "ano": 2001
+          },
+          "trecho": "…gente que violar o impedimento previsto neste artigo, sem prejuízo das demais sanções cabíveis, administrativas e civis.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.216-37, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.216-37",
+            "ano": 2001
+          },
+          "trecho": "…argo efetivo ou emprego público, desde que não haja conflito de interesse. (Vide Medida Provisória nº 2.049-24, de 2000)",
+          "literal": "(Incluído pela Medida Provisória nº 2.216-37, de 2001)"
+        }
+      ]
+    },
+    "8-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "Art. 8º-A. É vedada a indicação para o Conselho Diretor ou a Diretoria Colegiada:",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…tido político e titular de mandato no Poder Legislativo de qualquer ente da federação, ainda que licenciados dos cargos;",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…a decisória de partido político ou em trabalho vinculado a organização, estruturação e realização de campanha eleitoral;",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "III - de pessoa que exerça cargo em organização sindical;",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…ida pela agência reguladora em que atuaria, ou que tenha matéria ou ato submetido à apreciação dessa agência reguladora;",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…hipóteses de inelegibilidade previstas no inciso I do caput do art. 1º da Lei Complementar nº 64, de 18 de maio de 1990;",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso VI",
+          "diploma": null,
+          "trecho": "VI -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "VI - (VETADO);",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…acional, representativa de interesses patronais ou trabalhistas ligados às atividades reguladas pela respectiva agência.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…nciso I do caput estende-se também aos parentes consanguíneos ou afins até o terceiro grau das pessoas nele mencionadas.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        }
+      ]
+    },
+    "8-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "Art. 8º-B. Ao membro do Conselho Diretor ou da Diretoria Colegiada é vedado:",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "I - receber, a qualquer título e sob qualquer pretexto, honorários, percentagens ou custas;",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…xercer qualquer outra atividade profissional, ressalvado o exercício do magistério, havendo compatibilidade de horários;",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…olador, diretor, administrador, gerente, membro de conselho de administração ou conselho fiscal, preposto ou mandatário;",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…tir parecer sobre matéria de sua especialização, ainda que em tese, ou atuar como consultor de qualquer tipo de empresa;",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "V - exercer atividade sindical;",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "VI - exercer atividade político-partidária;",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "VII - estar em situação de conflito de interesse, nos termos da Lei nº 12.813, de 16 de maio de 2013.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "Art. 9º O membro do Conselho Diretor ou da Diretoria Colegiada somente perderá o mandato:",
+          "literal": "(Redação dada pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "I - em caso de renúncia;",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "II - em caso de condenação judicial transitada em julgado ou de condenação em processo administrativo disciplinar;",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "III - por infringência de quaisquer das vedações previstas no art. 8º-B desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "Parágrafo único. A lei de criação da Agência poderá prever outras condições para a perda do mandato.",
+          "literal": "(Revogado pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "Parágrafo único. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 13.848, de 2019)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…ovo titular do Conselho Diretor ou da Diretoria Colegiada, exercerá o cargo vago um integrante da lista de substituição.",
+          "literal": "(Redação dada pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…a Diretoria Colegiada, observada a ordem de precedência constante do ato de designação para o exercício da substituição.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "… O Conselho Diretor ou a Diretoria Colegiada indicará ao Presidente da República 3 (três) nomes para cada vaga na lista.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…nte, o Superintendente ou o titular de cargo equivalente, na agência reguladora, com maior tempo de exercício na função.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…, no máximo, 2 (dois) anos contínuos na lista de substituição, somente podendo a ela ser reconduzido após 2 (dois) anos.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…oibições e aos deveres impostos aos membros do Conselho Diretor ou da Diretoria Colegiada, enquanto permanecer no cargo.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "… na Diretoria Colegiada, os substitutos serão chamados na ordem de precedência na lista, observado o sistema de rodízio.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…a, caso a vacância ou o impedimento do membro do Conselho Diretor ou da Diretoria Colegiada se estenda além desse prazo.",
+          "literal": "(Incluído pela Lei nº 13.848, de 2019)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.848",
+            "ano": 2019
+          },
+          "trecho": "…do Ouvidor, assegurando-se-lhe autonomia e independência de atuação e condição plena para desempenho de suas atividades.",
+          "literal": "(Revogado pela Lei nº 13.848, de 2019)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…torização pela instância de deliberação máxima da organização. (Vide ADIN 2310) (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…ego público, conforme disponibilidade orçamentária e de vagas. (Vide ADIN 2310) (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "… em edital de cada Agência, podendo ser constituído das seguintes etapas: (Vide Medida Provisória nº 155, de 23.12.2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "I – provas escritas; (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "II – provas orais; e (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "III – provas de título. (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…iminatórios e classificatórios, bem como eventuais restrições e condicionantes. (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…ência disporá sobre o detalhamento e as especificidades dos concursos públicos. (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…urso, para efeito eliminatório e classificatório, curso de formação específica. (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…sitados de outros órgãos e entidades da Administração Pública. (Vide ADIN 2310) (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "… salário ou vencimento, conforme tabela constante do Anexo II. (Vide ADIN 2310) (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…ocupantes de emprego efetivo de Regulador e de Analista de Suporte à Regulação. (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "… respeitados os limites remuneratórios definidos no Anexo III. (Vide ADIN 2310) (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.292",
+            "ano": 2006
+          },
+          "trecho": "…ncias Reguladoras poderão requisitar servidores e empregados de órgãos e entidades integrantes da administração pública.",
+          "literal": "(Redação dada pela Lei nº 11.292, de 2006)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.292",
+            "ano": 2006
+          },
+          "trecho": "…sua remuneração e obrigações patronais, o disposto nos §§ 5o e 6o do art. 93 da Lei no 8.112, de 11 de dezembro de 1990.",
+          "literal": "(Redação dada pela Lei nº 11.292, de 2006)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "375",
+            "ano": 2007
+          },
+          "trecho": "…ente no órgão ou na entidade de origem, optando, neste caso, por receber valor remuneratório adicional correspondente a:",
+          "literal": "(Revogado pela Medida Provisória nº 375, de 2007)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.526",
+            "ano": 2007
+          },
+          "trecho": "…este caso, por receber valor remuneratório adicional correspondente a: (Revogado pela Medida Provisória nº 375, de 2007)",
+          "literal": "(Revogado pela Lei nº 11.526, de 2007)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "375",
+            "ano": 2007
+          },
+          "trecho": "…emuneração de seu cargo efetivo ou emprego permanente de origem e o valor remuneratório do cargo exercido na Agência; ou",
+          "literal": "(Revogado pela Medida Provisória nº 375, de 2007)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.526",
+            "ano": 2007
+          },
+          "trecho": "…nte de origem e o valor remuneratório do cargo exercido na Agência; ou (Revogado pela Medida Provisória nº 375, de 2007)",
+          "literal": "(Revogado pela Lei nº 11.526, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.470",
+            "ano": 2002
+          },
+          "trecho": "…5% (sessenta e cinco por cento) da remuneração dos Cargos Comissionados de Assessoria no nível III e dos de Assistência.",
+          "literal": "(Redação dada pela Lei nº 10.470, de 2002)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "375",
+            "ano": 2007
+          },
+          "trecho": "…ção dos Cargos Comissionados de Assessoria no nível III e dos de Assistência. (Redação dada pela Lei nº 10.470, de 2002)",
+          "literal": "(Revogado pela Medida Provisória nº 375, de 2007)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.526",
+            "ano": 2007
+          },
+          "trecho": "…l III e dos de Assistência. (Redação dada pela Lei nº 10.470, de 2002) (Revogado pela Medida Provisória nº 375, de 2007)",
+          "literal": "(Revogado pela Lei nº 11.526, de 2007)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "155",
+            "ano": 2003
+          },
+          "trecho": "…ladoras subordina-se, exclusivamente, aos limites estabelecidos na legislação trabalhista aplicável ao regime celetista.",
+          "literal": "(Revogado pela Medida Provisória nº 155, de 2003)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…estabelecidos na legislação trabalhista aplicável ao regime celetista. (Revogado pela Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "155",
+            "ano": 2003
+          },
+          "trecho": "Parágrafo único. A realização dos serviços de que trata o caput depende da disponibilidade de recursos orçamentários.",
+          "literal": "(Revogado pela Medida Provisória nº 155, de 2003)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…ue trata o caput depende da disponibilidade de recursos orçamentários. (Revogado pela Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "155",
+            "ano": 2003
+          },
+          "trecho": "Art. 21. As Agências Reguladoras implementarão, no prazo máximo de dois anos, contado de sua instituição:",
+          "literal": "(Revogado pela Medida Provisória nº 155, de 2003)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…plementarão, no prazo máximo de dois anos, contado de sua instituição: (Revogado pela Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "155",
+            "ano": 2003
+          },
+          "trecho": "…ífico de avaliação de desempenho, estabelecendo critérios padronizados para mensuração do desempenho de seus empregados;",
+          "literal": "(Revogado pela Medida Provisória nº 155, de 2003)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…itérios padronizados para mensuração do desempenho de seus empregados; (Revogado pela Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "155",
+            "ano": 2003
+          },
+          "trecho": "II – programa permanente de capacitação, treinamento e desenvolvimento; e",
+          "literal": "(Revogado pela Medida Provisória nº 155, de 2003)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…– programa permanente de capacitação, treinamento e desenvolvimento; e (Revogado pela Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "155",
+            "ano": 2003
+          },
+          "trecho": "… distribuição de vagas e requisitos dos empregos públicos, bem como sobre os critérios de progressão de seus empregados.",
+          "literal": "(Revogado pela Medida Provisória nº 155, de 2003)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…úblicos, bem como sobre os critérios de progressão de seus empregados. (Revogado pela Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "155",
+            "ano": 2003
+          },
+          "trecho": "…to do mérito funcional e à otimização do potencial individual, conforme disposto em regulamento próprio de cada Agência.",
+          "literal": "(Revogado pela Medida Provisória nº 155, de 2003)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "… individual, conforme disposto em regulamento próprio de cada Agência. (Revogado pela Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "155",
+            "ano": 2003
+          },
+          "trecho": "…ada a progressão do ocupante de emprego público das Agências antes de completado um ano de efetivo exercício no emprego.",
+          "literal": "(Revogado pela Medida Provisória nº 155, de 2003)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…s Agências antes de completado um ano de efetivo exercício no emprego. (Revogado pela Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "155",
+            "ano": 2003
+          },
+          "trecho": "…3o Para as Agências já criadas, o prazo de que trata o caput deste artigo será contado a partir da publicação desta Lei.",
+          "literal": "(Revogado pela Medida Provisória nº 155, de 2003)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…ta o caput deste artigo será contado a partir da publicação desta Lei. (Revogado pela Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.229-43",
+            "ano": 2001
+          },
+          "trecho": "…regulamento de cada Agência, observados os limites de valores estabelecidos para a Administração Pública Federal direta.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.229-43, de 2001)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "Art. 24. Cabe às Agências, no âmbito de suas competências: (Vide ADIN 2310) (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…os públicos e os cargos comissionados de que trata esta Lei; e (Vide ADIN 2310) (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…ar publicidade aos regulamentos e instruções necessários à aplicação desta Lei. (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "… 6o da Emenda Constitucional no 20, de 15 de dezembro de 1998. (Vide ADIN 2310) (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "… de empregados de que trata o caput constituirá massa fechada. (Vide ADIN 2310) (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.357",
+            "ano": 2006
+          },
+          "trecho": "…dos quadros de pessoal do Ministério da Saúde ou da Fundação Nacional de Saúde. (Vide Medida Provisória nº 304, de 2006)",
+          "literal": "(Revogado pela Lei nº 11.357, de 2006)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.357",
+            "ano": 2006
+          },
+          "trecho": "… Pública Federal ou cedidos nos termos da legislação do Sistema Único de Saúde. (Vide Medida Provisória nº 304, de 2006)",
+          "literal": "(Revogado pela Lei nº 11.357, de 2006)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.357",
+            "ano": 2006
+          },
+          "trecho": "… integrantes do Quadro de Pessoal Específico de que trata o caput deste artigo. (Vide Medida Provisória nº 304, de 2006)",
+          "literal": "(Revogado pela Lei nº 11.357, de 2006)"
+        }
+      ]
+    },
+    "30": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…trarem cedidos àquela Agência na data da publicação desta Lei. (Vide ADIN 2310) (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…ção desta Lei, poderão integrar o Quadro Especial em Extinção. (Vide ADIN 2310) (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…o de que trata o caput são as estabelecidas nos Anexos IV e V. (Vide ADIN 2310) (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…visão no Plano de Cargos e Salários em que estiver enquadrado. (Vide ADIN 2310) (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…r será considerada vantagem pessoal nominalmente identificada. (Vide ADIN 2310) (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "… sucessão trabalhista, não caracterizando rescisão contratual. (Vide ADIN 2310) (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "…prazo máximo de quarenta e cinco dias da publicação desta Lei. (Vide ADIN 2310) (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.181",
+            "ano": 2023
+          },
+          "trecho": "… de Telecomunicações, Petróleo, Energia Elétrica e Saúde Suplementar e as Funções Comissionadas de Vigilância Sanitária.",
+          "literal": "(Revogado pela Medida Provisória nº 1.181, de 2023)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.724",
+            "ano": 2023
+          },
+          "trecho": "…aúde Suplementar e as Funções Comissionadas de Vigilância Sanitária. (Revogado pela Medida Provisória nº 1.181, de 2023)",
+          "literal": "(Revogado pela Lei nº 14.724, de 2023)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "… o número de empregos públicos de Procurador correspondentes fixado no Anexo I. (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        }
+      ]
+    },
+    "34": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.871",
+            "ano": 2004
+          },
+          "trecho": "… concurso público para provimento de empregos de seu Quadro de Pessoal Efetivo. (Vide Medida Provisória nº 155, de 2003)",
+          "literal": "(Revogado pela Lei nº 10.871, de 2004)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 35.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "39": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "375",
+            "ano": 2007
+          },
+          "trecho": "ANEXO II",
+          "literal": "(Revogado pela Medida Provisória nº 375, de 2007)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.526",
+            "ano": 2007
+          },
+          "trecho": "ANEXO II (Revogado pela Medida Provisória nº 375, de 2007)",
+          "literal": "(Revogado pela Lei nº 11.526, de 2007)"
+        }
+      ]
+    }
+  }
+}

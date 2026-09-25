@@ -252,7 +252,7 @@ async function main() {
   // ── 2. Usuário administrador ──────────────────────────────────────────────
   console.log('\n👤  Criando administrador ...');
 
-  const SENHA_PLAIN = 'Admin@JurysOne2024!';
+  const SENHA_PLAIN = 'Jurysone@2026';
   const senhaHash = await argon2.hash(SENHA_PLAIN, {
     type:        argon2.argon2id,
     memoryCost:  65536,

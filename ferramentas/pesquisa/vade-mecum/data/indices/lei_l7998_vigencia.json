@@ -1,0 +1,1219 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L7998",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l7998.json",
+      "colecao": "artigos",
+      "sha256": "3ea96151140f9fa70437286b9e5fff6d1cc1b8704e3fd6ea60f52211d21bd896",
+      "total_registros": 45,
+      "gerado_em": "2026-08-21T22:36:34+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 32,
+      "anotacoes": 97,
+      "anotacoes_sem_diploma_nomeado": 12
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.900",
+            "ano": null
+          },
+          "trecho": "Art. 2º O programa do seguro-desemprego tem por finalidade:",
+          "literal": "(Redação dada pela Lei nº 8.900, de 30.06.94)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.608",
+            "ano": 2002
+          },
+          "trecho": "… indireta, e ao trabalhador comprovadamente resgatado de regime de trabalho forçado ou da condição análoga à de escravo;",
+          "literal": "(Redação dada pela Lei nº 10.608, de 20.12.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.164-41",
+            "ano": 2001
+          },
+          "trecho": "…preservação do emprego, promovendo, para tanto, ações integradas de orientação, recolocação e qualificação profissional.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.164-41, de 2001)"
+        }
+      ]
+    },
+    "2-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.164-41",
+            "ano": 2001
+          },
+          "trecho": "…ional oferecido pelo empregador, em conformidade com o disposto em convenção ou acordo coletivo celebrado para este fim.",
+          "literal": "(Incluído pela Medida Provisória nº 2.164-41, de 2001)"
+        }
+      ]
+    },
+    "2-B": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "Art. 2o-B.",
+          "literal": "(Revogado pela Lei nº 13.134, de 2015)"
+        }
+      ]
+    },
+    "2-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.455",
+            "ano": 2026
+          },
+          "trecho": "…6 (seis) parcelas de seguro-desemprego no valor de 1 (um) salário mínimo cada, conforme o disposto no § 2º deste artigo.",
+          "literal": "(Redação dada pela Lei nº 15.455, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.608",
+            "ano": 2002
+          },
+          "trecho": "…acional de Emprego - SINE, na forma estabelecida pelo Conselho Deliberativo do Fundo de Amparo ao Trabalhador - CODEFAT.",
+          "literal": "(Incluído pela Lei nº 10.608, de 20.12.2002)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.608",
+            "ano": 2002
+          },
+          "trecho": "…alhador o recebimento do benefício, em circunstâncias similares, nos doze meses seguintes à percepção da última parcela.",
+          "literal": "(Incluído pela Lei nº 10.608, de 20.12.2002)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "I - ter recebido salários de pessoa jurídica ou de pessoa física a ela equiparada, relativos a:",
+          "literal": "(Redação dada pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…(doze) meses nos últimos 18 (dezoito) meses imediatamente anteriores à data de dispensa, quando da primeira solicitação;",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…9 (nove) meses nos últimos 12 (doze) meses imediatamente anteriores à data de dispensa, quando da segunda solicitação; e",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "c) cada um dos 6 (seis) meses imediatamente anteriores à data de dispensa, quando das demais solicitações;",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "II - (Revogado);",
+          "literal": "(Redação dada pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…uído pela Lei no 12.513, de 26 de outubro de 2011, ou de vagas gratuitas na rede de educação profissional e tecnológica.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.513",
+            "ano": 2011
+          },
+          "trecho": "…de formação inicial e continuada ou qualificação profissional, com carga horária mínima de 160 (cento e sessenta) horas.",
+          "literal": "(Incluído pela Lei nº 12.513, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.513",
+            "ano": 2011
+          },
+          "trecho": "…s na rede de educação profissional e tecnológica para o cumprimento da condicionalidade pelos respectivos beneficiários.",
+          "literal": "(Incluído pela Lei nº 12.513, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.513",
+            "ano": 2011
+          },
+          "trecho": "…pacidade de oferta, a reincidência no recebimento do benefício, o nível de escolaridade e a faixa etária do trabalhador.",
+          "literal": "(Incluído pela Lei nº 12.513, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "155",
+            "ano": 2016
+          },
+          "trecho": "…a suficiente à manutenção da família, exceto se demonstrado na declaração anual simplificada da microempresa individual.",
+          "literal": "(Incluído pela Lei Complementar nº 155, de 2016)"
+        }
+      ]
+    },
+    "3-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.164-41",
+            "ano": 2001
+          },
+          "trecho": "…litação serão os mesmos adotados em relação ao benefício do Seguro-Desemprego, exceto quanto à dispensa sem justa causa.",
+          "literal": "(Incluído pela Medida Provisória nº 2.164-41, de 2001)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…à última habilitação, cuja duração será definida pelo Conselho Deliberativo do Fundo de Amparo ao Trabalhador (Codefat).",
+          "literal": "(Redação dada pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…omado a cada novo período aquisitivo, satisfeitas as condições arroladas nos incisos I, III, IV e V do caput do art. 3o.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…erimento do seguro-desemprego, vedado o cômputo de vínculos empregatícios utilizados em períodos aquisitivos anteriores:",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "I - para a primeira solicitação:",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…sica a ela equiparada de, no mínimo, 12 (doze) meses e, no máximo, 23 (vinte e três) meses, no período de referência; ou",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…om pessoa jurídica ou pessoa física a ela equiparada de, no mínimo, 24 (vinte e quatro) meses, no período de referência;",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "II - para a segunda solicitação:",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…ou pessoa física a ela equiparada de, no mínimo, 9 (nove) meses e, no máximo, 11 (onze) meses, no período de referência;",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…sica a ela equiparada de, no mínimo, 12 (doze) meses e, no máximo, 23 (vinte e três) meses, no período de referência; ou",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…om pessoa jurídica ou pessoa física a ela equiparada de, no mínimo, 24 (vinte e quatro) meses, no período de referência;",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "III - a partir da terceira solicitação:",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…ou pessoa física a ela equiparada de, no mínimo, 6 (seis) meses e, no máximo, 11 (onze) meses, no período de referência;",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…sica a ela equiparada de, no mínimo, 12 (doze) meses e, no máximo, 23 (vinte e três) meses, no período de referência; ou",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…om pessoa jurídica ou pessoa física a ela equiparada de, no mínimo, 24 (vinte e quatro) meses, no período de referência.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "§ 3o A fração igual ou superior a 15 (quinze) dias de trabalho será havida como mês integral para os efeitos do § 2o.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…o resultar em valores decimais, o valor a ser pago deverá ser arredondado para a unidade inteira imediatamente superior.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…cento) do montante da reserva mínima de liquidez de que trata o § 2o do art. 9o da Lei no 8.019, de 11 de abril de 1990.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…gráfica e setorial das taxas de desemprego no País e o tempo médio de desemprego de grupos específicos de trabalhadores.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…o do Trabalho e Emprego a adoção de políticas públicas que julgar adequadas à mitigação da alta rotatividade no emprego.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        }
+      ]
+    },
+    "4-A": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 4o-A.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "Art. 4o-A. (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "… parte do trabalhador desempregado em participar de ações de recolocação de emprego, conforme regulamentação do Codefat.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        }
+      ]
+    },
+    "7-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.164-41",
+            "ano": 2001
+          },
+          "trecho": "…rt. 7o-A. O pagamento da bolsa de qualificação profissional será suspenso se ocorrer a rescisão do contrato de trabalho.",
+          "literal": "(Incluído pela Medida Provisória nº 2.164-41, de 2001)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.513",
+            "ano": 2011
+          },
+          "trecho": "Art. 8o O benefício do seguro-desemprego será cancelado:",
+          "literal": "(Redação dada pela Lei nº 12.513, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.513",
+            "ano": 2011
+          },
+          "trecho": "…or desempregado de outro emprego condizente com sua qualificação registrada ou declarada e com sua remuneração anterior;",
+          "literal": "(Redação dada pela Lei nº 12.513, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.513",
+            "ano": 2011
+          },
+          "trecho": "II - por comprovação de falsidade na prestação das informações necessárias à habilitação;",
+          "literal": "(Redação dada pela Lei nº 12.513, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.513",
+            "ano": 2011
+          },
+          "trecho": "III - por comprovação de fraude visando à percepção indevida do benefício do seguro-desemprego; ou",
+          "literal": "(Redação dada pela Lei nº 12.513, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.513",
+            "ano": 2011
+          },
+          "trecho": "IV - por morte do segurado.",
+          "literal": "(Redação dada pela Lei nº 12.513, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.513",
+            "ano": 2011
+          },
+          "trecho": "…e carência, o direito do trabalhador à percepção do seguro-desemprego, dobrando-se este período em caso de reincidência.",
+          "literal": "(Incluído pela Lei nº 12.513, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.513",
+            "ano": 2011
+          },
+          "trecho": "…e o beneficiário deixar de cumprir a condicionalidade de que trata o § 1o do art. 3o desta Lei, na forma do regulamento.",
+          "literal": "(Incluído pela Lei nº 12.513, de 2011)"
+        }
+      ]
+    },
+    "8-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.164-41",
+            "ano": 2001
+          },
+          "trecho": "Art. 8o-A. O benefício da bolsa de qualificação profissional será cancelado nas seguintes situações:",
+          "literal": "(Incluído pela Medida Provisória nº 2.164-41, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.164-41",
+            "ano": 2001
+          },
+          "trecho": "I - fim da suspensão contratual e retorno ao trabalho;",
+          "literal": "(Incluído pela Medida Provisória nº 2.164-41, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.164-41",
+            "ano": 2001
+          },
+          "trecho": "II - por comprovação de falsidade na prestação das informações necessárias à habilitação;",
+          "literal": "(Incluído pela Medida Provisória nº 2.164-41, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.164-41",
+            "ano": 2001
+          },
+          "trecho": "III - por comprovação de fraude visando à percepção indevida da bolsa de qualificação profissional;",
+          "literal": "(Incluído pela Medida Provisória nº 2.164-41, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.164-41",
+            "ano": 2001
+          },
+          "trecho": "IV - por morte do beneficiário.",
+          "literal": "(Incluído pela Medida Provisória nº 2.164-41, de 2001)"
+        }
+      ]
+    },
+    "8-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.164-41",
+            "ano": 2001
+          },
+          "trecho": "…do Seguro-Desemprego a que fizer jus, sendo-lhe garantido, no mínimo, o recebimento de uma parcela do Seguro-Desemprego.",
+          "literal": "(Incluído pela Medida Provisória nº 2.164-41, de 2001)"
+        }
+      ]
+    },
+    "8-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.164-41",
+            "ano": 2001
+          },
+          "trecho": "…tual de que trata o art. 476-A da CLT, para o cálculo dos períodos de que tratam os incisos I e II do art. 3o desta Lei.",
+          "literal": "(Incluído pela Medida Provisória nº 2.164-41, de 2001)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…no salarial anual, no valor máximo de 1 (um) salário-mínimo vigente na data do respectivo pagamento, aos empregados que:",
+          "literal": "(Redação dada pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "665",
+            "ano": 2014
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Medida Provisória nº 665, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "665",
+            "ano": 2014
+          },
+          "trecho": "…S-Pasep, serão computados no valor do abono salarial os rendimentos proporcionados pelas respectivas contas individuais.",
+          "literal": "(Incluído pela Medida Provisória nº 665, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…rio-mínimo vigente na data do respectivo pagamento, multiplicado pelo número de meses trabalhados no ano correspondente.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…ão igual ou superior a 15 (quinze) dias de trabalho será contada como mês integral para os efeitos do § 2o deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…idades inteiras de moeda corrente, com a suplementação das partes decimais até a unidade inteira imediatamente superior.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        }
+      ]
+    },
+    "9-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "Art. 9o-A. O abono será pago pelo Banco do Brasil S.A. e pela Caixa Econômica Federal mediante:",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "I - depósito em nome do trabalhador;",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "II - saque em espécie; ou",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "III - folha de salários.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…osto de 1983, e à Caixa Econômica Federal, aos empregados dos contribuintes a que se refere o art. 15 desse Decreto-Lei.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…autoridades fazendárias, por processo que possibilite sua imediata recuperação, os comprovantes de pagamentos efetuados.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.513",
+            "ano": 2011
+          },
+          "trecho": "…do abono salarial e ao financiamento de programas de educação profissional e tecnológica e de desenvolvimento econômico.",
+          "literal": "(Redação dada pela Lei nº 12.513, de 2011)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 12.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 13.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 14.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.019",
+            "ano": null
+          },
+          "trecho": "Art. 16.",
+          "literal": "(Revogado pela Lei nº 8.019, de 11/04/90)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.019",
+            "ano": null
+          },
+          "trecho": "Art. 17.",
+          "literal": "(Revogado pela Lei nº 8.019, de 11/04/90)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.216-37",
+            "ano": 2001
+          },
+          "trecho": "…sentação de trabalhadores, empregadores e órgãos e entidades governamentais, na forma estabelecida pelo Poder Executivo.",
+          "literal": "(Redação dada pela Medida Provisória nº 2.216-37, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.216-37",
+            "ano": 2001
+          },
+          "trecho": "§ 1º",
+          "literal": "(Revogado pela Medida Provisória nº 2.216-37, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.216-37",
+            "ano": 2001
+          },
+          "trecho": "§ 2º",
+          "literal": "(Revogado pela Medida Provisória nº 2.216-37, de 2001)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.216-37",
+            "ano": 2001
+          },
+          "trecho": "§ 5º",
+          "literal": "(Revogado pela Medida Provisória nº 2.216-37, de 2001)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XII",
+          "diploma": null,
+          "trecho": "XII -",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XIII",
+          "diploma": null,
+          "trecho": "XIII -",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XV",
+          "diploma": null,
+          "trecho": "XV -",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XIV",
+          "diploma": null,
+          "trecho": "XIV -",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "19-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.594",
+            "ano": 2012
+          },
+          "trecho": "…oderá priorizar projetos das entidades integrantes do Sistema Nacional de Atendimento Socioeducativo (Sinase) desde que:",
+          "literal": "(Incluído pela Lei nº 12.594, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.594",
+            "ano": 2012
+          },
+          "trecho": "…erado de vinculação da entidade que solicita o recurso possua o respectivo Plano de Atendimento Socioeducativo aprovado;",
+          "literal": "(Incluído pela Lei nº 12.594, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.594",
+            "ano": 2012
+          },
+          "trecho": "…ais integrantes do Sinase que solicitem recursos tenham se submetido à avaliação nacional do atendimento socioeducativo.",
+          "literal": "(Incluído pela Lei nº 12.594, de 2012)"
+        }
+      ]
+    },
+    "19-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.203",
+            "ano": 2025
+          },
+          "trecho": "… histórico e cultural da União como meio de reparação à população afrodescendente em razão do processo de escravização.",
+          "literal": "(Incluído pela Lei nº 15.203, de 2025)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.261",
+            "ano": 2021
+          },
+          "trecho": "…as instituídos para promover a manutenção de empregos ou a qualificação de trabalhadores, custeados com recursos do FAT.",
+          "literal": "(Redação dada pela Lei nº 10.261, de 2021)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.261",
+            "ano": 2021
+          },
+          "trecho": "… empregos ou a qualificação de trabalhadores, nos termos e nos prazos fixados pelo Ministério do Trabalho e Previdência.",
+          "literal": "(Redação dada pela Lei nº 10.261, de 2021)"
+        }
+      ]
+    },
+    "25-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…-á à compensação automática do débito com o novo benefício, na forma e no percentual definidos por resolução do Codefat.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…or meio de requerimento de revisão simples, o qual seguirá o rito prescrito pela Lei no 9.784, de 29 de janeiro de 1999.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.134",
+            "ano": 2015
+          },
+          "trecho": "…s de liberação de cada parcela ou pagamento com Guia de Recolhimento da União (GRU), conforme regulamentação do Codefat.",
+          "literal": "(Incluído pela Lei nº 13.134, de 2015)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 26.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.019",
+            "ano": null
+          },
+          "trecho": "…88 e não utilizadas nas finalidades previstas no art. 239 da Constituição Federal, serão recolhidas como receita do FAT.",
+          "literal": "(Redação dada pela Lei nº 8.019, de 11/04/90)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.019",
+            "ano": null
+          },
+          "trecho": "Art. 29.",
+          "literal": "(Revogado pela Lei nº 8.019, de 11/04/90)"
+        }
+      ]
+    }
+  }
+}

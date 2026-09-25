@@ -1,0 +1,875 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "ECID",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_ecid.json",
+      "colecao": "artigos",
+      "sha256": "136af9c88e4bb37023fec9882973651b8f427a3ddec725415eaa6a00f5849731",
+      "total_registros": 62,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 28,
+      "anotacoes": 69,
+      "anotacoes_sem_diploma_nomeado": 16
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea h",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "547",
+            "ano": 2011
+          },
+          "trecho": "h) a exposição da população a riscos de desastres naturais;",
+          "literal": "(Incluído pela Medida Provisória nº 547, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea h",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.608",
+            "ano": 2012
+          },
+          "trecho": "h) a exposição da população a riscos de desastres.",
+          "literal": "(Incluído dada pela Lei nº 12.608, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.836",
+            "ano": 2013
+          },
+          "trecho": "…es construtivos e aportes tecnológicos que objetivem a redução de impactos ambientais e a economia de recursos naturais.",
+          "literal": "(Incluído pela Lei nº 12.836, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.116",
+            "ano": 2015
+          },
+          "trecho": "…o prioritário às obras e edificações de infraestrutura de energia, telecomunicações, abastecimento de água e saneamento.",
+          "literal": "(Incluído pela Lei nº 13.116, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.699",
+            "ano": 2018
+          },
+          "trecho": "…uisitos mínimos de dimensionamento, ventilação, iluminação, ergonomia, privacidade e qualidade dos materiais empregados.",
+          "literal": "(Incluído pela Lei nº 13.699, de 2018)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.489",
+            "ano": 2022
+          },
+          "trecho": "… como objetivo ou resultado o afastamento de pessoas em situação de rua, idosos, jovens e outros segmentos da população.",
+          "literal": "(Redação dada pela Lei nº 14.489, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.333",
+            "ano": 2026
+          },
+          "trecho": "…quipamentos públicos e privados de uso coletivo, com vistas à prevenção de acidentes e à proteção da saúde dos usuários.",
+          "literal": "(Incluído pela Lei nº 15.333, de 2026)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.146",
+            "ano": 2015
+          },
+          "trecho": "…is, de saneamento básico, das calçadas, dos passeios públicos, do mobiliário urbano e dos demais espaços de uso público;",
+          "literal": "(Redação dada pela Lei nº 13.146, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "… passeios públicos, do mobiliário urbano e dos demais espaços de uso público; (Redação dada pela Lei nº 13.146, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.116",
+            "ano": 2015
+          },
+          "trecho": "…ento urbano, inclusive habitação, saneamento básico, transportes urbanos e infraestrutura de energia e telecomunicações;",
+          "literal": "(Redação dada pela Lei nº 13.116, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.146",
+            "ano": 2015
+          },
+          "trecho": "…ação, saneamento básico, transporte e mobilidade urbana, que incluam regras de acessibilidade aos locais de uso público;",
+          "literal": "(Redação dada pela Lei nº 13.146, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "…idade urbana, que incluam regras de acessibilidade aos locais de uso público; (Redação dada pela Lei nº 13.146, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea t",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "459",
+            "ano": 2009
+          },
+          "trecho": "t) demarcação urbanística para fins de regularização fundiária;",
+          "literal": "(Incluído pela Medida Provisória nº 459, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea t",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.977",
+            "ano": 2009
+          },
+          "trecho": "t) demarcação urbanística para fins de regularização fundiária;",
+          "literal": "(Incluído pela Lei nº 11.977, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea u",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "459",
+            "ano": 2009
+          },
+          "trecho": "u) legitimação de posse.",
+          "literal": "(Incluído pela Medida Provisória nº 459, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea u",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.977",
+            "ano": 2009
+          },
+          "trecho": "u) legitimação de posse.",
+          "literal": "(Incluído pela Lei nº 11.977, de 2009)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II –",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…eis de serem usucapidos coletivamente, desde que os possuidores não sejam proprietários de outro imóvel urbano ou rural.",
+          "literal": "(Redação dada pela lei nº 13.465, de 2017)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 15.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 16.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 17.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 18.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 19.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 20.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso IX",
+          "diploma": null,
+          "trecho": "IX –",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.836",
+            "ano": 2013
+          },
+          "trecho": "…actos ambientais e economizem recursos naturais, especificadas as modalidades de design e de obras a serem contempladas.",
+          "literal": "(Incluído pela Lei nº 12.836, de 2013)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.836",
+            "ano": 2013
+          },
+          "trecho": "…stidores privados em função da utilização dos benefícios previstos nos incisos I, II e III do § 2o do art. 32 desta Lei;",
+          "literal": "(Redação dada pela Lei nº 12.836, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.836",
+            "ano": 2013
+          },
+          "trecho": "…s, usuários permanentes e investidores privados, uma vez atendido o disposto no inciso III do § 2o do art. 32 desta Lei.",
+          "literal": "(Incluído pela Lei nº 12.836, de 2013)"
+        }
+      ]
+    },
+    "34-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.089",
+            "ano": 2015
+          },
+          "trecho": "…adual, poderão ser realizadas operações urbanas consorciadas interfederativas, aprovadas por leis estaduais específicas.",
+          "literal": "(Incluído pela Lei nº 13.089, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.089",
+            "ano": 2015
+          },
+          "trecho": "… desta Lei aplicam-se às operações urbanas consorciadas interfederativas previstas no caput deste artigo, no que couber.",
+          "literal": "(Incluído pela Lei nº 13.089, de 2015)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.849",
+            "ano": 2024
+          },
+          "trecho": "V - mobilidade urbana, geração de tráfego e demanda por transporte público;",
+          "literal": "(Redação dada pela Lei nº 14.849, de 2024)"
+        }
+      ]
+    },
+    "40": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5o",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "41": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.608",
+            "ano": 2012
+          },
+          "trecho": "… à ocorrência de deslizamentos de grande impacto, inundações bruscas ou processos geológicos ou hidrológicos correlatos.",
+          "literal": "(Incluído pela Lei nº 12.608, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.146",
+            "ano": 2015
+          },
+          "trecho": "…s, bancos, entre outros, sempre que possível de maneira integrada com os sistemas de transporte coletivo de passageiros.",
+          "literal": "(Incluído pela Lei nº 13.146, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…sível de maneira integrada com os sistemas de transporte coletivo de passageiros. (Incluído pela Lei nº 13.146, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "42-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "547",
+            "ano": 2011
+          },
+          "trecho": "… municípios que possuam áreas de expansão urbana deverão elaborar Plano de Expansão Urbana no qual constarão, no mínimo:",
+          "literal": "(Incluído pela Medida Provisória nº 547, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "547",
+            "ano": 2011
+          },
+          "trecho": "I - demarcação da área de expansão urbana;",
+          "literal": "(Incluído pela Medida Provisória nº 547, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "547",
+            "ano": 2011
+          },
+          "trecho": "…echos com restrições à urbanização e dos trechos sujeitos a controle especial em função de ameaça de desastres naturais;",
+          "literal": "(Incluído pela Medida Provisória nº 547, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "547",
+            "ano": 2011
+          },
+          "trecho": "… áreas que serão utilizadas para infraestrutura, sistema viário, equipamentos e instalações públicas, urbanas e sociais;",
+          "literal": "(Incluído pela Medida Provisória nº 547, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "547",
+            "ano": 2011
+          },
+          "trecho": "…amento, uso e ocupação do solo, de modo a promover a diversidade de usos e contribuir para a geração de emprego e renda;",
+          "literal": "(Incluído pela Medida Provisória nº 547, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "547",
+            "ano": 2011
+          },
+          "trecho": "…onas especiais de interesse social e de outros instrumentos de política urbana, quando o uso habitacional for permitido;",
+          "literal": "(Incluído pela Medida Provisória nº 547, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "547",
+            "ano": 2011
+          },
+          "trecho": "VI - definição de diretrizes e instrumentos específicos para proteção ambiental e do patrimônio histórico e cultural; e",
+          "literal": "(Incluído pela Medida Provisória nº 547, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "547",
+            "ano": 2011
+          },
+          "trecho": "…o de expansão urbana e a recuperação para a coletividade da valorização imobiliária resultante da ação do Poder Público.",
+          "literal": "(Incluído pela Medida Provisória nº 547, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "547",
+            "ano": 2011
+          },
+          "trecho": "…úcleos urbanos, bem como aquelas que forem incluídas no perímetro urbano a partir da publicação desta Medida Provisória.",
+          "literal": "(Incluído pela Medida Provisória nº 547, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "547",
+            "ano": 2011
+          },
+          "trecho": "§ 2o O Plano de Expansão Urbana deverá atender às diretrizes do Plano Diretor, quando houver.",
+          "literal": "(Incluído pela Medida Provisória nº 547, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "547",
+            "ano": 2011
+          },
+          "trecho": "…ontemplar as exigências estabelecidas no caput, o Município ficará dispensado da elaboração do Plano de Expansão Urbana.",
+          "literal": "(Incluído pela Medida Provisória nº 547, de 2011)"
+        }
+      ]
+    },
+    "42-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.608",
+            "ano": 2012
+          },
+          "trecho": "… o seu perímetro urbano após a data de publicação desta Lei deverão elaborar projeto específico que contenha, no mínimo:",
+          "literal": "(Incluído pela Lei nº 12.608, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.608",
+            "ano": 2012
+          },
+          "trecho": "I - demarcação do novo perímetro urbano;",
+          "literal": "(Incluído pela Lei nº 12.608, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.608",
+            "ano": 2012
+          },
+          "trecho": "…echos com restrições à urbanização e dos trechos sujeitos a controle especial em função de ameaça de desastres naturais;",
+          "literal": "(Incluído pela Lei nº 12.608, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.608",
+            "ano": 2012
+          },
+          "trecho": "… áreas que serão utilizadas para infraestrutura, sistema viário, equipamentos e instalações públicas, urbanas e sociais;",
+          "literal": "(Incluído pela Lei nº 12.608, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.608",
+            "ano": 2012
+          },
+          "trecho": "…amento, uso e ocupação do solo, de modo a promover a diversidade de usos e contribuir para a geração de emprego e renda;",
+          "literal": "(Incluído pela Lei nº 12.608, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.608",
+            "ano": 2012
+          },
+          "trecho": "…onas especiais de interesse social e de outros instrumentos de política urbana, quando o uso habitacional for permitido;",
+          "literal": "(Incluído pela Lei nº 12.608, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.608",
+            "ano": 2012
+          },
+          "trecho": "VI - definição de diretrizes e instrumentos específicos para proteção ambiental e do patrimônio histórico e cultural; e",
+          "literal": "(Incluído pela Lei nº 12.608, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.729",
+            "ano": 2023
+          },
+          "trecho": "…ento integrado de transporte urbano, inclusive por meio de veículos não motorizados, com vistas a melhorar a mobilidade.",
+          "literal": "(Incluído pela Lei nº 14.729, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.608",
+            "ano": 2012
+          },
+          "trecho": "…ta o caput deste artigo deverá ser instituído por lei municipal e atender às diretrizes do plano diretor, quando houver.",
+          "literal": "(Incluído pela Lei nº 12.608, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.608",
+            "ano": 2012
+          },
+          "trecho": "…belecidas no caput, o Município ficará dispensado da elaboração do projeto específico de que trata o caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 12.608, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.608",
+            "ano": 2012
+          },
+          "trecho": "…o no novo perímetro urbano ficará condicionada à existência do projeto específico e deverá obedecer às suas disposições.",
+          "literal": "(Incluído pela Lei nº 12.608, de 2012)"
+        }
+      ]
+    },
+    "43": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V –",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "46": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…fundiária, o estabelecimento de consórcio imobiliário como forma de viabilização financeira do aproveitamento do imóvel.",
+          "literal": "(Redação dada pela lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…dades imobiliárias devidamente urbanizadas ou edificadas, ficando as demais unidades incorporadas ao patrimônio público.",
+          "literal": "(Redação dada pela lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…dades imobiliárias a serem entregues ao proprietário será correspondente ao valor do imóvel antes da execução das obras.",
+          "literal": "(Redação dada pela lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…úcleos urbanos informais, ou por seus sucessores, não os eximirá das responsabilidades administrativa, civil ou criminal",
+          "literal": "(incluído pela lei nº 13.465, de 2017)"
+        }
+      ]
+    },
+    "50": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.673",
+            "ano": 2008
+          },
+          "trecho": "…e que não tenham plano diretor aprovado na data de entrada em vigor desta Lei deverão aprová-lo até 30 de junho de 2008.",
+          "literal": "(Redação dada pela Lei nº 11.673, 2008)"
+        }
+      ]
+    },
+    "52": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I –",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "53": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.180-35",
+            "ano": 2001
+          },
+          "trecho": "… de 24 de julho de 1985, passa a vigorar acrescido de novo inciso III, renumerando o atual inciso III e os subseqüentes:",
+          "literal": "(Revogado pela Medida Provisória nº 2.180-35, de 24.8.2001)"
+        }
+      ]
+    },
+    "54": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…consumidor, à ordem urbanística ou aos bens e direitos de valor artístico, estético, histórico, turístico e paisagístico",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "56": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "38)",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "57-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.065",
+            "ano": 2021
+          },
+          "trecho": "…domínio de sua via férrea, observado o Plano Diretor e o procedimento a ser delineado em ato do Poder Executivo Federal.",
+          "literal": "(Incluído pela Medida Provisória nº 1.065, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.065",
+            "ano": 2021
+          },
+          "trecho": "…ue estabelecerá os ônus urbanísticos a serem observados e o direito de construir incorporado a cada unidade imobiliária.",
+          "literal": "(Incluído pela Medida Provisória nº 1.065, de 2021)"
+        }
+      ]
+    }
+  }
+}

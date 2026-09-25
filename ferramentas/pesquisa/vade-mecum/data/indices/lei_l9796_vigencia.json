@@ -1,0 +1,262 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L9796",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l9796.json",
+      "colecao": "artigos",
+      "sha256": "1fca645cd525f14cf58497aeedd8914c11179ac2c084de6e137f7fe41c0ba393",
+      "total_registros": 13,
+      "gerado_em": "2026-08-21T22:36:33+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 7,
+      "anotacoes": 17,
+      "anotacoes_sem_diploma_nomeado": 0
+    }
+  },
+  "vigencia": {
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.430",
+            "ano": 2006
+          },
+          "trecho": "… concessão de aposentadoria pelo INSS em decorrência de acordos internacionais. (Vide Medida Provisória nº 316, de 2006)",
+          "literal": "(Incluído pela Lei nº 11.430, de 2006)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.187-13",
+            "ano": 2001
+          },
+          "trecho": "…ção nessa data, concedidos a partir da promulgação da Constituição Federal. (Vide Medida Provisória nº 2.129-8, de 2001)",
+          "literal": "(Redação dada pela Medida Provisória nº 2.187-13, de 2001)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.485",
+            "ano": 2017
+          },
+          "trecho": "…ribuições previdenciárias ao Regime Geral de Previdência Social (RGPS), será efetivado conforme os seguintes parâmetros:",
+          "literal": "(Incluído pela Lei nº 13.485, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.485",
+            "ano": 2017
+          },
+          "trecho": "I - até o exercício de 2017, para os Municípios:",
+          "literal": "(Incluído pela Lei nº 13.485, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.485",
+            "ano": 2017
+          },
+          "trecho": "a) em parcela única, se o crédito não superar R$ 500.000,00 (quinhentos mil reais);",
+          "literal": "(Incluído pela Lei nº 13.485, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.485",
+            "ano": 2017
+          },
+          "trecho": "…sais quantas forem necessárias até o limite de R$ 500.000,00 (quinhentos mil reais), se o crédito superar esse montante;",
+          "literal": "(Incluído pela Lei nº 13.485, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.485",
+            "ano": 2017
+          },
+          "trecho": "II - a partir do exercício de 2018, para os Municípios, os Estados e o Distrito Federal:",
+          "literal": "(Incluído pela Lei nº 13.485, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.485",
+            "ano": 2017
+          },
+          "trecho": "a) em parcela única, se o crédito não superar R$ 1.500.000,00 (um milhão e quinhentos mil reais);",
+          "literal": "(Incluído pela Lei nº 13.485, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.485",
+            "ano": 2017
+          },
+          "trecho": "…arcela disposto na alínea b deste inciso será ajustado de forma a garantir a quitação no prazo de cento e oitenta meses;",
+          "literal": "(Incluído pela Lei nº 13.485, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.485",
+            "ano": 2017
+          },
+          "trecho": "III - por meio de dação em pagamento de imóveis integrantes do Fundo do Regime Geral de Previdência Social (FRGPS).",
+          "literal": "(Incluído pela Lei nº 13.485, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.485",
+            "ano": 2017
+          },
+          "trecho": "…causa da extinção dos pagamentos previstos no § 5o deste artigo a manutenção do litígio ou o ajuizamento de novas ações.",
+          "literal": "(Incluído pela Lei nº 13.485, de 2017)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…os recolhimentos em atraso de contribuições previdenciárias arrecadadas pelo Instituto Nacional do Seguro Social (INSS).",
+          "literal": "(Redação dada pela Lei nº 13.846, de 2019)"
+        }
+      ]
+    },
+    "8-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.187-13",
+            "ano": 2001
+          },
+          "trecho": "…e tempos de contribuição, obedecerá, no que couber, às disposições desta Lei. (Vide Medida Provisória nº 2.060, de 2000)",
+          "literal": "(Incluído pela Medida Provisória nº 2.187-13, de 2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…cia social, inclusive no que se refere ao período de estoque e às condições para seu pagamento, admitido o parcelamento.",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "…nto dos valores devidos pela compensação com o regime geral de previdência social, na forma estabelecida no regulamento.",
+          "literal": "(Incluído pela Lei nº 13.846, de 2019)"
+        }
+      ]
+    },
+    "8-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.303",
+            "ano": 2025
+          },
+          "trecho": "… Municípios fica limitada à dotação orçamentária para essa despesa na data de publicação de cada lei orçamentária anual.",
+          "literal": "(Incluído pela Medida Provisória nº 1.303, de 2025)"
+        }
+      ]
+    },
+    "8-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.265",
+            "ano": 2025
+          },
+          "trecho": "… Municípios fica limitada à dotação orçamentária para essa despesa na data de publicação de cada lei orçamentária anual.",
+          "literal": "(Incluído pela Lei nº 15.265, de 2025)"
+        }
+      ]
+    }
+  }
+}

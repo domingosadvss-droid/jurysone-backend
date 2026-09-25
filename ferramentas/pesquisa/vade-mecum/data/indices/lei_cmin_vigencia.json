@@ -1,0 +1,2991 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "CMIN",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_cmin.json",
+      "colecao": "artigos",
+      "sha256": "2044c330dcb368cde405337d80993f791387f92f21d4a6ae9a54ec400b2ed7ff",
+      "total_registros": 102,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 79,
+      "anotacoes": 240,
+      "anotacoes_sem_diploma_nomeado": 21
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "Art. 2º. Os regimes de aproveitamento das substâncias minerais, para efeito deste Código, são:",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "I - regime de concessão, quando depender de portaria de concessão do Ministro de Estado de Minas e Energia;",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…ndo depender de expedição de alvará de autorização do Diretor-Geral do Departamento Nacional de Produção Mineral - DNPM;",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…ncia a regulamentos administrativos locais e de registro da licença no Departamento Nacional de Produção Mineral - DNPM;",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…rimpeira, quando depender de portaria de permissão do Diretor-Geral do Departamento Nacional de Produção Mineral - DNPM;",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…regime de monopolização, quando, em virtude de lei especial, depender de execução direta ou indireta do Governo Federal.",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.827",
+            "ano": 1999
+          },
+          "trecho": "…te, respeitados os direitos minerários em vigor nas áreas onde devam ser executadas as obras e vedada a comercialização.",
+          "literal": "(Redação dada pela Lei nº 9.827, de 1999)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "… dos materiais resultantes dos referidos trabalhos e ficando o seu aproveitamento restrito à utilização na própria obra.",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…ompete ao Departamento Nacional de Produção Mineral - DNPM a execução deste Código e dos diplomas legais complementares.",
+          "literal": "(Renumerado do Parágrafo único para § 2º pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "Art 5º",
+          "literal": "(Revogado pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "Art. 6º. Classificam-se as minas, segundo a forma representativa do direito de lavra, em duas categorias:",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…tada na conformidade do art. 10 do Decreto nº 24.642, de 10 de julho de 1934, e da Lei nº 94, de 10 de dezembro de 1935;",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "II - mina concedida, quando o direito de lavra é outorgado pelo Ministro de Estado de Minas e Energia.",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "6-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "… mina, que deverá ser obrigatoriamente convalidado pelo órgão regulador da mineração e pelo órgão ambiental licenciador.",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "Parágrafo único. O exercício da atividade de mineração inclui:",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "…templando aqueles relativos ao bem-estar das comunidades envolvidas e ao desenvolvimento sustentável no entorno da mina;",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "II - a preservação da saúde e da segurança dos trabalhadores;",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "…ão de desastres ambientais, incluindo a elaboração e a implantação do plano de contingência ou de documento correlato; e",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "IV - a recuperação ambiental das áreas impactadas.",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…ão de pesquisa, do Diretor-Geral do DNPM, e de concessão de lavra, outorgada pelo Ministro de Estado de Minas e Energia.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…anto, são sujeitas às condições que este Código estabelece para a lavra, tributação e fiscalização das minas concedidas.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.567",
+            "ano": 1978
+          },
+          "trecho": "Art 8º",
+          "literal": "(Revogado pela Lei nº 6.567, de 1978)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "Art. 11. Serão respeitados na aplicação dos regimes de Autorização, Licenciamento e Concessão:",
+          "literal": "(Redação dada pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…artamento Nacional da Produção Mineral (D.N.P.M), atendidos os demais requisitos cabíveis, estabelecidos neste Código; e",
+          "literal": "(Redação dada pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.901",
+            "ano": 1994
+          },
+          "trecho": "b) o direito à participação do proprietário do solo nos resultados da lavra.",
+          "literal": "(Redação dada pela Lei nº 8.901, de 1994)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.901",
+            "ano": 1994
+          },
+          "trecho": "…sto no caput do art. 6º da Lei nº 7.990, de 29 de dezembro de 1989 e no art. 2º da Lei nº 8.001, de 13 de março de 1990.",
+          "literal": "(Incluído pela Lei nº 8.901, de 1994)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.901",
+            "ano": 1994
+          },
+          "trecho": "…ao do fato gerador, devidamente corrigido pela taxa de juros de referência, ou outro parâmetro que venha a substituí-la.",
+          "literal": "(Incluído pela Lei nº 8.901, de 1994)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.901",
+            "ano": 1994
+          },
+          "trecho": "…e venha a substituí-la, juros de mora de um por cento ao mês e multa de dez por cento aplicada sobre o montante apurado.",
+          "literal": "(Incluído pela Lei nº 8.901, de 1994)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "… brasileiros, pessoa natural, firma individual ou empresas legalmente habilitadas, mediante requerimento do interessado.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…ecutados sob a responsabilidade profissional de engenheiro de minas, ou de geólogo habilitado ao exercício da profissão.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "… mecanicamente numerado e registrado, devendo ser apresentado em duas vias e conter os seguintes elementos de instrução:",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…tro de Comércio competente, endereço e número de inscrição no Cadastro Geral dos Contribuintes do Ministério da Fazenda;",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "II - prova de recolhimento dos respectivos emolumentos;",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "III - designação das substâncias a pesquisar;",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "IV - indicação da extensão superficial da área objetivada, em hectares, e do Município e Estado em que se situa;",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "V - memorial descritivo da área pretendida, nos termos a serem definidos em portaria do Diretor-Geral do DNPM;",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…lanta de situação, cuja configuração e elementos de informação serão estabelecidos em portaria do Diretor-Geral do DNPM;",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "VII - plano dos trabalhos de pesquisa, acompanhado do orçamento e cronograma previstos para sua execução.",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…o de pesquisa e o orçamento correspondente referidos no inciso VII deste artigo, bem como a disponibilidade de recursos.",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…solo, não guardando nenhuma relação com o valor do orçamento apresentado pelo interessado no referido plano de pesquisa.",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…os V, VI e VII deste artigo deverão ser elaborados sob a responsabilidade técnica de profissional legalmente habilitado.",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…M o requerimento desacompanhado de qualquer dos elementos de instrução referidos nos incisos I a VII do artigo anterior.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…o de exigências formuladas pelo DNPM sobre dados complementares ou elementos necessários à melhor instrução do processo.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…afo anterior, sem que haja o requerente cumprido a exigência, o requerimento será indeferido pelo Diretor-Geral do DNPM.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…squisa ou de registro de licença será considerada livre, desde que não se enquadre em quaisquer das seguintes hipóteses:",
+          "literal": "(Redação dada pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…ização de pesquisa, registro de licença, concessão da lavra, manifesto de mina ou permissão de reconhecimento geológico;",
+          "literal": "(Redação dada pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…bjeto de pedido anterior de autorização de pesquisa, salvo se este estiver sujeito a indeferimento, aos seguintes casos:",
+          "literal": "(Redação dada pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "a) por enquadramento na situação prevista no caput do artigo anterior, e no § 1º deste artigo; e",
+          "literal": "(Incluído pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…btenção do título pleiteado, decorrente das restrições impostas no parágrafo único do Art. 23 e no Art. 26 deste Código;",
+          "literal": "(Incluído pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…u estiver vinculada a licença, cujo registro venha a ser requerido dentro do prazo de 30 (trinta) dias de sua expedição;",
+          "literal": "(Incluído pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…er vinculada a requerimento de renovação de autorização de pesquisa, tempestivamente apresentado, e pendente de decisão;",
+          "literal": "(Incluído pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…a a autorização de pesquisa, com relatório dos respectivos trabalhos tempestivamente apresentado, e pendente de decisão;",
+          "literal": "(Incluído pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…alhos aprovado, e na vigência do direito de requerer a concessão da lavra, atribuído nos termos do Art. 31 deste Código.",
+          "literal": "(Incluído pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…uma das vias das peças apresentadas em duplicata, bem como dos documentos públicos, integrantes da respectiva instrução.",
+          "literal": "(Redação dada pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…rea originalmente definida, procedendo-se, neste caso, de conformidade com o disposto nos §§ 1º e 2º do artigo anterior.",
+          "literal": "(Incluído pela Lei nº 6.403, de 1976)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…pedido de reconsideração, no prazo de 60 (sessenta) dias, contados da publicação do despacho no Diário Oficial da União.",
+          "literal": "(Redação dada pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…stério das Minas e Energia, no prazo de 30 (trinta) dias, contados da publicação do despacho no Diário Oficial da União.",
+          "literal": "(Incluído pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…ido protocolizado após o indeferimento em causa, até que seja decidido o pedido de reconsideração ou o eventual recurso.",
+          "literal": "(Incluído pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…rso, caberá o indeferimento do requerimento de autorização de pesquisa superveniente, de que trata o parágrafo anterior.",
+          "literal": "(Incluído pela Lei nº 6.403, de 1976)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": "vigencia_encerrada",
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "Art. 20. A autorização de pesquisa importa nos seguintes pagamentos:",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…isa importa nos seguintes pagamentos: (Redação dada pela Lei nº 9.314, de 1996) (Vide Medida provisória nº 790, de 2017)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…duzentas e setenta vezes a expressão monetária UFIR, instituída pelo art. 1º da Lei nº 8.383, de 30 de dezembro de 1991;",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…lor máximo de duas vezes a expressão monetária UFIR, instituída pelo art. 1º da Lei nº 8.383, de 30 de dezembro de 1991.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…igo, estabelecerá, mediante portaria, os valores, os prazos de recolhimento e demais critérios e condições de pagamento.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…do Brasil S.A. e destinados ao DNPM, nos termos do inciso III do caput do art. 5º da Lei nº 8.876, de 2 de maio de 1994.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "… que vierem a ser estabelecidas em portaria do Ministro de Estado de Minas e Energia, a aplicação das seguintes sanções:",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…ratando-se de emolumentos, indeferimento de plano e conseqüente arquivamento do requerimento de autorização de pesquisa;",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "II - tratando-se de taxa:",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "a) multa, no valor máximo previsto no art. 64;",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "b) nulidade ex officio do alvará de autorização de pesquisa, após imposição de multa.",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "Art 21.",
+          "literal": "(Revogado pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "Art. 22. A autorização de pesquisa será conferida nas seguintes condições, além das demais constantes deste Código:",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.514",
+            "ano": 2022
+          },
+          "trecho": "… o título poderá ser objeto de cessão ou transferência, desde que o cessionário satisfaça os requisitos legais exigidos;",
+          "literal": "(Redação dada pela Lei nº 14.514, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.514",
+            "ano": 2022
+          },
+          "trecho": "…de cessão e transferência somente terão validade depois de devidamente averbados na Agência Nacional de Mineração (ANM);",
+          "literal": "(Incluído pela Lei nº 14.514, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.514",
+            "ano": 2022
+          },
+          "trecho": "…ativo na data da protocolização do instrumento de renúncia, com a desoneração da área, na forma do art. 26 deste Código;",
+          "literal": "(Redação dada pela Lei nº 14.514, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.514",
+            "ano": 2022
+          },
+          "trecho": "…eciais da situação da área e da pesquisa mineral objetivada, conforme estabelecido em resolução pela ANM, observado que:",
+          "literal": "(Redação dada pela Lei nº 14.514, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.514",
+            "ano": 2022
+          },
+          "trecho": "… prorrogável, por igual período, admitida mais de uma prorrogação exclusivamente nas hipóteses previstas em regulamento;",
+          "literal": "(Redação dada pela Lei nº 14.514, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…tente requerimento ser instruído com um relatório dos trabalhos efetuados e justificativa do prosseguimento da pesquisa;",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…á, contando-se o respectivo prazo a partir da data da publicação, no Diário Oficial da União, do despacho que a deferir;",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…nde, com exclusividade, pelos danos causados a terceiros, direta ou indiretamente decorrentes dos trabalhos de pesquisa;",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.514",
+            "ano": 2022
+          },
+          "trecho": "…equibilidade técnico-econômica da lavra, elaborado sob a responsabilidade técnica de profissional legalmente habilitado.",
+          "literal": "(Redação dada pela Lei nº 14.514, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…e artigo sujeita o titular à sanção de multa, calculada à razão de uma UFIR por hectare da área outorgada para pesquisa.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.514",
+            "ano": 2022
+          },
+          "trecho": "…antes da outorga da concessão de lavra, mediante prévia autorização da ANM, observada a legislação ambiental pertinente.",
+          "literal": "(Redação dada pela Lei nº 14.514, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.514",
+            "ano": 2022
+          },
+          "trecho": "…spensada a apresentação do relatório de que trata o inciso V do caput deste artigo, conforme critérios fixados pela ANM.",
+          "literal": "(Incluído pela Lei nº 14.514, de 2022)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "Art. 23. Os estudos referidos no inciso V do art. 22 concluirão pela:",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "I - exeqüibilidade técnico-econômica da lavra;",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "II - inexistência de jazida;",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "III - inexeqüibilidade técnico-econômica da lavra em face da presença de fatores conjunturais adversos, tais como:",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "a) inexistência de tecnologia adequada ao aproveitamento econômico da substância mineral;",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "b) inexistência de mercado interno ou externo para a substância mineral.",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…odificação no prazo original, salvo se, a juízo do DNPM, houver alteração significativa no polígono delimitador da área.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…ntando-se o prazo de validade da autorização a partir da data da publicação, no Diário Oficial da União, do novo título.",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…25. As autorizações de pesquisa ficam adstritas às áreas máximas que forem fixadas em portaria do Diretor-Geral do DNPM.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…o de sessenta dias, para fins de pesquisa ou lavra, conforme dispuser portaria do Ministro de Estado de Minas e Energia.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…do dispuser diversamente o despacho respectivo, a área desonerada na forma deste artigo ficará disponível para pesquisa.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…specíficos a serem atendidos pelos interessados no processo de habilitação às áreas disponíveis nos termos deste artigo.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…do pretendentes, a área estará livre para fins de aplicação do direito de prioridade de que trata a alínea a do art. 11.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…erão custeadas pelos respectivos interessados, na forma do que dispuser portaria do Diretor-Geral da referida autarquia.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…tificativa, depois de iniciados, por mais de 3 (três) meses consecutivos, ou por 120 dias acumulados e não consecutivos.",
+          "literal": "(Redação dada pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "30": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…s termos do inciso V do art. 22, o DNPM verificará sua exatidão e, à vista de parecer conclusivo, proferirá despacho de:",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "I - aprovação do relatório, quando ficar demonstrada a existência de jazida;",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "… do relatório, quando ficar constatada insuficiência dos trabalhos de pesquisa ou deficiência técnica na sua elaboração;",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…futuro requerimento, inclusive com acesso do interessado ao relatório que concluiu pela referida inexistência de jazida;",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…a a impossibilidade temporária da exeqüibilidade técnico-econômica da lavra, conforme previsto no inciso III do art. 23.",
+          "literal": "(Incluído dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "… interessado apresentar novo estudo da exeqüibilidade técnico-econômica da lavra, sob pena de arquivamento do relatório.",
+          "literal": "(Incluído dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "… ou colocar a área em disponibilidade, na forma do art. 32, se entender que terceiro poderá viabilizar a eventual lavra.",
+          "literal": "(Incluído dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…nômica da lavra, o DNPM proferirá, ex officio ou mediante provocação do interessado, despacho de aprovação do relatório.",
+          "literal": "(Incluído dada pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "31": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…, mediante solicitação justificada do titular, manifestada antes de findar-se o prazo inicial ou a prorrogação em curso.",
+          "literal": "(Incluído dada pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…ário Oficial da União, declarar a disponibilidade da jazida pesquisada, para fins de requerimento da concessão de lavra.",
+          "literal": "(Redação dada pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…equisitos especiais a serem atendidos pelos requerentes da concessão de lavra, consoante as peculiaridades de cada caso.",
+          "literal": "(Incluído pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "… Departamento Nacional da Produção Mineral - D. N. P. M. - melhor atender aos interesses específicos do setor minerário.",
+          "literal": "(Incluído pela Lei nº 6.403, de 1976)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "Parágrafo único. Não haverá restrições quanto ao número de concessões outorgadas a uma mesma empresa.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "38": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "I - certidão de registro, no Departamento Nacional de Registro do Comércio, da entidade constituída;",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.514",
+            "ano": 2022
+          },
+          "trecho": "…s necessários para execução do plano de aproveitamento econômico e operação da mina, conforme dispuser resolução da ANM.",
+          "literal": "(Redação dada pela Lei nº 14.514, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…a situada na faixa de fronteira, a concessão de lavra fica ainda sujeita aos critérios e condições estabelecidas em lei.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "39": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea h",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "…rragem de rejeitos, quando houver, ou de aumento na sua altura, vedada a utilização da técnica de alteamento a montante.",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "…roveitamento econômico deverá incluir o Plano de Ação de Emergência, em caráter conceitual, elaborado pelo empreendedor.",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        }
+      ]
+    },
+    "41": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…do, a juízo do Diretor-Geral do D.N.P.M., desde que requerido dentro do prazo concedido para cumprimento das exigências.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…devendo o DNPM declarar a disponibilidade da área, para fins de requerimento de concessão de lavra, na forma do art. 32.",
+          "literal": "(Incluído dada pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "43": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "Art. 43.",
+          "literal": "(Revogado pela Lei nº 14.066, de 2020)"
+        }
+      ]
+    },
+    "43-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "…no caso de danos a terceiros decorrentes das atividades de mineração, sem prejuízo das sanções administrativas e penais.",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "…ina e o descomissionamento de todas as instalações, incluídas barragens de rejeitos, de acordo com a legislação vigente.",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        }
+      ]
+    },
+    "44": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…osse da Jazida, dentro de noventa dias a contar da data da publicação da respectiva portaria no Diário Oficial da União.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "790",
+            "ano": 2017
+          },
+          "trecho": "…ontar da data da publicação da respectiva portaria no Diário Oficial da União. (Redação dada pela Lei nº 9.314, de 1996)",
+          "literal": "(Revogado pela Medida provisória nº 790, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… no Diário Oficial da União. (Redação dada pela Lei nº 9.314, de 1996) (Revogado pela Medida provisória nº 790, de 2017)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "Parágrafo único. O titular pagará uma taxa de emolumentos correspondente a quinhentas UFIR.",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "790",
+            "ano": 2017
+          },
+          "trecho": "… único. O titular pagará uma taxa de emolumentos correspondente a quinhentas UFIR. (Incluído pela Lei nº 9.314, de 1996)",
+          "literal": "(Revogado pela Medida provisória nº 790, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "…orrespondente a quinhentas UFIR. (Incluído pela Lei nº 9.314, de 1996) (Revogado pela Medida provisória nº 790, de 2017)",
+          "literal": "(Vigência encerrada)"
+        }
+      ]
+    },
+    "45": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "790",
+            "ano": 2017
+          },
+          "trecho": "Art. 45. A imissão de Posse processar-se-á de modo sequinte:",
+          "literal": "(Revogado pela Medida provisória nº 790, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 45. A imissão de Posse processar-se-á de modo sequinte: (Revogado pela Medida provisória nº 790, de 2017)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "790",
+            "ano": 2017
+          },
+          "trecho": "… antecedência, para que por si ou seus representantes possam presenciar o ato, e, em especial, assistir à demarcação; e,",
+          "literal": "(Revogado pela Medida provisória nº 790, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…tes possam presenciar o ato, e, em especial, assistir à demarcação; e, (Revogado pela Medida provisória nº 790, de 2017)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "790",
+            "ano": 2017
+          },
+          "trecho": "…s precisamente nos pontos indicados no Decreto de Concessão, dando-se, em seguida, ao concessionário, a Posse da jazida.",
+          "literal": "(Revogado pela Medida provisória nº 790, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…Concessão, dando-se, em seguida, ao concessionário, a Posse da jazida. (Revogado pela Medida provisória nº 790, de 2017)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "790",
+            "ano": 2017
+          },
+          "trecho": "…avrará têrmo, que assinará com o titular da lavra, testemunhas e concessionários das minas limítrofes, presentes ao ato;",
+          "literal": "(Revogado pela Medida provisória nº 790, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "… testemunhas e concessionários das minas limítrofes, presentes ao ato; (Revogado pela Medida provisória nº 790, de 2017)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "790",
+            "ano": 2017
+          },
+          "trecho": "§ 2º - Os marcos deverão ser conservados bem visíveis e só poderão ser mudados com autorização expressa do D.N.P.M.",
+          "literal": "(Revogado pela Medida provisória nº 790, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…visíveis e só poderão ser mudados com autorização expressa do D.N.P.M. (Revogado pela Medida provisória nº 790, de 2017)",
+          "literal": "(Vigência encerrada)"
+        }
+      ]
+    },
+    "46": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "790",
+            "ano": 2017
+          },
+          "trecho": "… Ministro das Minas e Energia contra a Imissão de Posse, dentro de 15 (quinze) dias, contados da data do ato de imissão.",
+          "literal": "(Revogado pela Medida provisória nº 790, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…Posse, dentro de 15 (quinze) dias, contados da data do ato de imissão. (Revogado pela Medida provisória nº 790, de 2017)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "790",
+            "ano": 2017
+          },
+          "trecho": "Parágrafo único. O recurso, se provido, anulará a Imissão de Posse.",
+          "literal": "(Revogado pela Medida provisória nº 790, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único. O recurso, se provido, anulará a Imissão de Posse. (Revogado pela Medida provisória nº 790, de 2017)",
+          "literal": "(Vigência encerrada)"
+        }
+      ]
+    },
+    "47": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…ào Mineral - D.N.P.M. - até o dia 15 (quinze) de março de cada ano, relatório das atividades realizadas no ano anterior.",
+          "literal": "(Redação dada pela Lei nº 6.403, de 1976)"
+        }
+      ]
+    },
+    "47-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "Art. 47-A. Em qualquer hipótese de extinção ou caducidade da concessão minerária, o concessionário fica obrigado a:",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "I - remover equipamentos e bens e arcar integralmente com os custos decorrentes dessa remoção;",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "II - reparar ou indenizar os danos decorrentes de suas atividades; e",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "III - praticar os atos de recuperação ambiental determinados pelos órgãos e entidades competentes.",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "…ireitos minerários o Plano de Fechamento de Mina e à autoridade licenciadora o Plano de Recuperação de Áreas Degradadas.",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        }
+      ]
+    },
+    "52": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "…de caducidade do título minerário, sem prejuízo do disposto no art. 65 e das demais sanções previstas neste Decreto-Lei.",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        }
+      ]
+    },
+    "55": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "§ 1º. Os atos de alienação ou oneração só terão validade depois de averbados no DNPM.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.085",
+            "ano": 1982
+          },
+          "trecho": "… - A concessão de lavra somente é transmissível a quem for capaz de exercê-la de acordo com as disposições deste Código.",
+          "literal": "(Redação dada pela Lei nº 7.085, de 1982)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.085",
+            "ano": 1982
+          },
+          "trecho": "…as e gravames constituídos sobre a concessão resolvem-se com extinção desta, ressalvada a ação pessoal contra o devedor.",
+          "literal": "(Incluído pela Lei nº 7.085, de 1982)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.085",
+            "ano": 1982
+          },
+          "trecho": "…titular da concessão extinta, salvo se esta, por qualquer motivo, voltar ao domínio do primitivo concessionário devedor.",
+          "literal": "(Incluído pela Lei nº 7.085, de 1982)"
+        }
+      ]
+    },
+    "56": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.085",
+            "ano": 1982
+          },
+          "trecho": "…nica, a economicidade do aproveitamento autônomo das unidades mineiras resultantes e o incremento da produção da jazida.",
+          "literal": "(Redação dada pela Lei nº 7.085, de 1982)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.085",
+            "ano": 1982
+          },
+          "trecho": "…icativo, os elementos de instrução referidos no art. 38 deste Código, relativamente a cada uma das concessões propostas.",
+          "literal": "(Redação dada pela Lei nº 7.085, de 1982)"
+        }
+      ]
+    },
+    "57": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "Art. 57.",
+          "literal": "(Revogado pela Lei nº 14.066, de 2020)"
+        }
+      ]
+    },
+    "58": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "… ao Ministro de Estado de Minas e Energia, obter a suspensão temporária da lavra, ou comunicar a renúncia ao seu título.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "59": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…e solo e subsolo, para os fins de pesquisa ou lavra, não só a propriedade onde se localiza a jazida, como as limítrofes.",
+          "literal": "(Renumerado do Art. 60 para Art. 59 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "60": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…tuem-se as Servidões mediante indenização previa do valor do terreno ocupado e dos prejuízos resultantes dessa ocupação.",
+          "literal": "(Renumerado do Art. 61 para Art. 60 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "61": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…ária, cabendo ao titular da autorização de pesquisa ou concessão de lavra, a obrigação de completar a quantia arbitrada.",
+          "literal": "(Renumerado do Art. 62 para Art. 61 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "62": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "… trabalhos de pesquisa ou lavra, antes de paga a importância a indenização e de fixada a renda pela ocupação do terreno.",
+          "literal": "(Renumerado do Art. 63 para Art. 62 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "63": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "…sões de lavra garimpeira, das concessões de lavra e do licenciamento previsto nesta Lei implica, dependendo da infração:",
+          "literal": "(Redação dada pela Lei nº 14.066, de 2020)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "I - advertência;",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "II - multa; e",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "III - caducidade do título.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "IV - multa diária;",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "V - apreensão de minérios, bens e equipamentos; ou",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "VI - suspensão temporária, total ou parcial, das atividades de mineração.",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "… à Agência Nacional de Mineração (ANM), e a aplicação de caducidade do título, ao Ministro de Estado de Minas e Energia.",
+          "literal": "(Redação dada pela Lei nº 14.066, de 2020)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "§ 2º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.066, de 2020)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "§ 3º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.066, de 2020)"
+        }
+      ]
+    },
+    "64": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "…lta variará de R$ 2.000,00 (dois mil reais) a R$ 1.000.000.000,00 (um bilhão de reais), segundo a gravidade da infração.",
+          "literal": "(Redação dada pela Lei nº 14.066, de 2020)"
+        }
+      ]
+    },
+    "65": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…caducidade da autorização de pesquisa, ou da concessão de lavra, desde que verificada quaisquer das seguintes infrações:",
+          "literal": "(Renumerado do Art. 66 para Art. 65 pelo Decreto-lei nº 318, de 1967)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "790",
+            "ano": 2017
+          },
+          "trecho": "a) caracterização formal do abandono da jazida ou mina;",
+          "literal": "(Revogado pela Medida provisória nº 790, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea a",
+          "diploma": null,
+          "trecho": "a) caracterização formal do abandono da jazida ou mina; (Revogado pela Medida provisória nº 790, de 2017)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "790",
+            "ano": 2017
+          },
+          "trecho": "b) não cumprimento dos prazos de início ou reinício dos trabalhos de pesquisa ou lavra, apesar de advertência e multa;",
+          "literal": "(Revogado pela Medida provisória nº 790, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea b",
+          "diploma": null,
+          "trecho": "…cio dos trabalhos de pesquisa ou lavra, apesar de advertência e multa; (Revogado pela Medida provisória nº 790, de 2017)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "790",
+            "ano": 2017
+          },
+          "trecho": "…trabalhos de pesquisa em desacôrdo com as condições constantes do título de autorização, apesar de advertência ou multa;",
+          "literal": "(Revogado pela Medida provisória nº 790, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea c",
+          "diploma": null,
+          "trecho": "…s constantes do título de autorização, apesar de advertência ou multa; (Revogado pela Medida provisória nº 790, de 2017)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "790",
+            "ano": 2017
+          },
+          "trecho": "… de lavra ambiciosa ou de extração de substância não compreendida no Decreto de Lavra, apesar de advertência e multa; e,",
+          "literal": "(Revogado pela Medida provisória nº 790, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea d",
+          "diploma": null,
+          "trecho": "…ão compreendida no Decreto de Lavra, apesar de advertência e multa; e, (Revogado pela Medida provisória nº 790, de 2017)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "790",
+            "ano": 2017
+          },
+          "trecho": "…rvações da fiscalização, caracterizado pela terceira reincidência, no intervalo de 1 (hum) ano, de infrações com multas.",
+          "literal": "(Revogado pela Medida provisória nº 790, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea e",
+          "diploma": null,
+          "trecho": "…ra reincidência, no intervalo de 1 (hum) ano, de infrações com multas. (Revogado pela Medida provisória nº 790, de 2017)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…rar a disponibilidade da respectiva área, para fins de requerimento de autorização de pesquisa ou de concessão de lavra.",
+          "literal": "(Incluído pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…Edital estabelecerá os requisitos especiais a serem atendidos pelo requerente, consoante as peculariedades de cada caso.",
+          "literal": "(Incluído pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "… do Departamento Nacional da Produção Mineral - D.N.P.M. - melhor atender aos interesses específicos do setor minerário.",
+          "literal": "(Incluído pela Lei nº 6.403, de 1976)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "…culpa ou dolo do empreendedor, sem prejuízo à imposição de multas e à responsabilização civil e penal do concessionário.",
+          "literal": "(Incluído pela Lei nº 14.066, de 2020)"
+        }
+      ]
+    },
+    "66": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…o anuláveis os Alvarás de Pesquisa ou Decretos de Lavra quando outorgados com infringência de dispositivos dêste Código.",
+          "literal": "(Renumerado do Art. 67 para Art. 66 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "67": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…asos de abandono, o titular não perde a propriedade dos bens que possam ser retirados sem prejudicar o conjunto da mina.",
+          "literal": "(Renumerado do Art. 68 para Art. 67 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "68": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…ministrativo para declaração de nulidade ou de caducidade, será instaurado \"ex-officio\" ou mediante denúncia comprovada.",
+          "literal": "(Renumerado do Art. 69 para Art. 68 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "69": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…aplicação das sanções de anulação ou caducidade da concessão de lavra, obedecerá ao disposto no § 1º do artigo anterior.",
+          "literal": "(Renumerado do Art. 70 para Art. 69 pelo Decreto-lei nº 318, de 1967)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "790",
+            "ano": 2017
+          },
+          "trecho": "… obedecerá ao disposto no § 1º do artigo anterior. (Renumerado do Art. 70 para Art. 69 pelo Decreto-lei nº 318, de 1967)",
+          "literal": "(Revogado pela Medida provisória nº 790, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… (Renumerado do Art. 70 para Art. 69 pelo Decreto-lei nº 318, de 1967) (Revogado pela Medida provisória nº 790, de 2017)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "790",
+            "ano": 2017
+          },
+          "trecho": "…va da sua entrega à parte interessada, o Diretor-Geral do D.N.P.M. encaminhará os autos ao Ministro das Minas e Energia.",
+          "literal": "(Revogado pela Medida provisória nº 790, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…eral do D.N.P.M. encaminhará os autos ao Ministro das Minas e Energia. (Revogado pela Medida provisória nº 790, de 2017)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "790",
+            "ano": 2017
+          },
+          "trecho": "…recidas pela Emprêsa, o Ministro encaminhará o processo, com relatório e parecer conclusivo, ao Presidente da República.",
+          "literal": "(Revogado pela Medida provisória nº 790, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…cesso, com relatório e parecer conclusivo, ao Presidente da República. (Revogado pela Medida provisória nº 790, de 2017)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "790",
+            "ano": 2017
+          },
+          "trecho": "… publicação no Diário Oficial da União, desde que seja instruído com elementos novos que justifiquem reexame da matéria.",
+          "literal": "(Revogado pela Medida provisória nº 790, de 2017)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…seja instruído com elementos novos que justifiquem reexame da matéria. (Revogado pela Medida provisória nº 790, de 2017)",
+          "literal": "(Vigência encerrada)"
+        }
+      ]
+    },
+    "70": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "Art. 70 Considera-se:",
+          "literal": "(Renumerado do Art. 71 para Art. 70 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "71": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…por processo rudimentar e individual de mineração, garimpagem, faiscação ou cata, denomina-se genèricamente, garimpeiro.",
+          "literal": "(Renumerado do Art. 72 para Art. 71 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "72": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "Art. 72. Caracterizam-se a garimpagem, a faiscação e a cata:",
+          "literal": "(Renumerado do Art. 73 para Art. 72 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "73": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…ento da menor taxa remuneratória cobrada pelas Coletorias Federais a todo aquêle que pretender executar êsses trabalhos.",
+          "literal": "(Renumerado do Art. 74 para Art. 73 pelo Decreto-lei nº 318, de 1967)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…entação do comprovante de quitação do impôsto sindical e o pagamento da mesma taxa remuneratória cobrada pela Coletoria.",
+          "literal": "(Redação dada pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "74": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…prévio do proprietário do solo, as permissões para garimpagem, faiscação ou cata, em terras ou águas de domínio privado.",
+          "literal": "(Renumerado do Art. 75 para Art. 74 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "75": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…alização de trabalhos de garimpagem, faiscação ou cata, em área objeto de autorização de pesquisa ou concessão de lavra.",
+          "literal": "(Redação dada pela Lei nº 6.403, de 1976)"
+        }
+      ]
+    },
+    "76": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.403",
+            "ano": 1976
+          },
+          "trecho": "…rtaria do Ministro das Minas e Energia, mediante proposta do Diretor-Geral do Departamento Nacional da Produçào Mineral.",
+          "literal": "(Redação dada pela Lei nº 6.403, de 1976)"
+        }
+      ]
+    },
+    "77": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…mpradores ou beneficiadores autorizados por Decreto do Govêrno Federal, de acôrdo com os dispositivos da lei específica.",
+          "literal": "(Renumerado do Art. 78 para Art. 77 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "78": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…o de certas áreas às atividades de garimpagem, faiscação ou cata, ou excluir destas a extração de determinados minerais.",
+          "literal": "(Renumerado do Art. 79 para Art. 78 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "79": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "Art. 79.",
+          "literal": "(Revogado pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "80": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "Art. 80",
+          "literal": "(Revogado pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "81": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…rias, dispondo neste caso do prazo máximo de trinta dias após registro no Departamento Nacional de Registro de Comércio.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "Parágrafo único. O não cumprimento do prazo estabelecido neste artigo ensejará as seguintes sanções:",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "I - advertência;",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "… artigo, no prazo de trinta dias da imposição da multa inicial, e assim sucessivamente, a cada trinta dias subseqüentes.",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "82": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "Art 82.",
+          "literal": "(Revogado pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "83": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "Art. 83. Aplica-se à propriedade mineral o direito comum, salvo as restrições impostas neste Código.",
+          "literal": "(Renumerado do Art. 84 para Art. 83 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "84": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…nto do solo onde se encontra, não abrangendo a propriedade dêste o minério ou a substância mineral útil que a constitui.",
+          "literal": "(Renumerado do Art. 85 para Art. 84 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "85": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…idor da área titulada, admitida, em caráter excepcional, a fixação de limites em profundidade por superfície horizontal.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…ntado da data de publicação da intimação no Diário Oficial da União, para fins de prioridade na obtenção do novo título.",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…ior, o DNPM poderá colocar em disponibilidade o título representativo do direito minerário decorrente do desmembramento.",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…no interesse do setor mineral, efetuar a limitação de jazida por superfície horizontal, inclusive em áreas já tituladas.",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…outorga da respectiva titulação, respeitados os direitos preexistentes e as demais condições estabelecidas neste artigo.",
+          "literal": "(Incluído pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "86": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…Mineração, mediante Decreto do Govêrno Federal, objetivando incrementar a produtividade da extração ou a sua capacidade.",
+          "literal": "(Renumerado do Art. 87 para Art. 86 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "87": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.066",
+            "ano": 2020
+          },
+          "trecho": "Art 87.",
+          "literal": "(Revogado pela Lei nº 14.066, de 2020)"
+        }
+      ]
+    },
+    "88": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…oncernentes à mineração, ao comércio e à industrialização de matérias-primas minerais, nos limites estabelecidos em Lei.",
+          "literal": "(Renumerado do Art. 89 para Art. 88 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "89": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "1.038",
+            "ano": 1969
+          },
+          "trecho": "Art 89.",
+          "literal": "(Revogado pelo Decreto-lei nº 1.038, de 1969)"
+        }
+      ]
+    },
+    "90": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…valor econômico da substância mineral, objeto do decreto de lavra, seja superior ao dos minerais nucleares que contiver.",
+          "literal": "(Renumerado do Art. 91 para Art. 90 pelo Decreto-lei nº 318, de 1967)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "330",
+            "ano": 1967
+          },
+          "trecho": "§ 1º",
+          "literal": "(Revogado pelo Decreto-lei nº 330, de 1967)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "330",
+            "ano": 1967
+          },
+          "trecho": "§§ 4º e 5º",
+          "literal": "(Revogados pelo Decreto-lei nº 330, de 1967)"
+        }
+      ]
+    },
+    "91": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…ecessárias à formulação de requerimento de autorização de pesquisa, na forma do que dispuzer o Regulamento dêste Código.",
+          "literal": "(Renumerado do Art. 92 para Art. 91 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "92": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "Art. 92. O DNPM manterá registros próprios dos títulos minerários.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "92-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.514",
+            "ano": 2022
+          },
+          "trecho": "… antes da outorga da concessão de lavra, reconhecido com base neste Código, podem ser onerados e oferecidos em garantia.",
+          "literal": "(Incluído pela Lei nº 14.514, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.514",
+            "ano": 2022
+          },
+          "trecho": "…º da Lei nº 13.575, de 26 de dezembro de 2017, efetuará as averbações decorrentes do uso previsto no caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.514, de 2022)"
+        }
+      ]
+    },
+    "93": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.314",
+            "ano": 1996
+          },
+          "trecho": "…iário Oficial da União os alvarás de pesquisa, as portarias de lavra e os demais atos administrativos deles decorrentes.",
+          "literal": "(Redação dada pela Lei nº 9.314, de 1996)"
+        }
+      ]
+    },
+    "94": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…vido o D.N.P.M. quando o Govêrno Federal tratar de qualquer assunto referente à matéria-prima mineral ou ao seu produto.",
+          "literal": "(Renumerado do Art. 95 para Art. 94 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "95": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "…vra outorgadas na vigência da legislação anterior, ficando, no entanto, sua execução sujeita a observância dêste Código.",
+          "literal": "(Renumerado do Art. 96 para Art. 95 pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    },
+    "96": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "318",
+            "ano": 1967
+          },
+          "trecho": "Art. 96. A lavra de jazida será organizada e conduzida na forma da Constituição.",
+          "literal": "(Incluído pelo Decreto-lei nº 318, de 1967)"
+        }
+      ]
+    }
+  }
+}

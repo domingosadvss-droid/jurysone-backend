@@ -1,0 +1,1705 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L6385",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l6385.json",
+      "colecao": "artigos",
+      "sha256": "967f3b546b144756c82ada9529a306ea562e806bf0acdb8ff0301d9a2b3e28da",
+      "total_registros": 44,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 32,
+      "anotacoes": 139,
+      "anotacoes_sem_diploma_nomeado": 6
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "Art. 1o Serão disciplinadas e fiscalizadas de acordo com esta Lei as seguintes atividades:",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "I - a emissão e distribuição de valores mobiliários no mercado;",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "II - a negociação e intermediação no mercado de valores mobiliários;",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "III - a negociação e intermediação no mercado de derivativos;",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "IV - a organização, o funcionamento e as operações das Bolsas de Valores;",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "V - a organização, o funcionamento e as operações das Bolsas de Mercadorias e Futuros;",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "VI - a administração de carteiras e a custódia de valores mobiliários;",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        }
+      ]
+    },
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "Art. 2o São valores mobiliários sujeitos ao regime desta Lei:",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "I - as ações, debêntures e bônus de subscrição;",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "…ireitos, recibos de subscrição e certificados de desdobramento relativos aos valores mobiliários referidos no inciso II;",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "III - os certificados de depósito de valores mobiliários;",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.042",
+            "ano": 2024
+          },
+          "trecho": "…issões de Gases de Efeito Estufa (SBCE) e os créditos de carbono, quando negociados no mercado financeiro e de capitais.",
+          "literal": "(Incluído pela Lei nº 15.042, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "§ 1o Excluem-se do regime desta Lei:",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "I - os títulos da dívida pública federal, estadual ou municipal;",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "II - os títulos cambiais de responsabilidade de instituição financeira, exceto as debêntures.",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.543",
+            "ano": 2011
+          },
+          "trecho": "…mpensação, de liquidação e de registro autorizados pelo Banco Central do Brasil ou pela Comissão de Valores Mobiliários.",
+          "literal": "(Incluído pela Lei nº 12.543, de 2011)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.543",
+            "ano": 2011
+          },
+          "trecho": "…s específicas para negociação de contratos derivativos, independentemente da natureza do investidor, podendo, inclusive:",
+          "literal": "(Incluído pela Lei nº 12.543, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.543",
+            "ano": 2011
+          },
+          "trecho": "a) determinar depósitos sobre os valores nocionais dos contratos; e",
+          "literal": "(Incluído pela Lei nº 12.543, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.543",
+            "ano": 2011
+          },
+          "trecho": "b) fixar limites, prazos e outras condições sobre as negociações dos contratos derivativos.",
+          "literal": "(Incluído pela Lei nº 12.543, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.543",
+            "ano": 2011
+          },
+          "trecho": "…ado financeiro e de capitais continuará a ser exercida, nos termos da legislação em vigor, pelo Banco Central do Brasil.",
+          "literal": "(Incluído pela Lei nº 12.543, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.543",
+            "ano": 2011
+          },
+          "trecho": "…caput deste artigo não poderão ser exigidas para as operações em aberto na data de publicação do ato que as estabelecer.",
+          "literal": "(Incluído pela Lei nº 12.543, de 2011)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.411",
+            "ano": 2002
+          },
+          "trecho": "…ncia de subordinação hierárquica, mandato fixo e estabilidade de seus dirigentes, e autonomia financeira e orçamentária.",
+          "literal": "(Redação dada pela Lei nº 10.411, de 26.2.2002)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.411",
+            "ano": 2002
+          },
+          "trecho": "…os pelo Senado Federal, dentre pessoas de ilibada reputação e reconhecida competência em matéria de mercado de capitais.",
+          "literal": "(Redação dada pela Lei nº 10.411, de 26.2.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.411",
+            "ano": 2002
+          },
+          "trecho": "…da Comissão será de cinco anos, vedada a recondução, devendo ser renovado a cada ano um quinto dos membros do Colegiado.",
+          "literal": "(Redação dada pela Lei nº 10.411, de 26.2.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.411",
+            "ano": 2002
+          },
+          "trecho": "… mandato em virtude de renúncia, de condenação judicial transitada em julgado ou de processo administrativo disciplinar.",
+          "literal": "(Redação dada pela Lei nº 10.411, de 26.2.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.411",
+            "ano": 2002
+          },
+          "trecho": "… causa da perda do mandato a inobservância, pelo Presidente ou Diretor, dos deveres e das proibições inerentes ao cargo.",
+          "literal": "(Redação dada pela Lei nº 10.411, de 26.2.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.411",
+            "ano": 2002
+          },
+          "trecho": "…, competindo ao Presidente da República determinar o afastamento preventivo, quando for o caso, e proferir o julgamento.",
+          "literal": "(Redação dada pela Lei nº 10.411, de 26.2.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.411",
+            "ano": 2002
+          },
+          "trecho": "…ários, assumirá o Diretor mais antigo ou o mais idoso, nessa ordem, até nova nomeação, sem prejuízo de suas atribuições.",
+          "literal": "(Redação dada pela Lei nº 10.411, de 26.2.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.411",
+            "ano": 2002
+          },
+          "trecho": "…andato de Diretor, proceder-se-á à nova nomeação pela forma disposta nesta Lei, para completar o mandato do substituído.",
+          "literal": "(Redação dada pela Lei nº 10.411, de 26.2.2002)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "3.995",
+            "ano": 2001
+          },
+          "trecho": "Art 9º A Comissão de Valores Mobiliários, observado o disposto no § 2o do art. 15, poderá:",
+          "literal": "(Redação dada pelo Decreto nº 3.995, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "3.995",
+            "ano": 2001
+          },
+          "trecho": "…ndentes, devendo tais documentos ser mantidos em perfeita ordem e estado de conservação pelo prazo mínimo de cinco anos:",
+          "literal": "(Redação dada pelo Decreto nº 3.995, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "…ndada de atos ilegais, das respectivas sociedades controladoras, controladas, coligadas e sociedades sob controle comum;",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea g",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "3.995",
+            "ano": 2001
+          },
+          "trecho": "…s termos do inciso V deste artigo, para efeito de verificação de ocorrência de atos ilegais ou práticas não eqüitativas;",
+          "literal": "(Redação dada pelo Decreto nº 3.995, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "…informações, ou esclarecimentos, sob cominação de multa, sem prejuízo da aplicação das penalidades previstas no art. 11;",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "…membros do conselho fiscal e acionistas de companhias abertas, dos intermediários e dos demais participantes do mercado;",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…a lesão ao bem jurídico tutelado e a utilização de outros instrumentos e medidas de supervisão que julgar mais efetivos.",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "3.995",
+            "ano": 2001
+          },
+          "trecho": "… V deste artigo, serão públicas, podendo ser restringido o acesso de terceiros em função do interesse público envolvido.",
+          "literal": "(Incluído pelo Decreto nº 3.995, de 31.10.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "3.995",
+            "ano": 2001
+          },
+          "trecho": "§ 6o A Comissão será competente para apurar e punir condutas fraudulentas no mercado de valores mobiliários sempre que:",
+          "literal": "(Incluído pelo Decreto nº 3.995, de 31.10.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "3.995",
+            "ano": 2001
+          },
+          "trecho": "…feitos ocasionem danos a pessoas residentes no território nacional, independentemente do local em que tenham ocorrido; e",
+          "literal": "(Incluído pelo Decreto nº 3.995, de 31.10.2001)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "…igações para apurar transgressões às normas atinentes ao mercado de valores mobiliários ocorridas no País e no exterior.",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        }
+      ]
+    },
+    "10-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.638",
+            "ano": 2007
+          },
+          "trecho": "…suas atribuições regulamentares, adotar, no todo ou em parte, os pronunciamentos e demais orientações técnicas emitidas.",
+          "literal": "(Incluído pela Lei nº 11.638, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.638",
+            "ano": 2007
+          },
+          "trecho": "…o contábil e de universidade ou instituto de pesquisa com reconhecida atuação na área contábil e de mercado de capitais.",
+          "literal": "(Incluído pela Lei nº 11.638, de 2007)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…s e de outras normas legais cujo cumprimento lhe caiba fiscalizar as seguintes penalidades, isoladas ou cumulativamente:",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "III - (revogado);",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…stema de distribuição ou de outras entidades que dependam de autorização ou registro na Comissão de Valores Mobiliários;",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "VI - inabilitação temporária, até o máximo de 20 (vinte) anos, para o exercício das atividades de que trata esta Lei;",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.457",
+            "ano": 1997
+          },
+          "trecho": "…stema de distribuição ou de outras entidades que dependam de autorização ou registro na Comissão de Valores Mobiliários;",
+          "literal": "(Incluído pela Lei nº 9.457, de 5.5.1997)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.457",
+            "ano": 1997
+          },
+          "trecho": "…e dez anos, de atuar, direta ou indiretamente, em uma ou mais modalidades de operação no mercado de valores mobiliários.",
+          "literal": "(Incluído pela Lei nº 9.457, de 5.5.1997)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…apacidade econômica do infrator e os motivos que justifiquem sua imposição, e não deverá exceder o maior destes valores:",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "I - R$ 50.000.000,00 (cinquenta milhões de reais);",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "II - o dobro do valor da emissão ou da operação irregular;",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "III - 3 (três) vezes o montante da vantagem econômica obtida ou da perda evitada em decorrência do ilícito; ou",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "IV - o dobro do prejuízo causado aos investidores em decorrência do ilícito.",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "§ 2o Nas hipóteses de reincidência, poderá ser aplicada multa de até o triplo dos valores fixados no § 1o deste artigo.",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…nos casos de infração grave, assim definidas em normas da Comissão de Valores Mobiliários, ou nos casos de reincidência.",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.457",
+            "ano": 1997
+          },
+          "trecho": "…mento previsto no § 2º do art. 9º desta Lei, cabendo recurso para o Conselho de Recursos do Sistema Financeiro Nacional.",
+          "literal": "(Redação dada pela Lei nº 9.457, de 5.5.1997)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…egulamentares cujo cumprimento lhe caiba fiscalizar, se o investigado assinar termo de compromisso no qual se obrigue a:",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.457",
+            "ano": 1997
+          },
+          "trecho": "…rágrafo anterior não importará confissão quanto à matéria de fato, nem reconhecimento de ilicitude da conduta analisada.",
+          "literal": "(Incluído pela Lei nº 9.457, de 5.5.1997)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…iminação do prazo para cumprimento das obrigações eventualmente assumidas, e constituirá título executivo extrajudicial.",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.457",
+            "ano": 1997
+          },
+          "trecho": "…rios dará continuidade ao procedimento administrativo anteriormente suspenso, para a aplicação das penalidades cabíveis.",
+          "literal": "(Incluído pela Lei nº 9.457, de 5.5.1997)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.457",
+            "ano": 1997
+          },
+          "trecho": "…rcunstância de qualquer pessoa, espontaneamente, confessar ilícito ou prestar informações relativas à sua materialidade.",
+          "literal": "(Incluído pela Lei nº 9.457, de 5.5.1997)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…o no inciso V do caput do art. 9o desta Lei, não excederá, por dia de atraso no seu cumprimento, o maior destes valores:",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…do faturamento total individual ou consolidado do grupo econômico, obtido no exercício anterior à aplicação da multa; ou",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "II - R$ 100.000,00 (cem mil reais).",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.317",
+            "ano": 2022
+          },
+          "trecho": "…ios, em última instância e sem efeito suspensivo, no prazo de 10 (dez) dias, conforme estabelecido em regimento interno.",
+          "literal": "(Redação dada pela Lei nº 14.317, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…ito da administração pública federal, estadual, distrital e municipal e das entidades da administração pública indireta.",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…u pela Comissão de Valores Mobiliários, se houver, preferirão aos créditos oriundos da aplicação da penalidade de multa.",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…iliários oriundos da aplicação da penalidade de multa de que trata o inciso II do caput deste artigo serão subordinados.",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "…biliários poderá prever, em seu orçamento, dotações de verbas às Bolsas de Valores e às Bolsas de Mercadorias e Futuros.",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.317",
+            "ano": 2022
+          },
+          "trecho": "…os que exerçam atividades de mediação na negociação de valores mobiliários em bolsas de valores ou no mercado de balcão;",
+          "literal": "(Redação dada pela Lei nº 14.317, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.457",
+            "ano": 1997
+          },
+          "trecho": "V - entidades de mercado de balcão organizado.",
+          "literal": "(Incluído pela Lei nº 9.457, de 5.5.1997)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "VI - as corretoras de mercadorias, os operadores especiais e as Bolsas de Mercadorias e Futuros; e",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.411",
+            "ano": 2002
+          },
+          "trecho": "III - mediação ou corretagem de operações com valores mobiliários; e",
+          "literal": "(Redação dada pela Lei nº 10.411, de 26.2.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.411",
+            "ano": 2002
+          },
+          "trecho": "IV - compensação e liquidação de operações com valores mobiliários.",
+          "literal": "(Redação dada pela Lei nº 10.411, de 26.2.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.317",
+            "ano": 2022
+          },
+          "trecho": "… com registro na Comissão poderão exercer a atividade de mediação ou de corretagem de valores mobiliários fora da bolsa.",
+          "literal": "(Redação dada pela Lei nº 14.317, de 2022)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "… terão autonomia administrativa, financeira e patrimonial, operando sob a supervisão da Comissão de Valores Mobiliários.",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "…issão de Valores Mobiliários, fiscalizar os respectivos membros e as operações com valores mobiliários nelas realizadas.",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "§ 2o (VETADO)",
+          "literal": "(Incluído pela Lei nº 10.303, de 31.10.2001)"
+        }
+      ]
+    },
+    "17-A": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 17-A.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "Art. 17-A. (VETADO)",
+          "literal": "(Incluído pela Lei nº 10.303, de 31.10.2001)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.411",
+            "ano": 2002
+          },
+          "trecho": "Art. 18. Compete à Comissão de Valores Mobiliários:",
+          "literal": "(Redação dada pela Lei nº 10.411, de 26.2.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.411",
+            "ano": 2002
+          },
+          "trecho": "I - editar normas gerais sobre:",
+          "literal": "(Redação dada pela Lei nº 10.411, de 26.2.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.411",
+            "ano": 2002
+          },
+          "trecho": "…ão ou registro necessário ao exercício das atividades indicadas no art. 16, e respectivos procedimentos administrativos;",
+          "literal": "(Redação dada pela Lei nº 10.411, de 26.2.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.411",
+            "ano": 2002
+          },
+          "trecho": "… a que deverão satisfazer os administradores de sociedades e demais pessoas que atuem no mercado de valores mobiliários;",
+          "literal": "(Redação dada pela Lei nº 10.411, de 26.2.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.411",
+            "ano": 2002
+          },
+          "trecho": "…pensação e liquidação de operações com valores mobiliários, forma jurídica, órgãos de administração e seu preenchimento;",
+          "literal": "(Redação dada pela Lei nº 10.411, de 26.2.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.411",
+            "ano": 2002
+          },
+          "trecho": "…nsação e liquidação de operações com valores mobiliários, sobre os seus membros, imposição de penas e casos de exclusão;",
+          "literal": "(Redação dada pela Lei nº 10.411, de 26.2.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.411",
+            "ano": 2002
+          },
+          "trecho": "…s e pelas entidades de compensação e liquidação de operações com valores mobiliários ou seus membros, quando for o caso;",
+          "literal": "(Redação dada pela Lei nº 10.411, de 26.2.2002)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea h",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.411",
+            "ano": 2002
+          },
+          "trecho": "…onstituição e extinção das Bolsas de Mercadorias e Futuros, forma jurídica, órgãos de administração e seu preenchimento.",
+          "literal": "(Redação dada pela Lei nº 10.411, de 26.2.2002)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.457",
+            "ano": 1997
+          },
+          "trecho": "II - o registro para negociação no mercado de balcão, organizado ou não.",
+          "literal": "(Redação dada pela Lei nº 9.457, de 5.5.1997)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.457",
+            "ano": 1997
+          },
+          "trecho": "… do art. 19 importa registro para o mercado de balcão, mas não para a bolsa ou entidade de mercado de balcão organizado.",
+          "literal": "(Redação dada pela Lei nº 9.457, de 5.5.1997)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.457",
+            "ano": 1997
+          },
+          "trecho": "…elecimentos, excluídas as operações efetuadas em bolsas ou em sistemas administrados por entidades de balcão organizado.",
+          "literal": "(Redação dada pela Lei nº 9.457, de 5.5.1997)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.457",
+            "ano": 1997
+          },
+          "trecho": "…es sejam admitidos à negociação no seu recinto ou sistema, mediante prévia aprovação da Comissão de Valores Mobiliários.",
+          "literal": "(Redação dada pela Lei nº 9.457, de 5.5.1997)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.457",
+            "ano": 1997
+          },
+          "trecho": "…idades cujo funcionamento dependerá de autorização da Comissão de Valores Mobiliários, que expedirá normas gerais sobre:",
+          "literal": "(Redação dada pela Lei nº 9.457, de 5.5.1997)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.457",
+            "ano": 1997
+          },
+          "trecho": "I - condições de constituição e extinção, forma jurídica, órgãos de administração e seu preenchimento;",
+          "literal": "(Incluído pela Lei nº 9.457, de 5.5.1997)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.457",
+            "ano": 1997
+          },
+          "trecho": "…io do poder disciplinar pelas entidades, sobre os seus participantes ou membros, imposição de penas e casos de exclusão;",
+          "literal": "(Incluído pela Lei nº 9.457, de 5.5.1997)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.457",
+            "ano": 1997
+          },
+          "trecho": "…apacidade financeira e habilitação técnica dos administradores e representantes das sociedades participantes ou membros;",
+          "literal": "(Incluído pela Lei nº 9.457, de 5.5.1997)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.457",
+            "ano": 1997
+          },
+          "trecho": "…entos, comissões e quaisquer outros custos cobrados pelas entidades ou seus participantes ou membros, quando for o caso.",
+          "literal": "(Incluído pela Lei nº 9.457, de 5.5.1997)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.457",
+            "ano": 1997
+          },
+          "trecho": "…que os valores mobiliários poderão ser negociados simultaneamente nos mercados de bolsa e de balcão, organizado ou não.\"",
+          "literal": "(Incluído pela Lei nº 9.457, de 5.5.1997)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "3.995",
+            "ano": 2001
+          },
+          "trecho": "§ 1o Compete à Comissão de Valores Mobiliários expedir normas aplicáveis às companhias abertas sobre:",
+          "literal": "(Redação dada pelo Decreto nº 3.995, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "3.995",
+            "ano": 2001
+          },
+          "trecho": "I - a natureza das informações que devam divulgar e a periodicidade da divulgação;",
+          "literal": "(Redação dada pelo Decreto nº 3.995, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "3.995",
+            "ano": 2001
+          },
+          "trecho": "II - relatório da administração e demonstrações financeiras;",
+          "literal": "(Redação dada pelo Decreto nº 3.995, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "3.995",
+            "ano": 2001
+          },
+          "trecho": "III - a compra de ações emitidas pela própria companhia e a alienação das ações em tesouraria;",
+          "literal": "(Redação dada pelo Decreto nº 3.995, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "3.995",
+            "ano": 2001
+          },
+          "trecho": "IV - padrões de contabilidade, relatórios e pareceres de auditores independentes;",
+          "literal": "(Redação dada pelo Decreto nº 3.995, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "3.995",
+            "ano": 2001
+          },
+          "trecho": "…à compra, permuta ou venda de valores mobiliários emitidas pela companhia e por sociedades controladas ou controladoras;",
+          "literal": "(Redação dada pelo Decreto nº 3.995, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "3.995",
+            "ano": 2001
+          },
+          "trecho": "…do ponderável, na decisão dos investidores do mercado, de vender ou comprar valores mobiliários emitidos pela companhia;",
+          "literal": "(Redação dada pelo Decreto nº 3.995, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "3.995",
+            "ano": 2001
+          },
+          "trecho": "…ectiva situação econômico-financeira, projeções de resultados e resposta aos esclarecimentos que lhes forem solicitados;",
+          "literal": "(Redação dada pelo Decreto nº 3.995, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "3.995",
+            "ano": 2001
+          },
+          "trecho": "VIII - as demais matérias previstas em lei.",
+          "literal": "(Redação dada pelo Decreto nº 3.995, de 31.10.2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "3.995",
+            "ano": 2001
+          },
+          "trecho": "…ades autorizadas a funcionar pelo Banco Central do Brasil, no que não forem conflitantes com as normas por ele baixadas.",
+          "literal": "(Redação dada pelo Decreto nº 3.995, de 31.10.2001)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.430",
+            "ano": 2022
+          },
+          "trecho": "…ção de serviços de custódia de valores mobiliários está sujeita à autorização prévia da Comissão de Valores Mobiliários.",
+          "literal": "(Redação dada pela Lei nº 14.430, de 2022)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.447",
+            "ano": 1997
+          },
+          "trecho": "…des de auditoria de instituições financeiras e demais instituições autorizadas a funcionar pelo Banco Central do Brasil.",
+          "literal": "(Incluído pela Lei nº 9.447, 14.3.1997)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "§ 4º",
+          "literal": "(Revogado pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "§ 5o (VETADO)",
+          "literal": "(Incluído pela Lei nº 10.303, de 31.10.2001)"
+        }
+      ]
+    },
+    "27-A": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 27-A.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "27-B": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 27-B.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "27-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "… um valor mobiliário, com o fim de obter vantagem indevida ou lucro, para si ou para outrem, ou causar dano a terceiros:",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "… de 1 (um) a 8 (oito) anos, e multa de até 3 (três) vezes o montante da vantagem ilícita obtida em decorrência do crime.",
+          "literal": "(Incluído pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "Uso Indevido de Informação Privilegiada",
+          "literal": "(Incluído pela Lei nº 10.303, de 31.10.2001)"
+        }
+      ]
+    },
+    "27-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…para si ou para outrem, vantagem indevida, mediante negociação, em nome próprio ou de terceiros, de valores mobiliários:",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "…de 1 (um) a 5 (cinco) anos, e multa de até 3 (três) vezes o montante da vantagem ilícita obtida em decorrência do crime.",
+          "literal": "(Incluído pela Lei nº 10.303, de 31.10.2001)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…ue ocupe em emissor de valores mobiliários ou em razão de relação comercial, profissional ou de confiança com o emissor.",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…revisto no caput deste artigo valendo-se de informação relevante de que tenha conhecimento e da qual deva manter sigilo.",
+          "literal": "(Incluído pela Lei nº 13.506, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "Exercício Irregular de Cargo, Profissão, Atividade ou Função",
+          "literal": "(Incluído pela Lei nº 10.303, de 31.10.2001)"
+        }
+      ]
+    },
+    "27-E": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.317",
+            "ano": 2022
+          },
+          "trecho": "… para esse fim, autorizado ou registrado na autoridade administrativa competente, quando exigido por lei ou regulamento:",
+          "literal": "(Redação dada pela Lei nº 14.317, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "Pena – detenção de 6 (seis) meses a 2 (dois) anos, e multa.",
+          "literal": "(Incluído pela Lei nº 10.303, de 31.10.2001)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "…es, relativas à fiscalização que exerçam, nas áreas de suas respectivas competências, no mercado de valores mobiliários.",
+          "literal": "(Redação dada pela Lei nº 10.303, de 31.10.2001)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "Art . 29.",
+          "literal": "(Revogado pela Lei nº 10.303, de 31.10.2001)"
+        }
+      ]
+    },
+    "30": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.303",
+            "ano": 2001
+          },
+          "trecho": "Art . 30.",
+          "literal": "(Revogado pela Lei nº 10.303, de 31.10.2001)"
+        }
+      ]
+    },
+    "31": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.616",
+            "ano": 1978
+          },
+          "trecho": "…pre intimada para, querendo, oferecer parecer ou prestar esclarecimentos, no prazo de quinze dias a contar da intimação.",
+          "literal": "(Incluído pela Lei nº 6.616, de 16.12.1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.616",
+            "ano": 1978
+          },
+          "trecho": "…o de recebimento, conforme a Comissão tenha, ou não, sede ou representação na comarca em que tenha sido proposta a ação.",
+          "literal": "(Incluído pela Lei nº 6.616, de 16.12.1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.616",
+            "ano": 1978
+          },
+          "trecho": "… jornal oficial que publica expedientes forense ou por carta com aviso de recebimento, nos termos do parágrafo anterior.",
+          "literal": "(Incluído pela Lei nº 6.616, de 16.12.1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.616",
+            "ano": 1978
+          },
+          "trecho": "§ 3º - A comissão é atribuída legitimidade para interpor recursos, quando as partes não o fizeram.",
+          "literal": "(Incluído pela Lei nº 6.616, de 16.12.1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.616",
+            "ano": 1978
+          },
+          "trecho": "…rafo anterior começará a correr, independentemente de nova intimação, no dia imediato aquele em que findar o das partes.",
+          "literal": "(Incluído pela Lei nº 6.616, de 16.12.1978)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.616",
+            "ano": 1978
+          },
+          "trecho": "…ão cobradas judicialmente, de acordo com o rito estabelecido pelo código de Processo Civil para o processo de execução\".",
+          "literal": "(Incluído pela Lei nº 6.616, de 16.12.1978)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.873",
+            "ano": 1999
+          },
+          "trecho": "Art. 33.",
+          "literal": "(Revogado pela Lei nº 9.873, de 23.11.1999)"
+        }
+      ]
+    },
+    "34": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.457",
+            "ano": 1997
+          },
+          "trecho": "Art . 34. Esta Lei entrará em vigor na data de sua publicação.",
+          "literal": "(Renumerado do art. 33, pela Lei nº 9.457, 5.5.1997)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "renumeracao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.457",
+            "ano": 1997
+          },
+          "trecho": "Art . 35. Revogam-se as disposições em contrário.",
+          "literal": "(Renumerado do art. 34, pela Lei nº 9.457, 5.5.1997)"
+        }
+      ]
+    }
+  }
+}

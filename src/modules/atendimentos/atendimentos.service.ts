@@ -1,6 +1,8 @@
-import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
+import { Injectable, BadRequestException, NotFoundException, Logger } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { CreateAtendimentoDto } from './dto/create-atendimento.dto';
+import { AsaasService } from '../asaas/asaas.service';
+import { EsignService } from '../esign/esign.service';
 
 export interface AtendimentoFilter {
   status?: string;
@@ -11,7 +13,13 @@ export interface AtendimentoFilter {
 
 @Injectable()
 export class AtendimentosService {
-  constructor(private readonly prisma: PrismaService) {}
+  private readonly logger = new Logger(AtendimentosService.name);
+
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly asaasService: AsaasService,
+    private readonly esignService: EsignService,
+  ) {}
 
   /**
    * Create a complete atendimento with all related records
@@ -20,23 +28,37 @@ export class AtendimentosService {
   async createCompleteAtendimento(
     escritorioId: string,
     dto: CreateAtendimentoDto,
+    userId?: string,
   ) {
     try {
-      // 1. Create or find client
-      const cliente = await this.prisma.cliente.upsert({
-        where: { cpf: dto.cliente.cpf } as any,
-        update: {},
-        create: {
-          nome: dto.cliente.nome,
-          cpf: dto.cliente.cpf,
-          rg: dto.cliente.rg,
-          dataNascimento: new Date(dto.cliente.dataNascimento),
-          telefone: dto.cliente.telefone,
-          email: dto.cliente.email,
-          endereco: typeof dto.cliente.endereco === 'string' ? dto.cliente.endereco : JSON.stringify(dto.cliente.endereco),
-          escritorioId,
-        },
-      });
+      // 1. Create or find client (cpf não é unique → findFirst + create)
+      let cliente = dto.cliente.cpf
+        ? await this.prisma.cliente.findFirst({
+            where: { escritorioId, cpf: dto.cliente.cpf },
+          })
+        : null;
+
+      if (!cliente) {
+        cliente = await this.prisma.cliente.create({
+          data: {
+            nome: dto.cliente.nome,
+            cpf: dto.cliente.cpf ?? null,
+            rg: dto.cliente.rg ?? null,
+            dataNascimento: dto.cliente.dataNascimento
+              ? new Date(dto.cliente.dataNascimento)
+              : null,
+            telefone: dto.cliente.telefone ?? null,
+            email: dto.cliente.email ?? null,
+            endereco:
+              typeof dto.cliente.endereco === 'string'
+                ? dto.cliente.endereco
+                : dto.cliente.endereco
+                  ? JSON.stringify(dto.cliente.endereco)
+                  : null,
+            escritorioId,
+          },
+        });
+      }
 
       // 2. Create minor if applicable
       let menorId: string = null;
@@ -99,6 +121,57 @@ export class AtendimentosService {
         },
       });
 
+      // 5b. Enviar cobrança ao Asaas (boleto/PIX) — não bloqueia se falhar
+      let asaasPaymentId: string | null = null;
+      let asaasInvoiceUrl: string | null = null;
+      try {
+        const valorCobranca = dto.tipoHonorario === 'percentual'
+          ? dto.valorAcao * (dto.percentualExito / 100)
+          : dto.valorFixo || 0;
+
+        if (valorCobranca > 0 && cliente.email) {
+          const vencimento = dto.vencimento1Parc
+            ? new Date(dto.vencimento1Parc).toISOString().split('T')[0]
+            : new Date(Date.now() + 7 * 86400000).toISOString().split('T')[0]; // +7 dias
+
+          const billingType = (dto.formaPagamento || 'PIX').toUpperCase() as any;
+
+          const resultado = await this.asaasService.criarClienteECobranca(
+            escritorioId,
+            {
+              nome:              cliente.nome,
+              cpfCnpj:          cliente.cpf  || undefined,
+              email:            cliente.email || undefined,
+              fone:             cliente.telefone || undefined,
+              externalReference: cliente.id,
+            },
+            {
+              valor:             valorCobranca,
+              vencimento,
+              descricao:        `Honorários - ${dto.area} | ${dto.tipoAcao || ''}`,
+              billingType:      ['BOLETO','PIX','CREDIT_CARD'].includes(billingType) ? billingType : 'PIX',
+              externalReference: lancamento.id,
+            },
+          );
+
+          asaasPaymentId  = resultado.pagamento?.id   || null;
+          asaasInvoiceUrl = resultado.pagamento?.invoiceUrl || resultado.pagamento?.bankSlipUrl || null;
+          this.logger.log(`[Asaas] ✅ Cobrança criada: ${asaasPaymentId} | ${asaasInvoiceUrl}`);
+
+          // Atualiza lançamento com ID externo do Asaas
+          await this.prisma.lancamentoFinanceiro.update({
+            where: { id: lancamento.id },
+            data: {
+              status:            'pendente',
+              externalPaymentId: asaasPaymentId,
+            },
+          });
+        }
+      } catch (asaasErr) {
+        // Não falha o atendimento — só loga o erro
+        this.logger.warn(`[Asaas] Cobrança não enviada: ${asaasErr.message}`);
+      }
+
       // 6. Create 4 documents
       const documentTypes = [
         'Contrato de Honorários',
@@ -126,17 +199,28 @@ export class AtendimentosService {
       const dataLimite = new Date();
       dataLimite.setDate(dataLimite.getDate() + 7);
 
+      // Busca um usuário válido do escritório para o criadoPorId (FK obrigatória)
+      let criadoPorId = userId;
+      if (!criadoPorId) {
+        const usuario = await this.prisma.usuario.findFirst({ where: { escritorioId } });
+        criadoPorId = usuario?.id ?? escritorioId;
+      }
+
       const envelope = await this.prisma.esignEnvelope.create({
         data: {
-          titulo: 'Documentos para Assinatura',
+          titulo: 'Contrato de Honorários — ' + dto.cliente.nome,
           escritorioId,
-          criadoPorId: escritorioId,
+          criadoPorId,
           signatario: cliente.email as any,
-          status: 'enviado',
-          mensagem: dto.mensagem || 'Segue em anexo os documentos para assinatura',
+          status: 'aguardando',
+          mensagem: dto.mensagem || 'Segue o contrato de honorários para sua assinatura',
           dataLimite,
         } as any,
       });
+
+      // 7b. Envio via ClickSign é feito pelo frontend (POST /esign/envelopes)
+      // para evitar duplicidade de envelopes. Apenas registramos o status local.
+      const esignProvider: string | null = null;
 
       // 8. Create atendimento record
       const atendimento = await this.prisma.atendimento.create({
@@ -178,6 +262,10 @@ export class AtendimentosService {
         lancamento,
         documentos: docs,
         envelope,
+        asaas: asaasPaymentId
+          ? { paymentId: asaasPaymentId, invoiceUrl: asaasInvoiceUrl }
+          : null,
+        esign: { provider: esignProvider },
         message: 'Atendimento criado com sucesso! Aguardando assinatura dos documentos.',
       };
     } catch (error) {

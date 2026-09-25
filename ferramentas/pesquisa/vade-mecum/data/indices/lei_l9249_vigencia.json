@@ -1,0 +1,847 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L9249",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l9249.json",
+      "colecao": "artigos",
+      "sha256": "fcda0eb18b983ecf46a69a67c87e2f216676f99246353571c51d552fe2bf7882",
+      "total_registros": 37,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 15,
+      "anotacoes": 72,
+      "anotacoes_sem_diploma_nomeado": 15
+    }
+  },
+  "vigencia": {
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.430",
+            "ano": 1996
+          },
+          "trecho": "…do respectivo período de apuração, sujeita-se à incidência de adicional de imposto de renda à alíquota de dez por cento.",
+          "literal": "(Redação dada pela Lei 9.430, de 1996)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.430",
+            "ano": 1996
+          },
+          "trecho": "…, inclusive, nos casos de incorporação, fusão ou cisão e de extinção da pessoa jurídica pelo encerramento da liquidação.",
+          "literal": "(Redação dada pela Lei 9.430, de 1996)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": "vigencia_encerrada",
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "694",
+            "ano": 2015
+          },
+          "trecho": "…o líquido e limitados, pro rata die, à Taxa de Juros de Longo Prazo - TJLP ou a cinco por cento ao ano, o que for menor.",
+          "literal": "(Redação dada pela Medida Provisória nº 694, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…u a cinco por cento ao ano, o que for menor. (Redação dada pela Medida Provisória nº 694, de 2015) (Produção de efeitos)",
+          "literal": "(Vigência encerrada)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.270",
+            "ano": 2025
+          },
+          "trecho": "…ou jurídica, domiciliado no País, observado o disposto nos arts. 6º-A e 16-A da Lei nº 9.250, de 26 de dezembro de 1995.",
+          "literal": "(Redação dada pela Lei nº 15.270, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ros, o custo de aquisição será igual à parcela do lucro ou reserva capitalizado, que corresponder ao sócio ou acionista.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…parcela do lucro ou reserva capitalizado, que corresponder ao sócio ou acionista. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…assificada em conta de passivo ou que a remuneração seja classificada como despesa financeira na escrituração comercial.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "… remuneração seja classificada como despesa financeira na escrituração comercial. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…5 da Lei nº 6.404, de 15 de dezembro de 1976, ainda que classificados como despesa financeira na escrituração comercial.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "… 1976, ainda que classificados como despesa financeira na escrituração comercial. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.270",
+            "ano": 2025
+          },
+          "trecho": "…s ou remetidos ao exterior ficarão sujeitos à incidência do imposto de renda na fonte à alíquota de 10% (dez por cento).",
+          "literal": "(Incluído pela Lei nº 15.270, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.270",
+            "ano": 2025
+          },
+          "trecho": "…ão ficarão sujeitos à incidência do imposto de renda na fonte, nos termos do caput deste artigo, os lucros e dividendos:",
+          "literal": "(Incluído pela Lei nº 15.270, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.270",
+            "ano": 2025
+          },
+          "trecho": "I - relativos a resultados apurados até o ano-calendário de 2025:",
+          "literal": "(Incluído pela Lei nº 15.270, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.270",
+            "ano": 2025
+          },
+          "trecho": "a) cuja distribuição tenha sido aprovada até 31 de dezembro de 2025; e",
+          "literal": "(Incluída pela Lei nº 15.270, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.270",
+            "ano": 2025
+          },
+          "trecho": "…ial, desde que seu pagamento, crédito, emprego ou entrega ocorra nos termos originalmente previstos no ato de aprovação;",
+          "literal": "(Incluída pela Lei nº 15.270, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.270",
+            "ano": 2025
+          },
+          "trecho": "II - pagos, creditados, empregados, entregues ou remetidos a:",
+          "literal": "(Incluído pela Lei nº 15.270, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.270",
+            "ano": 2025
+          },
+          "trecho": "… desde que haja reciprocidade de tratamento em relação aos rendimentos auferidos em seus países pelo governo brasileiro;",
+          "literal": "(Incluída pela Lei nº 15.270, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.270",
+            "ano": 2025
+          },
+          "trecho": "b) fundos soberanos, conforme definidos no § 5º do art. 3º da Lei nº 11.312, de 27 de junho de 2006; e",
+          "literal": "(Incluída pela Lei nº 15.270, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.270",
+            "ano": 2025
+          },
+          "trecho": "…de a administração de benefícios previdenciários, tais como aposentadorias e pensões, conforme definidas em regulamento.",
+          "literal": "(Incluída pela Lei nº 15.270, de 2025)"
+        }
+      ]
+    },
+    "10-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.270",
+            "ano": 2025
+          },
+          "trecho": "…, creditados, entregues, empregados ou remetidos que tenham sido tributados com fundamento no § 4º do art. 10 desta Lei.",
+          "literal": "(Incluído pela Lei nº 15.270, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.270",
+            "ano": 2025
+          },
+          "trecho": "…dos lucros e dividendos pagos, creditados, entregues, empregados ou remetidos pela pessoa jurídica pela diferença entre:",
+          "literal": "(Incluído pela Lei nº 15.270, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.270",
+            "ano": 2025
+          },
+          "trecho": "… apurada nos termos do art. 16-B da Lei nº 9.250, de 26 de dezembro de 1995, acrescida de 10 (dez) pontos percentuais; e",
+          "literal": "(Incluído pela Lei nº 15.270, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.270",
+            "ano": 2025
+          },
+          "trecho": "II - o percentual previsto nos incisos I, II e III do § 1º do art. 16-B da Lei nº 9.250, de 26 de dezembro de 1995.",
+          "literal": "(Incluído pela Lei nº 15.270, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.270",
+            "ano": 2025
+          },
+          "trecho": "…erior pleiteará, em até 360 (trezentos e sessenta) dias, contados de cada exercício, o crédito de que trata este artigo.",
+          "literal": "(Incluído pela Lei nº 15.270, de 2025)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.430",
+            "ano": 1996
+          },
+          "trecho": "… líquidos obtidos em bolsas, serão adicionados à base de cálculo de incidência do adicional previsto no § 1º do art. 3º.",
+          "literal": "(Revogado pela Lei nº 9.430, de 1996)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…s por bem objeto de arrendamento mercantil pela arrendatária, na hipótese em que esta reconheça contabilmente o encargo.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso VIII",
+          "diploma": null,
+          "trecho": "…til pela arrendatária, na hipótese em que esta reconheça contabilmente o encargo. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.204",
+            "ano": 2015
+          },
+          "trecho": "…os os requisitos previstos nos arts. 3o e 16 da Lei no 9.790, de 23 de março de 1999, independentemente de certificação.",
+          "literal": "(Redação dada pela Lei nº 13.204, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "… contratos referentes a essas operações nos órgãos de fiscalização ou nas agências reguladoras para esse fim específico.",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…incondicionais concedidos, sem prejuízo do disposto nos arts. 30, 32, 34 e 35 da Lei no 8.981, de 20 de janeiro de 1995.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…disposto nos arts. 30, 32, 34 e 35 da Lei no 8.981, de 20 de janeiro de 1995. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.727",
+            "ano": 2008
+          },
+          "trecho": "… organizada sob a forma de sociedade empresária e atenda às normas da Agência Nacional de Vigilância Sanitária – Anvisa;",
+          "literal": "(Redação dada pela Lei nº 11.727, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…recuperação, reforma, ampliação ou melhoramento de infraestrutura vinculados a contrato de concessão de serviço público.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "alínea e",
+          "diploma": null,
+          "trecho": "…oramento de infraestrutura vinculados a contrato de concessão de serviço público. (Incluído pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "167",
+            "ano": 2019
+          },
+          "trecho": "…ção de empréstimo, de financiamento e de desconto de títulos de crédito realizadas por Empresa Simples de Crédito (ESC).",
+          "literal": "(Incluído pela Lei Complementar nº 167, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…quando decorrente da comercialização de imóveis e for apurada por meio de índices ou coeficientes previstos em contrato.",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "167",
+            "ano": 2019
+          },
+          "trecho": "… de 1977, auferida no período, deduzida das devoluções, das vendas canceladas e dos descontos incondicionais concedidos:",
+          "literal": "(Redação dada pela Lei Complementar nº 167, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "167",
+            "ano": 2019
+          },
+          "trecho": "…a e dois por cento) para a receita bruta decorrente das atividades previstas no inciso III do § 1º do art. 15 desta Lei;",
+          "literal": "(Incluído pela Lei Complementar nº 167, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "167",
+            "ano": 2019
+          },
+          "trecho": "…décimos por cento) para a receita bruta decorrente das atividades previstas no inciso IV do § 1º do art. 15 desta Lei; e",
+          "literal": "(Incluído pela Lei Complementar nº 167, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "167",
+            "ano": 2019
+          },
+          "trecho": "III - 12% (doze por cento) para as demais receitas brutas.",
+          "literal": "(Incluído pela Lei Complementar nº 167, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.684",
+            "ano": 2003
+          },
+          "trecho": "… 2003, optar pelo lucro real, sendo definitiva a tributação pelo lucro presumido relativa aos três primeiros trimestres.",
+          "literal": "(Incluído pela Lei nº 10.684, de 2003)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…3, optar pelo lucro real, sendo definitiva a tributação pelo lucro presumido relativa aos 3 (três) primeiros trimestres.",
+          "literal": "(Renumerado com alteração pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…que trata o caput deste artigo também será aplicado sobre a receita financeira de que trata o § 4o do art. 15 desta Lei.",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…tude de incorporação, fusão ou cisão deverá levantar balanço específico para esse fim, observada a legislação comercial.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… levantar balanço específico para esse fim, observada a legislação comercial. (Redação dada pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…cálculo do imposto de renda devido e da contribuição social sobre o lucro líquido. (Revogado pela Lei nº 12.973, de 2014",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…o no parágrafo anterior, os encargos serão considerados incorridos, ainda que não tenham sido registrados contabilmente.",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…rão considerados incorridos, ainda que não tenham sido registrados contabilmente. (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "449",
+            "ano": 2008
+          },
+          "trecho": "…ridade Social - COFINS, da Contribuição para o PIS/PASEP e das contribuições previdenciárias incidentes sobre a receita.",
+          "literal": "(Redação dada pela Medida Provisória nº 449, de 2008)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…ridade Social – COFINS, da Contribuição para o PIS/Pasep e das contribuições previdenciárias incidentes sobre a receita.",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.430",
+            "ano": 1996
+          },
+          "trecho": "… dos tributos e contribuições devidos, observado o disposto no § 1º do art. 4º da Lei nº 8.218, de 29 de agosto de 1991.",
+          "literal": "(Revogado pela Lei nº 9.430, de 1996)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "449",
+            "ano": 2008
+          },
+          "trecho": "…da, aplicar-se-á a esta a alíquota mais elevada entre aquelas previstas para as receitas auferidas pela pessoa jurídica.",
+          "literal": "(Incluído pela Medida Provisória nº 449, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "449",
+            "ano": 2008
+          },
+          "trecho": "…da com base na alíquota ad valorem mais elevada entre aquelas previstas para as receitas auferidas pela pessoa jurídica.",
+          "literal": "(Incluído pela Medida Provisória nº 449, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "449",
+            "ano": 2008
+          },
+          "trecho": "…dica. (Incluído pela Medida Provisória nº 449, de 2008) § 6o Na determinação da alíquota mais elevada, considerar-se-ão:",
+          "literal": "(Incluído pela Medida Provisória nº 449, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "449",
+            "ano": 2008
+          },
+          "trecho": "… 4o e 5o, as alíquotas aplicáveis às receitas auferidas pela pessoa jurídica no ano-calendário em que ocorreu a omissão;",
+          "literal": "(Incluído pela Medida Provisória nº 449, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "449",
+            "ano": 2008
+          },
+          "trecho": "…as por unidade de medida do produto, bem como as alíquotas aplicáveis às demais receitas auferidas pela pessoa jurídica.",
+          "literal": "(Incluído pela Medida Provisória nº 449, de 2008)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…da, aplicar-se-á a esta a alíquota mais elevada entre aquelas previstas para as receitas auferidas pela pessoa jurídica.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…da com base na alíquota ad valorem mais elevada entre aquelas previstas para as receitas auferidas pela pessoa jurídica.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 6o Na determinação da alíquota mais elevada, considerar-se-ão:",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…e artigo, as alíquotas aplicáveis às receitas auferidas pela pessoa jurídica no ano-calendário em que ocorreu a omissão;",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…as por unidade de medida do produto, bem como as alíquotas aplicáveis às demais receitas auferidas pela pessoa jurídica.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "627",
+            "ano": 2013
+          },
+          "trecho": "§ 7º Os lucros serão apurados segundo as normas da legislação comercial do país de domicílio.",
+          "literal": "(Incluído pela Medida Provisória nº 627, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 7o Os lucros serão apurados segundo as normas da legislação comercial do país de domicílio.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        }
+      ]
+    },
+    "31": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ompensados com lucros de mesma natureza, observado o limite previsto no art. 15 da Lei nº 9.065, de 20 de junho de 1995.",
+          "literal": "(Revogado pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…, observado o limite previsto no art. 15 da Lei nº 9.065, de 20 de junho de 1995. (Revogado pela Lei nº 12.973, de 2014)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 32.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 33.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "34": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "225",
+            "ano": 2026
+          },
+          "trecho": "…formativo dos créditos não quitados do setor público federal (Cadin), previsto na Lei nº 10.522, de 19 de julho de 2002.",
+          "literal": "(Incluído pela Lei Complementar nº 225, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "225",
+            "ano": 2026
+          },
+          "trecho": "…tumaz não afasta o disposto no § 3º deste artigo em relação aos atos praticados no período em que era assim considerado.",
+          "literal": "(Incluído pela Lei Complementar nº 225, de 2026)"
+        }
+      ]
+    }
+  }
+}

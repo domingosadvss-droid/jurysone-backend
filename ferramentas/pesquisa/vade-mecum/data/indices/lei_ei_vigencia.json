@@ -1,0 +1,2014 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "EI",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_ei.json",
+      "colecao": "artigos",
+      "sha256": "13593986048d05439be000f51fa8c04eac72c55d83c040cc370e0132e1902b8e",
+      "total_registros": 118,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 73,
+      "anotacoes": 147,
+      "anotacoes_sem_diploma_nomeado": 2
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…a Pessoa Idosa, destinado a regular os direitos assegurados às pessoas com idade igual ou superior a 60 (sessenta) anos.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…de física e mental e seu aperfeiçoamento moral, intelectual, espiritual e social, em condições de liberdade e dignidade.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…porte, ao lazer, ao trabalho, à cidadania, à liberdade, à dignidade, ao respeito e à convivência familiar e comunitária.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.466",
+            "ano": 2017
+          },
+          "trecho": "§ 1º A garantia de prioridade compreende:",
+          "literal": "(Redação dada pela Lei nº 13.466, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "III – destinação privilegiada de recursos públicos nas áreas relacionadas com a proteção à pessoa idosa;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "IV – viabilização de formas alternativas de participação, ocupação e convívio da pessoa idosa com as demais gerações;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…ento do atendimento asilar, exceto dos que não a possuam ou careçam de condições de manutenção da própria sobrevivência;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…ão e reciclagem dos recursos humanos nas áreas de geriatria e gerontologia e na prestação de serviços às pessoas idosas;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.765",
+            "ano": 2008
+          },
+          "trecho": "IX – prioridade no recebimento da restituição do Imposto de Renda.",
+          "literal": "(Incluído pela Lei nº 11.765, de 2008)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…iores de 80 (oitenta) anos, atendendo-se suas necessidades sempre preferencialmente em relação às demais pessoas idosas.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…, violência, crueldade ou opressão, e todo atentado aos seus direitos, por ação ou omissão, será punido na forma da lei.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "§ 1º É dever de todos prevenir a ameaça ou violação aos direitos da pessoa idosa.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…os na Lei nº 8.842, de 4 de janeiro de 1994, zelarão pelo cumprimento dos direitos da pessoa idosa, definidos nesta Lei.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…como pessoa humana e sujeito de direitos civis, políticos, individuais e sociais, garantidos na Constituição e nas leis.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "… pessoa idosa, colocando-a a salvo de qualquer tratamento desumano, violento, aterrorizante, vexatório ou constrangedor.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "Art. 11. Os alimentos serão prestados à pessoa idosa na forma da lei civil.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "Art. 12. A obrigação alimentar é solidária, podendo a pessoa idosa optar entre os prestadores.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.737",
+            "ano": 2008
+          },
+          "trecho": "…blico, que as referendará, e passarão a ter efeito de título executivo extrajudicial nos termos da lei processual civil.",
+          "literal": "(Redação dada pela Lei nº 11.737, de 2008)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…ndições econômicas de prover o seu sustento, impõe-se ao poder público esse provimento, no âmbito da assistência social.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…proteção e recuperação da saúde, incluindo a atenção especial às doenças que afetam preferencialmente as pessoas idosas.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "§ 1º A prevenção e a manutenção da saúde da pessoa idosa serão efetivadas por meio de:",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…úblicas, filantrópicas ou sem fins lucrativos e eventualmente conveniadas com o poder público, nos meios urbano e rural;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "… de uso continuado, assim como próteses, órteses e outros recursos relativos ao tratamento, habilitação ou reabilitação.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…º É vedada a discriminação da pessoa idosa nos planos de saúde pela cobrança de valores diferenciados em razão da idade.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "… 4º As pessoas idosas com deficiência ou com limitação incapacitante terão atendimento especializado, nos termos da lei.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…mparecimento da pessoa idosa enferma perante os órgãos públicos, hipótese na qual será admitido o seguinte procedimento:",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…- quando de interesse do poder público, o agente promoverá o contato necessário com a pessoa idosa em sua residência; ou",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "II - quando de interesse da própria pessoa idosa, esta se fará representar por procurador legalmente constituído.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…ntegre o SUS, para expedição do laudo de saúde necessário ao exercício de seus direitos sociais e de isenção tributária.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…os maiores de 80 (oitenta) anos terão preferência especial sobre as demais pessoas idosas, exceto em caso de emergência.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "… órgão de saúde proporcionar as condições adequadas para a sua permanência em tempo integral, segundo o critério médico.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…nto conceder autorização para o acompanhamento da pessoa idosa ou, no caso de impossibilidade, justificá-la por escrito.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…de suas faculdades mentais é assegurado o direito de optar pelo tratamento de saúde que lhe for reputado mais favorável.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "Parágrafo único. Não estando a pessoa idosa em condições de proceder à opção, esta será feita:",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "I – pelo curador, quando a pessoa idosa for interditada;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "II – pelos familiares, quando a pessoa idosa não tiver curador ou este não puder ser contactado em tempo hábil;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…do o treinamento e a capacitação dos profissionais, assim como orientação a cuidadores familiares e grupos de autoajuda.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "… privados à autoridade sanitária, bem como serão obrigatoriamente comunicados por eles a quaisquer dos seguintes órgãos:",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "III – Conselho Municipal da Pessoa Idosa;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "IV – Conselho Estadual da Pessoa Idosa;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "V – Conselho Nacional da Pessoa Idosa.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…uer ação ou omissão praticada em local público ou privado que lhe cause morte, dano ou sofrimento físico ou psicológico.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.461",
+            "ano": 2011
+          },
+          "trecho": "… couber, à notificação compulsória prevista no caput deste artigo, o disposto na Lei no 6.259, de 30 de outubro de 1975.",
+          "literal": "(Incluído pela Lei nº 12.461, de 2011)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…ação, cultura, esporte, lazer, diversões, espetáculos, produtos e serviços que respeitem sua peculiar condição de idade.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…oa idosa à educação, adequando currículos, metodologias e material didático aos programas educacionais a ela destinados.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…teúdo relativo às técnicas de comunicação, computação e demais avanços tecnológicos, para sua integração à vida moderna.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…smissão de conhecimentos e vivências às demais gerações, no sentido da preservação da memória e da identidade culturais.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "… respeito e à valorização da pessoa idosa, de forma a eliminar o preconceito e a produzir conhecimentos sobre a matéria.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…ressos para eventos artísticos, culturais, esportivos e de lazer, bem como o acesso preferencial aos respectivos locais.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…as idosas, com finalidade informativa, educativa, artística e cultural, e ao público sobre o processo de envelhecimento.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.535",
+            "ano": 2017
+          },
+          "trecho": "… da vida, cursos e programas de extensão, presenciais ou a distância, constituídos por atividades formais e não formais.",
+          "literal": "(Redação dada pela lei nº 13.535, de 2017)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "… padrão editorial adequados à pessoa idosa, que facilitem a leitura, considerada a natural redução da capacidade visual.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "… idosa tem direito ao exercício de atividade profissional, respeitadas suas condições físicas, intelectuais e psíquicas.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…a fixação de limite máximo de idade, inclusive para concursos, ressalvados os casos em que a natureza do cargo o exigir.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…specializada para as pessoas idosas, aproveitando seus potenciais e habilidades para atividades regulares e remuneradas;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "III – estímulo às empresas privadas para admissão de pessoas idosas ao trabalho.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "… Lei Orgânica da Assistência Social (Loas), na Política Nacional da Pessoa Idosa, no SUS e nas demais normas pertinentes",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "34": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "… família, é assegurado o benefício mensal de 1 (um) salário mínimo, nos termos da Loas. (Vide Decreto nº 6.214, de 2007)",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…so de entidade filantrópica, ou casa-lar, é facultada a cobrança de participação da pessoa idosa no custeio da entidade.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…der a 70% (setenta por cento) de qualquer benefício previdenciário ou de assistência social percebido pela pessoa idosa.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "36": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…em situação de risco social, por adulto ou núcleo familiar, caracteriza a dependência econômica, para os efeitos legais.",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "… de risco social, por adulto ou núcleo familiar, caracteriza a dependência econômica, para os efeitos legais. (Vigência)",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "… substituta, ou desacompanhada de seus familiares, quando assim o desejar, ou, ainda, em instituição pública ou privada.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…a obrigada a manter identificação externa visível, sob pena de interdição, além de atender toda a legislação pertinente.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…-las com alimentação regular e higiene indispensáveis às normas sanitárias e com estas condizentes, sob as penas da lei.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "38": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "… recursos públicos, a pessoa idosa goza de prioridade na aquisição de imóvel para moradia própria, observado o seguinte:",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "… - reserva de pelo menos 3% (três por cento) das unidades habitacionais residenciais para atendimento às pessoas idosas;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "II – implantação de equipamentos urbanos comunitários voltados à pessoa idosa;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "III – eliminação de barreiras arquitetônicas e urbanísticas, para garantia de acessibilidade à pessoa idosa;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…dades residenciais reservadas para atendimento a pessoas idosas devem situar-se, preferencialmente, no pavimento térreo.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "39": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…Para ter acesso à gratuidade, basta que a pessoa idosa apresente qualquer documento pessoal que faça prova de sua idade.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…sentos para as pessoas idosas, devidamente identificados com a placa de reservado preferencialmente para pessoas idosas.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "40": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…rva de 2 (duas) vagas gratuitas por veículo para pessoas idosas com renda igual ou inferior a 2 (dois) salários mínimos;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…agens, para as pessoas idosas que excederem as vagas gratuitas, com renda igual ou inferior a 2 (dois) salários mínimos.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "41": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…onamentos públicos e privados, as quais deverão ser posicionadas de forma a garantir a melhor comodidade à pessoa idosa.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "42": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "… a segurança da pessoa idosa nos procedimentos de embarque e desembarque nos veículos do sistema de transporte coletivo.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "43": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…das de proteção à pessoa idosa são aplicáveis sempre que os direitos reconhecidos nesta Lei forem ameaçados ou violados:",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "44": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…vamente, e levarão em conta os fins sociais a que se destinam e o fortalecimento dos vínculos familiares e comunitários.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "45": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…endentes de drogas lícitas ou ilícitas, à própria pessoa idosa ou à pessoa de sua convivência que lhe cause perturbação;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "46": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…nto articulado de ações governamentais e não governamentais da União, dos Estados, do Distrito Federal e dos Municípios.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "47": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…localização de parentes ou responsáveis por pessoas idosas abandonados em hospitais e instituições de longa permanência;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "V – proteção jurídico-social por entidades de defesa dos direitos das pessoas idosas;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…ização da opinião pública no sentido da participação dos diversos segmentos da sociedade no atendimento da pessoa idosa.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "48": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…ção emanadas do órgão competente da Política Nacional da Pessoa Idosa, conforme a Lei nº 8.842, de 4 de janeiro de 1994.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…selho Estadual ou Nacional da Pessoa Idosa, especificando os regimes de atendimento, observados os seguintes requisitos:",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "49": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "III – manutenção da pessoa idosa na mesma instituição, salvo em caso de força maior;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "IV – participação da pessoa idosa nas atividades comunitárias, de caráter interno e externo;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "V – observância dos direitos e garantias das pessoas idosas;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "VI – preservação da identidade da pessoa idosa e oferecimento de ambiente de respeito e dignidade.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…á civil e criminalmente pelos atos que praticar em detrimento da pessoa idosa, sem prejuízo das sanções administrativas.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "50": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…e atendimento, as obrigações da entidade e prestações decorrentes do contrato, com os respectivos preços, se for o caso;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "II – observar os direitos e as garantias de que são titulares as pessoas idosas;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "VIII – proporcionar cuidados à saúde, conforme a necessidade da pessoa idosa;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "XII – comunicar à autoridade competente de saúde toda ocorrência de pessoa idosa com doenças infectocontagiosas;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "XIV – fornecer comprovante de depósito dos bens móveis que receberem das pessoas idosas;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…es, e suas alterações, se houver, e demais dados que possibilitem sua identificação e a individualização do atendimento;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "51": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…rópicas ou sem fins lucrativos prestadoras de serviço às pessoas idosas terão direito à assistência judiciária gratuita.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "52": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "… serão fiscalizadas pelos Conselhos da Pessoa Idosa, Ministério Público, Vigilância Sanitária e outros previstos em lei.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "55": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "e) proibição de atendimento a pessoas idosas a bem do interesse público.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…elação ao programa, caberá o afastamento provisório dos dirigentes ou a interdição da unidade e a suspensão do programa.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…to a pessoas idosas a bem do interesse público, sem prejuízo das providências a serem tomadas pela Vigilância Sanitária.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "… danos que dela provierem para a pessoa idosa, as circunstâncias agravantes ou atenuantes e os antecedentes da entidade.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "56": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…gadas serão transferidas para outra instituição, a expensas do estabelecimento interditado, enquanto durar a interdição.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "57": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…longa permanência de comunicar à autoridade competente os casos de crimes contra pessoa idosa de que tiver conhecimento:",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "58": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "Art. 58. Deixar de cumprir as determinações desta Lei sobre a prioridade no atendimento à pessoa idosa:",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…os reais) a R$ 1.000,00 (mil reais) e multa civil a ser estipulada pelo juiz, conforme o dano sofrido pela pessoa idosa.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "60": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…Ministério Público ou auto de infração elaborado por servidor efetivo e assinado, se possível, por 2 (duas) testemunhas.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "62": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…idências que vierem a ser adotadas pelo Ministério Público ou pelas demais instituições legitimadas para a fiscalização.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "65": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…ento à pessoa idosa terá início mediante petição fundamentada de pessoa interessada ou iniciativa do Ministério Público.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "66": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…e ou outras medidas que julgar adequadas, para evitar lesão aos direitos da pessoa idosa, mediante decisão fundamentada.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "70": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "Art. 70. O poder público poderá criar varas especializadas e exclusivas da pessoa idosa.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "71": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…il acesso aos assentos e caixas, identificados com a destinação a pessoas idosas em local visível e caracteres legíveis.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "§ 5º Dentre os processos de pessoas idosas, dar-se-á prioridade especial aos das maiores de 80 (oitenta) anos.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "72": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 72.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "74": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…eção dos direitos e interesses difusos ou coletivos, individuais indisponíveis e individuais homogêneos da pessoa idosa;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…stifiquem a medida e oficiar em todos os feitos em que se discutam os direitos das pessoas idosas em condições de risco;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "III – atuar como substituto processual da pessoa idosa em situação de risco, conforme o disposto no art. 43 desta Lei;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…ório da pessoa idosa, nas hipóteses previstas no art. 43 desta Lei, quando necessário ou o interesse público justificar;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…as e a instauração de inquérito policial, para a apuração de ilícitos ou infrações às normas de proteção à pessoa idosa;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…o aos direitos e garantias legais assegurados à pessoa idosa, promovendo as medidas judiciais e extrajudiciais cabíveis;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "X – referendar transações envolvendo interesses e direitos das pessoas idosas previstos nesta Lei.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…te do Ministério Público, no exercício de suas funções, terá livre acesso a toda entidade de atendimento à pessoa idosa.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "79": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…abilidade por ofensa aos direitos assegurados à pessoa idosa, referentes à omissão ou ao oferecimento insatisfatório de:",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "II – atendimento especializado à pessoa idosa com deficiência ou com limitação incapacitante;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "III – atendimento especializado à pessoa idosa com doença infectocontagiosa;",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "IV – serviço de assistência social visando ao amparo da pessoa idosa.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…ros interesses difusos, coletivos, individuais indisponíveis ou homogêneos, próprios da pessoa idosa, protegidos em lei.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "80": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…a processar a causa, ressalvadas as competências da Justiça Federal e a competência originária dos Tribunais Superiores.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "84": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…e houver, ou na falta deste, ao Fundo Municipal de Assistência Social, ficando vinculados ao atendimento à pessoa idosa.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "87": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…ada igual iniciativa aos demais legitimados, como assistentes ou assumindo o polo ativo, em caso de inércia desse órgão.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "90": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…ura de ação para sua defesa, devem encaminhar as peças pertinentes ao Ministério Público, para as providências cabíveis.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "94": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.163",
+            "ano": 2025
+          },
+          "trecho": "… de 7 de dezembro de 1940 (Código Penal), e do Decreto-Lei nº 3.689, de 3 de outubro de 1941 (Código de Processo Penal).",
+          "literal": "(Redação dada pela Lei nº 15.163, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.163",
+            "ano": 2025
+          },
+          "trecho": "…ncia contra a pessoa idosa, independentemente da pena prevista, não se aplica a Lei nº 9.099, de 26 de setembro de 1995.",
+          "literal": "(Incluído pela Lei nº 15.163, de 2025)"
+        }
+      ]
+    },
+    "96": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "§ 3º Não constitui crime a negativa de crédito motivada por superendividamento da pessoa idosa.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "97": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…dar ou dificultar sua assistência à saúde, sem justa causa, ou não pedir, nesses casos, o socorro de autoridade pública:",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "98": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…idades de longa permanência, ou congêneres, ou não prover suas necessidades básicas, quando obrigado por lei ou mandado:",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "99": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…a de alimentos e cuidados indispensáveis, quando obrigado a fazê-lo, ou sujeitando-a a trabalho excessivo ou inadequado:",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.163",
+            "ano": 2025
+          },
+          "trecho": "Pena - reclusão, de 2 (dois) a 5 (cinco) anos.",
+          "literal": "(Redação dada pela Lei nº 15.163, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.163",
+            "ano": 2025
+          },
+          "trecho": "Pena - reclusão, de 3 (três) a 7 (sete) anos.",
+          "literal": "(Redação dada pela Lei nº 15.163, de 2025)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.163",
+            "ano": 2025
+          },
+          "trecho": "Pena - reclusão, de 8 (oito) a 14 (quatorze) anos.",
+          "literal": "(Redação dada pela Lei nº 15.163, de 2025)"
+        }
+      ]
+    },
+    "101": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…rar, sem justo motivo, a execução de ordem judicial expedida nas ações em que for parte ou interveniente a pessoa idosa:",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "102": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…bens, proventos, pensão ou qualquer outro rendimento da pessoa idosa, dando-lhes aplicação diversa da de sua finalidade:",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "103": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…ento ou a permanência da pessoa idosa, como abrigada, por recusa desta em outorgar procuração à entidade de atendimento:",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "104": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…são da pessoa idosa, bem como qualquer outro documento com objetivo de assegurar recebimento ou ressarcimento de dívida:",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "105": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…Exibir ou veicular, por qualquer meio de comunicação, informações ou imagens depreciativas ou injuriosas à pessoa idosa:",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "107": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "Art. 107. Coagir, de qualquer modo, a pessoa idosa a doar, contratar, testar ou outorgar procuração:",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    },
+    "115": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.423",
+            "ano": 2022
+          },
+          "trecho": "…do, os recursos necessários, em cada exercício financeiro, para aplicação em programas e ações relativos à pessoa idosa.",
+          "literal": "(Redação dada pela Lei nº 14.423, de 2022)"
+        }
+      ]
+    }
+  }
+}

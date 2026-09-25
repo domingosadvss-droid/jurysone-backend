@@ -1,0 +1,1847 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "D70235",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_d70235.json",
+      "colecao": "artigos",
+      "sha256": "f34a931ff9a38a680f15971e741d79859c7098ee927f39d9437790b8758b0ce7",
+      "total_registros": 75,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 31,
+      "anotacoes": 156,
+      "anotacoes_sem_diploma_nomeado": 16
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.865",
+            "ano": 2013
+          },
+          "trecho": "…os, tramitados, comunicados e transmitidos em formato digital, conforme disciplinado em ato da administração tributária.",
+          "literal": "(Redação dada pela Lei nº 12.865, de 2013)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "Art. 5º Na contagem dos prazos previstos neste Decreto:",
+          "literal": "(Redação dada pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "I - serão considerados os dias corridos, salvo se houver disposição em contrário; e",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "II - será excluído da contagem o dia do início e incluído o dia do vencimento.",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        }
+      ]
+    },
+    "5-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…t. 5º-A. Suspende-se o curso do prazo processual nos dias compreendidos entre 20 de dezembro e 20 de janeiro, inclusive.",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "… caput deste artigo, não serão realizadas sessões de julgamento no órgão referido no inciso II do art. 25 deste Decreto.",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        }
+      ]
+    },
+    "5-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "… Decreto, será de 10 (dez) dias úteis o prazo para a realização de ato a cargo do sujeito passivo ou da Fazenda Pública.",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "Art. 6º",
+          "literal": "(Revogado pela Lei nº 8.748, de 1993)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…orrogável, sucessivamente, por igual período, com qualquer outro ato escrito que indique o prosseguimento dos trabalhos.",
+          "literal": "(Redação dada pela Lei Complementar nº 227, de 2026)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…instruídos com todos os termos, depoimentos, laudos e demais elementos de prova indispensáveis à comprovação do ilícito.",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…assivo, podem ser objeto de um único processo, quando a comprovação dos ilícitos depender dos mesmos elementos de prova.",
+          "literal": "(Redação dada pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "…dos, mesmo que formalizados por servidor competente de jurisdição diversa da do domicílio tributário do sujeito passivo.",
+          "literal": "(Redação dada pela Lei nº 8.748, de 1993)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "…os termos do parágrafo anterior, previne a jurisdição e prorroga a competência da autoridade que dela primeiro conhecer.",
+          "literal": "(Incluído pela Lei nº 8.748, de 1993)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…bém nas hipóteses em que, constatada infração à legislação tributária, dela não resulte exigência de crédito tributário.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…pecial unificado de arrecadação de tributos, poderão conter lançamento único para todos os tributos por eles abrangidos.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…to no caput deste artigo não se aplica às contribuições de que trata o art. 3o da Lei no 11.457, de 16 de março de 2007.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "V - a determinação da exigência e a intimação para cumpri-la ou impugná-la no prazo de 20 (vinte) dias úteis;",
+          "literal": "(Redação dada pela Lei Complementar nº 227, de 2026)"
+        }
+      ]
+    },
+    "14-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.140",
+            "ano": 2015
+          },
+          "trecho": "… para fins do disposto no inciso III do art. 151 da Lei no 5.172, de 25 de outubro de 1966 - Código Tributário Nacional.",
+          "literal": "(Incluído pela Lei nº 13.140, de 2015)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…entada ao órgão preparador no prazo de 20 (vinte) dias úteis, contado da data em que for feita a intimação da exigência.",
+          "literal": "(Redação dada pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "III - os motivos de fato e de direito em que se fundamenta, os pontos de discordância e as razões e provas que possuir;",
+          "literal": "(Redação dada pela Lei nº 8.748, de 1993)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "…es aos exames desejados, assim como, no caso de perícia, o nome, o endereço e a qualificação profissional do seu perito.",
+          "literal": "(Redação dada pela Lei nº 8.748, de 1993)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "V - se a matéria impugnada foi submetida à apreciação judicial, devendo ser juntada cópia da petição.",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "… não formulado o pedido de diligência ou perícia que deixar de atender aos requisitos previstos no inciso IV do art. 16.",
+          "literal": "(Incluído pela Lei nº 8.748, de 1993)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "…s nos escritos apresentados no processo, cabendo ao julgador, de ofício ou a requerimento do ofendido, mandar riscá-las.",
+          "literal": "(Incluído pela Lei nº 8.748, de 1993)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "…e alegar direito municipal, estadual ou estrangeiro, provar-lhe-á o teor e a vigência, se assim o determinar o julgador.",
+          "literal": "(Incluído pela Lei nº 8.748, de 1993)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.532",
+            "ano": 1997
+          },
+          "trecho": "…l será apresentada na impugnação, precluindo o direito de o impugnante fazê-lo em outro momento processual, a menos que:",
+          "literal": "(Incluído pela Lei nº 9.532, de 1997)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.532",
+            "ano": 1997
+          },
+          "trecho": "a) fique demonstrada a impossibilidade de sua apresentação oportuna, por motivo de força maior;",
+          "literal": "(Incluído pela Lei nº 9.532, de 1997)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.532",
+            "ano": 1997
+          },
+          "trecho": "b) refira-se a fato ou a direito superveniente;",
+          "literal": "(Incluído pela Lei nº 9.532, de 1997)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.532",
+            "ano": 1997
+          },
+          "trecho": "c) destine-se a contrapor fatos ou razões posteriormente trazidas aos autos.",
+          "literal": "(Incluído pela Lei nº 9.532, de 1997)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.532",
+            "ano": 1997
+          },
+          "trecho": "…ção em que se demonstre, com fundamentos, a ocorrência de uma das condições previstas nas alíneas do parágrafo anterior.",
+          "literal": "(Incluído pela Lei nº 9.532, de 1997)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.532",
+            "ano": 1997
+          },
+          "trecho": "…permanecerão nos autos para, se for interposto recurso, serem apreciados pela autoridade julgadora de segunda instância.",
+          "literal": "(Incluído pela Lei nº 9.532, de 1997)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.532",
+            "ano": 1997
+          },
+          "trecho": "Art. 17. Considerar-se-á não impugnada a matéria que não tenha sido expressamente contestada pelo impugnante.",
+          "literal": "(Redação dada pela Lei nº 9.532, de 1997)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "…as necessárias, indeferindo as que considerar prescindíveis ou impraticáveis, observando o disposto no art. 28, in fine.",
+          "literal": "(Redação dada pela Lei nº 8.748, de 1993)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "…resentar os respectivos laudos em prazo que será fixado segundo o grau de complexidade dos trabalhos a serem executados.",
+          "literal": "(Redação dada pela Lei nº 8.748, de 1993)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "§ 2º Os prazos para realização de diligência ou perícia poderão ser prorrogados, a juízo da autoridade.",
+          "literal": "(Redação dada pela Lei nº 8.748, de 1993)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "…e lançamento complementar, devolvendo-se, ao sujeito passivo, prazo para impugnação no concernente à matéria modificada.",
+          "literal": "(Incluído pela Lei nº 8.748, de 1993)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "Art. 19.",
+          "literal": "(Revogado pela Lei nº 8.748, de 1993)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "… servidor para proceder aos exames relativos a diligências ou perícias recairá sobre Auditor-Fiscal do Tesouro Nacional.",
+          "literal": "(Redação dada pela Lei nº 8.748, de 1993)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "…ora declarará a revelia, permanecendo o processo no órgão preparador, pelo prazo de trinta dias, para cobrança amigável.",
+          "literal": "(Redação dada pela Lei nº 8.748, de 1993)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "…e autos apartados para a imediata cobrança da parte não contestada, consignando essa circunstância no processo original.",
+          "literal": "(Redação dada pela Lei nº 8.748, de 1993)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "…o, procederá, em relação às mercadorias e outros bens perdidos em razão de exigência não impugnada, na forma do art. 63.",
+          "literal": "(Redação dada pela Lei nº 8.748, de 1993)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.532",
+            "ano": 1997
+          },
+          "trecho": "…inatura do sujeito passivo, seu mandatário ou preposto, ou, no caso de recusa, com declaração escrita de quem o intimar;",
+          "literal": "(Redação dada pela Lei nº 9.532, de 1997)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.532",
+            "ano": 1997
+          },
+          "trecho": "…gráfica ou por qualquer outro meio ou via, com prova de recebimento no domicílio tributário eleito pelo sujeito passivo;",
+          "literal": "(Redação dada pela Lei nº 9.532, de 1997)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "III - por meio eletrônico, com prova de recebimento, mediante:",
+          "literal": "(Redação dada pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "a) envio ao domicílio tributário do sujeito passivo; ou",
+          "literal": "(Incluída pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "b) registro em meio magnético ou equivalente utilizado pelo sujeito passivo.",
+          "literal": "(Incluída pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…ssivo tiver sua inscrição declarada inapta perante o cadastro fiscal, a intimação poderá ser feita por edital publicado:",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "I - no endereço da administração tributária na internet;",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "II - em dependência, franqueada ao público, do órgão encarregado da intimação; ou",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "III - uma única vez, em órgão da imprensa oficial local.",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.532",
+            "ano": 1997
+          },
+          "trecho": "…ciso II do caput deste artigo, na data do recebimento ou, se omitida, quinze dias após a data da expedição da intimação;",
+          "literal": "(Redação dada pela Lei nº 9.532, de 1997)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "III - se por meio eletrônico:",
+          "literal": "(Redação dada pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "a) 15 (quinze) dias contados da data registrada no comprovante de entrega no domicílio tributário do sujeito passivo;",
+          "literal": "(Redação dada pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "…o endereço eletrônico a ele atribuído pela administração tributária, se ocorrida antes do prazo previsto na alínea a; ou",
+          "literal": "(Redação dada pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.844",
+            "ano": 2013
+          },
+          "trecho": "c) na data registrada no meio magnético ou equivalente utilizado pelo sujeito passivo;",
+          "literal": "(Incluída pela Lei nº 12.844, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "IV - 15 (quinze) dias após a publicação do edital, se este for o meio utilizado.",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "§ 3o Os meios de intimação previstos nos incisos do caput deste artigo não estão sujeitos a ordem de preferência.",
+          "literal": "(Redação dada pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "§ 4o Para fins de intimação, considera-se domicílio tributário do sujeito passivo:",
+          "literal": "(Redação dada pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "I - o endereço postal por ele fornecido, para fins cadastrais, à administração tributária; e",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "II - o endereço eletrônico a ele atribuído pela administração tributária, desde que autorizado pelo sujeito passivo.",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "…to do sujeito passivo, e a administração tributária informar-lhe-á as normas e condições de sua utilização e manutenção.",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.196",
+            "ano": 2005
+          },
+          "trecho": "§ 6o As alterações efetuadas por este artigo serão disciplinadas em ato da administração tributária.",
+          "literal": "(Incluído pela Lei nº 11.196, de 2005)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.457",
+            "ano": 2007
+          },
+          "trecho": "…r de Recursos Fiscais, do Ministério da Fazenda na sessão das respectivas câmaras subseqüente à formalização do acórdão.",
+          "literal": "(Incluído pela Lei nº 11.457, de 2007)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "…a Fazenda na sessão das respectivas câmaras subseqüente à formalização do acórdão.(Incluído pela Lei nº 11.457, de 2007)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.457",
+            "ano": 2007
+          },
+          "trecho": "…tivos autos serão remetidos e entregues, mediante protocolo, à Procuradoria da Fazenda Nacional, para fins de intimação.",
+          "literal": "(Incluído pela Lei nº 11.457, de 2007)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "…s, mediante protocolo, à Procuradoria da Fazenda Nacional, para fins de intimação.(Incluído pela Lei nº 11.457, de 2007)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.457",
+            "ano": 2007
+          },
+          "trecho": "…(trinta) dias contados da data em que os respectivos autos forem entregues à Procuradoria na forma do § 8o deste artigo.",
+          "literal": "(Incluído pela Lei nº 11.457, de 2007)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 9º",
+          "diploma": null,
+          "trecho": "…s respectivos autos forem entregues à Procuradoria na forma do § 8o deste artigo. (Incluído pela Lei nº 11.457, de 2007)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…a poderá atribuir o preparo do processo a unidade da administração tributária diversa da prevista no caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.158-35",
+            "ano": 2001
+          },
+          "trecho": "…lgamento do processo de exigência de tributos ou contribuições administrados pela Secretaria da Receita Federal compete:",
+          "literal": "(Redação dada pela Medida Provisória nº 2.158-35, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "2.158-35",
+            "ano": 2001
+          },
+          "trecho": "…s da Receita Federal de Julgamento, órgãos de deliberação interna e natureza colegiada da Secretaria da Receita Federal;",
+          "literal": "(Redação dada pela Medida Provisória nº 2.158-35, de 2001)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "…rnentes a julgamento de processos, quanto aos tributos e contribuições administrados pela Secretaria da Receita Federal.",
+          "literal": "(Redação dada pela Lei nº 8.748, de 1993)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…ção de julgar recursos de ofício e voluntários de decisão de primeira instância, bem como recursos de natureza especial.",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…1o O Conselho Administrativo de Recursos Fiscais será constituído por seções e pela Câmara Superior de Recursos Fiscais.",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I –",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "I – (revogado);",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II –",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "II – (revogado);",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III –",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "III – (revogado);",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV –",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "IV – (revogado).",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 2o As seções serão especializadas por matéria e constituídas por câmaras.",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…ra Superior de Recursos Fiscais será constituída por turmas, compostas pelos Presidentes e Vice-Presidentes das câmaras.",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 4o As câmaras poderão ser divididas em turmas.",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…s, que poderão funcionar nas cidades onde estão localizadas as Superintendências Regionais da Receita Federal do Brasil.",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 6o (VETADO)",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…e Recursos Fiscais, pelo Vice-Presidente, pelos Presidentes e pelos Vice-Presidentes das câmaras, respeitada a paridade.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…te do Conselho Administrativo de Recursos Fiscais e a vice-presidência, por conselheiro representante dos contribuintes.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…que, em caso de empate, terão o voto de qualidade, e os cargos de Vice-Presidente, por representantes dos contribuintes.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "…o administrativo fiscal resolvido favoravelmente à Fazenda Pública pelo voto de qualidade previsto no § 9º deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "… de Estado da Fazenda para mandato, limitando-se as reconduções, na forma e no prazo estabelecidos no regimento interno.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "… legal, decidirá sobre a perda do mandato dos conselheiros que incorrerem em falta grave, definida no regimento interno.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "…t deste artigo, é assegurada ao procurador do sujeito passivo a realização de sustentação oral, na forma do regulamento.",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "… caput deste artigo observarão as súmulas de jurisprudência publicadas pelo Conselho Administrativo de Recursos Fiscais.",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        }
+      ]
+    },
+    "25-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "…s, até a data do acordo para pagamento, os juros de mora de que trata o art. 13 da Lei nº 9.065, de 20 de junho de 1995.",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "…s nos termos do art. 13 da Lei nº 9.065, de 20 de junho de 1995, e abrangerá o montante principal do crédito tributário.",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "…s no § 1º deste artigo, serão retomados os juros de mora de que trata o art. 13 da Lei nº 9.065, de 20 de junho de 1995.",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "…ídica, apurados e declarados à Secretaria Especial da Receita Federal do Brasil, independentemente do ramo de atividade.",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "§ 4º O valor dos créditos a que se refere o § 3º deste artigo será determinado, na forma da regulamentação:",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "…s créditos a que se refere o § 3º deste artigo extingue os débitos sob condição resolutória de sua ulterior homologação.",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "…ederal do Brasil dispõe do prazo de 5 (cinco) anos para a análise dos créditos utilizados na forma do § 3º deste artigo.",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "…o voto de qualidade previsto no § 9º do art. 25 deste Decreto, no âmbito do Conselho Administrativo de Recursos Fiscais.",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "…itos definitivamente constituídos serão encaminhados para inscrição em dívida ativa da União em até 90 (noventa) dias e:",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "…o de regularidade fiscal, nos termos do art. 206 da Lei nº 5.172, de 25 de outubro de 1966 (Código Tributário Nacional).",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.689",
+            "ano": 2023
+          },
+          "trecho": "…uso de precatórios para amortização ou liquidação do remanescente, na forma do § 11 do art. 100 da Constituição Federal.",
+          "literal": "(Incluído pela Lei nº 14.689, de 2023)"
+        }
+      ]
+    },
+    "26-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "… aplicação ou deixar de observar tratado, acordo internacional, lei ou decreto, sob fundamento de inconstitucionalidade.",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 1o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 2o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 3o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 4o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5o",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 5o (Revogado).",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "§ 6o O disposto no caput deste artigo não se aplica aos casos de tratado, acordo internacional, lei ou ato normativo:",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "I – que já tenha sido declarado inconstitucional por decisão definitiva plenária do Supremo Tribunal Federal;",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "II – que fundamente crédito tributário objeto de:",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…claratório do Procurador-Geral da Fazenda Nacional, na forma dos arts. 18 e 19 da Lei no 10.522, de 19 de julho de 2002;",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "b) súmula da Advocacia-Geral da União, na forma do art. 43 da Lei Complementar no 73, de 10 de fevereiro de 1993; ou",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…União aprovados pelo Presidente da República, na forma do art. 40 da Lei Complementar nº 73, de 10 de fevereiro de 1993.",
+          "literal": "(Incluído pela Lei nº 11.941, de 2009)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.532",
+            "ano": 1997
+          },
+          "trecho": "…nstâncias de crime contra a ordem tributária ou de elevado valor, este definido em ato do Ministro de Estado da Fazenda.",
+          "literal": "(Redação dada pela Lei nº 9.532, de 1997)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "… prazos estabelecidos em ato do Secretário da Receita Federal, observada a prioridade de que trata o caput deste artigo.",
+          "literal": "(Redação dada pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…o referido no art. 5º-A deste Decreto, conforme disciplinado em ato do Secretário Especial da Receita Federal do Brasil.",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "…vo quando incompatíveis, e dela constará o indeferimento fundamentado do pedido de diligência ou perícia, se for o caso.",
+          "literal": "(Redação dada pela Lei nº 8.748, de 1993)"
+        }
+      ]
+    },
+    "30": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.532",
+            "ano": 1997
+          },
+          "trecho": "…s processos administrativos fiscais e transladados mediante certidão de inteiro teor ou cópia fiel, nos seguintes casos:",
+          "literal": "(Incluído pela Lei nº 9.532, de 1997)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.532",
+            "ano": 1997
+          },
+          "trecho": "a) quando tratarem de produtos originários do mesmo fabricante, com igual denominação, marca e especificação;",
+          "literal": "(Incluído pela Lei nº 9.532, de 1997)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.532",
+            "ano": 1997
+          },
+          "trecho": "…ulos e outros produtos complexos de fabricação em série, do mesmo fabricante, com iguais especificações, marca e modelo.",
+          "literal": "(Incluído pela Lei nº 9.532, de 1997)"
+        }
+      ]
+    },
+    "31": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "…es de lançamento objeto do processo, bem como às razões de defesa suscitadas pelo impugnante contra todas as exigências.",
+          "literal": "(Redação dada pela Lei nº 8.748, de 1993)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…so voluntário, total ou parcial, com efeito suspensivo, dentro dos 20 (vinte) dias úteis seguintes à ciência da decisão.",
+          "literal": "(Redação dada pela Lei Complementar nº 227, de 2026)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.096",
+            "ano": 2009
+          },
+          "trecho": "§ 1o",
+          "literal": "(Revogado pela Lei nº 12.096, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.522",
+            "ano": 2002
+          },
+          "trecho": "§ 2o",
+          "literal": "(Incluído pela Lei nº 10.522, de 2002)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.522",
+            "ano": 2002
+          },
+          "trecho": "§ 3o O arrolamento de que trata o § 2o será realizado preferencialmente sobre bens imóveis.",
+          "literal": "(Incluído pela Lei nº 10.522, de 2002)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "10.522",
+            "ano": 2002
+          },
+          "trecho": "§ 4o O Poder Executivo editará as normas regulamentares necessárias à operacionalização do arrolamento previsto no § 2o.",
+          "literal": "(Incluído pela Lei nº 10.522, de 2002)"
+        }
+      ]
+    },
+    "34": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.532",
+            "ano": 1997
+          },
+          "trecho": "…argos de multa de valor total (lançamento principal e decorrentes) a ser fixado em ato do Ministro de Estado da Fazenda.",
+          "literal": "(Redação dada pela Lei nº 9.532, de 1997)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "Art. 37. O julgamento no Conselho Administrativo de Recursos Fiscais far-se-á conforme dispuser o regimento interno.",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Decreto",
+            "numero": "83.304",
+            "ano": 1979
+          },
+          "trecho": "§ 1º",
+          "literal": "(Revogado pelo Decreto nº 83.304, de 1979)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…curso especial à Câmara Superior de Recursos Fiscais, no prazo de 15 (quinze) dias da ciência do acórdão ao interessado:",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "I – (VETADO)",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "…te da que lhe tenha dado outra Câmara, turma de Câmara, turma especial ou a própria Câmara Superior de Recursos Fiscais.",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I –",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "I – (revogado);",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II –",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.941",
+            "ano": 2009
+          },
+          "trecho": "II – (revogado).",
+          "literal": "(Redação dada pela Lei nº 11.941, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "227",
+            "ano": 2026
+          },
+          "trecho": "…cífica da contribuição e o prazo para sua interposição será de 10 (dez) dias úteis da ciência do acórdão ao interessado.",
+          "literal": "(Incluído pela Lei Complementar nº 227, de 2026)"
+        }
+      ]
+    },
+    "59": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.748",
+            "ano": 1993
+          },
+          "trecho": "…aria a declaração de nulidade, a autoridade julgadora não a pronunciará nem mandará repetir o ato ou suprir-lhe a falta.",
+          "literal": "(Incluído pela Lei nº 8.748, de 1993)"
+        }
+      ]
+    },
+    "64-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.865",
+            "ano": 2013
+          },
+          "trecho": "…sso poderão ser objeto de digitalização, observado o disposto nos arts. 1o e 3º da Lei nº 12.682, de 9 de julho de 2012.",
+          "literal": "(Incluído pela Lei nº 12.865, de 2013)"
+        }
+      ]
+    },
+    "64-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.865",
+            "ano": 2013
+          },
+          "trecho": "… ou produzidos por meio de digitalização, observado o disposto na Medida Provisória no 2.200-2, de 24 de agosto de 2001.",
+          "literal": "(Incluído pela Lei nº 12.865, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.865",
+            "ano": 2013
+          },
+          "trecho": "…italização pela administração tributária e armazenados eletronicamente possuem o mesmo valor probante de seus originais.",
+          "literal": "(Incluído pela Lei nº 12.865, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.865",
+            "ano": 2013
+          },
+          "trecho": "…derão ser encaminhados impressos em papel ou por meio digital, conforme disciplinado em ato da administração tributária.",
+          "literal": "(Incluído pela Lei nº 12.865, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…cumentos digitalizados e armazenados eletronicamente, nos termos do § 1o, poderão ser descartadas, conforme regulamento.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        }
+      ]
+    }
+  }
+}

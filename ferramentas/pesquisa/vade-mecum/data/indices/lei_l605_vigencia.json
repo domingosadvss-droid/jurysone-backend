@@ -1,0 +1,251 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L605",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l605.json",
+      "colecao": "artigos",
+      "sha256": "15d00a28b69c7e528330257a4889899570e2b577c9718bf55ea38be673eb2e97",
+      "total_registros": 16,
+      "gerado_em": "2026-08-21T22:36:34+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 7,
+      "anotacoes": 16,
+      "anotacoes_sem_diploma_nomeado": 0
+    }
+  },
+  "vigencia": {
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.324",
+            "ano": 2006
+          },
+          "trecho": "…dos, de modo geral, os que prestem serviço de natureza não econômica e pessoa ou a família no âmbito residencial destas;",
+          "literal": "(Revogada pela Lei nº 11.324, de 2006)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "2.761",
+            "ano": null
+          },
+          "trecho": "…suntos de higiene ou de saúde pública; ou não existindo êstes, na localidade em que trabalhar, de médico de sua escôlha.",
+          "literal": "(Redação dada pela Lei nº 2.761, de 26.4.56)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.128",
+            "ano": 2021
+          },
+          "trecho": "…ica decorrente da Covid-19, a imposição de isolamento dispensará o empregado da comprovação de doença por 7 (sete) dias.",
+          "literal": "(Incluído pela Lei nº 14.128, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.128",
+            "ano": 2021
+          },
+          "trecho": "…ento de unidade de saúde do Sistema Único de Saúde (SUS) ou documento eletrônico regulamentado pelo Ministério da Saúde.",
+          "literal": "(Incluído pela Lei nº 14.128, de 2021)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.415",
+            "ano": null
+          },
+          "trecho": "…m por dia, semana, quinzena ou mês, à de um dia de serviço, computadas as horas extraordinárias habitualmente prestadas;",
+          "literal": "(Redação dada pela Lei nº 7.415, de 09.12.85)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.415",
+            "ano": null
+          },
+          "trecho": "…os que trabalham por hora, à sua jornada norma de trabalho, computadas as horas extraordinárias habitualmente prestadas;",
+          "literal": "(Redação dada pela Lei nº 7.415, de 09.12.85)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "905",
+            "ano": 2019
+          },
+          "trecho": "…arantida, entretanto, aos empregados a remuneração respectiva, observados os dispositivos dos artigos 6º e 7º desta lei.",
+          "literal": "(Revogado pela Medida Provisória nº 905, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "955",
+            "ano": 2020
+          },
+          "trecho": "… respectiva, observados os dispositivos dos artigos 6º e 7º desta lei. (Revogado pela Medida Provisória nº 905, de 2019)",
+          "literal": "(Revogada pela Medida Provisória nº 955, de 2020)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "905",
+            "ano": 2019
+          },
+          "trecho": "…dias feriados civis e religiosos, a remuneração será paga em dobro, salvo se o empregador determinar outro dia de folga.",
+          "literal": "(Revogado pela Medida Provisória nº 905, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "955",
+            "ano": 2020
+          },
+          "trecho": "…rá paga em dobro, salvo se o empregador determinar outro dia de folga. (Revogado pela Medida Provisória nº 905, de 2019)",
+          "literal": "(Revogada pela Medida Provisória nº 955, de 2020)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "905",
+            "ano": 2019
+          },
+          "trecho": "…igos anteriores, ter-se-ão em vista as de ordem econômica, permanentes ou ocasionais, bem como as peculiaridades locais.",
+          "literal": "(Revogado pela Medida Provisória nº 905, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "955",
+            "ano": 2020
+          },
+          "trecho": "…onômica, permanentes ou ocasionais, bem como as peculiaridades locais. (Revogado pela Medida Provisória nº 905, de 2019)",
+          "literal": "(Revogada pela Medida Provisória nº 955, de 2020)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "905",
+            "ano": 2019
+          },
+          "trecho": "…o possível, as empresas a elas sujeitas, ficando desde já incluídas entre elas as de serviços públicos e de transportes.",
+          "literal": "(Revogado pela Medida Provisória nº 905, de 2019)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "955",
+            "ano": 2020
+          },
+          "trecho": "…esde já incluídas entre elas as de serviços públicos e de transportes. (Revogado pela Medida Provisória nº 905, de 2019)",
+          "literal": "(Revogada pela Medida Provisória nº 955, de 2020)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Decreto-Lei",
+            "numero": "86",
+            "ano": 1966
+          },
+          "trecho": "…lei municipal, de acordo com a tradição local e em número não superior a quatro, neste incluída a Sexta-Feira da Paixão.",
+          "literal": "(Redação dada pelo Decreto-lei nº 86, de 1966)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.093",
+            "ano": null
+          },
+          "trecho": "… em número não superior a quatro, neste incluída a Sexta-Feira da Paixão. (Redação dada pelo Decreto-lei nº 86, de 1966)",
+          "literal": "(Revogado pela Lei nº 9.093, de 12.09.95)"
+        }
+      ]
+    }
+  }
+}

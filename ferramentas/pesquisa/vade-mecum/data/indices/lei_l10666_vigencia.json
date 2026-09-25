@@ -1,0 +1,192 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L10666",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l10666.json",
+      "colecao": "artigos",
+      "sha256": "16f58e626120fc86d5657c57836592b08c8d3c55f2fb2e78c309f8193c357b3e",
+      "total_registros": 16,
+      "gerado_em": "2026-08-21T22:36:32+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 4,
+      "anotacoes": 12,
+      "anotacoes_sem_diploma_nomeado": 0
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.846",
+            "ano": 2019
+          },
+          "trecho": "Art. 2o",
+          "literal": "(Revogado pela Lei nº 13.846, de 2019)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.933",
+            "ano": 2009
+          },
+          "trecho": "… mês seguinte ao da competência, ou até o dia útil imediatamente anterior se não houver expediente bancário naquele dia.",
+          "literal": "(Redação dada pela Lei nº 11.933, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.933",
+            "ano": 2009
+          },
+          "trecho": "…de competência a que se referir, ou até o dia útil imediatamente anterior se não houver expediente bancário naquele dia.",
+          "literal": "(Redação dada pela Lei nº 11.933, de 2009)"
+        }
+      ]
+    },
+    "4-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.485",
+            "ano": 2026
+          },
+          "trecho": "…PS), na qualidade de segurado contribuinte individual, inclusive nas hipóteses em que prestar serviço a pessoa jurídica.",
+          "literal": "(Incluído pela Lei nº 15.485, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.485",
+            "ano": 2026
+          },
+          "trecho": "…al, na forma de regulamento, e produzirá efeitos somente após sua validação e comunicação à pessoa jurídica contratante.",
+          "literal": "(Incluído pela Lei nº 15.485, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.485",
+            "ano": 2026
+          },
+          "trecho": "…urado contribuinte individual, relativamente aos serviços prestados após a comunicação de que trata o § 1º deste artigo.",
+          "literal": "(Incluído pela Lei nº 15.485, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.485",
+            "ano": 2026
+          },
+          "trecho": "…s previdenciárias que lhe sejam próprias, nem o cumprimento das obrigações acessórias previstas na legislação aplicável.",
+          "literal": "(Incluído pela Lei nº 15.485, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.485",
+            "ano": 2026
+          },
+          "trecho": "…ade de suas contribuições previdenciárias por ocasião da revalidação de sua inscrição no RNTRC, na forma de regulamento.",
+          "literal": "(Incluído pela Lei nº 15.485, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.485",
+            "ano": 2026
+          },
+          "trecho": "…no RNTRC até a comprovação da quitação, do parcelamento regular ou da inexistência de débitos previdenciários exigíveis.",
+          "literal": "(Incluído pela Lei nº 15.485, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.485",
+            "ano": 2026
+          },
+          "trecho": "…colhimento da contribuição previdenciária devida pelo segurado contribuinte individual, nos termos do art. 4º desta Lei.",
+          "literal": "(Incluído pela Lei nº 15.485, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.485",
+            "ano": 2026
+          },
+          "trecho": "§ 7º O disposto neste artigo será regulamentado pelo Poder Executivo federal.",
+          "literal": "(Incluído pela Lei nº 15.485, de 2026)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.135",
+            "ano": 2015
+          },
+          "trecho": "…origem os dados relativos aos benefícios em manutenção em 5 de maio de 1999 concedidos a partir de 5 de outubro de 1988.",
+          "literal": "(Redação dada pela Lei nº 13.135, de 2015)"
+        }
+      ]
+    }
+  }
+}

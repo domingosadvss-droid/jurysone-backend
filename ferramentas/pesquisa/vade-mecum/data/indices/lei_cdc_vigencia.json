@@ -1,0 +1,1632 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "CDC",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_cdc.json",
+      "colecao": "artigos",
+      "sha256": "549bd43f096201319b13f5ea43c5cf62139cab22a102d88b3cbb761f37d550d9",
+      "total_registros": 131,
+      "gerado_em": "2026-08-31T20:53:11+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 53,
+      "anotacoes": 137,
+      "anotacoes_sem_diploma_nomeado": 45
+    }
+  },
+  "vigencia": {
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.008",
+            "ano": 1995
+          },
+          "trecho": "…a sua qualidade de vida, bem como a transparência e harmonia das relações de consumo, atendidos os seguintes princípios:",
+          "literal": "(Redação dada pela Lei nº 9.008, de 21.3.1995)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "IX - fomento de ações direcionadas à educação financeira e ambiental dos consumidores;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "X - prevenção e tratamento do superendividamento como forma de evitar a exclusão social do consumidor.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…mos de prevenção e tratamento extrajudicial e judicial do superendividamento e de proteção do consumidor pessoa natural;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "VII - instituição de núcleos de conciliação e mediação de conflitos oriundos de superendividamento.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1°",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.741",
+            "ano": 2012
+          },
+          "trecho": "…uantidade, características, composição, qualidade, tributos incidentes e preço, bem como sobre os riscos que apresentem;",
+          "literal": "(Redação dada pela Lei nº 12.741, de 2012)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso IX",
+          "diploma": null,
+          "trecho": "IX -",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "… mínimo existencial, nos termos da regulamentação, por meio da revisão e da repactuação da dívida, entre outras medidas;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "… a preservação do mínimo existencial, nos termos da regulamentação, na repactuação de dívidas e na concessão de crédito;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…eços dos produtos por unidade de medida, tal como por quilo, por litro, por metro ou por outra unidade, conforme o caso.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.146",
+            "ano": 2015
+          },
+          "trecho": "…ata o inciso III do caput deste artigo deve ser acessível à pessoa com deficiência, observado o disposto em regulamento.",
+          "literal": "(Incluído pela Lei nº 13.146, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "…deve ser acessível à pessoa com deficiência, observado o disposto em regulamento. (Incluído pela Lei nº 13.146, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.486",
+            "ano": 2017
+          },
+          "trecho": "…abe prestar as informações a que se refere este artigo, através de impressos apropriados que devam acompanhar o produto.",
+          "literal": "(Redação dada pela Lei nº 13.486, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.486",
+            "ano": 2017
+          },
+          "trecho": "…disposição do consumidor, e informar, de maneira ostensiva e adequada, quando for o caso, sobre o risco de contaminação.",
+          "literal": "(Incluído pela Lei nº 13.486, de 2017)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 11.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "11-A": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.425",
+            "ano": 2017
+          },
+          "trecho": "Art. 11-A.",
+          "literal": "(VETADO na Lei nº 13.425, de 30/3/2017)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 15.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 16.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1°",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "31": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.989",
+            "ano": 2009
+          },
+          "trecho": "…rmações de que trata este artigo, nos produtos refrigerados oferecidos ao consumidor, serão gravadas de forma indelével.",
+          "literal": "(Incluído pela Lei nº 11.989, de 2009)"
+        }
+      ]
+    },
+    "33": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.800",
+            "ano": 2008
+          },
+          "trecho": "…ico. É proibida a publicidade de bens e serviços por telefone, quando a chamada for onerosa ao consumidor que a origina.",
+          "literal": "(Incluído pela Lei nº 11.800, de 2008)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "§ 4°",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "39": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.884",
+            "ano": 1994
+          },
+          "trecho": "Art. 39. É vedado ao fornecedor de produtos ou serviços, dentre outras práticas abusivas:",
+          "literal": "(Redação dada pela Lei nº 8.884, de 11.6.1994)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.884",
+            "ano": 1994
+          },
+          "trecho": "… se disponha a adquiri-los mediante pronto pagamento, ressalvados os casos de intermediação regulados em leis especiais;",
+          "literal": "(Redação dada pela Lei nº 8.884, de 11.6.1994)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.884",
+            "ano": 1994
+          },
+          "trecho": "X - elevar sem justa causa o preço de produtos ou serviços.",
+          "literal": "(Incluído pela Lei nº 8.884, de 11.6.1994)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.008",
+            "ano": 1995
+          },
+          "trecho": "…e estipular prazo para o cumprimento de sua obrigação ou deixar a fixação de seu termo inicial a seu exclusivo critério.",
+          "literal": "(Incluído pela Lei nº 9.008, de 21.3.1995)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.870",
+            "ano": 1999
+          },
+          "trecho": "XIII - aplicar fórmula ou índice de reajuste diverso do legal ou contratualmente estabelecido.",
+          "literal": "(Incluído pela Lei nº 9.870, de 23.11.1999)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.425",
+            "ano": 2017
+          },
+          "trecho": "…os comerciais ou de serviços de um número maior de consumidores que o fixado pela autoridade administrativa como máximo.",
+          "literal": "(Incluído pela Lei nº 13.425, de 2017)"
+        }
+      ]
+    },
+    "42-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.039",
+            "ano": 2009
+          },
+          "trecho": "…soas Físicas – CPF ou no Cadastro Nacional de Pessoa Jurídica – CNPJ do fornecedor do produto ou serviço correspondente.",
+          "literal": "(Incluído pela Lei nº 12.039, de 2009)"
+        }
+      ]
+    },
+    "43": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.146",
+            "ano": 2015
+          },
+          "trecho": "…er disponibilizadas em formatos acessíveis, inclusive para a pessoa com deficiência, mediante solicitação do consumidor.",
+          "literal": "(Incluído pela Lei nº 13.146, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "…eis, inclusive para a pessoa com deficiência, mediante solicitação do consumidor. (Incluído pela Lei nº 13.146, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "45": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 45.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "51": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V -",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "XVII - condicionem ou limitem de qualquer forma o acesso aos órgãos do Poder Judiciário;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…egral dos direitos do consumidor e de seus meios de pagamento a partir da purgação da mora ou do acordo com os credores;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XIX",
+          "diploma": null,
+          "trecho": "XIX -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIX",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "XIX - (VETADO).",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3°",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "52": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.298",
+            "ano": 1996
+          },
+          "trecho": "…orrentes do inadimplemento de obrigações no seu termo não poderão ser superiores a dois por cento do valor da prestação.",
+          "literal": "(Redação dada pela Lei nº 9.298, de 1º.8.1996)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "53": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1°",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "54": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "… e legíveis, cujo tamanho da fonte não será inferior ao corpo doze, de modo a facilitar sua compreensão pelo consumidor.",
+          "literal": "(Redação dada pela nº 11.785, de 2008)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5°",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "54-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…venção do superendividamento da pessoa natural, sobre o crédito responsável e sobre a educação financeira do consumidor.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…de suas dívidas de consumo, exigíveis e vincendas, sem comprometer seu mínimo existencial, nos termos da regulamentação.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…s decorrentes de relação de consumo, inclusive operações de crédito, compras a prazo e serviços de prestação continuada.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…pósito de não realizar o pagamento ou decorram da aquisição ou contratação de produtos e serviços de luxo de alto valor.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        }
+      ]
+    },
+    "54-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…éria, o fornecedor ou o intermediário deverá informar o consumidor, prévia e adequadamente, no momento da oferta, sobre:",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "I - o custo efetivo total e a descrição dos elementos que o compõem;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…os, bem como a taxa dos juros de mora e o total de encargos, de qualquer natureza, previstos para o atraso no pagamento;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "III - o montante das prestações e o prazo de validade da oferta, que deve ser, no mínimo, de 2 (dois) dias;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "IV - o nome e o endereço, inclusive o eletrônico, do fornecedor;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "… liquidação antecipada e não onerosa do débito, nos termos do § 2º do art. 52 deste Código e da regulamentação em vigor.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…star de forma clara e resumida do próprio contrato, da fatura ou de instrumento apartado, de fácil acesso ao consumidor.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…os valores cobrados do consumidor, sem prejuízo do cálculo padronizado pela autoridade reguladora do sistema financeiro.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…, devem indicar, no mínimo, o custo efetivo total, o agente financiador e a soma total a pagar, com e sem financiamento.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        }
+      ]
+    },
+    "54-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "Art. 54-C. É vedado, expressa ou implicitamente, na oferta de crédito ao consumidor, publicitária ou não:",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "I - (VETADO);",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…derá ser concluída sem consulta a serviços de proteção ao crédito ou sem avaliação da situação financeira do consumidor;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "III - ocultar ou dificultar a compreensão sobre os ônus e os riscos da contratação do crédito ou da venda a prazo;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…ar de consumidor idoso, analfabeto, doente ou em estado de vulnerabilidade agravada ou se a contratação envolver prêmio;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…vas à renúncia ou à desistência de demandas judiciais, ao pagamento de honorários advocatícios ou a depósitos judiciais.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "Parágrafo único. (VETADO).",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        }
+      ]
+    },
+    "54-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…t. 54-D. Na oferta de crédito, previamente à contratação, o fornecedor ou o intermediário deverá, entre outras condutas:",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…servado o disposto nos arts. 52 e 54-B deste Código, e sobre as consequências genéricas e específicas do inadimplemento;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…is em bancos de dados de proteção ao crédito, observado o disposto neste Código e na legislação sobre proteção de dados;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…entidade do agente financiador e entregar ao consumidor, ao garante e a outros coobrigados cópia do contrato de crédito.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…do consumidor, sem prejuízo de outras sanções e de indenização por perdas e danos, patrimoniais e morais, ao consumidor.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        }
+      ]
+    },
+    "54-E": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 54-E.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "Art. 54-E. (VETADO).",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        }
+      ]
+    },
+    "54-F": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…produto ou serviço e os contratos acessórios de crédito que lhe garantam o financiamento quando o fornecedor de crédito:",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "I - recorrer aos serviços do fornecedor de produto ou serviço para a preparação ou a conclusão do contrato de crédito;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…ocal da atividade empresarial do fornecedor de produto ou serviço financiado ou onde o contrato principal for celebrado.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…, no contrato principal ou no contrato de crédito, implica a resolução de pleno direito do contrato que lhe seja conexo.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "… de produto ou serviço, o consumidor poderá requerer a rescisão do contrato não cumprido contra o fornecedor do crédito.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "§ 3º O direito previsto no § 2º deste artigo caberá igualmente ao consumidor:",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "I - contra o portador de cheque pós-datado emitido para aquisição de produto ou serviço a prazo;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "… e o produto ou serviço forem fornecidos pelo mesmo fornecedor ou por entidades pertencentes a um mesmo grupo econômico.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…eito de obter do fornecedor do produto ou serviço a devolução dos valores entregues, inclusive relativamente a tributos.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        }
+      ]
+    },
+    "54-G": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…legislação aplicável à matéria, é vedado ao fornecedor de produto ou serviço que envolva crédito, entre outras condutas:",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…ça o valor idêntico ao da transação contestada que tenha sido cobrada, enquanto não encerrada a apuração da contestação;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…ontrato de crédito, em papel ou outro suporte duradouro, disponível e acessível, e, após a conclusão, cópia do contrato;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…o aplicável, a anulação ou o imediato bloqueio do pagamento, ou ainda a restituição dos valores indevidamente recebidos.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…ção ocorrerão após o fornecedor do crédito obter da fonte pagadora a indicação sobre a existência de margem consignável.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…ra determinadas na legislação em vigor, e fica obrigado a entregar ao consumidor cópia do contrato, após a sua conclusão",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        }
+      ]
+    },
+    "55": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2°",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "57": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.656",
+            "ano": 1993
+          },
+          "trecho": "…1985, os valores cabíveis à União, ou para os Fundos estaduais ou municipais de proteção ao consumidor nos demais casos.",
+          "literal": "(Redação dada pela Lei nº 8.656, de 21.5.1993)"
+        }
+      ]
+    },
+    "60": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2°",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3°",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "62": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 62.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "65": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.425",
+            "ano": 2017
+          },
+          "trecho": "§ 1º As penas deste artigo são aplicáveis sem prejuízo das correspondentes à lesão corporal e à morte.",
+          "literal": "(Redação dada pela Lei nº 13.425, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.425",
+            "ano": 2017
+          },
+          "trecho": "§ 2º A prática do disposto no inciso XIV do art. 39 desta Lei também caracteriza o crime previsto no caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.425, de 2017)"
+        }
+      ]
+    },
+    "67": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "68": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "82": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.008",
+            "ano": 1995
+          },
+          "trecho": "Art. 82. Para os fins do art. 81, parágrafo único, são legitimados concorrentemente:",
+          "literal": "(Redação dada pela Lei nº 9.008, de 21.3.1995)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2°",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3°",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "83": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "85": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 85.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "86": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 86.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "89": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 89.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "91": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.008",
+            "ano": 1995
+          },
+          "trecho": "…civil coletiva de responsabilidade pelos danos individualmente sofridos, de acordo com o disposto nos artigos seguintes.",
+          "literal": "(Redação dada pela Lei nº 9.008, de 21.3.1995)"
+        }
+      ]
+    },
+    "92": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "96": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 96.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "97": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "98": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.008",
+            "ano": 1995
+          },
+          "trecho": "…s cujas indenizações já tiveram sido fixadas em sentença de liquidação, sem prejuízo do ajuizamento de outras execuções.",
+          "literal": "(Redação dada pela Lei nº 9.008, de 21.3.1995)"
+        }
+      ]
+    },
+    "102": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1°",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2°",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "104-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…dos o mínimo existencial, nos termos da regulamentação, e as garantias e as formas de pagamento originalmente pactuadas.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…mo as dívidas provenientes de contratos de crédito com garantia real, de financiamentos imobiliários e de crédito rural.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…ento a esse credor ser estipulado para ocorrer apenas após o pagamento aos credores presentes à audiência conciliatória.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…mologar o acordo descreverá o plano de pagamento da dívida e terá eficácia de título executivo e força de coisa julgada.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "§ 4º Constarão do plano de pagamento referido no § 3º deste artigo:",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…dução dos encargos da dívida ou da remuneração do fornecedor, entre outras destinadas a facilitar o pagamento da dívida;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "II - referência à suspensão ou à extinção das ações judiciais em curso;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "… - data a partir da qual será providenciada a exclusão do consumidor de bancos de dados e de cadastros de inadimplentes;",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…eus efeitos à abstenção, pelo consumidor, de condutas que importem no agravamento de sua situação de superendividamento.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…, contado da liquidação das obrigações previstas no plano de pagamento homologado, sem prejuízo de eventual repactuação.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        }
+      ]
+    },
+    "104-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…ompulsório e procederá à citação de todos os credores cujos créditos não tenham integrado o acordo porventura celebrado.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…o considerados no processo por superendividamento, se for o caso, os documentos e as informações prestadas em audiência.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…e) dias, os credores citados juntarão documentos e as razões da negativa de aceder ao plano voluntário ou de renegociar.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…ualmente necessárias, apresentará plano de pagamento que contemple medidas de temporização ou de atenuação dos encargos.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…a) dias, contado de sua homologação judicial, e o restante do saldo será devido em parcelas mensais iguais e sucessivas.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        }
+      ]
+    },
+    "104-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "… regulado por convênios específicos celebrados entre os referidos órgãos e as instituições credoras ou suas associações.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…da regulamentação, sob a supervisão desses órgãos, sem prejuízo das demais atividades de reeducação financeira cabíveis.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.181",
+            "ano": 2021
+          },
+          "trecho": "…e condutas que importem no agravamento de sua situação de superendividamento, especialmente a de contrair novas dívidas.",
+          "literal": "(Incluído pela Lei nº 14.181, de 2021)"
+        }
+      ]
+    },
+    "106": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso X",
+          "diploma": null,
+          "trecho": "X -",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XI",
+          "diploma": null,
+          "trecho": "XI -",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XII",
+          "diploma": null,
+          "trecho": "XII -",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "108": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 108.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "109": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 109.",
+          "literal": "(Vetado)"
+        }
+      ]
+    }
+  }
+}

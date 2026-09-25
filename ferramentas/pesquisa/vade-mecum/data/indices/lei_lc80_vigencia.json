@@ -1,0 +1,2704 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "LC80",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_lc80.json",
+      "colecao": "artigos",
+      "sha256": "fd9f87af8ef4e9e09e9bb2c6768894ff77d2493eb759973dbdb29bc1f925f958",
+      "total_registros": 163,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 58,
+      "anotacoes": 226,
+      "anotacoes_sem_diploma_nomeado": 28
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…a integral e gratuita, aos necessitados, assim considerados na forma do inciso LXXIV do art. 5º da Constituição Federal.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "3-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "Art. 3º-A. São objetivos da Defensoria Pública:",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "I – a primazia da dignidade da pessoa humana e a redução das desigualdades sociais;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "II – a afirmação do Estado Democrático de Direito;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "III – a prevalência e efetividade dos direitos humanos; e",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "IV – a garantia dos princípios constitucionais da ampla defesa e do contraditório.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "I – prestar orientação jurídica e exercer a defesa dos necessitados, em todos os graus;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "… interesses, por meio de mediação, conciliação, arbitragem e demais técnicas de composição e administração de conflitos;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "III – promover a difusão e a conscientização dos direitos humanos, da cidadania e do ordenamento jurídico;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…o interdisciplinar, por meio de órgãos ou de servidores de suas Carreiras de apoio para o exercício de suas atribuições;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ias ou extraordinárias, utilizando todas as medidas capazes de propiciar a adequada e efetiva defesa de seus interesses;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "VI – representar aos sistemas internacionais de proteção dos direitos humanos, postulando perante seus órgãos;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…s, coletivos ou individuais homogêneos quando o resultado da demanda puder beneficiar grupo de pessoas hipossuficientes;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ivos e individuais homogêneos e dos direitos do consumidor, na forma do inciso LXXIV do art. 5º da Constituição Federal;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ado de segurança ou qualquer outra ação em defesa das funções institucionais e prerrogativas de seus órgãos de execução;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…culturais e ambientais, sendo admissíveis todas as espécies de ações capazes de propiciar sua adequada e efetiva tutela;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…vítima de violência doméstica e familiar e de outros grupos sociais vulneráveis que mereçam proteção especial do Estado;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XII",
+          "diploma": null,
+          "trecho": "XII -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XIII",
+          "diploma": null,
+          "trecho": "XIII -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…sive com a comunicação imediata da prisão em flagrante pela autoridade policial, quando o preso não constituir advogado;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "XV – patrocinar ação penal privada e a subsidiária da pública;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "XVI – exercer a curadoria especial nos casos previstos em lei;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…sando a assegurar às pessoas, sob quaisquer circunstâncias, o exercício pleno de seus direitos e garantias fundamentais;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVIII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ualquer outra forma de opressão ou violência, propiciando o acompanhamento e o atendimento interdisciplinar das vítimas;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIX",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "XIX – atuar nos Juizados Especiais;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XX",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…estaduais e municipais afetos às funções institucionais da Defensoria Pública, respeitadas as atribuições de seus ramos;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…nados, exclusivamente, ao aparelhamento da Defensoria Pública e à capacitação profissional de seus membros e servidores;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "XXII – convocar audiências públicas para discutir matérias relacionadas às suas funções institucionais.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…Público valerá como título executivo extrajudicial, inclusive quando celebrado com a pessoa jurídica de direito público.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "§ 5º A assistência jurídica integral e gratuita custeada ou fornecida pelo Estado será exercida pela Defensoria Pública.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "§ 6º A capacidade postulatória do Defensor Público decorre exclusivamente de sua nomeação e posse no cargo público.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "§ 7º Aos membros da Defensoria Pública é garantido sentar-se no mesmo plano do Ministério Público.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…cia ao Defensor Público-Geral, que decidirá a controvérsia, indicando, se for o caso, outro Defensor Público para atuar.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…isto nesta Lei Complementar, a qual valerá como documento de identidade e terá fé pública em todo o território nacional.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "§ 10. O exercício do cargo de Defensor Público é indelegável e privativo de membro da Carreira.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "… acesso à documentação dos presos e internos, aos quais é assegurado o direito de entrevista com os Defensores Públicos.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "4-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…tos dos assistidos da Defensoria Pública, além daqueles previstos na legislação estadual ou em atos normativos internos:",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "I – a informação sobre:",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "a) localização e horário de funcionamento dos órgãos da Defensoria Pública;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "… e os procedimentos para a realização de exames, perícias e outras providências necessárias à defesa de seus interesses;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "II – a qualidade e a eficiência do atendimento;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "III – o direito de ter sua pretensão revista no caso de recusa de atuação pelo Defensor Público;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "IV – o patrocínio de seus direitos e interesses pelo defensor natural;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…s distintos, quando verificada a existência de interesses antagônicos ou colidentes entre destinatários de suas funções.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "a) os Defensores Públicos Federais nos Estados, no Distrito Federal e nos Territórios.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "… Senado Federal, para mandato de 2 (dois) anos, permitida uma recondução, precedida de nova aprovação do Senado Federal.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ntre os integrantes da Categoria Especial da Carreira, escolhidos pelo Conselho Superior, para mandato de 2 (dois) anos.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "Parágrafo único. A União poderá, segundo suas necessidades, ter mais de um Subdefensor Público-Geral Federal.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…eter ao Conselho Superior proposta de criação ou de alteração do Regimento Interno da Defensoria Pública-Geral da União;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIX",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…soria Pública da União, quando estes se encontrarem ameaçados em razão do desempenho de suas atribuições institucionais;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XX",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "XX – apresentar plano de atuação da Defensoria Pública da União ao Conselho Superior.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…afo único. Ao Subdefensor Público-Geral Federal, além da atribuição prevista no art. 7º desta Lei Complementar, compete:",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "… 2 (dois) por categoria, eleitos pelo voto direto, plurinominal, obrigatório e secreto de todos integrantes da Carreira.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…res Públicos Federais que não estejam afastados da Carreira, para mandato de 2 (dois) anos, permitida 1 (uma) reeleição.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "10": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ar os concursos para provimento dos cargos da Carreira de Defensor Público Federal e editar os respectivos regulamentos;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…a nomeie, dentre esses, o Subdefensor Público-Geral Federal e o Corregedor-Geral Federal da Defensoria Pública da União;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "XV – editar as normas regulamentando a eleição para Defensor Público-Geral Federal.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "…gundo graus de jurisdição referidos no caput, no desempenho das funções que lhe são cometidas por esta Lei Complementar.",
+          "literal": "(Incluído pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "…mentar, é autorizado o convênio com a entidade pública que desempenhar essa função, até que seja criado o órgão próprio.",
+          "literal": "(Incluído pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "…a Defensoria Pública da União dar-se-á, preferencialmente, perante o Supremo Tribunal Federal e os Tribunais superiores.",
+          "literal": "(Incluído pela Lei Complementar nº 98, de 1999)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "I – coordenar as atividades desenvolvidas pelos Defensores Públicos Federais que atuem em sua área de competência;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "15-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…atendimento interdisciplinar, bem como a tutela dos interesses individuais, difusos, coletivos e individuais homogêneos.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "… das funções de orientação, postulação e defesa dos direitos e interesses dos necessitados, cabendo-lhes, especialmente:",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "VIII – participar, com direito de voz e voto, do Conselho Penitenciário;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ias de documentos necessários à instrução de processo administrativo ou judicial, à vista da apresentação dos originais;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…aos quais não poderá, sob fundamento algum, negar o direito de entrevista com os membros da Defensoria Pública da União.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…lica da União é integrada pela Carreira de Defensor Público Federal, composta de 3 (três) categorias de cargos efetivos:",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "I – Defensor Público Federal de 2ª Categoria (inicial);",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "II – Defensor Público Federal de 1ª Categoria (intermediária);",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "III – Defensor Público Federal de Categoria Especial (final).",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "… Juízes Eleitorais, aos Juízes Militares, às Auditorias Militares, ao Tribunal Marítimo e às instâncias administrativas.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…s, nas Turmas dos Juizados Especiais Federais, nos Tribunais Regionais do Trabalho e nos Tribunais Regionais Eleitorais.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…l Superior Eleitoral, no Superior Tribunal Militar e na Turma Nacional de Uniformização dos Juizados Especiais Federais.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ulos, com a participação da Ordem dos Advogados do Brasil, no cargo inicial de Defensor Público Federal de 2ª Categoria.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…econhecido por lei e o desempenho de cargo, emprego ou função, de nível superior, de atividades eminentemente jurídicas.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "26-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…o-jurídicas e noções de outras disciplinas necessárias à consecução dos princípios institucionais da Defensoria Pública.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…rgos iniciais o direito de escolha do órgão de atuação, desde que vago e obedecida a ordem de classificação no concurso.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "31": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "§ 4º As promoções serão efetivadas por ato do Defensor Público-Geral Federal.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "38": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…mediante requerimento do interessado, atendida a conveniência do serviço e observada a ordem de antiguidade na Carreira.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "39": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "…ria Pública da União têm os direitos assegurados pela Lei no 8.112, de 11 de dezembro de 1990, e nesta Lei Complementar.",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "I - revogado;",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "III - revogado;",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "IV - revogado;",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "V - revogado;",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "VI - revogado;",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso VII",
+          "diploma": null,
+          "trecho": "VII -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "VIII - revogado.",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        }
+      ]
+    },
+    "40": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "…. Os membros da Defensoria Pública da União terão direito a férias anuais de sessenta dias, individual ou coletivamente.",
+          "literal": "(Revogado pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "…ultada a conversão de um terço das mesmas em abono pecuniário, requerida com, pelo menos, sessenta dias de antecedência.",
+          "literal": "(Revogado pela Lei Complementar nº 98, de 1999)"
+        }
+      ]
+    },
+    "42-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…to nacional, de maior representatividade, sem prejuízo dos vencimentos, vantagens ou qualquer direito inerente ao cargo.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…dido ao presidente da entidade de classe e terá duração igual à do mandato, devendo ser prorrogado no caso de reeleição.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "§ 2º O afastamento para exercício de mandato será contado como tempo de serviço para todos os efeitos legais.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "44": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…essoal em qualquer processo e grau de jurisdição ou instância administrativa, contando-se-lhes em dobro todos os prazos;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…re ingresso em estabelecimentos policiais, prisionais e de internação coletiva, independentemente de prévio agendamento;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ição pública, autos de flagrantes, inquéritos e processos, assegurada a obtenção de cópias e podendo tomar apontamentos;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XV",
+          "diploma": null,
+          "trecho": "XV -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XVI",
+          "diploma": null,
+          "trecho": "XVI -",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "54": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ireto, secreto, plurinominal e obrigatório de seus membros, para mandato de 2 (dois) anos, permitida 1 (uma) recondução.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "§ 2º (VETADO)",
+          "literal": "(Incluído dada pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "57": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…dois) por categoria, eleitos pelo voto direto, plurinominal, secreto e obrigatório, de todos os integrantes da Carreira.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "… O Conselho Superior é presidido pelo Defensor Público-Geral, que terá voto de qualidade, exceto em matéria disciplinar.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "§ 2 As eleições serão realizadas em conformidade com as instruções baixadas pelo Conselho Superior.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "§ 3º Os membros do Conselho Superior são eleitos para mandato de 2 (dois) anos, permitida 1 (uma) reeleição.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…embros da Defensoria Pública do Distrito Federal e dos Territórios terá assento e voz nas reuniões do Conselho Superior.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "58": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "XV – editar as normas regulamentando a eleição para Defensor Público-Geral.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "64": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "VIII – participar, com direito a voz e voto, do Conselho Penitenciário;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ias de documentos necessários à instrução de processo administrativo ou judicial, à vista da apresentação dos originais;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ão poderá, sob fundamento algum, negar o direito de entrevista com os membros da Defensoria Pública do Distrito Federal.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "84": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "… do Distrito Federal e dos Territórios têm os direitos assegurados pela Lei no 8.112, de 1990, e nesta Lei Complementar.",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "I - revogado;",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "III - revogado;",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "IV - revogado;",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "V - revogado;",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "VI - revogado;",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso VII",
+          "diploma": null,
+          "trecho": "VII -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "VIII - revogado.",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        }
+      ]
+    },
+    "85": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "…blica do Distrito Federal e dos Territórios terão direito a férias anuais de sessenta dias, individual ou coletivamente.",
+          "literal": "(Revogado pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "…ultada a conversão de um terço das mesmas em abono pecuniário, requerida com, pelo menos, sessenta dias de antecedência.",
+          "literal": "(Revogado pela Lei Complementar nº 98, de 1999)"
+        }
+      ]
+    },
+    "87-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…e distrital, de maior representatividade, sem prejuízo dos vencimentos, vantagens ou qualquer direito inerente ao cargo.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…dido ao presidente da entidade de classe e terá duração igual à do mandato, devendo ser prorrogado no caso de reeleição.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "§ 2º O afastamento para exercício de mandato será contado como tempo de serviço para todos os efeitos legais.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "89": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…essoal em qualquer processo e grau de jurisdição ou instância administrativa, contando-se-lhes em dobro todos os prazos;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…re ingresso em estabelecimentos policiais, prisionais e de internação coletiva, independentemente de prévio agendamento;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…tição pública, autos de flagrante, inquéritos e processos, assegurada a obtenção de cópias e podendo tomar apontamentos;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XV",
+          "diploma": null,
+          "trecho": "XV -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XVI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ter acesso a qualquer banco de dados de caráter público, bem como a locais que guardem pertinência com suas atribuições.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "97-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "… proposta orçamentária, dentro dos limites estabelecidos na lei de diretrizes orçamentárias, cabendo-lhe, especialmente:",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "I – abrir concurso público e prover os cargos de suas Carreiras e dos serviços auxiliares;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "II – organizar os serviços auxiliares;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "III – praticar atos próprios de gestão;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "IV – compor os seus órgãos de administração superior e de atuação;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "V – elaborar suas folhas de pagamento e expedir os competentes demonstrativos;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…al e administrativa do pessoal, ativo e inativo da Carreira, e dos serviços auxiliares, organizados em quadros próprios;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "VII – exercer outras competências decorrentes de sua autonomia.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "97-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…rizes orçamentárias, encaminhando-a ao Chefe do Poder Executivo para consolidação e encaminhamento ao Poder Legislativo.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ual, os valores aprovados na lei orçamentária vigente, ajustados de acordo com os limites estipulados na forma do caput.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…s no caput, o Poder Executivo procederá aos ajustes necessários para fim de consolidação da proposta orçamentária anual.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…diretrizes orçamentárias, exceto se previamente autorizadas, mediante a abertura de créditos suplementares ou especiais.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…tares e especiais, ser-lhe-ão entregues, até o dia 20 (vinte) de cada mês, na forma do art. 168 da Constituição Federal.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ia plena e executoriedade imediata, ressalvada a competência constitucional do Poder Judiciário e do Tribunal de Contas.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "… será exercida pelo Poder Legislativo, mediante controle externo e pelo sistema de controle interno estabelecido em lei.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "98": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "IV – órgão auxiliar: Ouvidoria-Geral da Defensoria Pública do Estado.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "99": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…to direto, secreto, plurinominal e obrigatório de seus membros, para mandato de 2 (dois) anos, permitida uma recondução.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…elo Subdefensor Público-Geral, por ele nomeado dentre integrantes estáveis da Carreira, na forma da legislação estadual.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "§ 3º O Conselho Superior editará as normas regulamentando a eleição para a escolha do Defensor Público-Geral.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…nto da lista tríplice, será investido automaticamente no cargo o Defensor Público mais votado para exercício do mandato.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "101": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…elo voto direto, plurinominal, obrigatório e secreto de seus membros, em número e forma a serem fixados em lei estadual.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "… O Conselho Superior é presidido pelo Defensor Público-Geral, que terá voto de qualidade, exceto em matéria disciplinar.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ções serão realizadas em conformidade com as instruções baixadas pelo Conselho Superior da Defensoria Pública do Estado.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "§ 3º Os membros do Conselho Superior são eleitos para mandato de 2 (dois) anos, permitida uma reeleição.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "§ 4º São elegíveis os membros estáveis da Defensoria Pública que não estejam afastados da Carreira.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ior representatividade dos membros da Defensoria Pública do Estado terá assento e voz nas reuniões do Conselho Superior.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "102": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…téria disciplinar e os conflitos de atribuições entre membros da Defensoria Pública, sem prejuízo de outras atribuições.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ho Superior aprovar o plano de atuação da Defensoria Pública do Estado, cujo projeto será precedido de ampla divulgação.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…zadas, no mínimo, bimestralmente, podendo ser convocada por qualquer conselheiro, caso não realizada dentro desse prazo.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "104": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…lo Conselho Superior, e nomeado pelo Defensor Público-Geral para mandato de 2 (dois) anos, permitida 1 (uma) recondução.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…uído por proposta do Defensor Publico-Geral, pelo voto de dois terços do Conselho Superior, antes do término do mandato.",
+          "literal": "(Renumerado pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "… estadual poderá criar um ou mais cargos de Subcorregedor, fixando as atribuições e especificando a forma de designação.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "105": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ridade e ao aperfeiçoamento das atividades da Defensoria Pública, resguardada a independência funcional de seus membros;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso X",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…funcionais e os dados estatísticos de atuação dos membros da Defensoria Pública, para efeito de aferição de merecimento;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ndações aos membros da Defensoria Pública sobre matéria afeta à competência da Corregedoria-Geral da Defensoria Pública;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "XII – desempenhar outras atribuições previstas em lei ou no regulamento interno da Defensoria Pública.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "105-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…eral é órgão auxiliar da Defensoria Pública do Estado, de promoção da qualidade dos serviços prestados pela Instituição.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…idores da Defensoria Pública do Estado e com a estrutura definida pelo Conselho Superior após proposta do Ouvidor-Geral.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "105-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…, indicados em lista tríplice formada pela sociedade civil, para mandato de 2 (dois) anos, permitida 1 (uma) recondução.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "§ 1º O Conselho Superior editará normas regulamentando a forma de elaboração da lista tríplice.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "§ 2º O Ouvidor-Geral será nomeado pelo Defensor Público-Geral do Estado.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "§ 3º O cargo de Ouvidor-Geral será exercido em regime de dedicação exclusiva.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "105-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "Art. 105-C. À Ouvidoria-Geral compete:",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…regedor-Geral representação contra membros e servidores da Defensoria Pública do Estado, assegurada a defesa preliminar;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…Estado medidas e ações que visem à consecução dos princípios institucionais e ao aperfeiçoamento dos serviços prestados;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…de suas atividades, que conterá também as medidas propostas aos órgãos competentes e a descrição dos resultados obtidos;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "IV – participar, com direito a voz, do Conselho Superior da Defensoria Pública do Estado;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "V – promover atividades de intercâmbio com a sociedade civil;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…e, para receber sugestões e reclamações, adotando as providências pertinentes e informando o resultado aos interessados;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…e participação popular no acompanhamento e na fiscalização da prestação dos serviços realizados pela Defensoria Pública;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…rios órgãos da Defensoria Pública do Estado, estimulando-os a atuar em permanente sintonia com os direitos dos usuários;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IX",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "… pesquisas periódicas e produzir estatísticas referentes ao índice de satisfação dos usuários, divulgando os resultados.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…alquer pessoa, inclusive pelos próprios membros e servidores da Defensoria Pública do Estado, entidade ou órgão público.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "106-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…atendimento interdisciplinar, bem como a tutela dos interesses individuais, difusos, coletivos e individuais homogêneos.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "107": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…izados, dando-se prioridade, de todo modo, às regiões com maiores índices de exclusão social e adensamento populacional.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "108": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…plomas legais, a orientação jurídica e a defesa dos seus assistidos, no âmbito judicial, extrajudicial e administrativo.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "Parágrafo único. São, ainda, atribuições dos Defensores Públicos Estaduais:",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "I – atender às partes e aos interessados;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "II – participar, com direito a voz e voto, dos Conselhos Penitenciários;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ias de documentos necessários à instrução de processo administrativo ou judicial, à vista da apresentação dos originais;",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…os quais não poderá, sob fundamento algum, negar o direito de entrevista com os membros da Defensoria Pública do Estado.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "112-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…o-jurídicas e noções de outras disciplinas necessárias à consecução dos princípios institucionais da Defensoria Pública.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "123": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ão será concedida mediante requerimento dos interessados, respeitada a antiguidade dos demais, na forma da lei estadual.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "Parágrafo único. O Defensor Público-Geral dará ampla divulgação aos pedidos de permuta.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "124": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "…cas dos Estados têm os direitos assegurados pela legislação da respectiva unidade da Federação e nesta Lei Complementar.",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "I - revogado;",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "III - revogado;",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "IV - revogado;",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "V - revogado;",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "VI - revogado;",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso VII",
+          "diploma": null,
+          "trecho": "VII -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "98",
+            "ano": 1999
+          },
+          "trecho": "VIII - revogado.",
+          "literal": "(Redação dada pela Lei Complementar nº 98, de 1999)"
+        }
+      ]
+    },
+    "126-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ou nacional, de maior representatividade, sem prejuízo dos vencimentos, vantagens ou qualquer direito inerente ao cargo.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…dido ao presidente da entidade de classe e terá duração igual à do mandato, devendo ser prorrogado no caso de reeleição.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "§ 2º O afastamento para exercício de mandato será contado como tempo de serviço para todos os efeitos legais.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "§ 3º Lei estadual poderá estender o afastamento a outros membros da diretoria eleita da entidade.",
+          "literal": "(Incluído pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "128": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…essoal em qualquer processo e grau de jurisdição ou instância administrativa, contando-se-lhes em dobro todos os prazos;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso V",
+          "diploma": null,
+          "trecho": "V -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…re ingresso em estabelecimentos policiais, prisionais e de internação coletiva, independentemente de prévio agendamento;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ição pública, autos de flagrantes, inquéritos e processos, assegurada a obtenção de cópias e podendo tomar apontamentos;",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XV",
+          "diploma": null,
+          "trecho": "XV -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso XVI",
+          "diploma": null,
+          "trecho": "XVI -",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "136": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "132",
+            "ano": 2009
+          },
+          "trecho": "…ercício de suas funções, aplicando-se-lhes, subsidiariamente, o instituído pela Lei nº 8.112, de 11 de dezembro de 1990.",
+          "literal": "(Redação dada pela Lei Complementar nº 132, de 2009)"
+        }
+      ]
+    },
+    "137": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(VETADO)"
+        }
+      ]
+    }
+  }
+}

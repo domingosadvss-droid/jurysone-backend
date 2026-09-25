@@ -1,0 +1,1051 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L9610",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l9610.json",
+      "colecao": "artigos",
+      "sha256": "19025351eb95806efef1fb7bf1386de86e8c73e80f94ce82a5757562b42a770b",
+      "total_registros": 124,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 19,
+      "anotacoes": 84,
+      "anotacoes_sem_diploma_nomeado": 2
+    }
+  },
+  "vigencia": {
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…ginário - o autor de obra intelectual, o intérprete, o executante, o produtor fonográfico e as empresas de radiodifusão.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        }
+      ]
+    },
+    "68": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "907",
+            "ano": 2019
+          },
+          "trecho": "…e e aéreo, espaços públicos e comuns de meios de hospedagens e de meios de transporte de passageiros marítimo e fluvial.",
+          "literal": "(Redação dada pela Medida Provisória nº 907, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…juntamente com os valores pagos, em seu sítio eletrônico ou, em não havendo este, no local da comunicação e em sua sede.",
+          "literal": "(Redação dada pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…á até o décimo dia útil de cada mês, relativamente à relação completa das obras e fonogramas utilizados no mês anterior.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "907",
+            "ano": 2019
+          },
+          "trecho": "…as unidades habitacionais dos meios de hospedagem e de cabines de meios de transporte de passageiros marítimo e fluvial.",
+          "literal": "(Incluído pela Medida Provisória nº 907, de 2019)"
+        }
+      ]
+    },
+    "81": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.091",
+            "ano": 2009
+          },
+          "trecho": "VII - o nome dos dubladores.",
+          "literal": "(Incluído pela Lei nº 12.091, de 2009)"
+        }
+      ]
+    },
+    "93": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "IV -",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "94": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…da execução pública dos fonogramas e reparti-los com os artistas, na forma convencionada entre eles ou suas associações.",
+          "literal": "(Revogado pela Lei nº 12.853, de 2013)"
+        }
+      ]
+    },
+    "97": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…por este artigo exercem atividade de interesse público, por determinação desta Lei, devendo atender a sua função social.",
+          "literal": "(Redação dada pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "§ 2º É vedado pertencer, simultaneamente, a mais de uma associação para a gestão coletiva de direitos da mesma natureza.",
+          "literal": "(Redação dada pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…transferir-se, a qualquer momento, para outra associação, devendo comunicar o fato, por escrito, à associação de origem.",
+          "literal": "(Redação dada pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…com sede no exterior far-se-ão representar, no País, por associações nacionais constituídas na forma prevista nesta Lei.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…os filiados diretamente às associações nacionais poderão votar ou ser votados nas associações reguladas por este artigo.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…liados diretamente às associações nacionais poderão assumir cargos de direção nas associações reguladas por este artigo.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        }
+      ]
+    },
+    "98": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…judicial ou extrajudicial de seus direitos autorais, bem como para o exercício da atividade de cobrança desses direitos.",
+          "literal": "(Redação dada pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…lícito para as associações que obtiverem habilitação em órgão da Administração Pública Federal, nos termos do art. 98-A.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "… adotar os princípios da isonomia, eficiência e transparência na cobrança pela utilização de qualquer obra ou fonograma.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "… pela utilização de seus repertórios, considerando a razoabilidade, a boa-fé e os usos do local de utilização das obras.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…ica no exercício de suas atividades, e as particularidades de cada segmento, conforme disposto no regulamento desta Lei.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "§ 5º As associações deverão tratar seus associados de forma equitativa, sendo vedado o tratamento desigual.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "… cada fonograma, prevenindo o falseamento de dados e fraudes e promovendo a desambiguação de títulos similares de obras.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…ressado, de forma gratuita, permitindose ainda ao Ministério da Cultura o acesso contínuo e integral a tais informações.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…e artigo, determinar sua retificação e demais medidas necessárias à sua regularização, conforme disposto em regulamento.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…onogramas utilizados, bem como para acompanhamento, pelos titulares de direitos, dos valores arrecadados e distribuídos.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…dos e à disposição dos titulares pelo período de 5 (cinco) anos, devendo ser distribuídos à medida da sua identificação.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…as arrecadações durante o período da retenção daqueles créditos e valores, sendo vedada a sua destinação para outro fim.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…s autorais deverá ser proporcional ao custo efetivo de suas operações, considerando as peculiaridades de cada uma delas.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…s das associações serão eleitos para mandato de 3 (três) anos, permitida uma única recondução precedida de nova eleição.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…ciações atuarão diretamente em sua gestão, por meio de voto pessoal, sendo vedado que atuem representados por terceiros.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…te comunicação à associação a que estiverem filiados, com até 48 (quarenta e oito) horas de antecedência da sua prática.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 16º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…s oriundos de suas atividades para ações de natureza cultural e social que beneficiem seus associados de forma coletiva.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        }
+      ]
+    },
+    "98-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…via em órgão da Administração Pública Federal, conforme disposto em regulamento, cujo processo administrativo observará:",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "… cumprimento, pelos estatutos da entidade solicitante, dos requisitos estabelecidos na legislação para sua constituição;",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…cativa representatividade de obras e titulares cadastrados, mediante comprovação dos seguintes documentos e informações:",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "a) cadastros das obras e titulares que representam;",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "b) contratos e convênios mantidos com usuários de obras de seus repertórios, quando aplicável;",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "c) estatutos e respectivas alterações;",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "d) atas das assembleias ordinárias ou extraordinárias;",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "e) acordos de representação recíproca com entidades congêneres estrangeiras, quando existentes;",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "f) relatório anual de suas atividades, quando aplicável;",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea g",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "g) demonstrações contábeis anuais, quando aplicável;",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea h",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…de administração são proporcionais aos custos de cobrança e distribuição para cada tipo de utilização, quando aplicável;",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea i",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…oria seja demandada pela maioria de seus associados ou por sindicato ou associação profissional, nos termos do art. 100;",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea j",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "j) detalhamento do modelo de governança da associação, incluindo estrutura de representação isonômica dos associados;",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea k",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…es dos dirigentes, gratificações, bonificações e outras modalidades de remuneração e premiação, com valores atualizados;",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…licitante que possam ensejar questionamento ao Estado Brasileiro no âmbito dos acordos internacionais dos quais é parte.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…a que se referem os incisos II e III do caput deste artigo deverão ser apresentados anualmente ao Ministério da Cultura.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…osto nesta Lei, assegurados sempre o contraditório e ampla defesa, bem como a comunicação do fato ao Ministério Público.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…de advertência, quando se concederá prazo razoável para atendimento das exigências apontadas pela autoridade competente.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…entre o indeferimento do pedido de habilitação ou sua anulação e a obtenção de nova habilitação pela entidade sucessora.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "… pena de responsabilização direta de seus dirigentes nos termos do art. 100-A, sem prejuízo das sanções penais cabíveis.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…ter atualizados e disponíveis aos associados os documentos e as informações previstos nos incisos II e III deste artigo.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        }
+      ]
+    },
+    "98-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "Art. 98-B. As associações de gestão coletiva de direitos autorais, no desempenho de suas funções, deverão:",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…ação das obras e fonogramas fornecidas pelos usuários, excetuando os valores distribuídos aos titulares individualmente;",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…cadado e distribuído e aos créditos eventualmente arrecadados e não distribuídos, sua origem e o motivo da sua retenção;",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…s meios, pela redução de seus custos administrativos e dos prazos de distribuição dos valores aos titulares de direitos;",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "… meios técnicos para que possam acessar o balanço dos seus créditos da forma mais eficiente dentro do estado da técnica;",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…mais acurada das execuções públicas realizadas e publicar anualmente seus métodos de verificação, amostragem e aferição;",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…es aferidas para cada uma delas, abstendo-se de firmar contratos, convênios ou pactos com cláusula de confidencialidade;",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "VII - garantir ao usuário o acesso às informações referentes às utilizações por ele realizadas.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…ormações contidas nos incisos I e II devem ser atualizadas periodicamente, em intervalo nunca superior a 6 (seis) meses.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        }
+      ]
+    },
+    "98-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "… direitos autorais deverão prestar contas dos valores devidos, em caráter regular e de modo direto, aos seus associados.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "§ 1º O direito à prestação de contas poderá ser exercido diretamente pelo associado.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…o da Cultura que, após sua apreciação, poderá determinar a prestação de contas pela associação, na forma do regulamento.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        }
+      ]
+    },
+    "99": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…rsonalidade jurídica própria e observará os §§ 1º a 12 do art. 98 e os arts. 98-A, 98-B, 98-C, 99-B, 100, 100-A e 100-B.",
+          "literal": "(Redação dada pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "… não terá finalidade de lucro e será dirigido e administrado por meio do voto unitário de cada associação que o integra.",
+          "literal": "(Redação dada pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…Título atuarão em juízo e fora dele em seus próprios nomes como substitutos processuais dos titulares a eles vinculados.",
+          "literal": "(Redação dada pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "§ 3º O recolhimento de quaisquer valores pelo ente arrecadador somente se fará por depósito bancário.",
+          "literal": "(Redação dada pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…) anos da data de publicação desta Lei, ela não seja inferior a 85% (oitenta e cinco por cento) dos valores arrecadados.",
+          "literal": "(Redação dada pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "§ 5º O ente arrecadador poderá manter fiscais, aos quais é vedado receber do usuário numerário a qualquer título.",
+          "literal": "(Redação dada pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…de fiscal, sem prejuízo da comunicação do fato ao Ministério Público e da aplicação das sanções civis e penais cabíveis.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…o aos titulares, transferindo-se todas as informações necessárias ao processo de arrecadação e distribuição de direitos.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "… repertórios junto ao ente arrecadador para a sua cobrança, atuando este como mandatário das associações que o integram.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…ação às associações, observado o disposto nesta Lei, especialmente os critérios estabelecidos nos §§ 3º e 4º do art. 98.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        }
+      ]
+    },
+    "99-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…rtinência com sua área de atuação e estejam habilitadas em órgão da Administração Pública Federal na forma do art. 98-A.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…ição dos recursos arrecadados serão tomadas por meio do voto unitário de cada associação que integre o ente arrecadador.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        }
+      ]
+    },
+    "99-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…correnciais definidas em legislação específica que trate da prevenção e repressão às infrações contra a ordem econômica.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        }
+      ]
+    },
+    "100": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…or intermédio de auditor independente, a exatidão das contas prestadas por essa associação autoral a seus representados.",
+          "literal": "(Redação dada pela Lei nº 12.853, de 2013)"
+        }
+      ]
+    },
+    "100-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…iculares, por desvio de finalidade ou quanto ao inadimplemento das obrigações para com os associados, por dolo ou culpa.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        }
+      ]
+    },
+    "100-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…uízo da apreciação pelo Poder Judiciário e pelos órgãos do Sistema Brasileiro de Defesa da Concorrência, quando cabível.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        }
+      ]
+    },
+    "109-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…lta de 10 (dez) a 30% (trinta por cento) do valor que deveria ser originariamente pago, sem prejuízo das perdas e danos.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.853",
+            "ano": 2013
+          },
+          "trecho": "…so de descumprimento, pelos usuários, dos seus deveres legais e contratuais junto às associações referidas neste Título.",
+          "literal": "(Incluído pela Lei nº 12.853, de 2013)"
+        }
+      ]
+    },
+    "109-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.068",
+            "ano": 2021
+          },
+          "trecho": "…penalidade prevista no art. 28-A da referida Lei, e o restabelecimento do conteúdo, sem prejuízo da indenização cabível.",
+          "literal": "(Incluído pela Medida Provisória nº 1.068, de 2021)"
+        }
+      ]
+    },
+    "111": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 111.",
+          "literal": "(VETADO)"
+        }
+      ]
+    }
+  }
+}

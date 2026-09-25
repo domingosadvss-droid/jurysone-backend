@@ -5,9 +5,11 @@
  */
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { AppController } from './app.controller';
 
 // ── Módulos estruturados ───────────────────────────────────────────────────
 import { AgendaModule } from './modules/agenda/agenda.module';
+import { AsaasModule } from './modules/asaas/asaas.module';
 import { AiModule } from './modules/ai/ai.module';
 import { AnalyticsModule } from './modules/analytics/analytics.module';
 import { AtendimentosModule } from './modules/atendimentos/atendimentos.module';
@@ -29,8 +31,13 @@ import { StatusFlowModule } from './modules/status-flow/status-flow.module';
 import { TarefasModule } from './modules/tarefas/tarefas.module';
 import { TimetrackingModule } from './modules/timetracking/timetracking.module';
 import { WhatsappModule } from './modules/whatsapp/whatsapp.module';
+import { DadosModule } from './modules/dados/dados.module';
+import { ChavesModule } from './modules/chaves/chaves.module';
+import { SseModule } from './modules/sse/sse.module';
+import { PeticionamentoModule } from './modules/peticionamento/peticionamento.module';
 
 @Module({
+  controllers: [AppController],
   imports: [
     // Carrega variáveis de ambiente de .env automaticamente
     ConfigModule.forRoot({
@@ -41,6 +48,7 @@ import { WhatsappModule } from './modules/whatsapp/whatsapp.module';
     // ── Infraestrutura / Auth ─────────────────────────────────────────────
     AuthModule,
     NotificationsModule,
+    SseModule,
 
     // ── Módulos com cron / agendamento ────────────────────────────────────
     AgendaModule,
@@ -48,6 +56,7 @@ import { WhatsappModule } from './modules/whatsapp/whatsapp.module';
     // ── Módulos de funcionalidade ─────────────────────────────────────────
     AiModule,
     AnalyticsModule,
+    AsaasModule,
     AtendimentosModule,
     AutomacoesModule,
     ClientesModule,
@@ -65,6 +74,9 @@ import { WhatsappModule } from './modules/whatsapp/whatsapp.module';
     TarefasModule,
     TimetrackingModule,
     WhatsappModule,
+    DadosModule,
+    ChavesModule,
+    PeticionamentoModule,
   ],
 })
 export class AppModule {}

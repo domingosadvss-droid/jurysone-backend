@@ -1,0 +1,471 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L6729",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l6729.json",
+      "colecao": "artigos",
+      "sha256": "6e38bad59b2904c849e14720a72157d4d5aa23c0bd876a766bea2f1d35c61c51",
+      "total_registros": 33,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 7,
+      "anotacoes": 36,
+      "anotacoes_sem_diploma_nomeado": 0
+    }
+  },
+  "vigencia": {
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "Art. 2° Consideram-se:",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "I - produtor, a empresa industrial que realiza a fabricação ou montagem de veículos automotores;",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "…mentos e componentes novos, presta assistência técnica a esses produtos e exerce outras funções pertinentes à atividade;",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "III - veículo automotor, de via terrestre, o automóvel, caminhão, ônibus, trator, motocicleta e similares;",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "IV - implemento, a máquina ou petrecho que se acopla o veículo automotor, na interação de suas finalidades;",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "V - componente, a peça ou conjunto integrante do veículo automotor ou implemento de série;",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "…eira e demais aparelhos similares destinados à agricultura, automotrizes ou acionados por trator ou outra fonte externa;",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "VII - implemento agrícola, o arado, a grade, a roçadeira e demais petrechos destinados à agricultura;",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "…viços de assistência a proprietários de veículos automotores, assim como a empresa que comercializa peças e componentes.",
+          "literal": "(Incluído pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "§ 1° Para os fins desta lei:",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "a) intitula-se também o produtor de concedente e o distribuidor de concessionário;",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "…r a outros fins, excluídos os tratores de esteira, as motoniveladoras e as máquinas rodoviárias para outras destinações;",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "…res e distribuidores, e os produtos, diferenciados em cada marca, pelo produtor e sua rede de distribuição, em conjunto.",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "…nas agrícolas caracterizados neste artigo, incisos VI e VII, que não sejam fabricados por produtor definido no inciso I.",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "Art. 5° São inerentes à concessão:",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "I - área operacional de responsabilidade do concessionário para o exercício de suas atividades;",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "…cias mínimas entre estabelecimentos de concessionários da mesma rede, fixadas segundo critérios de potencial de mercado.",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "§ 1° A área poderá conter mais de um concessionário da mesma rede.",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "…l, sendo-lhe defesa a prática dessas atividades, diretamente ou por intermédio de prepostos, fora de sua área demarcada.",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "…rigatórios pela garantia do fabricante, vedada qualquer disposição de limite à faculdade prevista no parágrafo anterior.",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "Art. 6° É assegurada ao concedente a contratação de nova concessão:",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "…sentar as condições justificadoras da contratação que tenham sido ajustadas entre o produtor e sua rede de distribuição;",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "II - pela necessidade de prover vaga de concessão extinta.",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "…iso I deste artigo, o concessionário instalado na área concorrerá com os demais interessados, em igualdade de condições.",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "… 2° A nova contratação não se poderá estabelecer em condições que de algum modo prejudiquem os concessionários da marca.",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        }
+      ]
+    },
+    "8": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "…que dela faz parte, podendo a convenção de marca estabelecer percentuais de aquisição obrigatória pelos concessionários.",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "…rafo único. Não estão sujeitas ao índice de fidelidade de compra ao concedente as aquisições que o concessionário fizer:",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "a) de acessórios para veículos automotores",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "b) de implementos de qualquer natureza e máquinas agrícolas.",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "… preço de venda do concessionário ao consumidor, relativamente aos bens e serviços objeto da concessão dela decorrentes.",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "…ionário e deste ao respectivo adquirente deverão ser discriminados, individualmente, nos documentos fiscais pertinentes.",
+          "literal": "(Incluído pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "…ço de venda aos concessionários, preservando sua uniformidade e condições de pagamento para toda a rede de distribuição.",
+          "literal": "(Incluído pela Lei nº 8.132, de 1990)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "…mercialização do concessionário nas mercadorias objeto da concessão terá seu percentual incluído no preço ao consumidor.",
+          "literal": "(Revogado pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "…em percentual de comercialização, salvo casos excepcionais objeto de ajuste entre o produtor e sua rede de distribuição.",
+          "literal": "(Revogado pela Lei nº 8.132, de 1990)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "…a ou a comercialização daqueles, exceto a distribuição de veículos novos, dando-lhe a denominação de serviço autorizado.",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.132",
+            "ano": 1990
+          },
+          "trecho": "Parágrafo único. Às contratações a que se refere este artigo serão aplicados, no que couber, os dispositivos desta lei.",
+          "literal": "(Redação dada pela Lei nº 8.132, de 1990)"
+        }
+      ]
+    }
+  }
+}

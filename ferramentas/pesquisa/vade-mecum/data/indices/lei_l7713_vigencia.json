@@ -1,0 +1,1369 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L7713",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l7713.json",
+      "colecao": "artigos",
+      "sha256": "fa34ac88194ea85a0102ae7f87ada2441fc464a89027983283a18be37ed06333",
+      "total_registros": 58,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 28,
+      "anotacoes": 111,
+      "anotacoes_sem_diploma_nomeado": 8
+    }
+  },
+  "vigencia": {
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.250",
+            "ano": 1995
+          },
+          "trecho": "…- os seguros recebidos de entidades de previdência privada decorrentes de morte ou invalidez permanente do participante.",
+          "literal": "(Redação dada pela Lei nº 9.250, de 1995)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XIV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.052",
+            "ano": 2004
+          },
+          "trecho": "…base em conclusão da medicina especializada, mesmo que a doença tenha sido contraída depois da aposentadoria ou reforma;",
+          "literal": "(Redação dada pela Lei nº 11.052, de 2004)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso XIV",
+          "diploma": null,
+          "trecho": "…o contraída depois da aposentadoria ou reforma; (Redação dada pela Lei nº 11.052, de 2004) (Vide Lei nº 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.482",
+            "ano": 2007
+          },
+          "trecho": "…cinco) anos de idade, sem prejuízo da parcela isenta prevista na tabela de incidência mensal do imposto, até o valor de:",
+          "literal": "(Redação dada pela Lei nº 11.482, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.482",
+            "ano": 2007
+          },
+          "trecho": "a) R$ 1.313,69 (mil, trezentos e treze reais e sessenta e nove centavos), por mês, para o ano-calendário de 2007;",
+          "literal": "(Incluído pela Lei nº 11.482, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.482",
+            "ano": 2007
+          },
+          "trecho": "b) R$ 1.372,81 (mil, trezentos e setenta e dois reais e oitenta e um centavos), por mês, para o ano-calendário de 2008;",
+          "literal": "(Incluído pela Lei nº 11.482, de 2007)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.482",
+            "ano": 2007
+          },
+          "trecho": "….434,59 (mil, quatrocentos e trinta e quatro reais e cinqüenta e nove centavos), por mês, para o ano-calendário de 2009;",
+          "literal": "(Incluído pela Lei nº 11.482, de 2007)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.469",
+            "ano": 2011
+          },
+          "trecho": "d) R$ 1.499,15 (mil, quatrocentos e noventa e nove reais e quinze centavos), por mês, para o ano-calendário de 2010;",
+          "literal": "(Redação dada pela Lei nº 12.469, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.469",
+            "ano": 2011
+          },
+          "trecho": "… R$ 1.566,61 (mil, quinhentos e sessenta e seis reais e sessenta e um centavos), por mês, para o ano-calendário de 2011;",
+          "literal": "(Incluída pela Lei nº 12.469, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.469",
+            "ano": 2011
+          },
+          "trecho": "f) R$ 1.637,11 (mil, seiscentos e trinta e sete reais e onze centavos), por mês, para o ano-calendário de 2012;",
+          "literal": "(Incluída pela Lei nº 12.469, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea g",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.469",
+            "ano": 2011
+          },
+          "trecho": "g) R$ 1.710,78 (mil, setecentos e dez reais e setenta e oito centavos), por mês, para o ano-calendário de 2013;",
+          "literal": "(Incluída pela Lei nº 12.469, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea h",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.149",
+            "ano": 2015
+          },
+          "trecho": "…nta e sete centavos), por mês, para o ano-calendário de 2014 e nos meses de janeiro a março do ano-calendário de 2015; e",
+          "literal": "(Redação dada pela Lei nº 13.149, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea i",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.149",
+            "ano": 2015
+          },
+          "trecho": "…8 (mil, novecentos e três reais e noventa e oito centavos), por mês, a partir do mês de abril do ano-calendário de 2015;",
+          "literal": "(Redação dada pela Lei nº 13.149, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso XVIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.799",
+            "ano": 1989
+          },
+          "trecho": "…Bônus do Tesouro Nacional - BTN, e desde que seu pagamento ou crédito ocorra em intervalos não inferiores a trinta dias;",
+          "literal": "(Redação dada pela Lei nº 7.799, de 1989)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.541",
+            "ano": 1992
+          },
+          "trecho": "…al, com base em conclusão da medicina especializada, mesmo que a doença tenha sido contraída após a concessão da pensão.",
+          "literal": "(Incluído pela Lei nº 8.541, de 1992)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.945",
+            "ano": 2009
+          },
+          "trecho": "…s de concessão de crédito voltados ao estímulo à solicitação de documento fiscal na aquisição de mercadorias e serviços.",
+          "literal": "(Incluído pela Lei nº 11.945, de 2009)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.761",
+            "ano": 2012
+          },
+          "trecho": "XXIII - o valor recebido a título de vale-cultura.",
+          "literal": "(Incluído pela Lei nº 12.761, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso XXIV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.251",
+            "ano": 2024
+          },
+          "trecho": "XXIV -",
+          "literal": "(Incluído pela Medida Provisória nº 1.251, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "11.945",
+            "ano": 2009
+          },
+          "trecho": "…o se aplica aos prêmios recebidos por meio de sorteios, em espécie, bens ou serviços, no âmbito dos referidos programas.",
+          "literal": "(Incluído pela Lei nº 11.945, de 2009)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.218",
+            "ano": 1991
+          },
+          "trecho": "§ 2º -",
+          "literal": "(Revogado pela Lei nº 8.218, de 1991)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.794",
+            "ano": 2013
+          },
+          "trecho": "I - 10% (dez por cento) do rendimento bruto, decorrente do transporte de carga;",
+          "literal": "(Redação dada pela lei nº 12.794, de 2013)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.975",
+            "ano": 1989
+          },
+          "trecho": "…zados na prestação dos serviços, desde que, em qualquer caso, mantenham escrituração das receitas e despesas realizadas.",
+          "literal": "(Incluído pela Lei nº 7.975, de 1989)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Vetado)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.975",
+            "ano": 1989
+          },
+          "trecho": "§ 2º (Vetado)",
+          "literal": "(Incluído pela Lei nº 7.975, de 1989)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.149",
+            "ano": 2015
+          },
+          "trecho": "Art. 12.",
+          "literal": "(Revogado pela Lei nº 13.149, de 2015)"
+        }
+      ]
+    },
+    "12-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.149",
+            "ano": 2015
+          },
+          "trecho": "…ibutados exclusivamente na fonte, no mês do recebimento ou crédito, em separado dos demais rendimentos recebidos no mês.",
+          "literal": "(Redação dada pela Lei nº 13.149, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "…am os rendimentos pelos valores constantes da tabela progressiva mensal correspondente ao mês do recebimento ou crédito.",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "…dicial necessárias ao seu recebimento, inclusive de advogados, se tiverem sido pagas pelo contribuinte, sem indenização.",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "…de cálculo será determinada mediante a dedução das seguintes despesas relativas ao montante dos rendimentos tributáveis:",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "…o judicial, de acordo homologado judicialmente ou de separação ou divórcio consensual realizado por escritura pública; e",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "II – contribuições para a Previdência Social da União, dos Estados, do Distrito Federal e dos Municípios.",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "…o neste artigo o constante no art. 27 da Lei no 10.833, de 29 de dezembro de 2003, salvo o previsto nos seus §§ 1o e 3o.",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "…osto sobre a Renda na Declaração de Ajuste Anual do ano-calendário do recebimento, à opção irretratável do contribuinte.",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "…osto sobre a Renda Retido na Fonte será considerado antecipação do imposto devido apurado na Declaração de Ajuste Anual.",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "…butados na forma deste artigo, devendo ser informados na Declaração de Ajuste Anual referente ao ano-calendário de 2010.",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 8º",
+          "diploma": null,
+          "trecho": "§ 8o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "§ 8o (VETADO)",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.350",
+            "ano": 2010
+          },
+          "trecho": "§ 9o A Secretaria da Receita Federal do Brasil disciplinará o disposto neste artigo.",
+          "literal": "(Incluído pela Lei nº 12.350, de 2010)"
+        }
+      ]
+    },
+    "12-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.149",
+            "ano": 2015
+          },
+          "trecho": "…dicial necessárias ao seu recebimento, inclusive de advogados, se tiverem sido pagas pelo contribuinte, sem indenização.",
+          "literal": "(Incluído pela Lei nº 13.149, de 2015)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.383",
+            "ano": 1991
+          },
+          "trecho": "Art. 13",
+          "literal": "(Revogado pela Lei nº 8.383, de 1991)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.383",
+            "ano": 1991
+          },
+          "trecho": "Art. 14",
+          "literal": "(Revogado pela Lei nº 8.383, de 1991)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.134",
+            "ano": 1990
+          },
+          "trecho": "I -",
+          "literal": "(Revogado pela Lei nº 8.134, de 1990)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.383",
+            "ano": 1991
+          },
+          "trecho": "II -",
+          "literal": "(Revogado pela Lei nº 8.383, de 1991)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.134",
+            "ano": 1990
+          },
+          "trecho": "§§ 1º a 7º -",
+          "literal": "(Revogados pela Lei nº 8.134, de 1990)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.774",
+            "ano": 1989
+          },
+          "trecho": "Art. 15.",
+          "literal": "(Revogado pela Lei nº 7.774, de 1989)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.959",
+            "ano": 1989
+          },
+          "trecho": "… de acordo com o artigo anterior, deverá ser corrigido monetariamente, a partir da data do pagamento, da seguinte forma:",
+          "literal": "(Redação dada pela Lei nº 7.959, de 1989)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.959",
+            "ano": 1989
+          },
+          "trecho": "I - até janeiro de 1989, pela variação da OTN;",
+          "literal": "(Incluído pela Lei nº 7.959, de 1989)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.959",
+            "ano": 1989
+          },
+          "trecho": "…e fevereiro a abril de 1989, pelas seguintes variações: em fevereiro, 31,2025%; em março, 30,5774%; e em abril, 9,2415%;",
+          "literal": "(Incluído pela Lei nº 7.959, de 1989)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.959",
+            "ano": 1989
+          },
+          "trecho": "III - a partir de maio de 1989, pela variação do BTN.",
+          "literal": "(Incluído pela Lei nº 7.959, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.799",
+            "ano": 1989
+          },
+          "trecho": "…er feita pelo valor da OTN no mês de dezembro do ano em que este tiver constado pela primeira vez na declaração de bens.",
+          "literal": "(Redação dada pela Lei nº 7.799, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.799",
+            "ano": 1989
+          },
+          "trecho": "§ 4° No caso de aquisição com pagamento parcelado, a correção monetária será efetivada em relação a cada parcela.",
+          "literal": "(Redação dada pela Lei nº 7.799, de 1989)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "22": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.134",
+            "ano": 1990
+          },
+          "trecho": "…o nos últimos cinco anos e o valor da alienação não seja superior ao equivalente a trezentos mil BTN no mês da operação.",
+          "literal": "(Redação dada pela Lei 8.134, de 1990)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.014",
+            "ano": 1990
+          },
+          "trecho": "II -",
+          "literal": "(Revogado pela Lei nº 8.014, de 1990)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.134",
+            "ano": 1990
+          },
+          "trecho": "Art. 23",
+          "literal": "(Revogado pela Lei nº 8.134, de 1990)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.134",
+            "ano": 1990
+          },
+          "trecho": "Art. 24",
+          "literal": "(Revogado pela Lei nº 8.134, de 1990)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.269",
+            "ano": 1991
+          },
+          "trecho": "Art. 25. O imposto será calculado, observado o seguinte:",
+          "literal": "(Redação dada pela Lei nº 8.269, de 1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.269",
+            "ano": 1991
+          },
+          "trecho": "…00,00, será deduzida uma parcela correspondente a Cr$ 250.000,00 e, sobre o saldo remanescente incidirá alíquota de 10%;",
+          "literal": "(Redação dada pela Lei nº 8.269, de 1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.269",
+            "ano": 1991
+          },
+          "trecho": "…00,00, será deduzida uma parcela correspondente a Cr$ 550.000,00 e, sobre o saldo remanescente incidirá alíquota de 25%.",
+          "literal": "(Redação dada pela Lei nº 8.269, de 1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.269",
+            "ano": 1991
+          },
+          "trecho": "§ 1° Na determinação da base de cálculo sujeita a incidência do imposto poderão ser deduzidos:",
+          "literal": "(Redação dada pela Lei nº 8.269, de 1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.269",
+            "ano": 1991
+          },
+          "trecho": "a) Cr$ 20.000,00 por dependente, até o limite de cinco dependentes;",
+          "literal": "(Redação dada pela Lei nº 8.269, de 1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.269",
+            "ano": 1991
+          },
+          "trecho": "…soa jurídica de direito público interno, a partir do mês em que o contribuinte completar sessenta e cinco anos de idade;",
+          "literal": "(Redação dada pela Lei nº 8.269, de 1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.269",
+            "ano": 1991
+          },
+          "trecho": "…lor da contribuição paga, no mês, para a Previdência Social da União, dos Estados, do Distrito Federal e dos Municípios;",
+          "literal": "(Redação dada pela Lei nº 8.269, de 1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea d",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.269",
+            "ano": 1991
+          },
+          "trecho": "d) o valor da pensão judicial paga.",
+          "literal": "(Redação dada pela Lei nº 8.269, de 1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.269",
+            "ano": 1991
+          },
+          "trecho": "§ 2° As disposições deste artigo aplicam-se aos pagamentos efetuados a partir de 1° de dezembro de 1991.",
+          "literal": "(Redação dada pela Lei nº 8.269, de 1991)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.250",
+            "ano": 1995
+          },
+          "trecho": "Art. 27.",
+          "literal": "(Revogado pela Lei nº 9.250, de 1995)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.134",
+            "ano": 1990
+          },
+          "trecho": "Arts. 28 e 29",
+          "literal": "(Revogados pela Lei nº 8.134, de 1990)"
+        }
+      ]
+    },
+    "31": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.751",
+            "ano": 1989
+          },
+          "trecho": "…ndimentos e ganhos de capital produzidos pelo patrimônio da entidade de previdência não tenham sido tributados na fonte:",
+          "literal": "(Redação dada pela Lei nº 7.751, de 1989)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3º",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.799",
+            "ano": 1989
+          },
+          "trecho": "…onadas, na forma da alínea a, que tenham sido baixadas no curso do período-base, utilizando-se a variação do BTN Fiscal.",
+          "literal": "(Redação dada pela Lei nº 7.799, de 1989)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea e",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.959",
+            "ano": 1989
+          },
+          "trecho": "e) exclusão do resultado positivo de avaliação de investimentos pelo valor de patrimônio líquido;",
+          "literal": "(Incluída pela Lei nº 7.959, de 1989)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea f",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.959",
+            "ano": 1989
+          },
+          "trecho": "…cros e dividendos derivados de investimentos avaliados pelo custo de aquisição, que tenham sido computados como receita;",
+          "literal": "(Incluída pela Lei nº 7.959, de 1989)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea g",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.959",
+            "ano": 1989
+          },
+          "trecho": "g) adição do resultado negativo da avaliação de investimentos pelo valor de patrimônio líquido.",
+          "literal": "(Incluída pela Lei nº 7.959, de 1989)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.759",
+            "ano": 1989
+          },
+          "trecho": "b)",
+          "literal": "(Revogada pela Lei nº 7.759, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": 1989
+          },
+          "trecho": "…sobre a parcela do lucro líquido que corresponder à participação de pessoa jurídica imune ou isenta do imposto de renda.",
+          "literal": "(Redação dada pela Lei 7.730, de 1989)"
+        }
+      ]
+    },
+    "40": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.751",
+            "ano": 1989
+          },
+          "trecho": "…s bolsas de valores, de mercadorias, de futuros e assemelhadas, ressalvado o disposto no inciso II do art. 22 desta Lei.",
+          "literal": "(Redação dada pela Lei nº 7.751, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": 1989
+          },
+          "trecho": "§ 2º O ganho líquido será constituído:",
+          "literal": "(Redação dada pela Lei 7.730, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": 1989
+          },
+          "trecho": "…aso dos mercados à vista, pela diferença positiva entre o valor de transmissão do ativo e o custo de aquisição do mesmo;",
+          "literal": "(Redação dada pela Lei 7.730, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": 1989
+          },
+          "trecho": "b) no caso do mercado de opções:",
+          "literal": "(Redação dada pela Lei 7.730, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": 1989
+          },
+          "trecho": "… a opção, a diferença positiva apurada entre o valor das posições encerradas ou não exercidas até o vencimento da opção;",
+          "literal": "(Redação dada pela Lei 7.730, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": 1989
+          },
+          "trecho": "… fixado para o exercício, ou a diferença positiva entre o preço do exercício acrescido do prêmio e o custo de aquisição;",
+          "literal": "(Redação dada pela Lei 7.730, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": 1989
+          },
+          "trecho": "§ 3º Se o contribuinte apurar resultado negativo no mês será admitida a sua apropriação nos meses subseqüente.",
+          "literal": "(Redação dada pela Lei 7.730, de 1989)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.014",
+            "ano": 1990
+          },
+          "trecho": "§ 5º",
+          "literal": "(Revogado pela Lei nº 8.014, de 1990)"
+        }
+      ]
+    },
+    "42": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.134",
+            "ano": 1990
+          },
+          "trecho": "Art. 42",
+          "literal": "(Revogado pela Lei nº 8.134, de 1990)"
+        }
+      ]
+    },
+    "43": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.738",
+            "ano": 1989
+          },
+          "trecho": "… alíquota de sete inteiros e cinco décimos por cento, o rendimento bruto produzido por quaisquer aplicações financeiras.",
+          "literal": "(Redação dada pela Lei nº 7.738, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.738",
+            "ano": 1989
+          },
+          "trecho": "…a-se, também, às operações de financiamento realizadas em bolsas de valores, de mercadorias, de futuros ou assemelhadas.",
+          "literal": "(Redação dada pela Lei nº 7.738, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.738",
+            "ano": 1989
+          },
+          "trecho": "§ 2º O disposto neste artigo não se aplica ao rendimento bruto auferido:",
+          "literal": "(Redação dada pela Lei nº 7.738, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.738",
+            "ano": 1989
+          },
+          "trecho": "a) em aplicações em fundos de curto prazo, tributados nos termos do Decreto-Lei nº 2.458, de 25 de agosto de 1988;",
+          "literal": "(Redação dada pela Lei nº 7.738, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.738",
+            "ano": 1989
+          },
+          "trecho": "…consideradas as de prazo inferior a noventa dias, que serão tributadas às seguintes alíquotas, sobre o rendimento bruto:",
+          "literal": "(Redação dada pela Lei nº 7.738, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.738",
+            "ano": 1989
+          },
+          "trecho": "1. quando a operação se iniciar e encerrar no mesmo dia, quarenta por cento;",
+          "literal": "(Redação dada pela Lei nº 7.738, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.738",
+            "ano": 1989
+          },
+          "trecho": "…ações, dez por cento, quando o beneficiário se identificar e trinta por cento, quando o beneficiário não se identificar.",
+          "literal": "(Redação dada pela Lei nº 7.738, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.738",
+            "ano": 1989
+          },
+          "trecho": "…ro - LFT ou títulos estaduais e municipais a elas equiparados, o imposto de renda na fonte será calculado à alíquota de:",
+          "literal": "(Redação dada pela Lei nº 7.738, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.738",
+            "ano": 1989
+          },
+          "trecho": "a) quarenta por cento, em se tratando de operação de curto prazo; e",
+          "literal": "(Redação dada pela Lei nº 7.738, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.738",
+            "ano": 1989
+          },
+          "trecho": "b) vinte e cinco por cento, quando o prazo da operação for igual ou superior a noventa dias.",
+          "literal": "(Redação dada pela Lei nº 7.738, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.738",
+            "ano": 1989
+          },
+          "trecho": "…om base na taxa referencial acumulada da Letra Financeira do Tesouro no período, divulgada pelo Banco Central do Brasil.",
+          "literal": "(Redação dada pela Lei nº 7.738, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.738",
+            "ano": 1989
+          },
+          "trecho": "§ 5º O imposto de renda será retido pela fonte pagadora:",
+          "literal": "(Redação dada pela Lei nº 7.738, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.738",
+            "ano": 1989
+          },
+          "trecho": "a) em relação aos juros de depósitos em cadernetas de poupança, na data do crédito ou pagamento;",
+          "literal": "(Redação dada pela Lei nº 7.738, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.738",
+            "ano": 1989
+          },
+          "trecho": "…às operações de financiamento realizadas em bolsas de valores, de mercadorias, de futuros e assemelhadas, na liquidação;",
+          "literal": "(Redação dada pela Lei nº 7.738, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.738",
+            "ano": 1989
+          },
+          "trecho": "c) nos demais casos, na data da cessão, liquidação ou resgate, ou nos pagamentos periódicos de rendimentos.",
+          "literal": "(Redação dada pela Lei nº 7.738, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.738",
+            "ano": 1989
+          },
+          "trecho": "…mento no ato da liquidação ou resgate do título ou aplicação, em substituição à tributação quando do resgate das quotas.",
+          "literal": "(Redação dada pela Lei nº 7.738, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.738",
+            "ano": 1989
+          },
+          "trecho": "…s a partir do período iniciado em 16 de janeiro de 1989, mesmo quando adquiridos ou efetuadas anteriormente a esta data.",
+          "literal": "(Redação dada pela Lei nº 7.738, de 1989)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.738",
+            "ano": 1989
+          },
+          "trecho": "…mentos auferidos em operações de curto prazo, são aplicáveis às operações iniciadas a partir de 13 de fevereiro de 1989.",
+          "literal": "(Redação dada pela Lei nº 7.738, de 1989)"
+        }
+      ]
+    },
+    "45": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.134",
+            "ano": 1990
+          },
+          "trecho": "Art. 45",
+          "literal": "(Revogado pela Lei nº 8.134, de 1990)"
+        }
+      ]
+    },
+    "46": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.730",
+            "ano": 1989
+          },
+          "trecho": "Art. 46",
+          "literal": "(Revogado pela Lei 7.730, de 1989)"
+        }
+      ]
+    },
+    "50": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 50.",
+          "literal": "(Vetado)"
+        }
+      ]
+    },
+    "53": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.799",
+            "ano": 1989
+          },
+          "trecho": "Art. 53. Os juros e as multas serão calculados sobre o imposto ou quota, observado o seguinte:",
+          "literal": "(Redação dada pela Lei nº 7.799, de 1989)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.799",
+            "ano": 1989
+          },
+          "trecho": "a) quando expresso em BTN serão convertidos em cruzados novos pelo valor do BTN no mês do pagamento;",
+          "literal": "(Incluída pela Lei nº 7.799, de 1989)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "7.799",
+            "ano": 1989
+          },
+          "trecho": "b) quando expresso em BTN Fiscal, serão convertidos em cruzados novos pelo valor do BTN Fiscal no dia do pagamento.",
+          "literal": "(Incluída pela Lei nº 7.799, de 1989)"
+        }
+      ]
+    },
+    "56": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.430",
+            "ano": 1996
+          },
+          "trecho": "Art. 56.",
+          "literal": "(Revogado pela Lei nº 9.430, de 1996)"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,947 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L12865",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l12865.json",
+      "colecao": "artigos",
+      "sha256": "c3d00197c3632d168d649c82694ecd0e79f9e1bdc50fe96a2e22e0cd62bd5cbe",
+      "total_registros": 46,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 19,
+      "anotacoes": 76,
+      "anotacoes_sem_diploma_nomeado": 6
+    }
+  },
+  "vigencia": {
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.031",
+            "ano": 2020
+          },
+          "trecho": "… Monetário Nacional, não forem capazes de oferecer risco ao normal funcionamento das transações de pagamentos de varejo.",
+          "literal": "(Redação dada pela Lei nº 14.031, de 2020)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.031",
+            "ano": 2020
+          },
+          "trecho": "… negócios, exclusivamente com o objetivo de avaliar sua capacidade de oferecer o risco de que trata o § 4º deste artigo.",
+          "literal": "(Redação dada pela Lei nº 14.031, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei Complementar",
+            "numero": "225",
+            "ano": 2026
+          },
+          "trecho": "…acompanhamento e transparência relativa aos impostos e às contribuições relacionadas com os serviços por eles prestados.",
+          "literal": "(Incluído pela Lei Complementar nº 225, de 2026)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.506",
+            "ano": 2017
+          },
+          "trecho": "…ministradores e os membros de seus órgãos estatutários ou contratuais às penalidades previstas pela legislação em vigor.",
+          "literal": "(Redação dada pela Lei nº 13.506, de 2017)"
+        }
+      ]
+    },
+    "12-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "930",
+            "ano": 2020
+          },
+          "trecho": "…ento pelo usuário final recebedor ou o direito ao recebimento desses recursos para o cumprimento dessa mesma finalidade:",
+          "literal": "(Incluído pela Medida Provisória nº 930, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "930",
+            "ano": 2020
+          },
+          "trecho": "…mprimento de obrigações de liquidação das transações de pagamento no âmbito do arranjo de pagamento ao qual se vinculem;",
+          "literal": "(Incluído pela Medida Provisória nº 930, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "930",
+            "ano": 2020
+          },
+          "trecho": "…ntes do arranjo de pagamento até o recebimento pelo usuário final recebedor, conforme as regras do arranjo de pagamento;",
+          "literal": "(Incluído pela Medida Provisória nº 930, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "930",
+            "ano": 2020
+          },
+          "trecho": "…às transações de pagamento até o recebimento pelo usuário final recebedor, conforme as regras do arranjo de pagamento; e",
+          "literal": "(Incluído pela Medida Provisória nº 930, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "930",
+            "ano": 2020
+          },
+          "trecho": "…ção ou dissolução a que seja submetido o participante do arranjo de pagamento pelo qual transitem os referidos recursos.",
+          "literal": "(Incluído pela Medida Provisória nº 930, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "930",
+            "ano": 2020
+          },
+          "trecho": "…elo usuário final recebedor para recebimento desses recursos, conforme as regras do arranjo de pagamento correspondente.",
+          "literal": "(Incluído pela Medida Provisória nº 930, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "930",
+            "ano": 2020
+          },
+          "trecho": "…io final recebedor participante que entregar previamente recursos próprios, com ou sem ônus, ao usuário final recebedor.",
+          "literal": "(Incluído pela Medida Provisória nº 930, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "930",
+            "ano": 2020
+          },
+          "trecho": "…mento ao usuário final recebedor, ainda que permaneçam depositados na instituição de escolha do usuário final recebedor.",
+          "literal": "(Incluído pela Medida Provisória nº 930, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "930",
+            "ano": 2020
+          },
+          "trecho": "…ut para outro participante ou agente, na forma prevista no regulamento do arranjo aprovado pelo Banco Central do Brasil.",
+          "literal": "(Incluído pela Medida Provisória nº 930, de 2020)"
+        }
+      ]
+    },
+    "12-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "930",
+            "ano": 2020
+          },
+          "trecho": "…o, ainda que esses arranjos não sejam alcançados pelas disposições desta Lei, nos termos do disposto no § 4º do art. 6º.",
+          "literal": "(Incluído pela Medida Provisória nº 930, de 2020)"
+        }
+      ]
+    },
+    "12-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "930",
+            "ano": 2020
+          },
+          "trecho": "…ansações de pagamento, na forma e na extensão definidas no regulamento do arranjo aprovado pelo Banco Central do Brasil:",
+          "literal": "(Incluído pela Medida Provisória nº 930, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "930",
+            "ano": 2020
+          },
+          "trecho": "…de qualquer outro ato de constrição judicial, exceto para o cumprimento das obrigações assumidas no âmbito do arranjo; e",
+          "literal": "(Incluído pela Medida Provisória nº 930, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "930",
+            "ano": 2020
+          },
+          "trecho": "…ção ou dissolução a que seja submetido o participante do arranjo de pagamento pelo qual transitem os referidos recursos.",
+          "literal": "(Incluído pela Medida Provisória nº 930, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "930",
+            "ano": 2020
+          },
+          "trecho": "…emanescentes serão revertidos ao participante, de forma que não mais se aplicará o disposto nos incisos I e II do caput.",
+          "literal": "(Incluído pela Medida Provisória nº 930, de 2020)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "930",
+            "ano": 2020
+          },
+          "trecho": "…artigo não se aplica aos arranjos de pagamento fechados, conforme parâmetros estabelecidos pelo Banco Central do Brasil.",
+          "literal": "(Incluído pela Medida Provisória nº 930, de 2020)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.185",
+            "ano": 2021
+          },
+          "trecho": "…mentos Brasileiro, conforme remuneração, limites, prazos, formas de negociação e outras condições por ele estabelecidos.",
+          "literal": "(Redação dada pela Lei nº 14.185, de 2021)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "… da conversão da Medida Provisória nº 627, de 11 de novembro de 2013, atendidas as condições estabelecidas neste artigo.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…, bem como o disposto no § 16 do art. 39 desta Lei, para os pagamentos ou parcelas ocorridos após 1º de janeiro de 2014.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…alor das multas de mora e de ofício, das multas isoladas, dos juros de mora e do encargo legal efetivamente depositados.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ivo dos valores depositados somente ocorrerá após a aplicação dos percentuais de redução, observado o disposto no § 6º .",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…e montantes de prejuízo fiscal ou de base de cálculo negativa da CSLL, desde que pague à vista os débitos remanescentes.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 9º Na hipótese do § 8º , as reduções serão aplicadas sobre os valores atualizados na data do pagamento.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…Judiciário o resultado para fins de transformação do depósito em pagamento definitivo ou levantamento de eventual saldo.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…litígio que eventualmente estejam sem o correspondente depósito ou com depósito em montante insuficiente a sua quitação.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "… § 7º , o sujeito passivo poderá requerer o levantamento do saldo remanescente, se houver, observado o disposto no § 13.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…al e de base de cálculo negativa da CSLL utilizados na forma do § 7º do art. 1º da Lei nº 11.941, de 27 de maio de 2009.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "§ 14. O saldo remanescente de que trata o § 12 será corrigido pela taxa Selic.",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ao parcelamento na forma do caput, nenhum percentual de multa, antes das reduções, será superior a 100% (cem por cento).",
+          "literal": "(Incluído pela Lei nº 12.973, de 2014)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 19.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "23": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…bservado o disposto nos arts. 7º a 10 da Lei nº 8.159, de 8 de janeiro de 1991, quando se tratar de documentos públicos.",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…to para o descarte das matrizes físicas dos documentos digitalizados e armazenados eletronicamente, nos termos do § 1º .",
+          "literal": "(Incluído pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "897",
+            "ano": 2019
+          },
+          "trecho": "…ado o disposto nos art. 7º ao art. 10 da Lei nº 8.159, de 8 de janeiro de 1991, quando se tratar de documentos públicos.",
+          "literal": "(Redação dada pela Medida Provisória nº 897, de 2019)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "897",
+            "ano": 2019
+          },
+          "trecho": "…ressalvados os documentos para os quais lei específica exija a guarda do documento original para o exercício de direito.",
+          "literal": "(Redação dada pela Medida Provisória nº 897, de 2019)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.286",
+            "ano": 2021
+          },
+          "trecho": "Art. 25. O art. 65 da Lei nº 9.069, de 29 de junho de 1995, passa a vigorar com as seguintes alterações:",
+          "literal": "(Revogado pela Lei nº 14.286, de 2021)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…ei nº 9.069, de 29 de junho de 1995, passa a vigorar com as seguintes alterações: (Revogado pela Lei nº 14.286, de 2021)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 28.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.943",
+            "ano": 2024
+          },
+          "trecho": "…e Incidência do Imposto sobre Produtos Industrializados (Tipi), aprovada pelo Decreto nº 11.158, de 29 de julho de 2022.",
+          "literal": "(Redação dada pela Lei nº 14.943, de 2024)"
+        }
+      ]
+    },
+    "31": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.943",
+            "ano": 2024
+          },
+          "trecho": "…00, 2303.30.00, 2304.00, 2309.10.00 e 3826.00.00 e de lecitina de soja classificada no código 2923.20.00, todos da Tipi.",
+          "literal": "(Redação dada pela Lei nº 14.943, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.943",
+            "ano": 2024
+          },
+          "trecho": "…ialização de óleo de soja classificado no código 15.07 da Tipi e de óleo de milho classificado no código 1515.2 da Tipi;",
+          "literal": "(Redação dada pela Lei nº 14.943, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.943",
+            "ano": 2024
+          },
+          "trecho": "…, no caso de comercialização de produtos classificados nos códigos 1208.10.00, 2302.10.00, 2303.30.00 e 2304.00 da Tipi;",
+          "literal": "(Redação dada pela Lei nº 14.943, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.943",
+            "ano": 2024
+          },
+          "trecho": "… óleo de milho classificados, respectivamente, nos códigos 15.07 e 1515.2 da Tipi utilizados como insumo na produção de:",
+          "literal": "(Redação dada pela Lei nº 14.943, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.943",
+            "ano": 2024
+          },
+          "trecho": "a) óleo de soja e óleo de milho classificados, respectivamente, nos códigos 1507.90.1 e 1515.29 da Tipi;",
+          "literal": "(Redação dada pela Lei nº 14.943, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.943",
+            "ano": 2024
+          },
+          "trecho": "…0, 2303.30.00 e 2304.00 da Tipi utilizados como insumo na produção de rações classificadas no código 2309.10.00 da Tipi.",
+          "literal": "(Redação dada pela Lei nº 14.943, de 2024)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.227",
+            "ano": 2024
+          },
+          "trecho": "…mestre-calendário não conseguir utilizar o crédito presumido de que trata este artigo na forma prevista no caput poderá:",
+          "literal": "(Revogado pela Medida Provisória nº 1.227, de 2024)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.227",
+            "ano": 2024
+          },
+          "trecho": "…es administrados pela Secretaria da Receita Federal do Brasil, observada a legislação específica aplicável à matéria; ou",
+          "literal": "(Revogado pela Medida Provisória nº 1.227, de 2024)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.227",
+            "ano": 2024
+          },
+          "trecho": "II - solicitar seu ressarcimento em espécie, observada a legislação específica aplicável à matéria.",
+          "literal": "(Revogado pela Medida Provisória nº 1.227, de 2024)"
+        }
+      ]
+    },
+    "32": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.227",
+            "ano": 2024
+          },
+          "trecho": "…o ser ressarcidos em conformidade com procedimento específico estabelecido pela Secretaria da Receita Federal do Brasil.",
+          "literal": "(Revogado pela Medida Provisória nº 1.227, de 2024)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.227",
+            "ano": 2024
+          },
+          "trecho": "… a produtos cuja venda no mercado interno ou exportação seja contemplada com o crédito presumido de que trata o art. 31.",
+          "literal": "(Revogado pela Medida Provisória nº 1.227, de 2024)"
+        }
+      ]
+    },
+    "35": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 35.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "36": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 36.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 37.",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "39": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "… novembro de 1998, devidos por instituições financeiras e equiparadas, vencidos até 31 de dezembro de 2013, poderão ser:",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "627",
+            "ano": 2013
+          },
+          "trecho": "… por cento das multas isoladas, de cem por cento dos juros de mora e de cem por cento sobre o valor do encargo legal; ou",
+          "literal": "(Redação dada pela Medida Provisória nº 627, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "… multas isoladas, de 100% (cem por cento) dos juros de mora e de 100% (cem por cento) sobre o valor do encargo legal; ou",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "627",
+            "ano": 2013
+          },
+          "trecho": "…parcelados na forma deste artigo e renunciar a qualquer alegação de direito sobre as quais se fundam as referidas ações.",
+          "literal": "(Redação dada pela Medida Provisória nº 627, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…de desistência, seja passível de distinção dos demais débitos discutidos na ação judicial ou no processo administrativo.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…antia, mantidas aquelas decorrentes de débitos transferidos de outras modalidades de parcelamento ou de execução fiscal.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 16º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "627",
+            "ano": 2013
+          },
+          "trecho": "…parcela equivalente à redução do valor das multas, dos juros e do encargo legal em decorrência do disposto neste artigo.",
+          "literal": "(Incluído pela Medida Provisória nº 627, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 16º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…parcela equivalente à redução do valor das multas, dos juros e do encargo legal em decorrência do disposto neste artigo.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        }
+      ]
+    },
+    "40": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ria nº 2.158-35, de 24 de agosto de 2001, relativos a fatos geradores ocorridos até 31 de dezembro de 2013, poderão ser:",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "627",
+            "ano": 2013
+          },
+          "trecho": "…r cento das multas isoladas, de cinquenta por cento dos juros de mora e de cem por cento sobre o valor do encargo legal.",
+          "literal": "(Redação dada pela Medida Provisória nº 627, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…ultas isoladas, de 50% (cinquenta por cento) dos juros de mora e de 100% (cem por cento) sobre o valor do encargo legal.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "627",
+            "ano": 2013
+          },
+          "trecho": "…e dezembro de 2011, domiciliadas no Brasil, desde que se mantenham nesta condição até a data da opção pelo parcelamento.",
+          "literal": "(Redação dada pela Medida Provisória nº 627, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…e dezembro de 2011, domiciliadas no Brasil, desde que se mantenham nesta condição até a data da opção pelo parcelamento.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.995",
+            "ano": 2014
+          },
+          "trecho": "…e dezembro de 2011, domiciliadas no Brasil, desde que se mantenham nesta condição até a data da opção pelo parcelamento.",
+          "literal": "(Redação dada pela Lei nº 12.995, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "627",
+            "ano": 2013
+          },
+          "trecho": "… sobre o Lucro Líquido próprios ou incorridos pelas sociedades controladoras e controladas até 31 de dezembro de 2012; e",
+          "literal": "(Redação dada pela Medida Provisória nº 627, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…adoras e controladas e pelas sociedades que estejam sob controle comum, direto e indireto, até 31 de dezembro de 2012; e",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "627",
+            "ano": 2013
+          },
+          "trecho": "…uição social sobre o lucro líquido, o conceito previsto no § 2º do art. 243 da Lei nº 6.404, de 15 de dezembro de 1976 .",
+          "literal": "(Incluído pela Medida Provisória nº 627, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…buição Social sobre o Lucro Líquido, o conceito previsto no § 2º do art. 243 da Lei nº 6.404, de 15 de dezembro de 1976.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…antia, mantidas aquelas decorrentes de débitos transferidos de outras modalidades de parcelamento ou de execução fiscal.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "627",
+            "ano": 2013
+          },
+          "trecho": "…14 da Lei nº 10.522, de 19 de julho de 2002 , e no parágrafo único do art. 4 º da Lei nº 11.941, de 27 de maio de 2009 .",
+          "literal": "(Redação dada pela Medida Provisória nº 627, de 2013)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.973",
+            "ano": 2014
+          },
+          "trecho": "…t. 14 da Lei nº 10.522, de 19 de julho de 2002, e no parágrafo único do art. 4º da Lei nº 11.941, de 27 de maio de 2009.",
+          "literal": "(Redação dada pela Lei nº 12.973, de 2014)"
+        }
+      ]
+    }
+  }
+}

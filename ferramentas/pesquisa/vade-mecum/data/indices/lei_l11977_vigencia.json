@@ -1,0 +1,3276 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L11977",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l11977.json",
+      "colecao": "artigos",
+      "sha256": "10c22a61c567c796cf356ce6e6861d13610c96d69396d4907591169d388fab4e",
+      "total_registros": 80,
+      "gerado_em": "2026-08-21T22:36:32+00:00"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 53,
+      "anotacoes": 277,
+      "anotacoes_sem_diploma_nomeado": 19
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.081",
+            "ano": 2024
+          },
+          "trecho": "… com renda mensal de até R$ 4.650,00 (quatro mil, seiscentos e cinquenta reais), e compreende os seguintes subprogramas:",
+          "literal": "(Redação dada pela Lei nº 15.081, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.173",
+            "ano": 2015
+          },
+          "trecho": "I - o Programa Nacional de Habitação Urbana (PNHU);",
+          "literal": "(Redação dada pela Lei nº 13.173, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.173",
+            "ano": 2015
+          },
+          "trecho": "II - o Programa Nacional de Habitação Rural (PNHR); e",
+          "literal": "(Redação dada pela Lei nº 13.173, de 2015)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.173",
+            "ano": 2015
+          },
+          "trecho": "III - (VETADO).",
+          "literal": "(Redação dada pela Lei nº 13.173, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.173",
+            "ano": 2015
+          },
+          "trecho": "§ 1º Para os fins desta Lei, considera-se:",
+          "literal": "(Redação dada pela Lei nº 13.173, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…e abrange todas as espécies reconhecidas pelo ordenamento jurídico brasileiro, incluindo-se nestas a família unipessoal;",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…pedido pelo órgão público municipal competente ou, nos casos de prazo superior, que não tenha sido habitada ou alienada;",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…es financeiros do Sistema Financeiro da Habitação - SFH para viabilizar as operações previstas no inciso III do art. 2o;",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…ação e ocupação para fins habitacionais, admitida ainda a execução de obras e serviços necessários à modificação de uso;",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…or familiar: aquele definido no caput, nos seus incisos e no § 2o do art. 3o da Lei no 11.326, de 24 de julho de 2006; e",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…priedade rural, presta serviços de natureza não eventual a empregador rural, sob a dependência deste e mediante salário.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.173",
+            "ano": 2015
+          },
+          "trecho": "§ 2o (VETADO).",
+          "literal": "(Redação dada pela Lei nº 13.173, de 2015)"
+        }
+      ]
+    },
+    "2": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "Art. 2o Para a implementação do PMCMV, a União, observada a disponibilidade orçamentária e financeira:",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "I - concederá subvenção econômica ao beneficiário pessoa física no ato da contratação de financiamento habitacional;",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.693",
+            "ano": 2012
+          },
+          "trecho": "…) de que tratam, respectivamente, a Lei no 10.188, de 12 de fevereiro de 2001, e a Lei no 8.677, de 13 de julho de 1993;",
+          "literal": "(Redação dada pela Lei nº 12.693, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…onômica ao beneficiário pessoa física de operações em Municípios com população de até 50.000 (cinquenta mil) habitantes;",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "IV - participará do Fundo Garantidor da Habitação Popular - FGHab; e",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…, especificamente nas operações de financiamento de linha especial para infraestrutura em projetos de habitação popular.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.081",
+            "ano": 2024
+          },
+          "trecho": "VI – apoiará técnica e financeiramente as ações de regularização fundiária de assentamentos urbanos.",
+          "literal": "(Incluído pela Lei nº 15.081, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…te mil) e 50.000 (cinquenta mil) habitantes por outras formas admissíveis no âmbito do PMCMV, nos termos do regulamento.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…ão total e taxa de crescimento populacional, entre os anos 2000 e 2010, superior à taxa verificada no respectivo Estado.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "§ 3o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.274",
+            "ano": 2016
+          },
+          "trecho": "§ 3o (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.274, de 2016)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "Art. 3o Para a indicação dos beneficiários do PMCMV, deverão ser observados os seguintes requisitos:",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…ção de que o interessado integra família com renda mensal de até R$ 4.650,00 (quatro mil, seiscentos e cinquenta reais);",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "II - faixas de renda definidas pelo Poder Executivo federal para cada uma das modalidades de operações;",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.274",
+            "ano": 2016
+          },
+          "trecho": "…am a moradia em razão de enchente, alagamento, transbordamento ou em decorrência de qualquer desastre natural do gênero;",
+          "literal": "(Redação dada pela Lei nº 13.274, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "IV - prioridade de atendimento às famílias com mulheres responsáveis pela unidade familiar; e",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "V - prioridade de atendimento às famílias de que façam parte pessoas com deficiência.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "§ 3o O Poder Executivo federal definirá:",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "I - os parâmetros de priorização e enquadramento dos beneficiários do PMCMV; e",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.081",
+            "ano": 2024
+          },
+          "trecho": "…ficiários do programa atendidos mediante ações de regularização fundiária de assentamentos localizados em áreas urbanas.",
+          "literal": "(Incluído pela Lei nº 15.081, de 2024)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…es, e em conformidade com as respectivas políticas habitacionais e as regras estabelecidas pelo Poder Executivo federal.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "…trabalho social nos empreendimentos implantados, na forma estabelecida em termo de adesão a ser definido em regulamento.",
+          "literal": "(Redação dada pela Lei nº 14.118, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…alores adotados como parâmetros de renda familiar estabelecidos nesta Lei deverão ser observados os seguintes critérios:",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "….650,00 (quatro mil, seiscentos e cinquenta reais), o valor atualizado não poderá ultrapassar 10 (dez) salários mínimos;",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…R$ 2.790,00 (dois mil, setecentos e noventa reais), o valor atualizado não poderá ultrapassar 6 (seis) salários mínimos;",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "… 1.395,00 (mil, trezentos e noventa e cinco reais), o valor atualizado não poderá ultrapassar 3 (três) salários mínimos.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.274",
+            "ano": 2016
+          },
+          "trecho": "… regulamentos do Poder Executivo, relativos à situação econômica ou financeira dos beneficiários do PMCMV deverão ainda:",
+          "literal": "(Incluído pela Lei nº 13.274, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.274",
+            "ano": 2016
+          },
+          "trecho": "…ncluindo seu número de inscrição no Cadastro de Pessoa Física - CPF, mantido na Secretaria da Receita Federal do Brasil;",
+          "literal": "(Incluído pela Lei nº 13.274, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.274",
+            "ano": 2016
+          },
+          "trecho": "…eio do cruzamento de dados fiscais e bancários do beneficiário, assegurado o sigilo constitucional dos dados informados.",
+          "literal": "(Incluído pela Lei nº 13.274, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.274",
+            "ano": 2016
+          },
+          "trecho": "§ 8o O agente financeiro responsável pelo financiamento responderá pelo cumprimento do disposto no § 7o deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.274, de 2016)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "§ 9º",
+          "diploma": null,
+          "trecho": "§ 9o",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.274",
+            "ano": 2016
+          },
+          "trecho": "§ 9o (VETADO).",
+          "literal": "(Incluído pela Lei nº 13.274, de 2016)"
+        }
+      ]
+    },
+    "4": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.043",
+            "ano": 2014
+          },
+          "trecho": "…produção ou aquisição de novas unidades habitacionais ou a requalificação de imóveis urbanos, desde 14 de abril de 2009.",
+          "literal": "(Redação dada pela Lei nº 13.043, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "… 1o Para a implementação do PNHU, a União disponibilizará recursos na forma prevista nos incisos I, II e III do art. 2o.",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "I - (revogado);",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "veto",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II –",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "III - (revogado);",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "§ 2º",
+          "literal": "(Revogado pela Lei nº 14.620, de 2023)"
+        }
+      ]
+    },
+    "5": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "Art. 5o",
+          "literal": "(Revogado pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "5-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "Art. 5o-A. Para a implantação de empreendimentos no âmbito do PNHU, deverão ser observados:",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…tenda aos requisitos estabelecidos pelo Poder Executivo federal, observado o respectivo plano diretor, quando existente;",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "II - adequação ambiental do projeto;",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…sanitário e de drenagem de águas pluviais e permita ligações domiciliares de abastecimento de água e energia elétrica; e",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…al de instalação ou de ampliação dos equipamentos e serviços relacionados a educação, saúde, lazer e transporte público.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…de que trata o inciso I do art. 2o será concedida no ato da contratação da operação de financiamento, com o objetivo de:",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.249",
+            "ano": 2010
+          },
+          "trecho": "I - facilitar a aquisição, produção e requalificação do imóvel residencial; ou",
+          "literal": "(Redação dada pela Lei nº 12.249, de 2010)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…a forma do art. 9º da Lei nº 8.036, de 11 de maio de 1990, com recursos do Fundo de Garantia do Tempo de Serviço - FGTS.",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.693",
+            "ano": 2012
+          },
+          "trecho": "§ 3o",
+          "literal": "(Revogado pela Lei nº 12.693, de 2012)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.693",
+            "ano": 2012
+          },
+          "trecho": "§ 4o",
+          "literal": "(Revogado pela Lei nº 12.693, de 2012)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.693",
+            "ano": 2012
+          },
+          "trecho": "§ 5o",
+          "literal": "(Revogado pela Lei nº 12.693, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.081",
+            "ano": 2024
+          },
+          "trecho": "…sobre a contratação de financiamento nas ações de regularização fundiária de assentamentos localizados em áreas urbanas.",
+          "literal": "(Incluído pela Lei nº 15.081, de 2024)"
+        }
+      ]
+    },
+    "6-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.693",
+            "ano": 2012
+          },
+          "trecho": "…são limitadas a famílias com renda mensal de até R$ 1.395,00 (mil trezentos e noventa e cinco reais), e condicionadas a:",
+          "literal": "(Redação dada pela Lei nº 12.693, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "I - exigência de participação financeira dos beneficiários, sob a forma de prestações mensais;",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "… da operação, em casos de morte ou invalidez permanente do beneficiário, sem cobrança de contribuição do beneficiário; e",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "III - cobertura de danos físicos ao imóvel, sem cobrança de contribuição do beneficiário.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…qualificação de imóveis urbanos, será admitida a produção de unidades destinadas à atividade comercial a eles vinculada.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "§ 2º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.693",
+            "ano": 2012
+          },
+          "trecho": "…ere o inciso III do caput nas operações com recursos advindos da integralização de cotas no FAR, quando essas operações:",
+          "literal": "(Redação dada pela Lei nº 12.693, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.693",
+            "ano": 2012
+          },
+          "trecho": "…de Aceleração do Crescimento (PAC) e demandarem reassentamento, remanejamento ou substituição de unidades habitacionais;",
+          "literal": "(Redação dada pela Lei nº 12.693, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.173",
+            "ano": 2015
+          },
+          "trecho": "…ipóteses definidas no regulamento, e demandarem reassentamento, remanejamento ou substituição de unidades habitacionais;",
+          "literal": "(Redação dada pela Lei nº 13.173, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.173",
+            "ano": 2015
+          },
+          "trecho": "…ência ou estado de calamidade pública reconhecidos pela União, a famílias desabrigadas que perderam seu único imóvel; ou",
+          "literal": "(Redação dada pela Lei nº 13.173, de 2015)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.161",
+            "ano": 2015
+          },
+          "trecho": "…decorrentes de obras vinculadas à realização dos Jogos Rio 2016, de que trata a Lei nº 12.035, de 1º de outubro de 2009.",
+          "literal": "(Redação dada pela Lei nº 13.161, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.693",
+            "ano": 2012
+          },
+          "trecho": "…o § 3o, será admitido atendimento a famílias com renda mensal de até R$ 2.790,00 (dois mil, setecentos e noventa reais).",
+          "literal": "(Incluído pela Lei nº 12.693, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.693",
+            "ano": 2012
+          },
+          "trecho": "§ 5o Nas operações com recursos previstos no caput:",
+          "literal": "(Incluído pela Lei nº 12.693, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…nciamento, ao longo de 120 (cento e vinte) meses, ressalvada a hipótese de quitação antecipada de que trata o inciso II;",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "II - poderá haver quitação antecipada do financiamento, conforme regulamentação do Ministério das Cidades;",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.693",
+            "ano": 2012
+          },
+          "trecho": "III – não se admite transferência inter vivos de imóveis sem a respectiva quitação.",
+          "literal": "(Incluído pela Lei nº 12.693, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.693",
+            "ano": 2012
+          },
+          "trecho": "…ão de imóveis adquiridos sob as regras do PMCMV, quando em desacordo com o inciso III do § 5o, serão consideradas nulas.",
+          "literal": "(Incluído pela Lei nº 12.693, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…onômica será concedida no ato da contratação da unidade habitacional, conforme regulamentação do Ministério das Cidades.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.693",
+            "ano": 2012
+          },
+          "trecho": "…e construção e aquelas previstas no atendimento a famílias nas operações estabelecidas no § 3o, na forma do regulamento.",
+          "literal": "(Incluído pela Lei nº 12.693, de 2012)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "… a realização de leilão, observada a regulamentação do Ministério das Cidades para a destinação da unidade habitacional.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.173",
+            "ano": 2015
+          },
+          "trecho": "… alienação do imóvel a beneficiário final cuja renda familiar mensal exceda o limite estabelecido no caput deste artigo.",
+          "literal": "(Redação dada pela Lei nº 13.173, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 11º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.173",
+            "ano": 2015
+          },
+          "trecho": "…res advindos da integralização de cotas do FAR e os valores restituídos ao FAR pelo poder público municipal ou estadual.",
+          "literal": "(Incluído pela Lei nº 13.173, de 2015)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 12º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.274",
+            "ano": 2016
+          },
+          "trecho": "…habitacional ao beneficiário com desconto concedido pelo FGTS para aquisição de imóveis construídos com recursos do FAR.",
+          "literal": "(Incluído pela Lei nº 13.274, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 13º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.274",
+            "ano": 2016
+          },
+          "trecho": "§ 13. No caso de execução da garantia de que trata o § 12, ficará o FAR sub-rogado nos direitos do credor.",
+          "literal": "(Incluído pela Lei nº 13.274, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 14º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.274",
+            "ano": 2016
+          },
+          "trecho": "…MCMV deverão repassar ao FAR o valor equivalente aos descontos do FGTS correspondente à referida expectativa trimestral.",
+          "literal": "(Incluído pela Lei nº 13.274, de 2016)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 15º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.274",
+            "ano": 2016
+          },
+          "trecho": "…final de cada trimestre, corrigido pela taxa do Sistema Especial de Liquidação e de Custódia - SELIC apurada no período.",
+          "literal": "(Incluído pela Lei nº 13.274, de 2016)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 16º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…retas e indiretas, às pessoas físicas e às entidades com ou sem fins lucrativos, conforme ato do Ministério das Cidades.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 17º",
+          "diploma": null,
+          "trecho": "§ 17.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 17º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "§ 17. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 18º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…do caput, inclusive por meio da ampliação do rol de dispensas de que trata o § 3º e da eventual renegociação de dívidas.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 19º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…ta de benefícios habitacionais, desde que o atendimento contemple exclusivamente famílias da Faixa Urbano 1, de forma a:",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…rimento da função social da propriedade, visando ao aumento da densidade demográfica e à qualificação do espaço público;",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…ilitação do patrimônio arquitetônico, a partir de regras que facilitem a requalificação das edificações para novos usos;",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…padrões de segurança, salubridade e acessibilidade, ampliando a oferta de áreas disponíveis ao adensamento populacional;",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…e licenciamento de intervenções de requalificação, quando associadas a pedido de reforma com aumento de área construída;",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…a sustentabilidade ambiental em região urbana, com a maximização da utilização de materiais e infraestrutura existentes.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        }
+      ]
+    },
+    "6-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…em cada oferta pública, na forma do regulamento, considerado o limite de 100 (cem) unidades habitacionais por Município.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "§ 1o O Poder Executivo federal disporá necessariamente sobre os seguintes aspectos:",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "I - valores e limites das subvenções individualizadas a serem destinadas a cada beneficiário;",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "II - remuneração das instituições e agentes financeiros pelas operações realizadas;",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "III - quantidade, condições e modalidades de ofertas públicas de cotas de subvenções; e",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "IV - tipologia e padrão das moradias e da infraestrutura urbana, com observância da legislação municipal pertinente.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…orizados a operar o programa pelo Banco Central do Brasil e pelo Ministério das Cidades, no âmbito de suas competências.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…ibutários, benefícios fiscais, bens ou serviços economicamente mensuráveis, assistência técnica ou recursos financeiros.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.693",
+            "ano": 2012
+          },
+          "trecho": "…o FGTS, excetuadas as subvenções ou descontos destinados à aquisição de material de construção, na forma do regulamento.",
+          "literal": "(Incluído pela Lei nº 12.693, de 2012)"
+        }
+      ]
+    },
+    "6-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.164",
+            "ano": 2025
+          },
+          "trecho": "…e Desenvolvimento Social (FDS), para reparação dos danos decorrentes do desastre originador da emergência ou calamidade.",
+          "literal": "(incluído pela Lei nº 15.164, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.164",
+            "ano": 2025
+          },
+          "trecho": "§ 1º A cobertura de que trata o caput deste artigo:",
+          "literal": "(incluído pela Lei nº 15.164, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.164",
+            "ano": 2025
+          },
+          "trecho": "…á validade por 120 (cento e vinte) meses contados da data da assinatura do contrato, para contratos vigentes e quitados;",
+          "literal": "(incluído pela Lei nº 15.164, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.164",
+            "ano": 2025
+          },
+          "trecho": "…licada apenas no caso de acionamento da cobertura pelo beneficiário original da operação e não se estenderá a terceiros;",
+          "literal": "(incluído pela Lei nº 15.164, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.164",
+            "ano": 2025
+          },
+          "trecho": "…o reconhecimento, em procedimento administrativo, de utilização do imóvel para finalidade diversa da definida nesta Lei;",
+          "literal": "(incluído pela Lei nº 15.164, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.164",
+            "ano": 2025
+          },
+          "trecho": "IV – será estendida aos contratos a que se referem os incisos I, II, III e IV do § 3º do art. 6º-A desta Lei.",
+          "literal": "(incluído pela Lei nº 15.164, de 2025)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "… base na remuneração dos recursos que serviram de lastro à sua concessão, sem prejuízo das penalidades previstas em lei.",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…ições de pagamento e prazos para a conclusão das unidades habitacionais contratadas, obedecidos os seguintes parâmetros:",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "… o prazo para conclusão das unidades habitacionais será de até doze meses, contados da entrada em vigor deste parágrafo;",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…ratadas, dentro dos prazos fixados pelo Ministério das Cidades, observado o limite previsto no inciso I deste parágrafo;",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…ução das unidades habitacionais contratadas, dentro do valor originalmente previsto, sem custos adicionais para a União;",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…as condições e prazos fixados serão formalizadas em instrumento próprio a ser regulamentado pelo Ministério das Cidades;",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…ilitados dependerá da comprovação da correspondente parcela da obra executada, vedadas quaisquer formas de adiantamento;",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VI",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "… base na remuneração dos recursos que serviram de lastro à sua concessão, sem prejuízo das penalidades previstas em lei;",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "… das Cidades, fica autorizada a inscrição em dívida ativa da União dos valores previstos no inciso VI deste parágrafo; e",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso VIII",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "VIII - a definição dos procedimentos a serem adotados nos casos omissos caberá ao Ministério das Cidades.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        }
+      ]
+    },
+    "7-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "… habitar com seus animais domésticos nessas residências, respeitando as normas vigentes e garantindo o bem-estar animal.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…ontrato resolvido e a alienar o imóvel a beneficiário diverso, a ser indicado conforme a Política Nacional de Habitação.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        }
+      ]
+    },
+    "7-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…e de contrato de compra e venda com cláusula de alienação fiduciária em garantia firmado, no âmbito do PMCMV, com o FAR:",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…s advindos da integralização de cotas no FAR antes da quitação de que trata o inciso III do § 5o do art. 6o-A desta Lei;",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…rsa da moradia dos beneficiários da subvenção de que trata o inciso I do art. 2o desta Lei e das respectivas famílias; e",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "III -",
+          "literal": "(Revogado pela Lei nº 14.620, de 2023)"
+        }
+      ]
+    },
+    "7-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…a integralidade da dívida, compreendendo a devolução da subvenção devidamente corrigida nos termos do art. 7o desta Lei.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "… imóvel, da consolidação da propriedade fiduciária em nome do FAR, respeitada a Lei no 9.514, de 20 de novembro de 1997.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…posto no § 9o do art. 6o-A desta Lei, e o imóvel deve ser-lhe imediatamente restituído, sob pena de esbulho possessório.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "§ 3o O FAR, em regulamento próprio, disporá sobre o processo administrativo de que trata o caput deste artigo.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "… do domicílio de quem deva recebê-la ou do serventuário por eles credenciado, ou pelo correio, com aviso de recebimento.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…ubsidiariamente o disposto nos arts. 252, 253 e 254 da Lei no 13.105, de 16 de março de 2015 (Código de Processo Civil).",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…ão de que trata este artigo poderá ser feita ao funcionário da portaria responsável pelo recebimento de correspondência.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.465",
+            "ano": 2017
+          },
+          "trecho": "…ão houver imprensa diária, contado o prazo para o pagamento antecipado da dívida da data da última publicação do edital.",
+          "literal": "(Incluído pela Lei nº 13.465, de 2017)"
+        }
+      ]
+    },
+    "7-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "… esbulho, poderão ser empregados atos de defesa ou de desforço diretos, inclusive por meio do auxílio de força policial.",
+          "literal": "(Incluído pela Lei nº 14.118, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "…rumento firmado ou em outro que venha a ser estabelecido entre a União e os Estados, o Distrito Federal e os Municípios.",
+          "literal": "(Incluído pela Lei nº 14.118, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "… posse e deverão ocorrer no prazo máximo de 5 (cinco) dias, contado da data de ciência do ato de turbação ou de esbulho.",
+          "literal": "(Incluído pela Lei nº 14.118, de 2021)"
+        }
+      ]
+    },
+    "7-E": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "… nos arts. 7º-A, 7º-B e 7º-C desta Lei aplica-se também aos empreendimentos executados com recursos provenientes do FDS.",
+          "literal": "(Incluído pela Lei nº 14.118, de 2021)"
+        }
+      ]
+    },
+    "8-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…rágrafo único do art. 7º, deverá notificar, no prazo de 60 (sessenta) dias, as instituições ou agentes financeiros para:",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "…se na remuneração dos recursos que serviram de lastro à sua concessão, sem prejuízo das penalidades previstas em lei; ou",
+          "literal": "(Incluído pela Lei nº 14.118, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "II - manifestar interesse na conclusão e entrega das unidades habitacionais.",
+          "literal": "(Incluído pela Lei nº 14.118, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "…rocedimentos necessários à inscrição das instituições ou dos agentes financeiros inadimplentes na Dívida Ativa da União.",
+          "literal": "(Redação dada pela Medida Provisória nº 1.382, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "§ 2º No caso previsto no inciso II do caput deste artigo, as instituições ou agentes financeiros poderão apresentar:",
+          "literal": "(Incluído pela Lei nº 14.118, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "…são e entrega das unidades habitacionais, dentro do valor originalmente previsto, sem custos adicionais para a União; ou",
+          "literal": "(Incluído pela Lei nº 14.118, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "…das unidades habitacionais com recursos provenientes do Estado ou do Município, vedada a liberação de recursos da União.",
+          "literal": "(Incluído pela Lei nº 14.118, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "…eclarar ao Ministério das Cidades as unidades habitacionais que tenham viabilidade de execução para conclusão e entrega.",
+          "literal": "(Redação dada pela Medida Provisória nº 1.382, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "… até 60 (sessenta) meses, contado a partir de 26 de agosto de 2020, para conclusão e entrega das unidades habitacionais.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "…ica condicionada à comprovação da conclusão e entrega da unidade habitacional, vedadas quaisquer formas de adiantamento.",
+          "literal": "(Incluído pela Lei nº 14.118, de 2021)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "…agentes financeiros constituído em decorrência do disposto nos incisos VI e VII do parágrafo único do art. 7º desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.118, de 2021)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "…ção a que se refere o inciso II do § 2º pelas instituições ou pelos agentes financeiros implica a extinção da obrigação.",
+          "literal": "(Redação dada pela Medida Provisória nº 1.382, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.118",
+            "ano": 2021
+          },
+          "trecho": "…ido no § 4º deste artigo implicará a aplicação do disposto nos incisos VI e VII do parágrafo único do art. 7º desta Lei.",
+          "literal": "(Incluído pela Lei nº 14.118, de 2021)"
+        }
+      ]
+    },
+    "9": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…ssão da subvenção do PNHU de que trata o inciso I do art. 2o desta Lei será efetuada pela Caixa Econômica Federal - CEF.",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "11": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.043",
+            "ano": 2014
+          },
+          "trecho": "…u de financiamento habitacional com recursos do Fundo de Garantia do Tempo de Serviço - FGTS, desde 14 de abril de 2009.",
+          "literal": "(Redação dada pela Lei nº 13.043, de 2014)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "Parágrafo único. A assistência técnica pode fazer parte da composição de custos do PNHR.",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "12": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "Art.12.",
+          "literal": "(Revogado pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…ue trata o art. 11, poderá ser concedido subvenção econômica, no ato da contratação do financiamento, com o objetivo de:",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "I - facilitar a produção ou reforma do imóvel residencial;",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "… operações de financiamento realizadas na forma do art. 9o da Lei no 8.036, de 11 de maio de 1990, com recursos do FGTS.",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…s faixas de renda definidas pelo Poder Executivo federal e as demais regras estabelecidas na regulamentação do Programa.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "… base na remuneração dos recursos que serviram de lastro à sua concessão, sem prejuízo das penalidades previstas em lei.",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 18. (Revogado pela Lei nº 12.424, de 2011",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "§ 1o",
+          "literal": "(Revogado pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "§ 2o",
+          "literal": "(Revogado pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "Art. 19.",
+          "literal": "(Revogado pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "§ 1o",
+          "literal": "(Revogado pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "§ 2o",
+          "literal": "(Revogado pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "§ 3o",
+          "literal": "(Revogado pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "§ 4o",
+          "literal": "(Revogado pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "§ 5o",
+          "literal": "(Revogado pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "…conjunto do Ministério da Fazenda e do Ministério das Cidades, no âmbito dos programas habitacionais do Governo federal.",
+          "literal": "(Redação dada pela Medida Provisória nº 1.382, de 2026)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "I -",
+          "literal": "(Revogado pela Medida Provisória nº 1.382, de 2026)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "II -",
+          "literal": "(Revogado pela Medida Provisória nº 1.382, de 2026)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "III -",
+          "literal": "(Revogado pela Medida Provisória nº 1.382, de 2026)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "IV -",
+          "literal": "(Revogado pela Medida Provisória nº 1.382, de 2026)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "§ 1o",
+          "literal": "(Revogado pela Medida Provisória nº 1.382, de 2026)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "§ 1º-A.",
+          "literal": "(Revogado pela Medida Provisória nº 1.382, de 2026)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "§ 1º-B.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "§ 1º-B. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.462",
+            "ano": 2022
+          },
+          "trecho": "…ão de cotas pela União e pelos agentes financeiros que optarem por aderir às coberturas previstas no caput deste artigo;",
+          "literal": "(Redação dada pela Lei nº 14.462, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.462",
+            "ano": 2022
+          },
+          "trecho": "IV - as comissões cobradas com fundamento no caput deste artigo; e",
+          "literal": "(Redação dada pela Lei nº 14.462, de 2022)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "15.164",
+            "ano": 2025
+          },
+          "trecho": "…a pelo estatuto, podendo ser dispensados dessa obrigação nos casos de operações de crédito para melhorias habitacionais.",
+          "literal": "(Redação dada pela Lei nº 15.164, de 2025)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "…de que trata este artigo, em moeda corrente, no montante de R$ 750.000.000,00 (setecentos e cinquenta milhões de reais).",
+          "literal": "(Incluído pela Medida Provisória nº 1.382, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "…, arresto, sequestro, busca e apreensão ou qualquer ato de constrição judicial decorrente de outras obrigações do Fundo.",
+          "literal": "(Incluído pela Medida Provisória nº 1.382, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "§ 8º A constituição do patrimônio de afetação será feita por registro em cartório de registro de títulos e documentos.",
+          "literal": "(Incluído pela Medida Provisória nº 1.382, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 9º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "…ão estabelecidos em ato conjunto do Ministério da Fazenda e do Ministério das Cidades e detalhados no estatuto do FGHab.",
+          "literal": "(Incluído pela Medida Provisória nº 1.382, de 2026)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 10º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "…s em operações contratadas até 31 de maio de 2022 ficam mantidas, observado o regramento vigente à época da contratação.",
+          "literal": "(Incluído pela Medida Provisória nº 1.382, de 2026)"
+        }
+      ]
+    },
+    "21": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "Art. 21.",
+          "literal": "(Revogado pela Medida Provisória nº 1.382, de 2026)"
+        }
+      ]
+    },
+    "24": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "§ 2º A instituição financeira de que trata o caput, na forma estabelecida no estatuto do FGHab:",
+          "literal": "(Redação dada pela Medida Provisória nº 1.382, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "…dos direitos do FGHab, de modo a zelar pela manutenção de sua rentabilidade e liquidez, após autorização dos cotistas; e",
+          "literal": "(Redação dada pela Medida Provisória nº 1.382, de 2026)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "…rio, somado a outras eventuais cobranças de caráter securitário, não ultrapasse 10% (dez por cento) da prestação mensal.",
+          "literal": "(Redação dada pela Medida Provisória nº 1.382, de 2026)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "Art. 27.",
+          "literal": "(Revogado pela Medida Provisória nº 1.382, de 2026)"
+        }
+      ]
+    },
+    "27-A": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "Art. 27-A.",
+          "literal": "(Revogado pela Medida Provisória nº 1.382, de 2026)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "Art. 28.",
+          "literal": "(Revogado pela Medida Provisória nº 1.382, de 2026)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.462",
+            "ano": 2022
+          },
+          "trecho": "Art. 29.",
+          "literal": "(Revogado pela Lei nº 14.462, de 2022)"
+        }
+      ]
+    },
+    "30": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "Art. 30.",
+          "literal": "(Revogado pela Medida Provisória nº 1.382, de 2026)"
+        }
+      ]
+    },
+    "30-A": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "1.382",
+            "ano": 2026
+          },
+          "trecho": "Art. 30-A.",
+          "literal": "(Revogado pela Medida Provisória nº 1.382, de 2026)"
+        }
+      ]
+    },
+    "35-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.693",
+            "ano": 2012
+          },
+          "trecho": "… ou a ela transferido, independentemente do regime de bens aplicável, excetuados os casos que envolvam recursos do FGTS.",
+          "literal": "(Incluído pela Lei nº 12.693, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.693",
+            "ano": 2012
+          },
+          "trecho": "…usivamente ao marido ou companheiro, o título da propriedade do imóvel será registrado em seu nome ou a ele transferido.",
+          "literal": "(Incluído pela Lei nº 12.693, de 2012)"
+        }
+      ]
+    },
+    "37": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…o Sistema Eletrônico dos Registros Públicos (Serp), nos termos da Medida Provisória nº 1.085, de 27 de dezembro de 2021.",
+          "literal": "(Redação dada pela Lei nº 14.382, de 2022)"
+        }
+      ]
+    },
+    "38": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…assinatura eletrônica avançada ou qualificada, conforme definido no art. 4º da Lei nº 14.063, de 23 de setembro de 2020.",
+          "literal": "(Redação dada pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…blicos disponibilizarão serviços de recepção de títulos e de fornecimento de informações e certidões em meio eletrônico.",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.382",
+            "ano": 2022
+          },
+          "trecho": "…nselho Nacional de Justiça poderá estabelecer hipóteses de admissão de assinatura avançada em atos que envolvam imóveis.",
+          "literal": "(Incluído pela Lei nº 14.382, de 2022)"
+        }
+      ]
+    },
+    "41": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…deral, por meio eletrônico e sem ônus, o acesso às informações constantes de seus bancos de dados, conforme regulamento.",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…esso às informações constantes de seus bancos de dados, conforme regulamento. (Redação dada pela Lei nº 13.097, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.097",
+            "ano": 2015
+          },
+          "trecho": "…jará a aplicação das penas previstas nos incisos II a IV do caput do art. 32 da Lei no 8.935, de 18 de novembro de 1994.",
+          "literal": "(Redação dada pela Lei nº 13.097, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "…cisos II a IV do caput do art. 32 da Lei no 8.935, de 18 de novembro de 1994. (Redação dada pela Lei nº 13.097, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "42": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "… da carta de “habite-se” e demais atos referentes à construção de empreendimentos no âmbito do PMCMV serão reduzidos em:",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "I - 75% (setenta e cinco por cento) para os empreendimentos do FAR e do FDS;",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "II - 50% (cinquenta por cento) para os atos relacionados aos demais empreendimentos do PMCMV.",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "III - (revogado).",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…será também aplicada aos emolumentos devidos pelo registro da transferência de propriedade do imóvel para o FAR e o FDS.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…deve declarar que o seu empreendimento está enquadrado no PMCMV para obter a redução dos emolumentos previstos no caput.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "… a redução das custas na forma do § 2o implica a complementação do pagamento dos emolumentos relativos a essas unidades.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…ão prevista no inciso II do caput aplica-se às operações com recursos do FGTS firmadas a partir de 26 de agosto de 2020.",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        }
+      ]
+    },
+    "43": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…s reais e aos demais atos relativos ao imóvel residencial adquirido ou financiado no âmbito do PMCMV serão reduzidos em:",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "I - 75% (setenta e cinco por cento) para os imóveis residenciais adquiridos do FAR e do FDS;",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "II - 50% (cinquenta por cento) para os imóveis residenciais dos demais empreendimentos do PMCMV.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "Parágrafo único. (Revogado).",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "I - (revogado);",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II -",
+          "literal": "(revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "II - (revogado).",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "43-A": {
+      "situacao": "vetado",
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 43-A.",
+          "literal": "(VETADO)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "Art. 43-A. (VETADO).",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "43-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…esidenciais de empreendimentos fora do PMCMV contratados com recursos do FGTS firmadas a partir de 26 de agosto de 2020.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        }
+      ]
+    },
+    "44-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…tisfeitas para sua efetivação não poderá ultrapassar a 15 (quinze) dias, contados da data em que ingressar na serventia.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…rvidor responsável, para que o interessado possa satisfazê-las, ou, não se conformando, requerer a suscitação de dúvida.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…tulo dentro da vigência da prenotação, e estando em ordem, o registro ou averbação será feito no prazo de 10 (dez) dias.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…de 1994, com valor mínimo de 20% (vinte por cento) dos respectivos emolumentos, sem prejuízo de outras sanções cabíveis.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "73": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…uso comum, com obrigatoriedade de construção de rampas de acesso nas calçadas e nos espaços públicos no âmbito do PMCMV;",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "…ade das construções e dos espaços adequados e/ou destinados para animais domésticos (pets) em cada unidade habitacional;",
+          "literal": "(Redação dada pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso V",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.620",
+            "ano": 2023
+          },
+          "trecho": "V - condições de habitabilidade e sustentabilidade das construções.",
+          "literal": "(Incluído pela Lei nº 14.620, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…no âmbito do PMCMV em cada Município, no mínimo, 3% (três por cento) sejam adaptadas ao uso por pessoas com deficiência.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "73-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.693",
+            "ano": 2012
+          },
+          "trecho": "…uge, afastada a aplicação do disposto nos arts. 1.647 a 1.649 da Lei no 10.406, de 10 de janeiro de 2002 (Código Civil).",
+          "literal": "(Redação dada pela Lei nº 12.693, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "… do caput será registrado no registro de imóveis competente, sem a exigência de documentos relativos a eventual cônjuge.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "§ 2o Prejuízos sofridos pelo cônjuge por decorrência do previsto neste artigo serão resolvidos em perdas e danos.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "79": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…a que preveja, no mínimo, cobertura aos riscos de morte e invalidez permanente do mutuário e de danos físicos ao imóvel.",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "§ 1o Para o cumprimento do disposto no caput, os agentes financeiros, respeitada a livre escolha do mutuário, deverão:",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…, quantidade mínima de apólices emitidas por entes seguradores diversos, que observem a exigência estabelecida no caput;",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…ções estabelecidas pelo Conselho Nacional de Seguros Privados - CNSP, para apólices direcionadas a operações da espécie.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…es necessárias à implementação do disposto no § 1o deste artigo, no que se refere às obrigações dos agentes financeiros.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…os de morte e invalidez permanente do mutuário e de danos físicos ao imóvel estejam garantidos pelos respectivos fundos.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…cursos do FGTS, os agentes financeiros ficam autorizados a dispensar a contratação do seguro de danos físicos ao imóvel.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…ratação do seguro de morte e invalidez permanente do mutuário nos casos em que estes riscos contarem com outra garantia.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "79-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "… FAR, e pelo prazo necessário à conclusão das obras e transferência da unidade construída aos beneficiários do programa:",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…icial de desapropriação em curso, conforme comprovado mediante registro no cartório de registro de imóveis competente; e",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "… - os direitos reais de uso de imóvel público, de que trata o art. 7o do Decreto-Lei no 271, de 28 de fevereiro de 1967.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "… direito de propriedade do imóvel ao FAR, após o trânsito em julgado da sentença do processo judicial de desapropriação.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "§ 2o A transferência ao beneficiário final será condicionada ao adimplemento das obrigações assumidas por ele com o FAR.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…prevista no inciso II do caput somente será admitida quando o direito real de uso for concedido por prazo indeterminado.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…ão celebrados por instrumento particular com força de escritura pública e registrados no registro de imóveis competente.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "80": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "… regulamentada pelo Conselho Monetário Nacional, os agentes financeiros poderão oferecer apenas uma apólice ao mutuário.",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "81-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…§ 6o do art. 3o, bem como a definição, em regulamento, de subtetos de acordo com as modalidades operacionais praticadas.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "82": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…aquisição e instalação de equipamentos de energia solar ou que contribuam para a redução do consumo de água em moradias.",
+          "literal": "(Redação dada pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.722",
+            "ano": 2012
+          },
+          "trecho": "Parágrafo único.",
+          "literal": "(Revogado pela Lei nº 12.722, de 2012)"
+        }
+      ]
+    },
+    "82-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…s no âmbito do PMCMV, terá direito ao ressarcimento das quantias desembolsadas, devidamente atualizadas pela taxa Selic.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "82-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "… (mil, trezentos e noventa e cinco reais), respeitados os valores consignados nas respectivas leis orçamentárias anuais.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…er complementadas no plano nacional de habitação a ser apresentado pelo Poder Executivo federal mediante projeto de lei.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "82-C": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.424",
+            "ano": 2011
+          },
+          "trecho": "…a o exercício de 2011, a União fica autorizada a utilizar os recursos previstos nos arts. 2o, 5o, 12, 18 e 19 desta Lei.",
+          "literal": "(Incluído pela Lei nº 12.424, de 2011)"
+        }
+      ]
+    },
+    "82-D": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.722",
+            "ano": 2012
+          },
+          "trecho": "…ção, saúde e outros complementares à habitação, inclusive em terrenos de propriedade pública, nos termos do regulamento.",
+          "literal": "(Incluído pela Lei nº 12.722, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.722",
+            "ano": 2012
+          },
+          "trecho": "…olocá-lo em funcionamento em prazo compatível com o atendimento da demanda do empreendimento, nos termos do regulamento.",
+          "literal": "(Incluído pela Lei nº 12.722, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.722",
+            "ano": 2012
+          },
+          "trecho": "…compromisso, o ente responsável deverá ressarcir o FAR com os recursos gastos com a edificação, devidamente atualizados.",
+          "literal": "(Incluído pela Lei nº 12.722, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.722",
+            "ano": 2012
+          },
+          "trecho": "…blico responsável pela operação, guarda e manutenção, caso a edificação seja realizada em terreno de propriedade do FAR.",
+          "literal": "(Incluído pela Lei nº 12.722, de 2012)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.722",
+            "ano": 2012
+          },
+          "trecho": "… prever a obrigação de transferência do uso ou da propriedade para o mencionado ente responsável pela operacionalização.",
+          "literal": "(Incluído pela Lei nº 12.722, de 2012)"
+        }
+      ]
+    }
+  }
+}

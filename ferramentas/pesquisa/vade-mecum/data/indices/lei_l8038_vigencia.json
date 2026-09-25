@@ -1,0 +1,715 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L8038",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l8038.json",
+      "colecao": "artigos",
+      "sha256": "264d93007b249445bcbbea443d7ef6f0cad84ed8ace735712ecb960bdd136ca7",
+      "total_registros": 45,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 16,
+      "anotacoes": 65,
+      "anotacoes_sem_diploma_nomeado": 30
+    }
+  },
+  "vigencia": {
+    "1": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…prevenção do crime, nos termos do art. 28-A do Decreto-Lei nº 3.689, de 3 de outubro de 1941 (Código de Processo Penal).",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        }
+      ]
+    },
+    "3": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "12.019",
+            "ano": 2009
+          },
+          "trecho": "…realização do interrogatório e de outros atos da instrução, na sede do tribunal ou no local onde se deva produzir o ato.",
+          "literal": "(Incluído pela Lei nº 12.019, de 2009)"
+        }
+      ]
+    },
+    "13": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "…do Tribunal ou garantir a autoridade das suas decisões, caberá reclamação da parte interessada ou do Ministério Público.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… suas decisões, caberá reclamação da parte interessada ou do Ministério Público. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "…Tribunal, instruída com prova documental, será autuada e distribuída ao relator da causa principal, sempre que possível.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "…, será autuada e distribuída ao relator da causa principal, sempre que possível. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "14": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "Art. 14 - Ao despachar a reclamação, o relator:",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 14 - Ao despachar a reclamação, o relator: (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "…uisitará informações da autoridade a quem for imputada a prática do ato impugnado, que as prestará no prazo de dez dias;",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…m for imputada a prática do ato impugnado, que as prestará no prazo de dez dias; (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "II - ordenará, se necessário, para evitar dano irreparável, a suspensão do processo ou do ato impugnado.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…ário, para evitar dano irreparável, a suspensão do processo ou do ato impugnado. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "Art. 15 - Qualquer interessado poderá impugnar o pedido do reclamante.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "Art. 15 - Qualquer interessado poderá impugnar o pedido do reclamante. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "… reclamações que não houver formulado, terá vista do processo, por cinco dias, após o decurso do prazo para informações.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…erá vista do processo, por cinco dias, após o decurso do prazo para informações. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "…o Tribunal cassará a decisão exorbitante de seu julgado ou determinará medida adequada à preservação de sua competência.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… de seu julgado ou determinará medida adequada à preservação de sua competência. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "Art. 18 - O Presidente determinará o imediato cumprimento da decisão, lavrando-se o acórdão posteriormente.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…rminará o imediato cumprimento da decisão, lavrando-se o acórdão posteriormente. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "26": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "…terpostos no prazo comum de quinze dias, perante o Presidente do Tribunal recorrido, em petições distintas que conterão:",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… perante o Presidente do Tribunal recorrido, em petições distintas que conterão: (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "I - exposição do fato e do direito;",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "I - exposição do fato e do direito; (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "II - a demonstração do cabimento do recurso interposto;",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "II - a demonstração do cabimento do recurso interposto; (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "III - as razões do pedido de reforma da decisão recorrida.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "III - as razões do pedido de reforma da decisão recorrida. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "…ndicação do número e da página do jornal oficial, ou do repertório autorizado de jurisprudência, que o houver publicado.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "… oficial, ou do repertório autorizado de jurisprudência, que o houver publicado. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "27": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "…aí protocolada, será intimado o recorrido, abrindo-se-lhe vista pelo prazo de quinze dias para apresentar contra-razões.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…o, abrindo-se-lhe vista pelo prazo de quinze dias para apresentar contra-razões. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "§ 1º - Findo esse prazo, serão os autos conclusos para admissão ou não do recurso, no prazo de cinco dias.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…erão os autos conclusos para admissão ou não do recurso, no prazo de cinco dias. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "§ 2º - Os recursos extraordinário e especial serão recebidos no efeito devolutivo.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…2º - Os recursos extraordinário e especial serão recebidos no efeito devolutivo. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "§ 3º - Admitidos os recursos, os autos serão imediatamente remetidos ao Superior Tribunal de Justiça.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…ecursos, os autos serão imediatamente remetidos ao Superior Tribunal de Justiça. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "… autos remetidos ao Supremo Tribunal Federal para apreciação do recurso extraordinário, se este não estiver prejudicado.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…eral para apreciação do recurso extraordinário, se este não estiver prejudicado. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "…irrecorrível, sobrestará o seu julgamento e remeterá os autos ao Supremo Tribunal Federal, para julgar o extraordinário.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "…o e remeterá os autos ao Supremo Tribunal Federal, para julgar o extraordinário. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "…não o considerar prejudicial, devolverá os autos ao Superior Tribunal de Justiça, para o julgamento do recurso especial.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "…os autos ao Superior Tribunal de Justiça, para o julgamento do recurso especial. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "28": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "…umento, no prazo de cinco dias, para o Supremo Tribunal Federal ou para o Superior Tribunal de Justiça, conforme o caso.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…upremo Tribunal Federal ou para o Superior Tribunal de Justiça, conforme o caso. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "…23 do Código de Processo Civil, o acórdão recorrido, a petição de interposição do recurso e as contra-razões, se houver.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…o recorrido, a petição de interposição do recurso e as contra-razões, se houver. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "§ 2º - Distribuído o agravo de instrumento, o relator proferirá decisão.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º - Distribuído o agravo de instrumento, o relator proferirá decisão. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "…inclusão em pauta, observando-se, daí por diante, o procedimento relativo àqueles recursos, admitida a sustentação oral.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 3º",
+          "diploma": null,
+          "trecho": "…r diante, o procedimento relativo àqueles recursos, admitida a sustentação oral. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "…extraordinário, salvo quando, na mesma causa, houver recurso especial admitido e que deva ser julgado em primeiro lugar.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…ausa, houver recurso especial admitido e que deva ser julgado em primeiro lugar. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "…que negar seguimento ou provimento ao agravo de instrumento, caberá agravo para o órgão julgador no prazo de cinco dias.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "…ravo de instrumento, caberá agravo para o órgão julgador no prazo de cinco dias. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "…ulgamento de outra turma, da seção ou do órgão especial, observando-se o procedimento estabelecido no regimento interno.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "… órgão especial, observando-se o procedimento estabelecido no regimento interno. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "30": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…rito Federal, será interposto no prazo de cinco dias, com as razões do pedido de reforma. (Vide Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "38": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.105",
+            "ano": 2015
+          },
+          "trecho": "…vel ou, improcedente ou ainda, que contrariar, nas questões predominantemente de direito, Súmula do respectivo Tribunal.",
+          "literal": "(Revogado pela Lei n º 13.105, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…ariar, nas questões predominantemente de direito, Súmula do respectivo Tribunal. (Revogado pela Lei n º 13.105, de 2015)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "41-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.836",
+            "ano": 2024
+          },
+          "trecho": "…o Supremo Tribunal Federal e no Superior Tribunal de Justiça, será tomada pelo voto da maioria absoluta de seus membros.",
+          "literal": "(Redação dada pela Lei nº 14.836, de 2024)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.836",
+            "ano": 2024
+          },
+          "trecho": "… impedimento, de suspeição ou de ausência, tenha sido o julgamento tomado sem a totalidade dos integrantes do colegiado.",
+          "literal": "(Redação dada pela Lei nº 14.836, de 2024)"
+        }
+      ]
+    },
+    "41-B": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.756",
+            "ano": 1998
+          },
+          "trecho": "…ão, de conformidade com instruções e tabela expedidas pelo Supremo Tribunal Federal e pelo Superior Tribunal de Justiça.",
+          "literal": "(Incluído pela Lei nº 9.756, de 1998)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.756",
+            "ano": 1998
+          },
+          "trecho": "Parágrafo único - A secretaria do tribunal local zelará pelo recolhimento das despesas postais.",
+          "literal": "(Incluído pela Lei nº 9.756, de 1998)"
+        }
+      ]
+    }
+  }
+}

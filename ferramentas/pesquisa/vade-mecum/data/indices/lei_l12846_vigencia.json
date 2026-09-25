@@ -1,0 +1,468 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "L12846",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_l12846.json",
+      "colecao": "artigos",
+      "sha256": "2ee78d8c07b7e8178cec57f283e01d916b4a08a9e73493a6dc9877aed0c92c2a",
+      "total_registros": 33,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 13,
+      "anotacoes": 41,
+      "anotacoes_sem_diploma_nomeado": 22
+    }
+  },
+  "vigencia": {
+    "6": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "§ 6º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "7": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "inciso X",
+          "diploma": null,
+          "trecho": "X -",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "15": {
+      "situacao": "vigencia_encerrada",
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "703",
+            "ano": 2015
+          },
+          "trecho": "… processo administrativo, dará conhecimento ao Ministério Público de sua existência, para apuração de eventuais delitos.",
+          "literal": "(Redação dada pela Medida provisória nº 703, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…rio Público de sua existência, para apuração de eventuais delitos. (Redação dada pela Medida provisória nº 703, de 2015)",
+          "literal": "(Vigência encerrada)"
+        }
+      ]
+    },
+    "16": {
+      "situacao": "vigencia_encerrada",
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "703",
+            "ano": 2015
+          },
+          "trecho": "…que colaborem efetivamente com as investigações e com o processo administrativo, de forma que dessa colaboração resulte:",
+          "literal": "(Redação dada pela Medida provisória nº 703, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…o processo administrativo, de forma que dessa colaboração resulte: (Redação dada pela Medida provisória nº 703, de 2015)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "703",
+            "ano": 2015
+          },
+          "trecho": "I - a identificação dos demais envolvidos na infração, quando couber;",
+          "literal": "(Redação dada pela Medida provisória nº 703, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "… a identificação dos demais envolvidos na infração, quando couber; (Redação dada pela Medida provisória nº 703, de 2015)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "703",
+            "ano": 2015
+          },
+          "trecho": "II - a obtenção de informações e documentos que comprovem a infração noticiada ou sob investigação;",
+          "literal": "(Redação dada pela Medida provisória nº 703, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…documentos que comprovem a infração noticiada ou sob investigação; (Redação dada pela Medida provisória nº 703, de 2015)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "703",
+            "ano": 2015
+          },
+          "trecho": "III - a cooperação da pessoa jurídica com as investigações, em face de sua responsabilidade objetiva; e",
+          "literal": "(Incluído pela Medida provisória nº 703, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "…dica com as investigações, em face de sua responsabilidade objetiva; e (Incluído pela Medida provisória nº 703, de 2015)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "703",
+            "ano": 2015
+          },
+          "trecho": "IV - o comprometimento da pessoa jurídica na implementação ou na melhoria de mecanismos internos de integridade.",
+          "literal": "(Incluído pela Medida provisória nº 703, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso IV",
+          "diploma": null,
+          "trecho": "…na implementação ou na melhoria de mecanismos internos de integridade. (Incluído pela Medida provisória nº 703, de 2015)",
+          "literal": "(Vigência encerrada)"
+        }
+      ]
+    },
+    "17": {
+      "situacao": "vigencia_encerrada",
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "703",
+            "ano": 2015
+          },
+          "trecho": "…istrativos com vistas à isenção ou à atenuação das sanções restritivas ou impeditivas ao direito de licitar e contratar.",
+          "literal": "(Redação dada pela Medida provisória nº 703, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…ções restritivas ou impeditivas ao direito de licitar e contratar. (Redação dada pela Medida provisória nº 703, de 2015)",
+          "literal": "(Vigência encerrada)"
+        }
+      ]
+    },
+    "17-A": {
+      "situacao": "vigencia_encerrada",
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "703",
+            "ano": 2015
+          },
+          "trecho": "…ão deste, ser sobrestados e, posteriormente, arquivados, em caso de cumprimento integral do acordo pela pessoa jurídica.",
+          "literal": "(Incluído pela Medida provisória nº 703, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…vados, em caso de cumprimento integral do acordo pela pessoa jurídica. (Incluído pela Medida provisória nº 703, de 2015)",
+          "literal": "(Vigência encerrada)"
+        }
+      ]
+    },
+    "17-B": {
+      "situacao": "vigencia_encerrada",
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "703",
+            "ano": 2015
+          },
+          "trecho": "…os à pessoa jurídica quando não ocorrer a celebração do acordo, não permanecendo cópias em poder dos órgãos celebrantes.",
+          "literal": "(Incluído pela Medida provisória nº 703, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…ão do acordo, não permanecendo cópias em poder dos órgãos celebrantes. (Incluído pela Medida provisória nº 703, de 2015)",
+          "literal": "(Vigência encerrada)"
+        }
+      ]
+    },
+    "18": {
+      "situacao": "vigencia_encerrada",
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "703",
+            "ano": 2015
+          },
+          "trecho": "…expressamente previsto na celebração de acordo de leniência, observado o disposto no § 11, no § 12 e no § 13 do art. 16.",
+          "literal": "(Redação dada pela Medida provisória nº 703, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…ência, observado o disposto no § 11, no § 12 e no § 13 do art. 16. (Redação dada pela Medida provisória nº 703, de 2015)",
+          "literal": "(Vigência encerrada)"
+        }
+      ]
+    },
+    "19": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "veto",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "§ 2º",
+          "literal": "(VETADO)"
+        }
+      ]
+    },
+    "20": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "parágrafo único",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "703",
+            "ano": 2015
+          },
+          "trecho": "Parágrafo único. A proposta do acordo de leniência poderá ser feita mesmo após eventual ajuizamento das ações cabíveis.",
+          "literal": "(Incluído pela Medida provisória nº 703, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "parágrafo único",
+          "diploma": null,
+          "trecho": "…a poderá ser feita mesmo após eventual ajuizamento das ações cabíveis. (Incluído pela Medida provisória nº 703, de 2015)",
+          "literal": "(Vigência encerrada)"
+        }
+      ]
+    },
+    "25": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "703",
+            "ano": 2015
+          },
+          "trecho": "…a ou judicial, a prescrição será interrompida com a instauração de processo que tenha por objeto a apuração da infração.",
+          "literal": "(Incluído pela Medida provisória nº 703, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "…a instauração de processo que tenha por objeto a apuração da infração. (Incluído pela Medida provisória nº 703, de 2015)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "703",
+            "ano": 2015
+          },
+          "trecho": "§ 2º Aplica-se o disposto no caput e no § 1º aos ilícitos previstos em normas de licitações e contratos administrativos.",
+          "literal": "(Incluído pela Medida provisória nº 703, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "…lícitos previstos em normas de licitações e contratos administrativos. (Incluído pela Medida provisória nº 703, de 2015)",
+          "literal": "(Vigência encerrada)"
+        }
+      ]
+    },
+    "29": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "703",
+            "ano": 2015
+          },
+          "trecho": "… dos órgãos a que se refere o caput quando os atos e fatos apurados acarretarem simultaneamente a infração ali prevista.",
+          "literal": "(Incluído pela Medida provisória nº 703, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 1º",
+          "diploma": null,
+          "trecho": "… e fatos apurados acarretarem simultaneamente a infração ali prevista. (Incluído pela Medida provisória nº 703, de 2015)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "703",
+            "ano": 2015
+          },
+          "trecho": "…o na Lei nº 12.529, de 30 de novembro de 2011, e a referida celebração contará com a participação do Ministério Público.",
+          "literal": "(Incluído pela Medida provisória nº 703, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 2º",
+          "diploma": null,
+          "trecho": "… referida celebração contará com a participação do Ministério Público. (Incluído pela Medida provisória nº 703, de 2015)",
+          "literal": "(Vigência encerrada)"
+        }
+      ]
+    },
+    "30": {
+      "situacao": "vigencia_encerrada",
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "703",
+            "ano": 2015
+          },
+          "trecho": "…o das sanções previstas nesta Lei não afeta os processos de responsabilização e aplicação de penalidades decorrentes de:",
+          "literal": "(Redação dada pela Medida provisória nº 703, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "caput",
+          "diploma": null,
+          "trecho": "…os de responsabilização e aplicação de penalidades decorrentes de: (Redação dada pela Medida provisória nº 703, de 2015)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "703",
+            "ano": 2015
+          },
+          "trecho": "I - ato de improbidade administrativa nos termos da Lei nº 8.429, de 199 2;",
+          "literal": "(Redação dada pela Medida provisória nº 703, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso I",
+          "diploma": null,
+          "trecho": "…e improbidade administrativa nos termos da Lei nº 8.429, de 199 2; (Redação dada pela Medida provisória nº 703, de 2015)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "703",
+            "ano": 2015
+          },
+          "trecho": "…usive no que se refere ao Regime Diferenciado de Contratações Públicas - RDC, instituído pela Lei nº 12.462, de 2011 ; e",
+          "literal": "(Redação dada pela Medida provisória nº 703, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso II",
+          "diploma": null,
+          "trecho": "…atações Públicas - RDC, instituído pela Lei nº 12.462, de 2011 ; e (Redação dada pela Medida provisória nº 703, de 2015)",
+          "literal": "(Vigência encerrada)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Medida Provisória",
+            "numero": "703",
+            "ano": 2015
+          },
+          "trecho": "III - infrações contra a ordem econômica nos termos da Lei n º 12.529, de 2011 .",
+          "literal": "(Incluído pela Medida provisória nº 703, de 2015)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "inciso III",
+          "diploma": null,
+          "trecho": "…ações contra a ordem econômica nos termos da Lei n º 12.529, de 2011 . (Incluído pela Medida provisória nº 703, de 2015)",
+          "literal": "(Vigência encerrada)"
+        }
+      ]
+    }
+  }
+}

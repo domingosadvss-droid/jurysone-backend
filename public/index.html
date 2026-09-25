@@ -9,6 +9,33 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Chaves de API e configuração local — NÃO versionar config.js com valores reais -->
     <script src="config.js"></script>
+    <!-- VERIFICAÇÃO DE AUTENTICAÇÃO -->
+    <script>
+        // Verificar se o usuário está autenticado
+        (function checkAuth() {
+            const user = localStorage.getItem('jurysone_user');
+            const token = localStorage.getItem('jurysone_token');
+
+            // Se não tiver usuário ou token, redirecionar para login
+            if (!user || !token) {
+                window.location.href = '/login.html';
+                return;
+            }
+            // Valida expiração do token JWT
+            try {
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                if (payload.exp && payload.exp * 1000 < Date.now()) {
+                    localStorage.removeItem('jurysone_token');
+                    localStorage.removeItem('jurysone_user');
+                    window.location.href = '/login.html';
+                }
+            } catch(e) {
+                localStorage.removeItem('jurysone_token');
+                localStorage.removeItem('jurysone_user');
+                window.location.href = '/login.html';
+            }
+        })();
+    </script>
     <style>
         :root {
           --cor-primaria:        #0f2d5e;
@@ -6195,7 +6222,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
               btn.style.borderBottomColor = t === tab ? '#0f2d5e' : 'transparent';
             }
           });
-          if (tab === 'apis')       renderApiCards();
+          if (tab === 'apis')       initApiTab();
           if (tab === 'equipe')     renderEquipe();
           if (tab === 'perms')      renderPermissoes();
           if (tab === 'notif')      renderNotifPrefs();
@@ -6982,14 +7009,14 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
 
         // ─── API MANAGEMENT ───────────────────────────────────────
         const API_DEFINITIONS = [
-          { id:'openai',      nome:'OpenAI (GPT-4o)',         icon:'🤖', desc:'IA Copiloto Jurídico — análise de contratos, geração de peças e jurisprudência.', placeholder:'sk-proj-...', docsUrl:'https://platform.openai.com/api-keys', testEndpoint:'openai' },
-          { id:'datajud',     nome:'DataJud / CNJ',           icon:'⚖️', desc:'Consulta e monitoramento automático de processos nos tribunais brasileiros.',    placeholder:'Bearer eyJ...', docsUrl:'https://datajud-wiki.cnj.jus.br', testEndpoint:'datajud' },
-          { id:'whatsapp',    nome:'WhatsApp Business API',   icon:'💬', desc:'Envio de mensagens e notificações automáticas para clientes via WhatsApp.',      placeholder:'EAA...', docsUrl:'https://developers.facebook.com/docs/whatsapp', testEndpoint:'whatsapp' },
-          { id:'resend',      nome:'Resend (E-mail)',          icon:'📧', desc:'Envio de e-mails transacionais: prazos, assinaturas, boletos e relatórios.',     placeholder:'re_...', docsUrl:'https://resend.com/api-keys', testEndpoint:'resend' },
-          { id:'stripe',      nome:'Stripe (Pagamentos)',     icon:'💳', desc:'Processamento de pagamentos de honorários e cobrança recorrente de clientes.',    placeholder:'sk_live_...', docsUrl:'https://dashboard.stripe.com/apikeys', testEndpoint:'stripe' },
-          { id:'aws_s3',      nome:'AWS S3 (Documentos)',     icon:'☁️', desc:'Armazenamento seguro de documentos, contratos e arquivos do escritório.',        placeholder:'AKIA...', docsUrl:'https://aws.amazon.com/s3', testEndpoint:'aws' },
-          { id:'icp_brasil',  nome:'ICP-Brasil (E-Sign)',     icon:'🔐', desc:'Certificação digital ICP-Brasil para assinatura jurídica com validade legal.',   placeholder:'Chave privada PEM ou certificado A1/A3', docsUrl:'https://www.iti.gov.br', testEndpoint:'icp' },
-          { id:'pusher',      nome:'Pusher / WebSocket',      icon:'📡', desc:'Notificações em tempo real de andamentos, prazos e mensagens do sistema.',       placeholder:'app_id:key:secret:cluster', docsUrl:'https://dashboard.pusher.com', testEndpoint:'pusher' },
+          { id:'zapsign',  nome:'ZapSign (Assinatura Digital)', icon:'✍️', desc:'Envio e coleta de assinaturas digitais em contratos de honorários e procurações. Já integrado ao fluxo de atendimento.', placeholder:'Token ZapSign (ex: eyJ...)', docsUrl:'https://app.zapsign.com.br/conta/integracoes', testEndpoint:'zapsign' },
+          { id:'asaas',    nome:'Asaas (Cobranças)',            icon:'💰', desc:'Geração automática de boletos, PIX e cartão para honorários e parcelamentos. Já integrado ao financeiro.', placeholder:'$aact_... (Produção) ou $aasp_... (Sandbox)', docsUrl:'https://www.asaas.com/api/index', testEndpoint:'asaas' },
+          { id:'gemini',   nome:'Gemini (IA Jurídica)',         icon:'🤖', desc:'IA Copiloto Jurídico — análise de contratos, geração de peças e jurisprudência. Powered by Google Gemini 1.5 Flash.', placeholder:'AIza...', docsUrl:'https://aistudio.google.com/app/apikey', testEndpoint:'gemini' },
+          { id:'datajud',  nome:'DataJud / CNJ',                icon:'⚖️', desc:'Consulta e monitoramento automático de processos nos tribunais brasileiros.', placeholder:'cDZHYz... (apenas a chave, sem "APIKey")', docsUrl:'https://datajud-wiki.cnj.jus.br', testEndpoint:'datajud' },
+          { id:'whatsapp', nome:'WhatsApp Business API',        icon:'💬', desc:'Envio de mensagens e notificações automáticas para clientes via WhatsApp.', placeholder:'EAA...', docsUrl:'https://developers.facebook.com/docs/whatsapp', testEndpoint:'whatsapp' },
+          { id:'resend',   nome:'Resend (E-mail)',               icon:'📧', desc:'Envio de e-mails transacionais: prazos, assinaturas, boletos e relatórios.', placeholder:'re_...', docsUrl:'https://resend.com/api-keys', testEndpoint:'resend' },
+          { id:'aws_s3',   nome:'AWS S3 (Documentos)',           icon:'☁️', desc:'Armazenamento seguro de documentos, contratos e arquivos do escritório.', placeholder:'AKIA...', docsUrl:'https://aws.amazon.com/s3', testEndpoint:'aws' },
+          { id:'pusher',   nome:'Pusher / WebSocket',            icon:'📡', desc:'Notificações em tempo real de andamentos, prazos e mensagens do sistema.', placeholder:'app_id:key:secret:cluster', docsUrl:'https://dashboard.pusher.com', testEndpoint:'pusher' },
         ];
 
         // Load saved API keys from localStorage
@@ -7008,6 +7035,31 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             const st = JSON.parse(localStorage.getItem('jurysone_api_status') || '{}');
             st[id] = status; localStorage.setItem('jurysone_api_status', JSON.stringify(st));
           } catch(e) {}
+        }
+
+        /** Carrega chaves do banco (funciona em qualquer navegador) e então renderiza */
+        async function initApiTab() {
+          try {
+            const apiBase = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
+            const token = localStorage.getItem('jurysone_token');
+            const resp = await fetch(`${apiBase}/chaves`, {
+              headers: token ? { 'Authorization': `Bearer ${token}` } : {},
+            });
+            if (resp.ok) {
+              const data = await resp.json();
+              if (data && data.keys) {
+                for (const [id, val] of Object.entries(data.keys)) {
+                  if (val) {
+                    saveApiKey(id, val);
+                    saveApiStatus(id, 'ok');
+                  }
+                }
+              }
+            }
+          } catch(e) {
+            console.warn('[initApiTab] Não foi possível carregar chaves do servidor:', e.message);
+          }
+          renderApiCards();
         }
 
         function renderApiCards() {
@@ -7083,7 +7135,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           // Simulate API test (in production would call real endpoint)
           await new Promise(r=>setTimeout(r, 1800 + Math.random()*800));
           // Simulate: keys starting with valid prefixes pass
-          const validPrefixes = { openai:['sk-'], datajud:['Bearer','eyJ'], whatsapp:['EAA','eaa'], resend:['re_'], stripe:['sk_'], aws_s3:['AKIA'], icp_brasil:['-----','MII'], pusher:[] };
+          const validPrefixes = { openai:['sk-'], datajud:[], gemini:['AIza'], zapsign:[], asaas:['$aact','$aasp'], whatsapp:['EAA','eaa'], resend:['re_'], aws_s3:['AKIA'], pusher:[] };
           const prefixes = validPrefixes[id] || [];
           const isValid = prefixes.length === 0 ? key.length > 8 : prefixes.some(p => key.startsWith(p));
           if (isValid) {
@@ -7100,7 +7152,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           renderApiCards();
         }
 
-        function saveApi(id) {
+        async function saveApi(id) {
           const key = document.getElementById('api-input-'+id).value.trim();
           const msg = document.getElementById('api-msg-'+id);
           if (!key) {
@@ -7108,6 +7160,23 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             msg.textContent='⚠️ Não é possível salvar uma chave vazia.'; return;
           }
           saveApiKey(id, key);
+
+          // Para ZapSign e Asaas: envia ao backend também para uso server-side
+          if (['zapsign','asaas','gemini','datajud','whatsapp','resend'].includes(id)) {
+            try {
+              const apiBase = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
+              const token = _getToken();
+              await fetch(`${apiBase}/chaves`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+                },
+                body: JSON.stringify({ id, chave: key }),
+              });
+            } catch(e) { console.warn('[saveApi] Falha ao enviar chave ao backend:', e.message); }
+          }
+
           const api = API_DEFINITIONS.find(a=>a.id===id);
           msg.style.display='block'; msg.style.color='#059669';
           msg.innerHTML='💾 <strong>Chave salva!</strong> A API "'+escapeHtml(api.nome||'')+'" foi configurada. Clique em "Verificar" para testar a conexão.';
@@ -12368,7 +12437,7 @@ Nestes termos, pede deferimento.
                         ...(token ? { 'Authorization': `Bearer ${token}` } : {})
                     },
                     body:   JSON.stringify(payload),
-                    signal: AbortSignal.timeout(3000)
+                    signal: AbortSignal.timeout(15000)
                 });
 
                 if (res.ok) {
@@ -13851,6 +13920,9 @@ Nestes termos, pede deferimento.
         </div>
       </div>
     </div>
+
+    <!-- Chat Widget -->
+    <script src="chat-widget.js"></script>
 
     </body>
 </html>

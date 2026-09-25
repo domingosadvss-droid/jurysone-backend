@@ -1,0 +1,1081 @@
+{
+  "_meta": {
+    "schema_version": 2,
+    "tipo": "indice_derivado",
+    "codigo": "CPPM",
+    "gerado_em": "2026-08-01",
+    "gerador": {
+      "caminho": "ferramentas/manutencao/gerar_indice_vigencia.py",
+      "versao": "1.0.0",
+      "algoritmo": "anotacoes-planalto-v1",
+      "modelo": null,
+      "prompt": null,
+      "parametros": {
+        "fonte_do_dado": "anotações de alteração que o Planalto publica entre parênteses dentro do texto compilado; nada é inferido, e cada evento preserva a anotação em literal",
+        "tipos": "redacao, inclusao, revogacao, renumeracao, vigencia, veto, supressao",
+        "fora_de_escopo": "remissões (Vide ...), que apontam outro texto em vez de registrar mudança sofrida; e o texto das redações anteriores, que a base não guarda",
+        "ancora": "unidade em que a anotação está (caput, § N, inciso N, alínea N, parágrafo único), pelo marcador de início de linha imediatamente anterior",
+        "situacao": "só se propaga ao artigo quando a anotação está no caput; nunca vale vigente, que a fonte não afirma",
+        "diploma": "espécie, número e ano lidos literalmente da anotação; ano nulo quando a fonte escreve o ano com dois dígitos (331 anotações), sem completar o século",
+        "residuo_declarado": "2 anotações em 32.074 (0,006%) ficam sem diploma extraído porque a fonte omite a espécie normativa (\"Redação dada pela nº 9.099, de 1995\")"
+      }
+    },
+    "fonte": {
+      "arquivo": "lei_cppm.json",
+      "colecao": "artigos",
+      "sha256": "c5320aa1e01438c142867c001c269955a05efff1b00f5a9f2fa25ecad0501101",
+      "total_registros": 716,
+      "gerado_em": "2026-07-23"
+    },
+    "relacao": {
+      "chave": "numero",
+      "cobertura": "parcial por desenho: só entram os artigos cuja fonte traz anotação de alteração; a ausência significa que o Planalto não anotou mudança, nunca que o dispositivo está vigente",
+      "artigos_com_anotacao": 23,
+      "anotacoes": 86,
+      "anotacoes_sem_diploma_nomeado": 5
+    }
+  },
+  "vigencia": {
+    "16-A": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…2 a 47 do Decreto-Lei nº 1.001, de 21 de outubro de 1969 (Código Penal Militar), o indiciado poderá constituir defensor.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…vestigatório, podendo constituir defensor no prazo de até 48 (quarenta e oito) horas a contar do recebimento da citação.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "… dos fatos, para que esta, no prazo de 48 (quarenta e oito) horas, indique defensor para a representação do investigado.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…panhamento e realização de todos os atos relacionados à defesa administrativa do investigado. Promulgação partes vetadas",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "… para nele atuar, hipótese em que poderá ser indicado profissional que não integre os quadros próprios da Administração.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 4º",
+          "diploma": null,
+          "trecho": "…á ser indicado profissional que não integre os quadros próprios da Administração. (Incluído pela Lei nº 13.964, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "… por conta do orçamento próprio da instituição a que este esteja vinculado à época da ocorrência dos fatos investigados.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "…ituição a que este esteja vinculado à época da ocorrência dos fatos investigados. (Incluído pela Lei nº 13.964, de 2019)",
+          "literal": "(Vigência)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "13.964",
+            "ano": 2019
+          },
+          "trecho": "…142 da Constituição Federal, desde que os fatos investigados digam respeito a missões para a Garantia da Lei e da Ordem.",
+          "literal": "(Incluído pela Lei nº 13.964, de 2019)"
+        },
+        {
+          "tipo": "vigencia",
+          "unidade": "§ 6º",
+          "diploma": null,
+          "trecho": "…os fatos investigados digam respeito a missões para a Garantia da Lei e da Ordem. (Incluído pela Lei nº 13.964, de 2019)",
+          "literal": "(Vigência)"
+        }
+      ]
+    },
+    "71": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 5º",
+          "diploma": null,
+          "trecho": "§ 5º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.752",
+            "ano": 2023
+          },
+          "trecho": "§ 5º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.752, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.752",
+            "ano": 2023
+          },
+          "trecho": "Abandono do processo",
+          "literal": "(Redação dada pela Lei nº 14.752, de 2023)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.752",
+            "ano": 2023
+          },
+          "trecho": "… previamente comunicado ao juiz, sob pena de responder por infração disciplinar perante o órgão correicional competente.",
+          "literal": "(Redação dada pela Lei nº 14.752, de 2023)"
+        },
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 7º",
+          "diploma": null,
+          "trecho": "§ 7º",
+          "literal": "(Revogado)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.752",
+            "ano": 2023
+          },
+          "trecho": "§ 7º (Revogado).",
+          "literal": "(Redação dada pela Lei nº 14.752, de 2023)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 8º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "14.752",
+            "ano": 2023
+          },
+          "trecho": "… quiser, e, na hipótese de não ser localizado, deverá ser nomeado defensor público ou advogado dativo para a sua defesa.",
+          "literal": "(Incluído pela Lei nº 14.752, de 2023)"
+        }
+      ]
+    },
+    "82": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.299",
+            "ano": 1996
+          },
+          "trecho": "…r é especial, e, exceto nos crimes dolosos contra a vida praticados contra civil, a ele estão sujeitos, em tempo de paz:",
+          "literal": "(Redação dada pela Lei nº 9.299, de 7.8.1996)"
+        },
+        {
+          "tipo": "renumeracao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "9.299",
+            "ano": 1996
+          },
+          "trecho": "…dos e aos civis, nos crimes contra a segurança nacional ou contra as instituições militares, como tais definidas em lei.",
+          "literal": "(Renumerado do parágrafo único, pela Lei nº 9.299, de 7.8.1996)"
+        }
+      ]
+    },
+    "451": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…mpresso ou datilografado, sendo por ele assinado e por duas testemunhas idôneas, além do militar incumbido da lavratura.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…rmo de deserção, iniciar-se-á a zero hora do dia seguinte àquele em que for verificada a falta injustificada do militar.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…No caso de deserção especial, prevista no art. 190 do Código Penal Militar, a lavratura do termo será, também, imediata.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        }
+      ]
+    },
+    "452": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…destina-se a fornecer os elementos necessários à propositura da ação penal, sujeitando, desde logo, o desertor à prisão.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        }
+      ]
+    },
+    "453": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "… sua apresentação voluntária ou captura, será posto em liberdade, salvo se tiver dado causa ao retardamento do processo.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        }
+      ]
+    },
+    "454": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…unhas idôneas, publicando-se em boletim ou documento equivalente, o termo de deserção, acompanhado da parte de ausência.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…esertor será agregado, permanecendo nessa situação ao apresentar-se ou ser capturado, até decisão transitada em julgado.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…material permanente da Fazenda Nacional e as cópias do boletim ou documento equivalente e dos assentamentos do desertor.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…eito, ou oferecer denúncia, se nenhuma formalidade tiver sido omitida, ou após o cumprimento das diligências requeridas.",
+          "literal": "(Incluído pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "§ 4º Recebida a denúncia, o Juiz-Auditor determinará seja aguardada a captura ou apresentação voluntária do desertor.",
+          "literal": "(Incluído pela Lei nº 8.236, de 20.9.1991)"
+        }
+      ]
+    },
+    "455": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…ça, expedindo o mandado de citação do acusado, para ser processado e julgado. Nesse mandado, será transcrita a denúncia.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…e três dias e ouvidas dentro do prazo de cinco dias, prorrogável até o dobro pelo conselho, ouvido o Ministério Público.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…e a quinze minutos, para cada uma delas, passando o conselho ao julgamento, observando-se o rito prescrito neste código.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        }
+      ]
+    },
+    "456": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…erial permanente da Fazenda Nacional, deixado ou extraviado pelo ausente, com a assistência de duas testemunhas idôneas.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…acamento, o respectivo comandante, oficial ou não providenciará o inventário, assinando-o com duas testemunhas idôneas .",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…dade, ou autoridade correspondente, encaminhará ao comandante, ou chefe competente, uma parte acompanhada do inventário.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…ma praça, especial ou graduada, e será assinado pelo comandante e por duas testemunhas idôneas, de preferência oficiais.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…, em boletim ou documento equivalente, do termo de deserção e remetendo-se, em seguida, os autos à auditoria competente.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        }
+      ]
+    },
+    "457": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…ção voluntária do desertor, se nenhuma formalidade tiver sido omitida, ou após o cumprimento das diligências requeridas.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…u for capturado deverá ser submetido à inspeção de saúde e, quando julgado apto para o serviço militar, será reincluído.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…inclusão e do processo, sendo os autos arquivados, após o pronunciamento do representante do Ministério Público Militar.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…ito, ou oferecerá denúncia, se nenhuma formalidade tiver sido omitida, ou após o cumprimento das diligências requeridas.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "… prazo de três dias e ouvidas dentro de cinco dias, prorrogáveis até o dobro pelo conselho, ouvido o Ministério Público.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…e a quinze minutos, para cada uma delas, passando o conselho ao julgamento, observando-se o rito prescrito neste código.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…uditor fará expedir, imediatamente, a devida comunicação à autoridade competente, para os devidos fins e efeitos legais.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…nciará, sem demora, para que seja posto em liberdade, mediante alvará de soltura, se por outro motivo não estiver preso.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        }
+      ]
+    },
+    "458": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "Art. 458. e 459",
+          "literal": "(Revogados pela Lei nº 8.236, de 20.9.1991)"
+        }
+      ]
+    },
+    "460": {
+      "situacao": "revogado",
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "Art. 460 a 462",
+          "literal": "(Revogados pela Lei nº 8.236, de 20.9.1991)"
+        }
+      ]
+    },
+    "463": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…eferido comandante, ou autoridade correspondente, e por duas testemunhas idôneas, podendo ser impresso ou datilografado.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…s à propositura da ação penal e é o instrumento legal autorizador da captura do insubmisso, para efeito da incorporação.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…do documento hábil que comprove o conhecimento pelo insubmisso da data e local de sua apresentação, e demais documentos.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…ação voluntária do insubmisso, se nenhuma formalidade tiver sido omitida ou após cumprimento das diligências requeridas.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        }
+      ]
+    },
+    "464": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…ireito ao quartel por menagem e será submetido à inspeção de saúde. Se incapaz, ficará isento do processo e da inclusão.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "… que, em caso de incapacidade para o serviço militar, sejam arquivados, após pronunciar-se o Ministério Público Militar.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…reito, ou oferecer denúncia, se nenhuma formalidade tiver sido omitida ou após o cumprimento das diligências requeridas.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        }
+      ]
+    },
+    "465": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.236",
+            "ano": 1991
+          },
+          "trecho": "…nstrução e julgamento, o disposto para o processo de deserção, previsto nos §§ 4º, 5º, 6º e 7º do art. 457 deste código.",
+          "literal": "(Redação dada pela Lei nº 8.236, de 20.9.1991)"
+        }
+      ]
+    },
+    "470": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "revogacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "8.457",
+            "ano": 1992
+          },
+          "trecho": "§ 2º",
+          "literal": "(Revogado pela Lei nº 8.457,4.9.1992)"
+        }
+      ]
+    },
+    "527": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "…colher-se à prisão, salvo se primário e de bons antecedentes, reconhecidas tais circunstâncias na sentença condenatória.",
+          "literal": "(Redação dada pela Lei nº 6.544, de 30.6.1978)"
+        }
+      ]
+    },
+    "549": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "…erá opor embargos infringentes ou de nulidade, sem se recolher à prisão, salvo se atendidos os pressupostos do art. 527.",
+          "literal": "(Redação dada pela Lei nº 6.544, de 30.6.1978)"
+        }
+      ]
+    },
+    "606": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "… anos nem superior a 6 (seis) anos, a execução da pena privativa da liberdade que não exceda a 2 (dois) anos, desde que:",
+          "literal": "(Redação dada pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "…o irrecorrível por outro crime a pena privativa da liberdade, salvo o disposto no 1º do art. 71 do Código Penal Militar;",
+          "literal": "(Redação dada pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "…ivos e as circunstâncias do crime, bem como sua conduta posterior, autorizem a presunção de que não tornará a delinqüir.",
+          "literal": "(Redação dada pela Lei nº 6.544, de 30.6.1978)"
+        }
+      ]
+    },
+    "607": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "… a 2 (dois) anos, deverão pronunciar-se, motivadamente, sobre a suspensão condicional, quer a concedam, quer a deneguem.",
+          "literal": "(Redação dada pela Lei nº 6.544, de 30.6.1978)"
+        }
+      ]
+    },
+    "608": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "§ 1º - As condições serão adequadas ao delito, ao meio social e à personalidade do condenado.",
+          "literal": "(Incluído pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "… ser impostas, como normas de conduta e obrigações, além das previstas no art. 626 deste Código, as seguintes condições:",
+          "literal": "(Incluído pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "I - freqüentar curso de habilitação profissional ou de instrução escolar;",
+          "literal": "(Incluído pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "II - prestar serviços em favor da comunidade;",
+          "literal": "(Incluído pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "III - atender aos encargos de família;",
+          "literal": "(Incluído pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "inciso IV",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "IV - submeter-se a tratamento médico.",
+          "literal": "(Incluído pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 3º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "… a que esteja sujeito, e haja espaço suficiente para consignar o cumprimento das condições e normas de conduta impostas.",
+          "literal": "(Incluído pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 4º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "…ções além das especificadas na sentença e das referidas no parágrafo anterior, desde que as circunstâncias o aconselhem.",
+          "literal": "(Incluído pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 5º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "…ários ou proventos de que vive, as economias que conseguiu realizar e as dificuldades materiais ou sociais que enfrenta.",
+          "literal": "(Incluído pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 6º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "…litar, qualquer fato capaz de acarretar a revogação do benefício, a prorrogação do prazo ou a modificação das condições.",
+          "literal": "(Incluído pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "inclusao",
+          "unidade": "§ 7º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "…iciária competente e à entidade fiscalizadora do local da nova residência, aos quais deverá apresentar-se imediatamente.",
+          "literal": "(Incluído pela Lei nº 6.544, de 30.6.1978)"
+        }
+      ]
+    },
+    "611": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "…lhe as condições, podendo a audiência ser presidida por qualquer membro do Tribunal ou por Auditor designado no acórdão.",
+          "literal": "(Redação dada pela Lei nº 6.544, de 30.6.1978)"
+        }
+      ]
+    },
+    "614": {
+      "situacao": null,
+      "eventos": [
+        {
+          "tipo": "redacao",
+          "unidade": "caput",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "Art. 614 - A suspensão será revogada se, no curso do prazo, o beneficiário:",
+          "literal": "(Redação dada pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso I",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "I - for condenado, na justiça militar ou na comum, por sentença irrecorrível, a pena privativa da liberdade;",
+          "literal": "(Redação dada pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso II",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "II - não efetuar, sem motivo justificado, a reparação do dano;",
+          "literal": "(Redação dada pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "inciso III",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "III - sendo militar, for punido por crime próprio ou por transgressão disciplinar considerada grave.",
+          "literal": "(Redação dada pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 1º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "§ 1º - A suspensão poderá ser revogada, se o beneficiário:",
+          "literal": "(Redação dada pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "a) deixar de cumprir qualquer das obrigações constantes da sentença;",
+          "literal": "(Redação dada pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "b) deixar de observar obrigações inerentes à pena acessória;",
+          "literal": "(Redação dada pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "c) for irrecorrivelmente condenado a pena que não seja privativa da liberdade.",
+          "literal": "(Redação dada pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "§ 2º",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "§ 2º - Quando, em caso do parágrafo anterior, o juiz não revogar a suspensão, deverá:",
+          "literal": "(Redação dada pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea a",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "a) advertir o beneficiário ou;",
+          "literal": "(Redação dada pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea b",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "b) exacerbar as condições ou, ainda;",
+          "literal": "(Redação dada pela Lei nº 6.544, de 30.6.1978)"
+        },
+        {
+          "tipo": "redacao",
+          "unidade": "alínea c",
+          "diploma": {
+            "especie": "Lei",
+            "numero": "6.544",
+            "ano": 1978
+          },
+          "trecho": "c) prorrogar o período de suspensão até o máximo, se esse limite não foi o fixado.",
+          "literal": "(Redação dada pela Lei nº 6.544, de 30.6.1978)"
+        }
+      ]
+    }
+  }
+}

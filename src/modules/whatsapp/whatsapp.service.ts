@@ -155,6 +155,69 @@ export class WhatsappService {
     return { total: dto.destinatarios.length, enviadas, erros, resultados };
   }
 
+  // ─── Conversas (Inbox) ───────────────────────────────────────────────────
+
+  async listarConversas(escritorioId: string) {
+    // Busca última mensagem de cada telefone
+    const mensagens = await this.prisma.whatsappMessage.findMany({
+      where: { escritorioId },
+      orderBy: { createdAt: 'desc' },
+      take: 500,
+    });
+
+    // Agrupa por telefone — mantém só a última mensagem
+    const mapa = new Map<string, any>();
+    for (const m of mensagens) {
+      if (!mapa.has(m.telefone)) {
+        mapa.set(m.telefone, m);
+      }
+    }
+
+    // Conta não lidas por telefone
+    const naoLidas = await this.prisma.whatsappMessage.groupBy({
+      by: ['telefone'],
+      where: { escritorioId, status: 'recebida' },
+      _count: { id: true },
+    });
+    const naoLidasMap = Object.fromEntries(naoLidas.map(n => [n.telefone, n._count.id]));
+
+    // Tenta associar cliente pelo telefone
+    const telefones = [...mapa.keys()];
+    const clientes = await this.prisma.cliente.findMany({
+      where: { escritorioId, telefone: { in: telefones } },
+      select: { telefone: true, nome: true },
+    });
+    const clienteMap = Object.fromEntries(clientes.map(c => [c.telefone?.replace(/\D/g, ''), c.nome]));
+
+    return [...mapa.values()].map(m => {
+      const tel = m.telefone?.replace(/\D/g, '');
+      return {
+        telefone: m.telefone,
+        nome: clienteMap[tel] ?? clienteMap[m.telefone] ?? m.telefone,
+        ultima_mensagem: m.conteudo,
+        ultima_mensagem_em: m.createdAt,
+        status: m.status,
+        nao_lidas: naoLidasMap[m.telefone] ?? 0,
+      };
+    }).sort((a, b) => new Date(b.ultima_mensagem_em).getTime() - new Date(a.ultima_mensagem_em).getTime());
+  }
+
+  async getConversa(escritorioId: string, telefone: string) {
+    const msgs = await this.prisma.whatsappMessage.findMany({
+      where: { escritorioId, telefone },
+      orderBy: { createdAt: 'asc' },
+      take: 100,
+    });
+
+    // Busca nome do cliente
+    const cliente = await this.prisma.cliente.findFirst({
+      where: { escritorioId, telefone: { contains: telefone.replace(/\D/g, '').slice(-8) } },
+      select: { nome: true, id: true },
+    });
+
+    return { mensagens: msgs, cliente };
+  }
+
   // ─── Histórico ────────────────────────────────────────────────────────────
 
   async getHistorico(
@@ -165,7 +228,7 @@ export class WhatsappService {
       status?: string;
       page?: string;
     },
-  ) {
+  ): Promise<any> {
     const page = Math.max(1, Number(query.page ?? 1));
     const limit = 20;
 
@@ -194,7 +257,7 @@ export class WhatsappService {
 
   // ─── Templates ───────────────────────────────────────────────────────────
 
-  async listTemplates(officeId: string) {
+  async listTemplates(officeId: string): Promise<any> {
     const data = await this.prisma.whatsappTemplate.findMany({
       where: { escritorioId: officeId },
       orderBy: { createdAt: 'desc' },
@@ -212,7 +275,7 @@ export class WhatsappService {
       variaveis?: string[];
       botoes?: any[];
     },
-  ) {
+  ): Promise<any> {
     const template = await this.prisma.whatsappTemplate.create({
       data: {
         nome: dto.nome,
@@ -237,7 +300,7 @@ export class WhatsappService {
 
   // ─── Automações ───────────────────────────────────────────────────────────
 
-  async listAutomacoes(officeId: string) {
+  async listAutomacoes(officeId: string): Promise<any> {
     const data = await this.prisma.whatsappAutomation.findMany({
       where: { escritorioId: officeId },
       orderBy: { createdAt: 'desc' },
@@ -255,7 +318,7 @@ export class WhatsappService {
       atraso_minutos?: number;
       filtros?: Record<string, any>;
     },
-  ) {
+  ): Promise<any> {
     return this.prisma.whatsappAutomation.create({
       data: {
         nome: dto.nome,
@@ -269,7 +332,7 @@ export class WhatsappService {
     });
   }
 
-  async updateAutomacao(officeId: string, id: string, dto: any) {
+  async updateAutomacao(officeId: string, id: string, dto: any): Promise<any> {
     const existing = await this.prisma.whatsappAutomation.findFirst({
       where: { id, escritorioId: officeId },
     });
@@ -288,7 +351,7 @@ export class WhatsappService {
     });
   }
 
-  async toggleAutomacao(officeId: string, id: string) {
+  async toggleAutomacao(officeId: string, id: string): Promise<any> {
     const existing = await this.prisma.whatsappAutomation.findFirst({
       where: { id, escritorioId: officeId },
     });
@@ -373,25 +436,91 @@ export class WhatsappService {
   // ─── Webhook ──────────────────────────────────────────────────────────────
 
   async processarWebhook(payload: any) {
-    // Suporte a webhooks de status (Evolution API / Z-API / WPPConnect)
     try {
-      // Evolution API: payload.data.key.id + payload.data.status
+      // ── Meta WhatsApp Cloud API ──────────────────────────────────────────
+      if (payload?.object === 'whatsapp_business_account') {
+        for (const entry of payload?.entry ?? []) {
+          for (const change of entry?.changes ?? []) {
+            if (change?.field !== 'messages') continue;
+            const value = change?.value;
+
+            // 1. Status de mensagens enviadas pelo escritório (delivered/read/failed)
+            for (const st of value?.statuses ?? []) {
+              const statusMap: Record<string, string> = {
+                sent:      'enviada',
+                delivered: 'entregue',
+                read:      'lida',
+                failed:    'erro',
+              };
+              const novoStatus = statusMap[st.status];
+              if (novoStatus && st.id) {
+                await this.prisma.whatsappMessage.updateMany({
+                  where: { whatsappMsgId: st.id },
+                  data: {
+                    status: novoStatus,
+                    ...(novoStatus === 'lida' ? { lidaEm: new Date() } : {}),
+                  },
+                });
+                this.logger.debug(`[WhatsApp] Meta status: ${st.id} → ${novoStatus}`);
+              }
+            }
+
+            // 2. Mensagens recebidas de clientes
+            const contatos: Record<string, string> = {};
+            for (const c of value?.contacts ?? []) {
+              contatos[c.wa_id] = c.profile?.name ?? c.wa_id;
+            }
+
+            for (const msg of value?.messages ?? []) {
+              const telefone = msg.from;
+              const nomeContato = contatos[telefone] ?? telefone;
+              let conteudo = '';
+
+              if (msg.type === 'text') {
+                conteudo = msg.text?.body ?? '';
+              } else if (msg.type === 'image') {
+                conteudo = `[Imagem recebida] ${msg.image?.caption ?? ''}`.trim();
+              } else if (msg.type === 'document') {
+                conteudo = `[Documento: ${msg.document?.filename ?? 'arquivo'}]`;
+              } else if (msg.type === 'audio') {
+                conteudo = '[Áudio recebido]';
+              } else if (msg.type === 'video') {
+                conteudo = `[Vídeo recebido] ${msg.video?.caption ?? ''}`.trim();
+              } else if (msg.type === 'location') {
+                conteudo = `[Localização: lat ${msg.location?.latitude}, lng ${msg.location?.longitude}]`;
+              } else {
+                conteudo = `[Mensagem tipo: ${msg.type}]`;
+              }
+
+              this.logger.log(`[WhatsApp] Mensagem recebida de ${nomeContato} (${telefone}): ${conteudo.slice(0, 80)}`);
+
+              // Salva como mensagem recebida (escritorioId null — será associado manualmente)
+              await this.prisma.whatsappMessage.create({
+                data: {
+                  telefone,
+                  tipo: 'texto',
+                  conteudo,
+                  status: 'recebida',
+                  whatsappMsgId: msg.id,
+                  escritorioId: value?.metadata?.phone_number_id ?? 'meta',
+                  enviadoPorId: null as any,
+                },
+              }).catch(() => {}); // ignora duplicatas
+            }
+          }
+        }
+        return { received: true };
+      }
+
+      // ── Evolution API / Z-API / WPPConnect ────────────────────────────────
       const msgId = payload?.data?.key?.id ?? payload?.messageId ?? payload?.id;
       const status = payload?.data?.status ?? payload?.status ?? payload?.event;
 
       if (msgId && status) {
         const statusMap: Record<string, string> = {
-          DELIVERY_ACK: 'entregue',
-          READ: 'lida',
-          PLAYED: 'lida',
-          FAILED: 'erro',
-          // Z-API
-          received: 'entregue',
-          read: 'lida',
-          failed: 'erro',
-          // WPPConnect
-          ACK_RECEIVED: 'entregue',
-          ACK_READ: 'lida',
+          DELIVERY_ACK: 'entregue', READ: 'lida', PLAYED: 'lida', FAILED: 'erro',
+          received: 'entregue', read: 'lida', failed: 'erro',
+          ACK_RECEIVED: 'entregue', ACK_READ: 'lida',
         };
         const novoStatus = statusMap[status as string];
         if (novoStatus) {
@@ -434,12 +563,22 @@ export class WhatsappService {
     return { received: true };
   }
 
-  verificarWebhook(query: { 'hub.verify_token'?: string; 'hub.challenge'?: string }) {
+  /** Verificação de webhook Meta (retorna hub.challenge como string pura) */
+  verificarWebhook(query: {
+    'hub.verify_token'?: string;
+    'hub.challenge'?: string;
+    'hub.mode'?: string;
+  }): string | object {
     const verifyToken = process.env.WHATSAPP_VERIFY_TOKEN ?? 'jurysone-webhook';
-    if (query['hub.verify_token'] === verifyToken) {
-      return query['hub.challenge'];
+    if (
+      query['hub.mode'] === 'subscribe' &&
+      query['hub.verify_token'] === verifyToken
+    ) {
+      this.logger.log('[WhatsApp] Webhook Meta verificado com sucesso.');
+      return query['hub.challenge'] ?? '';
     }
-    return { verified: true }; // Evolution API / outros não usam challenge
+    // Outros provedores não usam challenge
+    return { verified: true };
   }
 
   // ─── Stats ────────────────────────────────────────────────────────────────
@@ -480,11 +619,11 @@ export class WhatsappService {
     );
   }
 
-  getMessages(query: any, officeId: string) {
+  getMessages(query: any, officeId: string): Promise<any> {
     return this.getHistorico(officeId, query);
   }
 
-  getConversations(query: any, officeId: string) {
+  getConversations(query: any, officeId: string): Promise<any> {
     return this.getHistorico(officeId, query);
   }
 
@@ -498,6 +637,33 @@ export class WhatsappService {
 
   disconnect(officeId: string) {
     return this.getConfig(officeId);
+  }
+
+  // ─── Envio interno (sistema, sem usuário logado) ──────────────────────────
+
+  /**
+   * Envia mensagem de texto sem depender de usuário logado.
+   * Usado por outros serviços (ex: EsignService) para notificações automáticas.
+   * Retorna true se enviado com sucesso.
+   */
+  async enviarTextoSimples(telefone: string, texto: string): Promise<boolean> {
+    if (!process.env.WHATSAPP_API_URL || !process.env.WHATSAPP_API_KEY) {
+      this.logger.debug('[WhatsApp] API não configurada — mensagem ignorada');
+      return false;
+    }
+    try {
+      const tel = this.normalizarTelefone(telefone);
+      if (!tel) {
+        this.logger.warn(`[WhatsApp] Telefone inválido: ${telefone}`);
+        return false;
+      }
+      await this.chamarApiWhatsapp(tel, texto);
+      this.logger.log(`[WhatsApp] ✅ Mensagem enviada para ${tel}`);
+      return true;
+    } catch (err) {
+      this.logger.warn(`[WhatsApp] Falha ao enviar: ${err.message}`);
+      return false;
+    }
   }
 
   // ─── Helpers privados ─────────────────────────────────────────────────────
@@ -519,18 +685,45 @@ export class WhatsappService {
       return undefined;
     }
 
-    const body: Record<string, any> = {
-      // Evolution API
-      number: telefone,
-      text: texto,
-      // Z-API (campos alternativos ignorados pela Evolution)
-      phone: telefone,
-      message: texto,
-    };
+    const isMetaApi = apiUrl.includes('graph.facebook.com');
 
-    if (arquivoUrl) {
-      body.mediaUrl = arquivoUrl;
-      body.mediaMessage = { mediaUrl: arquivoUrl, caption: texto };
+    let body: Record<string, any>;
+
+    if (isMetaApi) {
+      // ── Meta WhatsApp Cloud API ──────────────────────────────────────────
+      const base = { messaging_product: 'whatsapp', recipient_type: 'individual', to: telefone };
+
+      if (arquivoUrl) {
+        // Detecta tipo pelo mime/extensão da URL
+        const ext = arquivoUrl.split('?')[0].split('.').pop()?.toLowerCase() ?? '';
+        const isImage = ['jpg','jpeg','png','gif','webp'].includes(ext);
+        const isVideo = ['mp4','mov','avi','3gp'].includes(ext);
+        const isAudio = ['mp3','ogg','oga','amr','aac','m4a'].includes(ext);
+
+        if (isImage) {
+          body = { ...base, type: 'image', image: { link: arquivoUrl, caption: texto } };
+        } else if (isVideo) {
+          body = { ...base, type: 'video', video: { link: arquivoUrl, caption: texto } };
+        } else if (isAudio) {
+          body = { ...base, type: 'audio', audio: { link: arquivoUrl } };
+        } else {
+          body = { ...base, type: 'document', document: { link: arquivoUrl, caption: texto, filename: arquivoUrl.split('/').pop() } };
+        }
+      } else {
+        body = { ...base, type: 'text', text: { body: texto, preview_url: true } };
+      }
+    } else {
+      // ── Evolution API / Z-API / WPPConnect ───────────────────────────────
+      body = {
+        number: telefone,
+        text: texto,
+        phone: telefone,
+        message: texto,
+      };
+      if (arquivoUrl) {
+        body.mediaUrl = arquivoUrl;
+        body.mediaMessage = { mediaUrl: arquivoUrl, caption: texto };
+      }
     }
 
     const response = await fetch(apiUrl, {
@@ -538,8 +731,7 @@ export class WhatsappService {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${apiKey}`,
-        // Evolution API aceita também apikey header — tentativa com Bearer funciona
-        apikey: apiKey,
+        ...(isMetaApi ? {} : { apikey: apiKey }),
       },
       body: JSON.stringify(body),
     });
@@ -549,9 +741,9 @@ export class WhatsappService {
       throw new Error(`WhatsApp API ${response.status}: ${err}`);
     }
 
-    const json = await response.json().catch(() => ({}));
-    // Evolution API: json.key?.id | Z-API: json.messageId | WPPConnect: json.id
-    return json?.key?.id ?? json?.messageId ?? json?.id ?? undefined;
+    const json: any = await response.json().catch(() => ({}));
+    // Meta: json.messages[0].id | Evolution: json.key?.id | Z-API: json.messageId
+    return json?.messages?.[0]?.id ?? json?.key?.id ?? json?.messageId ?? json?.id ?? undefined;
   }
 
   /** Normaliza telefone para E.164 com DDI Brasil. */
