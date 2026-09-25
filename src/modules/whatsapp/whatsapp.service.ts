@@ -397,7 +397,7 @@ export class WhatsappService {
 
       // Buscar cliente pelo telefone
       const telefoneNum = telefone.replace(/\D/g, '');
-      const cliente = await this.prisma.client.findFirst({
+      const cliente = await (this.prisma as any).cliente.findFirst({
         where: { officeId, phone: { contains: telefoneNum.slice(-8) } },
         select: { id: true, name: true },
       });

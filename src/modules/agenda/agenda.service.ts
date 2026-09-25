@@ -202,7 +202,7 @@ export class AgendaService {
     }
 
     // FIX B-006: limite de 500 eventos por consulta para evitar sobrecarga
-    const baseEvents = await this.prisma.calendarEvent.findMany({
+    const baseEvents = await (this.prisma as any).evento.findMany({
       where,
       include: this.defaultInclude,
       orderBy: { date: 'asc' },
@@ -231,7 +231,7 @@ export class AgendaService {
 
   async getHoje(officeId: string) {
     const today = new Date();
-    const events = await this.prisma.calendarEvent.findMany({
+    const events = await (this.prisma as any).evento.findMany({
       where: {
         officeId,
         date: { gte: startOfDay(today), lte: endOfDay(today) },
@@ -244,7 +244,7 @@ export class AgendaService {
 
   async getSemana(officeId: string) {
     const today = new Date();
-    const events = await this.prisma.calendarEvent.findMany({
+    const events = await (this.prisma as any).evento.findMany({
       where: {
         officeId,
         date: {
@@ -261,7 +261,7 @@ export class AgendaService {
   async getPrazos(query: { days_ahead?: string }, officeId: string) {
     const daysAhead = query.days_ahead ? parseInt(query.days_ahead) : 30;
     const now = new Date();
-    const events = await this.prisma.calendarEvent.findMany({
+    const events = await (this.prisma as any).evento.findMany({
       where: {
         officeId,
         type: 'PRAZO',
@@ -278,7 +278,7 @@ export class AgendaService {
   }
 
   async findOne(id: string, officeId: string) {
-    const event = await this.prisma.calendarEvent.findFirst({
+    const event = await (this.prisma as any).evento.findFirst({
       where: { id, officeId },
       include: this.defaultInclude,
     });
@@ -289,7 +289,7 @@ export class AgendaService {
   async create(body: CreateEventDto, userId: string, officeId: string) {
     const { responsibleIds, ...data } = body;
 
-    const event = await this.prisma.calendarEvent.create({
+    const event = await (this.prisma as any).evento.create({
       data: {
         ...data,
         date:              new Date(body.date),
@@ -320,15 +320,15 @@ export class AgendaService {
     if (body.recurrenceEndDate) updateData.recurrenceEndDate = new Date(body.recurrenceEndDate);
 
     if (responsibleIds !== undefined) {
-      await this.prisma.eventResponsible.deleteMany({ where: { eventId: id } });
+      await (this.prisma as any).eventoResponsavel.deleteMany({ where: { eventId: id } });
       if (responsibleIds.length) {
-        await this.prisma.eventResponsible.createMany({
+        await (this.prisma as any).eventoResponsavel.createMany({
           data: responsibleIds.map(uid => ({ eventId: id, userId: uid })),
         });
       }
     }
 
-    return this.prisma.calendarEvent.update({
+    return (this.prisma as any).evento.update({
       where: { id },
       data:  updateData,
       include: this.defaultInclude,
@@ -337,7 +337,7 @@ export class AgendaService {
 
   async remove(id: string, officeId: string) {
     await this.findOne(id, officeId);
-    await this.prisma.calendarEvent.delete({ where: { id } });
+    await (this.prisma as any).evento.delete({ where: { id } });
     return { success: true, id };
   }
 
@@ -509,7 +509,7 @@ export class AgendaService {
     // ── Import: Google → JurysOne ──────────────────────────────────────────
     if (direction === 'import' || direction === 'both') {
       // Para import precisamos do officeId — vem do JWT via userId
-      const user = await this.prisma.user.findUnique({
+      const user = await (this.prisma as any).usuario.findUnique({
         where: { id: userId },
         select: { officeId: true },
       });
@@ -546,7 +546,7 @@ export class AgendaService {
 
   async concluir(id: string, officeId: string) {
     await this.findOne(id, officeId);
-    return this.prisma.calendarEvent.update({
+    return (this.prisma as any).evento.update({
       where: { id },
       data:  { status: 'CONCLUIDO', completedAt: new Date() },
       include: this.defaultInclude,

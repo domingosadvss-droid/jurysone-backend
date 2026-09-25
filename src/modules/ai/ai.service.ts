@@ -43,7 +43,7 @@ export class AiService {
 
   // ─── Analisar processo ────────────────────────────────────────────────────
   async analyzeProcess(processId: string, question: string, officeId: string) {
-    const process = await this.prisma.process.findFirst({
+    const process = await (this.prisma as any).processo.findFirst({
       where: { id: processId, officeId },
       include: {
         client:    { select: { name: true } },
@@ -74,7 +74,7 @@ PERGUNTA: ${question}`;
     const answer      = result.text ?? '';
     const totalTokens = result.usageMetadata?.totalTokenCount ?? 0;
 
-    await this.prisma.aiInteraction.create({
+    await (this.prisma as any).interacaoIA.create({
       data: {
         officeId,
         processId,
@@ -106,7 +106,7 @@ Seções: I - DOS FATOS, II - DO DIREITO, III - DOS PEDIDOS`;
 
   // ─── Análise de Risco ──────────────────────────────────────────────────────
   async analyzeRisk(processId: string, officeId: string) {
-    const process = await this.prisma.process.findFirst({
+    const process = await (this.prisma as any).processo.findFirst({
       where:   { id: processId, officeId },
       include: { movements: { orderBy: { date: 'desc' }, take: 30 } },
     });

@@ -133,7 +133,7 @@ Contexto: direito brasileiro vigente, 2024/2025.`;
   /* ──────────────────── ANÁLISE DE RISCO ────────────────────── */
 
   async analisarRisco(processoId: string, officeId: string, userId?: string): Promise<RiskAnalysis> {
-    const processo = await this.prisma.process.findFirst({
+    const processo = await (this.prisma as any).processo.findFirst({
       where: { id: processoId, office: { id: officeId } },
       include: {
         client: true,
@@ -170,7 +170,7 @@ JSON esperado:
     const totalTokens = (result.response.usageMetadata?.promptTokenCount || 0) +
                         (result.response.usageMetadata?.candidatesTokenCount || 0);
 
-    await this.prisma.aiInteraction.create({
+    await (this.prisma as any).interacaoIA.create({
       data: {
         userId: userId || '',
         officeId,
@@ -285,7 +285,7 @@ JSON esperado:
   /* ──────────────────── RESUMO AUTOMÁTICO ───────────────────── */
 
   async resumirAndamentos(processoId: string, para: 'cliente' | 'advogado') {
-    const processo = await this.prisma.process.findUnique({
+    const processo = await (this.prisma as any).processo.findUnique({
       where: { id: processoId },
       include: { movements: { orderBy: { date: 'desc' }, take: 30 } },
     });
@@ -311,7 +311,7 @@ JSON esperado:
   /* ──────────────────── HELPERS PRIVADOS ────────────────────── */
 
   private async buildProcessoContext(processoId: string): Promise<string> {
-    const processo = await this.prisma.process.findUnique({
+    const processo = await (this.prisma as any).processo.findUnique({
       where: { id: processoId },
       include: {
         client: true,
@@ -331,7 +331,7 @@ Tarefas pendentes: ${processo.tasks.map(t => t.title).join(', ') || 'Nenhuma'}`;
   }
 
   private async getHistoricoConversa(conversaId: string, limit: number) {
-    const interacoes = await this.prisma.aiInteraction.findMany({
+    const interacoes = await (this.prisma as any).interacaoIA.findMany({
       where: { sessionId: conversaId },
       orderBy: { createdAt: 'asc' },
       take: limit * 2,
@@ -345,7 +345,7 @@ Tarefas pendentes: ${processo.tasks.map(t => t.title).join(', ') || 'Nenhuma'}`;
   }
 
   private async salvarInteracao(userId: string, officeId: string, data: any) {
-    return this.prisma.aiInteraction.create({
+    return (this.prisma as any).interacaoIA.create({
       data: {
         userId,
         officeId,

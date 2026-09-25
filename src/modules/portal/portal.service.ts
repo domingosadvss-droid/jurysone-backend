@@ -10,7 +10,7 @@ export class PortalService {
   // ── Auth ────────────────────────────────────────────────────────────────────
 
   async loginPortal(dto: { email: string; senha?: string; password?: string }) {
-    const cliente = await this.prisma.client.findFirst({
+    const cliente = await (this.prisma as any).cliente.findFirst({
       where: { email: dto.email },
     }) as any;
 
@@ -34,7 +34,7 @@ export class PortalService {
     if (!payload?.clienteId) throw new UnauthorizedException('Token inválido');
 
     const hash = await argon2.hash(dto.senha || dto.password || '');
-    await this.prisma.client.update({
+    await (this.prisma as any).cliente.update({
       where: { id: payload.clienteId },
       data: { portalSenha: hash } as any,
     });
@@ -43,7 +43,7 @@ export class PortalService {
   }
 
   async changePassword(clienteId: string, dto: { senha_atual?: string; current_password?: string; nova_senha?: string; new_password?: string }) {
-    const cliente = await this.prisma.client.findUnique({ where: { id: clienteId } }) as any;
+    const cliente = await (this.prisma as any).cliente.findUnique({ where: { id: clienteId } }) as any;
     if (!cliente?.portalSenha) throw new UnauthorizedException('Senha não configurada');
 
     const senhaAtual = dto.senha_atual || dto.current_password || '';
@@ -51,7 +51,7 @@ export class PortalService {
     if (!valido) throw new UnauthorizedException('Senha atual incorreta');
 
     const hash = await argon2.hash(dto.nova_senha || dto.new_password || '');
-    await this.prisma.client.update({ where: { id: clienteId }, data: { portalSenha: hash } as any });
+    await (this.prisma as any).cliente.update({ where: { id: clienteId }, data: { portalSenha: hash } as any });
 
     return { sucesso: true };
   }
@@ -76,7 +76,7 @@ export class PortalService {
 
   async getDashboard(clienteId: string) {
     const [processos, pendentes, financeiro, assinaturas] = await Promise.all([
-      this.prisma.process.count({ where: { clientId: clienteId, status: 'ATIVO' } }),
+      (this.prisma as any).processo.count({ where: { clienteId: clienteId, status: 'ATIVO' } }),
       this.prisma.tarefa.count({ where: { clienteId, status: 'PENDENTE' } as any }),
       this.prisma.lancamentoFinanceiro.aggregate({
         where: { clienteId, status: 'PENDENTE' },
@@ -106,9 +106,9 @@ export class PortalService {
     const limit = 10;
 
     const [total, items] = await Promise.all([
-      this.prisma.process.count({ where: { clientId: clienteId } }),
-      this.prisma.process.findMany({
-        where: { clientId: clienteId },
+      (this.prisma as any).processo.count({ where: { clienteId: clienteId } }),
+      (this.prisma as any).processo.findMany({
+        where: { clienteId: clienteId },
         orderBy: { updatedAt: 'desc' },
         skip: (page - 1) * limit,
         take: limit,
@@ -123,8 +123,8 @@ export class PortalService {
   }
 
   async getProcesso(processoId: string, clienteId: string) {
-    const processo = await this.prisma.process.findFirst({
-      where: { id: processoId, clientId: clienteId },
+    const processo = await (this.prisma as any).processo.findFirst({
+      where: { id: processoId, clienteId: clienteId },
       include: {
         movements: { orderBy: { date: 'desc' }, take: 20 },
         documents: { select: { id: true, name: true, type: true, createdAt: true } },
@@ -140,8 +140,8 @@ export class PortalService {
   }
 
   async getTimeline(processoId: string, clienteId: string) {
-    const processo = await this.prisma.process.findFirst({
-      where: { id: processoId, clientId: clienteId },
+    const processo = await (this.prisma as any).processo.findFirst({
+      where: { id: processoId, clienteId: clienteId },
       select: { id: true },
     });
     if (!processo) throw new NotFoundException('Processo não encontrado');
@@ -155,7 +155,7 @@ export class PortalService {
 
   async getDocumentos(clienteId: string, query?: any) {
     return this.prisma.document.findMany({
-      where: { process: { clientId: clienteId } } as any,
+      where: { process: { clienteId: clienteId } } as any,
       select: { id: true, name: true, type: true, url: true, createdAt: true },
       orderBy: { createdAt: 'desc' },
       take: 50,
@@ -164,7 +164,7 @@ export class PortalService {
 
   async downloadDocumento(clienteId: string, documentoId: string) {
     const doc = await this.prisma.document.findFirst({
-      where: { id: documentoId, process: { clientId: clienteId } } as any,
+      where: { id: documentoId, process: { clienteId: clienteId } } as any,
     }) as any;
     if (!doc) throw new NotFoundException('Documento não encontrado');
     return { url: doc.url, nome: doc.name };
@@ -227,7 +227,7 @@ export class PortalService {
   // ── Perfil ──────────────────────────────────────────────────────────────────
 
   async getPerfil(clienteId: string) {
-    const cliente = await this.prisma.client.findUnique({
+    const cliente = await (this.prisma as any).cliente.findUnique({
       where: { id: clienteId },
       select: { id: true, name: true, email: true, phone: true, cpf: true, createdAt: true },
     });
@@ -236,7 +236,7 @@ export class PortalService {
   }
 
   async atualizarPerfil(clienteId: string, body: any) {
-    return this.prisma.client.update({
+    return (this.prisma as any).cliente.update({
       where: { id: clienteId },
       data: { phone: body.telefone, name: body.nome } as any,
       select: { id: true, name: true, email: true, phone: true },

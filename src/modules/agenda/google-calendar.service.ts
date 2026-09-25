@@ -79,7 +79,7 @@ export class GoogleCalendarService {
     accessToken: string,
     calendarId = 'primary',
   ): Promise<string | null> {
-    const ev = await this.prisma.calendarEvent.findUnique({
+    const ev = await (this.prisma as any).evento.findUnique({
       where: { id: jurysoneEventId },
       include: {
         responsibles: { include: { user: { select: { email: true } } } },
@@ -100,7 +100,7 @@ export class GoogleCalendarService {
       const googleId: string = response.data.id;
 
       // Persiste o vínculo
-      await this.prisma.calendarEvent.update({
+      await (this.prisma as any).evento.update({
         where: { id: jurysoneEventId },
         data: { googleEventId: googleId, googleCalendarId: calendarId },
       });
@@ -122,7 +122,7 @@ export class GoogleCalendarService {
     jurysoneEventId: string,
     accessToken: string,
   ): Promise<boolean> {
-    const ev = await this.prisma.calendarEvent.findUnique({
+    const ev = await (this.prisma as any).evento.findUnique({
       where: { id: jurysoneEventId },
       include: {
         responsibles: { include: { user: { select: { email: true } } } },
@@ -149,7 +149,7 @@ export class GoogleCalendarService {
   // ── Excluir evento no Google ───────────────────────────────────────────────
 
   async deleteEvento(jurysoneEventId: string, accessToken: string): Promise<boolean> {
-    const ev = await this.prisma.calendarEvent.findUnique({
+    const ev = await (this.prisma as any).evento.findUnique({
       where: { id: jurysoneEventId },
     });
     if (!ev?.googleEventId) return false;
@@ -160,7 +160,7 @@ export class GoogleCalendarService {
         calendarId: ev.googleCalendarId ?? 'primary',
         eventId: ev.googleEventId,
       });
-      await this.prisma.calendarEvent.update({
+      await (this.prisma as any).evento.update({
         where: { id: jurysoneEventId },
         data: { googleEventId: null, googleCalendarId: null },
       });
@@ -214,7 +214,7 @@ export class GoogleCalendarService {
         const endDate   = item.end?.dateTime ?? item.end?.date;
         if (!startDate) { stats.skipped++; continue; }
 
-        const existing = await this.prisma.calendarEvent.findFirst({
+        const existing = await (this.prisma as any).evento.findFirst({
           where: { googleEventId: item.id, officeId },
         });
 
@@ -233,7 +233,7 @@ export class GoogleCalendarService {
         };
 
         if (existing) {
-          await this.prisma.calendarEvent.update({
+          await (this.prisma as any).evento.update({
             where: { id: existing.id },
             data: {
               title:       data.title,
@@ -246,7 +246,7 @@ export class GoogleCalendarService {
           });
           stats.updated++;
         } else {
-          await this.prisma.calendarEvent.create({ data });
+          await (this.prisma as any).evento.create({ data });
           stats.created++;
         }
       }

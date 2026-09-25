@@ -1684,7 +1684,7 @@ export class EsignService {
 
       // Buscar envelope relacionado
       const envelope = await this.prisma.esignEnvelope.findFirst({
-        where: { zapsignDocumentId: data.zapsignDocumentId },
+        where: { zapsignDocumentId: data.zapsignDocumentId } as any,
       });
 
       if (!envelope) {
@@ -1794,7 +1794,7 @@ export class EsignService {
 
       // Buscar envelope
       const envelope = await this.prisma.esignEnvelope.findFirst({
-        where: { zapsignDocumentId: data.zapsignDocumentId },
+        where: { zapsignDocumentId: data.zapsignDocumentId } as any,
       });
 
       if (!envelope) {

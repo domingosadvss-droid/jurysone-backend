@@ -21,10 +21,10 @@ export class AnalyticsService {
       receitaMes,
       receitaMesAnterior,
     ] = await Promise.all([
-      this.prisma.process.count({ where: { officeId } }),
-      this.prisma.process.count({ where: { officeId, status: 'ATIVO' } }),
-      this.prisma.client.count({ where: { officeId } }),
-      this.prisma.client.count({ where: { officeId, createdAt: { gte: inicioMes } } }),
+      (this.prisma as any).processo.count({ where: { escritorioId: officeId } }),
+      (this.prisma as any).processo.count({ where: { escritorioId: officeId, status: 'ATIVO' } }),
+      (this.prisma as any).cliente.count({ where: { escritorioId: officeId } }),
+      (this.prisma as any).cliente.count({ where: { escritorioId: officeId, createdAt: { gte: inicioMes } } }),
       this.prisma.tarefa.count({ where: { escritorioId: officeId, status: 'PENDENTE' } as any }),
       this.prisma.tarefa.count({ where: { escritorioId: officeId, status: 'PENDENTE', dataPrazo: { lt: agora } } as any }),
       this.prisma.lancamentoFinanceiro.aggregate({
@@ -87,14 +87,14 @@ export class AnalyticsService {
 
   async getDistribuicaoProcessos(officeId: string) {
     const [porStatus, porArea] = await Promise.all([
-      this.prisma.process.groupBy({
+      (this.prisma as any).processo.groupBy({
         by: ['status'],
-        where: { officeId },
+        where: { escritorioId: officeId },
         _count: { _all: true },
       }),
-      this.prisma.process.groupBy({
+      (this.prisma as any).processo.groupBy({
         by: ['area'],
-        where: { officeId },
+        where: { escritorioId: officeId },
         _count: { _all: true },
         orderBy: { _count: { area: 'desc' } },
         take: 8,
@@ -102,8 +102,8 @@ export class AnalyticsService {
     ]);
 
     return {
-      por_status: porStatus.map((s) => ({ status: s.status, total: s._count._all })),
-      por_area:   porArea.map((a) => ({ area: a.area || 'Não definida', total: a._count._all })),
+      por_status: porStatus.map((s: any) => ({ status: s.status, total: s._count._all })),
+      por_area:   porArea.map((a: any) => ({ area: a.area || 'Não definida', total: a._count._all })),
     };
   }
 
