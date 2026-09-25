@@ -844,6 +844,41 @@ export class AutomacoesService {
         return { esperadoMin: cfg.minutos };
       }
 
+      // ─── Enviar e-mail ───────────────────────────────────────
+      case 'email.enviar': {
+        const para = cfg.para || dados.cliente_email;
+        if (!para) throw new Error('E-mail de destino não disponível');
+
+        const smtpHost = process.env.SMTP_HOST;
+        const smtpUser = process.env.SMTP_USER;
+        const smtpPass = process.env.SMTP_PASS;
+
+        if (!smtpHost || !smtpUser || !smtpPass) {
+          this.logger.warn('[Motor] SMTP não configurado — e-mail não enviado');
+          return { aviso: 'SMTP não configurado', para };
+        }
+
+        // Carrega nodemailer dinamicamente
+        const nodemailer = await import('nodemailer').catch(() => null);
+        if (!nodemailer) throw new Error('nodemailer não instalado');
+
+        const transporter = nodemailer.default.createTransport({
+          host:   smtpHost,
+          port:   Number(process.env.SMTP_PORT || 587),
+          secure: process.env.SMTP_SECURE === 'true',
+          auth:   { user: smtpUser, pass: smtpPass },
+        });
+
+        await transporter.sendMail({
+          from:    `"${process.env.SMTP_FROM_NAME || 'JurysOne'}" <${smtpUser}>`,
+          to:      para,
+          subject: cfg.assunto,
+          html:    `<p>${(cfg.corpo || '').replace(/\n/g, '<br>')}</p>`,
+        });
+
+        return { enviado: true, para, assunto: cfg.assunto };
+      }
+
       default:
         this.logger.warn(`[Motor] Ação não implementada: ${tipo}`);
         return { aviso: `Ação "${tipo}" reconhecida mas não implementada ainda.` };

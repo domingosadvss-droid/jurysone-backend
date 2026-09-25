@@ -1,48 +1,274 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
+import * as argon2 from 'argon2';
+import * as jwt from 'jsonwebtoken';
 
 @Injectable()
 export class PortalService {
   constructor(private readonly prisma: PrismaService) {}
 
-  loginPortal(dto: any) {
-    return { message: 'Portal login', dto };
+  // ── Auth ────────────────────────────────────────────────────────────────────
+
+  async loginPortal(dto: { email: string; senha?: string; password?: string }) {
+    const cliente = await this.prisma.client.findFirst({
+      where: { email: dto.email },
+    }) as any;
+
+    if (!cliente) throw new UnauthorizedException('E-mail ou senha inválidos');
+    if (!cliente.portalSenha) throw new UnauthorizedException('Acesso ao portal não configurado. Solicite ao escritório.');
+
+    const valido = await argon2.verify(cliente.portalSenha, dto.senha || dto.password || '');
+    if (!valido) throw new UnauthorizedException('E-mail ou senha inválidos');
+
+    const token = jwt.sign(
+      { sub: cliente.id, tipo: 'portal', officeId: cliente.officeId },
+      process.env.JWT_SECRET || 'secret',
+      { expiresIn: '7d' },
+    );
+
+    return { token, cliente: { id: cliente.id, nome: cliente.name, email: cliente.email } };
+  }
+
+  async setupPassword(dto: { token: string; password?: string; senha?: string }) {
+    const payload = jwt.verify(dto.token, process.env.JWT_SECRET || 'secret') as any;
+    if (!payload?.clienteId) throw new UnauthorizedException('Token inválido');
+
+    const hash = await argon2.hash(dto.senha || dto.password || '');
+    await this.prisma.client.update({
+      where: { id: payload.clienteId },
+      data: { portalSenha: hash } as any,
+    });
+
+    return { sucesso: true };
+  }
+
+  async changePassword(clienteId: string, dto: { senha_atual?: string; current_password?: string; nova_senha?: string; new_password?: string }) {
+    const cliente = await this.prisma.client.findUnique({ where: { id: clienteId } }) as any;
+    if (!cliente?.portalSenha) throw new UnauthorizedException('Senha não configurada');
+
+    const senhaAtual = dto.senha_atual || dto.current_password || '';
+    const valido = await argon2.verify(cliente.portalSenha, senhaAtual);
+    if (!valido) throw new UnauthorizedException('Senha atual incorreta');
+
+    const hash = await argon2.hash(dto.nova_senha || dto.new_password || '');
+    await this.prisma.client.update({ where: { id: clienteId }, data: { portalSenha: hash } as any });
+
+    return { sucesso: true };
   }
 
   requestAccess(dto: any) {
-    return { message: 'Portal access request', dto };
+    return { message: 'Solicitação recebida. O escritório entrará em contato.', dto };
   }
 
   confirmEmail(token: string) {
-    return { message: 'Email confirmed', token };
+    return { message: 'E-mail confirmado', token };
   }
 
   resetPassword(dto: any) {
-    return { message: 'Password reset requested', dto };
+    return { message: 'Instruções de redefinição enviadas para o e-mail', dto };
   }
 
   setNewPassword(dto: any) {
-    return { message: 'Password updated', dto };
+    return this.setupPassword(dto);
   }
 
-  getProcessos(clienteId: string, query: any) {
-    return { message: 'Portal processos', clienteId, query };
+  // ── Dashboard ───────────────────────────────────────────────────────────────
+
+  async getDashboard(clienteId: string) {
+    const [processos, pendentes, financeiro, assinaturas] = await Promise.all([
+      this.prisma.process.count({ where: { clientId: clienteId, status: 'ATIVO' } }),
+      this.prisma.tarefa.count({ where: { clienteId, status: 'PENDENTE' } as any }),
+      this.prisma.lancamentoFinanceiro.aggregate({
+        where: { clienteId, status: 'PENDENTE' },
+        _sum: { valor: true },
+        _count: { _all: true },
+      }),
+      this.prisma.esignEnvelope.count({
+        where: { clienteId, status: 'ENVIADO' } as any,
+      }).catch(() => 0),
+    ]);
+
+    return {
+      processos_ativos: processos,
+      tarefas_pendentes: pendentes,
+      financeiro_pendente: {
+        total: Number(financeiro._sum.valor || 0),
+        qtd: financeiro._count._all,
+      },
+      assinaturas_pendentes: assinaturas,
+    };
   }
 
-  getProcessoDetail(clienteId: string, processoId: string) {
-    return { message: 'Portal processo detail', clienteId, processoId };
+  // ── Processos ───────────────────────────────────────────────────────────────
+
+  async getProcessos(clienteId: string, query: any) {
+    const page = parseInt(query.page || '1', 10);
+    const limit = 10;
+
+    const [total, items] = await Promise.all([
+      this.prisma.process.count({ where: { clientId: clienteId } }),
+      this.prisma.process.findMany({
+        where: { clientId: clienteId },
+        orderBy: { updatedAt: 'desc' },
+        skip: (page - 1) * limit,
+        take: limit,
+        select: {
+          id: true, number: true, title: true, status: true, area: true,
+          court: true, updatedAt: true, value: true,
+        },
+      }),
+    ]);
+
+    return { total, page, limit, items };
   }
 
-  getDocumentos(clienteId: string, query?: any) {
-    return { message: 'Portal documentos', clienteId, query };
+  async getProcesso(processoId: string, clienteId: string) {
+    const processo = await this.prisma.process.findFirst({
+      where: { id: processoId, clientId: clienteId },
+      include: {
+        movements: { orderBy: { date: 'desc' }, take: 20 },
+        documents: { select: { id: true, name: true, type: true, createdAt: true } },
+      },
+    });
+
+    if (!processo) throw new NotFoundException('Processo não encontrado');
+    return processo;
   }
 
-  downloadDocumento(clienteId: string, documentoId: string) {
-    return { message: 'Download documento', clienteId, documentoId };
+  async getProcessoDetail(clienteId: string, processoId: string) {
+    return this.getProcesso(processoId, clienteId);
   }
+
+  async getTimeline(processoId: string, clienteId: string) {
+    const processo = await this.prisma.process.findFirst({
+      where: { id: processoId, clientId: clienteId },
+      select: { id: true },
+    });
+    if (!processo) throw new NotFoundException('Processo não encontrado');
+
+    return (this.prisma as any).processMovement
+      ? (this.prisma as any).processMovement.findMany({ where: { processId: processoId }, orderBy: { date: 'desc' } })
+      : (this.prisma as any).movimentacao?.findMany({ where: { processoId }, orderBy: { data: 'desc' } }) ?? [];
+  }
+
+  // ── Documentos ──────────────────────────────────────────────────────────────
+
+  async getDocumentos(clienteId: string, query?: any) {
+    return this.prisma.document.findMany({
+      where: { process: { clientId: clienteId } } as any,
+      select: { id: true, name: true, type: true, url: true, createdAt: true },
+      orderBy: { createdAt: 'desc' },
+      take: 50,
+    });
+  }
+
+  async downloadDocumento(clienteId: string, documentoId: string) {
+    const doc = await this.prisma.document.findFirst({
+      where: { id: documentoId, process: { clientId: clienteId } } as any,
+    }) as any;
+    if (!doc) throw new NotFoundException('Documento não encontrado');
+    return { url: doc.url, nome: doc.name };
+  }
+
+  getDocumentoDownload(documentoId: string, clienteId: string) {
+    return this.downloadDocumento(clienteId, documentoId);
+  }
+
+  // ── Financeiro ──────────────────────────────────────────────────────────────
+
+  async getFinanceiro(clienteId: string) {
+    const [pendentes, pagos] = await Promise.all([
+      this.prisma.lancamentoFinanceiro.findMany({
+        where: { clienteId, status: 'PENDENTE' },
+        orderBy: { dataVencimento: 'asc' },
+      }),
+      this.prisma.lancamentoFinanceiro.findMany({
+        where: { clienteId, status: 'PAGO' },
+        orderBy: { dataPagamento: 'desc' },
+        take: 10,
+      }),
+    ]);
+
+    return { pendentes, historico: pagos };
+  }
+
+  async getHistoricoFinanceiro(clienteId: string) {
+    return this.getFinanceiro(clienteId);
+  }
+
+  async getBoletos(clienteId: string) {
+    return this.prisma.lancamentoFinanceiro.findMany({
+      where: { clienteId, status: 'PENDENTE', formaPagamento: 'BOLETO' },
+      orderBy: { dataVencimento: 'asc' },
+    });
+  }
+
+  iniciarPagamento(clienteId: string, dto: any) {
+    return { message: 'Integração de pagamento — configure Asaas para habilitar', clienteId, dto };
+  }
+
+  // ── E-sign ──────────────────────────────────────────────────────────────────
+
+  async getAssinaturasPendentes(clienteId: string) {
+    return this.prisma.esignEnvelope.findMany({
+      where: { clienteId, status: 'ENVIADO' } as any,
+      select: { id: true, titulo: true, createdAt: true, expiresAt: true } as any,
+    }).catch(() => []);
+  }
+
+  getDocumentosParaAssinar(clienteId: string) {
+    return this.getAssinaturasPendentes(clienteId);
+  }
+
+  assinarDocumento(clienteId: string, documentoId: string, dto?: any) {
+    return { message: 'Use o link de assinatura recebido por e-mail', clienteId, documentoId };
+  }
+
+  // ── Perfil ──────────────────────────────────────────────────────────────────
+
+  async getPerfil(clienteId: string) {
+    const cliente = await this.prisma.client.findUnique({
+      where: { id: clienteId },
+      select: { id: true, name: true, email: true, phone: true, cpf: true, createdAt: true },
+    });
+    if (!cliente) throw new NotFoundException('Cliente não encontrado');
+    return cliente;
+  }
+
+  async atualizarPerfil(clienteId: string, body: any) {
+    return this.prisma.client.update({
+      where: { id: clienteId },
+      data: { phone: body.telefone, name: body.nome } as any,
+      select: { id: true, name: true, email: true, phone: true },
+    });
+  }
+
+  updatePerfil(clienteId: string, dto: any) {
+    return this.atualizarPerfil(clienteId, dto);
+  }
+
+  // ── Notificações ────────────────────────────────────────────────────────────
+
+  async getNotificacoes(clienteId: string, query?: any) {
+    return this.prisma.notificacao.findMany({
+      where: { clienteId } as any,
+      orderBy: { createdAt: 'desc' },
+      take: 30,
+    }).catch(() => []);
+  }
+
+  async marcarNotificacaoLida(clienteId: string, id: string) {
+    await this.prisma.notificacao.updateMany({
+      where: { id, clienteId } as any,
+      data: { lida: true },
+    }).catch(() => null);
+    return { sucesso: true };
+  }
+
+  // ── Stubs restantes ─────────────────────────────────────────────────────────
 
   getPropostas(clienteId: string) {
-    return { message: 'Portal propostas', clienteId };
+    return { message: 'Propostas — em implementação', clienteId };
   }
 
   aprovarProposta(clienteId: string, propostaId: string) {
@@ -50,71 +276,7 @@ export class PortalService {
   }
 
   enviarMensagem(clienteId: string, body: any) {
-    return { message: 'Mensagem enviada', clienteId, body };
-  }
-
-  getDocumentosParaAssinar(clienteId: string) {
-    return { message: 'Documentos para assinar', clienteId };
-  }
-
-  assinarDocumento(clienteId: string, documentoId: string, dto?: any) {
-    return { message: 'Documento assinado', clienteId, documentoId, dto };
-  }
-
-  getHistoricoFinanceiro(clienteId: string) {
-    return { message: 'Histórico financeiro', clienteId };
-  }
-
-  getBoletos(clienteId: string) {
-    return { message: 'Boletos', clienteId };
-  }
-
-  getPerfil(clienteId: string) {
-    return { message: 'Perfil do cliente', clienteId };
-  }
-
-  atualizarPerfil(clienteId: string, body: any) {
-    return { message: 'Perfil atualizado', clienteId, body };
-  }
-
-  getPreferencesNotificacoes(clienteId: string) {
-    return { message: 'Preferences', clienteId };
-  }
-
-  atualizarPreferences(clienteId: string, preferences: any) {
-    return { message: 'Preferences updated', clienteId, preferences };
-  }
-
-  setupPassword(dto: any) {
-    return { message: 'Password set', dto };
-  }
-
-  getDashboard(clienteId: string) {
-    return { data: {}, clienteId };
-  }
-
-  getProcesso(processoId: string, clienteId: string) {
-    return { data: {}, processoId, clienteId };
-  }
-
-  getTimeline(processoId: string, clienteId: string) {
-    return { data: [], processoId, clienteId };
-  }
-
-  getDocumentoDownload(documentoId: string, clienteId: string) {
-    return { message: 'Document download', documentoId, clienteId };
-  }
-
-  getFinanceiro(clienteId: string) {
-    return { data: {}, clienteId };
-  }
-
-  iniciarPagamento(clienteId: string, dto: any) {
-    return { message: 'Payment initiated', clienteId, dto };
-  }
-
-  getAssinaturasPendentes(clienteId: string) {
-    return { data: [], clienteId };
+    return { message: 'Mensagens — em implementação', clienteId, body };
   }
 
   getMensagens(clienteId: string, query: any) {
@@ -126,27 +288,19 @@ export class PortalService {
   }
 
   aprovar(clienteId: string, id: string, dto: any) {
-    return { message: 'Approved', clienteId, id, dto };
+    return { message: 'Aprovado', clienteId, id };
   }
 
   rejeitar(clienteId: string, id: string, dto: any) {
-    return { message: 'Rejected', clienteId, id, dto };
+    return { message: 'Rejeitado', clienteId, id };
   }
 
-  getNotificacoes(clienteId: string, query?: any) {
-    return { data: [], clienteId, query };
+  getPreferencesNotificacoes(clienteId: string) {
+    return { clienteId };
   }
 
-  marcarNotificacaoLida(clienteId: string, id: string) {
-    return { message: 'Notificação marcada como lida', clienteId, id };
-  }
-
-  updatePerfil(clienteId: string, dto: any) {
-    return { message: 'Perfil atualizado', clienteId, dto };
-  }
-
-  changePassword(clienteId: string, dto: any) {
-    return { message: 'Senha alterada', clienteId, dto };
+  atualizarPreferences(clienteId: string, preferences: any) {
+    return { sucesso: true, clienteId };
   }
 
   getNpsSurvey(clienteId: string) {
@@ -154,6 +308,6 @@ export class PortalService {
   }
 
   responderNps(clienteId: string, dto: any) {
-    return { message: 'NPS respondido', clienteId, dto };
+    return { message: 'NPS registrado', clienteId };
   }
 }

@@ -132,7 +132,7 @@ Contexto: direito brasileiro vigente, 2024/2025.`;
 
   /* ──────────────────── ANÁLISE DE RISCO ────────────────────── */
 
-  async analisarRisco(processoId: string, officeId: string): Promise<RiskAnalysis> {
+  async analisarRisco(processoId: string, officeId: string, userId?: string): Promise<RiskAnalysis> {
     const processo = await this.prisma.process.findFirst({
       where: { id: processoId, office: { id: officeId } },
       include: {
@@ -172,7 +172,7 @@ JSON esperado:
 
     await this.prisma.aiInteraction.create({
       data: {
-        userId: '',
+        userId: userId || '',
         officeId,
         type: 'risk_analysis',
         input: prompt,

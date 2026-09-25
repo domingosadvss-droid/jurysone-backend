@@ -6,10 +6,11 @@
  * ═══════════════════════════════════════════════════════════════
  */
 
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException, Inject, forwardRef } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Cron } from '@nestjs/schedule';
 import { PrismaService } from '../../database/prisma.service';
+import { AutomacoesService } from '../automacoes/automacoes.service';
 import axios, { AxiosInstance } from 'axios';
 
 // ── Mapeamento de tribunais → índice DataJud ─────────────────────────────────
@@ -147,6 +148,8 @@ export class DatajudService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly config: ConfigService,
+    @Inject(forwardRef(() => AutomacoesService))
+    private readonly automacoes: AutomacoesService,
   ) {
     this.baseUrl = this.config.get<string>('DATAJUD_BASE_URL', 'https://api-publica.datajud.cnj.jus.br');
     const apiKey  = this.config.get<string>('DATAJUD_API_KEY', 'cDZHYzlZa0JadVREZDJCendFbXNBR3A1');
@@ -300,14 +303,12 @@ export class DatajudService {
    * Busca as movimentações mais recentes e salva no banco.
    */
   async sincronizarProcesso(processoId: string): Promise<any> {
-    const processo = await this.prisma.processo.findUnique({
+    const processo = await (this.prisma as any).processo.findUnique({
       where: { id: processoId },
       include: {
         monitoramentosDatajud: true,
-        movimentacoes: {
-          orderBy: { data: 'desc' },
-          take: 1,
-        },
+        movimentacoes: { orderBy: { data: 'desc' }, take: 1 },
+        client: { select: { name: true } },
       },
     });
 
@@ -381,6 +382,26 @@ export class DatajudService {
     }
 
     this.logger.log(`Processo ${processo.numero} sincronizado — ${criados} novos andamentos.`);
+
+    // Disparar evento de automação para cada novo andamento
+    if (criados > 0 && processo.escritorioId) {
+      const ultimoMovimento = novos[0];
+      try {
+        await this.automacoes.dispararEvento({
+          escritorioId: processo.escritorioId,
+          gatilho:      'datajud.nova_movimentacao',
+          dados: {
+            processo_id:      processo.id,
+            numero_processo:  processo.numero,
+            descricao:        ultimoMovimento?.nome ?? 'Nova movimentação',
+            cliente_nome:     (processo as any).client?.name ?? '',
+            total_novos:      criados,
+          },
+        });
+      } catch (err: any) {
+        this.logger.warn(`Falha ao disparar evento de automação para ${processo.numero}: ${err.message}`);
+      }
+    }
 
     return {
       sincronizado:       true,
@@ -479,18 +500,98 @@ export class DatajudService {
     return this.buscarPorNumero(numero, tribunal);
   }
 
-  buscarPorOab(query: any) {
-    return {
-      mensagem: 'Busca por OAB em desenvolvimento — use buscarPorParte com nome completo por enquanto.',
-      query,
-    };
+  async buscarPorOab(query: { numero?: string; numero_oab?: string; uf?: string; estado?: string; tribunal?: string; pagina?: string; page?: string }) {
+    const numero = query.numero || query.numero_oab || '';
+    const uf = query.uf || query.estado;
+    const pagina = query.pagina || query.page || '1';
+    const { tribunal } = query;
+    if (!numero) throw new Error('Número da OAB é obrigatório');
+
+    const tribunaisAlvo = tribunal
+      ? [tribunal.toUpperCase()]
+      : uf
+        ? Object.keys(TRIBUNAL_INDEX).filter((s) => {
+            const info = TRIBUNAIS_INFO.find((t) => t.sigla === s);
+            return info?.uf === uf.toUpperCase();
+          })
+        : ['TJPR', 'TJSP', 'TJRJ', 'STJ'];
+
+    const page = parseInt(pagina, 10);
+    const from = (page - 1) * 10;
+    const resultados: any[] = [];
+
+    for (const sig of tribunaisAlvo.slice(0, 4)) {
+      try {
+        const indice = this.resolverIndice(sig);
+        const { data } = await this.http.post(`/${indice}/_search`, {
+          from,
+          size: 10,
+          query: {
+            nested: {
+              path: 'partes',
+              query: {
+                nested: {
+                  path: 'partes.advogados',
+                  query: { match: { 'partes.advogados.nome': numero } },
+                },
+              },
+            },
+          },
+        });
+        const hits = (data?.hits?.hits ?? []).map((h: any) => ({
+          tribunal: sig,
+          ...this.formatarProcesso(h._source),
+        }));
+        resultados.push(...hits);
+      } catch {
+        // tribunal sem resultado — continua
+      }
+    }
+
+    return { oab: numero, uf, pagina: page, total: resultados.length, processos: resultados };
   }
 
-  buscarPorCpfCnpj(query: any) {
-    return {
-      mensagem: 'Busca por CPF/CNPJ em desenvolvimento — use buscarPorParte com nome completo.',
-      query,
-    };
+  async buscarPorCpfCnpj(query: { cpf_cnpj: string; tribunal?: string; pagina?: string }) {
+    const { cpf_cnpj, tribunal, pagina = '1' } = query;
+    if (!cpf_cnpj) throw new Error('CPF ou CNPJ é obrigatório');
+
+    const doc = cpf_cnpj.replace(/\D/g, '');
+    const page = parseInt(pagina, 10);
+    const from = (page - 1) * 10;
+
+    const tribunaisAlvo = tribunal
+      ? [tribunal.toUpperCase()]
+      : ['TJPR', 'TJSP', 'TJRJ', 'STJ', 'TRF4'];
+
+    const resultados: any[] = [];
+
+    for (const sig of tribunaisAlvo.slice(0, 5)) {
+      try {
+        const indice = this.resolverIndice(sig);
+        const { data } = await this.http.post(`/${indice}/_search`, {
+          from,
+          size: 10,
+          query: {
+            nested: {
+              path: 'partes',
+              query: {
+                match: { 'partes.documento': doc },
+              },
+            },
+          },
+          sort: [{ dataHoraUltimaAtualizacao: { order: 'desc' } }],
+        });
+        const hits = (data?.hits?.hits ?? []).map((h: any) => ({
+          tribunal: sig,
+          ...this.formatarProcesso(h._source),
+        }));
+        resultados.push(...hits);
+      } catch {
+        // tribunal sem resultado — continua
+      }
+    }
+
+    return { documento: doc, pagina: page, total: resultados.length, processos: resultados };
   }
 
   importarProcesso(user: any, dto: any) {

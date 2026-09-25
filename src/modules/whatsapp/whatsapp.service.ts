@@ -14,12 +14,16 @@
 
 import { Injectable, Logger, NotFoundException, BadRequestException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
+import { AiCopilotService } from '../ai/ai-copilot.service';
 
 @Injectable()
 export class WhatsappService {
   private readonly logger = new Logger(WhatsappService.name);
 
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly aiCopilot: AiCopilotService,
+  ) {}
 
   // ─── Configurações ────────────────────────────────────────────────────────
 
@@ -301,23 +305,69 @@ export class WhatsappService {
   getChatbotConfig(officeId: string) {
     return {
       officeId,
-      ativo: false,
-      saudacao: 'Olá! Sou o assistente virtual do escritório. Como posso ajudar?',
+      ativo: !!process.env.GEMINI_API_KEY,
+      saudacao: 'Olá! Sou o Juri, assistente virtual do escritório. Como posso ajudar?',
       menu_opcoes: [
         { numero: 1, texto: 'Status do processo', acao: 'status_processo' },
         { numero: 2, texto: 'Falar com advogado', acao: 'falar_advogado' },
         { numero: 3, texto: 'Informações de pagamento', acao: 'pagamento' },
         { numero: 4, texto: 'Enviar documento', acao: 'documentos' },
       ],
-      horario_atendimento: { inicio: '09:00', fim: '18:00', dias_semana: [1, 2, 3, 4, 5] },
-      mensagem_fora_horario: 'Nosso horário de atendimento é de segunda a sexta, das 9h às 18h.',
-      ia_habilitada: false,
-      message: 'Configuração de chatbot será persistida em versão futura.',
+      horario_atendimento: { inicio: '08:00', fim: '18:00', dias_semana: [1, 2, 3, 4, 5] },
+      mensagem_fora_horario: 'Nosso horário de atendimento é de segunda a sexta, das 8h às 18h. Deixe sua mensagem que responderemos em breve!',
+      ia_habilitada: !!process.env.GEMINI_API_KEY,
     };
   }
 
   updateChatbotConfig(_officeId: string, _dto: any) {
-    return { message: 'Configuração de chatbot recebida. Persistência em versão futura.' };
+    return { sucesso: true, message: 'Configuração recebida. Use variáveis de ambiente para credenciais.' };
+  }
+
+  /** Processa mensagem inbound do cliente via WhatsApp e responde com IA */
+  async processarMensagemInbound(officeId: string, telefone: string, mensagem: string): Promise<void> {
+    if (!process.env.GEMINI_API_KEY) return;
+
+    try {
+      const apiUrl = process.env.WHATSAPP_API_URL;
+      const apiKey = process.env.WHATSAPP_API_KEY;
+      if (!apiUrl || !apiKey) return;
+
+      // Buscar cliente pelo telefone
+      const telefoneNum = telefone.replace(/\D/g, '');
+      const cliente = await this.prisma.client.findFirst({
+        where: { officeId, phone: { contains: telefoneNum.slice(-8) } },
+        select: { id: true, name: true },
+      });
+
+      const resposta = await this.aiCopilot.suporteChat({
+        userId: '',
+        officeId,
+        mensagem,
+      });
+
+      // Enviar resposta de volta via WhatsApp API
+      await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+        body: JSON.stringify({ number: telefone, text: resposta.resposta }),
+        signal: AbortSignal.timeout(10000),
+      });
+
+      // Salvar resposta no histórico
+      await this.prisma.whatsappMessage.create({
+        data: {
+          escritorioId: officeId,
+          telefone: telefoneNum,
+          tipo: 'texto',
+          conteudo: resposta.resposta,
+          status: 'enviada',
+          clienteId: cliente?.id || null,
+          direcao: 'outbound',
+        } as any,
+      });
+    } catch (err: any) {
+      this.logger.warn(`[Chatbot] Erro ao responder: ${err.message}`);
+    }
   }
 
   // ─── Webhook ──────────────────────────────────────────────────────────────
@@ -355,6 +405,29 @@ export class WhatsappService {
           this.logger.debug(`[WhatsApp] Webhook: msg ${msgId} → ${novoStatus}`);
         }
       }
+      // Processar mensagens inbound (recebidas do cliente) — ativar IA
+      const isInbound =
+        payload?.data?.key?.fromMe === false ||
+        payload?.fromMe === false ||
+        payload?.type === 'ReceivedCallback';
+
+      const textoRecebido =
+        payload?.data?.message?.conversation ||
+        payload?.data?.message?.extendedTextMessage?.text ||
+        payload?.text ||
+        payload?.body;
+
+      const telefoneRemetente =
+        payload?.data?.key?.remoteJid?.replace('@s.whatsapp.net', '') ||
+        payload?.phone ||
+        payload?.from;
+
+      const officeIdPayload = payload?.instance || payload?.officeId;
+
+      if (isInbound && textoRecebido && telefoneRemetente && officeIdPayload) {
+        this.processarMensagemInbound(officeIdPayload, telefoneRemetente, textoRecebido).catch(() => null);
+      }
+
     } catch (err: any) {
       this.logger.warn(`[WhatsApp] Erro ao processar webhook: ${err.message}`);
     }
