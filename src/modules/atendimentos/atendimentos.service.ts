@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client';
 import { Injectable, BadRequestException, NotFoundException, Logger } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { CreateAtendimentoDto } from './dto/create-atendimento.dto';
@@ -60,21 +61,7 @@ export class AtendimentosService {
         });
       }
 
-      // 2. Create minor if applicable
-      let menorId: string = null;
-      if (dto.tipoRepresentacao === 'menor' && dto.menor) {
-        const menor = await this.prisma.menorRepresentado.create({
-          data: {
-            clienteId: cliente.id,
-            nome: dto.menor.nome,
-            dataNascimento: new Date(dto.menor.dataNascimento),
-            cpf: dto.menor.cpf,
-            rg: dto.menor.rg,
-            tipoResponsavel: dto.menor.tipoResponsavel,
-          },
-        });
-        menorId = menor.id;
-      }
+      // 2. Menor representado é criado após o atendimento (exige atendimentoId)
 
       // 3. Create processo (legal case)
       const processo = await this.prisma.processo.create({
@@ -86,7 +73,7 @@ export class AtendimentosService {
           tipoAcao: dto.tipoAcao,
           valor: dto.valorAcao,
           status: 'ATIVO',
-        } as any,
+        },
       });
 
       // 4. Create initial task
@@ -190,7 +177,7 @@ export class AtendimentosService {
               nome: `${tipo} - ${cliente.nome}`,
               status: 'gerado',
               url: null,
-            } as any,
+            },
           }),
         ),
       );
@@ -215,7 +202,7 @@ export class AtendimentosService {
           status: 'aguardando',
           mensagem: dto.mensagem || 'Segue o contrato de honorários para sua assinatura',
           dataLimite,
-        } as any,
+        },
       });
 
       // 7b. Envio via ClickSign é feito pelo frontend (POST /esign/envelopes)
@@ -244,10 +231,28 @@ export class AtendimentosService {
             ? new Date(dto.vencimento1Parc)
             : null,
           envelopeId: envelope.id,
-          menorId,
           questionario: dto.questionario,
         },
       });
+
+      // 8b. Create minor if applicable
+      if (dto.tipoRepresentacao === 'menor' && dto.menor) {
+        const menor = await this.prisma.menorRepresentado.create({
+          data: {
+            clienteId: cliente.id,
+            atendimentoId: atendimento.id,
+            nome: dto.menor.nome,
+            dataNascimento: dto.menor.dataNascimento ? new Date(dto.menor.dataNascimento) : null,
+            cpf: dto.menor.cpf,
+            rg: dto.menor.rg,
+            tipoResponsavel: dto.menor.tipoResponsavel,
+          },
+        });
+        await this.prisma.atendimento.update({
+          where: { id: atendimento.id },
+          data: { menorId: menor.id },
+        });
+      }
 
       // 9. Update lancamento with atendimentoId
       await this.prisma.lancamentoFinanceiro.update({
@@ -282,9 +287,11 @@ export class AtendimentosService {
     escritorioId: string,
     filters: AtendimentoFilter,
   ) {
-    const { status, area, page = 1, limit = 20 } = filters;
+    const { status, area } = filters;
+    const page  = Math.max(parseInt(String(filters.page ?? 1), 10) || 1, 1);
+    const limit = Math.min(Math.max(parseInt(String(filters.limit ?? 20), 10) || 20, 1), 200);
 
-    const where: any = { escritorioId };
+    const where: Prisma.AtendimentoWhereInput = { escritorioId };
     if (status) where.status = status;
     if (area) where.area = area;
 
@@ -383,9 +390,11 @@ export class AtendimentosService {
   async filterByStatus(
     escritorioId: string,
     status: string,
-    page: number = 1,
-    limit: number = 20,
+    pageParam: number | string = 1,
+    limitParam: number | string = 20,
   ) {
+    const page  = Math.max(parseInt(String(pageParam), 10) || 1, 1);
+    const limit = Math.min(Math.max(parseInt(String(limitParam), 10) || 20, 1), 200);
     const skip = (page - 1) * limit;
 
     const [atendimentos, total] = await Promise.all([

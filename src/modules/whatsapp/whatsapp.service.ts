@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client';
 /**
  * JURYSONE — WhatsApp Service
  *
@@ -232,7 +233,7 @@ export class WhatsappService {
     const page = Math.max(1, Number(query.page ?? 1));
     const limit = 20;
 
-    const where: any = { escritorioId: officeId };
+    const where: Prisma.WhatsappMessageWhereInput = { escritorioId: officeId };
     if (query.cliente_id) where.clienteId = query.cliente_id;
     if (query.processo_id) where.processoId = query.processo_id;
     if (query.status) where.status = query.status;
@@ -397,9 +398,9 @@ export class WhatsappService {
 
       // Buscar cliente pelo telefone
       const telefoneNum = telefone.replace(/\D/g, '');
-      const cliente = await (this.prisma as any).cliente.findFirst({
-        where: { officeId, phone: { contains: telefoneNum.slice(-8) } },
-        select: { id: true, name: true },
+      const cliente = await this.prisma.cliente.findFirst({
+        where: { escritorioId: officeId, telefone: { contains: telefoneNum.slice(-8) } },
+        select: { id: true, nome: true },
       });
 
       const resposta = await this.aiCopilot.suporteChat({
@@ -425,8 +426,8 @@ export class WhatsappService {
           conteudo: resposta.resposta,
           status: 'enviada',
           clienteId: cliente?.id || null,
-          direcao: 'outbound',
-        } as any,
+          enviadoEm: new Date(),
+        },
       });
     } catch (err: any) {
       this.logger.warn(`[Chatbot] Erro ao responder: ${err.message}`);

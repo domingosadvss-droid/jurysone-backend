@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 
@@ -10,7 +11,7 @@ export class NotificationsService {
   async findAll(query: { page?: string; lida?: string; tipo?: string }, userId: string) {
     const page = Math.max(1, Number(query.page ?? 1));
     const limit = 20;
-    const where: any = { usuarioId: userId };
+    const where: Prisma.NotificacaoWhereInput = { usuarioId: userId };
     if (query.lida !== undefined) where.lida = query.lida === 'true';
     if (query.tipo) where.tipo = query.tipo;
 

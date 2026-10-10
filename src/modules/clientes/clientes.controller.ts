@@ -29,7 +29,7 @@ export class ClientesController {
 
   @Get(':id')
   async findOne(@Request() req: any, @Param('id') id: string) {
-    return this.clientesService.findById(id);
+    return this.clientesService.findById(id, req.user.escritorioId ?? req.user.officeId);
   }
 
   @Post()
@@ -41,11 +41,11 @@ export class ClientesController {
 
   @Patch(':id')
   async update(@Request() req: any, @Param('id') id: string, @Body() dto: any) {
-    return this.clientesService.update(id, dto);
+    return this.clientesService.update(id, dto, req.user.escritorioId ?? req.user.officeId);
   }
 
   @Delete(':id')
   async remove(@Request() req: any, @Param('id') id: string) {
-    return this.clientesService.remove(id);
+    return this.clientesService.remove(id, req.user.escritorioId ?? req.user.officeId);
   }
 }

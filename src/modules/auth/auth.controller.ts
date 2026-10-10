@@ -1,3 +1,4 @@
+import { RegisterDto } from './dto/register.dto';
 import { Controller, Post, Get, Body, UseGuards } from '@nestjs/common';
 import { Throttle } from '@nestjs/throttler';
 import { AuthService } from './auth.service';
@@ -20,15 +21,7 @@ export class AuthController {
   @Post('register')
   @Public()
   @Throttle({ default: { limit: 3, ttl: 60000 } })
-  async register(
-    @Body()
-    body: {
-      email: string;
-      password: string;
-      nome: string;
-      nomeEscritorio: string;
-    },
-  ): Promise<any> {
+  async register(@Body() body: RegisterDto): Promise<any> {
     return this.authService.register(body);
   }
 

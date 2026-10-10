@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 
 interface FindAllFilters {
@@ -38,7 +39,7 @@ export class FinanceiroService {
     const { escritorioId, tipo, status, page = 1, limit = 10 } = filters;
     const skip = (page - 1) * limit;
 
-    const where: any = {
+    const where: Prisma.LancamentoFinanceiroWhereInput = {
       escritorioId,
       deletedAt: null,
     };
@@ -52,7 +53,7 @@ export class FinanceiroService {
     }
 
     const [data, total] = await Promise.all([
-      this.prisma.lancamento.findMany({
+      this.prisma.lancamentoFinanceiro.findMany({
         where,
         skip,
         take: limit,
@@ -61,7 +62,7 @@ export class FinanceiroService {
         },
         orderBy: { data: 'desc' },
       }),
-      this.prisma.lancamento.count({ where }),
+      this.prisma.lancamentoFinanceiro.count({ where }),
     ]);
 
     const pages = Math.ceil(total / limit);
@@ -74,28 +75,110 @@ export class FinanceiroService {
     };
   }
 
-  async getLancamentos(query: any, officeId: string): Promise<any> {
-    return { message: 'Lançamentos', officeId, query };
+  // ── Lançamentos ───────────────────────────────────────────────────────────
+
+  private async assertLancamento(id: string, officeId: string) {
+    const lanc = await this.prisma.lancamentoFinanceiro.findFirst({
+      where: { id, escritorioId: officeId, deletedAt: null },
+      include: { cliente: { select: { id: true, nome: true } } },
+    });
+    if (!lanc) throw new NotFoundException('Lançamento não encontrado');
+    return lanc;
   }
 
-  async getLancamentosDatatable(query: any, officeId: string): Promise<any> {
-    return { message: 'Lançamentos DataTable', officeId, query };
+  private async assertClienteDoEscritorio(clienteId: string | undefined, officeId: string) {
+    if (!clienteId) return;
+    const cliente = await this.prisma.cliente.findFirst({
+      where: { id: clienteId, escritorioId: officeId, deletedAt: null },
+      select: { id: true },
+    });
+    if (!cliente) throw new BadRequestException('Cliente não pertence a este escritório');
   }
 
-  async createLancamento(body: any, userId: string, officeId: string): Promise<any> {
-    return { message: 'Lançamento created', body, userId, officeId };
+  getLancamentos(query: any, officeId: string) {
+    return this.findAll({
+      escritorioId: officeId,
+      tipo:   query?.tipo,
+      status: query?.status,
+      page:   Math.max(parseInt(query?.page, 10) || 1, 1),
+      limit:  Math.min(Math.max(parseInt(query?.limit, 10) || 20, 1), 200),
+    });
   }
 
-  async getLancamento(id: string, officeId: string): Promise<any> {
-    return { message: 'Lançamento detail', id, officeId };
+  getLancamentosDatatable(query: any, officeId: string) {
+    return this.getLancamentos(query, officeId);
   }
 
-  async updateLancamento(id: string, body: any, officeId: string): Promise<any> {
-    return { message: 'Lançamento updated', id, body, officeId };
+  async createLancamento(body: any, _userId: string, officeId: string) {
+    const valor = Number(body?.valor);
+    if (!body?.descricao || !Number.isFinite(valor) || valor <= 0) {
+      throw new BadRequestException('Campos obrigatórios: descricao e valor (> 0)');
+    }
+    const tipo = String(body.tipo || 'receita').toLowerCase();
+    if (!['receita', 'despesa'].includes(tipo)) {
+      throw new BadRequestException('tipo deve ser "receita" ou "despesa"');
+    }
+    await this.assertClienteDoEscritorio(body.clienteId, officeId);
+
+    return this.prisma.lancamentoFinanceiro.create({
+      data: {
+        escritorioId:   officeId,
+        clienteId:      body.clienteId || null,
+        descricao:      body.descricao,
+        valor,
+        tipo,
+        status:         String(body.status || 'pendente').toLowerCase(),
+        formaPagamento: body.formaPagamento ?? null,
+        numParcelas:    body.numParcelas ? Number(body.numParcelas) : null,
+        vencimento:     body.vencimento ? new Date(body.vencimento) : null,
+        data:           body.data ? new Date(body.data) : new Date(),
+      },
+      include: { cliente: { select: { id: true, nome: true } } },
+    });
   }
 
-  async removeLancamento(id: string, officeId: string): Promise<any> {
-    return { message: 'Lançamento removed', id, officeId };
+  getLancamento(id: string, officeId: string) {
+    return this.assertLancamento(id, officeId);
+  }
+
+  async updateLancamento(id: string, body: any, officeId: string) {
+    await this.assertLancamento(id, officeId);
+    if (body?.clienteId) await this.assertClienteDoEscritorio(body.clienteId, officeId);
+
+    return this.prisma.lancamentoFinanceiro.update({
+      where: { id },
+      data: {
+        descricao:      body?.descricao,
+        valor:          body?.valor !== undefined ? Number(body.valor) : undefined,
+        tipo:           body?.tipo ? String(body.tipo).toLowerCase() : undefined,
+        status:         body?.status ? String(body.status).toLowerCase() : undefined,
+        formaPagamento: body?.formaPagamento,
+        vencimento:     body?.vencimento ? new Date(body.vencimento) : undefined,
+        clienteId:      body?.clienteId,
+      },
+      include: { cliente: { select: { id: true, nome: true } } },
+    });
+  }
+
+  async removeLancamento(id: string, officeId: string) {
+    await this.assertLancamento(id, officeId);
+    await this.prisma.lancamentoFinanceiro.update({ where: { id }, data: { deletedAt: new Date() } });
+    return { success: true, id };
+  }
+
+  async pagarLancamento(id: string, body: any, officeId: string) {
+    const lanc = await this.assertLancamento(id, officeId);
+    if (lanc.status === 'pago') throw new BadRequestException('Lançamento já está pago');
+
+    return this.prisma.lancamentoFinanceiro.update({
+      where: { id },
+      data: {
+        status: 'pago',
+        paidAt: body?.dataPagamento ? new Date(body.dataPagamento) : new Date(),
+        formaPagamento: body?.formaPagamento ?? lanc.formaPagamento,
+      },
+      include: { cliente: { select: { id: true, nome: true } } },
+    });
   }
 
   async getCategories(query: any, officeId: string): Promise<any> {
@@ -122,48 +205,6 @@ export class FinanceiroService {
     return { message: 'Cost center created', body, officeId };
   }
 
-  async create(dto: any): Promise<any> {
-    return this.prisma.lancamento.create({
-      data: {
-        descricao: dto.descricao,
-        tipo: dto.tipo,
-        valor: dto.valor,
-        data: new Date(dto.data),
-        status: dto.status || 'pendente',
-        clienteId: dto.clienteId,
-        escritorioId: dto.escritorioId,
-      },
-      include: {
-        cliente: true,
-      },
-    });
-  }
-
-  async update(id: string, dto: any): Promise<any> {
-    return this.prisma.lancamento.update({
-      where: { id },
-      data: {
-        descricao: dto.descricao,
-        tipo: dto.tipo,
-        valor: dto.valor,
-        data: dto.data ? new Date(dto.data) : undefined,
-        status: dto.status,
-      },
-      include: {
-        cliente: true,
-      },
-    });
-  }
-
-  async remove(id: string): Promise<any> {
-    return this.prisma.lancamento.update({
-      where: { id },
-      data: {
-        deletedAt: new Date(),
-      },
-    });
-  }
-
   async getSummary(escritorioId: string, periodo: string): Promise<Summary> {
     const now = new Date();
     let dataInicio = new Date();
@@ -186,21 +227,21 @@ export class FinanceiroService {
       deletedAt: null,
     };
 
-    const lancamentos = await this.prisma.lancamento.findMany({
+    const lancamentos = await this.prisma.lancamentoFinanceiro.findMany({
       where,
     });
 
     const receitas = lancamentos
       .filter(l => l.tipo === 'receita' && l.status === 'pago')
-      .reduce((sum, l) => sum + l.valor, 0);
+      .reduce((sum, l) => sum + Number(l.valor), 0);
 
     const despesas = lancamentos
       .filter(l => l.tipo === 'despesa' && l.status === 'pago')
-      .reduce((sum, l) => sum + l.valor, 0);
+      .reduce((sum, l) => sum + Number(l.valor), 0);
 
     const inadimplencia = lancamentos
       .filter(l => l.tipo === 'receita' && l.status === 'pendente')
-      .reduce((sum, l) => sum + l.valor, 0);
+      .reduce((sum, l) => sum + Number(l.valor), 0);
 
     return {
       receitas,
@@ -222,7 +263,7 @@ export class FinanceiroService {
       const dataInicio = new Date(ano, numeroMes, 1);
       const dataFim = new Date(ano, numeroMes + 1, 0);
 
-      const lancamentos = await this.prisma.lancamento.findMany({
+      const lancamentos = await this.prisma.lancamentoFinanceiro.findMany({
         where: {
           escritorioId,
           data: {
@@ -236,11 +277,11 @@ export class FinanceiroService {
 
       const receitas = lancamentos
         .filter(l => l.tipo === 'receita')
-        .reduce((sum, l) => sum + l.valor, 0);
+        .reduce((sum, l) => sum + Number(l.valor), 0);
 
       const despesas = lancamentos
         .filter(l => l.tipo === 'despesa')
-        .reduce((sum, l) => sum + l.valor, 0);
+        .reduce((sum, l) => sum + Number(l.valor), 0);
 
       fluxo.push({
         mes: `${numeroMes + 1}/${ano}`,
@@ -262,7 +303,7 @@ export class FinanceiroService {
     const dataInicio = new Date(ano, numeroMes, 1);
     const dataFim = new Date(ano, numeroMes + 1, 0);
 
-    const receitas = await this.prisma.lancamento.findMany({
+    const receitas = await this.prisma.lancamentoFinanceiro.findMany({
       where: {
         escritorioId,
         tipo: 'receita',
@@ -275,11 +316,11 @@ export class FinanceiroService {
       },
     });
 
-    return receitas.reduce((sum, l) => sum + l.valor, 0);
+    return receitas.reduce((sum, l) => sum + Number(l.valor), 0);
   }
 
   async findPendentes(escritorioId: string): Promise<any[]> {
-    return this.prisma.lancamento.findMany({
+    return this.prisma.lancamentoFinanceiro.findMany({
       where: {
         escritorioId,
         status: 'pendente',
@@ -296,11 +337,11 @@ export class FinanceiroService {
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
 
-    return this.prisma.lancamento.findMany({
+    return this.prisma.lancamentoFinanceiro.findMany({
       where: {
         escritorioId,
         status: 'pendente',
-        data: { lt: hoje },
+        vencimento: { lt: hoje },
         deletedAt: null,
       },
       include: {
@@ -370,20 +411,46 @@ export class FinanceiroService {
     return { message: 'CentroCusto removed', id, officeId };
   }
 
-  pagarLancamento(id: string, body: any, officeId: string) {
-    return { message: 'Lançamento pago', id, body, officeId };
+  async getOverview(query: any, officeId: string) {
+    const periodo = query?.periodo || 'mes';
+    const [resumo, atrasados, mrr] = await Promise.all([
+      this.getSummary(officeId, periodo),
+      this.findAtrasados(officeId),
+      this.getMRR(officeId),
+    ]);
+    return {
+      ...resumo,
+      periodo,
+      mrr,
+      atrasados: { qtd: atrasados.length, total: atrasados.reduce((s, l) => s + Number(l.valor), 0) },
+    };
   }
 
-  getOverview(query: any, officeId: string) {
-    return { receitas: 0, despesas: 0, saldo: 0, officeId, query };
+  async getChartData(query: any, officeId: string) {
+    const meses = Math.min(Math.max(parseInt(query?.meses, 10) || 6, 1), 24);
+    return { data: await this.getFluxo(officeId, meses) };
   }
 
-  getChartData(query: any, officeId: string) {
-    return { data: [], officeId, query };
-  }
-
-  getDRE(query: any, officeId: string) {
-    return { data: [], officeId, query };
+  async getDRE(query: any, officeId: string) {
+    const ano = parseInt(query?.ano, 10) || new Date().getFullYear();
+    const lancs = await this.prisma.lancamentoFinanceiro.findMany({
+      where: {
+        escritorioId: officeId,
+        status: 'pago',
+        deletedAt: null,
+        paidAt: { gte: new Date(ano, 0, 1), lt: new Date(ano + 1, 0, 1) },
+      },
+      select: { tipo: true, valor: true, paidAt: true },
+    });
+    const meses = Array.from({ length: 12 }, (_, m) => {
+      const doMes = lancs.filter(l => l.paidAt && l.paidAt.getMonth() === m);
+      const receitas = doMes.filter(l => l.tipo === 'receita').reduce((s, l) => s + Number(l.valor), 0);
+      const despesas = doMes.filter(l => l.tipo === 'despesa').reduce((s, l) => s + Number(l.valor), 0);
+      return { mes: m + 1, receitas, despesas, resultado: receitas - despesas };
+    });
+    const receitas = meses.reduce((s, m) => s + m.receitas, 0);
+    const despesas = meses.reduce((s, m) => s + m.despesas, 0);
+    return { ano, meses, total: { receitas, despesas, resultado: receitas - despesas } };
   }
 
   getFluxoCaixa(query: any, officeId: string) {

@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client';
 import {
   Injectable,
   BadRequestException,
@@ -239,7 +240,7 @@ export class DocumentosService {
 
     const skip = (page - 1) * limit;
 
-    const where: any = {
+    const where: Prisma.DocumentoWhereInput = {
       escritorioId,
       deletedAt: null,
     };
@@ -262,18 +263,13 @@ export class DocumentosService {
     return { data, total, page, pages: Math.ceil(total / limit) };
   }
 
-  async findById(id: string, officeId?: string): Promise<any> {
-    const doc = await this.prisma.documento.findUnique({
-      where: { id },
+  async findById(id: string, officeId: string): Promise<any> {
+    const doc = await this.prisma.documento.findFirst({
+      where: { id, escritorioId: officeId, deletedAt: null },
       include: { processo: true },
     });
 
     if (!doc) throw new NotFoundException('Documento não encontrado');
-
-    // Validar que o documento pertence ao escritório do usuário
-    if (officeId && (doc as any).escritorioId !== officeId) {
-      throw new BadRequestException('Você não tem permissão para acessar este documento');
-    }
 
     return doc;
   }
@@ -403,9 +399,9 @@ export class DocumentosService {
     };
   }
 
-  async findByProcesso(processoId: string): Promise<any[]> {
+  async findByProcesso(processoId: string, officeId: string): Promise<any[]> {
     const docs = await this.prisma.documento.findMany({
-      where: { processoId, deletedAt: null },
+      where: { processoId, escritorioId: officeId, deletedAt: null },
       orderBy: { createdAt: 'desc' },
     });
 

@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client';
 /**
  * JURYSONE — ParceirosService
  * Gerencia parceiros e advogados correspondentes do escritório
@@ -12,7 +13,7 @@ export class ParceirosService {
   // ── Listar ──────────────────────────────────────────────────────────────────
 
   async findAll(query: any, officeId: string) {
-    const where: any = { escritorioId: officeId };
+    const where: Prisma.ParceiroWhereInput = { escritorioId: officeId };
 
     if (query.ativo !== undefined) where.ativo = query.ativo === 'true';
     if (query.areaAtuacao) where.areaAtuacao = { contains: query.areaAtuacao, mode: 'insensitive' };
@@ -87,7 +88,7 @@ export class ParceirosService {
   async update(id: string, body: any, officeId: string) {
     await this.findOne(id, officeId);
 
-    const data: any = {};
+    const data: Prisma.ParceiroUncheckedUpdateInput = {};
     const fields = [
       'nome','cpfCnpj','oabNumero','oabEstado','areaAtuacao',
       'email','telefone','whatsapp','endereco','cidade','estado','cep',
@@ -121,7 +122,7 @@ export class ParceirosService {
       this.prisma.parceiro.count({ where: { escritorioId: officeId, ativo: true } }),
       this.prisma.parceiro.groupBy({
         by: ['areaAtuacao'],
-        where: { escritorioId: officeId } as any,
+        where: { escritorioId: officeId },
         _count: true,
         orderBy: { _count: { areaAtuacao: 'desc' } },
       }),

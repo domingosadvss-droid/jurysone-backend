@@ -21,12 +21,29 @@ import {
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { PortalService } from './portal.service';
 import { PortalAuthGuard } from './guards/portal-auth.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { CurrentUser } from '../../common/decorators/current-user.decorator';
 
 @ApiTags('Portal do Cliente')
 @Controller('portal')
 export class PortalController {
 
   constructor(private readonly portalService: PortalService) {}
+
+  /* ──────────────────── CONVITE (ESCRITÓRIO) ────────────────── */
+
+  /**
+   * POST /portal/convites
+   * Advogado gera o convite de primeiro acesso do cliente ao portal.
+   * Body: { cliente_id, email? }
+   */
+  @Post('convites')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Gerar convite de acesso ao portal para um cliente' })
+  async criarConvite(@CurrentUser() user: any, @Body() dto: { cliente_id: string; email?: string }) {
+    return this.portalService.criarConvite(dto?.cliente_id, user.officeId, dto?.email);
+  }
 
   /* ──────────────────── AUTH DO PORTAL ──────────────────────── */
 

@@ -81,7 +81,7 @@ export class AiCopilotController {
     @Param('id') id: string,
     @Query() query: { para?: 'cliente' | 'advogado' },
   ) {
-    return this.service.resumirAndamentos(id, query.para || 'advogado');
+    return this.service.resumirAndamentos(id, query.para || 'advogado', req.user.officeId);
   }
 
   /**

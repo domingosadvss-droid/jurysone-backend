@@ -1,69 +1,29 @@
-import {
-  IsEmail,
-  IsString,
-  MinLength,
-  MaxLength,
-  IsOptional,
-  Matches,
-  IsUUID,
-} from 'class-validator';
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsEmail, IsString, MinLength, MaxLength, Matches } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
+/** Corpo de POST /auth/register — campos enviados pelo login.html. */
 export class RegisterDto {
-  @ApiProperty({ example: 'João da Silva' })
-  @IsString()
-  @MinLength(2)
-  @MaxLength(100)
-  name: string;
-
   @ApiProperty({ example: 'joao@escritorio.com' })
-  @IsEmail()
+  @IsEmail({}, { message: 'E-mail inválido' })
+  @MaxLength(150)
   email: string;
 
-  @ApiProperty({
-    example: 'M1nha$en#aForte',
-    description: 'Min 8 chars, 1 maiúscula, 1 número, 1 símbolo',
-  })
+  @ApiProperty({ example: 'Senha2026!', description: 'Mínimo 8 caracteres, com letras e números' })
   @IsString()
-  @MinLength(8)
+  @MinLength(8, { message: 'A senha deve ter pelo menos 8 caracteres' })
   @MaxLength(100)
-  @Matches(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, {
-    message: 'Senha fraca: use maiúscula, número e símbolo',
-  })
+  @Matches(/^(?=.*[A-Za-z])(?=.*[0-9])/, { message: 'A senha deve conter letras e números' })
   password: string;
 
-  @ApiPropertyOptional({ example: '11999999999' })
-  @IsOptional()
+  @ApiProperty({ example: 'João da Silva' })
   @IsString()
-  @MaxLength(20)
-  phone?: string;
+  @MinLength(2, { message: 'Informe seu nome' })
+  @MaxLength(100)
+  nome: string;
 
-  @ApiPropertyOptional({ example: '123456' })
-  @IsOptional()
+  @ApiProperty({ example: 'Silva Advocacia' })
   @IsString()
-  @MaxLength(20)
-  oabNumber?: string;
-
-  @ApiPropertyOptional({ example: 'SP' })
-  @IsOptional()
-  @IsString()
-  @MaxLength(2)
-  oabState?: string;
-
-  @ApiPropertyOptional({ example: 'Silva & Associados' })
-  @IsOptional()
-  @IsString()
-  @MaxLength(200)
-  officeName?: string;
-
-  @ApiPropertyOptional()
-  @IsOptional()
-  @IsUUID()
-  planId?: string;
-
-  @ApiPropertyOptional({ example: 'TRIAL30' })
-  @IsOptional()
-  @IsString()
-  @MaxLength(50)
-  couponCode?: string;
+  @MinLength(2, { message: 'Informe o nome do escritório' })
+  @MaxLength(150)
+  nomeEscritorio: string;
 }

@@ -1,7 +1,9 @@
 import {
+  BadRequestException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { Prisma, StatusEvento, TipoEvento } from '@prisma/client';
 import { PrismaService } from '../../database/prisma.service';
 import { GoogleCalendarService } from './google-calendar.service';
 
@@ -89,15 +91,15 @@ export class AgendaService {
 
   private get defaultInclude() {
     return {
-      process:  { select: { id: true, number: true, tribunal: true } },
-      client:   { select: { id: true, name: true } },
-      createdBy:{ select: { id: true, name: true, avatarUrl: true } },
-      responsibles: {
+      processo:  { select: { id: true, numero: true, tribunal: true } },
+      cliente:   { select: { id: true, nome: true } },
+      criadoPor: { select: { id: true, nome: true, avatarUrl: true } },
+      responsaveis: {
         include: {
-          user: { select: { id: true, name: true, avatarUrl: true } },
+          usuario: { select: { id: true, nome: true, avatarUrl: true } },
         },
       },
-    };
+    } as const;
   }
 
   // ── Filtro de range de datas ─────────────────────────────────────────────
@@ -107,7 +109,7 @@ export class AgendaService {
 
     if (query.start && query.end) {
       return {
-        date: {
+        data: {
           gte: startOfDay(new Date(query.start)),
           lte: endOfDay(new Date(query.end)),
         },
@@ -116,11 +118,11 @@ export class AgendaService {
 
     switch (query.view) {
       case 'month':
-        return { date: { gte: startOfMonth(new Date(now)), lte: endOfMonth(new Date(now)) } };
+        return { data: { gte: startOfMonth(new Date(now)), lte: endOfMonth(new Date(now)) } };
       case 'week':
-        return { date: { gte: startOfWeek(new Date(now)), lte: endOfWeek(new Date(now)) } };
+        return { data: { gte: startOfWeek(new Date(now)), lte: endOfWeek(new Date(now)) } };
       case 'day':
-        return { date: { gte: startOfDay(new Date(now)), lte: endOfDay(new Date(now)) } };
+        return { data: { gte: startOfDay(new Date(now)), lte: endOfDay(new Date(now)) } };
       default:
         return {};
     }
@@ -133,23 +135,23 @@ export class AgendaService {
     rangeStart: Date,
     rangeEnd: Date,
   ): any[] {
-    if (!base.recurrence || base.recurrence === 'none') return [];
+    if (!base.recorrencia || base.recorrencia === 'none') return [];
 
     const occurrences: any[] = [];
-    const baseDate   = new Date(base.date);
-    const endDate    = base.recurrenceEndDate
-      ? new Date(base.recurrenceEndDate)
+    const baseDate   = new Date(base.data);
+    const endDate    = base.recorrenciaFim
+      ? new Date(base.recorrenciaFim)
       : addDays(rangeEnd, 0); // expande até o fim do range se sem limite
 
     // Duração original do evento
-    const durationMs = base.endDate
-      ? new Date(base.endDate).getTime() - baseDate.getTime()
+    const durationMs = base.dataFim
+      ? new Date(base.dataFim).getTime() - baseDate.getTime()
       : 3600_000; // 1h padrão
 
     // Avança a data de acordo com o tipo de recorrência
     const advance = (d: Date): Date => {
       const n = new Date(d);
-      switch (base.recurrence) {
+      switch (base.recorrencia) {
         case 'daily':   n.setDate(n.getDate() + 1);       break;
         case 'weekly':  n.setDate(n.getDate() + 7);       break;
         case 'monthly': n.setMonth(n.getMonth() + 1);     break;
@@ -167,8 +169,8 @@ export class AgendaService {
         occurrences.push({
           ...base,
           id:      `${base.id}_rec_${cursor.getTime()}`, // ID sintético
-          date:    cursor.toISOString(),
-          endDate: base.endDate ? occEnd.toISOString() : undefined,
+          data:    cursor.toISOString(),
+          dataFim: base.dataFim ? occEnd.toISOString() : undefined,
           _isRecurrence: true, // marcador para o frontend
         });
       }
@@ -181,79 +183,79 @@ export class AgendaService {
   // ── CRUD ─────────────────────────────────────────────────────────────────
 
   async findAll(query: ListEventsQuery, officeId: string) {
-    const where: any = {
-      officeId,
+    const where: Prisma.EventoWhereInput = {
+      escritorioId: officeId,
       ...this.buildDateFilter(query),
     };
 
-    if (query.type)          where.type          = query.type;
-    if (query.processId)     where.processId     = query.processId;
-    if (query.clientId)      where.clientId      = query.clientId;
-    if (query.status)        where.status        = query.status;
+    if (query.type)          where.tipo          = query.type as TipoEvento;
+    if (query.processId)     where.processoId     = query.processId;
+    if (query.clientId)      where.clienteId      = query.clientId;
+    if (query.status)        where.status        = query.status as StatusEvento;
     if (query.responsibleId) {
-      where.responsibles = { some: { userId: query.responsibleId } };
+      where.responsaveis = { some: { usuarioId: query.responsibleId } };
     }
     if (query.search) {
       where.OR = [
-        { title:       { contains: query.search, mode: 'insensitive' } },
-        { description: { contains: query.search, mode: 'insensitive' } },
-        { location:    { contains: query.search, mode: 'insensitive' } },
+        { titulo:    { contains: query.search, mode: 'insensitive' } },
+        { descricao: { contains: query.search, mode: 'insensitive' } },
+        { local:    { contains: query.search, mode: 'insensitive' } },
       ];
     }
 
     // FIX B-006: limite de 500 eventos por consulta para evitar sobrecarga
-    const baseEvents = await (this.prisma as any).evento.findMany({
+    const baseEvents = await this.prisma.evento.findMany({
       where,
       include: this.defaultInclude,
-      orderBy: { date: 'asc' },
+      orderBy: { data: 'asc' },
       take: 500,
     });
 
     // FIX B-010: expandir eventos recorrentes dentro do range solicitado
     const rangeFilter = this.buildDateFilter(query) as any;
-    const rangeStart  = rangeFilter.date?.gte ?? new Date(0);
-    const rangeEnd    = rangeFilter.date?.lte ?? addDays(new Date(), 365);
+    const rangeStart  = rangeFilter.data?.gte ?? new Date(0);
+    const rangeEnd    = rangeFilter.data?.lte ?? addDays(new Date(), 365);
 
     const expanded: any[] = [];
     for (const ev of baseEvents) {
       expanded.push(ev);
-      if (ev.recurrence && ev.recurrence !== 'none') {
+      if (ev.recorrencia && ev.recorrencia !== 'none') {
         const occs = this.expandRecurrence(ev, rangeStart, rangeEnd);
         expanded.push(...occs);
       }
     }
 
     // Re-ordenar após expansão
-    expanded.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    expanded.sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime());
 
     return { data: expanded, total: expanded.length, query };
   }
 
   async getHoje(officeId: string) {
     const today = new Date();
-    const events = await (this.prisma as any).evento.findMany({
+    const events = await this.prisma.evento.findMany({
       where: {
-        officeId,
-        date: { gte: startOfDay(today), lte: endOfDay(today) },
+        escritorioId: officeId,
+        data: { gte: startOfDay(today), lte: endOfDay(today) },
       },
       include: this.defaultInclude,
-      orderBy: { date: 'asc' },
+      orderBy: { data: 'asc' },
     });
     return { data: events, total: events.length, date: today.toISOString().split('T')[0] };
   }
 
   async getSemana(officeId: string) {
     const today = new Date();
-    const events = await (this.prisma as any).evento.findMany({
+    const events = await this.prisma.evento.findMany({
       where: {
-        officeId,
-        date: {
+        escritorioId: officeId,
+        data: {
           gte: startOfDay(today),
           lte: endOfDay(addDays(today, 7)),
         },
       },
       include: this.defaultInclude,
-      orderBy: { date: 'asc' },
+      orderBy: { data: 'asc' },
     });
     return { data: events, total: events.length };
   }
@@ -261,83 +263,112 @@ export class AgendaService {
   async getPrazos(query: { days_ahead?: string }, officeId: string) {
     const daysAhead = query.days_ahead ? parseInt(query.days_ahead) : 30;
     const now = new Date();
-    const events = await (this.prisma as any).evento.findMany({
+    const events = await this.prisma.evento.findMany({
       where: {
-        officeId,
-        type: 'PRAZO',
-        date: {
+        escritorioId: officeId,
+        tipo: 'PRAZO',
+        data: {
           gte: startOfDay(now),
           lte: endOfDay(addDays(now, daysAhead)),
         },
         status: { not: 'CANCELADO' },
       },
       include: this.defaultInclude,
-      orderBy: { date: 'asc' },
+      orderBy: { data: 'asc' },
     });
     return { data: events, total: events.length, days_ahead: daysAhead };
   }
 
   async findOne(id: string, officeId: string) {
-    const event = await (this.prisma as any).evento.findFirst({
-      where: { id, officeId },
+    const event = await this.prisma.evento.findFirst({
+      where: { id, escritorioId: officeId },
       include: this.defaultInclude,
     });
     if (!event) throw new NotFoundException(`Evento ${id} não encontrado`);
     return event;
   }
 
-  async create(body: CreateEventDto, userId: string, officeId: string) {
-    const { responsibleIds, ...data } = body;
+  /** Converte o DTO da API (nomes em inglês) para os campos do modelo Evento. */
+  private mapDto(body: Partial<CreateEventDto>) {
+    const toDate = (v?: string) => (v ? new Date(v) : undefined);
+    const data: Record<string, unknown> = {
+      titulo:            body.title,
+      descricao:         body.description,
+      data:              toDate(body.date),
+      dataFim:           toDate(body.endDate),
+      tipo:              body.type,
+      diaInteiro:        body.isAllDay,
+      local:             body.location,
+      cor:               body.color,
+      processoId:        body.processId,
+      clienteId:         body.clientId,
+      notificarEm:       toDate(body.notifyAt),
+      notificarAntesMin: body.notifyBeforeMinutes,
+      notificarEmail:    body.notifyEmail,
+      notificarWhatsapp: body.notifyWhatsapp,
+      recorrencia:       body.recurrence,
+      recorrenciaFim:    toDate(body.recurrenceEndDate),
+      status:            body.status,
+    };
+    Object.keys(data).forEach(k => data[k] === undefined && delete data[k]);
+    return data;
+  }
 
-    const event = await (this.prisma as any).evento.create({
+  /** Impede vincular processo/cliente de outro escritório. */
+  private async assertVinculos(officeId: string, processoId?: string, clienteId?: string) {
+    if (processoId) {
+      const p = await this.prisma.processo.findFirst({ where: { id: processoId, escritorioId: officeId }, select: { id: true } });
+      if (!p) throw new BadRequestException('Processo não pertence a este escritório');
+    }
+    if (clienteId) {
+      const c = await this.prisma.cliente.findFirst({ where: { id: clienteId, escritorioId: officeId }, select: { id: true } });
+      if (!c) throw new BadRequestException('Cliente não pertence a este escritório');
+    }
+  }
+
+  async create(body: CreateEventDto, userId: string, officeId: string) {
+    if (!body?.title || !body?.date) {
+      throw new BadRequestException('Campos obrigatórios: title e date.');
+    }
+    await this.assertVinculos(officeId, body.processId, body.clientId);
+
+    return this.prisma.evento.create({
       data: {
-        ...data,
-        date:              new Date(body.date),
-        endDate:           body.endDate           ? new Date(body.endDate)           : undefined,
-        notifyAt:          body.notifyAt          ? new Date(body.notifyAt)          : undefined,
-        recurrenceEndDate: body.recurrenceEndDate ? new Date(body.recurrenceEndDate) : undefined,
-        officeId,
-        createdById: userId,
-        responsibles: responsibleIds?.length
-          ? { create: responsibleIds.map(uid => ({ userId: uid })) }
+        ...(this.mapDto(body) as Omit<Prisma.EventoUncheckedCreateInput, 'escritorioId' | 'criadoPorId'>),
+        escritorioId: officeId,
+        criadoPorId:  userId,
+        responsaveis: body.responsibleIds?.length
+          ? { create: body.responsibleIds.map(uid => ({ usuarioId: uid })) }
           : undefined,
       },
       include: this.defaultInclude,
     });
-
-    return event;
   }
 
   async update(id: string, body: Partial<CreateEventDto>, officeId: string) {
     await this.findOne(id, officeId);
+    await this.assertVinculos(officeId, body.processId, body.clientId);
 
-    const { responsibleIds, ...rest } = body;
-    const updateData: any = { ...rest };
-
-    if (body.date)              updateData.date              = new Date(body.date);
-    if (body.endDate)           updateData.endDate           = new Date(body.endDate);
-    if (body.notifyAt)          updateData.notifyAt          = new Date(body.notifyAt);
-    if (body.recurrenceEndDate) updateData.recurrenceEndDate = new Date(body.recurrenceEndDate);
-
+    const { responsibleIds } = body;
     if (responsibleIds !== undefined) {
-      await (this.prisma as any).eventoResponsavel.deleteMany({ where: { eventId: id } });
+      await this.prisma.eventoResponsavel.deleteMany({ where: { eventoId: id } });
       if (responsibleIds.length) {
-        await (this.prisma as any).eventoResponsavel.createMany({
-          data: responsibleIds.map(uid => ({ eventId: id, userId: uid })),
+        await this.prisma.eventoResponsavel.createMany({
+          data: responsibleIds.map(uid => ({ eventoId: id, usuarioId: uid })),
         });
       }
     }
 
-    return (this.prisma as any).evento.update({
+    return this.prisma.evento.update({
       where: { id },
-      data:  updateData,
+      data:  this.mapDto(body) as Prisma.EventoUncheckedUpdateInput,
       include: this.defaultInclude,
     });
   }
 
   async remove(id: string, officeId: string) {
     await this.findOne(id, officeId);
-    await (this.prisma as any).evento.delete({ where: { id } });
+    await this.prisma.evento.delete({ where: { id } });
     return { success: true, id };
   }
 
@@ -402,14 +433,14 @@ export class AgendaService {
     const now = fmtUtc(new Date());
 
     for (const ev of events) {
-      const start = new Date(ev.date);
-      const end   = ev.endDate ? new Date(ev.endDate) : new Date(start.getTime() + 3600_000);
+      const start = new Date(ev.data);
+      const end   = ev.dataFim ? new Date(ev.dataFim) : new Date(start.getTime() + 3600_000);
 
       push(lines, 'BEGIN:VEVENT');
       push(lines, `UID:${ev.id}@jurysone`);
       push(lines, `DTSTAMP:${now}`);
 
-      if (ev.isAllDay) {
+      if (ev.diaInteiro) {
         // Eventos de dia inteiro usam DATE (sem hora)
         const d = start;
         const pad = (n: number) => String(n).padStart(2, '0');
@@ -424,16 +455,16 @@ export class AgendaService {
         push(lines, `DTEND;TZID=America/Sao_Paulo:${fmtLocal(end)}`);
       }
 
-      push(lines, `SUMMARY:${escapeText(ev.title)}`);
-      if (ev.description) push(lines, `DESCRIPTION:${escapeText(ev.description)}`);
-      if (ev.location)    push(lines, `LOCATION:${escapeText(ev.location)}`);
+      push(lines, `SUMMARY:${escapeText(ev.titulo)}`);
+      if (ev.descricao) push(lines, `DESCRIPTION:${escapeText(ev.descricao)}`);
+      if (ev.local)     push(lines, `LOCATION:${escapeText(ev.local)}`);
 
       // FIX iCal: incluir CATEGORIES para tipo jurídico
       const catMap: Record<string, string> = {
         PRAZO: 'PRAZO PROCESSUAL', AUDIENCIA: 'AUDIÊNCIA',
         REUNIAO: 'REUNIÃO', TAREFA: 'TAREFA', OUTRO: 'OUTRO',
       };
-      if (ev.type && catMap[ev.type]) push(lines, `CATEGORIES:${catMap[ev.type]}`);
+      if (ev.tipo && catMap[ev.tipo]) push(lines, `CATEGORIES:${catMap[ev.tipo]}`);
 
       // FIX iCal: STATUS
       const statusMap: Record<string, string> = {
@@ -443,11 +474,11 @@ export class AgendaService {
       if (ev.status && statusMap[ev.status]) push(lines, `STATUS:${statusMap[ev.status]}`);
 
       // FIX iCal: VALARM para notificações configuradas
-      if (ev.notifyBeforeMinutes && ev.notifyBeforeMinutes > 0) {
+      if (ev.notificarAntesMin && ev.notificarAntesMin > 0) {
         push(lines, 'BEGIN:VALARM');
         push(lines, 'ACTION:DISPLAY');
-        push(lines, `DESCRIPTION:Lembrete: ${escapeText(ev.title)}`);
-        push(lines, `TRIGGER:-PT${ev.notifyBeforeMinutes}M`);
+        push(lines, `DESCRIPTION:Lembrete: ${escapeText(ev.titulo)}`);
+        push(lines, `TRIGGER:-PT${ev.notificarAntesMin}M`);
         push(lines, 'END:VALARM');
       }
 
@@ -456,10 +487,10 @@ export class AgendaService {
         daily: 'FREQ=DAILY', weekly: 'FREQ=WEEKLY',
         monthly: 'FREQ=MONTHLY', yearly: 'FREQ=YEARLY',
       };
-      if (ev.recurrence && rruleMap[ev.recurrence]) {
-        let rrule = `RRULE:${rruleMap[ev.recurrence]}`;
-        if (ev.recurrenceEndDate) {
-          const re = new Date(ev.recurrenceEndDate);
+      if (ev.recorrencia && rruleMap[ev.recorrencia]) {
+        let rrule = `RRULE:${rruleMap[ev.recorrencia]}`;
+        if (ev.recorrenciaFim) {
+          const re = new Date(ev.recorrenciaFim);
           const pad = (n: number) => String(n).padStart(2, '0');
           rrule += `;UNTIL=${re.getFullYear()}${pad(re.getMonth() + 1)}${pad(re.getDate())}T235959Z`;
         }
@@ -509,13 +540,13 @@ export class AgendaService {
     // ── Import: Google → JurysOne ──────────────────────────────────────────
     if (direction === 'import' || direction === 'both') {
       // Para import precisamos do officeId — vem do JWT via userId
-      const user = await (this.prisma as any).usuario.findUnique({
+      const user = await this.prisma.usuario.findUnique({
         where: { id: userId },
-        select: { officeId: true },
+        select: { escritorioId: true },
       });
       if (user) {
         const stats = await this.googleCalendar.importFromGoogle(
-          user.officeId,
+          user.escritorioId,
           userId,
           google_token,
           calendar_id,
@@ -546,9 +577,9 @@ export class AgendaService {
 
   async concluir(id: string, officeId: string) {
     await this.findOne(id, officeId);
-    return (this.prisma as any).evento.update({
+    return this.prisma.evento.update({
       where: { id },
-      data:  { status: 'CONCLUIDO', completedAt: new Date() },
+      data:  { status: 'CONCLUIDO', concluidoEm: new Date() },
       include: this.defaultInclude,
     });
   }

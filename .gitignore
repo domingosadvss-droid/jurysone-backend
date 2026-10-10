@@ -60,3 +60,9 @@ ferramentas/**/__pycache__/
 ferramentas/**/*.pyc
 .bun/
 .atualizacao-base-juridica/
+
+# Artefatos de compilação TypeScript
+*.tsbuildinfo
+src/**/*.js
+src/**/*.js.map
+src/**/*.d.ts

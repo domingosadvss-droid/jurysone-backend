@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { calcularVencimento } from '../../utils/calculadora-prazos';
 
@@ -24,7 +25,7 @@ export class PrazosService {
     const { escritorioId, page = 1, limit = 20, processoId } = filters;
     const skip = (page - 1) * limit;
 
-    const where: any = { escritorioId, deletedAt: null };
+    const where: Prisma.PrazoWhereInput = { escritorioId, deletedAt: null };
     if (processoId) where.processoId = processoId;
 
     const [data, total] = await Promise.all([
@@ -41,14 +42,26 @@ export class PrazosService {
     return { data, total, page, pages: Math.ceil(total / limit) };
   }
 
-  async findById(id: string): Promise<any> {
-    return this.prisma.prazo.findUnique({
-      where: { id },
+  async findById(id: string, escritorioId: string): Promise<any> {
+    const prazo = await this.prisma.prazo.findFirst({
+      where: { id, escritorioId, deletedAt: null },
       include: { processo: true },
     });
+    if (!prazo) throw new NotFoundException('Prazo não encontrado');
+    return prazo;
   }
 
   async create(dto: any): Promise<any> {
+    if (!dto.descricao || !dto.dataPrazo) {
+      throw new BadRequestException('Campos obrigatórios: descricao e dataPrazo');
+    }
+    if (dto.processoId) {
+      const processo = await this.prisma.processo.findFirst({
+        where: { id: dto.processoId, escritorioId: dto.escritorioId, deletedAt: null },
+        select: { id: true },
+      });
+      if (!processo) throw new BadRequestException('Processo não pertence a este escritório');
+    }
     return this.prisma.prazo.create({
       data: {
         descricao:    dto.descricao,
@@ -62,7 +75,8 @@ export class PrazosService {
     });
   }
 
-  async update(id: string, dto: any): Promise<any> {
+  async update(id: string, dto: any, escritorioId: string): Promise<any> {
+    await this.findById(id, escritorioId);
     return this.prisma.prazo.update({
       where: { id },
       data: {
@@ -75,7 +89,8 @@ export class PrazosService {
     });
   }
 
-  async remove(id: string): Promise<any> {
+  async remove(id: string, escritorioId: string): Promise<any> {
+    await this.findById(id, escritorioId);
     return this.prisma.prazo.update({
       where: { id },
       data: { deletedAt: new Date() },

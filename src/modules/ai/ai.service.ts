@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { GoogleGenAI } from '@google/genai';
 import { PrismaService } from '../../database/prisma.service';
@@ -38,30 +38,30 @@ export class AiService {
       }
     }
 
-    throw new Error('GEMINI_API_KEY não configurada. Acesse Configurações → Integrações e salve sua chave Gemini.');
+    throw new ServiceUnavailableException('GEMINI_API_KEY não configurada. Acesse Configurações → Integrações e salve sua chave Gemini.');
   }
 
   // ─── Analisar processo ────────────────────────────────────────────────────
   async analyzeProcess(processId: string, question: string, officeId: string) {
-    const process = await (this.prisma as any).processo.findFirst({
-      where: { id: processId, officeId },
+    const process = await this.prisma.processo.findFirst({
+      where: { id: processId, escritorioId: officeId },
       include: {
-        client:    { select: { name: true } },
-        movements: { orderBy: { date: 'desc' }, take: 20 },
+        cliente:       { select: { nome: true } },
+        movimentacoes: { orderBy: { data: 'desc' }, take: 20 },
       },
     });
 
-    if (!process) throw new Error('Processo não encontrado.');
+    if (!process) throw new NotFoundException('Processo não encontrado.');
 
-    const movimentsText = process.movements
-      .map((m) => `[${m.date.toISOString().split('T')[0]}] ${m.description}`)
+    const movimentsText = process.movimentacoes
+      .map((m) => `[${m.data.toISOString().split('T')[0]}] ${m.descricao}`)
       .join('\n');
 
     const prompt = `Você é um assistente jurídico especializado em direito brasileiro.
 Analise o processo e responda com precisão. Seja objetivo e profissional.
 
-PROCESSO: ${process.number}
-CLIENTE: ${process.client.name}
+PROCESSO: ${process.numero}
+CLIENTE: ${process.cliente.nome}
 STATUS: ${process.status}
 
 ANDAMENTOS RECENTES:
@@ -74,14 +74,15 @@ PERGUNTA: ${question}`;
     const answer      = result.text ?? '';
     const totalTokens = result.usageMetadata?.totalTokenCount ?? 0;
 
-    await (this.prisma as any).interacaoIA.create({
+    await this.prisma.interacaoIA.create({
       data: {
-        officeId,
-        processId,
-        question,
-        answer,
-        model:      GEMINI_MODEL,
-        tokensUsed: totalTokens,
+        escritorioId: officeId,
+        processoId:   processId,
+        tipo:         'analise_processo',
+        input:        question,
+        output:       answer,
+        modelo:       GEMINI_MODEL,
+        tokens:       totalTokens,
       },
     });
 
@@ -106,15 +107,16 @@ Seções: I - DOS FATOS, II - DO DIREITO, III - DOS PEDIDOS`;
 
   // ─── Análise de Risco ──────────────────────────────────────────────────────
   async analyzeRisk(processId: string, officeId: string) {
-    const process = await (this.prisma as any).processo.findFirst({
-      where:   { id: processId, officeId },
-      include: { movements: { orderBy: { date: 'desc' }, take: 30 } },
+    const process = await this.prisma.processo.findFirst({
+      where:   { id: processId, escritorioId: officeId },
+      include: { movimentacoes: { orderBy: { data: 'desc' }, take: 30 } },
     });
+    if (!process) throw new NotFoundException('Processo não encontrado.');
 
     const prompt = `Analise o risco jurídico do processo abaixo. Responda APENAS com JSON válido, sem markdown.
 
-Processo ${process.number}
-Movimentações: ${process.movements.map((m) => m.description).join(' | ')}
+Processo ${process.numero}
+Movimentações: ${process.movimentacoes.map((m) => m.descricao).join(' | ')}
 
 JSON esperado: { "riskLevel": "ALTO|MEDIO|BAIXO", "score": 0-100, "mainRisks": ["string"], "recommendations": ["string"] }`;
 

@@ -4,10 +4,13 @@
  * ═══════════════════════════════════════════════════════════════
  */
 
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import { GoogleGenerativeAI, GenerativeModel } from '@google/generative-ai';
 import { PrismaService } from '../../database/prisma.service';
 import { NotificationsGateway } from '../notifications/notifications.gateway';
+
+// gemini-1.5-flash foi descontinuado pela Google; 2.5-flash é o substituto no free tier.
+const GEMINI_MODEL = 'gemini-2.5-flash';
 
 interface RiskAnalysis {
   score: number;
@@ -62,7 +65,7 @@ Contexto: direito brasileiro vigente, 2024/2025.`;
     if (key) {
       const genAI = new GoogleGenerativeAI(key);
       this._model = genAI.getGenerativeModel({
-        model: 'gemini-1.5-flash',
+        model: GEMINI_MODEL,
         systemInstruction: this.SYSTEM_PROMPT,
       });
     } else {
@@ -72,7 +75,7 @@ Contexto: direito brasileiro vigente, 2024/2025.`;
 
   private get model(): GenerativeModel {
     if (!this._model) {
-      throw new Error('GEMINI_API_KEY não configurada. Configure no Railway Dashboard.');
+      throw new ServiceUnavailableException('GEMINI_API_KEY não configurada no servidor.');
     }
     return this._model;
   }
@@ -96,12 +99,12 @@ Contexto: direito brasileiro vigente, 2024/2025.`;
 
     let contexto = '';
     if (processo_id) {
-      contexto = await this.buildProcessoContext(processo_id);
+      contexto = await this.buildProcessoContext(processo_id, officeId);
     }
 
     // Monta histórico no formato do Gemini
     const historico = conversa_id
-      ? await this.getHistoricoConversa(conversa_id, 10)
+      ? await this.getHistoricoConversa(conversa_id, 10, officeId)
       : [];
 
     const chat = this.model.startChat({ history: historico });
@@ -133,25 +136,25 @@ Contexto: direito brasileiro vigente, 2024/2025.`;
   /* ──────────────────── ANÁLISE DE RISCO ────────────────────── */
 
   async analisarRisco(processoId: string, officeId: string, userId?: string): Promise<RiskAnalysis> {
-    const processo = await (this.prisma as any).processo.findFirst({
-      where: { id: processoId, office: { id: officeId } },
+    const processo = await this.prisma.processo.findFirst({
+      where: { id: processoId, escritorioId: officeId },
       include: {
-        client: true,
-        movements: { orderBy: { date: 'desc' }, take: 20 },
-        documents: true,
-        tasks: { where: { status: 'pending' } },
+        cliente: true,
+        movimentacoes: { orderBy: { data: 'desc' }, take: 20 },
+        documentos: true,
+        tarefas: { where: { status: 'PENDENTE' } },
       },
     });
 
-    if (!processo) throw new Error('Processo não encontrado');
+    if (!processo) throw new NotFoundException('Processo não encontrado');
 
     const prompt = `Analise o risco processual. Responda APENAS com JSON válido, sem markdown nem explicações fora do JSON.
 
-PROCESSO: ${processo.number} | ÁREA: ${processo.area || 'N/A'} | STATUS: ${processo.status}
-TRIBUNAL: ${processo.court || 'N/A'} | VALOR: ${processo.value ? `R$ ${processo.value}` : 'N/A'}
-CLIENTE: ${processo.client?.name}
-MOVIMENTAÇÕES: ${processo.movements.slice(0, 10).map(m => `${m.date}: ${m.description}`).join(' | ')}
-TAREFAS PENDENTES: ${processo.tasks.length}
+PROCESSO: ${processo.numero} | ÁREA: ${processo.area || 'N/A'} | STATUS: ${processo.status}
+TRIBUNAL: ${processo.tribunal || 'N/A'} | VALOR: ${processo.valor ? `R$ ${processo.valor}` : 'N/A'}
+CLIENTE: ${processo.cliente?.nome}
+MOVIMENTAÇÕES: ${processo.movimentacoes.slice(0, 10).map(m => `${m.data.toISOString().split('T')[0]}: ${m.descricao}`).join(' | ')}
+TAREFAS PENDENTES: ${processo.tarefas.length}
 
 JSON esperado:
 {
@@ -170,16 +173,16 @@ JSON esperado:
     const totalTokens = (result.response.usageMetadata?.promptTokenCount || 0) +
                         (result.response.usageMetadata?.candidatesTokenCount || 0);
 
-    await (this.prisma as any).interacaoIA.create({
+    await this.prisma.interacaoIA.create({
       data: {
-        userId: userId || '',
-        officeId,
-        type: 'risk_analysis',
+        usuarioId: userId || null,
+        escritorioId: officeId,
+        tipo: 'risk_analysis',
         input: prompt,
         output: JSON.stringify(parsed),
-        processId: processoId,
+        processoId,
         tokens: totalTokens,
-        model: 'gemini-1.5-flash',
+        modelo: GEMINI_MODEL,
       },
     });
 
@@ -202,7 +205,7 @@ JSON esperado:
     oab: string;
   }): Promise<PeticaoGerada> {
 
-    const contexto = await this.buildProcessoContext(params.processoId);
+    const contexto = await this.buildProcessoContext(params.processoId, params.officeId);
 
     const prompt = `Gere uma ${params.tipo} completa. Responda APENAS com JSON válido, sem markdown.
 
@@ -284,13 +287,13 @@ JSON esperado:
 
   /* ──────────────────── RESUMO AUTOMÁTICO ───────────────────── */
 
-  async resumirAndamentos(processoId: string, para: 'cliente' | 'advogado') {
-    const processo = await (this.prisma as any).processo.findUnique({
-      where: { id: processoId },
-      include: { movements: { orderBy: { date: 'desc' }, take: 30 } },
+  async resumirAndamentos(processoId: string, para: 'cliente' | 'advogado', officeId: string) {
+    const processo = await this.prisma.processo.findFirst({
+      where: { id: processoId, escritorioId: officeId, deletedAt: null },
+      include: { movimentacoes: { orderBy: { data: 'desc' }, take: 30 } },
     });
 
-    if (!processo) throw new Error('Processo não encontrado');
+    if (!processo) throw new NotFoundException('Processo não encontrado');
 
     const tom = para === 'cliente'
       ? 'linguagem simples e acessível, sem jargões jurídicos'
@@ -298,8 +301,8 @@ JSON esperado:
 
     const prompt = `Resuma os andamentos em ${tom}. Responda APENAS com JSON válido, sem markdown.
 
-PROCESSO: ${processo.number}
-ANDAMENTOS: ${processo.movements.map(m => `${m.date}: ${m.description}`).join(' | ')}
+PROCESSO: ${processo.numero}
+ANDAMENTOS: ${processo.movimentacoes.map(m => `${m.data.toISOString().split('T')[0]}: ${m.descricao}`).join(' | ')}
 
 JSON esperado:
 { "resumo_curto": "", "resumo_detalhado": "", "situacao_atual": "", "proximas_etapas": [], "pontos_atencao": [] }`;
@@ -310,29 +313,29 @@ JSON esperado:
 
   /* ──────────────────── HELPERS PRIVADOS ────────────────────── */
 
-  private async buildProcessoContext(processoId: string): Promise<string> {
-    const processo = await (this.prisma as any).processo.findUnique({
-      where: { id: processoId },
+  private async buildProcessoContext(processoId: string, officeId: string): Promise<string> {
+    const processo = await this.prisma.processo.findFirst({
+      where: { id: processoId, escritorioId: officeId, deletedAt: null },
       include: {
-        client: true,
-        movements: { orderBy: { date: 'desc' }, take: 15 },
-        tasks: { where: { status: 'pending' }, take: 10 },
+        cliente: true,
+        movimentacoes: { orderBy: { data: 'desc' }, take: 15 },
+        tarefas: { where: { status: 'PENDENTE' }, take: 10 },
       },
     });
 
     if (!processo) return '';
 
     return `CONTEXTO DO PROCESSO:
-Número: ${processo.number} | Área: ${processo.area || 'N/A'} | Status: ${processo.status}
-Tribunal: ${processo.court || 'N/A'} | Fase: ${processo.phase || 'N/A'}
-Valor: ${processo.value ? `R$ ${processo.value}` : 'N/A'} | Cliente: ${processo.client?.name || 'N/A'}
-Movimentações: ${processo.movements.map(m => `${m.date}: ${m.description}`).join(' | ')}
-Tarefas pendentes: ${processo.tasks.map(t => t.title).join(', ') || 'Nenhuma'}`;
+Número: ${processo.numero} | Área: ${processo.area || 'N/A'} | Status: ${processo.status}
+Tribunal: ${processo.tribunal || 'N/A'} | Fase: ${processo.fase || 'N/A'}
+Valor: ${processo.valor ? `R$ ${processo.valor}` : 'N/A'} | Cliente: ${processo.cliente?.nome || 'N/A'}
+Movimentações: ${processo.movimentacoes.map(m => `${m.data.toISOString().split('T')[0]}: ${m.descricao}`).join(' | ')}
+Tarefas pendentes: ${processo.tarefas.map(t => t.titulo).join(', ') || 'Nenhuma'}`;
   }
 
-  private async getHistoricoConversa(conversaId: string, limit: number) {
-    const interacoes = await (this.prisma as any).interacaoIA.findMany({
-      where: { sessionId: conversaId },
+  private async getHistoricoConversa(conversaId: string, limit: number, officeId: string) {
+    const interacoes = await this.prisma.interacaoIA.findMany({
+      where: { sessaoId: conversaId, escritorioId: officeId },
       orderBy: { createdAt: 'asc' },
       take: limit * 2,
     });
@@ -345,17 +348,17 @@ Tarefas pendentes: ${processo.tasks.map(t => t.title).join(', ') || 'Nenhuma'}`;
   }
 
   private async salvarInteracao(userId: string, officeId: string, data: any) {
-    return (this.prisma as any).interacaoIA.create({
+    return this.prisma.interacaoIA.create({
       data: {
-        userId,
-        officeId,
-        type: 'chat',
+        usuarioId: userId || null,
+        escritorioId: officeId,
+        tipo: 'chat',
         input: data.pergunta,
         output: data.resposta,
-        processId: data.processo_id,
-        sessionId: data.conversa_id,
-        tokens: data.tokens_usados,
-        model: 'gemini-1.5-flash',
+        processoId: data.processo_id || null,
+        sessaoId: data.conversa_id,
+        tokens: data.tokens_usados ?? 0,
+        modelo: GEMINI_MODEL,
       },
     });
   }
@@ -418,7 +421,7 @@ Sobre o Jurysone:
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
     const supportModel = genAI.getGenerativeModel({
-      model: 'gemini-1.5-flash',
+      model: GEMINI_MODEL,
       systemInstruction: supportSystemPrompt,
     });
 

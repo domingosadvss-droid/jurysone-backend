@@ -19,6 +19,10 @@ async function bootstrap() {
   // rawBody: true — necessário para validação HMAC-SHA256 do webhook Meta/WhatsApp
   const app = await NestFactory.create(AppModule, { rawBody: true });
 
+  // Render/Hostinger ficam atrás de proxy: usar o IP real do cliente (X-Forwarded-For)
+  // para o limitador de requisições não tratar todos os usuários como um só IP.
+  app.getHttpAdapter().getInstance().set('trust proxy', 1);
+
   // ── Segurança ────────────────────────────────────────────────────────────
   // CSP desabilitado: os HTMLs usam scripts inline e CDNs (Tailwind, Chart.js, etc.)
   // Os demais headers do Helmet (X-Frame, HSTS, etc.) permanecem ativos.
@@ -39,7 +43,8 @@ async function bootstrap() {
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        callback(new Error('Not allowed by CORS'));
+        // Origem não autorizada: responde sem cabeçalhos CORS (o navegador bloqueia), sem erro 500
+        callback(null, false);
       }
     },
     credentials: true,

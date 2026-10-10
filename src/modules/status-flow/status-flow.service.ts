@@ -82,7 +82,7 @@ export class StatusFlowService {
     // 1. Find envelope in DB
     const envelope = await this.prisma.esignEnvelope.findFirst({
       where: { externalId: envelopeExternalId },
-      include: {} as any,
+      include: {},
     });
 
     if (!envelope) {
@@ -149,15 +149,16 @@ export class StatusFlowService {
       metadata,
     );
 
-    // 3. processo: aguardando_assinatura → contrato_assinado
+    // 3. processo: contrato assinado → ATIVO (Processo.status é o enum StatusProcesso;
+    //    a etapa detalhada do fluxo fica no status do atendimento)
     await this.prisma.processo.update({
       where: { id: processoId },
-      data: { status: PROCESSO_STATUSES.CONTRATO_ASSINADO as any },
+      data: { status: 'ATIVO' },
     });
 
     // 4. After a delay, automatically move to "iniciando" → "ativo"
     // In production: use a scheduled job (Bull queue)
-    setTimeout(async () => {
+    setTimeout(() => void (async () => {
       await this.transitionAtendimentoStatus(
         atendimento.id,
         ATENDIMENTO_STATUSES.INICIANDO,
@@ -165,7 +166,7 @@ export class StatusFlowService {
         { auto: true },
       );
 
-      setTimeout(async () => {
+      setTimeout(() => void (async () => {
         await this.transitionAtendimentoStatus(
           atendimento.id,
           ATENDIMENTO_STATUSES.ATIVO,
@@ -173,10 +174,6 @@ export class StatusFlowService {
           { auto: true },
         );
 
-        await this.prisma.processo.update({
-          where: { id: processoId },
-          data: { status: PROCESSO_STATUSES.EM_ANDAMENTO as any },
-        });
 
         // Notify via WebSocket
         this.notifications.sendToOffice(atendimento.escritorioId, 'atendimento_ativo', {
@@ -184,8 +181,8 @@ export class StatusFlowService {
           clienteNome: atendimento.cliente?.nome,
           area: atendimento.area,
         });
-      }, 3000); // 3 seconds in demo (should be hours in production)
-    }, 2000); // 2 seconds in demo
+      })().catch(err => this.logger.error(`[StatusFlow] Falha ao ativar atendimento: ${err.message}`)), 3000);
+    })().catch(err => this.logger.error(`[StatusFlow] Falha ao iniciar atendimento: ${err.message}`)), 2000);
 
     // 5. Update financeiro: a_efetuar → cadastrado (payment link now active)
     await this.prisma.lancamentoFinanceiro.updateMany({
@@ -319,7 +316,7 @@ export class StatusFlowService {
 
     // 5. Notify office
     if (event === 'confirmed') {
-      const valor = lancamento.valor.toLocaleString('pt-BR', {
+      const valor = Number(lancamento.valor).toLocaleString('pt-BR', {
         style: 'currency',
         currency: 'BRL',
       });
@@ -461,7 +458,7 @@ export class StatusFlowService {
     area: string,
     tipoAcao: string,
   ) {
-    const crmRecord = await this.prisma.crmRecord.create({
+    const crmRecord = await this.prisma.registroCrm.create({
       data: {
         escritorioId,
         clienteId,
@@ -488,7 +485,7 @@ export class StatusFlowService {
     origem: string;
     metadata?: any;
   }) {
-    return this.prisma.statusHistory.create({
+    return this.prisma.historicoStatus.create({
       data: {
         entidade: data.entidade,
         entidadeId: data.entidadeId,
@@ -502,7 +499,7 @@ export class StatusFlowService {
   }
 
   async getStatusHistory(entidade: string, entidadeId: string) {
-    return this.prisma.statusHistory.findMany({
+    return this.prisma.historicoStatus.findMany({
       where: { entidade, entidadeId },
       orderBy: { timestamp: 'asc' },
     });

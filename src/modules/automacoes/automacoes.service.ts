@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client';
 /**
  * ═══════════════════════════════════════════════════════════════
  * JURYSONE — AutomacoesService
@@ -376,9 +377,9 @@ export class AutomacoesService {
     const page = parseInt(query.page || '1', 10);
     const limit = 20;
 
-    const where: any = { escritorioId };
+    const where: Prisma.AutomacaoWhereInput = { escritorioId };
     if (query.ativa !== undefined) where.ativa = query.ativa === 'true';
-    if (query.gatilho)             where.evento = query.gatilho;
+    if (query.gatilho)             where.gatilho = { path: ['tipo'], equals: query.gatilho };
 
     const [total, items] = await Promise.all([
       this.prisma.automacao.count({ where }),
@@ -414,7 +415,7 @@ export class AutomacoesService {
         nome: dto.nome,
         descricao: dto.descricao,
         ativa: dto.ativa,
-        gatilho: { tipo: dto.gatilho.tipo, condicoes: dto.gatilho.condicoes || [] } as any,
+        gatilho: { tipo: dto.gatilho.tipo, condicoes: dto.gatilho.condicoes || [] },
         condicoes: dto.gatilho.condicoes || [],
         acoes: dto.acoes,
       },
@@ -439,7 +440,7 @@ export class AutomacoesService {
   async update(escritorioId: string, id: string, dto: any) {
     await this.get(escritorioId, id); // checks ownership
 
-    const data: any = {};
+    const data: Prisma.AutomacaoUncheckedUpdateInput = {};
     if (dto.nome)        data.nome        = dto.nome;
     if (dto.descricao !== undefined) data.descricao = dto.descricao;
     if (dto.ativa !== undefined)     data.ativa     = dto.ativa;
@@ -478,7 +479,7 @@ export class AutomacoesService {
 
     const page  = parseInt(query.page || '1', 10);
     const limit = 20;
-    const where: any = { automacaoId: id };
+    const where: Prisma.AutomacaoLogWhereInput = { automacaoId: id };
     if (query.status) where.status = query.status;
 
     const [total, items] = await Promise.all([
@@ -530,7 +531,7 @@ export class AutomacoesService {
 
     // 1. Buscar automações ativas com esse gatilho
     const automacoes = await this.prisma.automacao.findMany({
-      where: { escritorioId, ativa: true } as any,
+      where: { escritorioId, ativa: true },
     });
 
     if (automacoes.length === 0) {
@@ -698,7 +699,7 @@ export class AutomacoesService {
             dataPrazo:     prazo,
             processoId:    dados.processo_id || null,
             responsavelId: cfg.responsavel  || dados.responsavel_id || null,
-          } as any,
+          },
         });
 
         // Notificar responsável via WebSocket
@@ -723,7 +724,7 @@ export class AutomacoesService {
       case 'notificacao.push': {
         // Buscar todos os usuários do escritório
         const usuarios = await this.prisma.usuario.findMany({
-          where: { escritorioId, ativo: true } as any,
+          where: { escritorioId, ativo: true },
           select: { id: true },
         });
 
@@ -793,7 +794,7 @@ export class AutomacoesService {
             tipo:        cfg.tipo || 'OUTRO',
             processoId:  dados.processo_id || null,
             criadoPorId: dados.usuario_id || dados.responsavel_id || escritorioId,
-          } as any,
+          },
         });
 
         return { eventoId: evento.id, titulo: (evento as any).titulo, data: (evento as any).data };
@@ -808,14 +809,13 @@ export class AutomacoesService {
         const lancamento = await this.prisma.lancamentoFinanceiro.create({
           data: {
             escritorioId,
-            clienteId:      dados.cliente_id,
-            processoId:     dados.processo_id || null,
-            tipo:           'HONORARIO',
-            descricao:      cfg.descricao,
+            clienteId:      dados.cliente_id || null,
+            tipo:           'receita',
+            descricao:      cfg.descricao || 'Honorários',
             valor:          cfg.valor,
             formaPagamento: cfg.forma_pagamento || 'PIX',
-            status:         'PENDENTE',
-            dataVencimento: vencimento,
+            status:         'pendente',
+            vencimento,
           },
         });
 

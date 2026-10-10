@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client';
 /**
  * ════════════════════════════════════════════════════════════════
  * JURYSONE — EsignService
@@ -69,12 +70,15 @@ export class EsignService {
     const { status, page = 1, per_page = 20, search } = query;
     const skip = (Number(page) - 1) * Number(per_page);
 
-    const where: any = { escritorioId };
+    const where: Prisma.EsignEnvelopeWhereInput = { escritorioId };
     if (status) where.status = status;
     if (search) {
       where.OR = [
         { titulo: { contains: search, mode: 'insensitive' } },
-        { signatario: { contains: search, mode: 'insensitive' } },
+        { signatarios: { some: { OR: [
+          { nome:  { contains: search, mode: 'insensitive' } },
+          { email: { contains: search, mode: 'insensitive' } },
+        ] } } },
       ];
     }
 
@@ -83,7 +87,7 @@ export class EsignService {
         where,
         skip,
         take: Number(per_page),
-        include: { signatarios: true } as any,
+        include: { signatarios: true },
         orderBy: { createdAt: 'desc' },
       }),
       this.prisma.esignEnvelope.count({ where }),
@@ -122,7 +126,7 @@ export class EsignService {
         mensagem: dto.mensagem,
         dataLimite: expiresAt,
         externalId: null,
-      } as any,
+      },
     });
 
     return envelope;
@@ -131,7 +135,7 @@ export class EsignService {
   async getEnvelope(escritorioId: string, id: string) {
     const envelope = await this.prisma.esignEnvelope.findFirst({
       where: { id, escritorioId },
-      include: { signatarios: true } as any,
+      include: { signatarios: true },
     });
 
     if (!envelope) throw new NotFoundException(`Envelope ${id} não encontrado`);
@@ -245,7 +249,7 @@ export class EsignService {
   async getAuditoria(escritorioId: string, id: string) {
     const envelope = await this.getEnvelope(escritorioId, id);
 
-    const history = await this.prisma.statusHistory.findMany({
+    const history = await this.prisma.historicoStatus.findMany({
       where: { entidade: 'esign_envelope', entidadeId: id },
       orderBy: { timestamp: 'asc' },
     });
@@ -268,7 +272,7 @@ export class EsignService {
   async getSignaturePage(token: string) {
     const envelope = await this.prisma.esignEnvelope.findFirst({
       where: {
-        signatario: { path: ['token'], equals: token } as any,
+        signatario: { path: ['token'], equals: token },
       },
     });
 
@@ -311,7 +315,7 @@ export class EsignService {
 
     const envelope = await this.prisma.esignEnvelope.findFirst({
       where: {
-        signatario: { path: ['token'], equals: token } as any,
+        signatario: { path: ['token'], equals: token },
       },
     });
 
@@ -367,7 +371,7 @@ export class EsignService {
   async verificarDocumento(hash: string) {
     const envelope = await this.prisma.esignEnvelope.findFirst({
       where: { documentoHash: hash },
-      include: { signatarios: true } as any,
+      include: { signatarios: true },
     });
 
     if (!envelope) {
@@ -755,7 +759,7 @@ export class EsignService {
               zapsignDocumentId: resultado.docKey,
               status: 'enviado',
               enviadoEm: new Date(),
-            } as any,
+            },
           });
 
           this.logger.log(`[Esign] ✅ ClickSign: documento ${resultado.docKey} criado para ${signatario.email}`);
@@ -782,7 +786,7 @@ export class EsignService {
 
       await this.prisma.esignEnvelope.update({
         where: { id: envelopeId },
-        data: { status: 'enviado', enviadoEm: new Date() } as any,
+        data: { status: 'enviado', enviadoEm: new Date() },
       });
 
       this.logger.log(`[Esign] ✅ SMTP: email enviado para ${signatario.email}`);
@@ -1684,7 +1688,7 @@ export class EsignService {
 
       // Buscar envelope relacionado
       const envelope = await this.prisma.esignEnvelope.findFirst({
-        where: { zapsignDocumentId: data.zapsignDocumentId } as any,
+        where: { zapsignDocumentId: data.zapsignDocumentId },
       });
 
       if (!envelope) {
@@ -1697,9 +1701,9 @@ export class EsignService {
         where: { id: envelope.id },
         data: {
           status: 'signed',
-          dataAssinatura: data.signedAt,
+          assinadoEm: data.signedAt ? new Date(data.signedAt) : new Date(),
           urlDocumentoAssinado: data.documentUrl,
-        } as any,
+        },
       });
 
       // Buscar e atualizar signatário específico
@@ -1794,7 +1798,7 @@ export class EsignService {
 
       // Buscar envelope
       const envelope = await this.prisma.esignEnvelope.findFirst({
-        where: { zapsignDocumentId: data.zapsignDocumentId } as any,
+        where: { zapsignDocumentId: data.zapsignDocumentId },
       });
 
       if (!envelope) {
@@ -1809,7 +1813,7 @@ export class EsignService {
           status: 'rejected',
           dataRejeicao: data.rejectedAt,
           motivoRejeicao: data.rejectionReason || 'Não especificado',
-        } as any,
+        },
       });
 
       // Registrar na auditoria

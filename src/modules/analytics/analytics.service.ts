@@ -21,18 +21,18 @@ export class AnalyticsService {
       receitaMes,
       receitaMesAnterior,
     ] = await Promise.all([
-      (this.prisma as any).processo.count({ where: { escritorioId: officeId } }),
-      (this.prisma as any).processo.count({ where: { escritorioId: officeId, status: 'ATIVO' } }),
-      (this.prisma as any).cliente.count({ where: { escritorioId: officeId } }),
-      (this.prisma as any).cliente.count({ where: { escritorioId: officeId, createdAt: { gte: inicioMes } } }),
-      this.prisma.tarefa.count({ where: { escritorioId: officeId, status: 'PENDENTE' } as any }),
-      this.prisma.tarefa.count({ where: { escritorioId: officeId, status: 'PENDENTE', dataPrazo: { lt: agora } } as any }),
+      this.prisma.processo.count({ where: { escritorioId: officeId } }),
+      this.prisma.processo.count({ where: { escritorioId: officeId, status: 'ATIVO' } }),
+      this.prisma.cliente.count({ where: { escritorioId: officeId } }),
+      this.prisma.cliente.count({ where: { escritorioId: officeId, createdAt: { gte: inicioMes } } }),
+      this.prisma.tarefa.count({ where: { escritorioId: officeId, status: 'PENDENTE' } }),
+      this.prisma.tarefa.count({ where: { escritorioId: officeId, status: 'PENDENTE', dataPrazo: { lt: agora } } }),
       this.prisma.lancamentoFinanceiro.aggregate({
-        where: { escritorioId: officeId, status: 'PAGO', dataPagamento: { gte: inicioMes } },
+        where: { escritorioId: officeId, status: 'pago', paidAt: { gte: inicioMes } },
         _sum: { valor: true },
       }),
       this.prisma.lancamentoFinanceiro.aggregate({
-        where: { escritorioId: officeId, status: 'PAGO', dataPagamento: { gte: inicioMesAnterior, lte: fimMesAnterior } },
+        where: { escritorioId: officeId, status: 'pago', paidAt: { gte: inicioMesAnterior, lte: fimMesAnterior } },
         _sum: { valor: true },
       }),
     ]);
@@ -66,11 +66,11 @@ export class AnalyticsService {
 
       const [receita, despesas] = await Promise.all([
         this.prisma.lancamentoFinanceiro.aggregate({
-          where: { escritorioId: officeId, tipo: 'HONORARIO', status: 'PAGO', dataPagamento: { gte: inicio, lte: fim } },
+          where: { escritorioId: officeId, tipo: 'receita', status: 'pago', paidAt: { gte: inicio, lte: fim } },
           _sum: { valor: true },
         }),
         this.prisma.lancamentoFinanceiro.aggregate({
-          where: { escritorioId: officeId, tipo: 'DESPESA', dataPagamento: { gte: inicio, lte: fim } },
+          where: { escritorioId: officeId, tipo: 'despesa', status: 'pago', paidAt: { gte: inicio, lte: fim } },
           _sum: { valor: true },
         }),
       ]);
@@ -87,12 +87,12 @@ export class AnalyticsService {
 
   async getDistribuicaoProcessos(officeId: string) {
     const [porStatus, porArea] = await Promise.all([
-      (this.prisma as any).processo.groupBy({
+      this.prisma.processo.groupBy({
         by: ['status'],
         where: { escritorioId: officeId },
         _count: { _all: true },
       }),
-      (this.prisma as any).processo.groupBy({
+      this.prisma.processo.groupBy({
         by: ['area'],
         where: { escritorioId: officeId },
         _count: { _all: true },
@@ -113,9 +113,9 @@ export class AnalyticsService {
     const proximos30 = new Date(agora.getTime() + 30 * 86400000);
 
     const [atrasados, semana, mes] = await Promise.all([
-      this.prisma.tarefa.count({ where: { escritorioId: officeId, status: 'PENDENTE', dataPrazo: { lt: agora } } as any }),
-      this.prisma.tarefa.count({ where: { escritorioId: officeId, status: 'PENDENTE', dataPrazo: { gte: agora, lte: proximos7 } } as any }),
-      this.prisma.tarefa.count({ where: { escritorioId: officeId, status: 'PENDENTE', dataPrazo: { gte: agora, lte: proximos30 } } as any }),
+      this.prisma.tarefa.count({ where: { escritorioId: officeId, status: 'PENDENTE', dataPrazo: { lt: agora } } }),
+      this.prisma.tarefa.count({ where: { escritorioId: officeId, status: 'PENDENTE', dataPrazo: { gte: agora, lte: proximos7 } } }),
+      this.prisma.tarefa.count({ where: { escritorioId: officeId, status: 'PENDENTE', dataPrazo: { gte: agora, lte: proximos30 } } }),
     ]);
 
     return { atrasados, proximos_7_dias: semana, proximos_30_dias: mes };
@@ -123,16 +123,16 @@ export class AnalyticsService {
 
   async getProdutividadeEquipe(officeId: string, query: any) {
     const usuarios = await this.prisma.usuario.findMany({
-      where: { escritorioId: officeId, ativo: true } as any,
+      where: { escritorioId: officeId, ativo: true },
       select: { id: true, nome: true },
     });
 
     const resultado = await Promise.all(
       usuarios.map(async (u) => {
         const [concluidas, pendentes, atrasadas] = await Promise.all([
-          this.prisma.tarefa.count({ where: { escritorioId: officeId, responsavelId: u.id, status: 'CONCLUIDA' } as any }),
-          this.prisma.tarefa.count({ where: { escritorioId: officeId, responsavelId: u.id, status: 'PENDENTE' } as any }),
-          this.prisma.tarefa.count({ where: { escritorioId: officeId, responsavelId: u.id, status: 'PENDENTE', dataPrazo: { lt: new Date() } } as any }),
+          this.prisma.tarefa.count({ where: { escritorioId: officeId, responsavelId: u.id, status: 'CONCLUIDA' } }),
+          this.prisma.tarefa.count({ where: { escritorioId: officeId, responsavelId: u.id, status: 'PENDENTE' } }),
+          this.prisma.tarefa.count({ where: { escritorioId: officeId, responsavelId: u.id, status: 'PENDENTE', dataPrazo: { lt: new Date() } } }),
         ]);
         return { usuario: u.nome, concluidas, pendentes, atrasadas };
       }),
@@ -145,12 +145,12 @@ export class AnalyticsService {
     const agora = new Date();
     const [totalPendente, totalVencido] = await Promise.all([
       this.prisma.lancamentoFinanceiro.aggregate({
-        where: { escritorioId: officeId, status: 'PENDENTE' },
+        where: { escritorioId: officeId, status: 'pendente' },
         _sum: { valor: true },
         _count: { _all: true },
       }),
       this.prisma.lancamentoFinanceiro.aggregate({
-        where: { escritorioId: officeId, status: 'PENDENTE', dataVencimento: { lt: agora } },
+        where: { escritorioId: officeId, status: 'pendente', vencimento: { lt: agora } },
         _sum: { valor: true },
         _count: { _all: true },
       }),
@@ -179,7 +179,7 @@ export class AnalyticsService {
   getReceitaPorCliente(officeId: string, query: any) {
     return this.prisma.lancamentoFinanceiro.groupBy({
       by: ['clienteId'],
-      where: { escritorioId: officeId, status: 'PAGO' },
+      where: { escritorioId: officeId, status: 'pago' },
       _sum: { valor: true },
       orderBy: { _sum: { valor: 'desc' } },
       take: 10,

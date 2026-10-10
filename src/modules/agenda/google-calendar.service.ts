@@ -32,7 +32,7 @@ export class GoogleCalendarService {
    * Após consentir, o Google redireciona para GOOGLE_REDIRECT_URI com um `code`.
    */
   getAuthUrl(): string {
-    const { OAuth2Client } = this.getGoogleAuth();
+    const OAuth2Client = this.getGoogleAuth().OAuth2;
     const client = new OAuth2Client(
       process.env.GOOGLE_CLIENT_ID,
       process.env.GOOGLE_CLIENT_SECRET,
@@ -53,7 +53,7 @@ export class GoogleCalendarService {
    * Retorna os tokens para o frontend armazenar (criptografado no DB).
    */
   async exchangeCode(code: string): Promise<{ access_token: string; refresh_token: string }> {
-    const { OAuth2Client } = this.getGoogleAuth();
+    const OAuth2Client = this.getGoogleAuth().OAuth2;
     const client = new OAuth2Client(
       process.env.GOOGLE_CLIENT_ID,
       process.env.GOOGLE_CLIENT_SECRET,
@@ -79,11 +79,11 @@ export class GoogleCalendarService {
     accessToken: string,
     calendarId = 'primary',
   ): Promise<string | null> {
-    const ev = await (this.prisma as any).evento.findUnique({
+    const ev = await this.prisma.evento.findUnique({
       where: { id: jurysoneEventId },
       include: {
-        responsibles: { include: { user: { select: { email: true } } } },
-        createdBy: { select: { email: true } },
+        responsaveis: { include: { usuario: { select: { email: true } } } },
+        criadoPor: { select: { email: true } },
       },
     });
     if (!ev) return null;
@@ -100,12 +100,12 @@ export class GoogleCalendarService {
       const googleId: string = response.data.id;
 
       // Persiste o vínculo
-      await (this.prisma as any).evento.update({
+      await this.prisma.evento.update({
         where: { id: jurysoneEventId },
         data: { googleEventId: googleId, googleCalendarId: calendarId },
       });
 
-      this.logger.log(`[GCal] Evento "${ev.title}" criado → ${googleId}`);
+      this.logger.log(`[GCal] Evento "${ev.titulo}" criado → ${googleId}`);
       return googleId;
     } catch (err: any) {
       this.logger.error(`[GCal] Falha ao criar evento ${jurysoneEventId}: ${err.message}`);
@@ -122,11 +122,11 @@ export class GoogleCalendarService {
     jurysoneEventId: string,
     accessToken: string,
   ): Promise<boolean> {
-    const ev = await (this.prisma as any).evento.findUnique({
+    const ev = await this.prisma.evento.findUnique({
       where: { id: jurysoneEventId },
       include: {
-        responsibles: { include: { user: { select: { email: true } } } },
-        createdBy: { select: { email: true } },
+        responsaveis: { include: { usuario: { select: { email: true } } } },
+        criadoPor: { select: { email: true } },
       },
     });
     if (!ev?.googleEventId) return false;
@@ -138,7 +138,7 @@ export class GoogleCalendarService {
         eventId: ev.googleEventId,
         resource: this.toGooglePayload(ev),
       });
-      this.logger.log(`[GCal] Evento "${ev.title}" atualizado → ${ev.googleEventId}`);
+      this.logger.log(`[GCal] Evento "${ev.titulo}" atualizado → ${ev.googleEventId}`);
       return true;
     } catch (err: any) {
       this.logger.error(`[GCal] Falha ao atualizar ${jurysoneEventId}: ${err.message}`);
@@ -149,7 +149,7 @@ export class GoogleCalendarService {
   // ── Excluir evento no Google ───────────────────────────────────────────────
 
   async deleteEvento(jurysoneEventId: string, accessToken: string): Promise<boolean> {
-    const ev = await (this.prisma as any).evento.findUnique({
+    const ev = await this.prisma.evento.findUnique({
       where: { id: jurysoneEventId },
     });
     if (!ev?.googleEventId) return false;
@@ -160,11 +160,11 @@ export class GoogleCalendarService {
         calendarId: ev.googleCalendarId ?? 'primary',
         eventId: ev.googleEventId,
       });
-      await (this.prisma as any).evento.update({
+      await this.prisma.evento.update({
         where: { id: jurysoneEventId },
         data: { googleEventId: null, googleCalendarId: null },
       });
-      this.logger.log(`[GCal] Evento "${ev.title}" removido do Google`);
+      this.logger.log(`[GCal] Evento "${ev.titulo}" removido do Google`);
       return true;
     } catch (err: any) {
       this.logger.error(`[GCal] Falha ao excluir ${jurysoneEventId}: ${err.message}`);
@@ -214,39 +214,39 @@ export class GoogleCalendarService {
         const endDate   = item.end?.dateTime ?? item.end?.date;
         if (!startDate) { stats.skipped++; continue; }
 
-        const existing = await (this.prisma as any).evento.findFirst({
-          where: { googleEventId: item.id, officeId },
+        const existing = await this.prisma.evento.findFirst({
+          where: { googleEventId: item.id, escritorioId: officeId },
         });
 
         const data = {
-          title:           item.summary ?? '(sem título)',
-          description:     item.description ?? undefined,
-          date:            new Date(startDate),
-          endDate:         endDate ? new Date(endDate) : undefined,
-          isAllDay:        !item.start?.dateTime,
-          location:        item.location ?? undefined,
+          titulo:          item.summary ?? '(sem título)',
+          descricao:       item.description ?? undefined,
+          data:            new Date(startDate),
+          dataFim:         endDate ? new Date(endDate) : undefined,
+          diaInteiro:      !item.start?.dateTime,
+          local:           item.location ?? undefined,
           googleEventId:   item.id,
           googleCalendarId: calendarId,
-          type:            'OUTRO' as const,
-          officeId,
-          createdById:     userId,
+          tipo:            'OUTRO' as const,
+          escritorioId:    officeId,
+          criadoPorId:     userId,
         };
 
         if (existing) {
-          await (this.prisma as any).evento.update({
+          await this.prisma.evento.update({
             where: { id: existing.id },
             data: {
-              title:       data.title,
-              description: data.description,
-              date:        data.date,
-              endDate:     data.endDate,
-              isAllDay:    data.isAllDay,
-              location:    data.location,
+              titulo:     data.titulo,
+              descricao:  data.descricao,
+              data:       data.data,
+              dataFim:    data.dataFim,
+              diaInteiro: data.diaInteiro,
+              local:      data.local,
             },
           });
           stats.updated++;
         } else {
-          await (this.prisma as any).evento.create({ data });
+          await this.prisma.evento.create({ data });
           stats.created++;
         }
       }
@@ -310,16 +310,16 @@ export class GoogleCalendarService {
 
   /** Converte um CalendarEvent do JurysOne para o formato da API do Google */
   private toGooglePayload(ev: any): Record<string, any> {
-    const startDate = new Date(ev.date);
-    const endDate   = ev.endDate ? new Date(ev.endDate) : new Date(startDate.getTime() + 3_600_000);
+    const startDate = new Date(ev.data);
+    const endDate   = ev.dataFim ? new Date(ev.dataFim) : new Date(startDate.getTime() + 3_600_000);
 
     const payload: Record<string, any> = {
-      summary:     ev.title,
-      description: ev.description ?? '',
-      location:    ev.location ?? '',
+      summary:     ev.titulo,
+      description: ev.descricao ?? '',
+      location:    ev.local ?? '',
     };
 
-    if (ev.isAllDay) {
+    if (ev.diaInteiro) {
       // Formato de dia inteiro: YYYY-MM-DD
       const fmt = (d: Date) => d.toISOString().split('T')[0];
       payload.start = { date: fmt(startDate) };
@@ -331,10 +331,10 @@ export class GoogleCalendarService {
 
     // Adicionar participantes (responsáveis + criador)
     const attendees: { email: string }[] = [];
-    if (ev.createdBy?.email) attendees.push({ email: ev.createdBy.email });
-    for (const r of ev.responsibles ?? []) {
-      if (r.user?.email && r.user.email !== ev.createdBy?.email) {
-        attendees.push({ email: r.user.email });
+    if (ev.criadoPor?.email) attendees.push({ email: ev.criadoPor.email });
+    for (const r of ev.responsaveis ?? []) {
+      if (r.usuario?.email && r.usuario.email !== ev.criadoPor?.email) {
+        attendees.push({ email: r.usuario.email });
       }
     }
     if (attendees.length) payload.attendees = attendees;
@@ -346,10 +346,10 @@ export class GoogleCalendarService {
       monthly: 'RRULE:FREQ=MONTHLY',
       yearly:  'RRULE:FREQ=YEARLY',
     };
-    if (ev.recurrence && rruleMap[ev.recurrence]) {
-      let rule = rruleMap[ev.recurrence];
-      if (ev.recurrenceEndDate) {
-        const until = new Date(ev.recurrenceEndDate)
+    if (ev.recorrencia && rruleMap[ev.recorrencia]) {
+      let rule = rruleMap[ev.recorrencia];
+      if (ev.recorrenciaFim) {
+        const until = new Date(ev.recorrenciaFim)
           .toISOString()
           .replace(/[-:.]/g, '')
           .slice(0, 15) + 'Z';

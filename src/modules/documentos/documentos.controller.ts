@@ -41,8 +41,8 @@ export class DocumentosController {
   }
 
   @Get('processo/:processoId')
-  async findByProcesso(@Param('processoId') processoId: string) {
-    return this.documentosService.findByProcesso(processoId);
+  async findByProcesso(@Request() req: any, @Param('processoId') processoId: string) {
+    return this.documentosService.findByProcesso(processoId, req.user.escritorioId ?? req.user.officeId);
   }
 
   /**

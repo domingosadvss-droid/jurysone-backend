@@ -70,8 +70,8 @@ export class PrazosController {
 
   /** GET /api/prazos/:id */
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.svc.findById(id);
+  findOne(@Param('id') id: string, @CurrentUser() user: any) {
+    return this.svc.findById(id, user.officeId);
   }
 
   /** POST /api/prazos — cria prazo manual */
@@ -84,8 +84,8 @@ export class PrazosController {
 
   /** PATCH /api/prazos/:id — atualiza prazo */
   @Patch(':id')
-  update(@Param('id') id: string, @Body() body: any) {
-    return this.svc.update(id, body);
+  update(@Param('id') id: string, @Body() body: any, @CurrentUser() user: any) {
+    return this.svc.update(id, body, user.officeId);
   }
 
   /** PATCH /api/prazos/:id/status — atualiza status (cumprido / suspenso / etc.) */
@@ -94,13 +94,14 @@ export class PrazosController {
   updateStatus(
     @Param('id') id: string,
     @Body('status') status: string,
+    @CurrentUser() user: any,
   ) {
-    return this.svc.update(id, { status });
+    return this.svc.update(id, { status }, user.officeId);
   }
 
   /** DELETE /api/prazos/:id — remove prazo (soft delete) */
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.svc.remove(id);
+  remove(@Param('id') id: string, @CurrentUser() user: any) {
+    return this.svc.remove(id, user.officeId);
   }
 }

@@ -1,6 +1,18 @@
 import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
+/**
+ * Segredo dos tokens do portal. JWT_PORTAL_SECRET deve estar definido —
+ * não usamos fallback para JWT_SECRET para isolar tokens de cliente e advogado.
+ */
+export function getPortalSecret(): string {
+  const secret = process.env.JWT_PORTAL_SECRET;
+  if (!secret) {
+    throw new UnauthorizedException('Portal authentication is not configured. Please contact support.');
+  }
+  return secret;
+}
+
 @Injectable()
 export class PortalAuthGuard implements CanActivate {
   constructor(private jwtService: JwtService) {}
@@ -19,11 +31,7 @@ export class PortalAuthGuard implements CanActivate {
       throw new UnauthorizedException('Invalid auth scheme');
     }
 
-    // JWT_PORTAL_SECRET deve estar definido — não usar fallback para JWT_SECRET
-    const secret = process.env.JWT_PORTAL_SECRET;
-    if (!secret) {
-      throw new UnauthorizedException('Portal authentication is not configured. Please contact support.');
-    }
+    const secret = getPortalSecret();
 
     try {
       const decoded = this.jwtService.verify(token, { secret });

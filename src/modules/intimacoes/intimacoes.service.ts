@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client';
 /**
  * JURYSONE — IntimacoesService
  * Gerencia intimações capturadas dos Diários Oficiais + monitoramentos
@@ -19,21 +20,21 @@ export class IntimacoesService {
 
   private get defaultInclude() {
     return {
-      process:      { select: { id: true, number: true, tribunal: true } },
-      client:       { select: { id: true, nome: true } as any },
-      lidaPor:      { select: { id: true, nome: true } as any },
+      processo:     { select: { id: true, numero: true, tribunal: true } },
+      cliente:      { select: { id: true, nome: true } },
+      lidaPor:      { select: { id: true, nome: true } },
       monitoramento:{ select: { id: true, nome: true, tipo: true } },
-    };
+    } as const;
   }
 
   // ── Listar ───────────────────────────────────────────────────────────────
 
   async findAll(query: any, officeId: string) {
-    const where: any = { escritorioId: officeId };
+    const where: Prisma.IntimacaoWhereInput = { escritorioId: officeId };
 
     if (query.status)      where.status         = query.status;
     if (query.tribunal)    where.tribunal        = { contains: query.tribunal, mode: 'insensitive' };
-    if (query.process_id)  where.processId       = query.process_id;
+    if (query.process_id)  where.processoId      = query.process_id;
     if (query.lida !== undefined) where.lida     = query.lida === 'true';
     if (query.fonte)       where.fonte           = query.fonte;
     if (query.start_date || query.end_date) {
@@ -107,7 +108,7 @@ export class IntimacoesService {
 
   async vincularProcesso(id: string, processId: string, officeId: string) {
     await this.findOne(id, officeId);
-    const process = await this.prisma.processo.findFirst({ where: { id: processId, escritorioId: officeId } as any });
+    const process = await this.prisma.processo.findFirst({ where: { id: processId, escritorioId: officeId } });
     if (!process) throw new NotFoundException(`Processo ${processId} não encontrado`);
 
     return this.prisma.intimacao.update({
@@ -143,10 +144,10 @@ export class IntimacoesService {
 
   async listarMonitoramentos(officeId: string) {
     return this.prisma.diarioMonitoramento.findMany({
-      where: { escritorioId: officeId } as any,
+      where: { escritorioId: officeId },
       include: {
-        responsavel: { select: { id: true, nome: true } as any },
-        criadoPor:   { select: { id: true, nome: true } as any },
+        responsavel: { select: { id: true, nome: true } },
+        criadoPor:   { select: { id: true, nome: true } },
         _count: { select: { intimacoes: true } },
       },
       orderBy: { createdAt: 'desc' },
@@ -162,19 +163,26 @@ export class IntimacoesService {
         tribunais: body.tribunais ?? ['TJSP'],
       },
       include: {
-        responsavel: { select: { id: true, nome: true } as any },
+        responsavel: { select: { id: true, nome: true } },
       },
     });
   }
 
   async atualizarMonitoramento(id: string, body: any, officeId: string) {
-    const mon = await this.prisma.diarioMonitoramento.findFirst({ where: { id, escritorioId: officeId } as any });
+    const mon = await this.prisma.diarioMonitoramento.findFirst({ where: { id, escritorioId: officeId } });
     if (!mon) throw new NotFoundException(`Monitoramento ${id} não encontrado`);
-    return this.prisma.diarioMonitoramento.update({ where: { id }, data: body });
+    // Apenas campos editáveis (evita sobrescrever escritorioId, contadores etc.)
+    const campos = [
+      'nome', 'ativo', 'tipo', 'termoBusca', 'oabNumero', 'oabEstado', 'nomeAdvogado', 'cpfCnpj',
+      'tribunais', 'cadernos', 'notificarEmail', 'notificarWhatsapp', 'emailsAlerta', 'responsavelId',
+    ] as const;
+    const data: Prisma.DiarioMonitoramentoUncheckedUpdateInput = {};
+    for (const c of campos) if (body?.[c] !== undefined) (data as any)[c] = body[c];
+    return this.prisma.diarioMonitoramento.update({ where: { id }, data });
   }
 
   async removerMonitoramento(id: string, officeId: string) {
-    const mon = await this.prisma.diarioMonitoramento.findFirst({ where: { id, escritorioId: officeId } as any });
+    const mon = await this.prisma.diarioMonitoramento.findFirst({ where: { id, escritorioId: officeId } });
     if (!mon) throw new NotFoundException(`Monitoramento ${id} não encontrado`);
     await this.prisma.diarioMonitoramento.delete({ where: { id } });
     return { success: true };
@@ -330,7 +338,7 @@ export class IntimacoesService {
       porTribunal,
       porStatus,
     ] = await Promise.all([
-      this.prisma.intimacao.count({ where: { escritorioId: officeId } as any }),
+      this.prisma.intimacao.count({ where: { escritorioId: officeId } }),
       this.prisma.intimacao.count({ where: { escritorioId: officeId, lida: false } }),
       this.prisma.intimacao.count({
         where: {
@@ -342,13 +350,13 @@ export class IntimacoesService {
       }),
       this.prisma.intimacao.groupBy({
         by: ['tribunal'],
-        where: { escritorioId: officeId } as any,
+        where: { escritorioId: officeId },
         _count: true,
         orderBy: { _count: { tribunal: 'desc' } },
       }),
       this.prisma.intimacao.groupBy({
         by: ['status'],
-        where: { escritorioId: officeId } as any,
+        where: { escritorioId: officeId },
         _count: true,
       }),
     ]);

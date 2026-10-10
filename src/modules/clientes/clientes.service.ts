@@ -1,4 +1,5 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
+import { Prisma, TipoCliente } from '@prisma/client';
+import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 
 interface FindAllFilters {
@@ -33,13 +34,13 @@ export class ClientesService {
 
     const skip = (page - 1) * limit;
 
-    const where: any = {
+    const where: Prisma.ClienteWhereInput = {
       escritorioId,
       deletedAt: null,
     };
 
     if (tipo) {
-      where.tipo = tipo;
+      where.tipo = String(tipo).toUpperCase() as Prisma.ClienteWhereInput['tipo'];
     }
 
     if (status) {
@@ -84,22 +85,19 @@ export class ClientesService {
     };
   }
 
-  async findById(id: string): Promise<any> {
-    const cliente = await this.prisma.cliente.findUnique({
-      where: { id },
+  async findById(id: string, escritorioId: string): Promise<any> {
+    const cliente = await this.prisma.cliente.findFirst({
+      where: { id, escritorioId, deletedAt: null },
       include: {
         processos: { where: { deletedAt: null } },
       },
     });
+    if (!cliente) throw new NotFoundException('Cliente não encontrado');
 
-    if (cliente) {
-      return {
-        ...cliente,
-        processosCount: cliente.processos.length,
-      };
-    }
-
-    return cliente;
+    return {
+      ...cliente,
+      processosCount: cliente.processos.length,
+    };
   }
 
   async create(dto: any): Promise<any> {
@@ -121,7 +119,7 @@ export class ClientesService {
     return this.prisma.cliente.create({
       data: {
         nome: dto.nome,
-        tipo: dto.tipo,
+        tipo: dto.tipo ? String(dto.tipo).toUpperCase() as TipoCliente : undefined,
         cpfCnpj: dto.cpfCnpj,
         email: dto.email,
         telefone: dto.telefone,
@@ -135,13 +133,11 @@ export class ClientesService {
     });
   }
 
-  async update(id: string, dto: any): Promise<any> {
+  async update(id: string, dto: any, escritorioId: string): Promise<any> {
+    const cliente = await this.findById(id, escritorioId);
+
     // Check if updating CPF/CNPJ
     if (dto.cpfCnpj) {
-      const cliente = await this.prisma.cliente.findUnique({
-        where: { id },
-      });
-
       if (cliente.cpfCnpj !== dto.cpfCnpj) {
         const existing = await this.prisma.cliente.findFirst({
           where: {
@@ -164,7 +160,7 @@ export class ClientesService {
       where: { id },
       data: {
         nome: dto.nome,
-        tipo: dto.tipo,
+        tipo: dto.tipo ? String(dto.tipo).toUpperCase() as TipoCliente : undefined,
         cpfCnpj: dto.cpfCnpj,
         email: dto.email,
         telefone: dto.telefone,
@@ -177,7 +173,8 @@ export class ClientesService {
     });
   }
 
-  async remove(id: string): Promise<any> {
+  async remove(id: string, escritorioId: string): Promise<any> {
+    await this.findById(id, escritorioId);
     return this.prisma.cliente.update({
       where: { id },
       data: {

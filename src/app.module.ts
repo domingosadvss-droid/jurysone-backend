@@ -1,3 +1,5 @@
+import { APP_GUARD } from '@nestjs/core';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 /**
  * JURYSONE — App Root Module
  *
@@ -38,12 +40,16 @@ import { PeticionamentoModule } from './modules/peticionamento/peticionamento.mo
 
 @Module({
   controllers: [AppController],
+  providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
   imports: [
     // Carrega variáveis de ambiente de .env automaticamente
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
     }),
+
+    // Limite de requisições por IP (rotas de auth têm limites próprios via @Throttle)
+    ThrottlerModule.forRoot([{ name: 'default', ttl: 60_000, limit: 300 }]),
 
     // ── Infraestrutura / Auth ─────────────────────────────────────────────
     AuthModule,

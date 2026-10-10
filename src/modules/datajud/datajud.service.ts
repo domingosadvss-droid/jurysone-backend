@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client';
 /**
  * ═══════════════════════════════════════════════════════════════
  * JURYSONE — DataJud Service
@@ -6,7 +7,7 @@
  * ═══════════════════════════════════════════════════════════════
  */
 
-import { Injectable, Logger, NotFoundException, Inject, forwardRef } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException, Inject, forwardRef, BadRequestException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Cron } from '@nestjs/schedule';
 import { PrismaService } from '../../database/prisma.service';
@@ -303,12 +304,12 @@ export class DatajudService {
    * Busca as movimentações mais recentes e salva no banco.
    */
   async sincronizarProcesso(processoId: string): Promise<any> {
-    const processo = await (this.prisma as any).processo.findUnique({
+    const processo = await this.prisma.processo.findUnique({
       where: { id: processoId },
       include: {
         monitoramentosDatajud: true,
         movimentacoes: { orderBy: { data: 'desc' }, take: 1 },
-        client: { select: { name: true } },
+        cliente: { select: { nome: true } },
       },
     });
 
@@ -484,6 +485,9 @@ export class DatajudService {
 
   /** Wrapper para o controller existente — delega ao novo método */
   buscarProcesso(numero: string) {
+    if (!numero || numero.replace(/\D/g, '').length < 15) {
+      throw new BadRequestException('Informe numero_processo no formato CNJ (20 dígitos).');
+    }
     // Tenta inferir tribunal pelo código CNJ (posição 15-16 do número formatado)
     const partes = numero.replace(/\D/g, '');
     const codigoTribunal = partes.slice(13, 15);
@@ -505,7 +509,7 @@ export class DatajudService {
     const uf = query.uf || query.estado;
     const pagina = query.pagina || query.page || '1';
     const { tribunal } = query;
-    if (!numero) throw new Error('Número da OAB é obrigatório');
+    if (!numero) throw new BadRequestException('Número da OAB é obrigatório');
 
     const tribunaisAlvo = tribunal
       ? [tribunal.toUpperCase()]
@@ -553,7 +557,7 @@ export class DatajudService {
 
   async buscarPorCpfCnpj(query: { cpf_cnpj: string; tribunal?: string; pagina?: string }) {
     const { cpf_cnpj, tribunal, pagina = '1' } = query;
-    if (!cpf_cnpj) throw new Error('CPF ou CNPJ é obrigatório');
+    if (!cpf_cnpj) throw new BadRequestException('CPF ou CNPJ é obrigatório');
 
     const doc = cpf_cnpj.replace(/\D/g, '');
     const page = parseInt(pagina, 10);
@@ -637,26 +641,38 @@ export class DatajudService {
   }
 
   async updateMonitoramento(officeId: string, id: string, dto: any) {
-    return this.prisma.datajudMonitoramento.update({
-      where: { id },
-      data:  dto,
-    });
+    const monitor = await this.prisma.datajudMonitoramento.findFirst({ where: { id, escritorioId: officeId } });
+    if (!monitor) throw new NotFoundException('Monitoramento não encontrado.');
+
+    // Apenas campos editáveis pelo usuário (evita sobrescrever escritorioId/processoId)
+    const data: Prisma.DatajudMonitoramentoUncheckedUpdateInput = {};
+    if (typeof dto?.ativo === 'boolean')               data.ativo = dto.ativo;
+    if (typeof dto?.alertarMovimentacao === 'boolean') data.alertarMovimentacao = dto.alertarMovimentacao;
+    if (typeof dto?.alertarPrazo === 'boolean')        data.alertarPrazo = dto.alertarPrazo;
+    if (Array.isArray(dto?.usuariosAlertar))           data.usuariosAlertar = dto.usuariosAlertar;
+
+    return this.prisma.datajudMonitoramento.update({ where: { id }, data });
   }
 
   async syncManual(user: any, id: string) {
     // id é o ID do monitoramento
-    const monitor = await this.prisma.datajudMonitoramento.findUnique({ where: { id } });
+    const officeId = user?.officeId ?? user?.escritorioId;
+    const monitor = await this.prisma.datajudMonitoramento.findFirst({ where: { id, escritorioId: officeId } });
     if (!monitor) throw new NotFoundException('Monitoramento não encontrado.');
     return this.sincronizarProcesso(monitor.processoId);
   }
 
   async getAndamentos(officeId: string, query: any) {
-    const where: any = {
+    const where: Prisma.MovimentacaoWhereInput = {
       processo: { escritorioId: officeId },
       fonte:    'datajud',
     };
-    if (query.data_inicio) where.data = { gte: new Date(query.data_inicio) };
-    if (query.data_fim)    where.data = { ...where.data, lte: new Date(query.data_fim) };
+    if (query.data_inicio || query.data_fim) {
+      where.data = {
+        ...(query.data_inicio ? { gte: new Date(query.data_inicio) } : {}),
+        ...(query.data_fim    ? { lte: new Date(query.data_fim) }    : {}),
+      };
+    }
 
     return this.prisma.movimentacao.findMany({
       where,

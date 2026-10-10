@@ -138,7 +138,7 @@ export class DocxGerarService {
     try { logoBuffer = fs.readFileSync(logoPath); } catch { /* fallback texto */ }
 
     const headerChildren = logoBuffer
-      ? [new ImageRun({ data: logoBuffer, transformation: { width: 200, height: 67 }, type: 'png' } as any)]
+      ? [new ImageRun({ data: logoBuffer, transformation: { width: 200, height: 67 }, type: 'png' })]
       : [
           new any({ text: 'DOMINGOS ', bold: true, size: 22, font: 'Arial', color: this.AZUL }),
           new any({ text: 'ADVOCACIA & ASSESSORIA JURÍDICA', size: 20, font: 'Arial', color: this.AZUL }),

@@ -313,8 +313,8 @@ function showRegister(){
   if(!email)return;
   const escritorio=prompt('Nome do escritório:');
   if(!escritorio)return;
-  const senha=prompt('Crie uma senha (min. 6 caracteres):');
-  if(!senha||senha.length<6){alert('Senha muito curta!');return;}
+  const senha=prompt('Crie uma senha (mín. 8 caracteres, com letras e números):');
+  if(!senha||senha.length<8||!/[A-Za-z]/.test(senha)||!/[0-9]/.test(senha)){alert('Senha fraca: use pelo menos 8 caracteres, com letras e números.');return;}
 
   const base=(window.JURYSONE_CONFIG&&window.JURYSONE_CONFIG.API_URL)||'/api';
   fetch(base+'/auth/register',{

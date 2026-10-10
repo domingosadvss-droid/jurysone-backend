@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client';
 import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { DatajudService } from '../datajud/datajud.service';
@@ -31,7 +32,7 @@ export class ProcessosService {
     const escritorioId = officeId;
     const skip = (Number(page) - 1) * Number(limit);
 
-    const where: any = { escritorioId, deletedAt: null };
+    const where: Prisma.ProcessoWhereInput = { escritorioId, deletedAt: null };
     if (clienteId)  where.clienteId = clienteId;
     if (status)     where.status    = status.toUpperCase();
     if (area)       where.area      = area;
@@ -57,9 +58,19 @@ export class ProcessosService {
     return { data, total, page: Number(page), pages: Math.ceil(total / Number(limit)) };
   }
 
-  async findById(id: string, officeId?: string): Promise<any> {
-    return this.prisma.processo.findUnique({
-      where: { id },
+  /** Garante que o processo existe e pertence ao escritório (isolamento entre escritórios). */
+  private async assertProcesso(id: string, officeId: string) {
+    const processo = await this.prisma.processo.findFirst({
+      where: { id, escritorioId: officeId, deletedAt: null },
+      select: { id: true, clienteId: true },
+    });
+    if (!processo) throw new NotFoundException('Processo não encontrado');
+    return processo;
+  }
+
+  async findById(id: string, officeId: string): Promise<any> {
+    const processo = await this.prisma.processo.findFirst({
+      where: { id, escritorioId: officeId, deletedAt: null },
       include: {
         cliente: true,
         tarefas:    { where: { deletedAt: null } },
@@ -68,10 +79,13 @@ export class ProcessosService {
         movimentacoes: { orderBy: { data: 'desc' }, take: 20 },
       },
     });
+    if (!processo) throw new NotFoundException('Processo não encontrado');
+    return processo;
   }
 
-  async create(dto: any, userId?: string, officeId?: string): Promise<any> {
-    const escritorioId = dto.escritorioId ?? officeId;
+  async create(dto: any, userId: string, officeId: string): Promise<any> {
+    // O escritório vem SEMPRE do usuário autenticado — nunca do corpo da requisição.
+    const escritorioId = officeId;
 
     const cliente = await this.prisma.cliente.findUnique({ where: { id: dto.clienteId } });
     if (!cliente || cliente.escritorioId !== escritorioId) {
@@ -99,7 +113,8 @@ export class ProcessosService {
     });
   }
 
-  async update(id: string, dto: any, officeId?: string): Promise<any> {
+  async update(id: string, dto: any, officeId: string): Promise<any> {
+    await this.assertProcesso(id, officeId);
     return this.prisma.processo.update({
       where: { id },
       data: {
@@ -118,9 +133,9 @@ export class ProcessosService {
   }
 
   async remove(id: string, officeId: string): Promise<any> {
-    if (!officeId) throw new BadRequestException('officeId é obrigatório');
+    await this.assertProcesso(id, officeId);
     return this.prisma.processo.update({
-      where: { id, escritorioId: officeId },
+      where: { id },
       data: { deletedAt: new Date() },
     });
   }
@@ -136,10 +151,11 @@ export class ProcessosService {
   // ── Andamentos ──────────────────────────────────────────────────────────────
 
   async getAndamentos(id: string, query: any, officeId: string) {
+    await this.assertProcesso(id, officeId);
     const page  = Math.max(1, Number(query.page ?? 1));
     const limit = 20;
 
-    const where: any = { processoId: id };
+    const where: Prisma.MovimentacaoWhereInput = { processoId: id };
     if (query.source) where.fonte = query.source;
 
     const [data, total] = await Promise.all([
@@ -183,6 +199,7 @@ export class ProcessosService {
   // ── Documentos, tarefas, partes ─────────────────────────────────────────────
 
   async getDocumentos(id: string, officeId: string) {
+    await this.assertProcesso(id, officeId);
     const data = await this.prisma.documento.findMany({
       where: { processoId: id, deletedAt: null },
       orderBy: { createdAt: 'desc' },
@@ -191,6 +208,7 @@ export class ProcessosService {
   }
 
   async getTarefas(id: string, officeId: string) {
+    await this.assertProcesso(id, officeId);
     const data = await this.prisma.tarefa.findMany({
       where: { processoId: id, deletedAt: null },
       orderBy: { createdAt: 'desc' },
@@ -199,15 +217,14 @@ export class ProcessosService {
   }
 
   // Partes são armazenadas nos dados brutos do DataJud / campo camposCustom
-  getPartes(id: string, officeId: string) {
-    return this.prisma.processo.findUnique({
-      where: { id },
-      select: { camposCustom: true },
-    }).then((p) => ({ data: (p?.camposCustom as any)?.partes ?? [] }));
+  async getPartes(id: string, officeId: string) {
+    await this.assertProcesso(id, officeId);
+    const p = await this.prisma.processo.findUnique({ where: { id }, select: { camposCustom: true } });
+    return { data: (p?.camposCustom as any)?.partes ?? [] };
   }
 
   async addParte(id: string, body: any, officeId: string) {
-    const processo = await this.prisma.processo.findFirst({ where: { id, escritorioId: officeId } });
+    const processo = await this.prisma.processo.findFirst({ where: { id, escritorioId: officeId, deletedAt: null } });
     if (!processo) throw new NotFoundException('Processo não encontrado');
 
     const custom = (processo.camposCustom as any) ?? {};
@@ -235,8 +252,9 @@ export class ProcessosService {
   // ── Honorários ───────────────────────────────────────────────────────────────
 
   async getHonorarios(id: string, officeId: string) {
+    const processo = await this.assertProcesso(id, officeId);
     const data = await this.prisma.lancamentoFinanceiro.findMany({
-      where: { deletedAt: null, cliente: { processos: { some: { id } } } },
+      where: { deletedAt: null, escritorioId: officeId, clienteId: processo.clienteId },
       orderBy: { createdAt: 'desc' },
     });
     return { data, total: data.length };
