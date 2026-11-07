@@ -271,6 +271,7 @@ model Processo {
   protocolos            Protocolo[]
   participacoes          ParticipacaoProcesso[]
   lancamentosFinanceiros LancamentoFinanceiro[]
+  linhasProducao         LinhaProcesso[]
 
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
@@ -1451,4 +1452,97 @@ model Impedimento {
   @@index([escritorioId])
   @@index([usuarioId])
   @@map("impedimentos")
+}
+
+// ─── Etapa 2: linha de produção ──────────────────────────────────────────────
+
+/// Modelo de linha de produção por tipo de caso (ex.: "Imobiliário — revisão contratual")
+model ModeloLinha {
+  id           String          @id @default(uuid())
+  escritorioId String
+  codigo       String          // identificador estável (ex.: IMOB_REVISAO_CONTRATUAL)
+  nome         String
+  area         String
+  descricao    String?
+  ativo        Boolean         @default(true)
+  versao       Int             @default(1)
+  etapas       EtapaModelo[]
+  linhas       LinhaProcesso[]
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+
+  @@unique([escritorioId, codigo])
+  @@index([escritorioId])
+  @@map("modelos_linha")
+}
+
+model EtapaModelo {
+  id                  String      @id @default(uuid())
+  modeloId            String
+  modelo              ModeloLinha @relation(fields: [modeloId], references: [id], onDelete: Cascade)
+  ordem               Int
+  nome                String
+  descricao           String?
+  // ADVOGADO_RESPONSAVEL | ESTAGIARIO | ADMIN | USUARIO
+  responsavelTipo     String      @default("ADVOGADO_RESPONSAVEL")
+  responsavelPadraoId String?
+  // Quando a etapa depende de alguém de fora (cliente, técnico, contador, cartório)
+  aguardando          String?
+  prazoDias           Int         @default(5)
+  opcional            Boolean     @default(false)
+  // [{ id, texto, obrigatorio }]
+  checklist           Json?
+
+  @@index([modeloId])
+  @@map("etapas_modelo")
+}
+
+/// Linha de produção aplicada a um processo
+model LinhaProcesso {
+  id           String       @id @default(uuid())
+  escritorioId String
+  processoId   String
+  processo     Processo     @relation(fields: [processoId], references: [id])
+  modeloId     String
+  modelo       ModeloLinha  @relation(fields: [modeloId], references: [id])
+  modeloVersao Int
+  status       String       @default("ATIVA") // ATIVA | CONCLUIDA | CANCELADA
+  iniciadaPor  String?
+  concluidaEm  DateTime?
+  etapas       EtapaLinha[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  @@index([escritorioId])
+  @@index([processoId])
+  @@map("linhas_processo")
+}
+
+model EtapaLinha {
+  id            String        @id @default(uuid())
+  escritorioId  String
+  linhaId       String
+  linha         LinhaProcesso @relation(fields: [linhaId], references: [id], onDelete: Cascade)
+  ordem         Int
+  nome          String
+  descricao     String?
+  aguardando    String?
+  opcional      Boolean       @default(false)
+  prazoDias     Int           @default(5)
+  responsavelId String?
+  // PENDENTE | EM_ANDAMENTO | CONCLUIDA | PULADA
+  status        String        @default("PENDENTE")
+  // [{ id, texto, obrigatorio, feito, feitoEm, feitoPorId }]
+  checklist     Json?
+  iniciadaEm    DateTime?
+  prazoEm       DateTime?
+  concluidaEm   DateTime?
+  concluidaPor  String?
+  observacao    String?
+  alertadoEm    DateTime?
+
+  @@index([escritorioId, status])
+  @@index([linhaId])
+  @@index([responsavelId, status])
+  @@map("etapas_linha")
 }

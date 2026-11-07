@@ -42,6 +42,7 @@ import { PeticionamentoModule } from './modules/peticionamento/peticionamento.mo
 import { EquipeModule } from './modules/equipe/equipe.module';
 import { CotaParteModule } from './modules/cota-parte/cota-parte.module';
 import { ConflitosModule } from './modules/conflitos/conflitos.module';
+import { LinhaProducaoModule } from './modules/linha-producao/linha-producao.module';
 
 @Module({
   controllers: [AppController],
@@ -94,6 +95,7 @@ import { ConflitosModule } from './modules/conflitos/conflitos.module';
     EquipeModule,
     CotaParteModule,
     ConflitosModule,
+    LinhaProducaoModule,
   ],
 })
 export class AppModule {}
