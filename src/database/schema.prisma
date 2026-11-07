@@ -2,6 +2,7 @@ generator client {
   provider      = "prisma-client-js"
   binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
+
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
@@ -24,6 +25,12 @@ model Usuario {
   roles             String    @default("ADVOGADO")
   ativo             Boolean   @default(true)
   refreshTokenHash  String?
+
+  // Perfil externo (PARCEIRO) vinculado ao cadastro de parceiro
+  parceiroId        String?
+  // Termo de ciência e responsabilidade (associados e parceiros)
+  termoAceitoEm     DateTime?
+  termoDocumentoUrl String?
 
   escritorioId      String
   escritorio        Escritorio @relation(fields: [escritorioId], references: [id])
@@ -194,6 +201,11 @@ model Cliente {
   ativo          Boolean     @default(true)
   deletedAt      DateTime?
 
+  // Felicitações e origem do cliente
+  temFilhos   Boolean?
+  origem      String? // INDICACAO_CLIENTE | INSTAGRAM | MACONARIA_NETWORKING | PARCEIRO | GOOGLE | DATIVA | OUTRO
+  indicadoPor String?
+
   processos              Processo[]
   eventos                Evento[]
   usuariosPortal         UsuarioPortal[]
@@ -257,6 +269,8 @@ model Processo {
   atendimentos          Atendimento[]
   prazos                Prazo[]
   protocolos            Protocolo[]
+  participacoes          ParticipacaoProcesso[]
+  lancamentosFinanceiros LancamentoFinanceiro[]
 
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
@@ -598,6 +612,16 @@ model LancamentoFinanceiro {
   cliente           Cliente?   @relation(fields: [clienteId], references: [id])
   atendimentoId     String?
   atendimento       Atendimento? @relation(fields: [atendimentoId], references: [id])
+  processoId    String?
+  processo      Processo?    @relation(fields: [processoId], references: [id])
+
+  // FIXO | EXITO | SUCUMBENCIA | MENSALIDADE | POR_ATO | DATIVA | REEMBOLSO
+  tipoHonorario     String?
+  // Taxa cobrada pelo meio de pagamento (Asaas: value - netValue)
+  taxaGateway       Decimal?      @db.Decimal(12, 2)
+  // ASAAS | ALVARA | ESTADO | MANUAL
+  origemRecebimento String?
+  itensRepasse      ItemRepasse[]
 
   descricao         String
   valor             Decimal
@@ -617,6 +641,7 @@ model LancamentoFinanceiro {
 
   @@index([escritorioId])
   @@index([clienteId])
+  @@index([processoId])
   @@map("lancamentos_financeiros")
 }
 
@@ -1328,4 +1353,102 @@ model Parceiro {
 
   @@index([escritorioId])
   @@map("parceiros")
+}
+
+// ─── Etapa 1: papéis no processo, cota-parte e repasses ──────────────────────
+
+/// Quem atuou em cada processo e com qual papel (base da cota-parte)
+model ParticipacaoProcesso {
+  id               String   @id @default(uuid())
+  escritorioId     String
+  processoId       String
+  processo         Processo @relation(fields: [processoId], references: [id])
+  usuarioId        String?
+  parceiroId       String?
+  papel            String // INDICACAO | PARTICIPACAO
+  percentualCustom Decimal? @db.Decimal(5, 2)
+  observacao       String?
+  createdAt        DateTime @default(now())
+
+  @@index([escritorioId])
+  @@index([processoId])
+  @@index([usuarioId])
+  @@index([parceiroId])
+  @@map("participacoes_processo")
+}
+
+/// Percentual por papel × tipo de honorário (padrão do escritório ou por pessoa)
+model RegraCotaParte {
+  id            String   @id @default(uuid())
+  escritorioId  String
+  usuarioId     String?
+  parceiroId    String?
+  papel         String // INDICACAO | PARTICIPACAO
+  tipoHonorario String   @default("TODOS")
+  percentual    Decimal  @db.Decimal(5, 2)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([escritorioId])
+  @@map("regras_cota_parte")
+}
+
+/// Fechamento manual de período para repasse aos beneficiários
+model FechamentoRepasse {
+  id              String        @id @default(uuid())
+  escritorioId    String
+  ate             DateTime
+  aliquotaImposto Decimal       @db.Decimal(5, 2)
+  criadoPorId     String?
+  itens           ItemRepasse[]
+  createdAt       DateTime      @default(now())
+
+  @@index([escritorioId])
+  @@map("fechamentos_repasse")
+}
+
+model ItemRepasse {
+  id              String               @id @default(uuid())
+  escritorioId    String
+  fechamentoId    String
+  fechamento      FechamentoRepasse    @relation(fields: [fechamentoId], references: [id])
+  lancamentoId    String
+  lancamento      LancamentoFinanceiro @relation(fields: [lancamentoId], references: [id])
+  beneficiarioKey String // "u:<usuarioId>" ou "p:<parceiroId>"
+  usuarioId       String?
+  parceiroId      String?
+  papel           String
+  percentual      Decimal              @db.Decimal(5, 2)
+  valorBruto      Decimal              @db.Decimal(12, 2)
+  taxaGateway     Decimal              @db.Decimal(12, 2)
+  imposto         Decimal              @db.Decimal(12, 2)
+  base            Decimal              @db.Decimal(12, 2)
+  valor           Decimal              @db.Decimal(12, 2)
+  repassadoEm     DateTime?
+  comprovanteUrl  String?
+  createdAt       DateTime             @default(now())
+
+  @@unique([lancamentoId, beneficiarioKey])
+  @@index([escritorioId])
+  @@index([fechamentoId])
+  @@map("itens_repasse")
+}
+
+/// Impedimentos pessoais: partes conciliadas (1 ano), tribunal desportivo, juízo onde atua
+model Impedimento {
+  id           String    @id @default(uuid())
+  escritorioId String
+  usuarioId    String
+  tipo         String // CONCILIACAO | TJD | JUIZO | OUTRO
+  nome         String?
+  cpfCnpj      String?
+  orgao        String?
+  descricao    String?
+  dataEvento   DateTime?
+  validoAte    DateTime?
+  createdAt    DateTime  @default(now())
+
+  @@index([escritorioId])
+  @@index([usuarioId])
+  @@map("impedimentos")
 }

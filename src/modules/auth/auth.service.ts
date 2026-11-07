@@ -89,7 +89,8 @@ export class AuthService {
         email: dto.email,
         senha: hashedPassword,
         nome: dto.nome,
-        roles: 'ADVOGADO',
+        // Quem cria o escritório é o titular (administrador)
+        roles: 'ADMIN',
         escritorioId: escritorio.id,
         ativo: true,
       },

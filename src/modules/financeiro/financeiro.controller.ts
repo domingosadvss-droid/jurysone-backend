@@ -22,9 +22,12 @@ import { ApiTags, ApiOperation, ApiBearerAuth, ApiQuery } from '@nestjs/swagger'
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { FinanceiroService } from './financeiro.service';
+import { Perfis } from '../../common/decorators/perfis.decorator';
+import { PERFIS_FINANCEIRO } from '../../common/perfis';
 
 @ApiTags('💰 Financeiro')
 @UseGuards(JwtAuthGuard)
+@Perfis(...PERFIS_FINANCEIRO)
 @ApiBearerAuth()
 @Controller('financeiro')
 export class FinanceiroController {

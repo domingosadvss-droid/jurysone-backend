@@ -16,6 +16,8 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { ProcessosService } from './processos.service';
 import { DataTableQueryDto } from '../../common/dto/datatable-query.dto';
+import { Perfis, PermiteParceiro } from '../../common/decorators/perfis.decorator';
+import { PERFIS_FINANCEIRO } from '../../common/perfis';
 
 @ApiTags('⚖️ Processos')
 @UseGuards(JwtAuthGuard)
@@ -43,8 +45,9 @@ export class ProcessosController {
   @ApiQuery({ name: 'sort', required: false, enum: ['asc', 'desc'] })
   @ApiQuery({ name: 'start_from', required: false })
   @ApiQuery({ name: 'start_until', required: false })
+  @PermiteParceiro()
   findAll(@Query() query: any, @CurrentUser() user: any): Promise<any> {
-    return this.svc.findAll(query, user.officeId);
+    return this.svc.findAll(query, user.officeId, user);
   }
 
   /**
@@ -68,7 +71,9 @@ export class ProcessosController {
   @Get(':id')
   @ApiParam({ name: 'id', description: 'UUID do processo' })
   @ApiOperation({ summary: 'Detalhe completo do processo' })
-  findOne(@Param('id') id: string, @CurrentUser() user: any) {
+  @PermiteParceiro()
+  async findOne(@Param('id') id: string, @CurrentUser() user: any) {
+    await this.svc.assertAcessoParceiro(id, user);
     return this.svc.findOne(id, user.officeId);
   }
 
@@ -116,11 +121,13 @@ export class ProcessosController {
   @ApiOperation({ summary: 'Andamentos do processo' })
   @ApiQuery({ name: 'page', required: false })
   @ApiQuery({ name: 'source', required: false, enum: ['manual', 'tribunal', 'pje'] })
-  getAndamentos(
+  @PermiteParceiro()
+  async getAndamentos(
     @Param('id') id: string,
     @Query() query: any,
     @CurrentUser() user: any,
   ) {
+    await this.svc.assertAcessoParceiro(id, user);
     return this.svc.getAndamentos(id, query, user.officeId);
   }
 
@@ -132,7 +139,9 @@ export class ProcessosController {
   @Post(':id/andamentos')
   @HttpCode(201)
   @ApiOperation({ summary: 'Adiciona andamento manual' })
-  addAndamento(@Param('id') id: string, @Body() body: any, @CurrentUser() user: any) {
+  @PermiteParceiro()
+  async addAndamento(@Param('id') id: string, @Body() body: any, @CurrentUser() user: any) {
+    await this.svc.assertAcessoParceiro(id, user);
     return this.svc.addAndamento(id, body, user.officeId);
   }
 
@@ -154,7 +163,9 @@ export class ProcessosController {
    */
   @Get(':id/documentos')
   @ApiOperation({ summary: 'Documentos vinculados ao processo' })
-  getDocumentos(@Param('id') id: string, @CurrentUser() user: any) {
+  @PermiteParceiro()
+  async getDocumentos(@Param('id') id: string, @CurrentUser() user: any) {
+    await this.svc.assertAcessoParceiro(id, user);
     return this.svc.getDocumentos(id, user.officeId);
   }
 
@@ -165,7 +176,9 @@ export class ProcessosController {
    */
   @Get(':id/tarefas')
   @ApiOperation({ summary: 'Tarefas vinculadas ao processo' })
-  getTarefas(@Param('id') id: string, @CurrentUser() user: any) {
+  @PermiteParceiro()
+  async getTarefas(@Param('id') id: string, @CurrentUser() user: any) {
+    await this.svc.assertAcessoParceiro(id, user);
     return this.svc.getTarefas(id, user.officeId);
   }
 
@@ -177,7 +190,9 @@ export class ProcessosController {
    */
   @Get(':id/partes')
   @ApiOperation({ summary: 'Partes do processo (autores, réus, etc.)' })
-  getPartes(@Param('id') id: string, @CurrentUser() user: any) {
+  @PermiteParceiro()
+  async getPartes(@Param('id') id: string, @CurrentUser() user: any) {
+    await this.svc.assertAcessoParceiro(id, user);
     return this.svc.getPartes(id, user.officeId);
   }
 
@@ -200,7 +215,9 @@ export class ProcessosController {
    */
   @Get(':id/prazos')
   @ApiOperation({ summary: 'Prazos vinculados ao processo' })
-  getPrazos(@Param('id') id: string, @CurrentUser() user: any) {
+  @PermiteParceiro()
+  async getPrazos(@Param('id') id: string, @CurrentUser() user: any) {
+    await this.svc.assertAcessoParceiro(id, user);
     return this.svc.getPrazos(id, user.officeId);
   }
 
@@ -210,6 +227,7 @@ export class ProcessosController {
    * GET /api/v1/processos/:id/honorarios
    */
   @Get(':id/honorarios')
+  @Perfis(...PERFIS_FINANCEIRO)
   @ApiOperation({ summary: 'Honorários vinculados ao processo' })
   getHonorarios(@Param('id') id: string, @CurrentUser() user: any) {
     return this.svc.getHonorarios(id, user.officeId);

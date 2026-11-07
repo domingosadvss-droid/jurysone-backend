@@ -1,4 +1,5 @@
-import { APP_GUARD } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
+import { PerfilInterceptor } from './common/interceptors/perfil.interceptor';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { ClientIpThrottlerGuard } from './common/guards/client-ip-throttler.guard';
 /**
@@ -38,10 +39,16 @@ import { DadosModule } from './modules/dados/dados.module';
 import { ChavesModule } from './modules/chaves/chaves.module';
 import { SseModule } from './modules/sse/sse.module';
 import { PeticionamentoModule } from './modules/peticionamento/peticionamento.module';
+import { EquipeModule } from './modules/equipe/equipe.module';
+import { CotaParteModule } from './modules/cota-parte/cota-parte.module';
+import { ConflitosModule } from './modules/conflitos/conflitos.module';
 
 @Module({
   controllers: [AppController],
-  providers: [{ provide: APP_GUARD, useClass: ClientIpThrottlerGuard }],
+  providers: [
+    { provide: APP_GUARD, useClass: ClientIpThrottlerGuard },
+    { provide: APP_INTERCEPTOR, useClass: PerfilInterceptor },
+  ],
   imports: [
     // Carrega variáveis de ambiente de .env automaticamente
     ConfigModule.forRoot({
@@ -84,6 +91,9 @@ import { PeticionamentoModule } from './modules/peticionamento/peticionamento.mo
     DadosModule,
     ChavesModule,
     PeticionamentoModule,
+    EquipeModule,
+    CotaParteModule,
+    ConflitosModule,
   ],
 })
 export class AppModule {}

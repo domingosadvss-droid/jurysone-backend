@@ -37,10 +37,14 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         escritorioId: true,
         avatarUrl: true,
         emailVerifiedAt: true,
+        ativo: true,
+        parceiroId: true,
+        termoAceitoEm: true,
       },
     });
 
     if (!user) throw new UnauthorizedException('Usuário não encontrado.');
+    if (user.ativo === false) throw new UnauthorizedException('Usuário desativado.');
 
     // Return with backward-compat aliases used across controllers
     return {

@@ -23,9 +23,12 @@ import {
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { AnalyticsService } from './analytics.service';
+import { Perfis } from '../../common/decorators/perfis.decorator';
+import { PERFIS_FINANCEIRO } from '../../common/perfis';
 
 @ApiTags('Analytics & BI')
 @UseGuards(JwtAuthGuard)
+@Perfis(...PERFIS_FINANCEIRO)
 @ApiBearerAuth()
 @Controller('analytics')
 export class AnalyticsController {

@@ -1,4 +1,5 @@
 import { Prisma } from '@prisma/client';
+import { ehParceiro } from '../../common/perfis';
 import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { DatajudService } from '../datajud/datajud.service';
@@ -27,12 +28,16 @@ export class ProcessosService {
     private datajud: DatajudService,
   ) {}
 
-  async findAll(query: any, officeId: string): Promise<PaginatedResponse<any>> {
+  async findAll(query: any, officeId: string, user?: any): Promise<PaginatedResponse<any>> {
     const { clienteId, status, area, search, page = 1, limit = 10 } = query;
     const escritorioId = officeId;
     const skip = (Number(page) - 1) * Number(limit);
 
     const where: Prisma.ProcessoWhereInput = { escritorioId, deletedAt: null };
+    // Parceiro externo só enxerga os processos em que participa
+    if (user && ehParceiro(user)) {
+      where.participacoes = { some: { parceiroId: user.parceiroId ?? '__sem_parceiro__' } };
+    }
     if (clienteId)  where.clienteId = clienteId;
     if (status)     where.status    = status.toUpperCase();
     if (area)       where.area      = area;
@@ -56,6 +61,16 @@ export class ProcessosService {
     ]);
 
     return { data, total, page: Number(page), pages: Math.ceil(total / Number(limit)) };
+  }
+
+  /** Parceiro externo só acessa processos em que tem participação registrada. */
+  async assertAcessoParceiro(id: string, user: any) {
+    if (!ehParceiro(user)) return;
+    const ok = await this.prisma.participacaoProcesso.findFirst({
+      where: { processoId: id, escritorioId: user.officeId, parceiroId: user.parceiroId ?? '__sem_parceiro__' },
+      select: { id: true },
+    });
+    if (!ok) throw new NotFoundException('Processo não encontrado');
   }
 
   /** Garante que o processo existe e pertence ao escritório (isolamento entre escritórios). */

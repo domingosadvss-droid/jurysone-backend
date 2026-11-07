@@ -86,6 +86,12 @@ export class FinanceiroService {
     return lanc;
   }
 
+  private async assertProcessoDoEscritorio(processoId: string | undefined, officeId: string) {
+    if (!processoId) return;
+    const p = await this.prisma.processo.findFirst({ where: { id: processoId, escritorioId: officeId, deletedAt: null }, select: { id: true } });
+    if (!p) throw new BadRequestException('Processo não encontrado neste escritório');
+  }
+
   private async assertClienteDoEscritorio(clienteId: string | undefined, officeId: string) {
     if (!clienteId) return;
     const cliente = await this.prisma.cliente.findFirst({
@@ -119,6 +125,7 @@ export class FinanceiroService {
       throw new BadRequestException('tipo deve ser "receita" ou "despesa"');
     }
     await this.assertClienteDoEscritorio(body.clienteId, officeId);
+    await this.assertProcessoDoEscritorio(body.processoId, officeId);
 
     return this.prisma.lancamentoFinanceiro.create({
       data: {
@@ -132,6 +139,10 @@ export class FinanceiroService {
         numParcelas:    body.numParcelas ? Number(body.numParcelas) : null,
         vencimento:     body.vencimento ? new Date(body.vencimento) : null,
         data:           body.data ? new Date(body.data) : new Date(),
+        processoId:     body.processoId || null,
+        tipoHonorario:  body.tipoHonorario ? String(body.tipoHonorario).toUpperCase() : null,
+        taxaGateway:    body.taxaGateway !== undefined && body.taxaGateway !== '' ? Number(body.taxaGateway) : null,
+        origemRecebimento: body.origemRecebimento ? String(body.origemRecebimento).toUpperCase() : null,
       },
       include: { cliente: { select: { id: true, nome: true } } },
     });
@@ -144,6 +155,7 @@ export class FinanceiroService {
   async updateLancamento(id: string, body: any, officeId: string) {
     await this.assertLancamento(id, officeId);
     if (body?.clienteId) await this.assertClienteDoEscritorio(body.clienteId, officeId);
+    if (body?.processoId) await this.assertProcessoDoEscritorio(body.processoId, officeId);
 
     return this.prisma.lancamentoFinanceiro.update({
       where: { id },
@@ -155,6 +167,10 @@ export class FinanceiroService {
         formaPagamento: body?.formaPagamento,
         vencimento:     body?.vencimento ? new Date(body.vencimento) : undefined,
         clienteId:      body?.clienteId,
+        processoId:     body?.processoId,
+        tipoHonorario:  body?.tipoHonorario ? String(body.tipoHonorario).toUpperCase() : undefined,
+        taxaGateway:    body?.taxaGateway !== undefined ? Number(body.taxaGateway) : undefined,
+        origemRecebimento: body?.origemRecebimento ? String(body.origemRecebimento).toUpperCase() : undefined,
       },
       include: { cliente: { select: { id: true, nome: true } } },
     });

@@ -142,6 +142,10 @@ export class AsaasWebhookController {
             data: {
               status:    novoStatus,
               paidAt:    ['pago', 'confirmado'].includes(novoStatus) ? new Date() : undefined,
+              // Taxa do Asaas = valor cobrado − valor líquido (base da cota-parte)
+              ...(['pago', 'confirmado'].includes(novoStatus) && Number.isFinite(Number(payment.value)) && Number.isFinite(Number(payment.netValue))
+                ? { taxaGateway: Math.max(0, Math.round((Number(payment.value) - Number(payment.netValue)) * 100) / 100), origemRecebimento: 'ASAAS' }
+                : {}),
               cancelledAt: novoStatus === 'cancelado' ? new Date() : undefined,
             },
           });

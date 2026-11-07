@@ -5,8 +5,11 @@ import { AuthService } from './auth.service';
 import { Public } from '../../common/decorators/public.decorator';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { PermiteParceiro, PermiteSemTermo } from '../../common/decorators/perfis.decorator';
 
 @UseGuards(JwtAuthGuard)
+@PermiteParceiro()
+@PermiteSemTermo()
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
@@ -43,7 +46,10 @@ export class AuthController {
     return {
       id: user.sub,
       email: user.email,
+      nome: user.nome,
       roles: user.roles,
+      parceiroId: user.parceiroId ?? null,
+      termoAceitoEm: user.termoAceitoEm ?? null,
     };
   }
 }

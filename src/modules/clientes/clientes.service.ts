@@ -128,6 +128,9 @@ export class ClientesService {
         estado: dto.estado,
         cep: dto.cep,
         status: dto.status || 'ativo',
+        temFilhos: dto.temFilhos === undefined ? undefined : Boolean(dto.temFilhos),
+        origem: dto.origem ? String(dto.origem).toUpperCase() : undefined,
+        indicadoPor: dto.indicadoPor,
         escritorioId: dto.escritorioId,
       },
     });
@@ -169,6 +172,9 @@ export class ClientesService {
         estado: dto.estado,
         cep: dto.cep,
         status: dto.status,
+        temFilhos: dto.temFilhos === undefined ? undefined : Boolean(dto.temFilhos),
+        origem: dto.origem ? String(dto.origem).toUpperCase() : undefined,
+        indicadoPor: dto.indicadoPor,
       },
     });
   }
