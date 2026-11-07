@@ -47,7 +47,7 @@ const CONTRATACAO = (extras: string[] = []): EtapaPadrao => ({
   aguardando: 'Assinatura do cliente',
   checklist: [
     'Contrato de honorários assinado',
-    'Procuração assinada (ICP-Brasil)',
+    'Procuração assinada',
     'Termo de entrevista assinado',
     ...extras,
     'Papéis no processo registrados (indicação / participação)',

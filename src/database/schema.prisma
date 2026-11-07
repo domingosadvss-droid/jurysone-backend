@@ -205,6 +205,7 @@ model Cliente {
   temFilhos   Boolean?
   origem      String? // INDICACAO_CLIENTE | INSTAGRAM | MACONARIA_NETWORKING | PARCEIRO | GOOGLE | DATIVA | OUTRO
   indicadoPor String?
+  driveFolderId String?
 
   processos              Processo[]
   eventos                Evento[]
@@ -254,6 +255,8 @@ model Processo {
   responsavelId   String?
   responsavel     Usuario?       @relation("ResponsavelProcesso", fields: [responsavelId], references: [id])
   camposCustom    Json?
+  driveFolderId   String?
+  drivePastas     Json?
 
   movimentacoes         Movimentacao[]
   documentos            Documento[]
@@ -390,6 +393,16 @@ model Documento {
   dataAssinatura  DateTime?
   categoria       String?
   deletedAt       DateTime?
+
+  // Etapa 3: arquivos do caso no armazenamento do escritório (Google Drive)
+  clienteId        String?
+  provedor         String?   // GOOGLE_DRIVE | LOCAL | SUPABASE
+  arquivoExternoId String?
+  hashSha256       String?
+  origem           String?   // UPLOAD | GERADO | ASSINADO | WHATSAPP
+  etapaId          String?
+  itemChecklistId  String?
+  enviadoPorId     String?
 
   createdAt   DateTime @default(now())
 
@@ -1545,4 +1558,31 @@ model EtapaLinha {
   @@index([linhaId])
   @@index([responsavelId, status])
   @@map("etapas_linha")
+}
+
+// ─── Etapa 3: pacote de contratação e assinatura ─────────────────────────────
+
+model PacoteAssinatura {
+  id             String    @id @default(uuid())
+  escritorioId   String
+  processoId     String
+  etapaId        String?
+  provedor       String    // ZAPSIGN | SIMULADO
+  status         String    @default("RASCUNHO") // RASCUNHO | ENVIADO | ASSINADO | RECUSADO | CANCELADO
+  externoId      String?
+  linkAssinatura String?
+  // [{ nome, email, telefone, url }]
+  signatarios    Json?
+  // [{ tipo, nome, documentoId, assinatura, assinadoDocumentoId }]
+  documentos     Json
+  criadoPorId    String?
+  enviadoEm      DateTime?
+  assinadoEm     DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([escritorioId])
+  @@index([processoId])
+  @@index([externoId])
+  @@map("pacotes_assinatura")
 }
