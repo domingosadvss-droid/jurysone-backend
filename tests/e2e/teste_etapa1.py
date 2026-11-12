@@ -199,7 +199,11 @@ s, v = req("POST", "/conflitos/verificar", adm, {"nome": "MARIA  souza"})
 checa("parte conciliada procura o escritório -> bloqueia", v.get("bloqueado") and v["ocorrencias"][0]["tipo"] == "IMPEDIMENTO_CONCILIACAO", v)
 req("POST", "/conflitos/impedimentos", adm, {"tipo": "TJD", "orgao": "TJD-SC"})
 s, v = req("POST", "/conflitos/verificar", adm, {"nome": "Clube Novo", "orgao": "TJD-SC"})
-checa("caso no TJD onde atua como auditor -> bloqueia", v.get("bloqueado") and v["ocorrencias"][0]["tipo"] == "IMPEDIMENTO_ORGAO", v)
+# Decisão 118 (rodada 5): TJD não gera checagem de impedimento
+checa("caso no TJD não bloqueia (decisão 118)", not v.get("bloqueado"), v)
+req("POST", "/conflitos/impedimentos", adm, {"tipo": "JUIZO", "orgao": "Vara Única de Penha"})
+s, v = req("POST", "/conflitos/verificar", adm, {"nome": "Cliente Penha", "orgao": "Vara Única de Penha"})
+checa("caso no juízo onde atua -> bloqueia", v.get("bloqueado") and v["ocorrencias"][0]["tipo"] == "IMPEDIMENTO_ORGAO", v)
 s, _ = req("POST", "/conflitos/verificar", tok["PARCEIRO"], {"nome": "x x x x x"})
 checa("parceiro NÃO consulta conflitos", s == 403, s)
 

@@ -45,6 +45,8 @@ import { ConflitosModule } from './modules/conflitos/conflitos.module';
 import { LinhaProducaoModule } from './modules/linha-producao/linha-producao.module';
 import { ArquivosModule } from './modules/arquivos/arquivos.module';
 import { ContratacaoModule } from './modules/contratacao/contratacao.module';
+import { PublicacoesModule } from './modules/publicacoes/publicacoes.module';
+import { DativaModule } from './modules/dativa/dativa.module';
 
 @Module({
   controllers: [AppController],
@@ -100,6 +102,8 @@ import { ContratacaoModule } from './modules/contratacao/contratacao.module';
     LinhaProducaoModule,
     ArquivosModule,
     ContratacaoModule,
+    PublicacoesModule,
+    DativaModule,
   ],
 })
 export class AppModule {}

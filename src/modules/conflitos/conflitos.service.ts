@@ -121,7 +121,8 @@ export class ConflitosService {
           impedimentoId: imp.id,
           usuarioId: imp.usuarioId,
         });
-      } else if ((imp.tipo === 'TJD' || imp.tipo === 'JUIZO') && bateOrgao) {
+      } else if (imp.tipo === 'JUIZO' && bateOrgao) {
+        // TJD não gera checagem (decisão 118): só as sessões entram na agenda
         ocorrencias.push({
           tipo: 'IMPEDIMENTO_ORGAO',
           bloqueia: true,

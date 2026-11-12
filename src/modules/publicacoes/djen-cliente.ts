@@ -1,0 +1,150 @@
+/**
+ * JURYSONE — Cliente da API pública do DJEN (Comunica PJe / CNJ)
+ *
+ * Particularidades tratadas (conhecidas de produção):
+ *   • 403 para IP fora do Brasil: o servidor precisa estar no Brasil ou usar DJEN_API_URL
+ *     apontando para um repasse (proxy) hospedado no Brasil.
+ *   • itensPorPagina máximo 50 (acima disso volta vazio, sem erro).
+ *   • Página vazia no meio da paginação é transitória: repete a mesma página.
+ *   • A OAB é comparada por texto exato e cada tribunal grava com um sufixo: consulta as variantes.
+ *   • Resultado limitado a ~10.000 por consulta: janelas de no máximo 31 dias.
+ *   • Deduplicação pelo campo `id`.
+ */
+import axios, { AxiosInstance } from 'axios';
+import { somarDias } from './calendario';
+
+export const SUFIXOS_OAB = ['', '-O', '-A', '-N', '-B', '-S', '-E'];
+const POR_PAGINA = 50;
+const MAX_PAGINAS = 200;
+const TENTATIVAS_PAGINA = 2;
+
+export interface ComunicacaoDjen {
+  id: string;
+  hash: string | null;
+  numeroProcesso: string; // 20 dígitos
+  numeroComMascara: string | null;
+  tribunal: string;
+  tipoComunicacao: string | null;
+  tipoDocumento: string | null;
+  orgao: string | null;
+  classe: string | null;
+  dataDisponibilizacao: string; // AAAA-MM-DD
+  texto: string;
+  link: string | null;
+  motivoCancelamento: string | null;
+  destinatarios: { nome: string; polo: string | null }[];
+  advogados: { nome: string; oab: string; uf: string }[];
+}
+
+export class ErroDjen extends Error {
+  constructor(msg: string, readonly status?: number) {
+    super(msg);
+  }
+}
+
+function normalizar(item: any): ComunicacaoDjen | null {
+  if (!item || item.id === undefined || item.id === null) return null;
+  const numero = String(item.numero_processo ?? item.numeroProcesso ?? '').replace(/\D/g, '');
+  if (!numero) return null;
+  const texto = String(item.texto ?? '');
+  return {
+    id: String(item.id),
+    hash: item.hash ?? null,
+    numeroProcesso: numero,
+    numeroComMascara: item.numeroprocessocommascara ?? null,
+    tribunal: String(item.siglaTribunal ?? item.sigla_tribunal ?? '').toUpperCase(),
+    tipoComunicacao: item.tipoComunicacao ?? null,
+    tipoDocumento: item.tipoDocumento ?? null,
+    orgao: item.nomeOrgao ?? null,
+    classe: item.nomeClasse ?? null,
+    dataDisponibilizacao: String(item.data_disponibilizacao ?? item.datadisponibilizacao ?? '').slice(0, 10),
+    // Teto de 200 mil caracteres preservando o início (onde está o comando da intimação)
+    texto: texto.length > 200_000 ? texto.slice(0, 200_000) + '\n[texto truncado — ver link]' : texto,
+    link: item.link ?? null,
+    motivoCancelamento: item.motivo_cancelamento ?? null,
+    destinatarios: (Array.isArray(item.destinatarios) ? item.destinatarios : []).map((d: any) => ({
+      nome: String(d?.nome ?? '').trim(), polo: d?.polo ?? null,
+    })).filter((d: any) => d.nome),
+    advogados: (Array.isArray(item.destinatarioadvogados) ? item.destinatarioadvogados : []).map((a: any) => {
+      const adv = a?.advogado ?? a ?? {};
+      return { nome: String(adv.nome ?? '').trim(), oab: String(adv.numero_oab ?? '').replace(/\D/g, ''), uf: String(adv.uf_oab ?? '').toUpperCase() };
+    }).filter((a: any) => a.oab),
+  };
+}
+
+export class DjenCliente {
+  private readonly http: AxiosInstance;
+
+  constructor(baseUrl = process.env.DJEN_API_URL || 'https://comunicaapi.pje.jus.br', private readonly esperaMs = 1000) {
+    this.http = axios.create({ baseURL: baseUrl.replace(/\/$/, ''), timeout: 20_000, headers: { Accept: 'application/json' } });
+  }
+
+  private async pagina(params: Record<string, string>, pagina: number): Promise<{ count: number; items: any[] }> {
+    try {
+      const { data } = await this.http.get('/api/v1/comunicacao', { params: { ...params, pagina, itensPorPagina: POR_PAGINA } });
+      return { count: Number(data?.count ?? 0), items: Array.isArray(data?.items) ? data.items : [] };
+    } catch (e: any) {
+      const status = e?.response?.status;
+      if (status === 403) throw new ErroDjen('DJEN recusou o acesso (403). A API só atende IPs do Brasil: hospede o servidor no Brasil ou configure DJEN_API_URL com um repasse no Brasil.', 403);
+      throw new ErroDjen(`Falha ao consultar o DJEN${status ? ` (HTTP ${status})` : ''}: ${e?.message ?? e}`, status);
+    }
+  }
+
+  /** Consulta com paginação tolerante; devolve itens normalizados e se a consulta foi completa */
+  async consultar(params: Record<string, string>): Promise<{ itens: ComunicacaoDjen[]; completo: boolean }> {
+    const brutos: any[] = [];
+    let total: number | null = null;
+    let tentativas = 0;
+    for (let p = 1; p <= MAX_PAGINAS; p++) {
+      const { count, items } = await this.pagina(params, p);
+      if (total === null) total = count;
+      if (items.length === 0) {
+        if (brutos.length >= (total ?? 0)) break;
+        if (tentativas >= TENTATIVAS_PAGINA) return { itens: this.unicos(brutos), completo: false };
+        tentativas++;
+        p--;
+        await new Promise((r) => setTimeout(r, this.esperaMs * tentativas));
+        continue;
+      }
+      tentativas = 0;
+      brutos.push(...items);
+      if (brutos.length >= (total ?? 0)) break;
+    }
+    return { itens: this.unicos(brutos), completo: true };
+  }
+
+  private unicos(brutos: any[]): ComunicacaoDjen[] {
+    const vistos = new Map<string, ComunicacaoDjen>();
+    for (const b of brutos) {
+      const n = normalizar(b);
+      if (!n) continue;
+      // se veio duas vezes, a versão cancelada prevalece
+      if (!vistos.has(n.id) || n.motivoCancelamento) vistos.set(n.id, n);
+    }
+    return [...vistos.values()];
+  }
+
+  /** Publicações de uma OAB em um período, varrendo as variantes de sufixo e em janelas de 31 dias */
+  async porOab(oab: string, uf: string, inicio: string, fim: string): Promise<{ itens: ComunicacaoDjen[]; completo: boolean }> {
+    const numero = String(oab).replace(/\D/g, '');
+    const todos = new Map<string, ComunicacaoDjen>();
+    let completo = true;
+    for (let ini = inicio; ini <= fim; ini = somarDias(ini, 31)) {
+      const fimJanela = somarDias(ini, 30) < fim ? somarDias(ini, 30) : fim;
+      for (const suf of SUFIXOS_OAB) {
+        const r = await this.consultar({
+          numeroOab: numero + suf, ufOab: uf.toUpperCase(),
+          dataDisponibilizacaoInicio: ini, dataDisponibilizacaoFim: fimJanela,
+        });
+        completo = completo && r.completo;
+        for (const i of r.itens) if (!todos.has(i.id) || i.motivoCancelamento) todos.set(i.id, i);
+      }
+    }
+    return { itens: [...todos.values()], completo };
+  }
+
+  async porProcesso(numeroProcesso: string): Promise<ComunicacaoDjen[]> {
+    const r = await this.consultar({ numeroProcesso: String(numeroProcesso).replace(/\D/g, '') });
+    return r.itens;
+  }
+}

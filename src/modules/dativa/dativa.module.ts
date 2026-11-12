@@ -1,0 +1,17 @@
+import { Module, forwardRef } from '@nestjs/common';
+import { PrismaService } from '../../database/prisma.service';
+import { ConflitosModule } from '../conflitos/conflitos.module';
+import { LinhaProducaoModule } from '../linha-producao/linha-producao.module';
+import { ArquivosModule } from '../arquivos/arquivos.module';
+import { ChavesModule } from '../chaves/chaves.module';
+import { PublicacoesModule } from '../publicacoes/publicacoes.module';
+import { DativaController, DativaEmailController } from './dativa.controller';
+import { DativaService } from './dativa.service';
+
+@Module({
+  imports: [ConflitosModule, LinhaProducaoModule, ArquivosModule, ChavesModule, forwardRef(() => PublicacoesModule)],
+  controllers: [DativaController, DativaEmailController],
+  providers: [DativaService, PrismaService],
+  exports: [DativaService],
+})
+export class DativaModule {}

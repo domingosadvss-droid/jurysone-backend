@@ -12,19 +12,19 @@ datasource db {
 // ─── Usuários ──────────────────────────────────────────────────────────────
 
 model Usuario {
-  id                String    @id @default(uuid())
-  nome              String
-  email             String    @unique
-  senha             String
-  oabNumero         String?
-  oabEstado         String?
-  telefone          String?
-  avatarUrl         String?
-  emailVerifiedAt   DateTime?
-  twoFactorSecret   String?
-  roles             String    @default("ADVOGADO")
-  ativo             Boolean   @default(true)
-  refreshTokenHash  String?
+  id               String    @id @default(uuid())
+  nome             String
+  email            String    @unique
+  senha            String
+  oabNumero        String?
+  oabEstado        String?
+  telefone         String?
+  avatarUrl        String?
+  emailVerifiedAt  DateTime?
+  twoFactorSecret  String?
+  roles            String    @default("ADVOGADO")
+  ativo            Boolean   @default(true)
+  refreshTokenHash String?
 
   // Perfil externo (PARCEIRO) vinculado ao cadastro de parceiro
   parceiroId        String?
@@ -32,34 +32,39 @@ model Usuario {
   termoAceitoEm     DateTime?
   termoDocumentoUrl String?
 
-  escritorioId      String
-  escritorio        Escritorio @relation(fields: [escritorioId], references: [id])
+  // Etapa 4: Google Agenda pessoal do advogado (refresh token cifrado)
+  googleAgendaToken       String?
+  googleAgendaId          String?
+  googleAgendaConectadoEm DateTime?
 
-  tokensRefresh              TokenRefresh[]
-  processosResponsavel       Processo[]             @relation("ResponsavelProcesso")
-  tarefasAtribuidas          Tarefa[]               @relation("TarefasAtribuidas")
-  eventosCriados             Evento[]               @relation("EventosCriados")
-  eventosResponsavel         EventoResponsavel[]    @relation("EventosResponsavel")
-  envelopesCriados           EsignEnvelope[]        @relation("EnvelopesCriados")
-  sessoesTimer               SessaoTimer[]          @relation("SessoesTimer")
-  intimacoesLidas            Intimacao[]            @relation("IntimacoesLidas")
-  monitoramentosResponsavel  DiarioMonitoramento[]  @relation("MonitoramentosResponsavel")
-  monitoramentosCriados      DiarioMonitoramento[]  @relation("MonitoramentosCriados")
-  interacoesIA               InteracaoIA[]
-  logsAuditoria              LogAuditoria[]
-  mensagensPortal            MensagemPortal[]
-  entradasTempo              EntradaTempo[]
-  metasTempo                 MetaTempo[]
-  notificacoes               Notificacao[]
-  preferenciasNotificacao    PreferenciaNotificacao[]
-  inscricoesPush             InscricaoPush[]
-  mensagensWhatsapp          WhatsappMessage[]
-  automacoes                 Automacao[]
-  dashboardsAnalytics        DashboardAnalytics[]
-  protocolosAdvogado         Protocolo[]            @relation("ProtocolosAdvogado")
+  escritorioId String
+  escritorio   Escritorio @relation(fields: [escritorioId], references: [id])
 
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
+  tokensRefresh             TokenRefresh[]
+  processosResponsavel      Processo[]               @relation("ResponsavelProcesso")
+  tarefasAtribuidas         Tarefa[]                 @relation("TarefasAtribuidas")
+  eventosCriados            Evento[]                 @relation("EventosCriados")
+  eventosResponsavel        EventoResponsavel[]      @relation("EventosResponsavel")
+  envelopesCriados          EsignEnvelope[]          @relation("EnvelopesCriados")
+  sessoesTimer              SessaoTimer[]            @relation("SessoesTimer")
+  intimacoesLidas           Intimacao[]              @relation("IntimacoesLidas")
+  monitoramentosResponsavel DiarioMonitoramento[]    @relation("MonitoramentosResponsavel")
+  monitoramentosCriados     DiarioMonitoramento[]    @relation("MonitoramentosCriados")
+  interacoesIA              InteracaoIA[]
+  logsAuditoria             LogAuditoria[]
+  mensagensPortal           MensagemPortal[]
+  entradasTempo             EntradaTempo[]
+  metasTempo                MetaTempo[]
+  notificacoes              Notificacao[]
+  preferenciasNotificacao   PreferenciaNotificacao[]
+  inscricoesPush            InscricaoPush[]
+  mensagensWhatsapp         WhatsappMessage[]
+  automacoes                Automacao[]
+  dashboardsAnalytics       DashboardAnalytics[]
+  protocolosAdvogado        Protocolo[]              @relation("ProtocolosAdvogado")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([email])
   @@index([escritorioId])
@@ -69,12 +74,12 @@ model Usuario {
 // ─── Escritórios ────────────────────────────────────────────────────────────
 
 model Escritorio {
-  id              String    @id @default(uuid())
-  nome            String
-  cnpj            String?   @unique
-  logoUrl         String?
-  dominio         String?   @unique
-  corPrimaria     String?
+  id          String  @id @default(uuid())
+  nome        String
+  cnpj        String? @unique
+  logoUrl     String?
+  dominio     String? @unique
+  corPrimaria String?
 
   usuarios               Usuario[]
   processos              Processo[]
@@ -106,8 +111,8 @@ model Escritorio {
   historicoStatus        HistoricoStatus[]
   protocolos             Protocolo[]
 
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("offices")
 }
@@ -115,21 +120,21 @@ model Escritorio {
 // ─── Assinaturas ────────────────────────────────────────────────────────────
 
 model Assinatura {
-  id                    String           @id @default(uuid())
-  escritorioId          String           @unique
-  escritorio            Escritorio       @relation(fields: [escritorioId], references: [id])
-  status                StatusAssinatura @default(TRIAL)
-  nomePlano             String           @default("PRO")
-  trialVenceEm          DateTime?
-  periodoAtualInicio    DateTime?
-  periodoAtualFim       DateTime?
-  canceladoEm           DateTime?
-  stripeSubscriptionId  String?
+  id                   String           @id @default(uuid())
+  escritorioId         String           @unique
+  escritorio           Escritorio       @relation(fields: [escritorioId], references: [id])
+  status               StatusAssinatura @default(TRIAL)
+  nomePlano            String           @default("PRO")
+  trialVenceEm         DateTime?
+  periodoAtualInicio   DateTime?
+  periodoAtualFim      DateTime?
+  canceladoEm          DateTime?
+  stripeSubscriptionId String?
 
-  pagamentos            Pagamento[]
+  pagamentos Pagamento[]
 
-  createdAt             DateTime         @default(now())
-  updatedAt             DateTime         @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("subscriptions")
 }
@@ -145,21 +150,21 @@ enum StatusAssinatura {
 // ─── Pagamentos ──────────────────────────────────────────────────────────────
 
 model Pagamento {
-  id              String          @id @default(uuid())
-  escritorioId    String
-  escritorio      Escritorio      @relation(fields: [escritorioId], references: [id])
-  assinaturaId    String?
-  assinatura      Assinatura?     @relation(fields: [assinaturaId], references: [id])
-  valorCentavos   Int
-  moeda           String          @default("BRL")
-  status          StatusPagamento @default(PENDENTE)
-  metodo          MetodoPagamento @default(CARTAO_CREDITO)
-  gatewayId       String?
-  urlFatura       String?
-  pagoEm          DateTime?
-  vencimento      DateTime?
+  id            String          @id @default(uuid())
+  escritorioId  String
+  escritorio    Escritorio      @relation(fields: [escritorioId], references: [id])
+  assinaturaId  String?
+  assinatura    Assinatura?     @relation(fields: [assinaturaId], references: [id])
+  valorCentavos Int
+  moeda         String          @default("BRL")
+  status        StatusPagamento @default(PENDENTE)
+  metodo        MetodoPagamento @default(CARTAO_CREDITO)
+  gatewayId     String?
+  urlFatura     String?
+  pagoEm        DateTime?
+  vencimento    DateTime?
 
-  createdAt       DateTime        @default(now())
+  createdAt DateTime @default(now())
 
   @@index([escritorioId])
   @@map("payments")
@@ -202,10 +207,12 @@ model Cliente {
   deletedAt      DateTime?
 
   // Felicitações e origem do cliente
-  temFilhos   Boolean?
-  origem      String? // INDICACAO_CLIENTE | INSTAGRAM | MACONARIA_NETWORKING | PARCEIRO | GOOGLE | DATIVA | OUTRO
-  indicadoPor String?
-  driveFolderId String?
+  temFilhos          Boolean?
+  origem             String? // INDICACAO_CLIENTE | INSTAGRAM | MACONARIA_NETWORKING | PARCEIRO | GOOGLE | DATIVA | OUTRO
+  indicadoPor        String?
+  driveFolderId      String?
+  // Etapa 4: cliente criado pela importação ou pela dativa, faltando dados
+  cadastroIncompleto Boolean  @default(false)
 
   processos              Processo[]
   eventos                Evento[]
@@ -217,8 +224,8 @@ model Cliente {
   pastasCliente          PastaCliente[]
   registrosCrm           RegistroCrm[]
 
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([escritorioId])
   @@index([cpfCnpj])
@@ -233,51 +240,51 @@ enum TipoCliente {
 // ─── Processos ────────────────────────────────────────────────────────────────
 
 model Processo {
-  id              String         @id @default(uuid())
-  escritorioId    String
-  escritorio      Escritorio     @relation(fields: [escritorioId], references: [id])
-  numero          String
-  tribunal        String?
-  area            String?
-  tipoAcao        String?
-  status          StatusProcesso @default(ATIVO)
-  tipo            String?
-  titulo          String?
-  descricao       String?        @db.Text
-  valor           Decimal?
-  fase            String?
-  dataInicio      DateTime?
-  dataPrazo       DateTime?
-  deletedAt       DateTime?
+  id           String         @id @default(uuid())
+  escritorioId String
+  escritorio   Escritorio     @relation(fields: [escritorioId], references: [id])
+  numero       String
+  tribunal     String?
+  area         String?
+  tipoAcao     String?
+  status       StatusProcesso @default(ATIVO)
+  tipo         String?
+  titulo       String?
+  descricao    String?        @db.Text
+  valor        Decimal?
+  fase         String?
+  dataInicio   DateTime?
+  dataPrazo    DateTime?
+  deletedAt    DateTime?
 
-  clienteId       String
-  cliente         Cliente        @relation(fields: [clienteId], references: [id])
-  responsavelId   String?
-  responsavel     Usuario?       @relation("ResponsavelProcesso", fields: [responsavelId], references: [id])
-  camposCustom    Json?
-  driveFolderId   String?
-  drivePastas     Json?
+  clienteId     String
+  cliente       Cliente  @relation(fields: [clienteId], references: [id])
+  responsavelId String?
+  responsavel   Usuario? @relation("ResponsavelProcesso", fields: [responsavelId], references: [id])
+  camposCustom  Json?
+  driveFolderId String?
+  drivePastas   Json?
 
-  movimentacoes         Movimentacao[]
-  documentos            Documento[]
-  tarefas               Tarefa[]
-  eventos               Evento[]
-  interacoesIA          InteracaoIA[]
-  mensagensPortal       MensagemPortal[]
-  aprovacoesPortal      AprovacaoPortal[]
-  entradasTempo         EntradaTempo[]
-  mensagensWhatsapp     WhatsappMessage[]
-  monitoramentosDatajud DatajudMonitoramento[]
-  intimacoes            Intimacao[]
-  atendimentos          Atendimento[]
-  prazos                Prazo[]
-  protocolos            Protocolo[]
+  movimentacoes          Movimentacao[]
+  documentos             Documento[]
+  tarefas                Tarefa[]
+  eventos                Evento[]
+  interacoesIA           InteracaoIA[]
+  mensagensPortal        MensagemPortal[]
+  aprovacoesPortal       AprovacaoPortal[]
+  entradasTempo          EntradaTempo[]
+  mensagensWhatsapp      WhatsappMessage[]
+  monitoramentosDatajud  DatajudMonitoramento[]
+  intimacoes             Intimacao[]
+  atendimentos           Atendimento[]
+  prazos                 Prazo[]
+  protocolos             Protocolo[]
   participacoes          ParticipacaoProcesso[]
   lancamentosFinanceiros LancamentoFinanceiro[]
   linhasProducao         LinhaProcesso[]
 
-  createdAt       DateTime       @default(now())
-  updatedAt       DateTime       @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([escritorioId])
   @@index([numero])
@@ -295,15 +302,15 @@ enum StatusProcesso {
 // ─── Movimentações / Andamentos ───────────────────────────────────────────────
 
 model Movimentacao {
-  id          String   @id @default(uuid())
-  processoId  String
-  processo    Processo @relation(fields: [processoId], references: [id])
-  data        DateTime
-  descricao   String   @db.Text
-  fonte       String   @default("manual")
-  lida        Boolean  @default(false)
+  id         String   @id @default(uuid())
+  processoId String
+  processo   Processo @relation(fields: [processoId], references: [id])
+  data       DateTime
+  descricao  String   @db.Text
+  fonte      String   @default("manual")
+  lida       Boolean  @default(false)
 
-  createdAt   DateTime @default(now())
+  createdAt DateTime @default(now())
 
   @@index([processoId])
   @@map("movements")
@@ -312,25 +319,25 @@ model Movimentacao {
 // ─── Tarefas ─────────────────────────────────────────────────────────────────
 
 model Tarefa {
-  id              String       @id @default(uuid())
-  escritorioId    String
-  escritorio      Escritorio   @relation(fields: [escritorioId], references: [id])
-  titulo          String
-  descricao       String?      @db.Text
-  status          StatusTarefa @default(PENDENTE)
-  prioridade      Prioridade   @default(MEDIA)
-  dataPrazo       DateTime?
-  dataConclusa    DateTime?
-  processoId      String?
-  processo        Processo?    @relation(fields: [processoId], references: [id])
-  responsavelId   String?
-  responsavel     Usuario?     @relation("TarefasAtribuidas", fields: [responsavelId], references: [id])
-  deletedAt       DateTime?
+  id            String       @id @default(uuid())
+  escritorioId  String
+  escritorio    Escritorio   @relation(fields: [escritorioId], references: [id])
+  titulo        String
+  descricao     String?      @db.Text
+  status        StatusTarefa @default(PENDENTE)
+  prioridade    Prioridade   @default(MEDIA)
+  dataPrazo     DateTime?
+  dataConclusa  DateTime?
+  processoId    String?
+  processo      Processo?    @relation(fields: [processoId], references: [id])
+  responsavelId String?
+  responsavel   Usuario?     @relation("TarefasAtribuidas", fields: [responsavelId], references: [id])
+  deletedAt     DateTime?
 
-  entradasTempo   EntradaTempo[]
+  entradasTempo EntradaTempo[]
 
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([escritorioId])
   @@index([processoId])
@@ -365,46 +372,62 @@ model Prazo {
   processo     Processo?  @relation(fields: [processoId], references: [id])
   deletedAt    DateTime?
 
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
+  // Etapa 4: prazo nascido da publicação (DJEN) ou da nomeação dativa
+  origem          String? // DJEN | AJG | DATIVA_ACEITE | MANUAL
+  intimacaoId     String?
+  eventoId        String?
+  responsaveisIds String[]  @default([])
+  conferir        Boolean   @default(false)
+  diasPrazo       Int?
+  contagem        String? // UTEIS | CORRIDOS
+  dataInicio      DateTime?
+  memoriaCalculo  Json?
+  cumpridoEm      DateTime?
+  cumpridoPorId   String?
+  alerta3dEm      DateTime?
+  alertaDiaEm     DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([escritorioId])
   @@index([processoId])
+  @@index([escritorioId, status, dataPrazo])
   @@map("prazos")
 }
 
 // ─── Documentos ──────────────────────────────────────────────────────────────
 
 model Documento {
-  id              String     @id @default(uuid())
-  escritorioId    String
-  escritorio      Escritorio @relation(fields: [escritorioId], references: [id])
-  processoId      String?
-  processo        Processo?  @relation(fields: [processoId], references: [id])
-  nome            String
-  tipo            String?
-  status          String     @default("ativo")
-  caminho         String?
-  url             String?
-  tamanho         Int?
-  mimeType        String?
-  versao          Int        @default(1)
-  urlAssinatura   String?
-  dataAssinatura  DateTime?
-  categoria       String?
-  deletedAt       DateTime?
+  id             String     @id @default(uuid())
+  escritorioId   String
+  escritorio     Escritorio @relation(fields: [escritorioId], references: [id])
+  processoId     String?
+  processo       Processo?  @relation(fields: [processoId], references: [id])
+  nome           String
+  tipo           String?
+  status         String     @default("ativo")
+  caminho        String?
+  url            String?
+  tamanho        Int?
+  mimeType       String?
+  versao         Int        @default(1)
+  urlAssinatura  String?
+  dataAssinatura DateTime?
+  categoria      String?
+  deletedAt      DateTime?
 
   // Etapa 3: arquivos do caso no armazenamento do escritório (Google Drive)
   clienteId        String?
-  provedor         String?   // GOOGLE_DRIVE | LOCAL | SUPABASE
+  provedor         String? // GOOGLE_DRIVE | LOCAL | SUPABASE
   arquivoExternoId String?
   hashSha256       String?
-  origem           String?   // UPLOAD | GERADO | ASSINADO | WHATSAPP
+  origem           String? // UPLOAD | GERADO | ASSINADO | WHATSAPP
   etapaId          String?
   itemChecklistId  String?
   enviadoPorId     String?
 
-  createdAt   DateTime @default(now())
+  createdAt DateTime @default(now())
 
   @@index([escritorioId])
   @@index([processoId])
@@ -414,44 +437,44 @@ model Documento {
 // ─── Agenda ──────────────────────────────────────────────────────────────────
 
 model Evento {
-  id                  String       @id @default(uuid())
-  escritorioId        String
-  escritorio          Escritorio   @relation(fields: [escritorioId], references: [id])
-  processoId          String?
-  processo            Processo?    @relation(fields: [processoId], references: [id])
-  clienteId           String?
-  cliente             Cliente?     @relation(fields: [clienteId], references: [id])
-  criadoPorId         String
-  criadoPor           Usuario      @relation("EventosCriados", fields: [criadoPorId], references: [id])
+  id           String     @id @default(uuid())
+  escritorioId String
+  escritorio   Escritorio @relation(fields: [escritorioId], references: [id])
+  processoId   String?
+  processo     Processo?  @relation(fields: [processoId], references: [id])
+  clienteId    String?
+  cliente      Cliente?   @relation(fields: [clienteId], references: [id])
+  criadoPorId  String
+  criadoPor    Usuario    @relation("EventosCriados", fields: [criadoPorId], references: [id])
 
-  titulo              String
-  descricao           String?      @db.Text
-  data                DateTime
-  dataFim             DateTime?
-  tipo                TipoEvento   @default(PRAZO)
-  diaInteiro          Boolean      @default(false)
-  local               String?
-  cor                 String?
+  titulo     String
+  descricao  String?    @db.Text
+  data       DateTime
+  dataFim    DateTime?
+  tipo       TipoEvento @default(PRAZO)
+  diaInteiro Boolean    @default(false)
+  local      String?
+  cor        String?
 
-  notificarEm         DateTime?
-  notificarAntesMin   Int?         @default(30)
-  notificarEmail      Boolean      @default(true)
-  notificarWhatsapp   Boolean      @default(false)
+  notificarEm       DateTime?
+  notificarAntesMin Int?      @default(30)
+  notificarEmail    Boolean   @default(true)
+  notificarWhatsapp Boolean   @default(false)
 
-  recorrencia         String?
-  recorrenciaFim      DateTime?
+  recorrencia    String?
+  recorrenciaFim DateTime?
 
-  googleEventId       String?
-  googleCalendarId    String?
+  googleEventId    String?
+  googleCalendarId String?
 
-  notificacaoEnviada  Boolean      @default(false)
-  status              StatusEvento @default(PENDENTE)
-  concluidoEm         DateTime?
+  notificacaoEnviada Boolean      @default(false)
+  status             StatusEvento @default(PENDENTE)
+  concluidoEm        DateTime?
 
-  responsaveis        EventoResponsavel[]
+  responsaveis EventoResponsavel[]
 
-  createdAt           DateTime     @default(now())
-  updatedAt           DateTime     @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([escritorioId])
   @@index([data])
@@ -461,11 +484,13 @@ model Evento {
 }
 
 model EventoResponsavel {
-  id         String  @id @default(uuid())
-  eventoId   String
-  evento     Evento  @relation(fields: [eventoId], references: [id], onDelete: Cascade)
-  usuarioId  String
-  usuario    Usuario @relation("EventosResponsavel", fields: [usuarioId], references: [id])
+  id            String  @id @default(uuid())
+  eventoId      String
+  evento        Evento  @relation(fields: [eventoId], references: [id], onDelete: Cascade)
+  usuarioId     String
+  usuario       Usuario @relation("EventosResponsavel", fields: [usuarioId], references: [id])
+  // Etapa 4: cópia do evento no Google Agenda deste advogado
+  googleEventId String?
 
   @@unique([eventoId, usuarioId])
   @@map("event_responsibles")
@@ -503,7 +528,7 @@ model InteracaoIA {
   modelo       String
   tokens       Int        @default(0)
 
-  createdAt    DateTime   @default(now())
+  createdAt DateTime @default(now())
 
   @@index([escritorioId])
   @@map("ai_interactions")
@@ -512,12 +537,12 @@ model InteracaoIA {
 // ─── Tokens de Refresh ───────────────────────────────────────────────────────
 
 model TokenRefresh {
-  id         String   @id @default(uuid())
-  token      String   @unique
-  usuarioId  String
-  usuario    Usuario  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
-  expiresAt  DateTime
-  createdAt  DateTime @default(now())
+  id        String   @id @default(uuid())
+  token     String   @unique
+  usuarioId String
+  usuario   Usuario  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
 
   @@index([token])
   @@map("refresh_tokens")
@@ -533,7 +558,7 @@ model Configuracao {
   valor        Json
   tipo         String     @default("global")
 
-  updatedAt    DateTime   @updatedAt
+  updatedAt DateTime @updatedAt
 
   @@unique([escritorioId, chave])
   @@map("settings")
@@ -564,36 +589,36 @@ model LogAuditoria {
 // ─── Atendimentos ─────────────────────────────────────────────────────────────
 
 model Atendimento {
-  id                String     @id @default(uuid())
-  escritorioId      String
-  escritorio        Escritorio @relation(fields: [escritorioId], references: [id])
-  clienteId         String
-  cliente           Cliente    @relation(fields: [clienteId], references: [id])
-  processoId        String?
-  processo          Processo?  @relation(fields: [processoId], references: [id])
+  id           String     @id @default(uuid())
+  escritorioId String
+  escritorio   Escritorio @relation(fields: [escritorioId], references: [id])
+  clienteId    String
+  cliente      Cliente    @relation(fields: [clienteId], references: [id])
+  processoId   String?
+  processo     Processo?  @relation(fields: [processoId], references: [id])
 
-  status            String     @default("novo")
-  area              String?
-  tipoAcao          String?
-  valorAcao         Decimal?
-  tipoHonorario     String?
-  valorHonorario    Decimal?
-  percentualExito   Decimal?
-  formaPagamento    String?
-  parcelamento      Boolean    @default(false)
-  numParcelas       Int?
-  vencimento1Parc   DateTime?
-  envelopeId        String?
-  menorId           String?
-  questionario      Json?
+  status          String    @default("novo")
+  area            String?
+  tipoAcao        String?
+  valorAcao       Decimal?
+  tipoHonorario   String?
+  valorHonorario  Decimal?
+  percentualExito Decimal?
+  formaPagamento  String?
+  parcelamento    Boolean   @default(false)
+  numParcelas     Int?
+  vencimento1Parc DateTime?
+  envelopeId      String?
+  menorId         String?
+  questionario    Json?
 
   lancamentosFinanceiros LancamentoFinanceiro[]
   menorRepresentado      MenorRepresentado?
   pastaCliente           PastaCliente?
   registrosCrm           RegistroCrm[]
 
-  createdAt         DateTime   @default(now())
-  updatedAt         DateTime   @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([escritorioId])
   @@index([clienteId])
@@ -611,7 +636,7 @@ model MenorRepresentado {
   rg              String?
   tipoResponsavel String?
 
-  createdAt       DateTime    @default(now())
+  createdAt DateTime @default(now())
 
   @@map("menores_representados")
 }
@@ -619,13 +644,13 @@ model MenorRepresentado {
 // ─── Financeiro ──────────────────────────────────────────────────────────────
 
 model LancamentoFinanceiro {
-  id                String     @id @default(uuid())
-  escritorioId      String
-  escritorio        Escritorio @relation(fields: [escritorioId], references: [id])
-  clienteId         String?
-  cliente           Cliente?   @relation(fields: [clienteId], references: [id])
-  atendimentoId     String?
-  atendimento       Atendimento? @relation(fields: [atendimentoId], references: [id])
+  id            String       @id @default(uuid())
+  escritorioId  String
+  escritorio    Escritorio   @relation(fields: [escritorioId], references: [id])
+  clienteId     String?
+  cliente       Cliente?     @relation(fields: [clienteId], references: [id])
+  atendimentoId String?
+  atendimento   Atendimento? @relation(fields: [atendimentoId], references: [id])
   processoId    String?
   processo      Processo?    @relation(fields: [processoId], references: [id])
 
@@ -639,19 +664,19 @@ model LancamentoFinanceiro {
 
   descricao         String
   valor             Decimal
-  tipo              String     // receita | despesa
-  status            String     @default("pendente")
+  tipo              String // receita | despesa
+  status            String    @default("pendente")
   formaPagamento    String?
   numParcelas       Int?
   vencimento        DateTime?
   paidAt            DateTime?
   cancelledAt       DateTime?
-  data              DateTime   @default(now())
+  data              DateTime  @default(now())
   externalPaymentId String?
   deletedAt         DateTime?
 
-  createdAt         DateTime   @default(now())
-  updatedAt         DateTime   @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([escritorioId])
   @@index([clienteId])
@@ -662,16 +687,16 @@ model LancamentoFinanceiro {
 // ─── Histórico de Status ──────────────────────────────────────────────────────
 
 model HistoricoStatus {
-  id              String     @id @default(uuid())
-  escritorioId    String?
-  escritorio      Escritorio? @relation(fields: [escritorioId], references: [id])
-  entidade        String
-  entidadeId      String
-  statusAnterior  String?
-  statusNovo      String
-  origem          String?
-  metadata        Json?
-  timestamp       DateTime   @default(now())
+  id             String      @id @default(uuid())
+  escritorioId   String?
+  escritorio     Escritorio? @relation(fields: [escritorioId], references: [id])
+  entidade       String
+  entidadeId     String
+  statusAnterior String?
+  statusNovo     String
+  origem         String?
+  metadata       Json?
+  timestamp      DateTime    @default(now())
 
   @@index([entidadeId])
   @@map("status_historico")
@@ -688,8 +713,8 @@ model PastaCliente {
   nome          String
   status        String      @default("ativa")
 
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("pastas_clientes")
 }
@@ -697,21 +722,21 @@ model PastaCliente {
 // ─── CRM ──────────────────────────────────────────────────────────────────────
 
 model RegistroCrm {
-  id            String      @id @default(uuid())
+  id            String       @id @default(uuid())
   escritorioId  String
-  escritorio    Escritorio  @relation(fields: [escritorioId], references: [id])
+  escritorio    Escritorio   @relation(fields: [escritorioId], references: [id])
   clienteId     String?
-  cliente       Cliente?    @relation(fields: [clienteId], references: [id])
+  cliente       Cliente?     @relation(fields: [clienteId], references: [id])
   atendimentoId String?
   atendimento   Atendimento? @relation(fields: [atendimentoId], references: [id])
   tipo          String
   titulo        String
-  descricao     String?     @db.Text
-  status        String      @default("aberto")
+  descricao     String?      @db.Text
+  status        String       @default("aberto")
   etapa         String?
 
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([escritorioId])
   @@map("crm_records")
@@ -720,34 +745,34 @@ model RegistroCrm {
 // ─── Portal do Cliente ────────────────────────────────────────────────────────
 
 model UsuarioPortal {
-  id              String    @id @default(uuid())
-  email           String    @unique
-  senhaHash       String?
-  tokenConvite    String?   @unique
-  tokenExpiraEm   DateTime?
-  ativadoEm       DateTime?
-  ativo           Boolean   @default(false)
-  ultimoLoginEm   DateTime?
+  id            String    @id @default(uuid())
+  email         String    @unique
+  senhaHash     String?
+  tokenConvite  String?   @unique
+  tokenExpiraEm DateTime?
+  ativadoEm     DateTime?
+  ativo         Boolean   @default(false)
+  ultimoLoginEm DateTime?
 
-  clienteId       String    @unique
-  cliente         Cliente   @relation(fields: [clienteId], references: [id])
+  clienteId String  @unique
+  cliente   Cliente @relation(fields: [clienteId], references: [id])
 
-  mensagens       MensagemPortal[]
-  aprovacoes      AprovacaoPortal[]
-  respostasNps    RespostaNps[]
+  mensagens    MensagemPortal[]
+  aprovacoes   AprovacaoPortal[]
+  respostasNps RespostaNps[]
 
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("client_portal_users")
 }
 
 model MensagemPortal {
-  id           String         @id @default(uuid())
-  conteudo     String
-  anexoUrl     String?
-  lida         Boolean        @default(false)
-  remetente    String
+  id        String  @id @default(uuid())
+  conteudo  String
+  anexoUrl  String?
+  lida      Boolean @default(false)
+  remetente String
 
   portalUserId String?
   portalUser   UsuarioPortal? @relation(fields: [portalUserId], references: [id])
@@ -756,17 +781,17 @@ model MensagemPortal {
   usuarioId    String?
   usuario      Usuario?       @relation(fields: [usuarioId], references: [id])
 
-  createdAt    DateTime       @default(now())
+  createdAt DateTime @default(now())
 
   @@map("portal_messages")
 }
 
 model AprovacaoPortal {
-  id           String        @id @default(uuid())
+  id           String    @id @default(uuid())
   titulo       String
   descricao    String
   tipo         String
-  status       String        @default("pendente")
+  status       String    @default("pendente")
   comentario   String?
   respondidoEm DateTime?
 
@@ -775,22 +800,22 @@ model AprovacaoPortal {
   processoId   String?
   processo     Processo?     @relation(fields: [processoId], references: [id])
 
-  createdAt    DateTime      @default(now())
+  createdAt DateTime @default(now())
 
   @@map("portal_approvals")
 }
 
 model RespostaNps {
-  id           String        @id @default(uuid())
-  pontuacao    Int
-  comentario   String?
+  id         String  @id @default(uuid())
+  pontuacao  Int
+  comentario String?
 
   portalUserId String
   portalUser   UsuarioPortal @relation(fields: [portalUserId], references: [id])
   escritorioId String
   escritorio   Escritorio    @relation(fields: [escritorioId], references: [id])
 
-  createdAt    DateTime      @default(now())
+  createdAt DateTime @default(now())
 
   @@map("nps_responses")
 }
@@ -798,40 +823,40 @@ model RespostaNps {
 // ─── E-Sign ───────────────────────────────────────────────────────────────────
 
 model EsignEnvelope {
-  id               String    @id @default(uuid())
-  titulo           String
-  tipo             String    @default("simples")
-  status           String    @default("draft")
-  documentoUrl     String?
-  documentoHash    String?
-  expiraEm         DateTime?
-  dataLimite       DateTime?
-  mensagem         String?
-  canceladoMotivo  String?
-  externalId       String?
-  assinadoEm       DateTime?
-  enviadoEm        DateTime?
-  signatario       Json?     // signatário único (uso em atendimentos)
+  id              String    @id @default(uuid())
+  titulo          String
+  tipo            String    @default("simples")
+  status          String    @default("draft")
+  documentoUrl    String?
+  documentoHash   String?
+  expiraEm        DateTime?
+  dataLimite      DateTime?
+  mensagem        String?
+  canceladoMotivo String?
+  externalId      String?
+  assinadoEm      DateTime?
+  enviadoEm       DateTime?
+  signatario      Json? // signatário único (uso em atendimentos)
 
   // Zapsign webhook fields
-  zapsignDocumentId     String?  @unique
-  externalDocumentId    String?
-  urlDocumentoAssinado  String?
-  dataRejeicao          DateTime?
-  motivoRejeicao        String?
+  zapsignDocumentId    String?   @unique
+  externalDocumentId   String?
+  urlDocumentoAssinado String?
+  dataRejeicao         DateTime?
+  motivoRejeicao       String?
 
-  escritorioId     String
-  escritorio       Escritorio @relation(fields: [escritorioId], references: [id])
-  documentoId      String?
+  escritorioId String
+  escritorio   Escritorio @relation(fields: [escritorioId], references: [id])
+  documentoId  String?
 
-  signatarios      EsignSignatario[]
-  auditoria        EsignAuditLog[]
+  signatarios EsignSignatario[]
+  auditoria   EsignAuditLog[]
 
-  criadoPorId      String
-  criadoPor        Usuario   @relation("EnvelopesCriados", fields: [criadoPorId], references: [id])
+  criadoPorId String
+  criadoPor   Usuario @relation("EnvelopesCriados", fields: [criadoPorId], references: [id])
 
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("esign_envelopes")
 }
@@ -855,39 +880,39 @@ model EsignSignatario {
   geolng            Float?
   motivoRecusa      String?
 
-  envelopeId        String
-  envelope          EsignEnvelope @relation(fields: [envelopeId], references: [id], onDelete: Cascade)
+  envelopeId String
+  envelope   EsignEnvelope @relation(fields: [envelopeId], references: [id], onDelete: Cascade)
 
-  createdAt         DateTime  @default(now())
+  createdAt DateTime @default(now())
 
   @@map("esign_signatarios")
 }
 
 model EsignAuditLog {
-  id         String        @id @default(uuid())
-  acao       String
-  descricao  String
-  ip         String?
-  userAgent  String?
+  id        String  @id @default(uuid())
+  acao      String
+  descricao String
+  ip        String?
+  userAgent String?
 
   envelopeId String
   envelope   EsignEnvelope @relation(fields: [envelopeId], references: [id], onDelete: Cascade)
 
-  createdAt  DateTime      @default(now())
+  createdAt DateTime @default(now())
 
   @@map("esign_audit_logs")
 }
 
 model EsignTemplate {
-  id           String     @id @default(uuid())
+  id           String  @id @default(uuid())
   escritorioId String
   nome         String
   descricao    String?
   tipo         String
   configuracao Json?
 
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([escritorioId])
   @@map("esign_templates")
@@ -896,24 +921,24 @@ model EsignTemplate {
 // ─── Time Tracking ────────────────────────────────────────────────────────────
 
 model EntradaTempo {
-  id              String    @id @default(uuid())
-  descricao       String
-  inicio          DateTime
-  fim             DateTime?
-  duracaoMinutos  Int?
-  faturavel       Boolean   @default(true)
-  categoria       String?
-  status          String    @default("registrado")
+  id             String    @id @default(uuid())
+  descricao      String
+  inicio         DateTime
+  fim            DateTime?
+  duracaoMinutos Int?
+  faturavel      Boolean   @default(true)
+  categoria      String?
+  status         String    @default("registrado")
 
-  usuarioId       String
-  usuario         Usuario   @relation(fields: [usuarioId], references: [id])
-  processoId      String?
-  processo        Processo? @relation(fields: [processoId], references: [id])
-  tarefaId        String?
-  tarefa          Tarefa?   @relation(fields: [tarefaId], references: [id])
+  usuarioId  String
+  usuario    Usuario   @relation(fields: [usuarioId], references: [id])
+  processoId String?
+  processo   Processo? @relation(fields: [processoId], references: [id])
+  tarefaId   String?
+  tarefa     Tarefa?   @relation(fields: [tarefaId], references: [id])
 
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("time_entries")
 }
@@ -927,27 +952,27 @@ model SessaoTimer {
   status     String    @default("rodando")
 
   usuarioId  String
-  usuario    Usuario   @relation("SessoesTimer", fields: [usuarioId], references: [id])
+  usuario    Usuario @relation("SessoesTimer", fields: [usuarioId], references: [id])
   processoId String?
   tarefaId   String?
 
-  createdAt  DateTime  @default(now())
+  createdAt DateTime @default(now())
 
   @@map("timer_sessions")
 }
 
 model MetaTempo {
-  id                   String     @id @default(uuid())
-  horasMensais         Int
-  horasFaturaveisMes   Int
+  id                 String @id @default(uuid())
+  horasMensais       Int
+  horasFaturaveisMes Int
 
-  usuarioId            String
-  usuario              Usuario    @relation(fields: [usuarioId], references: [id])
-  escritorioId         String
-  escritorio           Escritorio @relation(fields: [escritorioId], references: [id])
+  usuarioId    String
+  usuario      Usuario    @relation(fields: [usuarioId], references: [id])
+  escritorioId String
+  escritorio   Escritorio @relation(fields: [escritorioId], references: [id])
 
-  createdAt            DateTime   @default(now())
-  updatedAt            DateTime   @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([usuarioId, escritorioId])
   @@map("time_goals")
@@ -956,53 +981,53 @@ model MetaTempo {
 // ─── Notificações ─────────────────────────────────────────────────────────────
 
 model Notificacao {
-  id             String     @id @default(uuid())
-  tipo           String
-  titulo         String
-  mensagem       String
-  dados          Json?
-  link           String?
-  prioridade     String     @default("normal")
-  lida           Boolean    @default(false)
-  lidaEm         DateTime?
-  atendimentoId  String?
+  id            String    @id @default(uuid())
+  tipo          String
+  titulo        String
+  mensagem      String
+  dados         Json?
+  link          String?
+  prioridade    String    @default("normal")
+  lida          Boolean   @default(false)
+  lidaEm        DateTime?
+  atendimentoId String?
 
-  usuarioId      String
-  usuario        Usuario    @relation(fields: [usuarioId], references: [id])
-  escritorioId   String
-  escritorio     Escritorio @relation(fields: [escritorioId], references: [id])
+  usuarioId    String
+  usuario      Usuario    @relation(fields: [usuarioId], references: [id])
+  escritorioId String
+  escritorio   Escritorio @relation(fields: [escritorioId], references: [id])
 
-  createdAt      DateTime   @default(now())
+  createdAt DateTime @default(now())
 
   @@index([usuarioId, lida])
   @@map("notifications")
 }
 
 model PreferenciaNotificacao {
-  id         String  @id @default(uuid())
-  canal      String
-  tipo       String
-  ativo      Boolean @default(true)
+  id    String  @id @default(uuid())
+  canal String
+  tipo  String
+  ativo Boolean @default(true)
 
-  usuarioId  String
-  usuario    Usuario @relation(fields: [usuarioId], references: [id])
+  usuarioId String
+  usuario   Usuario @relation(fields: [usuarioId], references: [id])
 
-  createdAt  DateTime @default(now())
+  createdAt DateTime @default(now())
 
   @@unique([usuarioId, canal, tipo])
   @@map("notification_preferences")
 }
 
 model InscricaoPush {
-  id         String   @id @default(uuid())
-  endpoint   String
-  p256dh     String
-  auth       String
+  id       String @id @default(uuid())
+  endpoint String
+  p256dh   String
+  auth     String
 
-  usuarioId  String
-  usuario    Usuario  @relation(fields: [usuarioId], references: [id])
+  usuarioId String
+  usuario   Usuario @relation(fields: [usuarioId], references: [id])
 
-  createdAt  DateTime @default(now())
+  createdAt DateTime @default(now())
 
   @@map("push_subscriptions")
 }
@@ -1010,69 +1035,69 @@ model InscricaoPush {
 // ─── WhatsApp ─────────────────────────────────────────────────────────────────
 
 model WhatsappMessage {
-  id            String     @id @default(uuid())
+  id            String    @id @default(uuid())
   telefone      String
   tipo          String
   conteudo      String?
   templateId    String?
   variaveis     Json?
-  status        String     @default("pendente")
+  status        String    @default("pendente")
   erroMensagem  String?
   whatsappMsgId String?
   enviadoEm     DateTime?
   lidaEm        DateTime?
 
-  escritorioId  String
-  escritorio    Escritorio @relation(fields: [escritorioId], references: [id])
-  clienteId     String?
-  cliente       Cliente?   @relation(fields: [clienteId], references: [id])
-  processoId    String?
-  processo      Processo?  @relation(fields: [processoId], references: [id])
-  enviadoPorId  String?
-  enviadoPor    Usuario?   @relation(fields: [enviadoPorId], references: [id])
+  escritorioId String
+  escritorio   Escritorio @relation(fields: [escritorioId], references: [id])
+  clienteId    String?
+  cliente      Cliente?   @relation(fields: [clienteId], references: [id])
+  processoId   String?
+  processo     Processo?  @relation(fields: [processoId], references: [id])
+  enviadoPorId String?
+  enviadoPor   Usuario?   @relation(fields: [enviadoPorId], references: [id])
 
-  createdAt     DateTime   @default(now())
+  createdAt DateTime @default(now())
 
   @@map("whatsapp_messages")
 }
 
 model WhatsappTemplate {
-  id           String     @id @default(uuid())
+  id           String  @id @default(uuid())
   nome         String
   categoria    String
-  idioma       String     @default("pt_BR")
+  idioma       String  @default("pt_BR")
   corpo        String
   variaveis    Json?
   botoes       Json?
-  status       String     @default("pending")
+  status       String  @default("pending")
   waTemplateId String?
 
   escritorioId String
   escritorio   Escritorio @relation(fields: [escritorioId], references: [id])
 
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("whatsapp_templates")
 }
 
 model WhatsappAutomation {
-  id             String     @id @default(uuid())
+  id             String    @id @default(uuid())
   nome           String
   descricao      String?
-  ativa          Boolean    @default(true)
+  ativa          Boolean   @default(true)
   gatilho        String
   templateId     String?
-  atrasoMinutos  Int        @default(0)
+  atrasoMinutos  Int       @default(0)
   filtros        Json?
-  execucoes      Int        @default(0)
+  execucoes      Int       @default(0)
   ultimaExecucao DateTime?
 
-  escritorioId   String
-  escritorio     Escritorio @relation(fields: [escritorioId], references: [id])
+  escritorioId String
+  escritorio   Escritorio @relation(fields: [escritorioId], references: [id])
 
-  createdAt      DateTime   @default(now())
-  updatedAt      DateTime   @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("whatsapp_automations")
 }
@@ -1080,21 +1105,21 @@ model WhatsappAutomation {
 // ─── DataJud / CNJ ────────────────────────────────────────────────────────────
 
 model DatajudMonitoramento {
-  id                    String     @id @default(uuid())
-  ativo                 Boolean    @default(true)
-  alertarMovimentacao   Boolean    @default(true)
-  alertarPrazo          Boolean    @default(true)
-  usuariosAlertar       Json?
-  ultimaSync            DateTime?
-  totalAndamentos       Int        @default(0)
+  id                  String    @id @default(uuid())
+  ativo               Boolean   @default(true)
+  alertarMovimentacao Boolean   @default(true)
+  alertarPrazo        Boolean   @default(true)
+  usuariosAlertar     Json?
+  ultimaSync          DateTime?
+  totalAndamentos     Int       @default(0)
 
-  escritorioId          String
-  escritorio            Escritorio @relation(fields: [escritorioId], references: [id])
-  processoId            String
-  processo              Processo   @relation(fields: [processoId], references: [id])
+  escritorioId String
+  escritorio   Escritorio @relation(fields: [escritorioId], references: [id])
+  processoId   String
+  processo     Processo   @relation(fields: [processoId], references: [id])
 
-  createdAt             DateTime   @default(now())
-  updatedAt             DateTime   @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([escritorioId, processoId])
   @@map("datajud_monitoramentos")
@@ -1103,42 +1128,42 @@ model DatajudMonitoramento {
 // ─── Automações ───────────────────────────────────────────────────────────────
 
 model Automacao {
-  id           String     @id @default(uuid())
-  nome         String
-  descricao    String?
-  ativa        Boolean    @default(true)
-  gatilho      Json
-  condicoes    Json?
-  acoes        Json
-  execucoes    Int        @default(0)
-  erros        Int        @default(0)
-  ultimaExec   DateTime?
+  id         String    @id @default(uuid())
+  nome       String
+  descricao  String?
+  ativa      Boolean   @default(true)
+  gatilho    Json
+  condicoes  Json?
+  acoes      Json
+  execucoes  Int       @default(0)
+  erros      Int       @default(0)
+  ultimaExec DateTime?
 
   escritorioId String
   escritorio   Escritorio @relation(fields: [escritorioId], references: [id])
   criadoPorId  String
   criadoPor    Usuario    @relation(fields: [criadoPorId], references: [id])
 
-  logs         AutomacaoLog[]
+  logs AutomacaoLog[]
 
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("automacoes")
 }
 
 model AutomacaoLog {
-  id          String    @id @default(uuid())
-  status      String
-  input       Json?
-  output      Json?
-  erroMsg     String?
-  duracaoMs   Int?
+  id        String  @id @default(uuid())
+  status    String
+  input     Json?
+  output    Json?
+  erroMsg   String?
+  duracaoMs Int?
 
   automacaoId String
   automacao   Automacao @relation(fields: [automacaoId], references: [id], onDelete: Cascade)
 
-  createdAt   DateTime  @default(now())
+  createdAt DateTime @default(now())
 
   @@map("automacao_logs")
 }
@@ -1146,16 +1171,16 @@ model AutomacaoLog {
 // ─── Analytics ────────────────────────────────────────────────────────────────
 
 model DashboardAnalytics {
-  id        String     @id @default(uuid())
-  nome      String
-  widgets   Json
-  padrao    Boolean    @default(false)
+  id      String  @id @default(uuid())
+  nome    String
+  widgets Json
+  padrao  Boolean @default(false)
 
   usuarioId String
-  usuario   Usuario    @relation(fields: [usuarioId], references: [id])
+  usuario   Usuario @relation(fields: [usuarioId], references: [id])
 
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("analytics_dashboards")
 }
@@ -1163,49 +1188,70 @@ model DashboardAnalytics {
 // ─── Intimações / Diário Oficial ──────────────────────────────────────────────
 
 model Intimacao {
-  id                String          @id @default(uuid())
-  escritorioId      String
-  escritorio        Escritorio      @relation(fields: [escritorioId], references: [id])
+  id           String     @id @default(uuid())
+  escritorioId String
+  escritorio   Escritorio @relation(fields: [escritorioId], references: [id])
 
-  fonte             FonteIntimacao  @default(DJE)
-  tribunal          String
-  diarioNome        String?
-  edicao            String?
-  dataPublicacao    DateTime
-  dataCaptura       DateTime        @default(now())
+  fonte          FonteIntimacao @default(DJE)
+  tribunal       String
+  diarioNome     String?
+  edicao         String?
+  dataPublicacao DateTime
+  dataCaptura    DateTime       @default(now())
 
-  titulo            String
-  conteudo          String          @db.Text
-  conteudoResumo    String?         @db.Text
-  urlOrigem         String?
-  paginaDiario      String?
-  caderno           String?
+  titulo         String
+  conteudo       String  @db.Text
+  conteudoResumo String? @db.Text
+  urlOrigem      String?
+  paginaDiario   String?
+  caderno        String?
 
-  nomesEncontrados  Json?
-  numeroProcesso    String?
+  nomesEncontrados Json?
+  numeroProcesso   String?
 
-  status            StatusIntimacao @default(NAO_LIDA)
-  lida              Boolean         @default(false)
-  lidaEm            DateTime?
-  lidaPorId         String?
-  lidaPor           Usuario?        @relation("IntimacoesLidas", fields: [lidaPorId], references: [id])
+  status    StatusIntimacao @default(NAO_LIDA)
+  lida      Boolean         @default(false)
+  lidaEm    DateTime?
+  lidaPorId String?
+  lidaPor   Usuario?        @relation("IntimacoesLidas", fields: [lidaPorId], references: [id])
 
   prazoIdentificado Int?
   prazoFatal        DateTime?
 
-  processoId        String?
-  processo          Processo?       @relation(fields: [processoId], references: [id])
-  clienteId         String?
-  cliente           Cliente?        @relation(fields: [clienteId], references: [id])
-  monitoramentoId   String?
-  monitoramento     DiarioMonitoramento? @relation(fields: [monitoramentoId], references: [id])
+  processoId      String?
+  processo        Processo?            @relation(fields: [processoId], references: [id])
+  clienteId       String?
+  cliente         Cliente?             @relation(fields: [clienteId], references: [id])
+  monitoramentoId String?
+  monitoramento   DiarioMonitoramento? @relation(fields: [monitoramentoId], references: [id])
 
-  providencia       String?         @db.Text
-  providenciaEm     DateTime?
+  providencia   String?   @db.Text
+  providenciaEm DateTime?
 
-  createdAt         DateTime        @default(now())
-  updatedAt         DateTime        @updatedAt
+  // Etapa 4: captura pelo DJEN (Comunica PJe)
+  djenId             String?
+  djenHash           String?
+  tipoComunicacao    String?
+  tipoDocumento      String?
+  orgao              String?
+  classe             String?
+  destinatarios      Json?
+  advogados          Json?
+  // usuários do escritório cuja OAB foi intimada
+  intimadosIds       String[] @default([])
+  categorias         String[] @default([])
+  cancelada          Boolean  @default(false)
+  motivoCancelamento String?
+  semVinculo         Boolean  @default(false)
+  sugestoesVinculo   Json?
+  // processo particular de parceiro (fora do escritório): sigiloso, salvo coincidência
+  particular         Boolean  @default(false)
+  coincidencias      Json?
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([escritorioId, djenId])
   @@index([escritorioId])
   @@index([dataPublicacao])
   @@index([status])
@@ -1215,41 +1261,41 @@ model Intimacao {
 }
 
 model DiarioMonitoramento {
-  id                String            @id @default(uuid())
-  escritorioId      String
-  escritorio        Escritorio        @relation(fields: [escritorioId], references: [id])
+  id           String     @id @default(uuid())
+  escritorioId String
+  escritorio   Escritorio @relation(fields: [escritorioId], references: [id])
 
-  nome              String
-  ativo             Boolean           @default(true)
-  tipo              TipoMonitoramento @default(OAB)
+  nome  String
+  ativo Boolean           @default(true)
+  tipo  TipoMonitoramento @default(OAB)
 
-  termoBusca        String
-  oabNumero         String?
-  oabEstado         String?
-  nomeAdvogado      String?
-  cpfCnpj           String?
+  termoBusca   String
+  oabNumero    String?
+  oabEstado    String?
+  nomeAdvogado String?
+  cpfCnpj      String?
 
-  tribunais         Json
-  cadernos          Json?
+  tribunais Json
+  cadernos  Json?
 
-  notificarEmail    Boolean           @default(true)
-  notificarWhatsapp Boolean           @default(false)
+  notificarEmail    Boolean  @default(true)
+  notificarWhatsapp Boolean  @default(false)
   emailsAlerta      Json?
   responsavelId     String?
-  responsavel       Usuario?          @relation("MonitoramentosResponsavel", fields: [responsavelId], references: [id])
+  responsavel       Usuario? @relation("MonitoramentosResponsavel", fields: [responsavelId], references: [id])
 
-  ultimaExecucao    DateTime?
-  totalCapturado    Int               @default(0)
-  totalNaoLido      Int               @default(0)
-  erroUltimaSync    String?
+  ultimaExecucao DateTime?
+  totalCapturado Int       @default(0)
+  totalNaoLido   Int       @default(0)
+  erroUltimaSync String?
 
-  criadoPorId       String
-  criadoPor         Usuario           @relation("MonitoramentosCriados", fields: [criadoPorId], references: [id])
+  criadoPorId String
+  criadoPor   Usuario @relation("MonitoramentosCriados", fields: [criadoPorId], references: [id])
 
-  intimacoes        Intimacao[]
+  intimacoes Intimacao[]
 
-  createdAt         DateTime          @default(now())
-  updatedAt         DateTime          @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([escritorioId])
   @@map("diario_monitoramentos")
@@ -1266,7 +1312,7 @@ model DiarioExecucaoLog {
   erroMsg         String?  @db.Text
   monitoramentoId String?
 
-  createdAt       DateTime @default(now())
+  createdAt DateTime @default(now())
 
   @@index([escritorioId])
   @@index([tribunal])
@@ -1282,6 +1328,7 @@ enum FonteIntimacao {
   PJE
   ESAJ
   OUTROS
+  DJEN
 }
 
 enum StatusIntimacao {
@@ -1303,26 +1350,26 @@ enum TipoMonitoramento {
 // ─── Peticionamento Eletrônico ────────────────────────────────────────────────
 
 model Protocolo {
-  id                String     @id @default(uuid())
-  escritorioId      String
-  escritorio        Escritorio @relation(fields: [escritorioId], references: [id])
-  processoId        String?
-  processo          Processo?  @relation(fields: [processoId], references: [id])
-  advogadoId        String
-  advogado          Usuario    @relation("ProtocolosAdvogado", fields: [advogadoId], references: [id])
+  id           String     @id @default(uuid())
+  escritorioId String
+  escritorio   Escritorio @relation(fields: [escritorioId], references: [id])
+  processoId   String?
+  processo     Processo?  @relation(fields: [processoId], references: [id])
+  advogadoId   String
+  advogado     Usuario    @relation("ProtocolosAdvogado", fields: [advogadoId], references: [id])
 
-  tribunal          String
-  tipoPeticao       String                // 'inicial', 'intermediaria', 'recurso', etc.
-  arquivoUrl        String?
-  numeroProtocolo   String?
-  status            String     @default("pendente") // pendente | enviado | protocolado | erro
-  respostaTribunal  Json?
-  dataProtocolo     DateTime?
-  erroMensagem      String?
-  deletedAt         DateTime?
+  tribunal         String
+  tipoPeticao      String // 'inicial', 'intermediaria', 'recurso', etc.
+  arquivoUrl       String?
+  numeroProtocolo  String?
+  status           String    @default("pendente") // pendente | enviado | protocolado | erro
+  respostaTribunal Json?
+  dataProtocolo    DateTime?
+  erroMensagem     String?
+  deletedAt        DateTime?
 
-  createdAt         DateTime   @default(now())
-  updatedAt         DateTime   @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([escritorioId])
   @@index([processoId])
@@ -1332,38 +1379,38 @@ model Protocolo {
 // ─── Parceiros ────────────────────────────────────────────────────────────────
 
 model Parceiro {
-  id                   String     @id @default(uuid())
-  escritorioId         String
-  escritorio           Escritorio @relation(fields: [escritorioId], references: [id])
+  id           String     @id @default(uuid())
+  escritorioId String
+  escritorio   Escritorio @relation(fields: [escritorioId], references: [id])
 
   nome                 String
   cpfCnpj              String?
   oabNumero            String?
   oabEstado            String?
   areaAtuacao          String?
-  percentualHonorarios Decimal?   @db.Decimal(5, 2)
+  percentualHonorarios Decimal? @db.Decimal(5, 2)
 
-  email                String?
-  telefone             String?
-  whatsapp             String?
+  email    String?
+  telefone String?
+  whatsapp String?
 
-  endereco             String?
-  cidade               String?
-  estado               String?
-  cep                  String?
+  endereco String?
+  cidade   String?
+  estado   String?
+  cep      String?
 
-  banco                String?
-  agencia              String?
-  conta                String?
-  pixChave             String?
+  banco    String?
+  agencia  String?
+  conta    String?
+  pixChave String?
 
-  observacoes          String?    @db.Text
-  ativo                Boolean    @default(true)
+  observacoes String? @db.Text
+  ativo       Boolean @default(true)
 
-  criadoPorId          String?
+  criadoPorId String?
 
-  createdAt            DateTime   @default(now())
-  updatedAt            DateTime   @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([escritorioId])
   @@map("parceiros")
@@ -1450,17 +1497,19 @@ model ItemRepasse {
 
 /// Impedimentos pessoais: partes conciliadas (1 ano), tribunal desportivo, juízo onde atua
 model Impedimento {
-  id           String    @id @default(uuid())
-  escritorioId String
-  usuarioId    String
-  tipo         String // CONCILIACAO | TJD | JUIZO | OUTRO
-  nome         String?
-  cpfCnpj      String?
-  orgao        String?
-  descricao    String?
-  dataEvento   DateTime?
-  validoAte    DateTime?
-  createdAt    DateTime  @default(now())
+  id             String    @id @default(uuid())
+  escritorioId   String
+  usuarioId      String
+  tipo           String // CONCILIACAO | TJD | JUIZO | OUTRO
+  nome           String?
+  cpfCnpj        String?
+  orgao          String?
+  descricao      String?
+  dataEvento     DateTime?
+  validoAte      DateTime?
+  // Etapa 4: conciliação lançada pelo número do processo
+  processoNumero String?
+  createdAt      DateTime  @default(now())
 
   @@index([escritorioId])
   @@index([usuarioId])
@@ -1473,7 +1522,7 @@ model Impedimento {
 model ModeloLinha {
   id           String          @id @default(uuid())
   escritorioId String
-  codigo       String          // identificador estável (ex.: IMOB_REVISAO_CONTRATUAL)
+  codigo       String // identificador estável (ex.: IMOB_REVISAO_CONTRATUAL)
   nome         String
   area         String
   descricao    String?
@@ -1567,7 +1616,7 @@ model PacoteAssinatura {
   escritorioId   String
   processoId     String
   etapaId        String?
-  provedor       String    // ZAPSIGN | SIMULADO
+  provedor       String // ZAPSIGN | SIMULADO
   status         String    @default("RASCUNHO") // RASCUNHO | ENVIADO | ASSINADO | RECUSADO | CANCELADO
   externoId      String?
   linkAssinatura String?
@@ -1585,4 +1634,191 @@ model PacoteAssinatura {
   @@index([processoId])
   @@index([externoId])
   @@map("pacotes_assinatura")
+}
+
+// ─── Etapa 4: publicações (DJEN), prazos, dativa ─────────────────────────────
+
+/// Dias sem expediente cadastrados pelo escritório (os nacionais o sistema já conhece)
+model FeriadoCalendario {
+  id           String    @id @default(uuid())
+  escritorioId String
+  // MUNICIPAL | ESTADUAL | SUSPENSAO | FORENSE | OUTRO
+  tipo         String
+  data         DateTime  @db.Date
+  dataFim      DateTime? @db.Date
+  // tribunal (TJSC, TRT12, TRF4...) ou nulo = todos
+  tribunal     String?
+  // município/comarca (feriado municipal) ou nulo = todas
+  comarca      String?
+  descricao    String
+  criadoPorId  String?
+  createdAt    DateTime  @default(now())
+
+  @@index([escritorioId, data])
+  @@map("feriados_calendario")
+}
+
+/// Situação da captura do DJEN por advogado (OAB)
+model EstadoCapturaDjen {
+  id                String    @id @default(uuid())
+  escritorioId      String
+  usuarioId         String
+  oab               String
+  uf                String
+  // dia até o qual as publicações já foram capturadas
+  coberturaAte      DateTime? @db.Date
+  ultimaTentativaEm DateTime?
+  ultimoSucessoEm   DateTime?
+  ultimoErro        String?
+  falhaDesde        DateTime?
+  alertaEnviadoEm   DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@unique([escritorioId, usuarioId])
+  @@map("estado_captura_djen")
+}
+
+/// Caso de advocacia dativa (honorários pagos pelo Estado, só do advogado nomeado)
+model CasoDativa {
+  id                      String    @id @default(uuid())
+  escritorioId            String
+  processoId              String    @unique
+  advogadoId              String
+  // DJEN | AJG_EMAIL | MANUAL
+  fonte                   String
+  origemRef               String?
+  // NOMEADO | ACEITO | RECUSADO | EM_ATUACAO | AGUARDANDO_FIXACAO | AGUARDANDO_PAGAMENTO | PAGO | ENCERRADO
+  status                  String    @default("NOMEADO")
+  nomeadoEm               DateTime
+  comarca                 String?
+  materia                 String? // CRIMINAL | CIVEL | OUTRA
+  referenciaAjg           String?
+  aceiteAte               DateTime?
+  aceitoEm                DateTime?
+  recusadoEm              DateTime?
+  motivoRecusa            String?
+  conflitos               Json?
+  reuPreso                Boolean   @default(false)
+  presoDesde              DateTime?
+  ultimaRevisaoPreventiva DateTime?
+  proximoAlertaPreventiva DateTime?
+  sentencaEm              DateTime?
+  honorariosFixadosEm     DateTime?
+  valorFixado             Decimal?  @db.Decimal(12, 2)
+  certidaoEm              DateTime?
+  pedidoPagamentoEm       DateTime?
+  pagoEm                  DateTime?
+  valorPago               Decimal?  @db.Decimal(12, 2)
+  lancamentoId            String?
+  observacao              String?
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+
+  @@index([escritorioId, status])
+  @@index([advogadoId])
+  @@map("casos_dativa")
+}
+
+/// Mensagem ao cliente por WhatsApp: rascunho que pede aprovação ou envio agendado
+model MensagemCliente {
+  id               String    @id @default(uuid())
+  escritorioId     String
+  // AVISO_AUDIENCIA | LEMBRETE_AUDIENCIA | MARCO_PROCESSO | APRESENTACAO_DATIVA
+  tipo             String
+  // chave de idempotência (ex.: "aud:<eventoId>:aviso")
+  chave            String
+  clienteId        String?
+  processoId       String?
+  origemId         String?
+  telefone         String?
+  texto            String    @db.Text
+  // RASCUNHO | AGENDADA | ENVIADA | FALHOU | DESCARTADA
+  status           String
+  precisaAprovacao Boolean   @default(false)
+  responsavelId    String?
+  aprovadaPorId    String?
+  aprovadaEm       DateTime?
+  enviarEm         DateTime?
+  enviadaEm        DateTime?
+  tentativas       Int       @default(0)
+  erro             String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@unique([escritorioId, chave])
+  @@index([escritorioId, status, enviarEm])
+  @@map("mensagens_cliente")
+}
+
+/// Importação dos processos antigos: itens que esperam decisão do advogado
+model PendenciaImportacao {
+  id                String    @id @default(uuid())
+  escritorioId      String
+  usuarioId         String
+  // DECIDIR_ANTIGO | CONFIRMAR_CLIENTE
+  tipo              String
+  numeroProcesso    String
+  tribunal          String?
+  orgao             String?
+  classe            String?
+  ultimaPublicacao  DateTime?
+  partes            Json?
+  clienteSugeridoId String?
+  motivo            String?
+  // PENDENTE | IMPORTADO | DESCARTADO
+  status            String    @default("PENDENTE")
+  processoId        String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@unique([escritorioId, usuarioId, numeroProcesso])
+  @@index([escritorioId, status])
+  @@map("pendencias_importacao")
+}
+
+/// Varredura de prompt injection de arquivo vindo de fora, antes de a IA ler
+model VarreduraDocumento {
+  id            String    @id @default(uuid())
+  escritorioId  String
+  documentoId   String?
+  processoId    String?
+  nomeArquivo   String
+  hashSha256    String
+  // LIMPO | ACHADOS | INCONCLUSIVO
+  resultado     String
+  achados       Json?
+  resumo        String?
+  // PENDENTE | LIBERADO | DESCARTADO (só quando há achados)
+  decisao       String?
+  decididoPorId String?
+  decididoEm    DateTime?
+  createdAt     DateTime  @default(now())
+
+  @@index([escritorioId])
+  @@index([documentoId])
+  @@map("varreduras_documento")
+}
+
+/// Rascunho de peça preparado pela IA a partir da cópia dos autos
+model RascunhoPeca {
+  id           String    @id @default(uuid())
+  escritorioId String
+  processoId   String
+  documentoId  String
+  varreduraId  String?
+  tipoPeca     String
+  // AGUARDANDO_LIBERACAO | GERANDO | PRONTO | ERRO | SEM_IA | DESCARTADO
+  status       String
+  texto        String?   @db.Text
+  modelo       String?
+  erro         String?
+  prazoId      String?
+  criadoPorId  String?
+  geradoEm     DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([escritorioId, processoId])
+  @@map("rascunhos_peca")
 }

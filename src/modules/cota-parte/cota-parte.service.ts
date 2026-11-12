@@ -239,7 +239,9 @@ export class CotaParteService {
         tipo: 'receita',
         status: { in: STATUS_RECEBIDO },
         OR: [{ paidAt: { lte: limite } }, { paidAt: null, data: { lte: limite } }],
-        AND: [{ OR: [{ processoId: { not: null } }, { atendimento: { processoId: { not: null } } }] }],
+        AND: [{ OR: [{ processoId: { not: null } }, { atendimento: { processoId: { not: null } } }] },
+          // Honorários da dativa são só do advogado nomeado: fora da cota-parte (decisão 106)
+          { OR: [{ tipoHonorario: null }, { tipoHonorario: { not: 'DATIVA' } }] }],
       },
       include: {
         atendimento: { select: { processoId: true } },

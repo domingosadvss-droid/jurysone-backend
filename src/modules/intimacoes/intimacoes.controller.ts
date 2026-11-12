@@ -37,14 +37,14 @@ export class IntimacoesController {
   @ApiQuery({ name: 'page',        required: false })
   @ApiQuery({ name: 'per_page',    required: false })
   findAll(@Query() query: any, @CurrentUser() user: any) {
-    return this.svc.findAll(query, user.officeId);
+    return this.svc.findAll(query, user.officeId, user);
   }
 
   /** GET /api/v1/intimacoes/count — Badge de não lidas */
   @Get('nao-lidas/count')
   @ApiOperation({ summary: 'Contagem de intimações não lidas (badge)' })
   getUnreadCount(@CurrentUser() user: any) {
-    return this.svc.getUnreadCount(user.officeId);
+    return this.svc.getUnreadCount(user.officeId, user);
   }
 
   /** GET /api/v1/intimacoes/estatisticas */
@@ -64,7 +64,7 @@ export class IntimacoesController {
   @Get(':id')
   @ApiOperation({ summary: 'Detalhe da intimação' })
   findOne(@Param('id') id: string, @CurrentUser() user: any) {
-    return this.svc.findOne(id, user.officeId);
+    return this.svc.findOne(id, user.officeId, user);
   }
 
   /** POST /api/v1/intimacoes/:id/marcar-lida */

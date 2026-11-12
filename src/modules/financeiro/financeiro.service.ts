@@ -31,6 +31,10 @@ interface FluxoItem {
   saldo: number;
 }
 
+
+/** Honorários da dativa são só do advogado nomeado: fora do caixa do escritório (decisão 106) */
+const FORA_DATIVA: Prisma.LancamentoFinanceiroWhereInput = { OR: [{ tipoHonorario: null }, { tipoHonorario: { not: 'DATIVA' } }] };
+
 @Injectable()
 export class FinanceiroService {
   constructor(private prisma: PrismaService) {}
@@ -42,6 +46,7 @@ export class FinanceiroService {
     const where: Prisma.LancamentoFinanceiroWhereInput = {
       escritorioId,
       deletedAt: null,
+      AND: [FORA_DATIVA],
     };
 
     if (tipo) {
@@ -79,7 +84,7 @@ export class FinanceiroService {
 
   private async assertLancamento(id: string, officeId: string) {
     const lanc = await this.prisma.lancamentoFinanceiro.findFirst({
-      where: { id, escritorioId: officeId, deletedAt: null },
+      where: { id, escritorioId: officeId, deletedAt: null, AND: [FORA_DATIVA] },
       include: { cliente: { select: { id: true, nome: true } } },
     });
     if (!lanc) throw new NotFoundException('Lançamento não encontrado');
@@ -236,6 +241,7 @@ export class FinanceiroService {
 
     const where = {
       escritorioId,
+      AND: [FORA_DATIVA],
       data: {
         gte: dataInicio,
         lte: now,
@@ -288,6 +294,7 @@ export class FinanceiroService {
           },
           status: 'pago',
           deletedAt: null,
+          AND: [FORA_DATIVA],
         },
       });
 
@@ -324,6 +331,7 @@ export class FinanceiroService {
         escritorioId,
         tipo: 'receita',
         status: 'pago',
+        AND: [FORA_DATIVA],
         data: {
           gte: dataInicio,
           lte: dataFim,
@@ -341,6 +349,7 @@ export class FinanceiroService {
         escritorioId,
         status: 'pendente',
         deletedAt: null,
+        AND: [FORA_DATIVA],
       },
       include: {
         cliente: true,
@@ -359,6 +368,7 @@ export class FinanceiroService {
         status: 'pendente',
         vencimento: { lt: hoje },
         deletedAt: null,
+        AND: [FORA_DATIVA],
       },
       include: {
         cliente: true,
@@ -454,6 +464,7 @@ export class FinanceiroService {
         escritorioId: officeId,
         status: 'pago',
         deletedAt: null,
+        AND: [FORA_DATIVA],
         paidAt: { gte: new Date(ano, 0, 1), lt: new Date(ano + 1, 0, 1) },
       },
       select: { tipo: true, valor: true, paidAt: true },

@@ -46,6 +46,7 @@ export class ChavesService {
       zapsign:         process.env.ZAPSIGN_API_TOKEN,
       asaas:           process.env.ASAAS_API_KEY,
       gemini:          process.env.GEMINI_API_KEY,
+      anthropic:       process.env.ANTHROPIC_API_KEY,
       datajud:         process.env.DATAJUD_API_KEY,
       whatsapp:        process.env.WHATSAPP_API_KEY,
       resend:          process.env.RESEND_API_KEY,

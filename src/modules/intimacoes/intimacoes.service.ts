@@ -6,6 +6,7 @@ import { Prisma } from '@prisma/client';
 import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { DiarioOficialService } from './diario-oficial.service';
+import { filtroPublicacoes } from '../publicacoes/visibilidade';
 
 @Injectable()
 export class IntimacoesService {
@@ -29,8 +30,8 @@ export class IntimacoesService {
 
   // ── Listar ───────────────────────────────────────────────────────────────
 
-  async findAll(query: any, officeId: string) {
-    const where: Prisma.IntimacaoWhereInput = { escritorioId: officeId };
+  async findAll(query: any, officeId: string, user?: any) {
+    const where: Prisma.IntimacaoWhereInput = user ? { AND: [filtroPublicacoes(user)] } : { escritorioId: officeId };
 
     if (query.status)      where.status         = query.status;
     if (query.tribunal)    where.tribunal        = { contains: query.tribunal, mode: 'insensitive' };
@@ -74,16 +75,16 @@ export class IntimacoesService {
     };
   }
 
-  async getUnreadCount(officeId: string) {
+  async getUnreadCount(officeId: string, user?: any) {
     const count = await this.prisma.intimacao.count({
-      where: { escritorioId: officeId, lida: false, status: 'NAO_LIDA' },
+      where: { AND: [user ? filtroPublicacoes(user) : { escritorioId: officeId }], lida: false, status: 'NAO_LIDA' },
     });
     return { count };
   }
 
-  async findOne(id: string, officeId: string) {
+  async findOne(id: string, officeId: string, user?: any) {
     const item = await this.prisma.intimacao.findFirst({
-      where: { id, escritorioId: officeId },
+      where: { id, AND: [user ? filtroPublicacoes(user) : { escritorioId: officeId }] },
       include: this.defaultInclude,
     });
     if (!item) throw new NotFoundException(`Intimação ${id} não encontrada`);
