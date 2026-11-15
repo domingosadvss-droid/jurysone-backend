@@ -377,4 +377,30 @@ export class PortalController {
   ) {
     return this.portalService.responderNps(req.client.id, dto);
   }
+
+  // ── Push Notifications ──────────────────────────────────────────────────────
+
+  @UseGuards(PortalAuthGuard)
+  @Post('push/subscribe')
+  async registrarPush(
+    @Request() req: any,
+    @Body() body: { endpoint: string; keys: { p256dh: string; auth: string } },
+  ) {
+    return this.portalService.registrarPushSubscription(req.client.usuarioId ?? req.client.id, body);
+  }
+
+  @UseGuards(PortalAuthGuard)
+  @Post('push/unsubscribe')
+  async removerPush(
+    @Request() req: any,
+    @Body('endpoint') endpoint: string,
+  ) {
+    return this.portalService.removerPushSubscription(req.client.usuarioId ?? req.client.id, endpoint);
+  }
+
+  @UseGuards(PortalAuthGuard)
+  @Get('push/subscriptions')
+  async listarPush(@Request() req: any) {
+    return this.portalService.listarPushSubscriptions(req.client.usuarioId ?? req.client.id);
+  }
 }

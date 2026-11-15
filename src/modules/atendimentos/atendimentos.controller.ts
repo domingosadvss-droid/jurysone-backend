@@ -15,11 +15,15 @@ import { AtendimentosService } from './atendimentos.service';
 import { CreateAtendimentoDto } from './dto/create-atendimento.dto';
 import { UpdateAtendimentoStatusDto } from './dto/update-atendimento-status.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { DatajudService } from '../datajud/datajud.service';
 
 @Controller('atendimentos')
 @UseGuards(JwtAuthGuard)
 export class AtendimentosController {
-  constructor(private readonly atendimentosService: AtendimentosService) {}
+  constructor(
+    private readonly atendimentosService: AtendimentosService,
+    private readonly datajudService: DatajudService,
+  ) {}
 
   /**
    * POST /atendimentos
@@ -105,5 +109,18 @@ export class AtendimentosController {
       page,
       limit,
     );
+  }
+
+  /**
+   * GET /atendimentos/triagem/cpf-cnpj
+   * Triagem e checagem de conflito de interesses por CPF/CNPJ
+   * Usa DataJud para verificar se a parte já é cliente ou tem processos
+   * Query: cpf_cnpj (obrigatório), tribunal? (opcional)
+   */
+  @Get('triagem/cpf-cnpj')
+  async triagemPorCpfCnpj(
+    @Query() query: { cpf_cnpj: string; tribunal?: string; pagina?: string },
+  ) {
+    return this.datajudService.buscarPorCpfCnpj(query);
   }
 }

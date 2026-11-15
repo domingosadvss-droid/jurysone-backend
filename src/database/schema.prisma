@@ -98,6 +98,8 @@ model Escritorio {
   registrosCrm           RegistroCrm[]
   historicoStatus        HistoricoStatus[]
   protocolos             Protocolo[]
+  modelosPeca            ModeloPeca[]
+  ementasSalvas          EmentaSalva[]
 
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
@@ -257,6 +259,7 @@ model Processo {
   atendimentos          Atendimento[]
   prazos                Prazo[]
   protocolos            Protocolo[]
+  ementasSalvas         EmentaSalva[]
 
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
@@ -1328,4 +1331,56 @@ model Parceiro {
 
   @@index([escritorioId])
   @@map("parceiros")
+}
+
+// ─── Biblioteca de Modelos de Peças ──────────────────────────────────────────
+
+model ModeloPeca {
+  id           String     @id @default(uuid())
+  escritorioId String
+  escritorio   Escritorio @relation(fields: [escritorioId], references: [id])
+
+  area     String   // trabalhista | civil | previdenciario | tributario | empresarial | criminal | familia
+  tipoPeca String   // peticao_inicial | contestacao | recurso | memoriais | contrarrazoes | habeas_corpus | mandado_seguranca | outro
+  titulo   String
+  conteudo String   @db.Text
+  variaveis Json?   // ex: { "nome_cliente": "Nome do cliente", "numero_processo": "Número do processo" }
+  ativo    Boolean  @default(true)
+  usos     Int      @default(0)
+
+  criadoPorId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([escritorioId])
+  @@index([escritorioId, area])
+  @@map("modelos_peca")
+}
+
+// ─── Ementas Salvas (Jurisprudência por Processo) ────────────────────────────
+
+model EmentaSalva {
+  id           String     @id @default(uuid())
+  escritorioId String
+  escritorio   Escritorio @relation(fields: [escritorioId], references: [id])
+  processoId   String?
+  processo     Processo?  @relation(fields: [processoId], references: [id])
+
+  tribunal       String
+  numero         String
+  relator        String?
+  dataJulgamento DateTime?
+  ementa         String   @db.Text
+  favoravel      Boolean?
+  relevancia     Int?     @default(0)
+  tese           String?
+
+  salvoById String?
+
+  createdAt DateTime @default(now())
+
+  @@index([escritorioId])
+  @@index([processoId])
+  @@map("ementas_salvas")
 }

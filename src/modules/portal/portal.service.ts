@@ -2,6 +2,7 @@ import {
   BadRequestException,
   ConflictException,
   Injectable,
+  Logger,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -15,6 +16,8 @@ const CONVITE_VALIDADE_DIAS = 7;
 
 @Injectable()
 export class PortalService {
+  private readonly logger = new Logger(PortalService.name);
+
   constructor(
     private readonly prisma: PrismaService,
     private readonly jwt: JwtService,
@@ -264,10 +267,37 @@ export class PortalService {
 
   async getTimeline(clienteId: string, processoId: string) {
     await this.assertProcessoDoCliente(processoId, clienteId);
-    return this.prisma.movimentacao.findMany({
-      where: { processoId },
-      orderBy: { data: 'desc' },
+
+    const processo = await this.prisma.processo.findFirst({
+      where: { id: processoId, clienteId, deletedAt: null },
+      include: {
+        movimentacoes: { orderBy: { data: 'desc' }, take: 50 },
+        documentos: { where: { deletedAt: null }, orderBy: { createdAt: 'desc' }, take: 10 },
+      },
     });
+
+    if (!processo) return { data: [], processoId };
+
+    const eventos: Array<{ tipo: string; data: Date; descricao: string; icone: string }> = [];
+
+    for (const mov of processo.movimentacoes) {
+      eventos.push({ tipo: 'andamento', data: mov.data, descricao: mov.descricao, icone: 'scale' });
+    }
+
+    for (const doc of processo.documentos) {
+      eventos.push({ tipo: 'documento', data: doc.createdAt, descricao: `Documento: ${doc.nome}`, icone: 'file' });
+    }
+
+    eventos.push({
+      tipo: 'inicio',
+      data: (processo as any).dataInicio ?? processo.createdAt,
+      descricao: 'Processo iniciado',
+      icone: 'star',
+    });
+
+    eventos.sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime());
+
+    return { data: eventos, processoId, numero: processo.numero, status: processo.status };
   }
 
   // ── Documentos ──────────────────────────────────────────────────────────────
@@ -385,7 +415,7 @@ export class PortalService {
     return this.updatePerfil(clienteId, body);
   }
 
-  // ── Notificações (o modelo Notificacao é dos usuários do escritório) ───────
+  // ── Notificações ─────────────────────────────────────────────────────────────
 
   async getNotificacoes(clienteId: string, _query?: any) {
     const portalUser = await this.getPortalUser(clienteId);
@@ -488,6 +518,43 @@ export class PortalService {
 
   atualizarPreferences(clienteId: string, _preferences: any) {
     return { sucesso: true, clienteId };
+  }
+
+  // ── Push Notifications ───────────────────────────────────────────────────────
+
+  async registrarPushSubscription(usuarioId: string, subscription: {
+    endpoint: string;
+    keys: { p256dh: string; auth: string };
+  }) {
+    const { endpoint, keys } = subscription;
+    if (!endpoint || !keys?.p256dh || !keys?.auth) {
+      return { message: 'Dados da subscription incompletos' };
+    }
+
+    const existing = await this.prisma.inscricaoPush.findFirst({ where: { endpoint, usuarioId } });
+    if (existing) {
+      return { message: 'Push já registrado', id: existing.id };
+    }
+
+    const sub = await this.prisma.inscricaoPush.create({
+      data: { usuarioId, endpoint, p256dh: keys.p256dh, auth: keys.auth },
+    });
+
+    this.logger.log(`Push subscription registrada: usuário ${usuarioId}`);
+    return { message: 'Push subscription registrada', id: sub.id };
+  }
+
+  async removerPushSubscription(usuarioId: string, endpoint: string) {
+    await this.prisma.inscricaoPush.deleteMany({ where: { usuarioId, endpoint } });
+    return { message: 'Push subscription removida' };
+  }
+
+  async listarPushSubscriptions(usuarioId: string) {
+    const subs = await this.prisma.inscricaoPush.findMany({
+      where: { usuarioId },
+      select: { id: true, endpoint: true, createdAt: true },
+    });
+    return { subscriptions: subs };
   }
 
   // ── NPS ─────────────────────────────────────────────────────────────────────

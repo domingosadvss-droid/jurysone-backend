@@ -38,6 +38,8 @@ import { DadosModule } from './modules/dados/dados.module';
 import { ChavesModule } from './modules/chaves/chaves.module';
 import { SseModule } from './modules/sse/sse.module';
 import { PeticionamentoModule } from './modules/peticionamento/peticionamento.module';
+import { ModelosPecaModule } from './modules/modelos-peca/modelos-peca.module';
+import { JurisprudenciaModule } from './modules/jurisprudencia/jurisprudencia.module';
 
 @Module({
   controllers: [AppController],
@@ -84,6 +86,8 @@ import { PeticionamentoModule } from './modules/peticionamento/peticionamento.mo
     DadosModule,
     ChavesModule,
     PeticionamentoModule,
+    ModelosPecaModule,
+    JurisprudenciaModule,
   ],
 })
 export class AppModule {}
