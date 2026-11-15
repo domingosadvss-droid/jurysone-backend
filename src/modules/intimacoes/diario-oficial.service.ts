@@ -241,10 +241,13 @@ export class DiarioOficialService {
       };
 
       const { data } = await this.http.post(`/${indice}/_search`, body);
-
       return this.parseDatajudResponse(data, tribunal);
     } catch (err: any) {
-      this.logger.error(`Erro ao buscar OAB ${oabNumero}/${oabEstado} no ${tribunal}: ${err.message}`);
+      if (err?.response?.status === 401) {
+        this.logger.error(`DataJud 401 — chave de API inválida ou expirada. Configure DATAJUD_API_KEY no Render.`);
+      } else {
+        this.logger.error(`Erro ao buscar OAB ${oabNumero}/${oabEstado} no ${tribunal}: ${err.message}`);
+      }
       return [];
     }
   }
