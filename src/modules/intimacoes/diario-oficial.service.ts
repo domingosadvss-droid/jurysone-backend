@@ -46,62 +46,59 @@ export interface ConfigBusca {
   dataFim?:     Date;
 }
 
-// ─── Configurações dos tribunais ──────────────────────────────────────────────
+// ─── Nomes completos dos tribunais ───────────────────────────────────────────
 
-const TRIBUNAIS_CONFIG: Record<string, {
-  nome:    string;
-  tipo:    'api_datajud' | 'esaj' | 'pje' | 'portal';
-  baseUrl: string;
-  sigla:   string;
-}> = {
-  TJSP: {
-    nome: 'Tribunal de Justiça de São Paulo',
-    tipo: 'esaj',
-    baseUrl: 'https://esaj.tjsp.jus.br',
-    sigla: 'TJSP',
-  },
-  TJRJ: {
-    nome: 'Tribunal de Justiça do Rio de Janeiro',
-    tipo: 'portal',
-    baseUrl: 'https://www.tjrj.jus.br',
-    sigla: 'TJRJ',
-  },
-  TJMG: {
-    nome: 'Tribunal de Justiça de Minas Gerais',
-    tipo: 'portal',
-    baseUrl: 'https://www.tjmg.jus.br',
-    sigla: 'TJMG',
-  },
-  TRF1: {
-    nome: 'Tribunal Regional Federal da 1ª Região',
-    tipo: 'api_datajud',
-    baseUrl: 'https://api-publica.datajud.cnj.jus.br',
-    sigla: 'TRF1',
-  },
-  TRF3: {
-    nome: 'Tribunal Regional Federal da 3ª Região',
-    tipo: 'api_datajud',
-    baseUrl: 'https://api-publica.datajud.cnj.jus.br',
-    sigla: 'TRF3',
-  },
-  STJ: {
-    nome: 'Superior Tribunal de Justiça',
-    tipo: 'api_datajud',
-    baseUrl: 'https://api-publica.datajud.cnj.jus.br',
-    sigla: 'STJ',
-  },
-  STF: {
-    nome: 'Supremo Tribunal Federal',
-    tipo: 'api_datajud',
-    baseUrl: 'https://api-publica.datajud.cnj.jus.br',
-    sigla: 'STF',
-  },
-  CNJ: {
-    nome: 'Conselho Nacional de Justiça',
-    tipo: 'api_datajud',
-    baseUrl: 'https://api-publica.datajud.cnj.jus.br',
-    sigla: 'CNJ',
-  },
+const TRIBUNAL_NOME: Record<string, string> = {
+  STF:   'Supremo Tribunal Federal',
+  STJ:   'Superior Tribunal de Justiça',
+  TST:   'Tribunal Superior do Trabalho',
+  TSE:   'Tribunal Superior Eleitoral',
+  STM:   'Superior Tribunal Militar',
+  TRF1:  'Tribunal Regional Federal da 1ª Região',
+  TRF2:  'Tribunal Regional Federal da 2ª Região',
+  TRF3:  'Tribunal Regional Federal da 3ª Região',
+  TRF4:  'Tribunal Regional Federal da 4ª Região',
+  TRF5:  'Tribunal Regional Federal da 5ª Região',
+  TRF6:  'Tribunal Regional Federal da 6ª Região',
+  TJSP:  'Tribunal de Justiça de São Paulo',
+  TJRJ:  'Tribunal de Justiça do Rio de Janeiro',
+  TJMG:  'Tribunal de Justiça de Minas Gerais',
+  TJRS:  'Tribunal de Justiça do Rio Grande do Sul',
+  TJPR:  'Tribunal de Justiça do Paraná',
+  TJSC:  'Tribunal de Justiça de Santa Catarina',
+  TJBA:  'Tribunal de Justiça da Bahia',
+  TJGO:  'Tribunal de Justiça de Goiás',
+  TJPE:  'Tribunal de Justiça de Pernambuco',
+  TJCE:  'Tribunal de Justiça do Ceará',
+  TJMT:  'Tribunal de Justiça do Mato Grosso',
+  TJMS:  'Tribunal de Justiça do Mato Grosso do Sul',
+  TJMA:  'Tribunal de Justiça do Maranhão',
+  TJPA:  'Tribunal de Justiça do Pará',
+  TJAM:  'Tribunal de Justiça do Amazonas',
+  TJRN:  'Tribunal de Justiça do Rio Grande do Norte',
+  TJPB:  'Tribunal de Justiça da Paraíba',
+  TJAL:  'Tribunal de Justiça de Alagoas',
+  TJSE:  'Tribunal de Justiça de Sergipe',
+  TJPI:  'Tribunal de Justiça do Piauí',
+  TJTO:  'Tribunal de Justiça do Tocantins',
+  TJRO:  'Tribunal de Justiça de Rondônia',
+  TJAC:  'Tribunal de Justiça do Acre',
+  TJAP:  'Tribunal de Justiça do Amapá',
+  TJRR:  'Tribunal de Justiça de Roraima',
+  TJDF:  'Tribunal de Justiça do Distrito Federal e Territórios',
+  TRT1:  'Tribunal Regional do Trabalho da 1ª Região (RJ)',
+  TRT2:  'Tribunal Regional do Trabalho da 2ª Região (SP)',
+  TRT3:  'Tribunal Regional do Trabalho da 3ª Região (MG)',
+  TRT4:  'Tribunal Regional do Trabalho da 4ª Região (RS)',
+  TRT5:  'Tribunal Regional do Trabalho da 5ª Região (BA)',
+  TRT6:  'Tribunal Regional do Trabalho da 6ª Região (PE)',
+  TRT7:  'Tribunal Regional do Trabalho da 7ª Região (CE)',
+  TRT8:  'Tribunal Regional do Trabalho da 8ª Região (PA/AP)',
+  TRT9:  'Tribunal Regional do Trabalho da 9ª Região (PR)',
+  TRT10: 'Tribunal Regional do Trabalho da 10ª Região (DF/TO)',
+  TRT12: 'Tribunal Regional do Trabalho da 12ª Região (SC)',
+  TRT15: 'Tribunal Regional do Trabalho da 15ª Região (Campinas)',
+  TRT24: 'Tribunal Regional do Trabalho da 24ª Região (MS)',
 };
 
 // Mapeamento tribunal → índice DataJud (formato com hífen, conforme API CNJ)
@@ -187,7 +184,7 @@ export class DiarioOficialService {
   getTribunaisSuportados() {
     return Object.entries(DATAJUD_INDEX).map(([sigla, indice]) => ({
       sigla,
-      nome: TRIBUNAIS_CONFIG[sigla]?.nome ?? sigla,
+      nome: TRIBUNAL_NOME[sigla] ?? sigla,
       indice,
       suportado: true,
     }));
@@ -306,7 +303,7 @@ export class DiarioOficialService {
   }
 
   /**
-   * Busca por número de processo específico
+   * Busca por número de processo específico (match exato CNJ)
    */
   async buscarPorNumeroProcesso(
     numeroProcesso: string,
@@ -316,22 +313,26 @@ export class DiarioOficialService {
     if (!indice) return [];
 
     try {
-      // Remove formatação e busca pelo número limpo
+      // Normaliza para o formato CNJ: NNNNNNN-DD.AAAA.J.TT.OOOO
       const numeroLimpo = numeroProcesso.replace(/\D/g, '');
       const body = {
         query: {
           bool: {
             should: [
-              { match: { numeroProcesso: numeroProcesso } },
-              { match: { numeroProcesso: numeroLimpo } },
+              { term: { 'numeroProcesso.keyword': numeroProcesso } },
+              { match_phrase: { numeroProcesso } },
+              // Fallback: número sem formatação
+              ...(numeroLimpo !== numeroProcesso
+                ? [{ match_phrase: { numeroProcesso: numeroLimpo } }]
+                : []),
             ],
+            minimum_should_match: 1,
           },
         },
         size: 10,
       };
 
       const { data } = await this.http.post(`/${indice}/_search`, body);
-
       return this.parseDatajudResponse(data, tribunal);
     } catch (err: any) {
       this.logger.error(`Erro busca processo ${numeroProcesso}: ${err.message}`);
@@ -340,7 +341,49 @@ export class DiarioOficialService {
   }
 
   /**
-   * Busca movimentações recentes de um processo (andamentos = intimações)
+   * Busca processos por CPF ou CNPJ de parte
+   */
+  async buscarPorCpfCnpj(
+    cpfCnpj: string,
+    tribunal: string,
+    page = 1,
+  ): Promise<ResultadoBusca[]> {
+    const indice = DATAJUD_INDEX[tribunal.toUpperCase()];
+    if (!indice) return [];
+
+    const doc = cpfCnpj.replace(/\D/g, '');
+
+    try {
+      const body = {
+        query: {
+          nested: {
+            path: 'partes',
+            query: {
+              bool: {
+                should: [
+                  { term: { 'partes.cpfCnpj': doc } },
+                  { match: { 'partes.cpfCnpj': doc } },
+                ],
+                minimum_should_match: 1,
+              },
+            },
+          },
+        },
+        sort: [{ dataHoraUltimaAtualizacao: { order: 'desc' } }],
+        size: 20,
+        from: (page - 1) * 20,
+      };
+
+      const { data } = await this.http.post(`/${indice}/_search`, body);
+      return this.parseDatajudResponse(data, tribunal, [cpfCnpj]);
+    } catch (err: any) {
+      this.logger.error(`Erro busca CPF/CNPJ ${cpfCnpj} em ${tribunal}: ${err.message}`);
+      return [];
+    }
+  }
+
+  /**
+   * Busca movimentações recentes de um processo
    */
   async buscarMovimentacoesRecentes(
     numeroProcesso: string,
@@ -358,27 +401,31 @@ export class DiarioOficialService {
         query: {
           bool: {
             must: [
-              { match: { numeroProcesso } },
               {
-                nested: {
-                  path: 'movimentos',
-                  query: {
-                    range: {
-                      'movimentos.dataHora': {
-                        gte: dataInicio.toISOString(),
-                      },
-                    },
+                bool: {
+                  should: [
+                    { term: { 'numeroProcesso.keyword': numeroProcesso } },
+                    { match_phrase: { numeroProcesso } },
+                  ],
+                  minimum_should_match: 1,
+                },
+              },
+              // Filtra por data de última atualização do processo
+              {
+                range: {
+                  dataHoraUltimaAtualizacao: {
+                    gte: dataInicio.toISOString(),
                   },
                 },
               },
             ],
           },
         },
+        sort: [{ dataHoraUltimaAtualizacao: { order: 'desc' } }],
         size: 10,
       };
 
       const { data } = await this.http.post(`/${indice}/_search`, body);
-
       return this.parseDatajudResponse(data, tribunal);
     } catch (err: any) {
       this.logger.error(`Erro movimentações ${numeroProcesso}: ${err.message}`);
@@ -454,15 +501,21 @@ export class DiarioOficialService {
     termo: string,
     tribunal: string,
   ): Promise<ResultadoBusca[]> {
-    // Detecta se é OAB (ex: "12345/SP" ou "12345 SP")
+    // OAB: "12345/SP" ou "12345 SP"
     const oabMatch = termo.match(/^(\d+)[\/\s]([A-Z]{2})$/i);
     if (oabMatch) {
       return this.buscarPorOab(oabMatch[1], oabMatch[2], tribunal);
     }
 
-    // Detecta se é número de processo (tem traços e pontos no padrão CNJ)
+    // Número de processo CNJ: NNNNNNN-DD.AAAA.J.TT.OOOO
     if (/\d{7}-\d{2}\.\d{4}/.test(termo)) {
       return this.buscarPorNumeroProcesso(termo, tribunal);
+    }
+
+    // CPF (11 dígitos) ou CNPJ (14 dígitos) — com ou sem formatação
+    const docLimpo = termo.replace(/\D/g, '');
+    if (docLimpo.length === 11 || docLimpo.length === 14) {
+      return this.buscarPorCpfCnpj(docLimpo, tribunal);
     }
 
     // Senão, busca por nome
