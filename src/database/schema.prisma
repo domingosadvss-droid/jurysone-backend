@@ -1822,3 +1822,118 @@ model RascunhoPeca {
   @@index([escritorioId, processoId])
   @@map("rascunhos_peca")
 }
+
+// ═══════════════════════ ETAPA 5 — CALCULADORAS ═══════════════════════════
+
+/// Cache dos índices econômicos do Banco Central (SGS), por mês
+model IndiceEconomico {
+  id          String   @id @default(uuid())
+  // código da série no SGS (ex.: "433" = IPCA)
+  serie       String
+  // AAAA-MM
+  competencia String
+  // valor em % (variação ou taxa do mês)
+  valor       Decimal  @db.Decimal(14, 6)
+  obtidoEm    DateTime @default(now())
+
+  @@unique([serie, competencia])
+  @@map("indices_economicos")
+}
+
+/// Cálculo guardado no caso (distrato, financiamento, trabalhista etc.)
+model Calculo {
+  id             String    @id @default(uuid())
+  escritorioId   String
+  processoId     String?
+  clienteId      String?
+  // DISTRATO | ATRASO_OBRA | FINANCIAMENTO | TRABALHISTA | DEBITO | LOCACAO | PENSAO | INSS | VALOR_CAUSA
+  tipo           String
+  titulo         String
+  criadoPorId    String
+  responsavelId  String?
+  versaoAtual    Int       @default(1)
+  // atualização mensal automática com os índices novos (143)
+  atualizarAuto  Boolean   @default(true)
+  ultimaAtualizacaoEm DateTime?
+  arquivado      Boolean   @default(false)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  versoes        CalculoVersao[]
+
+  @@index([escritorioId, tipo])
+  @@index([processoId])
+  @@map("calculos")
+}
+
+/// Cada versão do cálculo: parâmetros, resultado e índices usados. A versão juntada nunca muda.
+model CalculoVersao {
+  id            String    @id @default(uuid())
+  calculoId     String
+  calculo       Calculo   @relation(fields: [calculoId], references: [id], onDelete: Cascade)
+  numero        Int
+  // CRIACAO | AJUSTE_MANUAL | AJUSTE_CHAT | ATUALIZACAO_MENSAL
+  origem        String
+  parametros    Json
+  resultado     Json
+  totalPrincipal Decimal? @db.Decimal(16, 2)
+  dataBase      DateTime  @db.Date
+  indicesAte    String?
+  mensagemChat  String?   @db.Text
+  explicacaoIa  String?   @db.Text
+  juntada       Boolean   @default(false)
+  juntadaEm     DateTime?
+  juntadaPorId  String?
+  documentosIds String[]  @default([])
+  criadoPorId   String?
+  createdAt     DateTime  @default(now())
+
+  @@unique([calculoId, numero])
+  @@map("calculos_versoes")
+}
+
+/// Leitura de pagamentos por IA (contrato, extrato, comprovantes) depois da varredura
+model ExtracaoPagamentos {
+  id            String    @id @default(uuid())
+  escritorioId  String
+  processoId    String?
+  usuarioId     String
+  nomeArquivo   String
+  varreduraId   String?
+  // AGUARDANDO_LIBERACAO | PROCESSANDO | AGUARDANDO_CONFERENCIA | CONFERIDA | ERRO | DESCARTADA | SEM_IA
+  status        String
+  arquivo       Bytes?
+  pagamentos    Json?
+  observacoes   String?   @db.Text
+  modelo        String?
+  erro          String?
+  conferidaPorId String?
+  conferidaEm   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([escritorioId, status])
+  @@map("extracoes_pagamentos")
+}
+
+/// Tabela de custas cadastrada pelo escritório (ex.: TJSC), por faixa de valor da causa
+model CustasFaixa {
+  id           String   @id @default(uuid())
+  escritorioId String
+  tribunal     String   @default("TJSC")
+  // INICIAL | RECURSO | OUTRA
+  ato          String   @default("INICIAL")
+  valorDe      Decimal  @db.Decimal(16, 2)
+  valorAte     Decimal? @db.Decimal(16, 2)
+  // valor fixo da faixa e/ou percentual sobre o valor da causa
+  valorFixo    Decimal? @db.Decimal(14, 2)
+  percentual   Decimal? @db.Decimal(8, 4)
+  minimo       Decimal? @db.Decimal(14, 2)
+  maximo       Decimal? @db.Decimal(14, 2)
+  vigenciaDe   DateTime @db.Date
+  fonte        String?
+  createdAt    DateTime @default(now())
+
+  @@index([escritorioId, tribunal, ato])
+  @@map("custas_faixas")
+}

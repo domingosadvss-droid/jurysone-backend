@@ -47,6 +47,7 @@ import { ArquivosModule } from './modules/arquivos/arquivos.module';
 import { ContratacaoModule } from './modules/contratacao/contratacao.module';
 import { PublicacoesModule } from './modules/publicacoes/publicacoes.module';
 import { DativaModule } from './modules/dativa/dativa.module';
+import { CalculosModule } from './modules/calculos/calculos.module';
 
 @Module({
   controllers: [AppController],
@@ -104,6 +105,7 @@ import { DativaModule } from './modules/dativa/dativa.module';
     ContratacaoModule,
     PublicacoesModule,
     DativaModule,
+    CalculosModule,
   ],
 })
 export class AppModule {}
