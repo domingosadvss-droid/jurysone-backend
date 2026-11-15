@@ -20,7 +20,8 @@
  * ══════════════════════════════════════════════════════════════════════════
  */
 
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { Cron } from '@nestjs/schedule';
 import axios, { AxiosInstance } from 'axios';
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
@@ -157,25 +158,64 @@ const DATAJUD_INDEX: Record<string, string> = {
 
 // ─── Service ──────────────────────────────────────────────────────────────────
 
+// URL da wiki do CNJ onde a chave pública vigente é sempre publicada
+const DATAJUD_WIKI_ACESSO = 'https://datajud-wiki.cnj.jus.br/api-publica/acesso/';
+// Chave conhecida — usada como fallback enquanto a wiki não é consultada
+const DATAJUD_KEY_FALLBACK = 'cDZHYzlZa0JadVREZDJCendQbXY6SkJlTzNjLV9TRENyQk1RdnFKZGRQdw==';
+
 @Injectable()
-export class DiarioOficialService {
+export class DiarioOficialService implements OnModuleInit {
   private readonly logger = new Logger(DiarioOficialService.name);
   private readonly http: AxiosInstance;
 
-  private readonly apiKey: string;
+  private apiKey: string;
 
   constructor() {
-    // Chave pública padrão do CNJ (válida para a API gratuita)
-    this.apiKey = process.env.DATAJUD_API_KEY ?? 'cDZHYzlZa0JadVREZDJCendFbXNBR3A1';
+    // Inicia com a chave do env ou o fallback; onModuleInit busca a wiki
+    this.apiKey = process.env.DATAJUD_API_KEY ?? DATAJUD_KEY_FALLBACK;
     this.http = axios.create({
       baseURL: 'https://api-publica.datajud.cnj.jus.br',
       timeout: 30_000,
       headers: {
-        'Authorization': `ApiKey ${this.apiKey}`,
         'Content-Type': 'application/json',
         'User-Agent': 'Jurysone/2.0 (+https://jurysone.com.br)',
       },
     });
+  }
+
+  async onModuleInit() {
+    await this.atualizarChaveDatajud();
+  }
+
+  /**
+   * Busca a chave pública vigente na wiki do CNJ.
+   * Roda na inicialização e todo dia às 3h (a chave pode mudar a qualquer momento).
+   */
+  @Cron('0 3 * * *', { name: 'datajud-key-refresh', timeZone: 'America/Sao_Paulo' })
+  async atualizarChaveDatajud(): Promise<void> {
+    // Se o env definir a chave explicitamente, respeita — não sobrescreve
+    if (process.env.DATAJUD_API_KEY) {
+      this.aplicarChave(process.env.DATAJUD_API_KEY);
+      return;
+    }
+    try {
+      const { data: html } = await axios.get(DATAJUD_WIKI_ACESSO, { timeout: 10_000 });
+      // Extrai a chave do padrão: "Authorization: APIKey <chave>"
+      const match = (html as string).match(/Authorization:\s*APIKey\s+([\w+/=]+)/i);
+      if (match?.[1]) {
+        this.aplicarChave(match[1]);
+        this.logger.log(`🔑 Chave DataJud atualizada da wiki CNJ: ${match[1].slice(0, 12)}...`);
+      } else {
+        this.logger.warn('Wiki CNJ não retornou chave no formato esperado — mantendo chave atual.');
+      }
+    } catch (err: any) {
+      this.logger.warn(`Falha ao buscar chave na wiki CNJ: ${err.message} — mantendo chave atual.`);
+    }
+  }
+
+  private aplicarChave(chave: string): void {
+    this.apiKey = chave;
+    this.http.defaults.headers.common['Authorization'] = `ApiKey ${chave}`;
   }
 
   // ── API pública ──────────────────────────────────────────────────────────
