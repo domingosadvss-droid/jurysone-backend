@@ -104,52 +104,58 @@ const TRIBUNAIS_CONFIG: Record<string, {
   },
 };
 
-// Mapeamento tribunal → índice DataJud
+// Mapeamento tribunal → índice DataJud (formato com hífen, conforme API CNJ)
 const DATAJUD_INDEX: Record<string, string> = {
-  STF:   'api_publica_stf',
-  STJ:   'api_publica_stj',
-  TST:   'api_publica_tst',
-  TSE:   'api_publica_tse',
-  STM:   'api_publica_stm',
-  TRF1:  'api_publica_trf1',
-  TRF2:  'api_publica_trf2',
-  TRF3:  'api_publica_trf3',
-  TRF4:  'api_publica_trf4',
-  TRF5:  'api_publica_trf5',
-  TRF6:  'api_publica_trf6',
-  TJSP:  'api_publica_tjsp',
-  TJRJ:  'api_publica_tjrj',
-  TJMG:  'api_publica_tjmg',
-  TJRS:  'api_publica_tjrs',
-  TJPR:  'api_publica_tjpr',
-  TJSC:  'api_publica_tjsc',
-  TJBA:  'api_publica_tjba',
-  TJGO:  'api_publica_tjgo',
-  TJPE:  'api_publica_tjpe',
-  TJCE:  'api_publica_tjce',
-  TJMT:  'api_publica_tjmt',
-  TJMS:  'api_publica_tjms',
-  TJMA:  'api_publica_tjma',
-  TJPA:  'api_publica_tjpa',
-  TJAM:  'api_publica_tjam',
-  TJRN:  'api_publica_tjrn',
-  TJPB:  'api_publica_tjpb',
-  TJAL:  'api_publica_tjal',
-  TJSE:  'api_publica_tjse',
-  TJPI:  'api_publica_tjpi',
-  TJTO:  'api_publica_tjto',
-  TJRO:  'api_publica_tjro',
-  TJAC:  'api_publica_tjac',
-  TJAR:  'api_publica_tjar',
-  TJAP:  'api_publica_tjap',
-  TJRR:  'api_publica_tjrr',
-  TJDF:  'api_publica_tjdft',
-  TRT1:  'api_publica_trt1',
-  TRT2:  'api_publica_trt2',
-  TRT3:  'api_publica_trt3',
-  TRT4:  'api_publica_trt4',
-  TRT5:  'api_publica_trt5',
-  TRT15: 'api_publica_trt15',
+  STF:   'api_publica-stf',
+  STJ:   'api_publica-stj',
+  TST:   'api_publica-tst',
+  TSE:   'api_publica-tse',
+  STM:   'api_publica-stm',
+  TRF1:  'api_publica-trf1',
+  TRF2:  'api_publica-trf2',
+  TRF3:  'api_publica-trf3',
+  TRF4:  'api_publica-trf4',
+  TRF5:  'api_publica-trf5',
+  TRF6:  'api_publica-trf6',
+  TJSP:  'api_publica-tjsp',
+  TJRJ:  'api_publica-tjrj',
+  TJMG:  'api_publica-tjmg',
+  TJRS:  'api_publica-tjrs',
+  TJPR:  'api_publica-tjpr',
+  TJSC:  'api_publica-tjsc',
+  TJBA:  'api_publica-tjba',
+  TJGO:  'api_publica-tjgo',
+  TJPE:  'api_publica-tjpe',
+  TJCE:  'api_publica-tjce',
+  TJMT:  'api_publica-tjmt',
+  TJMS:  'api_publica-tjms',
+  TJMA:  'api_publica-tjma',
+  TJPA:  'api_publica-tjpa',
+  TJAM:  'api_publica-tjam',
+  TJRN:  'api_publica-tjrn',
+  TJPB:  'api_publica-tjpb',
+  TJAL:  'api_publica-tjal',
+  TJSE:  'api_publica-tjse',
+  TJPI:  'api_publica-tjpi',
+  TJTO:  'api_publica-tjto',
+  TJRO:  'api_publica-tjro',
+  TJAC:  'api_publica-tjac',
+  TJAP:  'api_publica-tjap',
+  TJRR:  'api_publica-tjrr',
+  TJDF:  'api_publica-tjdft',
+  TRT1:  'api_publica-trt1',
+  TRT2:  'api_publica-trt2',
+  TRT3:  'api_publica-trt3',
+  TRT4:  'api_publica-trt4',
+  TRT5:  'api_publica-trt5',
+  TRT6:  'api_publica-trt6',
+  TRT7:  'api_publica-trt7',
+  TRT8:  'api_publica-trt8',
+  TRT9:  'api_publica-trt9',
+  TRT10: 'api_publica-trt10',
+  TRT12: 'api_publica-trt12',
+  TRT15: 'api_publica-trt15',
+  TRT24: 'api_publica-trt24',
 };
 
 // ─── Service ──────────────────────────────────────────────────────────────────
@@ -159,12 +165,18 @@ export class DiarioOficialService {
   private readonly logger = new Logger(DiarioOficialService.name);
   private readonly http: AxiosInstance;
 
+  private readonly apiKey: string;
+
   constructor() {
+    // Chave pública padrão do CNJ (válida para a API gratuita)
+    this.apiKey = process.env.DATAJUD_API_KEY ?? 'cDZHYzlZa0JadVREZDJCendFbXNBR3A1';
     this.http = axios.create({
+      baseURL: 'https://api-publica.datajud.cnj.jus.br',
       timeout: 30_000,
       headers: {
+        'Authorization': `ApiKey ${this.apiKey}`,
+        'Content-Type': 'application/json',
         'User-Agent': 'Jurysone/2.0 (+https://jurysone.com.br)',
-        Accept: 'application/json',
       },
     });
   }
@@ -200,19 +212,25 @@ export class DiarioOficialService {
     }
 
     try {
+      // DataJud: advogados ficam nested em partes.advogados, campos numeroOAB e estadoOAB
       const body = {
         query: {
           bool: {
             must: [
               {
                 nested: {
-                  path: 'advogados',
+                  path: 'partes',
                   query: {
-                    bool: {
-                      must: [
-                        { match: { 'advogados.OabNumero': oabNumero } },
-                        { match: { 'advogados.OabEstado': oabEstado.toUpperCase() } },
-                      ],
+                    nested: {
+                      path: 'partes.advogados',
+                      query: {
+                        bool: {
+                          must: [
+                            { match: { 'partes.advogados.numeroOAB': oabNumero } },
+                            { match: { 'partes.advogados.estadoOAB': oabEstado.toUpperCase() } },
+                          ],
+                        },
+                      },
                     },
                   },
                 },
@@ -220,16 +238,12 @@ export class DiarioOficialService {
             ],
           },
         },
-        sort: [{ '@timestamp': { order: 'desc' } }],
+        sort: [{ dataHoraUltimaAtualizacao: { order: 'desc' } }],
         size: 20,
         from: (page - 1) * 20,
       };
 
-      const { data } = await this.http.post(
-        `https://api-publica.datajud.cnj.jus.br/${indice}/_search`,
-        body,
-        { headers: { 'Content-Type': 'application/json' } },
-      );
+      const { data } = await this.http.post(`/${indice}/_search`, body);
 
       return this.parseDatajudResponse(data, tribunal);
     } catch (err: any) {
@@ -254,11 +268,16 @@ export class DiarioOficialService {
         query: {
           bool: {
             should: [
-              // Busca no nome do advogado
+              // Busca no nome do advogado (nested em partes.advogados)
               {
                 nested: {
-                  path: 'advogados',
-                  query: { match: { 'advogados.nome': { query: nome, operator: 'and' } } },
+                  path: 'partes',
+                  query: {
+                    nested: {
+                      path: 'partes.advogados',
+                      query: { match: { 'partes.advogados.nome': { query: nome, operator: 'and' } } },
+                    },
+                  },
                 },
               },
               // Busca no nome das partes
@@ -272,16 +291,12 @@ export class DiarioOficialService {
             minimum_should_match: 1,
           },
         },
-        sort: [{ '@timestamp': { order: 'desc' } }],
+        sort: [{ dataHoraUltimaAtualizacao: { order: 'desc' } }],
         size: 20,
         from: (page - 1) * 20,
       };
 
-      const { data } = await this.http.post(
-        `https://api-publica.datajud.cnj.jus.br/${indice}/_search`,
-        body,
-        { headers: { 'Content-Type': 'application/json' } },
-      );
+      const { data } = await this.http.post(`/${indice}/_search`, body);
 
       return this.parseDatajudResponse(data, tribunal, [nome]);
     } catch (err: any) {
@@ -315,11 +330,7 @@ export class DiarioOficialService {
         size: 10,
       };
 
-      const { data } = await this.http.post(
-        `https://api-publica.datajud.cnj.jus.br/${indice}/_search`,
-        body,
-        { headers: { 'Content-Type': 'application/json' } },
-      );
+      const { data } = await this.http.post(`/${indice}/_search`, body);
 
       return this.parseDatajudResponse(data, tribunal);
     } catch (err: any) {
@@ -366,11 +377,7 @@ export class DiarioOficialService {
         size: 10,
       };
 
-      const { data } = await this.http.post(
-        `https://api-publica.datajud.cnj.jus.br/${indice}/_search`,
-        body,
-        { headers: { 'Content-Type': 'application/json' } },
-      );
+      const { data } = await this.http.post(`/${indice}/_search`, body);
 
       return this.parseDatajudResponse(data, tribunal);
     } catch (err: any) {

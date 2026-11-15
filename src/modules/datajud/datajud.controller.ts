@@ -31,6 +31,17 @@ export class DatajudController {
 
   constructor(private readonly service: DatajudService) {}
 
+  /* ──────────────────── PAINEL ──────────────────────────────── */
+
+  /**
+   * GET /datajud/painel
+   * Dashboard DataJud: monitoramentos ativos, últimas movimentações e resumo
+   */
+  @Get('painel')
+  async getPainel(@Request() req: any) {
+    return this.service.getPainel(req.user.officeId ?? req.user.escritorioId);
+  }
+
   /* ──────────────────── BUSCA PROCESSOS ─────────────────────── */
 
   /**

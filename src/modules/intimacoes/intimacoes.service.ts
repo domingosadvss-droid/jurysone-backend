@@ -4,6 +4,7 @@ import { Prisma } from '@prisma/client';
  * Gerencia intimações capturadas dos Diários Oficiais + monitoramentos
  */
 import { Injectable, NotFoundException, Logger } from '@nestjs/common';
+import { Cron } from '@nestjs/schedule';
 import { PrismaService } from '../../database/prisma.service';
 import { DiarioOficialService } from './diario-oficial.service';
 
@@ -155,12 +156,25 @@ export class IntimacoesService {
   }
 
   async criarMonitoramento(body: any, userId: string, officeId: string) {
+    const { nome, tipo, termoBusca, oabNumero, oabEstado, nomeAdvogado, cpfCnpj,
+            tribunais, cadernos, notificarEmail, notificarWhatsapp, emailsAlerta, responsavelId } = body;
     return this.prisma.diarioMonitoramento.create({
       data: {
-        ...body,
-        officeId,
-        criadoPorId: userId,
-        tribunais: body.tribunais ?? ['TJSP'],
+        escritorioId:     officeId,
+        criadoPorId:      userId,
+        nome:             nome ?? termoBusca ?? 'Monitoramento',
+        tipo:             tipo ?? 'OAB',
+        termoBusca:       termoBusca ?? oabNumero ?? nomeAdvogado ?? cpfCnpj ?? '',
+        oabNumero:        oabNumero ?? null,
+        oabEstado:        oabEstado ?? null,
+        nomeAdvogado:     nomeAdvogado ?? null,
+        cpfCnpj:          cpfCnpj ?? null,
+        tribunais:        tribunais ?? ['TJSP'],
+        cadernos:         cadernos ?? null,
+        notificarEmail:   notificarEmail ?? true,
+        notificarWhatsapp:notificarWhatsapp ?? false,
+        emailsAlerta:     emailsAlerta ?? null,
+        responsavelId:    responsavelId ?? null,
       },
       include: {
         responsavel: { select: { id: true, nome: true } },
@@ -320,6 +334,44 @@ export class IntimacoesService {
 
     this.logger.log(`Monitoramento ${mon.nome}: ${novas} novas intimações capturadas`);
     return { novas };
+  }
+
+  // ── CRON — Sincronização global a cada 4 horas ───────────────────────────────
+
+  /**
+   * Executa a cada 4 horas (1h, 5h, 9h, 13h, 17h, 21h BRT).
+   * Itera todos os escritórios que têm monitoramentos ativos e sincroniza.
+   */
+  @Cron('0 1,5,9,13,17,21 * * *', { name: 'djen-sync-global', timeZone: 'America/Sao_Paulo' })
+  async sincronizarTodosEscritorios(): Promise<void> {
+    this.logger.log('⏰ CRON DJEN — iniciando sincronização global de diários...');
+
+    const escritorios = await this.prisma.escritorio.findMany({
+      where: {
+        monitoramentosDiario: { some: { ativo: true } },
+      },
+      select: { id: true, nome: true },
+    });
+
+    this.logger.log(`📋 ${escritorios.length} escritórios com monitoramentos ativos.`);
+
+    let totalNovas = 0;
+    let totalErros = 0;
+
+    for (const escritorio of escritorios) {
+      try {
+        const resultado = await this.sincronizar(escritorio.id);
+        totalNovas += resultado.novasIntimacoes;
+        totalErros += resultado.erros;
+      } catch (err: any) {
+        totalErros++;
+        this.logger.error(`Falha ao sincronizar escritório ${escritorio.nome}: ${err.message}`);
+      }
+      // Pausa de 500ms entre escritórios para não sobrecarregar a API CNJ
+      await new Promise((r) => setTimeout(r, 500));
+    }
+
+    this.logger.log(`✅ CRON DJEN finalizado — ${totalNovas} novas intimações, ${totalErros} erros.`);
   }
 
   // ── Tribunais disponíveis ────────────────────────────────────────────────

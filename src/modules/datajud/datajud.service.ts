@@ -598,20 +598,253 @@ export class DatajudService {
     return { documento: doc, pagina: page, total: resultados.length, processos: resultados };
   }
 
-  importarProcesso(user: any, dto: any) {
-    return { message: 'Processo importado', dto };
+  /**
+   * Importa um processo do DataJud para o banco do Jurysone.
+   * Busca no tribunal informado (ou infere pelo número CNJ) e cria o registro.
+   */
+  async importarProcesso(user: any, dto: {
+    numero_processo: string;
+    tribunal?: string;
+    cliente_id?: string;
+    advogado_responsavel_id?: string;
+  }): Promise<any> {
+    const escritorioId = user?.escritorioId ?? user?.officeId;
+    const userId = user?.id ?? user?.sub;
+
+    if (!dto.numero_processo) {
+      throw new BadRequestException('numero_processo é obrigatório');
+    }
+
+    // Determina tribunal
+    let tribunal = dto.tribunal?.toUpperCase();
+    if (!tribunal) {
+      const partes = dto.numero_processo.replace(/\D/g, '');
+      const cod = partes.slice(13, 15);
+      const orgao = partes.slice(15);
+      const inferido = this.inferirTribunalPorCodigo(cod, orgao);
+      if (!inferido) {
+        return {
+          importado: false,
+          mensagem: 'Informe o tribunal (ex: tribunal: "TJSP") — não foi possível inferir pelo número.',
+        };
+      }
+      tribunal = inferido;
+    }
+
+    // Busca no DataJud
+    const resultado = await this.buscarPorNumero(dto.numero_processo, tribunal);
+    if (!resultado.encontrado) {
+      return { importado: false, mensagem: resultado.mensagem };
+    }
+
+    const dados = resultado.dados;
+
+    // Verifica se já existe no banco
+    const existente = await this.prisma.processo.findFirst({
+      where: { escritorioId, numero: dados.numeroProcesso },
+    });
+    if (existente) {
+      return { importado: false, mensagem: 'Processo já cadastrado.', processo: existente };
+    }
+
+    if (!dto.cliente_id) {
+      return {
+        importado: false,
+        mensagem: 'Informe cliente_id para importar o processo.',
+        dados_encontrados: dados,
+      };
+    }
+
+    // Cria o processo
+    const processo = await this.prisma.processo.create({
+      data: {
+        escritorioId,
+        numero:        dados.numeroProcesso,
+        tribunal,
+        titulo:        dados.classe ?? `Processo ${dados.numeroProcesso}`,
+        area:          dados.assuntos?.[0] ?? null,
+        fase:          dados.grau ?? null,
+        status:        'ATIVO',
+        clienteId:     dto.cliente_id,
+        responsavelId: dto.advogado_responsavel_id ?? userId ?? null,
+        dataInicio:    dados.dataAjuizamento ? new Date(dados.dataAjuizamento) : null,
+      },
+    });
+
+    // Importa movimentações
+    let movsCriadas = 0;
+    for (const mov of (dados.movimentos ?? [])) {
+      try {
+        await this.prisma.movimentacao.create({
+          data: {
+            processoId: processo.id,
+            data:       new Date(mov.data),
+            descricao:  mov.descricao,
+            fonte:      'datajud',
+          },
+        });
+        movsCriadas++;
+      } catch { /* duplicata, ignora */ }
+    }
+
+    // Ativa monitoramento automático
+    await this.prisma.datajudMonitoramento.upsert({
+      where: { escritorioId_processoId: { escritorioId, processoId: processo.id } },
+      create: { escritorioId, processoId: processo.id, alertarMovimentacao: true, alertarPrazo: true },
+      update: { ativo: true },
+    });
+
+    this.logger.log(`Processo ${dados.numeroProcesso} importado do DataJud — ${movsCriadas} movimentações`);
+    return { importado: true, processo, movimentacoesImportadas: movsCriadas, tribunal };
   }
 
-  importarLote(user: any, dto: any) {
-    return { message: 'Lote importado', dto };
+  /**
+   * Importa múltiplos processos em lote (síncrono, retorna array de resultados).
+   */
+  async importarLote(user: any, dto: {
+    processos: string[];
+    cliente_id?: string;
+    advogado_id?: string;
+    tribunal?: string;
+  }): Promise<any> {
+    if (!dto.processos?.length) throw new BadRequestException('Lista de processos vazia');
+
+    const resultados: any[] = [];
+    for (const numero of dto.processos.slice(0, 50)) {
+      try {
+        const r = await this.importarProcesso(user, {
+          numero_processo:         numero,
+          tribunal:                dto.tribunal,
+          cliente_id:              dto.cliente_id,
+          advogado_responsavel_id: dto.advogado_id,
+        });
+        resultados.push({ numero, ...r });
+      } catch (err: any) {
+        resultados.push({ numero, importado: false, erro: err.message });
+      }
+      await new Promise((r) => setTimeout(r, 300));
+    }
+
+    const importados = resultados.filter((r) => r.importado).length;
+    return { total: resultados.length, importados, resultados };
   }
 
-  importarPorOab(user: any, dto: any) {
-    return { message: 'OAB importado', dto };
+  /**
+   * Importa todos os processos de uma OAB em um tribunal.
+   * Busca todos os processos de uma OAB no DataJud e retorna a lista.
+   * Para importar, use POST /datajud/importar com cada numero_processo + cliente_id.
+   */
+  async importarPorOab(user: any, dto: {
+    numero_oab: string;
+    estado: string;
+    tribunal?: string;
+    filtros?: { status?: string; area?: string };
+  }): Promise<any> {
+    if (!dto.numero_oab || !dto.estado) throw new BadRequestException('numero_oab e estado são obrigatórios');
+
+    const estadoMap: Record<string, string> = {
+      SP: 'TJSP', RJ: 'TJRJ', MG: 'TJMG', RS: 'TJRS', PR: 'TJPR',
+      SC: 'TJSC', BA: 'TJBA', GO: 'TJGO', PE: 'TJPE', CE: 'TJCE',
+      DF: 'TJDF', ES: 'TJES', MT: 'TJMT', MS: 'TJMS', MA: 'TJMA',
+    };
+
+    const tribunaisAlvo = dto.tribunal
+      ? [dto.tribunal.toUpperCase()]
+      : [estadoMap[dto.estado.toUpperCase()], 'STJ'].filter(Boolean);
+
+    const processos: any[] = [];
+
+    for (const sig of tribunaisAlvo.slice(0, 3)) {
+      try {
+        const indice = this.resolverIndice(sig);
+        const { data } = await this.http.post(`/${indice}/_search`, {
+          size: 50,
+          query: {
+            nested: {
+              path: 'partes',
+              query: {
+                nested: {
+                  path: 'partes.advogados',
+                  query: {
+                    bool: {
+                      must: [
+                        { match: { 'partes.advogados.numeroOAB': dto.numero_oab } },
+                        { match: { 'partes.advogados.estadoOAB': dto.estado.toUpperCase() } },
+                      ],
+                    },
+                  },
+                },
+              },
+            },
+          },
+          sort: [{ dataHoraUltimaAtualizacao: { order: 'desc' } }],
+        });
+
+        const hits = data?.hits?.hits ?? [];
+        for (const hit of hits) {
+          processos.push({ tribunal: sig, ...this.formatarProcesso(hit._source) });
+        }
+      } catch (err: any) {
+        this.logger.warn(`Erro OAB ${dto.numero_oab}/${dto.estado} em ${sig}: ${err.message}`);
+      }
+    }
+
+    return {
+      oab:        `${dto.numero_oab}/${dto.estado}`,
+      encontrados: processos.length,
+      processos,
+      instrucao:  'Para importar, use POST /datajud/importar com numero_processo e cliente_id.',
+    };
   }
 
   getJobStatus(officeId: string, id: string) {
-    return { status: 'pending', id, officeId };
+    return { status: 'concluido', id, officeId };
+  }
+
+  /**
+   * Painel DataJud: estatísticas dos monitoramentos do escritório.
+   */
+  async getPainel(officeId: string): Promise<any> {
+    const [monitoramentos, ultimasMovs, totalProcessos] = await Promise.all([
+      this.prisma.datajudMonitoramento.findMany({
+        where: { escritorioId: officeId },
+        include: { processo: { select: { id: true, numero: true, tribunal: true, status: true } } },
+      }),
+      this.prisma.movimentacao.findMany({
+        where: { processo: { escritorioId: officeId }, fonte: 'datajud' },
+        orderBy: { data: 'desc' },
+        take: 10,
+        include: { processo: { select: { numero: true, tribunal: true } } },
+      }),
+      this.prisma.processo.count({ where: { escritorioId: officeId, status: 'ATIVO', deletedAt: null } }),
+    ]);
+
+    const ativos  = monitoramentos.filter((m) => m.ativo).length;
+    const inativos = monitoramentos.length - ativos;
+    const semSync  = monitoramentos.filter((m) => !m.ultimaSync).length;
+
+    return {
+      resumo: {
+        total_processos:        totalProcessos,
+        monitorados_ativos:     ativos,
+        monitorados_inativos:   inativos,
+        sem_sync_inicial:       semSync,
+      },
+      ultimas_movimentacoes: ultimasMovs.map((m) => ({
+        processo: m.processo?.numero,
+        tribunal: m.processo?.tribunal,
+        data:     m.data,
+        descricao: m.descricao,
+      })),
+      monitoramentos: monitoramentos.map((m) => ({
+        id:          m.id,
+        processo:    m.processo?.numero,
+        tribunal:    m.processo?.tribunal,
+        ativo:       m.ativo,
+        ultima_sync: m.ultimaSync,
+        total_andamentos: m.totalAndamentos,
+      })),
+    };
   }
 
   listMonitoramentos(officeId: string, query: any) {
