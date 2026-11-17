@@ -24,7 +24,6 @@ import { Prisma } from '@prisma/client';
  *   prazo.D-7 | prazo.D-1 | prazo.hoje
  *   tarefa.criada | tarefa.concluida | tarefa.atrasada
  *   cliente.criado
- *   datajud.nova_movimentacao
  *
  * Ações disponíveis (TipoAcao):
  *   tarefa.criar | notificacao.push | whatsapp.enviar_mensagem
@@ -57,35 +56,6 @@ interface ResultadoAcao {
 // ─── Templates de automações prontas ─────────────────────────────────────────
 
 const TEMPLATES_PRONTOS = [
-  {
-    id: 'tpl_notificar_movimentacao',
-    nome: 'Notificar cliente de nova movimentação',
-    descricao: 'Envia WhatsApp ao cliente quando houver novo andamento no processo',
-    icone: '📱',
-    categoria: 'Comunicação',
-    gatilho: {
-      tipo: 'datajud.nova_movimentacao',
-      condicoes: [],
-    },
-    acoes: [
-      {
-        tipo: 'whatsapp.enviar_mensagem',
-        ordem: 1,
-        config: {
-          template: 'Olá {{cliente_nome}}, há uma nova movimentação no seu processo {{numero_processo}}. Acesse o portal para detalhes.',
-        },
-      },
-      {
-        tipo: 'notificacao.push',
-        ordem: 2,
-        config: {
-          titulo: 'Nova movimentação',
-          mensagem: '{{cliente_nome}} — {{numero_processo}}',
-          prioridade: 'normal',
-        },
-      },
-    ],
-  },
   {
     id: 'tpl_prazo_urgente',
     nome: 'Alerta de prazo a 7 dias',
@@ -244,7 +214,6 @@ const GATILHOS_META = [
   { tipo: 'tarefa.concluida',             label: 'Tarefa concluída',            categoria: 'Tarefas',    campos: ['tarefa_id','titulo','responsavel_id'] },
   { tipo: 'tarefa.atrasada',              label: 'Tarefa atrasada',             categoria: 'Tarefas',    campos: ['tarefa_id','titulo','dias_atraso'] },
   { tipo: 'cliente.criado',               label: 'Novo cliente cadastrado',     categoria: 'Clientes',   campos: ['cliente_id','cliente_nome','email'] },
-  { tipo: 'datajud.nova_movimentacao',    label: 'Nova movimentação DataJud',   categoria: 'DataJud',    campos: ['processo_id','numero_processo','descricao','cliente_nome'] },
   { tipo: 'agendamento.diario',           label: 'Todo dia (recorrente)',       categoria: 'Agendamentos', campos: ['data'] },
   { tipo: 'agendamento.semanal',          label: 'Toda semana (recorrente)',    categoria: 'Agendamentos', campos: ['data','dia_semana'] },
   { tipo: 'agendamento.mensal',           label: 'Todo mês (recorrente)',       categoria: 'Agendamentos', campos: ['data','dia_mes'] },
@@ -519,7 +488,6 @@ export class AutomacoesService {
    * dispararEvento()
    * Chamado por qualquer módulo que gera um evento:
    *   - StatusFlowService: esign.assinado, financeiro.pagamento_recebido
-   *   - DatajudService: datajud.nova_movimentacao
    *   - PrazosService: prazo.D-7, prazo.hoje
    *   - TarefasService: tarefa.criada, tarefa.concluida
    *   - etc.

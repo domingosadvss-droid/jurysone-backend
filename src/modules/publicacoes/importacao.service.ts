@@ -5,13 +5,12 @@
  *       lista de decisão do advogado;
  *   110 cliente: procura nos cadastros; não achou, cria com o nome e marca "cadastro incompleto";
  *   111 mesmo nome sem CPF: vincula sozinho só se a cidade bater; senão pede confirmação;
- *   117 conciliador: informa só os números; as partes vêm do DataJud (quando o tribunal as
- *       publica) ou dos destinatários das comunicações do DJEN, e ficam impedidas por 1 ano.
+ *   117 conciliador: informa só os números; as partes vêm dos destinatários das comunicações
+ *       do DJEN (fonte única) e ficam impedidas por 1 ano.
  */
 import { BadRequestException, ForbiddenException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { PERFIS, perfisDo } from '../../common/perfis';
-import { DatajudService } from '../datajud/datajud.service';
 import { ConflitosService } from '../conflitos/conflitos.service';
 import { PublicacoesService } from './publicacoes.service';
 import { ComunicacaoDjen } from './djen-cliente';
@@ -29,7 +28,6 @@ export class ImportacaoService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly publicacoes: PublicacoesService,
-    private readonly datajud: DatajudService,
     private readonly conflitos: ConflitosService,
   ) {}
 
@@ -185,30 +183,17 @@ export class ImportacaoService {
       if (!dig) { resultado.push({ numero: bruto, erro: 'Número CNJ inválido' }); continue; }
       const numero = mascararCnj(dig);
       const partes = new Map<string, { nome: string; cpfCnpj?: string | null; fonte: string }>();
-      const tribunal = tribunalDoNumero(dig);
-      // 1) DataJud (alguns tribunais publicam as partes)
-      if (tribunal) {
-        try {
-          const r = await this.datajud.buscarPorNumero(dig, tribunal);
-          for (const p of (r?.dados?.partes ?? []) as any[]) {
-            const nome = String(p?.nome ?? '').trim();
-            if (nome) partes.set(nome, { nome, cpfCnpj: p?.documento ?? p?.cpfCnpj ?? null, fonte: 'DataJud' });
+      // Partes: destinatários das comunicações do processo no DJEN (fonte única)
+      try {
+        for (const c of await this.publicacoes.djen.porProcesso(dig)) {
+          for (const d of c.destinatarios) {
+            if (/minist[eé]rio\s+p[uú]blico|defensoria/i.test(d.nome)) continue;
+            if (!partes.has(d.nome)) partes.set(d.nome, { nome: d.nome, fonte: 'DJEN' });
           }
-        } catch (e: any) { this.logger.warn(`DataJud ${numero}: ${e?.message ?? e}`); }
-      }
-      // 2) DJEN: destinatários das comunicações do processo (intimação para a sessão)
+        }
+      } catch (e: any) { this.logger.warn(`DJEN ${numero}: ${e?.message ?? e}`); }
       if (!partes.size) {
-        try {
-          for (const c of await this.publicacoes.djen.porProcesso(dig)) {
-            for (const d of c.destinatarios) {
-              if (/minist[eé]rio\s+p[uú]blico|defensoria/i.test(d.nome)) continue;
-              if (!partes.has(d.nome)) partes.set(d.nome, { nome: d.nome, fonte: 'DJEN' });
-            }
-          }
-        } catch (e: any) { this.logger.warn(`DJEN ${numero}: ${e?.message ?? e}`); }
-      }
-      if (!partes.size) {
-        resultado.push({ numero, partes: [], aviso: 'Partes não encontradas no DataJud nem no DJEN: cadastre-as manualmente.' });
+        resultado.push({ numero, partes: [], aviso: 'Partes não encontradas no DJEN: cadastre-as manualmente.' });
         continue;
       }
       const r = await this.conflitos.registrarSessaoConciliacao(user.officeId, {

@@ -22,7 +22,6 @@ import { AuthModule } from './modules/auth/auth.module';
 import { AutomacoesModule } from './modules/automacoes/automacoes.module';
 import { ClientesModule } from './modules/clientes/clientes.module';
 import { CrmModule } from './modules/crm/crm.module';
-import { DatajudModule } from './modules/datajud/datajud.module';
 import { DocumentosModule } from './modules/documentos/documentos.module';
 import { EsignModule } from './modules/esign/esign.module';
 import { FinanceiroModule } from './modules/financeiro/financeiro.module';
@@ -83,7 +82,6 @@ import { CalculosModule } from './modules/calculos/calculos.module';
     AutomacoesModule,
     ClientesModule,
     CrmModule,
-    DatajudModule,
     DocumentosModule,
     EsignModule,
     FinanceiroModule,

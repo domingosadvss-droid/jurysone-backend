@@ -1,11 +1,11 @@
 import { Prisma } from '@prisma/client';
 /**
  * JURYSONE — IntimacoesService
- * Gerencia intimações capturadas dos Diários Oficiais + monitoramentos
+ * Gerencia intimações (fonte: DJEN) + monitoramentos antigos
  */
 import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
-import { DiarioOficialService } from './diario-oficial.service';
+import { PublicacoesService } from '../publicacoes/publicacoes.service';
 import { filtroPublicacoes } from '../publicacoes/visibilidade';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class IntimacoesService {
 
   constructor(
     private readonly prisma: PrismaService,
-    private readonly diario: DiarioOficialService,
+    private readonly publicacoes: PublicacoesService,
   ) {}
 
   // ── Includes padrão ─────────────────────────────────────────────────────
@@ -200,133 +200,43 @@ export class IntimacoesService {
     novasIntimacoes: number;
     erros: number;
   }> {
-    const monitoramentos = await this.prisma.diarioMonitoramento.findMany({
-      where: { escritorioId: officeId, ativo: true },
-    });
-
-    let novasIntimacoes = 0;
-    let erros = 0;
-
-    for (const mon of monitoramentos) {
-      try {
-        const resultado = await this.sincronizarMonitoramento(mon, officeId);
-        novasIntimacoes += resultado.novas;
-      } catch (err: any) {
-        erros++;
-        this.logger.error(`Erro ao sincronizar monitoramento ${mon.id}: ${err.message}`);
-        await this.prisma.diarioMonitoramento.update({
-          where: { id: mon.id },
-          data: { erroUltimaSync: err.message, ultimaExecucao: new Date() },
-        });
-      }
-    }
-
-    return { executados: monitoramentos.length, novasIntimacoes, erros };
+    // Fonte única: DJEN, pela OAB de cada advogado do escritório (mesma captura do cron 7h/12h/19h).
+    const r = await this.publicacoes.capturarEscritorio(officeId);
+    const capturas: any[] = r.capturas ?? [];
+    return {
+      executados: capturas.length,
+      novasIntimacoes: capturas.reduce((t, c) => t + (c.novas ?? 0), 0),
+      erros: capturas.filter((c) => c.erro).length,
+    };
   }
 
   /**
-   * Sincroniza um monitoramento específico
+   * Monitoramentos antigos (por OAB) agora são atendidos pela captura do DJEN.
+   * Outros tipos (nome, CPF/CNPJ, palavra-chave) não existem no DJEN por OAB e ficam sem efeito.
    */
   async sincronizarMonitoramento(
     mon: any,
     officeId: string,
-  ): Promise<{ novas: number }> {
-    const tribunais: string[] = mon.tribunais ?? [];
-
-    // Monta os termos de busca baseado no tipo de monitoramento
-    const termos: string[] = [];
-    if (mon.tipo === 'OAB' && mon.oabNumero && mon.oabEstado) {
-      termos.push(`${mon.oabNumero}/${mon.oabEstado}`);
+  ): Promise<{ novas: number; aviso?: string }> {
+    if (mon.tipo !== 'OAB') {
+      const aviso = 'Monitoramento por nome, CPF/CNPJ ou palavra-chave não é usado: as publicações vêm do DJEN pela OAB de cada advogado.';
+      await this.prisma.diarioMonitoramento.update({ where: { id: mon.id }, data: { ultimaExecucao: new Date(), erroUltimaSync: aviso } });
+      return { novas: 0, aviso };
     }
-    if (mon.tipo === 'NOME' && mon.nomeAdvogado) {
-      termos.push(mon.nomeAdvogado);
-    }
-    if (mon.tipo === 'CPF_CNPJ' && mon.cpfCnpj) {
-      termos.push(mon.cpfCnpj);
-    }
-    if (mon.tipo === 'PALAVRA_CHAVE') {
-      termos.push(mon.termoBusca);
-    }
-    if (mon.tipo === 'NUMERO_PROCESSO') {
-      termos.push(mon.termoBusca);
-    }
-
-    if (termos.length === 0) return { novas: 0 };
-
-    const resultados = await this.diario.buscarEmTodos({
-      tribunais,
-      termosBusca: termos,
-      dataInicio: mon.ultimaExecucao ?? undefined,
-    });
-
-    let novas = 0;
-    for (const r of resultados) {
-      // Evita duplicatas: verifica se já existe intimação com a mesma edição + tribunal
-      const existe = await this.prisma.intimacao.findFirst({
-        where: {
-          escritorioId: officeId,
-          tribunal: r.tribunal,
-          edicao:   r.edicao,
-          titulo:   r.titulo,
-        },
-      });
-      if (existe) continue;
-
-      // Cria a intimação
-      await this.prisma.intimacao.create({
-        data: {
-          escritorioId: officeId,
-          monitoramentoId:   mon.id,
-          fonte:             'DJE',
-          tribunal:          r.tribunal,
-          dataPublicacao:    new Date(r.dataPublicacao),
-          edicao:            r.edicao,
-          titulo:            r.titulo,
-          conteudo:          r.conteudo,
-          caderno:           r.caderno,
-          paginaDiario:      r.pagina,
-          urlOrigem:         r.urlOrigem,
-          nomesEncontrados:  r.nomesEncontrados,
-          numeroProcesso:    r.numeroProcesso,
-          prazoIdentificado: r.prazoIdentificado,
-          prazoFatal: r.prazoIdentificado
-            ? new Date(Date.now() + r.prazoIdentificado * 24 * 60 * 60 * 1000)
-            : null,
-        },
-      });
-      novas++;
-    }
-
-    // Atualiza estatísticas do monitoramento
+    const r = await this.sincronizar(officeId);
     await this.prisma.diarioMonitoramento.update({
       where: { id: mon.id },
-      data: {
-        ultimaExecucao: new Date(),
-        totalCapturado: { increment: novas },
-        erroUltimaSync: null,
-      },
+      data: { ultimaExecucao: new Date(), totalCapturado: { increment: r.novasIntimacoes }, erroUltimaSync: r.erros ? 'Falha em parte da captura do DJEN' : null },
     });
-
-    // Registra log de execução
-    await this.prisma.diarioExecucaoLog.create({
-      data: {
-        escritorioId: officeId,
-        tribunal:        tribunais.join(','),
-        dataEdicao:      new Date(),
-        status:          'sucesso',
-        totalEncontrado: novas,
-        monitoramentoId: mon.id,
-      },
-    });
-
-    this.logger.log(`Monitoramento ${mon.nome}: ${novas} novas intimações capturadas`);
-    return { novas };
+    this.logger.log(`Monitoramento ${mon.nome}: ${r.novasIntimacoes} novas publicações (DJEN)`);
+    return { novas: r.novasIntimacoes };
   }
 
   // ── Tribunais disponíveis ────────────────────────────────────────────────
 
   getTribunais() {
-    return this.diario.getTribunaisSuportados();
+    // O DJEN (Diário de Justiça Eletrônico Nacional) reúne as comunicações de todos os tribunais.
+    return [{ sigla: 'DJEN', nome: 'Diário de Justiça Eletrônico Nacional (todos os tribunais)', fonte: 'comunicaapi.pje.jus.br' }];
   }
 
   // ── Estatísticas ──────────────────────────────────────────────────────────

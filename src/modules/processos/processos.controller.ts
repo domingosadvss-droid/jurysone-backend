@@ -147,7 +147,7 @@ export class ProcessosController {
 
   /**
    * POST /api/v1/processos/:id/sync-tribunal
-   * Sincroniza andamentos com o tribunal (scraping DataJud/CNJ)
+   * Sincroniza andamentos pelo DJEN (comunicações publicadas do processo)
    */
   @Post(':id/sync-tribunal')
   @HttpCode(200)

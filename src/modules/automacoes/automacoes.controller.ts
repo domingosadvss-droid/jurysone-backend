@@ -34,8 +34,7 @@ export type TipoGatilho =
   | 'cliente.criado' | 'cliente.inativo_30d'
   | 'esign.assinado' | 'esign.expirado'
   | 'portal.mensagem_nova' | 'portal.avaliacao_recebida'
-  | 'agendamento.diario' | 'agendamento.semanal' | 'agendamento.mensal'
-  | 'datajud.nova_movimentacao' | 'datajud.intimacao';
+  | 'agendamento.diario' | 'agendamento.semanal' | 'agendamento.mensal';
 
 // ─── Tipos de Ação ───────────────────────────────────────────
 export type TipoAcao =

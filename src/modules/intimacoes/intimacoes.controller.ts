@@ -113,7 +113,7 @@ export class IntimacoesController {
    */
   @Post('sync')
   @HttpCode(200)
-  @ApiOperation({ summary: 'Sincroniza intimações com os Diários da Justiça (DataJud/CNJ)' })
+  @ApiOperation({ summary: 'Sincroniza intimações pelo DJEN (OAB de cada advogado)' })
   sync(@CurrentUser() user: any) {
     return this.svc.sincronizar(user.officeId);
   }

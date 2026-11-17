@@ -147,4 +147,88 @@ export class DjenCliente {
     const r = await this.consultar({ numeroProcesso: String(numeroProcesso).replace(/\D/g, '') });
     return r.itens;
   }
+
+  /**
+   * Busca livre no DJEN (fonte única de consulta processual do JurysOne).
+   * Filtros aceitos pela API: número do processo, OAB (+UF), nome da parte, nome do advogado e tribunal.
+   * Sem número de processo, o período é obrigatório e é varrido em janelas de 31 dias
+   * (limitado a MAX_DIAS_BUSCA para não sobrecarregar a API).
+   */
+  async buscar(f: BuscaDjen): Promise<{ itens: ComunicacaoDjen[]; completo: boolean; inicio?: string; fim?: string }> {
+    const numero = String(f.numeroProcesso ?? '').replace(/\D/g, '');
+    if (numero) return { itens: await this.porProcesso(numero), completo: true };
+    const base: Record<string, string> = {};
+    if (f.siglaTribunal) base.siglaTribunal = String(f.siglaTribunal).toUpperCase();
+    if (f.nomeParte) base.nomeParte = String(f.nomeParte).trim();
+    if (f.nomeAdvogado) base.nomeAdvogado = String(f.nomeAdvogado).trim();
+    const oab = String(f.numeroOab ?? '').replace(/\D/g, '');
+    if (oab && !f.ufOab) throw new ErroDjen('Informe a UF da OAB.');
+    if (!oab && !base.nomeParte && !base.nomeAdvogado) {
+      throw new ErroDjen('Informe o número do processo, a OAB (com UF), o nome da parte ou o nome do advogado.');
+    }
+    const fim = f.fim ?? new Date().toISOString().slice(0, 10);
+    let inicio = f.inicio ?? somarDias(fim, -90);
+    if (somarDias(inicio, MAX_DIAS_BUSCA) < fim) inicio = somarDias(fim, -MAX_DIAS_BUSCA);
+    if (oab) {
+      const r = await this.porOab(oab, String(f.ufOab), inicio, fim);
+      const itens = base.siglaTribunal ? r.itens.filter((i) => i.tribunal === base.siglaTribunal) : r.itens;
+      return { itens, completo: r.completo, inicio, fim };
+    }
+    const todos = new Map<string, ComunicacaoDjen>();
+    let completo = true;
+    for (let ini = inicio; ini <= fim; ini = somarDias(ini, 31)) {
+      const fimJanela = somarDias(ini, 30) < fim ? somarDias(ini, 30) : fim;
+      const r = await this.consultar({ ...base, dataDisponibilizacaoInicio: ini, dataDisponibilizacaoFim: fimJanela });
+      completo = completo && r.completo;
+      for (const i of r.itens) if (!todos.has(i.id) || i.motivoCancelamento) todos.set(i.id, i);
+    }
+    return { itens: [...todos.values()], completo, inicio, fim };
+  }
+}
+
+/** Período máximo de uma busca livre (sem número de processo) */
+export const MAX_DIAS_BUSCA = 365;
+
+export interface BuscaDjen {
+  numeroProcesso?: string;
+  numeroOab?: string;
+  ufOab?: string;
+  nomeParte?: string;
+  nomeAdvogado?: string;
+  siglaTribunal?: string;
+  inicio?: string; // AAAA-MM-DD
+  fim?: string;    // AAAA-MM-DD
+}
+
+/** Agrupa comunicações por processo, do mais recente para o mais antigo (formato da tela de consulta) */
+export function agruparPorProcesso(itens: ComunicacaoDjen[]) {
+  const grupos = new Map<string, ComunicacaoDjen[]>();
+  for (const c of itens) {
+    const l = grupos.get(c.numeroProcesso) ?? [];
+    l.push(c);
+    grupos.set(c.numeroProcesso, l);
+  }
+  return [...grupos.entries()].map(([numero, lista]) => {
+    lista.sort((a, b) => (a.dataDisponibilizacao < b.dataDisponibilizacao ? 1 : -1));
+    const ultima = lista[0];
+    const partes = new Map<string, { nome: string; polo: string | null }>();
+    const advogados = new Map<string, { nome: string; oab: string; uf: string }>();
+    for (const c of lista) {
+      for (const d of c.destinatarios) if (!partes.has(d.nome)) partes.set(d.nome, d);
+      for (const a of c.advogados) advogados.set(`${a.oab}/${a.uf}`, a);
+    }
+    return {
+      numeroProcesso: ultima.numeroComMascara ?? numero,
+      tribunal: ultima.tribunal,
+      classe: ultima.classe,
+      orgao: ultima.orgao,
+      ultimaPublicacao: ultima.dataDisponibilizacao,
+      partes: [...partes.values()],
+      advogados: [...advogados.values()],
+      comunicacoes: lista.map((c) => ({
+        id: c.id, data: c.dataDisponibilizacao, tipo: c.tipoComunicacao, documento: c.tipoDocumento,
+        cancelada: !!c.motivoCancelamento, resumo: c.texto.replace(/\s+/g, ' ').slice(0, 400), link: c.link,
+      })),
+    };
+  }).sort((a, b) => (a.ultimaPublicacao < b.ultimaPublicacao ? 1 : -1));
 }

@@ -12,6 +12,7 @@ import { ImportacaoService } from './importacao.service';
 import { AgendaPrazosService } from './agenda-prazos.service';
 import { AvisosService } from './avisos.service';
 import { DativaService } from '../dativa/dativa.service';
+import { ErroDjen, agruparPorProcesso } from './djen-cliente';
 
 @ApiTags('📰 Publicações (DJEN)')
 @UseGuards(JwtAuthGuard)
@@ -37,6 +38,25 @@ export class PublicacoesController {
   @ApiOperation({ summary: 'Situação da captura do DJEN por OAB' })
   saude(@CurrentUser() user: any) {
     return this.svc.saude(user.officeId);
+  }
+
+  @Get('djen/consulta')
+  @Perfis(...PERFIS_INTERNOS)
+  @ApiOperation({ summary: 'Consulta processual no DJEN (fonte única): processo, numeroOab+ufOab, nomeParte, nomeAdvogado, siglaTribunal, inicio, fim' })
+  async consultaDjen(@Query() q: any) {
+    const data = (v: any) => (/^\d{4}-\d{2}-\d{2}$/.test(String(v ?? '')) ? String(v) : undefined);
+    try {
+      const r = await this.svc.djen.buscar({
+        numeroProcesso: q.processo ?? q.numeroProcesso, numeroOab: q.numeroOab ?? q.oab, ufOab: q.ufOab ?? q.uf,
+        nomeParte: q.nomeParte, nomeAdvogado: q.nomeAdvogado, siglaTribunal: q.siglaTribunal ?? q.tribunal,
+        inicio: data(q.inicio), fim: data(q.fim),
+      });
+      const processos = agruparPorProcesso(r.itens);
+      return { fonte: 'DJEN', periodo: r.inicio ? { inicio: r.inicio, fim: r.fim } : null, completo: r.completo, total: processos.length, processos };
+    } catch (e: any) {
+      if (e instanceof ErroDjen) throw new BadRequestException(e.message);
+      throw e;
+    }
   }
 
   @Get('coincidencias')
@@ -259,7 +279,7 @@ export class ConciliacoesController {
   @Post('conciliacoes/por-numero')
   @HttpCode(200)
   @Perfis(...PERFIS_INTERNOS)
-  @ApiOperation({ summary: 'Conciliador informa só os números; partes buscadas no DataJud/DJEN e impedidas por 1 ano' })
+  @ApiOperation({ summary: 'Conciliador informa só os números; partes buscadas no DJEN e impedidas por 1 ano' })
   porNumero(@Body() body: any, @CurrentUser() user: any) {
     return this.importacao.conciliacoesPorNumero(user, body);
   }

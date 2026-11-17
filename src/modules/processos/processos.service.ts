@@ -2,7 +2,7 @@ import { Prisma } from '@prisma/client';
 import { ehParceiro } from '../../common/perfis';
 import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
-import { DatajudService } from '../datajud/datajud.service';
+import { DjenCliente, ErroDjen } from '../publicacoes/djen-cliente';
 
 interface FindAllFilters {
   escritorioId: string;
@@ -23,9 +23,10 @@ interface PaginatedResponse<T> {
 
 @Injectable()
 export class ProcessosService {
+  private readonly djen = new DjenCliente();
+
   constructor(
     private prisma: PrismaService,
-    private datajud: DatajudService,
   ) {}
 
   async findAll(query: any, officeId: string, user?: any): Promise<PaginatedResponse<any>> {
@@ -208,7 +209,35 @@ export class ProcessosService {
     });
     if (!processo) throw new NotFoundException('Processo não encontrado');
 
-    return this.datajud.sincronizarProcesso(id);
+    // Fonte única: DJEN. Cada comunicação vira um andamento (fonte DJEN), sem duplicar.
+    const numero = String(processo.numero ?? '').replace(/\D/g, '');
+    if (numero.length !== 20) throw new BadRequestException('Número do processo inválido para consulta no DJEN (precisa do número CNJ completo).');
+    let comunicacoes;
+    try {
+      comunicacoes = await this.djen.porProcesso(numero);
+    } catch (e: any) {
+      throw new BadRequestException(e instanceof ErroDjen ? e.message : `Falha ao consultar o DJEN: ${e?.message ?? e}`);
+    }
+    const jaGravados = new Set(
+      (await this.prisma.movimentacao.findMany({ where: { processoId: id, fonte: 'DJEN' }, select: { descricao: true } }))
+        .map((m) => (m.descricao.match(/^\[DJEN (\d+)\]/) ?? [])[1]).filter(Boolean),
+    );
+    let novas = 0;
+    for (const c of comunicacoes) {
+      if (jaGravados.has(c.id)) continue;
+      const tipo = [c.tipoComunicacao, c.tipoDocumento].filter(Boolean).join(' — ') || 'Comunicação';
+      const cancelada = c.motivoCancelamento ? ` (CANCELADA: ${c.motivoCancelamento})` : '';
+      await this.prisma.movimentacao.create({
+        data: {
+          processoId: id,
+          data: new Date(`${c.dataDisponibilizacao}T12:00:00-03:00`),
+          descricao: `[DJEN ${c.id}] ${tipo}${cancelada}: ${c.texto.replace(/\s+/g, ' ').slice(0, 1500)}${c.link ? `\nLink: ${c.link}` : ''}`,
+          fonte: 'DJEN',
+        },
+      });
+      novas++;
+    }
+    return { fonte: 'DJEN', encontradas: comunicacoes.length, novas };
   }
 
   // ── Documentos, tarefas, partes ─────────────────────────────────────────────
@@ -231,7 +260,7 @@ export class ProcessosService {
     return { data, total: data.length };
   }
 
-  // Partes são armazenadas nos dados brutos do DataJud / campo camposCustom
+  // Partes são armazenadas em camposCustom (vindas do DJEN na importação)
   async getPartes(id: string, officeId: string) {
     await this.assertProcesso(id, officeId);
     const p = await this.prisma.processo.findUnique({ where: { id }, select: { camposCustom: true } });
