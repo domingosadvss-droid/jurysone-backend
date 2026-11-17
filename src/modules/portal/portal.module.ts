@@ -4,7 +4,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PortalController } from './portal.controller';
 import { PortalService } from './portal.service';
 import { PortalAuthGuard } from './guards/portal-auth.guard';
-import { PrismaService } from '../../database/prisma.service';
 
 @Module({
   imports: [
@@ -19,7 +18,7 @@ import { PrismaService } from '../../database/prisma.service';
     }),
   ],
   controllers: [PortalController],
-  providers: [PortalService, PrismaService, PortalAuthGuard],
+  providers: [PortalService, PortalAuthGuard],
   exports: [PortalService],
 })
 export class PortalModule {}

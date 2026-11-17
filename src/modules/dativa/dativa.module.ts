@@ -1,5 +1,4 @@
 import { Module, forwardRef } from '@nestjs/common';
-import { PrismaService } from '../../database/prisma.service';
 import { ConflitosModule } from '../conflitos/conflitos.module';
 import { LinhaProducaoModule } from '../linha-producao/linha-producao.module';
 import { ArquivosModule } from '../arquivos/arquivos.module';
@@ -11,7 +10,7 @@ import { DativaService } from './dativa.service';
 @Module({
   imports: [ConflitosModule, LinhaProducaoModule, ArquivosModule, ChavesModule, forwardRef(() => PublicacoesModule)],
   controllers: [DativaController, DativaEmailController],
-  providers: [DativaService, PrismaService],
+  providers: [DativaService],
   exports: [DativaService],
 })
 export class DativaModule {}

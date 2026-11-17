@@ -1,5 +1,4 @@
 import { Module, forwardRef } from '@nestjs/common';
-import { PrismaService } from '../../database/prisma.service';
 import { WhatsappModule } from '../whatsapp/whatsapp.module';
 import { ChavesModule } from '../chaves/chaves.module';
 import { ConflitosModule } from '../conflitos/conflitos.module';
@@ -21,7 +20,7 @@ import { CapturaDjenCron } from './captura.cron';
     PublicacoesController, PrazosDjenController, CalendarioController, AgendaGoogleController,
     AgendaGoogleCallbackController, MensagensClienteController, ConciliacoesController,
   ],
-  providers: [PrismaService, AgendaPrazosService, AvisosService, PublicacoesService, ImportacaoService, CapturaDjenCron],
+  providers: [AgendaPrazosService, AvisosService, PublicacoesService, ImportacaoService, CapturaDjenCron],
   exports: [AgendaPrazosService, AvisosService, PublicacoesService],
 })
 export class PublicacoesModule {}

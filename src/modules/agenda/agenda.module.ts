@@ -13,7 +13,6 @@ import { AgendaController } from './agenda.controller';
 import { AgendaService } from './agenda.service';
 import { AgendaNotificacoesCronService } from './agenda-notificacoes-cron.service';
 import { GoogleCalendarService } from './google-calendar.service';
-import { PrismaService } from '../../database/prisma.service';
 
 @Module({
   imports: [
@@ -25,7 +24,6 @@ import { PrismaService } from '../../database/prisma.service';
     AgendaService,
     AgendaNotificacoesCronService, // B-009: cron de notificações
     GoogleCalendarService,         // Integração Google Calendar OAuth2
-    PrismaService,
   ],
   exports: [AgendaService, GoogleCalendarService],
 })

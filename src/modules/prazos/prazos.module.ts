@@ -3,7 +3,6 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { PrazosController } from './prazos.controller';
 import { PrazosService } from './prazos.service';
 import { PrazosAlertasCronService } from './prazos-alertas-cron.service';
-import { PrismaService } from '../../database/prisma.service';
 import { NotificationsModule } from '../notifications/notifications.module';
 
 @Module({
@@ -12,7 +11,7 @@ import { NotificationsModule } from '../notifications/notifications.module';
     NotificationsModule,
   ],
   controllers: [PrazosController],
-  providers: [PrazosService, PrazosAlertasCronService, PrismaService],
+  providers: [PrazosService, PrazosAlertasCronService],
   exports: [PrazosService],
 })
 export class PrazosModule {}

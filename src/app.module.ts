@@ -9,6 +9,7 @@ import { ClientIpThrottlerGuard } from './common/guards/client-ip-throttler.guar
  */
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { PrismaModule } from './database/prisma.module';
 import { AppController } from './app.controller';
 
 // ── Módulos estruturados ───────────────────────────────────────────────────
@@ -66,6 +67,7 @@ import { CalculosModule } from './modules/calculos/calculos.module';
     ThrottlerModule.forRoot([{ name: 'default', ttl: 60_000, limit: 300 }]),
 
     // ── Infraestrutura / Auth ─────────────────────────────────────────────
+    PrismaModule, // global: uma só conexão/pool do Prisma para todo o app
     AuthModule,
     NotificationsModule,
     SseModule,
