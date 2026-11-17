@@ -7,7 +7,7 @@
 
 import axios from 'axios';
 
-const API_KEY  = process.env.DATAJUD_API_KEY  ?? 'cDZHYzlZa0JadVREZDJCendFbXNBR3A1';
+const API_KEY  = process.env.DATAJUD_API_KEY  ?? 'cDZHYzlZa0JadVREZDJCendQbXY6SkJlTzNjLV9TRENyQk1RdnFKZGRQdw==';
 const BASE_URL = process.env.DATAJUD_BASE_URL ?? 'https://api-publica.datajud.cnj.jus.br';
 
 const http = axios.create({

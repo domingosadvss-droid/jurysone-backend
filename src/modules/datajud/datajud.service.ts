@@ -153,7 +153,8 @@ export class DatajudService {
     private readonly automacoes: AutomacoesService,
   ) {
     this.baseUrl = this.config.get<string>('DATAJUD_BASE_URL', 'https://api-publica.datajud.cnj.jus.br');
-    const apiKey  = this.config.get<string>('DATAJUD_API_KEY', 'cDZHYzlZa0JadVREZDJCendFbXNBR3A1');
+    // Chave pública do CNJ (muda sem aviso). Vigente em 17/11/2026; conferir em https://datajud-wiki.cnj.jus.br/api-publica/acesso
+    const apiKey  = this.config.get<string>('DATAJUD_API_KEY', 'cDZHYzlZa0JadVREZDJCendQbXY6SkJlTzNjLV9TRENyQk1RdnFKZGRQdw==');
 
     this.http = axios.create({
       baseURL: this.baseUrl,
