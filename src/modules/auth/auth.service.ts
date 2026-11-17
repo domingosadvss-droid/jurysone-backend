@@ -1,4 +1,4 @@
-import { Injectable, BadRequestException, UnauthorizedException } from '@nestjs/common';
+import { Injectable, BadRequestException, UnauthorizedException, ForbiddenException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '../../database/prisma.service';
 import * as argon2 from 'argon2';
@@ -64,6 +64,12 @@ export class AuthService {
   }
 
   async register(dto: RegisterDto): Promise<TokenResponse & { user: any }> {
+    // Cadastro público de escritórios: fechado por padrão em produção.
+    // Para reabrir (venda como SaaS), defina CADASTRO_ABERTO=true no .env.
+    if (process.env.NODE_ENV === 'production' && process.env.CADASTRO_ABERTO !== 'true') {
+      throw new ForbiddenException('Cadastro fechado. Peça um convite ao administrador do escritório.');
+    }
+
     // Check if user already exists
     const existingUser = await this.prisma.usuario.findUnique({
       where: { email: dto.email },
