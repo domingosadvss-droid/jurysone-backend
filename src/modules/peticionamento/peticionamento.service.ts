@@ -94,32 +94,6 @@ export class PeticionamentoService {
     return rows[0] ?? null;
   }
 
-  private async updateProtocolo(id: string, fields: Record<string, any>): Promise<void> {
-    const sets  = Object.entries(fields)
-      .map(([k]) => `"${k}" = $${k}`)
-      .join(', ');
-    // Usa executeRawUnsafe para montar update dinâmico com segurança (sem interpolação de user data)
-    const keys   = Object.keys(fields);
-    const values = Object.values(fields);
-
-    // Constrói a query parametrizada via tagged template não é possível dinamicamente,
-    // por isso usamos uma abordagem com Prisma.sql
-    let query = Prisma.sql`UPDATE "protocolos" SET "updatedAt" = NOW()`;
-    for (let i = 0; i < keys.length; i++) {
-      query = Prisma.sql`${query}, ${Prisma.raw(`"${keys[i]}"`)}) = ${values[i]}`;
-    }
-
-    // Forma segura via prisma.$executeRaw com Prisma.sql
-    const setClauses = keys.map((k, i) => Prisma.sql`${Prisma.raw(`"${k}"`)} = ${values[i]}`);
-    const setClause  = Prisma.join(setClauses, ', ');
-
-    await this.prisma.$executeRaw`
-      UPDATE "protocolos"
-      SET ${setClause}, "updatedAt" = NOW()
-      WHERE id = ${id}
-    `;
-  }
-
   // ── API pública ──────────────────────────────────────────────────────────────
 
   async findAll(escritorioId: string, query: any) {

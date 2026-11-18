@@ -4,7 +4,7 @@
 import * as z from 'zod/v4';
 import {
   Contexto, INDICES_CORRECAO, Linha, Resultado, bloco, dataBr, diasEntre, fatorCorrecao, finalizar, hojeIso, jurosPeriodo,
-  moeda, nomeIndice, pct, r2, r6, somarAnosIso, somarDiasIso, somarMesesIso,
+  nomeIndice, pct, r2, r6, somarAnosIso, somarDiasIso, somarMesesIso,
 } from '../nucleo';
 
 const Data = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);

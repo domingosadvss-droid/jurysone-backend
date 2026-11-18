@@ -34,9 +34,7 @@ export class PrazosAlertasCronService {
 
     const d1 = this.addDias(agora, 1);
     const d2 = this.addDias(agora, 2);
-    const d3 = this.addDias(agora, 3);
     const d4 = this.addDias(agora, 4);
-    const d7 = this.addDias(agora, 7);
     const d8 = this.addDias(agora, 8);
 
     const include = {

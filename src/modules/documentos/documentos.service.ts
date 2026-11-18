@@ -366,7 +366,6 @@ export class DocumentosService {
       throw new BadRequestException('Você não tem permissão para fazer upload neste escritório');
     }
 
-    const ext = file.originalname.split('.').pop() ?? '';
     const nomeArquivo = `${Date.now()}-${file.originalname.replace(/\s+/g, '_')}`;
     const pasta = [
       dto.escritorioId,

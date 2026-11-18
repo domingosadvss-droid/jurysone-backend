@@ -5,7 +5,7 @@
  *   Clientes / {cliente} / {processo} / 01 Contratação, 02 Documentos do cliente, ...
  * O parceiro acessa os arquivos pelo JurysOne, nunca pela pasta do Drive.
  */
-import { BadRequestException, ForbiddenException, Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { createHash, createHmac, timingSafeEqual } from 'crypto';
 import * as os from 'os';
 import * as path from 'path';
@@ -40,7 +40,6 @@ interface ConfigArmazenamento { provedor?: 'GOOGLE_DRIVE' | 'LOCAL'; refreshToke
 
 @Injectable()
 export class ArquivosService {
-  private readonly logger = new Logger(ArquivosService.name);
 
   constructor(private readonly prisma: PrismaService) {}
 

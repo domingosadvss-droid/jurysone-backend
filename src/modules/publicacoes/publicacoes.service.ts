@@ -30,7 +30,7 @@ import { diaLocal } from './agenda-prazos.service';
 import { contarPrazo, somarDias } from './calendario';
 import {
   MARCOS, comarcaDoOrgao, detectarMarcos, ehNomeacaoDativa, ehPenal, extrairAudiencia, extrairPrazo,
-  iniciais, iniciaisDeTexto, iniciaisVariantes, mascararCnj, mencionaReuPreso, numeroCnj, textoPlano,
+  iniciaisDeTexto, iniciaisVariantes, mascararCnj, mencionaReuPreso, numeroCnj, textoPlano,
 } from './analise';
 
 export interface UsuarioOab { id: string; nome: string; parceiro: boolean; admin: boolean }

@@ -3,7 +3,7 @@
  */
 import * as z from 'zod/v4';
 import {
-  Contexto, INDICES_CORRECAO, Linha, RefLinha, Resultado, bloco, compBr, compsEntre, competencia, dataBr, fatorCorrecao,
+  Contexto, INDICES_CORRECAO, Linha, RefLinha, Resultado, bloco, compsEntre, competencia, dataBr, fatorCorrecao,
   finalizar, hojeIso, jurosPeriodo, mesesDoPeriodo, moeda, nomeIndice, pct, r2, r6, somaSerie, somarAnosIso,
   somarMesesComp, diasEntre,
 } from '../nucleo';

@@ -19,7 +19,7 @@ import {
   Controller, Get, Post, Patch, Delete,
   Body, Param, Query, UseGuards, Request,
   HttpCode, HttpStatus, Res, Headers, RawBodyRequest,
-  BadRequestException, Logger,
+  Logger,
 } from '@nestjs/common';
 import { Response } from 'express';
 import * as crypto from 'crypto';

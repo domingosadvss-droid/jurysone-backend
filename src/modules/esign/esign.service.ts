@@ -1147,20 +1147,6 @@ export class EsignService {
     ];
   }
 
-  /** Delega a geração de PDF para o método correto conforme o tipo */
-  private async gerarDocumentoPdf(
-    tipo: string,
-    dados: Parameters<typeof this.gerarContratoBase64>[1],
-  ): Promise<string> {
-    switch (tipo) {
-      case 'contrato_honorarios':         return this.gerarContratoBase64('Contrato de Honorarios', dados);
-      case 'procuracao':                  return this.gerarProcuracaoBase64(dados);
-      case 'declaracao_hipossuficiencia': return this.gerarDeclaracaoBase64(dados);
-      case 'renuncia':                    return this.gerarRenunciaBase64(dados);
-      default:                            return this.gerarContratoBase64('Documento Juridico', dados);
-    }
-  }
-
   /** Procuracao Ad Judicia et Extra — completa */
   private async gerarProcuracaoBase64(dados: {
     clienteNome: string; clienteCpf?: string; clienteRG?: string; clienteRGOrgao?: string;
@@ -1174,7 +1160,6 @@ export class EsignService {
     const regular = await pdfDoc.embedFont(StandardFonts.Helvetica);
     const bold    = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
     const M = 50; const W = 595 - M * 2; const LINE = 14;
-    const AZUL = rgb(0.06, 0.18, 0.37); const CINZA = rgb(0.33, 0.33, 0.33);
     let page: any = pdfDoc.addPage([595, 842]); let y = 790;
     const logoPath = path.join(process.cwd(), 'public', 'logo-domingos.png');
     const logoImg  = fs.existsSync(logoPath) ? await pdfDoc.embedPng(fs.readFileSync(logoPath)) : null;
@@ -1277,7 +1262,6 @@ export class EsignService {
     const regular = await pdfDoc.embedFont(StandardFonts.Helvetica);
     const bold    = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
     const M = 50; const W = 595 - M * 2; const LINE = 14;
-    const AZUL = rgb(0.06, 0.18, 0.37); const CINZA = rgb(0.33, 0.33, 0.33);
     let page: any = pdfDoc.addPage([595, 842]); let y = 790;
     const logoPath = path.join(process.cwd(), 'public', 'logo-domingos.png');
     const logoImg  = fs.existsSync(logoPath) ? await pdfDoc.embedPng(fs.readFileSync(logoPath)) : null;
@@ -1375,7 +1359,6 @@ export class EsignService {
     const regular = await pdfDoc.embedFont(StandardFonts.Helvetica);
     const bold    = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
     const M = 50; const W = 595 - M * 2; const LINE = 14;
-    const AZUL = rgb(0.06, 0.18, 0.37); const CINZA = rgb(0.33, 0.33, 0.33);
     let page: any = pdfDoc.addPage([595, 842]); let y = 790;
     const logoPath = path.join(process.cwd(), 'public', 'logo-domingos.png');
     const logoImg  = fs.existsSync(logoPath) ? await pdfDoc.embedPng(fs.readFileSync(logoPath)) : null;
@@ -1489,7 +1472,6 @@ export class EsignService {
     const regular = await pdfDoc.embedFont(StandardFonts.Helvetica);
     const bold    = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
     const M = 50; const W = 595 - M * 2; const LINE = 14;
-    const AZUL = rgb(0.06, 0.18, 0.37); const CINZA = rgb(0.33, 0.33, 0.33);
     let page: any = pdfDoc.addPage([595, 842]); let y = 790;
     const logoPath = path.join(process.cwd(), 'public', 'logo-domingos.png');
     const logoImg  = fs.existsSync(logoPath) ? await pdfDoc.embedPng(fs.readFileSync(logoPath)) : null;

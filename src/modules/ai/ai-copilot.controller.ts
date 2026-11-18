@@ -4,13 +4,12 @@
 
 import {
   Controller, Get, Post, Body, Param,
-  UseGuards, Request, Query, Sse, MessageEvent,
+  UseGuards, Request, Query,
   HttpException, HttpStatus, Logger,
 } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { AiCopilotService } from './ai-copilot.service';
-import { Observable, from } from 'rxjs';
 
 @ApiTags('AI Copilot 2.0')
 @UseGuards(JwtAuthGuard)

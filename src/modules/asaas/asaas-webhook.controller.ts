@@ -132,12 +132,10 @@ export class AsaasWebhookController {
       const novoStatus  = EVENTO_PARA_STATUS[eventName];
       const externalRef = payment.externalReference as string | undefined;
 
-      let lancamento: any = null;
-
       if (novoStatus && externalRef) {
         try {
           // externalReference = ID do lançamento no JurysOne
-          lancamento = await this.prisma.lancamentoFinanceiro.update({
+          await this.prisma.lancamentoFinanceiro.update({
             where: { id: externalRef },
             data: {
               status:    novoStatus,

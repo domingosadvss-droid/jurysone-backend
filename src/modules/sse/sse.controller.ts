@@ -14,7 +14,7 @@
  */
 
 import { Controller, Get, Logger, Sse, MessageEvent } from '@nestjs/common';
-import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { SseService } from './sse.service';

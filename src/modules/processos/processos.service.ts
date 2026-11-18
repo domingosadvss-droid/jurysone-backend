@@ -4,16 +4,6 @@ import { Injectable, BadRequestException, NotFoundException } from '@nestjs/comm
 import { PrismaService } from '../../database/prisma.service';
 import { DjenCliente, ErroDjen } from '../publicacoes/djen-cliente';
 
-interface FindAllFilters {
-  escritorioId: string;
-  clienteId?: string;
-  status?: string;
-  area?: string;
-  search?: string;
-  page?: number;
-  limit?: number;
-}
-
 interface PaginatedResponse<T> {
   data: T[];
   total: number;

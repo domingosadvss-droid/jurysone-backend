@@ -19,7 +19,7 @@ import {
   Body, Param, Query, UseGuards, Request,
   HttpCode, HttpStatus,
 } from '@nestjs/common';
-import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { TimetrackingService } from './timetracking.service';
 

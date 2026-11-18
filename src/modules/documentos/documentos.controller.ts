@@ -1,6 +1,6 @@
 import {
-  Controller, Get, Post, Patch, Delete,
-  Body, Param, Query, UseGuards, Request, HttpCode, HttpStatus,
+  Controller, Get, Post,
+  Body, Param, Query, UseGuards, Request, HttpCode,
   Res, Logger,
 } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';

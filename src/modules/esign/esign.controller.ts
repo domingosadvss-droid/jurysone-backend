@@ -15,14 +15,14 @@
  */
 
 import {
-  Controller, Get, Post, Patch, Delete,
+  Controller, Get, Post, Delete,
   Body, Param, Query, UseGuards, Request,
   HttpCode, HttpStatus, Res, Logger,
   UseInterceptors, UploadedFile, BadRequestException,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { memoryStorage } from 'multer';
-import { ApiTags, ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { EsignService } from './esign.service';
 import { ChavesService } from '../chaves/chaves.service';
