@@ -62,12 +62,20 @@ export class CaixaWhatsappService {
     if (!this.janelaAberta(c.ultimaEntradaEm)) {
       throw new BadRequestException('Passaram 24 h desde a última mensagem do contato: a Meta só permite enviar um modelo aprovado.');
     }
+    const graph = this.conexoes.graph(c.conexao);
     let wamid: string;
     try {
-      wamid = await this.conexoes.graph(c.conexao).enviarTexto(c.conexao.phoneNumberId, c.telefone, texto);
+      wamid = await graph.enviarTexto(c.conexao.phoneNumberId, c.telefone, texto);
     } catch (e: any) {
-      if (e instanceof ErroGraph) throw new BadGatewayException(`O WhatsApp recusou o envio. ${e.message}`);
-      throw e;
+      // Celular brasileiro: a Meta identifica alguns números sem o 9 extra (55 + DDD + 8 dígitos).
+      // A lista de destinatários do número de TESTE compara o número exato (erro 131030): tenta com o 9.
+      const comNove = /^55\d{2}[6-9]\d{7}$/.test(c.telefone) ? c.telefone.slice(0, 4) + '9' + c.telefone.slice(4) : null;
+      if (e instanceof ErroGraph && e.codigo === 131030 && comNove) {
+        try { wamid = await graph.enviarTexto(c.conexao.phoneNumberId, comNove, texto); }
+        catch (e2: any) { throw new BadGatewayException(`O WhatsApp recusou o envio. ${e2?.message ?? e2}`); }
+      } else if (e instanceof ErroGraph) {
+        throw new BadGatewayException(`O WhatsApp recusou o envio. ${e.message}`);
+      } else throw e;
     }
     return this.registro.registrar({
       conexao: c.conexao, telefone: c.telefone, wamid: wamid ?? null, direcao: 'SAIDA', origem: 'JURYSONE',

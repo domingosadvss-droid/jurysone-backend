@@ -1209,7 +1209,7 @@
                     </div>
                     <div style="display:flex;gap:8px">
                       <button id="wpp-btn-cliente" onclick="wppVerCliente()" style="display:none;padding:7px 12px;border:1.5px solid #0f2d5e;border-radius:8px;background:#fff;color:#0f2d5e;font-size:12px;font-weight:600;cursor:pointer">👤 Ver Cliente</button>
-                      <button onclick="wppCarregarConversa(window._wppTelAtivo)" style="padding:7px 12px;border:1.5px solid #e2e8f0;border-radius:8px;background:#fff;color:#64748b;font-size:12px;cursor:pointer" title="Atualizar">🔄</button>
+                      <button onclick="wppCarregarConversa(window._wppAtiva)" style="padding:7px 12px;border:1.5px solid #e2e8f0;border-radius:8px;background:#fff;color:#64748b;font-size:12px;cursor:pointer" title="Atualizar">🔄</button>
                     </div>
                   </div>
 
@@ -5990,219 +5990,181 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         let _simChart = null; // simulator chart
 
         /* ── Render page ── */
-        // ════════════════════════════════════════════════════════
-        // WHATSAPP — Chat, Conversas, Envio de Documentos
-        // ════════════════════════════════════════════════════════
+        // ═══════════════════════════════════════════
+        // WHATSAPP — caixa de conversas pela API oficial da Meta (/whatsapp-oficial)
+        // ═══════════════════════════════════════════
 
-        window._wppConversas     = [];
-        window._wppTelAtivo      = null;
-        window._wppClienteAtivo  = null;
-        window._wppArquivo       = null;
-        window._wppAutoRefresh   = null;
+        window._wppConversas    = [];
+        window._wppAtiva        = null;   // conversa aberta
+        window._wppAutoRefresh  = null;
+        window._wppBlobs        = {};     // anexos já baixados (id → URL local)
+
+        function wppApi(){ return (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api'; }
+        function wppHeaders(json){ const t = localStorage.getItem('jurysone_token'); return Object.assign(t ? { Authorization: 'Bearer ' + t } : {}, json ? { 'Content-Type': 'application/json' } : {}); }
+        async function wppGet(caminho){
+          const r = await fetch(wppApi() + caminho, { headers: wppHeaders() });
+          if (r.status === 401) { window.location.href = '/login.html'; throw new Error('sessão expirada'); }
+          const d = await r.json().catch(() => ({}));
+          if (!r.ok) throw new Error(d.message || ('HTTP ' + r.status));
+          return d;
+        }
+        function wppTelefone(t){ const d = String(t || '').replace(/\D/g, ''); if (d.startsWith('55') && d.length >= 12) return `+55 (${d.slice(2,4)}) ${d.slice(4, d.length-4)}-${d.slice(-4)}`; return d ? '+' + d : ''; }
+        function wppHora(iso){ if (!iso) return ''; const d = new Date(iso); const hoje = new Date(); return d.toDateString() === hoje.toDateString() ? d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }); }
+        const WPP_ICONE = { image: '📷 Foto', document: '📄 Documento', audio: '🎤 Áudio', video: '🎬 Vídeo', sticker: '🏷️ Figurinha', location: '📍 Localização', contacts: '👤 Contato' };
+        function wppResumo(m){ if (!m) return ''; const base = m.texto || WPP_ICONE[m.tipo] || ''; return (m.direcao === 'SAIDA' ? 'Você: ' : '') + base; }
 
         async function wppInit() {
+          const lista = document.getElementById('wpp-conversas-list');
+          wppCancelarArquivo();
+          try {
+            const c = await wppGet('/whatsapp-oficial/conexao');
+            if (!c.conectado) {
+              lista.innerHTML = `<div style="padding:32px 20px;text-align:center;color:#64748b;font-size:13px;line-height:1.5">
+                <div style="font-size:32px;margin-bottom:8px">📵</div><b>WhatsApp não conectado</b><br>
+                Conecte o número do escritório para ver as conversas aqui.</div>`;
+              return;
+            }
+            document.getElementById('wpp-chat-tel').textContent = `Número do escritório: ${c.numero || ''}${c.origem === 'TESTE' ? ' (número de teste da Meta)' : ''}`;
+          } catch (e) {
+            lista.innerHTML = `<div style="padding:32px 20px;text-align:center;color:#ef4444;font-size:13px">Não foi possível ler a conexão: ${escapeHtml(e.message)}</div>`;
+            return;
+          }
           await wppCarregarConversas();
           clearInterval(window._wppAutoRefresh);
-          window._wppAutoRefresh = setInterval(wppCarregarConversas, 15000);
+          window._wppAutoRefresh = setInterval(() => {
+            if (!document.getElementById('page-whatsapp')?.classList.contains('active')) return;
+            wppCarregarConversas();
+            if (window._wppAtiva) wppCarregarConversa(window._wppAtiva, true);
+          }, 8000);
         }
 
         async function wppCarregarConversas() {
           try {
-            const apiBase = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
-            const token   = localStorage.getItem('jurysone_token') || '';
-            const res     = await fetch(`${apiBase}/whatsapp/conversas`, {
-              headers: { Authorization: 'Bearer ' + token }
-            });
-            if (!res.ok) throw new Error('HTTP ' + res.status);
-            window._wppConversas = await res.json();
+            const busca = document.getElementById('wpp-search')?.value || '';
+            window._wppConversas = await wppGet('/whatsapp-oficial/conversas' + (busca ? '?busca=' + encodeURIComponent(busca) : ''));
             wppRenderConversas(window._wppConversas);
-
-            // Atualiza badge no menu
-            const naoLidas = window._wppConversas.reduce((s, c) => s + (c.nao_lidas || 0), 0);
-            const badge = document.getElementById('wpp-badge');
-            if (badge) {
-              badge.textContent = naoLidas;
-              badge.style.display = naoLidas > 0 ? '' : 'none';
-            }
-          } catch(e) {
-            document.getElementById('wpp-conversas-list').innerHTML =
-              '<div style="padding:20px;text-align:center;color:#ef4444;font-size:13px">⚠️ Erro ao carregar conversas</div>';
-          }
+          } catch (e) { /* mantém a lista anterior em falha passageira */ }
         }
 
         function wppRenderConversas(lista) {
           const el = document.getElementById('wpp-conversas-list');
           if (!el) return;
-          if (!lista.length) {
-            el.innerHTML = '<div style="padding:40px 20px;text-align:center;color:#94a3b8;font-size:13px"><div style="font-size:32px;margin-bottom:8px">💬</div>Nenhuma conversa ainda</div>';
-            return;
-          }
+          if (!lista.length) { el.innerHTML = '<div style="padding:40px 20px;text-align:center;color:#94a3b8;font-size:13px"><div style="font-size:32px;margin-bottom:8px">💬</div>Nenhuma conversa ainda.<br>As mensagens dos clientes aparecem aqui.</div>'; return; }
           el.innerHTML = lista.map(c => {
-            const ativo = c.telefone === window._wppTelAtivo;
-            const hora  = c.ultima_mensagem_em ? new Date(c.ultima_mensagem_em).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}) : '';
-            const msg   = (c.ultima_mensagem || '').slice(0, 40) + (c.ultima_mensagem?.length > 40 ? '...' : '');
-            const badge = c.nao_lidas > 0 ? `<span style="background:#25d366;color:#fff;font-size:10px;font-weight:700;border-radius:50%;padding:2px 6px;min-width:18px;text-align:center">${c.nao_lidas}</span>` : '';
-            return `<div onclick="wppCarregarConversa('${escapeHtml(c.telefone)}')"
-              style="padding:12px 16px;cursor:pointer;display:flex;gap:10px;align-items:center;border-bottom:1px solid #f0f2f5;transition:background .15s;background:${ativo?'#e8f8ee':'#fff'}"
-              onmouseenter="if('${c.telefone}'!==window._wppTelAtivo)this.style.background='#f8fafc'"
-              onmouseleave="if('${c.telefone}'!==window._wppTelAtivo)this.style.background='#fff'">
-              <div style="width:42px;height:42px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;flex-shrink:0">👤</div>
+            const ativa = c.id === window._wppAtiva;
+            const nome = c.nomeContato || wppTelefone(c.telefone);
+            return `<div onclick="wppCarregarConversa('${c.id}')" style="padding:12px 16px;border-bottom:1px solid #f1f5f9;cursor:pointer;display:flex;gap:10px;align-items:center;background:${ativa ? '#e7f8ee' : 'transparent'}">
+              <div style="width:40px;height:40px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0">${escapeHtml((nome.replace(/[^A-Za-zÀ-ú0-9]/g,'')[0] || '?').toUpperCase())}</div>
               <div style="flex:1;min-width:0">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">
-                  <span style="font-size:14px;font-weight:700;color:#1e293b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(c.nome)}</span>
-                  <span style="font-size:11px;color:#94a3b8;flex-shrink:0;margin-left:8px">${hora}</span>
-                </div>
-                <div style="display:flex;justify-content:space-between;align-items:center">
-                  <span style="font-size:12px;color:#64748b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1">${escapeHtml(msg)}</span>
-                  ${badge}
-                </div>
-              </div>
-            </div>`;
+                <div style="display:flex;justify-content:space-between;gap:6px"><span style="font-size:14px;font-weight:600;color:#0f172a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(nome)}</span><span style="font-size:11px;color:#94a3b8;flex-shrink:0">${wppHora(c.ultimaMensagemEm)}</span></div>
+                <div style="display:flex;justify-content:space-between;gap:6px;margin-top:2px"><span style="font-size:12px;color:#64748b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(wppResumo(c.ultima))}</span>${c.naoLidas ? `<span style="background:#25d366;color:#fff;border-radius:10px;font-size:11px;font-weight:700;padding:1px 7px;flex-shrink:0">${c.naoLidas}</span>` : ''}</div>
+              </div></div>`;
           }).join('');
         }
 
         function wppFiltrarConversas(q) {
-          const filtradas = window._wppConversas.filter(c =>
-            c.nome.toLowerCase().includes(q.toLowerCase()) ||
-            c.telefone.includes(q)
-          );
-          wppRenderConversas(filtradas);
+          clearTimeout(window._wppBuscaTimer);
+          window._wppBuscaTimer = setTimeout(wppCarregarConversas, 300);
         }
 
-        async function wppCarregarConversa(telefone) {
-          if (!telefone) return;
-          window._wppTelAtivo = telefone;
-          wppRenderConversas(window._wppConversas); // reativa seleção
-
-          // Atualiza header
-          const conv = window._wppConversas.find(c => c.telefone === telefone);
-          document.getElementById('wpp-chat-nome').textContent = conv?.nome || telefone;
-          document.getElementById('wpp-chat-tel').textContent  = telefone;
-
-          const msgsEl = document.getElementById('wpp-msgs');
-          msgsEl.innerHTML = '<div style="text-align:center;padding:20px;color:#94a3b8;font-size:13px">⏳ Carregando...</div>';
-
+        async function wppCarregarConversa(id, silencioso) {
+          if (!id) return;
+          const trocou = window._wppAtiva !== id;
+          window._wppAtiva = id;
           try {
-            const apiBase = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
-            const token   = localStorage.getItem('jurysone_token') || '';
-            const res     = await fetch(`${apiBase}/whatsapp/conversas/${encodeURIComponent(telefone)}`, {
-              headers: { Authorization: 'Bearer ' + token }
-            });
-            const data    = await res.json();
+            const d = await wppGet(`/whatsapp-oficial/conversas/${encodeURIComponent(id)}/mensagens`);
+            const c = d.conversa;
+            document.getElementById('wpp-chat-nome').textContent = c.nomeContato || wppTelefone(c.telefone);
+            document.getElementById('wpp-chat-tel').innerHTML = `${escapeHtml(wppTelefone(c.telefone))} · ${c.janelaAberta
+              ? '<span style="color:#16a34a">pode responder (janela de 24 h aberta)</span>'
+              : '<span style="color:#d97706">fora da janela de 24 h: só modelo aprovado</span>'}`;
+            const caixa = document.getElementById('wpp-msgs');
+            const noFim = caixa.scrollHeight - caixa.scrollTop - caixa.clientHeight < 80;
+            wppRenderMensagens(d.mensagens);
+            if (trocou || noFim || !silencioso) caixa.scrollTop = caixa.scrollHeight;
+            if (trocou) wppRenderConversas(window._wppConversas.map(x => x.id === id ? Object.assign({}, x, { naoLidas: 0 }) : x));
+          } catch (e) { if (!silencioso) showToast('Não foi possível abrir a conversa: ' + e.message, 'error'); }
+        }
 
-            window._wppClienteAtivo = data.cliente;
-            const btnCliente = document.getElementById('wpp-btn-cliente');
-            if (btnCliente) btnCliente.style.display = data.cliente ? '' : 'none';
-
-            wppRenderMensagens(data.mensagens || []);
-          } catch(e) {
-            msgsEl.innerHTML = '<div style="text-align:center;padding:20px;color:#ef4444;font-size:13px">⚠️ Erro ao carregar mensagens</div>';
-          }
+        function wppStatus(m){
+          if (m.direcao !== 'SAIDA') return '';
+          const mapa = { enviada: '✓', entregue: '✓✓', lida: '<span style="color:#34b7f1">✓✓</span>', falhou: '<span style="color:#ef4444" title="falhou">⚠</span>' };
+          return mapa[m.status] || '';
         }
 
         function wppRenderMensagens(msgs) {
           const el = document.getElementById('wpp-msgs');
-          if (!msgs.length) {
-            el.innerHTML = '<div style="text-align:center;color:#94a3b8;font-size:13px;padding:40px">Nenhuma mensagem ainda</div>';
-            return;
-          }
+          if (!msgs.length) { el.innerHTML = '<div style="text-align:center;color:#94a3b8;font-size:13px;margin-top:60px">Sem mensagens.</div>'; return; }
           el.innerHTML = msgs.map(m => {
-            const enviada = m.status !== 'recebida';
-            const hora = new Date(m.createdAt || m.created_at).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
-            const statusIcon = enviada ? (m.status==='lida'?'✓✓':m.status==='entregue'?'✓✓':'✓') : '';
-            const statusColor = enviada ? (m.status==='lida'?'#53bdeb':'#aaa') : '';
-            const isDoc = m.conteudo?.startsWith('[Documento') || m.conteudo?.startsWith('[Imagem') || m.conteudo?.startsWith('[Áudio') || m.conteudo?.startsWith('[Vídeo');
-
-            return `<div style="display:flex;justify-content:${enviada?'flex-end':'flex-start'};margin-bottom:4px">
-              <div style="max-width:70%;background:${enviada?'#dcf8c6':'#fff'};border-radius:${enviada?'12px 12px 2px 12px':'12px 12px 12px 2px'};padding:8px 12px;box-shadow:0 1px 2px rgba(0,0,0,.1)">
-                <div style="font-size:13.5px;color:#1e293b;word-break:break-word;white-space:pre-wrap">${escapeHtml(m.conteudo || '')}</div>
-                <div style="display:flex;justify-content:flex-end;align-items:center;gap:4px;margin-top:3px">
-                  <span style="font-size:11px;color:#94a3b8">${hora}</span>
-                  ${enviada?`<span style="font-size:12px;color:${statusColor}">${statusIcon}</span>`:''}
-                </div>
-              </div>
-            </div>`;
+            const minha = m.direcao === 'SAIDA';
+            const origem = m.origem === 'CELULAR' ? ' · pelo celular' : (m.origem === 'HISTORICO' ? ' · histórico' : '');
+            let anexo = '';
+            if (m.midiaId) {
+              const rotulo = escapeHtml(m.midiaNome || WPP_ICONE[m.tipo] || 'Anexo');
+              anexo = m.arquivoId
+                ? `<div style="margin-bottom:4px"><a href="#" onclick="wppAbrirAnexo('${m.id}');return false;" style="color:#0f2d5e;font-weight:600">📎 ${rotulo}</a>${m.arquivoTamanho ? ` <span style="color:#94a3b8;font-size:11px">(${Math.round(m.arquivoTamanho/1024)} KB)</span>` : ''}</div>`
+                : `<div style="margin-bottom:4px;color:#94a3b8">📎 ${rotulo} ${m.erro ? '<span style="color:#ef4444">— não baixado</span>' : '— baixando…'}</div>`;
+            }
+            const texto = m.texto ? escapeHtml(m.texto).replace(/\n/g, '<br>') : '';
+            return `<div style="display:flex;justify-content:${minha ? 'flex-end' : 'flex-start'}">
+              <div style="max-width:70%;background:${minha ? '#d9fdd3' : '#fff'};border-radius:10px;padding:7px 10px;box-shadow:0 1px 1px rgba(0,0,0,.08);font-size:14px;color:#111b21">
+                ${anexo}${texto}
+                <div style="font-size:10px;color:#667781;text-align:right;margin-top:3px">${new Date(m.dataHora).toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' })}${origem} ${wppStatus(m)}</div>
+              </div></div>`;
           }).join('');
-          el.scrollTop = el.scrollHeight;
+        }
+
+        /** Abre o anexo guardado (a rota exige login, por isso baixa com o token e abre localmente) */
+        async function wppAbrirAnexo(id) {
+          try {
+            let url = window._wppBlobs[id];
+            if (!url) {
+              const r = await fetch(`${wppApi()}/whatsapp-oficial/mensagens/${encodeURIComponent(id)}/anexo`, { headers: wppHeaders() });
+              if (!r.ok) throw new Error('HTTP ' + r.status);
+              url = URL.createObjectURL(await r.blob());
+              window._wppBlobs[id] = url;
+            }
+            window.open(url, '_blank', 'noopener');
+          } catch (e) { showToast('Não foi possível abrir o anexo: ' + e.message, 'error'); }
         }
 
         async function wppEnviar() {
-          const tel   = window._wppTelAtivo;
-          const texto = document.getElementById('wpp-text-input').value.trim();
-          const arq   = window._wppArquivo;
-          if (!tel) return showToast('Selecione uma conversa primeiro', 'error');
-          if (!texto && !arq) return;
-
+          const input = document.getElementById('wpp-text-input');
+          const texto = (input.value || '').trim();
+          if (window._wppArquivo) { showToast('Envio de arquivos pelo JurysOne ainda não está disponível. Envie só o texto por enquanto.', 'warning'); return; }
+          if (!texto || !window._wppAtiva) return;
           const btn = document.getElementById('wpp-send-btn');
-          btn.disabled = true; btn.textContent = '⏳';
-
+          btn.disabled = true;
           try {
-            const apiBase = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
-            const token   = localStorage.getItem('jurysone_token') || '';
-
-            const payload = { telefone: tel, tipo: arq ? 'documento' : 'texto', mensagem: texto };
-            if (arq) payload.arquivo_url = arq.url;
-
-            const res = await fetch(`${apiBase}/whatsapp/enviar`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
-              body: JSON.stringify(payload),
-            });
-
-            if (!res.ok) {
-              const err = await res.json().catch(()=>({}));
-              throw new Error(err.message || 'Erro ao enviar');
-            }
-
-            document.getElementById('wpp-text-input').value = '';
-            document.getElementById('wpp-text-input').style.height = 'auto';
-            wppCancelarArquivo();
-            await wppCarregarConversa(tel);
-            await wppCarregarConversas();
-          } catch(e) {
-            showToast('❌ ' + e.message, 'error');
-          } finally {
-            btn.disabled = false; btn.textContent = '➤';
-          }
+            const r = await fetch(`${wppApi()}/whatsapp-oficial/conversas/${encodeURIComponent(window._wppAtiva)}/enviar`, { method: 'POST', headers: wppHeaders(true), body: JSON.stringify({ texto }) });
+            const d = await r.json().catch(() => ({}));
+            if (!r.ok) throw new Error(d.message || ('HTTP ' + r.status));
+            input.value = ''; input.style.height = 'auto';
+            await wppCarregarConversa(window._wppAtiva);
+            wppCarregarConversas();
+          } catch (e) { showToast(e.message, 'error'); }
+          finally { btn.disabled = false; }
         }
 
         function wppPreviewArquivo(input) {
-          const file = input.files[0];
-          if (!file) return;
-
-          const reader = new FileReader();
-          reader.onload = function(e) {
-            window._wppArquivo = { nome: file.name, base64: e.target.result, url: null };
-            const preview = document.getElementById('wpp-file-preview');
-            document.getElementById('wpp-file-nome').textContent = '📎 ' + file.name;
-            preview.style.display = 'flex';
-            showToast('📎 Arquivo pronto para envio. Adicione uma mensagem e clique em enviar.', 'info');
-          };
-          reader.readAsDataURL(file);
+          const f = input.files && input.files[0];
+          if (!f) return;
+          window._wppArquivo = f;
+          document.getElementById('wpp-file-nome').textContent = f.name;
+          document.getElementById('wpp-file-preview').style.display = 'flex';
+          showToast('Envio de arquivos pelo JurysOne entra numa próxima etapa.', 'info');
         }
 
         function wppCancelarArquivo() {
           window._wppArquivo = null;
-          const preview = document.getElementById('wpp-file-preview');
-          if (preview) preview.style.display = 'none';
-          const input = document.getElementById('wpp-file-input');
-          if (input) input.value = '';
+          const inp = document.getElementById('wpp-file-input'); if (inp) inp.value = '';
+          document.getElementById('wpp-file-preview').style.display = 'none';
         }
 
-        function wppVerCliente() {
-          if (window._wppClienteAtivo?.id) {
-            navigate('clientes');
-            showToast('Cliente: ' + window._wppClienteAtivo.nome, 'success');
-          }
-        }
+        function wppVerCliente() { showToast('O vínculo da conversa com o cadastro do cliente entra na próxima etapa.', 'info'); }
 
         function wppNovaConversa() {
-          const tel = prompt('Digite o telefone do destinatário (com DDD):\nEx: 47999159178');
-          if (!tel || tel.trim().length < 10) return;
-          const telFormatado = '55' + tel.replace(/\D/g,'').replace(/^55/,'');
-          window._wppConversas.unshift({ telefone: telFormatado, nome: telFormatado, ultima_mensagem: '', nao_lidas: 0 });
-          wppRenderConversas(window._wppConversas);
-          wppCarregarConversa(telFormatado);
+          showToast('Pela regra da Meta, só o cliente inicia a conversa, ou o escritório envia um modelo aprovado (próxima etapa).', 'info');
         }
 
         function renderRelatorios() {

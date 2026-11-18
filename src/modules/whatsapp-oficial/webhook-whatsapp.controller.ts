@@ -22,8 +22,10 @@ export class WebhookWhatsappController {
   verificar(@Query() q: any, @Res() res: Response) {
     const esperado = process.env.WHATSAPP_VERIFY_TOKEN;
     if (q?.['hub.mode'] === 'subscribe' && esperado && q?.['hub.verify_token'] === esperado) {
+      this.logger.log('Webhook do WhatsApp verificado pela Meta.');
       return res.type('text/plain').send(String(q['hub.challenge'] ?? ''));
     }
+    this.logger.warn('Verificação do webhook do WhatsApp recusada (token diferente ou ausente).');
     return res.status(403).send('Token de verificação inválido.');
   }
 
