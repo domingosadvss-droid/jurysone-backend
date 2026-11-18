@@ -1029,9 +1029,10 @@
                     <div class="card-header">
                         <div>
                             <div class="card-title">📢 Intimações Judiciais</div>
-                            <div style="font-size:12px;color:#94a3b8;margin-top:2px;">Monitoramento do Diário Oficial e publicações</div>
+                            <div style="font-size:12px;color:#94a3b8;margin-top:2px;">Publicações do DJEN pela OAB de cada advogado (busca automática às 7h, 12h e 19h)</div>
                         </div>
                         <div style="display:flex;gap:8px;">
+                            <button class="btn-primary btn-sm" onclick="capturarDjenAgora(this)">🔄 Buscar no DJEN agora</button>
                             <button class="btn-secondary btn-sm" onclick="filtrarIntimacoes('todas')">Todas</button>
                             <button class="btn-secondary btn-sm" onclick="filtrarIntimacoes('novas')">🔴 Novas</button>
                             <button class="btn-secondary btn-sm" onclick="filtrarIntimacoes('lidas')">✓ Lidas</button>
@@ -3365,7 +3366,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           if(p==='automacoes')renderAutomacoes();
           if(p==='relatorios')renderRelatorios();
           if(p==='dashboard'){renderDashboard();setTimeout(()=>{initCharts()},100);}
-          if(p==='intimacoes'){renderIntimacoes();}
+          if(p==='intimacoes'){carregarIntimacoes();}
           if(p==='parceiros'){renderParceiros();}
           if(p==='modelos'){renderModelos();}
           if(p==='atendimentos'){renderCRM();}
@@ -10362,38 +10363,88 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           if (badge) { badge.textContent = nao_lidas; badge.style.display = nao_lidas > 0 ? 'flex' : 'none'; }
         }
 
-        // ─── Intimações Data & Functions ──────────────────────────
-        let intimacoesData = [
-          { id:1, descricao:'Citação para apresentar contestação — Proc. Cível 1023456-78', processo:'#2024001', tribunal:'TJ-SP', data:'2026-03-12', prazo:'2026-03-27', status:'nova', lida:false },
-          { id:2, descricao:'Intimação para manifestação sobre laudo pericial', processo:'#2024002', tribunal:'TRT-15', data:'2026-03-13', prazo:'2026-03-20', status:'nova', lida:false },
-          { id:3, descricao:'Publicação de acórdão — Recurso de Apelação provido', processo:'#2024003', tribunal:'STF', data:'2026-03-10', prazo:'—', status:'lida', lida:true },
-          { id:4, descricao:'Despacho: juntar documentos em 10 dias', processo:'#2024001', tribunal:'TJ-SP', data:'2026-03-08', prazo:'2026-03-18', status:'lida', lida:true },
-          { id:5, descricao:'Audiência de conciliação designada', processo:'#2024004', tribunal:'TJ-MG', data:'2026-03-14', prazo:'2026-04-05', status:'nova', lida:false },
-        ];
+        // ─── Intimações: publicações reais do DJEN (API /publicacoes) ──────────
+        let intimacoesData = [];
         let _intimFiltro = 'todas';
-        function filtrarIntimacoes(f){_intimFiltro=f;renderIntimacoes();}
+        function _apiBase(){ return (window.JURYSONE_CONFIG || {}).API_URL || '/api'; }
+        function _authHeaders(){ const t = localStorage.getItem('jurysone_token'); return t ? { 'Authorization': 'Bearer ' + t } : {}; }
+        function _dataBr(iso){ if(!iso) return '—'; const d = String(iso).slice(0,10).split('-'); return d.length===3 ? `${d[2]}/${d[1]}/${d[0]}` : iso; }
+        function _somarDiasIso(iso, n){ const d = new Date(iso + 'T12:00:00'); d.setDate(d.getDate() + n); return d.toISOString().slice(0,10); }
+        async function carregarIntimacoes(){
+          const t = document.getElementById('table-intimacoes');
+          if (t) t.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#94a3b8;padding:24px">Carregando publicações do DJEN…</td></tr>';
+          try {
+            const r = await fetch(`${_apiBase()}/publicacoes?per_page=100`, { headers: _authHeaders() });
+            if (r.status === 401) { window.location.href = '/login.html'; return; }
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            const d = await r.json();
+            intimacoesData = (d.data || []).map(i => ({
+              id: i.id,
+              descricao: [i.tipoComunicacao, i.classe].filter(Boolean).join(' — ')
+                + (i.conteudoResumo ? ': ' + i.conteudoResumo : (i.conteudo ? ': ' + String(i.conteudo).replace(/\s+/g, ' ').slice(0, 160) + '…' : '')),
+              processo: i.numeroProcesso || '—',
+              vinculado: !!i.processoId,
+              tribunal: [i.tribunal, i.orgao].filter(Boolean).join(' · ') || '—',
+              data: i.dataPublicacao,
+              prazo: i.prazoFatal,
+              lida: !!i.lida,
+              link: i.urlOrigem || null,
+            }));
+          } catch (e) {
+            intimacoesData = [];
+            if (t) t.innerHTML = `<tr><td colspan="8" style="text-align:center;color:#ef4444;padding:24px">Não foi possível carregar as publicações (${escapeHtml(e.message)}).</td></tr>`;
+            return;
+          }
+          renderIntimacoes();
+        }
+        async function capturarDjenAgora(btn){
+          if (btn) { btn.disabled = true; btn.textContent = '⏳ Buscando no DJEN…'; }
+          try {
+            const r = await fetch(`${_apiBase()}/publicacoes/capturar`, { method: 'POST', headers: { 'Content-Type': 'application/json', ..._authHeaders() }, body: '{}' });
+            const d = await r.json().catch(() => ({}));
+            if (!r.ok) throw new Error(d.message || ('HTTP ' + r.status));
+            const caps = d.capturas || [];
+            if (!caps.length) showToast('Cadastre o número da OAB no seu perfil para buscar no DJEN.', 'warning');
+            else if (caps.some(c => c.erro)) showToast('DJEN: ' + caps.find(c => c.erro).erro, 'error');
+            else showToast(`DJEN: ${caps.reduce((n, c) => n + (c.novas || 0), 0)} publicação(ões) nova(s).`, 'success');
+            await carregarIntimacoes();
+          } catch (e) { showToast('Falha ao buscar no DJEN: ' + e.message, 'error'); }
+          finally { if (btn) { btn.disabled = false; btn.textContent = '🔄 Buscar no DJEN agora'; } }
+        }
+        async function marcarIntimacaoLida(id){
+          const item = intimacoesData.find(x => x.id === id);
+          if (!item || item.lida) return;
+          try {
+            const r = await fetch(`${_apiBase()}/intimacoes/${encodeURIComponent(id)}/marcar-lida`, { method: 'POST', headers: _authHeaders() });
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            item.lida = true; renderIntimacoes();
+          } catch (e) { showToast('Não foi possível marcar como lida: ' + e.message, 'error'); }
+        }
+        function filtrarIntimacoes(f){ _intimFiltro = f; renderIntimacoes(); }
         function renderIntimacoes(){
-          const t=document.getElementById('table-intimacoes');
-          if(!t)return;
-          let lista=intimacoesData;
-          if(_intimFiltro==='novas') lista=intimacoesData.filter(x=>!x.lida);
-          if(_intimFiltro==='lidas') lista=intimacoesData.filter(x=>x.lida);
-          t.innerHTML=lista.map(i=>`<tr style="background:${i.lida?'':'#fffbeb'}">
-            <td><input type="checkbox" ${i.lida?'checked':''} onchange="intimacoesData.find(x=>x.id===${i.id}).lida=this.checked;renderIntimacoes()"></td>
-            <td style="font-size:13px;${i.lida?'':'font-weight:600;'}">${escapeHtml(i.descricao)}</td>
-            <td><span style="font-size:12px;color:#0f2d5e;font-weight:600">${escapeHtml(i.processo)}</span></td>
+          const t = document.getElementById('table-intimacoes');
+          if (!t) return;
+          let lista = intimacoesData;
+          if (_intimFiltro === 'novas') lista = intimacoesData.filter(x => !x.lida);
+          if (_intimFiltro === 'lidas') lista = intimacoesData.filter(x => x.lida);
+          const hoje = new Date().toISOString().slice(0, 10);
+          const em3dias = _somarDiasIso(hoje, 3);
+          t.innerHTML = lista.length ? lista.map(i => {
+            const prazo = i.prazo ? String(i.prazo).slice(0, 10) : null;
+            const corPrazo = !prazo ? '#94a3b8' : (prazo < hoje ? '#94a3b8' : (prazo <= em3dias ? '#ef4444' : '#d97706'));
+            return `<tr style="background:${i.lida ? '' : '#fffbeb'}">
+            <td><input type="checkbox" ${i.lida ? 'checked disabled' : ''} onchange="marcarIntimacaoLida('${i.id}')"></td>
+            <td style="font-size:13px;${i.lida ? '' : 'font-weight:600;'}max-width:420px">${escapeHtml(i.descricao)}${i.link ? ` <a href="${escapeHtml(i.link)}" target="_blank" rel="noopener" style="font-size:11px">ver no DJEN ↗</a>` : ''}</td>
+            <td><span style="font-size:12px;color:#0f2d5e;font-weight:600">${escapeHtml(i.processo)}</span>${i.vinculado ? '' : '<div style="font-size:10px;color:#94a3b8">sem vínculo</div>'}</td>
             <td style="font-size:12px;">${escapeHtml(i.tribunal)}</td>
-            <td style="font-size:12px;">${escapeHtml(i.data)}</td>
-            <td style="font-size:12px;color:${i.prazo==='—'?'#94a3b8':'#ef4444'};font-weight:600">${escapeHtml(i.prazo)}</td>
-            <td><span class="intim-badge ${i.lida?'intim-read':'intim-new'}">${i.lida?'Lida':'Nova'}</span></td>
-            <td>
-              <button class="btn-sm btn-secondary" onclick="intimacoesData.find(x=>x.id===${i.id}).lida=true;renderIntimacoes()">✓ Lida</button>
-              <button class="btn-sm btn-secondary" onclick="alert('Criar tarefa para esta intimação')">+ Tarefa</button>
-            </td>
-          </tr>`).join('');
-          // atualiza badge sidebar
-          const nb=document.getElementById('intim-badge');
-          if(nb){const n=intimacoesData.filter(x=>!x.lida).length;nb.textContent=n;nb.style.display=n>0?'inline':'none';}
+            <td style="font-size:12px;">${_dataBr(i.data)}</td>
+            <td style="font-size:12px;color:${corPrazo};font-weight:600">${prazo ? _dataBr(prazo) : '—'}</td>
+            <td><span class="intim-badge ${i.lida ? 'intim-read' : 'intim-new'}">${i.lida ? 'Lida' : 'Nova'}</span></td>
+            <td><button class="btn-sm btn-secondary" ${i.lida ? 'disabled' : ''} onclick="marcarIntimacaoLida('${i.id}')">✓ Lida</button></td>
+          </tr>`;
+          }).join('') : '<tr><td colspan="8" style="text-align:center;color:#94a3b8;padding:24px">Nenhuma publicação. Clique em “Buscar no DJEN agora”.</td></tr>';
+          const nb = document.getElementById('intim-badge');
+          if (nb) { const n = intimacoesData.filter(x => !x.lida).length; nb.textContent = n; nb.style.display = n > 0 ? 'inline' : 'none'; }
         }
 
         // ─── Parceiros Data & Functions ────────────────────────────
