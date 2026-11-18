@@ -1937,3 +1937,81 @@ model CustasFaixa {
   @@index([escritorioId, tribunal, ato])
   @@map("custas_faixas")
 }
+
+// ═══════════════════════════════════════════════════════════════════════════
+// WHATSAPP OFICIAL (Cloud API da Meta, com coexistência) — caixa de conversas
+// Cada escritório conecta o próprio número (Embedded Signup); o token fica cifrado.
+// ═══════════════════════════════════════════════════════════════════════════
+
+model WhatsappConexao {
+  id                   String    @id @default(uuid())
+  escritorioId         String
+  phoneNumberId        String    @unique
+  wabaId               String
+  numeroExibicao       String?
+  nomeExibicao         String?
+  tokenCifrado         String
+  // TESTE (número de teste da Meta) | EMBEDDED_SIGNUP | MANUAL
+  origem               String    @default("MANUAL")
+  coexistencia         Boolean   @default(false)
+  historicoImportadoEm DateTime?
+  pastaRaizId          String? // pasta "WhatsApp" no armazenamento do escritório (evita duplicar no Drive)
+  ativo                Boolean   @default(true)
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+
+  conversas WhatsappConversa[]
+
+  @@index([escritorioId])
+  @@map("whatsapp_conexoes")
+}
+
+model WhatsappConversa {
+  id               String    @id @default(uuid())
+  escritorioId     String
+  conexaoId        String
+  conexao          WhatsappConexao @relation(fields: [conexaoId], references: [id])
+  telefone         String // só dígitos, com DDI (ex.: 5547999999999)
+  nomeContato      String?
+  clienteId        String?
+  ultimaMensagemEm DateTime?
+  ultimaEntradaEm  DateTime? // última mensagem do contato: abre a janela de 24 h da Meta
+  naoLidas         Int       @default(0)
+  pastaArquivosId  String? // pasta do contato dentro de "WhatsApp"
+  createdAt        DateTime  @default(now())
+
+  mensagens WhatsappMensagemCaixa[]
+
+  @@unique([conexaoId, telefone])
+  @@index([escritorioId, ultimaMensagemEm])
+  @@map("whatsapp_conversas")
+}
+
+model WhatsappMensagemCaixa {
+  id             String   @id @default(uuid())
+  escritorioId   String
+  conversaId     String
+  conversa       WhatsappConversa @relation(fields: [conversaId], references: [id])
+  wamid          String?  @unique // id da mensagem na Meta
+  // ENTRADA (do contato) | SAIDA (do escritório)
+  direcao        String
+  // CLIENTE | JURYSONE | CELULAR (enviada pelo app do celular, coexistência) | HISTORICO
+  origem         String
+  // text | image | document | audio | video | sticker | location | contacts | interactive | button | reaction | unsupported
+  tipo           String
+  texto          String?  @db.Text
+  midiaId        String?
+  midiaMime      String?
+  midiaNome      String?
+  arquivoId      String? // caminho/ID no armazenamento do escritório (Drive ou local)
+  arquivoTamanho Int?
+  // recebida | enviada | entregue | lida | falhou
+  status         String   @default("recebida")
+  erro           String?
+  enviadaPorId   String?
+  dataHora       DateTime
+  createdAt      DateTime @default(now())
+
+  @@index([conversaId, dataHora])
+  @@map("whatsapp_mensagens_caixa")
+}

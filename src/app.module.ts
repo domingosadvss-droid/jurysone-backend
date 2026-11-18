@@ -10,6 +10,7 @@ import { ClientIpThrottlerGuard } from './common/guards/client-ip-throttler.guar
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './database/prisma.module';
+import { WhatsappOficialModule } from './modules/whatsapp-oficial/whatsapp-oficial.module';
 import { AppController } from './app.controller';
 
 // ── Módulos estruturados ───────────────────────────────────────────────────
@@ -67,6 +68,7 @@ import { CalculosModule } from './modules/calculos/calculos.module';
 
     // ── Infraestrutura / Auth ─────────────────────────────────────────────
     PrismaModule, // global: uma só conexão/pool do Prisma para todo o app
+    WhatsappOficialModule,
     AuthModule,
     NotificationsModule,
     SseModule,
