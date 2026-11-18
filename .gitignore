@@ -66,3 +66,6 @@ ferramentas/**/*.pyc
 src/**/*.js
 src/**/*.js.map
 src/**/*.d.ts
+
+# Arquivos sensíveis do escritório (só no disco local e no servidor; nunca no git)
+privado/

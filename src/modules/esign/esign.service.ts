@@ -1493,7 +1493,9 @@ export class EsignService {
     let page: any = pdfDoc.addPage([595, 842]); let y = 790;
     const logoPath = path.join(process.cwd(), 'public', 'logo-domingos.png');
     const logoImg  = fs.existsSync(logoPath) ? await pdfDoc.embedPng(fs.readFileSync(logoPath)) : null;
-    const sigImg   = fs.existsSync(path.join(process.cwd(), 'public', 'assinatura-jonathan.png')) ? await pdfDoc.embedPng(fs.readFileSync(path.join(process.cwd(), 'public', 'assinatura-jonathan.png'))) : null;
+    // Assinatura fica fora da pasta pública (não é servida pelo site nem versionada no git)
+    const sigPath  = path.join(process.cwd(), 'privado', 'assinatura-jonathan.png');
+    const sigImg   = fs.existsSync(sigPath) ? await pdfDoc.embedPng(fs.readFileSync(sigPath)) : null;
     const hdr = (pg: any) => {
       if (logoImg) {
         const lh = 46; const lw = logoImg.width * (lh / logoImg.height);
