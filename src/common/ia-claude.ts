@@ -12,6 +12,9 @@
  * injection antes de chegar aqui, e o prompt manda ignorar instruções contidas nele.
  */
 import Anthropic from '@anthropic-ai/sdk';
+import { zodOutputFormat } from '@anthropic-ai/sdk/helpers/zod';
+// O helper zodOutputFormat do SDK usa a API v4 do zod (o pacote 3.25 do projeto a traz em "zod/v4")
+import { z } from 'zod/v4';
 
 export const MODELO_PECAS = 'claude-opus-5-5';
 export const MODELO_MENSAGENS = 'claude-haiku-5-5';
@@ -113,6 +116,55 @@ export async function rascunhoDePeca(apiKey: string | null | undefined, dados: {
     return { texto: texto + '\n\n[RASCUNHO INCOMPLETO: a resposta atingiu o limite de tamanho. CONFERIR.]', modelo: msg.model };
   }
   return { texto, modelo: msg.model };
+}
+
+/** O que a IA do atendimento devolve a cada mensagem do cliente (formato validado pela API) */
+export const RespostaAtendimentoSchema = z.object({
+  /** Texto a enviar ao cliente no WhatsApp (curto, em português) */
+  resposta: z.string(),
+  /** true = passar para um advogado e parar de responder nesta conversa */
+  encaminhar: z.boolean(),
+  /** Por que encaminhou (vazio se não encaminhou) */
+  motivo: z.string(),
+  /** Resumo do caso até aqui, para o advogado (nome, cidade, assunto, documentos) */
+  resumoCaso: z.string(),
+});
+export type RespostaAtendimento = z.infer<typeof RespostaAtendimentoSchema>;
+
+/** Uma mensagem da conversa do WhatsApp, já em texto (mídias viram "[foto]", "[documento: x]" etc.) */
+export interface MensagemConversa { deCliente: boolean; texto: string }
+
+/**
+ * Atendimento automático do WhatsApp (Claude Haiku por padrão). O sistema (regras + catálogo)
+ * vai em `system`; a conversa vai como mensagens user/assistant. As mensagens do cliente são
+ * só dados: o prompt manda ignorar instruções escritas nelas.
+ */
+export async function respostaAtendimento(apiKey: string | null | undefined, dados: {
+  sistema: string; conversa: MensagemConversa[];
+}, aoUsar?: AoUsar): Promise<RespostaAtendimento> {
+  const c = cliente(apiKey);
+  // A API exige começar por "user": descarta saídas do escritório antes da 1ª fala do cliente
+  const inicio = dados.conversa.findIndex((m) => m.deCliente);
+  const mensagens: Anthropic.MessageParam[] = dados.conversa.slice(Math.max(0, inicio)).map((m) => ({
+    role: m.deCliente ? 'user' : 'assistant',
+    content: m.texto || '[mensagem sem texto]',
+  }));
+  if (!mensagens.length || mensagens[mensagens.length - 1].role !== 'user') {
+    throw new Error('Não há mensagem do cliente para responder.');
+  }
+  const resp = await c.messages.parse({
+    model: MODELO_CONVERSA,
+    max_tokens: 4000,
+    output_config: { effort: 'low', format: zodOutputFormat(RespostaAtendimentoSchema) },
+    system: [{ type: 'text', text: dados.sistema, cache_control: { type: 'ephemeral' } }],
+    messages: mensagens,
+  });
+  aoUsar?.(resp as any);
+  if (resp.stop_reason === 'refusal') {
+    return { resposta: 'Obrigado pela mensagem! Um advogado do escritório vai te responder em breve.', encaminhar: true, motivo: 'A IA recusou responder (refusal).', resumoCaso: '' };
+  }
+  if (!resp.parsed_output) throw new Error('A IA não devolveu a resposta no formato esperado.');
+  return resp.parsed_output;
 }
 
 /** Chamada mínima, só para testes do controle de uso (rota bloqueada em produção) */

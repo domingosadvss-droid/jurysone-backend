@@ -17,6 +17,6 @@ import { WhatsappWebService } from './whatsapp-web.service';
   imports: [ArquivosModule],
   controllers: [CaixaWhatsappController, WebhookWhatsappController],
   providers: [CaixaWhatsappService, ConexoesWhatsappService, MidiaWhatsappService, RegistroMensagensService, WebhookWhatsappService, WhatsappWebService],
-  exports: [ConexoesWhatsappService, CaixaWhatsappService, WhatsappWebService],
+  exports: [ConexoesWhatsappService, CaixaWhatsappService, WhatsappWebService, RegistroMensagensService],
 })
 export class WhatsappOficialModule {}

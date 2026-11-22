@@ -1986,6 +1986,10 @@ model WhatsappConversa {
   ultimaEntradaEm  DateTime? // última mensagem do contato: abre a janela de 24 h da Meta
   naoLidas         Int       @default(0)
   pastaArquivosId  String? // pasta do contato dentro de "WhatsApp"
+  // Atendimento automático (IA): null = segue a regra geral | AUTO = ligado nesta conversa |
+  // PAUSADA = advogado assumiu | ENCAMINHADA = a IA passou para o advogado e parou de responder
+  iaStatus         String?
+  iaMotivo         String?
   createdAt        DateTime  @default(now())
 
   mensagens WhatsappMensagemCaixa[]

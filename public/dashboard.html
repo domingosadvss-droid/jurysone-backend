@@ -1269,7 +1269,8 @@
                 <div style="width:320px;flex-shrink:0;border-right:1px solid #e2e8f0;display:flex;flex-direction:column;background:#fafafa">
                   <div style="padding:16px;border-bottom:1px solid #e2e8f0;background:#fff">
                     <div style="font-size:15px;font-weight:700;color:#0f2d5e;margin-bottom:4px">💬 Conversas</div>
-                    <div id="wpp-modo" style="font-size:11px;color:#64748b;margin-bottom:10px;min-height:14px"></div>
+                    <div id="wpp-modo" style="font-size:11px;color:#64748b;margin-bottom:6px;min-height:14px"></div>
+                    <div id="wpp-ia-geral" style="font-size:11.5px;color:#64748b;margin-bottom:10px;min-height:14px"></div>
                     <input id="wpp-search" type="text" placeholder="🔍 Buscar contato..." oninput="wppFiltrarConversas(this.value)"
                       style="width:100%;padding:8px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:13px;outline:none;box-sizing:border-box"
                       onfocus="this.style.borderColor='#25d366'" onblur="this.style.borderColor='#e2e8f0'">
@@ -1298,6 +1299,7 @@
                       <div id="wpp-chat-tel" style="font-size:12px;color:#64748b"></div>
                     </div>
                     <div style="display:flex;gap:8px">
+                      <button id="wpp-btn-ia" onclick="wppIaAlternarConversa()" style="display:none;padding:7px 12px;border:1.5px solid #7c3aed;border-radius:8px;background:#fff;color:#7c3aed;font-size:12px;font-weight:600;cursor:pointer"></button>
                       <button id="wpp-btn-cliente" onclick="wppVerCliente()" style="display:none;padding:7px 12px;border:1.5px solid #0f2d5e;border-radius:8px;background:#fff;color:#0f2d5e;font-size:12px;font-weight:600;cursor:pointer">👤 Ver Cliente</button>
                       <button onclick="wppCarregarConversa(window._wppAtiva)" style="padding:7px 12px;border:1.5px solid #e2e8f0;border-radius:8px;background:#fff;color:#64748b;font-size:12px;cursor:pointer" title="Atualizar">🔄</button>
                     </div>
@@ -6158,6 +6160,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           const lista = document.getElementById('wpp-conversas-list');
           wppCancelarArquivo();
           const modo = document.getElementById('wpp-modo');
+          wppIaCarregarGeral();
           try {
             const c = await wppGet('/whatsapp-oficial/conexao');
             window._wppOrigem = c.conectado ? c.origem : null;
@@ -6267,6 +6270,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
               <div style="flex:1;min-width:0">
                 <div style="display:flex;justify-content:space-between;gap:6px"><span style="font-size:14px;font-weight:600;color:#0f172a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(nome)}</span><span style="font-size:11px;color:#94a3b8;flex-shrink:0">${wppHora(c.ultimaMensagemEm)}</span></div>
                 <div style="display:flex;justify-content:space-between;gap:6px;margin-top:2px"><span style="font-size:12px;color:#64748b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(wppResumo(c.ultima))}</span>${c.naoLidas ? `<span style="background:#25d366;color:#fff;border-radius:10px;font-size:11px;font-weight:700;padding:1px 7px;flex-shrink:0">${c.naoLidas}</span>` : ''}</div>
+                ${c.iaStatus === 'ENCAMINHADA' ? `<div style="margin-top:3px"><span style="background:#fef3c7;color:#92400e;border-radius:6px;font-size:10.5px;font-weight:700;padding:1px 6px" title="${escapeHtml(c.iaMotivo || '')}">🤖 precisa de advogado</span></div>` : c.iaStatus === 'AUTO' ? '<div style="margin-top:3px"><span style="background:#ede9fe;color:#6d28d9;border-radius:6px;font-size:10.5px;font-weight:700;padding:1px 6px">🤖 IA atendendo</span></div>' : ''}
               </div></div>`;
           }).join('');
         }
@@ -6288,13 +6292,73 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
               ? '<span style="color:#16a34a">WhatsApp Web</span>'
               : c.janelaAberta
               ? '<span style="color:#16a34a">pode responder (janela de 24 h aberta)</span>'
-              : '<span style="color:#d97706">fora da janela de 24 h: só modelo aprovado</span>'}`;
+              : '<span style="color:#d97706">fora da janela de 24 h: só modelo aprovado</span>'}${wppIaTextoConversa(c)}`;
+            window._wppConversaAtual = c;
+            wppIaBotaoConversa(c);
             const caixa = document.getElementById('wpp-msgs');
             const noFim = caixa.scrollHeight - caixa.scrollTop - caixa.clientHeight < 80;
             wppRenderMensagens(d.mensagens);
             if (trocou || noFim || !silencioso) caixa.scrollTop = caixa.scrollHeight;
             if (trocou) wppRenderConversas(window._wppConversas.map(x => x.id === id ? Object.assign({}, x, { naoLidas: 0 }) : x));
           } catch (e) { if (!silencioso) showToast('Não foi possível abrir a conversa: ' + e.message, 'error'); }
+        }
+
+        // ── Atendimento automático (IA) ──
+        function wppIaTextoConversa(c) {
+          const cor = { AUTO: '#6d28d9', PAUSADA: '#64748b', ENCAMINHADA: '#b45309' };
+          const txt = c.iaStatus === 'AUTO' ? '🤖 IA ligada nesta conversa'
+            : c.iaStatus === 'PAUSADA' ? '🤖 IA pausada (o escritório assumiu)'
+            : c.iaStatus === 'ENCAMINHADA' ? `🤖 IA encaminhou ao advogado${c.iaMotivo ? ': ' + c.iaMotivo : ''}`
+            : (window._wppIaCfg && window._wppIaCfg.ativo ? '🤖 IA segue a regra geral' : '');
+          return txt ? ` · <span style="color:${cor[c.iaStatus] || '#64748b'}">${escapeHtml(txt)}</span>` : '';
+        }
+        function wppIaBotaoConversa(c) {
+          const b = document.getElementById('wpp-btn-ia');
+          if (!b) return;
+          b.style.display = '';
+          b.textContent = c.iaStatus === 'AUTO' ? '⏸ Pausar IA' : '🤖 Ligar IA aqui';
+          b.title = c.iaStatus === 'AUTO'
+            ? 'A IA para de responder nesta conversa'
+            : 'A IA passa a responder nesta conversa (mesmo sendo contato antigo)';
+        }
+        async function wppIaAlternarConversa() {
+          const c = window._wppConversaAtual;
+          if (!c) return;
+          const novo = c.iaStatus === 'AUTO' ? 'PAUSADA' : 'AUTO';
+          if (novo === 'AUTO' && !(window._wppIaCfg && window._wppIaCfg.ativo)) {
+            if (!confirm('O atendimento automático está DESLIGADO no geral. Ligar a IA só nesta conversa mesmo assim? (ela só responde quando o geral também estiver ligado)')) return;
+          }
+          try {
+            const r = await fetch(wppApi() + `/atendimento-ia/conversas/${encodeURIComponent(c.id)}`, { method: 'POST', headers: wppHeaders(true), body: JSON.stringify({ status: novo }) });
+            const d = await r.json().catch(() => ({}));
+            if (!r.ok) throw new Error(d.message || ('HTTP ' + r.status));
+            showToast(novo === 'AUTO' ? 'IA ligada nesta conversa' : 'IA pausada nesta conversa', 'success');
+            wppCarregarConversa(c.id, true); wppCarregarConversas();
+          } catch (e) { showToast('Não foi possível: ' + e.message, 'error'); }
+        }
+        async function wppIaCarregarGeral() {
+          const el = document.getElementById('wpp-ia-geral');
+          if (!el) return;
+          try {
+            const r = await fetch(wppApi() + '/atendimento-ia/config', { headers: wppHeaders() });
+            if (!r.ok) { el.innerHTML = ''; return; }
+            const cfg = await r.json(); window._wppIaCfg = cfg;
+            el.innerHTML = `🤖 Atendimento automático (IA): <b style="color:${cfg.ativo ? '#16a34a' : '#64748b'}">${cfg.ativo ? 'LIGADO' : 'desligado'}</b>`
+              + `${cfg.ativo && cfg.apenasNovosContatos ? ' · só contatos novos' : ''}${cfg.simulado ? ' · <span style="color:#b45309">modo simulação</span>' : ''}`
+              + ` · <a href="#" onclick="wppIaAlternarGeral();return false;" style="color:#7c3aed;font-weight:600">${cfg.ativo ? 'desligar' : 'ligar'}</a>`;
+          } catch (e) { el.innerHTML = ''; }
+        }
+        async function wppIaAlternarGeral() {
+          const cfg = window._wppIaCfg || {};
+          const ligar = !cfg.ativo;
+          if (ligar && !confirm('Ligar o atendimento automático?\n\nA IA (Claude Haiku) vai responder SÓ contatos NOVOS — quem escrever pela primeira vez a partir de agora. Família, amigos e clientes antigos não recebem resposta automática.\n\nEla nunca dá parecer jurídico nem informa preço, e passa a conversa para um advogado quando precisar (aviso no sino).')) return;
+          try {
+            const r = await fetch(wppApi() + '/atendimento-ia/config', { method: 'PATCH', headers: wppHeaders(true), body: JSON.stringify({ ativo: ligar }) });
+            const d = await r.json().catch(() => ({}));
+            if (!r.ok) throw new Error(d.message || ('HTTP ' + r.status));
+            showToast(ligar ? 'Atendimento automático ligado' : 'Atendimento automático desligado', 'success');
+            wppIaCarregarGeral();
+          } catch (e) { showToast('Não foi possível: ' + e.message, 'error'); }
         }
 
         function wppStatus(m){
@@ -6308,7 +6372,9 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           if (!msgs.length) { el.innerHTML = '<div style="text-align:center;color:#94a3b8;font-size:13px;margin-top:60px">Sem mensagens.</div>'; return; }
           el.innerHTML = msgs.map(m => {
             const minha = m.direcao === 'SAIDA';
-            const origem = m.origem === 'CELULAR' ? ' · pelo celular' : (m.origem === 'HISTORICO' ? ' · histórico' : '');
+            const origem = m.origem === 'CELULAR' ? ' · pelo celular'
+              : m.origem === 'HISTORICO' ? ' · histórico'
+              : m.origem === 'IA' ? ` · 🤖 IA${m.status === 'simulada' ? ' (simulada, não enviada)' : ''}` : '';
             let anexo = '';
             if (m.midiaId) {
               const rotulo = escapeHtml(m.midiaNome || WPP_ICONE[m.tipo] || 'Anexo');

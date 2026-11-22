@@ -12,16 +12,26 @@ export interface NovaMensagem {
   nomeContato?: string | null;
   wamid: string | null;
   direcao: 'ENTRADA' | 'SAIDA';
-  origem: 'CLIENTE' | 'JURYSONE' | 'CELULAR' | 'HISTORICO';
+  /** IA = enviada pelo atendimento automático */
+  origem: 'CLIENTE' | 'JURYSONE' | 'CELULAR' | 'HISTORICO' | 'IA';
   conteudo: ConteudoMensagem;
   status: string;
   dataHora: Date;
   enviadaPorId?: string | null;
 }
 
+/** Chamado depois de gravar uma mensagem nova (ex.: o atendimento automático escuta as do cliente) */
+export type OuvinteMensagem = (m: { mensagemId: string; conversaId: string; escritorioId: string; direcao: string; origem: string }) => void;
+
 @Injectable()
 export class RegistroMensagensService {
+  private readonly ouvintes: OuvinteMensagem[] = [];
+
   constructor(private readonly prisma: PrismaService) {}
+
+  aoRegistrar(fn: OuvinteMensagem) {
+    this.ouvintes.push(fn);
+  }
 
   async conversa(conexao: { id: string; escritorioId: string }, telefone: string, nomeContato?: string | null) {
     return this.prisma.whatsappConversa.upsert({
@@ -51,6 +61,11 @@ export class RegistroMensagensService {
         ...(entrada && m.origem === 'CLIENTE' ? { naoLidas: { increment: 1 } } : {}),
       },
     });
+    for (const fn of this.ouvintes) {
+      try {
+        fn({ mensagemId: mensagem.id, conversaId: conversa.id, escritorioId: m.conexao.escritorioId, direcao: m.direcao, origem: m.origem });
+      } catch { /* ouvinte nunca derruba o registro */ }
+    }
     return mensagem;
   }
 

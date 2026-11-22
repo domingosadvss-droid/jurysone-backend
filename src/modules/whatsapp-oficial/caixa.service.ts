@@ -58,10 +58,36 @@ export class CaixaWhatsappService {
   }
 
   async enviarTexto(user: any, conversaId: string, dto: any) {
-    const texto = String(dto?.texto ?? '').trim();
+    const c = await this.conversaDoEscritorio(user, conversaId);
+    const enviada = await this.entregar(c, dto?.texto, 'JURYSONE', user.id);
+    // O advogado assumiu a conversa: o atendimento automático para de responder nela
+    if (c.iaStatus !== 'PAUSADA') {
+      await this.prisma.whatsappConversa.update({ where: { id: c.id }, data: { iaStatus: 'PAUSADA' } });
+    }
+    return enviada;
+  }
+
+  /**
+   * Envio feito pelo próprio sistema (atendimento automático). `simular` grava a mensagem na
+   * caixa como "simulada" sem mandar nada ao WhatsApp (testes com IA_ATENDIMENTO_SIMULADO).
+   */
+  async enviarTextoSistema(conversaId: string, texto: string, opcoes: { simular?: boolean } = {}) {
+    const c = await this.prisma.whatsappConversa.findUnique({ where: { id: conversaId }, include: { conexao: true } });
+    if (!c) throw new NotFoundException('Conversa não encontrada.');
+    if (opcoes.simular) {
+      return this.registro.registrar({
+        conexao: c.conexao, telefone: c.telefone, wamid: null, direcao: 'SAIDA', origem: 'IA',
+        conteudo: { tipo: 'text', texto: String(texto).trim(), midiaId: null, midiaMime: null, midiaNome: null },
+        status: 'simulada', dataHora: new Date(), enviadaPorId: null,
+      });
+    }
+    return this.entregar(c, texto, 'IA', null);
+  }
+
+  private async entregar(c: any, textoBruto: any, origem: 'JURYSONE' | 'IA', enviadaPorId: string | null) {
+    const texto = String(textoBruto ?? '').trim();
     if (!texto) throw new BadRequestException('Escreva a mensagem.');
     if (texto.length > 4096) throw new BadRequestException('Mensagem acima de 4.096 caracteres (limite do WhatsApp).');
-    const c = await this.conversaDoEscritorio(user, conversaId);
     if (!c.conexao.ativo) throw new BadRequestException('O WhatsApp deste escritório está desconectado.');
     if (c.conexao.origem === ORIGEM_WEB) {
       // WhatsApp Web (testes): sem janela de 24 h; envia pelo aparelho conectado
@@ -72,8 +98,8 @@ export class CaixaWhatsappService {
         throw new BadGatewayException(`O WhatsApp recusou o envio. ${e?.message ?? e}`);
       }
       return this.registro.registrar({
-        conexao: c.conexao, telefone: c.telefone, wamid: id, direcao: 'SAIDA', origem: 'JURYSONE',
-        conteudo: { tipo: 'text', texto, midiaId: null, midiaMime: null, midiaNome: null }, status: 'enviada', dataHora: new Date(), enviadaPorId: user.id,
+        conexao: c.conexao, telefone: c.telefone, wamid: id, direcao: 'SAIDA', origem,
+        conteudo: { tipo: 'text', texto, midiaId: null, midiaMime: null, midiaNome: null }, status: 'enviada', dataHora: new Date(), enviadaPorId,
       });
     }
     if (!this.janelaAberta(c.ultimaEntradaEm)) {
@@ -95,8 +121,8 @@ export class CaixaWhatsappService {
       } else throw e;
     }
     return this.registro.registrar({
-      conexao: c.conexao, telefone: c.telefone, wamid: wamid ?? null, direcao: 'SAIDA', origem: 'JURYSONE',
-      conteudo: { tipo: 'text', texto, midiaId: null, midiaMime: null, midiaNome: null }, status: 'enviada', dataHora: new Date(), enviadaPorId: user.id,
+      conexao: c.conexao, telefone: c.telefone, wamid: wamid ?? null, direcao: 'SAIDA', origem,
+      conteudo: { tipo: 'text', texto, midiaId: null, midiaMime: null, midiaNome: null }, status: 'enviada', dataHora: new Date(), enviadaPorId,
     });
   }
 }
