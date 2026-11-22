@@ -10847,6 +10847,9 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         document.addEventListener('click', e => {
           if (!e.target.closest('.hdr-dropdown')) closeAllDD();
         });
+        // Lista de notificações do sino do cabeçalho. Nunca tinha sido declarada: o erro
+        // "notificacoes is not defined" interrompia a inicialização do painel (cabeçalho, gráficos).
+        var notificacoes = window.notificacoes || [];
         function marcarTodasLidas() {
           notificacoes.forEach(n => n.lida = true);
           renderNotifHeader();
