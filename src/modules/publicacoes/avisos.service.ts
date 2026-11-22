@@ -19,6 +19,7 @@ import { WhatsappService } from '../whatsapp/whatsapp.service';
 import { ChavesService } from '../chaves/chaves.service';
 import { PERFIS, perfisDo } from '../../common/perfis';
 import { IaIndisponivel, resumoParaCliente } from '../../common/ia-claude';
+import { IaUsoService } from '../ia-uso/ia-uso.service';
 import { MARCOS } from './analise';
 import { diaLocal } from './agenda-prazos.service';
 import { somarDias } from './calendario';
@@ -41,6 +42,7 @@ export class AvisosService {
     private readonly prisma: PrismaService,
     private readonly whatsapp: WhatsappService,
     private readonly chaves: ChavesService,
+    private readonly iaUso: IaUsoService,
   ) {}
 
   // ═══════════════════════ SINO ═══════════════════════════════════════════
@@ -112,8 +114,10 @@ export class AvisosService {
     let texto: string;
     let viaIa = false;
     try {
-      const chave = await this.chaves.getChave(escritorioId, 'anthropic');
-      texto = await resumoParaCliente(chave, { marco: descricao, numeroProcesso: d.numero, nomeCliente: cliente.nome, textoPublicacao: d.texto });
+      texto = await this.iaUso.executar(
+        { escritorioId, tarefa: 'resumo_cliente', categoria: 'CONVERSA', processoId: d.processoId },
+        (chave, aoUsar) => resumoParaCliente(chave, { marco: descricao, numeroProcesso: d.numero, nomeCliente: cliente.nome, textoPublicacao: d.texto }, aoUsar),
+      );
       viaIa = true;
     } catch (e: any) {
       if (!(e instanceof IaIndisponivel)) this.logger.warn(`Resumo por IA falhou: ${e?.message ?? e}`);

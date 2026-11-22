@@ -8,6 +8,7 @@ import { PERFIS, PERFIS_INTERNOS } from '../../common/perfis';
 import { CaixaWhatsappService } from './caixa.service';
 import { ConexoesWhatsappService } from './conexoes.service';
 import { MidiaWhatsappService } from './midia.service';
+import { WhatsappWebService } from './whatsapp-web.service';
 
 @ApiTags('💬 WhatsApp oficial — caixa de conversas')
 @UseGuards(JwtAuthGuard)
@@ -18,6 +19,7 @@ export class CaixaWhatsappController {
     private readonly caixa: CaixaWhatsappService,
     private readonly conexoes: ConexoesWhatsappService,
     private readonly midia: MidiaWhatsappService,
+    private readonly web: WhatsappWebService,
   ) {}
 
   @Get('conexao')
@@ -40,6 +42,45 @@ export class CaixaWhatsappController {
   @ApiOperation({ summary: 'Desconecta o WhatsApp do escritório (as conversas ficam guardadas)' })
   desconectar(@CurrentUser() user: any) {
     return this.conexoes.desconectar(user.officeId);
+  }
+
+  // ── WhatsApp Web (QR Code) — modo de testes ─────────────────────────────────
+
+  @Get('web')
+  @Perfis(...PERFIS_INTERNOS)
+  @ApiOperation({ summary: 'WhatsApp Web: situação da conexão e QR Code (quando aguardando leitura)' })
+  webSituacao(@CurrentUser() user: any) {
+    return this.web.situacao(user.officeId);
+  }
+
+  @Post('web/conectar')
+  @HttpCode(200)
+  @Perfis(PERFIS.ADMIN)
+  @ApiOperation({ summary: 'WhatsApp Web: inicia a conexão e gera o QR Code para ler no celular' })
+  webConectar(@CurrentUser() user: any) {
+    return this.web.iniciar(user.officeId);
+  }
+
+  @Get('web/pessoais')
+  @Perfis(PERFIS.ADMIN)
+  @ApiOperation({ summary: 'WhatsApp Web: conversas gravadas de contatos da agenda que não são clientes (prévia da limpeza)' })
+  webPessoais(@CurrentUser() user: any) {
+    return this.web.previaLimpeza(user.officeId);
+  }
+
+  @Post('web/pessoais/apagar')
+  @HttpCode(200)
+  @Perfis(PERFIS.ADMIN)
+  @ApiOperation({ summary: 'WhatsApp Web: apaga do JurysOne as conversas pessoais já gravadas (mensagens e anexos)' })
+  webApagarPessoais(@CurrentUser() user: any) {
+    return this.web.limparPessoais(user.officeId);
+  }
+
+  @Delete('web')
+  @Perfis(PERFIS.ADMIN)
+  @ApiOperation({ summary: 'WhatsApp Web: desconecta e apaga a sessão (as conversas ficam guardadas)' })
+  webDesconectar(@CurrentUser() user: any) {
+    return this.web.desconectar(user.officeId);
   }
 
   @Get('conversas')

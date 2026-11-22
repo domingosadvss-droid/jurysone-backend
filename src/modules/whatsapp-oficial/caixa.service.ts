@@ -8,6 +8,7 @@ import { PrismaService } from '../../database/prisma.service';
 import { ConexoesWhatsappService } from './conexoes.service';
 import { ErroGraph } from './graph-cliente';
 import { RegistroMensagensService } from './registro-mensagens.service';
+import { ORIGEM_WEB, WhatsappWebService } from './whatsapp-web.service';
 
 const JANELA_MS = 24 * 60 * 60 * 1000;
 
@@ -17,6 +18,7 @@ export class CaixaWhatsappService {
     private readonly prisma: PrismaService,
     private readonly conexoes: ConexoesWhatsappService,
     private readonly registro: RegistroMensagensService,
+    private readonly web: WhatsappWebService,
   ) {}
 
   private janelaAberta(ultimaEntradaEm: Date | null) {
@@ -25,6 +27,7 @@ export class CaixaWhatsappService {
 
   async conversas(user: any, q: any = {}) {
     const busca = String(q?.busca ?? '').trim();
+    const web = (await this.conexoes.doEscritorio(user.officeId))?.origem === ORIGEM_WEB;
     const lista = await this.prisma.whatsappConversa.findMany({
       where: {
         escritorioId: user.officeId,
@@ -34,7 +37,7 @@ export class CaixaWhatsappService {
       take: 200,
       include: { mensagens: { orderBy: { dataHora: 'desc' }, take: 1, select: { texto: true, tipo: true, direcao: true, dataHora: true } } },
     });
-    return lista.map(({ mensagens, ...c }) => ({ ...c, ultima: mensagens[0] ?? null, janelaAberta: this.janelaAberta(c.ultimaEntradaEm) }));
+    return lista.map(({ mensagens, ...c }) => ({ ...c, ultima: mensagens[0] ?? null, janelaAberta: web || this.janelaAberta(c.ultimaEntradaEm) }));
   }
 
   private async conversaDoEscritorio(user: any, id: string) {
@@ -50,7 +53,8 @@ export class CaixaWhatsappService {
     const mensagens = await this.prisma.whatsappMensagemCaixa.findMany({ where: { conversaId: c.id }, orderBy: { dataHora: 'desc' }, take: limite });
     if (c.naoLidas) await this.prisma.whatsappConversa.update({ where: { id: c.id }, data: { naoLidas: 0 } });
     const { conexao, ...conversa } = c;
-    return { conversa: { ...conversa, janelaAberta: this.janelaAberta(c.ultimaEntradaEm) }, mensagens: mensagens.reverse() };
+    const web = conexao.origem === ORIGEM_WEB;
+    return { conversa: { ...conversa, modo: web ? 'WEB' : 'OFICIAL', janelaAberta: web || this.janelaAberta(c.ultimaEntradaEm) }, mensagens: mensagens.reverse() };
   }
 
   async enviarTexto(user: any, conversaId: string, dto: any) {
@@ -59,6 +63,19 @@ export class CaixaWhatsappService {
     if (texto.length > 4096) throw new BadRequestException('Mensagem acima de 4.096 caracteres (limite do WhatsApp).');
     const c = await this.conversaDoEscritorio(user, conversaId);
     if (!c.conexao.ativo) throw new BadRequestException('O WhatsApp deste escritório está desconectado.');
+    if (c.conexao.origem === ORIGEM_WEB) {
+      // WhatsApp Web (testes): sem janela de 24 h; envia pelo aparelho conectado
+      let id: string;
+      try { id = await this.web.enviarTexto(c.escritorioId, c.telefone, texto); }
+      catch (e: any) {
+        if (e instanceof BadRequestException) throw e;
+        throw new BadGatewayException(`O WhatsApp recusou o envio. ${e?.message ?? e}`);
+      }
+      return this.registro.registrar({
+        conexao: c.conexao, telefone: c.telefone, wamid: id, direcao: 'SAIDA', origem: 'JURYSONE',
+        conteudo: { tipo: 'text', texto, midiaId: null, midiaMime: null, midiaNome: null }, status: 'enviada', dataHora: new Date(), enviadaPorId: user.id,
+      });
+    }
     if (!this.janelaAberta(c.ultimaEntradaEm)) {
       throw new BadRequestException('Passaram 24 h desde a última mensagem do contato: a Meta só permite enviar um modelo aprovado.');
     }

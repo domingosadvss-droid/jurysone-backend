@@ -12,6 +12,7 @@ import { createHmac, timingSafeEqual } from 'crypto';
 import { PrismaService } from '../../database/prisma.service';
 import { cifrar, criptografiaConfigurada, decifrar } from '../../common/cripto';
 import { Calendario, Contagem, DiaSemExpediente, contarPrazo, iso, somarDias } from './calendario';
+import { corpoAlertaD3, corpoAudiencia, corpoPrazoFatal, DadosPrazoAgenda } from './agenda-google-formato';
 
 export const TIPOS_FERIADO = ['MUNICIPAL', 'ESTADUAL', 'SUSPENSAO', 'SUSPENSAO_PRAZO', 'FORENSE', 'OUTRO'] as const;
 export const PRAZO_PADRAO_DIAS = 5;
@@ -173,6 +174,7 @@ export class AgendaPrazosService {
     });
     if (prazo.eventoId) {
       await this.prisma.evento.updateMany({ where: { id: prazo.eventoId, escritorioId }, data: { status: 'CONCLUIDO', concluidoEm: new Date() } });
+      await this.enviarAoGoogle(prazo.eventoId).catch((e) => this.logger.warn(`Google Agenda: ${e.message}`));
     }
     if (prazo.intimacaoId) {
       await this.prisma.intimacao.updateMany({
@@ -285,26 +287,72 @@ export class AgendaPrazosService {
     return { conectada: false };
   }
 
-  /** Cria/atualiza o evento no Google Agenda de cada responsável que ligou a agenda */
+  /** Agenda Google desligada por configuração (ex.: JurysOne local enquanto a planilha é o controle oficial) */
+  static agendaGoogleDesligada(): boolean {
+    return /^(1|true|sim)$/i.test(String(process.env.AGENDA_GOOGLE_DESLIGADA ?? ''));
+  }
+
+  /** Dados do prazo ligado ao evento, para montar o evento no formato da planilha */
+  async dadosPrazoDoEvento(eventoId: string): Promise<DadosPrazoAgenda | null> {
+    const p = await this.prisma.prazo.findFirst({
+      where: { eventoId },
+      include: { processo: { select: { numero: true, tribunal: true, camposCustom: true, cliente: { select: { nome: true } } } } },
+    });
+    if (!p) return null;
+    const i = p.intimacaoId ? await this.prisma.intimacao.findUnique({ where: { id: p.intimacaoId }, select: { tribunal: true, orgao: true } }) : null;
+    const tribunal = i?.tribunal && !/^DJEN/i.test(i.tribunal) ? i.tribunal : p.processo?.tribunal ?? null;
+    const vencimento = diaLocal(p.dataPrazo);
+    const ano = Number(vencimento.slice(0, 4));
+    const cal = await this.calendario(p.escritorioId, { tribunal, comarca: (p.processo?.camposCustom as any)?.comarca ?? null }, [ano - 1, ano]);
+    let d3 = vencimento;
+    for (let faltam = 3, g = 0; faltam > 0 && g < 60; g++) { d3 = somarDias(d3, -1); if (cal.ehDiaUtil(d3) && !cal.prazoSuspenso(d3)) faltam--; }
+    const nomes = await this.prisma.usuario.findMany({ where: { id: { in: p.responsaveisIds } }, select: { nome: true } });
+    return {
+      prazoId: p.id, dias: p.diasPrazo, vencimento, alertaD3: d3, oQueFazer: p.descricao, processo: p.processo?.numero ?? null,
+      tribunal, orgao: i?.orgao ?? (p.processo?.camposCustom as any)?.orgao ?? null, cliente: p.processo?.cliente?.nome ?? null,
+      responsaveis: nomes.map((n) => n.nome.split(/\s+/)[0]), conferir: p.conferir, cumprido: p.status === 'cumprido',
+    };
+  }
+
+  /**
+   * Cria/atualiza o evento no Google Agenda de cada responsável que ligou a agenda, no formato da
+   * planilha: prazo fatal 9h vermelho + alerta D-3 amarelo; audiência azul; cumprido vira "✅ CUMPRIDO".
+   */
   async enviarAoGoogle(eventoId: string) {
+    if (AgendaPrazosService.agendaGoogleDesligada()) return;
     const ev = await this.prisma.evento.findUnique({
       where: { id: eventoId },
-      include: { responsaveis: { include: { usuario: { select: { id: true, googleAgendaToken: true, googleAgendaId: true } } } } },
+      include: {
+        responsaveis: { include: { usuario: { select: { id: true, googleAgendaToken: true, googleAgendaId: true } } } },
+        processo: { select: { numero: true } },
+      },
     });
     if (!ev) return;
     const conectados = ev.responsaveis.filter((r) => r.usuario.googleAgendaToken);
     if (!conectados.length || !process.env.GOOGLE_CLIENT_ID) return;
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { google } = require('googleapis');
-    const corpo: any = {
-      summary: ev.titulo,
-      description: `${ev.descricao ?? ''}\n\n(JurysOne)`.trim(),
-      location: ev.local ?? undefined,
-      ...(ev.diaInteiro
-        ? { start: { date: diaLocal(ev.data) }, end: { date: somarDias(diaLocal(ev.data), 1) } }
-        : { start: { dateTime: ev.data.toISOString() }, end: { dateTime: (ev.dataFim ?? new Date(ev.data.getTime() + 3600_000)).toISOString() } }),
-      status: ev.status === 'CANCELADO' ? 'cancelled' : 'confirmed',
-    };
+    let fatal: any;
+    let d3: any = null;
+    let dados: DadosPrazoAgenda | null = null;
+    if (ev.tipo === 'PRAZO') dados = await this.dadosPrazoDoEvento(eventoId);
+    if (dados) {
+      fatal = corpoPrazoFatal(dados);
+      d3 = corpoAlertaD3(dados);
+    } else if (ev.tipo === 'AUDIENCIA') {
+      fatal = corpoAudiencia({ titulo: ev.titulo, descricao: ev.descricao, inicio: ev.data, fim: ev.dataFim, local: ev.local, processo: ev.processo?.numero ?? null, cancelado: ev.status === 'CANCELADO' });
+    } else {
+      fatal = {
+        summary: ev.titulo,
+        description: `${ev.descricao ?? ''}\n\n(JurysOne)`.trim(),
+        location: ev.local ?? undefined,
+        ...(ev.diaInteiro
+          ? { start: { date: diaLocal(ev.data) }, end: { date: somarDias(diaLocal(ev.data), 1) } }
+          : { start: { dateTime: ev.data.toISOString() }, end: { dateTime: (ev.dataFim ?? new Date(ev.data.getTime() + 3600_000)).toISOString() } }),
+        status: ev.status === 'CANCELADO' ? 'cancelled' : 'confirmed',
+      };
+    }
+    const hoje = diaLocal(new Date());
     for (const r of conectados) {
       try {
         const auth = this.clienteOAuth();
@@ -312,10 +360,18 @@ export class AgendaPrazosService {
         const cal = google.calendar({ version: 'v3', auth });
         const calendarId = r.usuario.googleAgendaId ?? 'primary';
         if (r.googleEventId) {
-          await cal.events.patch({ calendarId, eventId: r.googleEventId, requestBody: corpo });
-        } else {
-          const { data } = await cal.events.insert({ calendarId, requestBody: corpo });
+          await cal.events.patch({ calendarId, eventId: r.googleEventId, requestBody: fatal });
+        } else if (!(dados && (dados.cumprido || dados.vencimento < hoje))) {
+          const { data } = await cal.events.insert({ calendarId, requestBody: fatal });
           await this.prisma.eventoResponsavel.update({ where: { id: r.id }, data: { googleEventId: data.id } });
+        }
+        if (d3 && dados) {
+          if (r.googleEventIdD3) {
+            await cal.events.patch({ calendarId, eventId: r.googleEventIdD3, requestBody: d3 });
+          } else if (!dados.cumprido && dados.alertaD3! >= hoje) {
+            const { data } = await cal.events.insert({ calendarId, requestBody: d3 });
+            await this.prisma.eventoResponsavel.update({ where: { id: r.id }, data: { googleEventIdD3: data.id } });
+          }
         }
       } catch (e: any) {
         this.logger.warn(`Google Agenda do usuário ${r.usuarioId}: ${e?.message ?? e}`);

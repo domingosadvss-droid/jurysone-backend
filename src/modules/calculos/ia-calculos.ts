@@ -10,7 +10,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import * as z from 'zod/v4';
 import { zodOutputFormat } from '@anthropic-ai/sdk/helpers/zod';
-import { IaIndisponivel } from '../../common/ia-claude';
+import { AoUsar, IaIndisponivel } from '../../common/ia-claude';
 
 export const MODELO_CALCULOS = 'claude-opus-5-5';
 
@@ -43,7 +43,7 @@ export const PagamentosExtraidos = z.object({
 });
 export type PagamentosExtraidos = z.infer<typeof PagamentosExtraidos>;
 
-export async function extrairPagamentos(apiKey: string | null | undefined, pdf: Buffer, finalidade: string): Promise<{ dados: PagamentosExtraidos; modelo: string }> {
+export async function extrairPagamentos(apiKey: string | null | undefined, pdf: Buffer, finalidade: string, aoUsar?: AoUsar): Promise<{ dados: PagamentosExtraidos; modelo: string }> {
   const c = cliente(apiKey);
   const stream = c.beta.messages.stream({
     model: MODELO_CALCULOS,
@@ -67,6 +67,7 @@ export async function extrairPagamentos(apiKey: string | null | undefined, pdf: 
     }],
   } as any);
   const msg = await stream.finalMessage();
+  aoUsar?.(msg as any);
   conferirParada(msg);
   const bruto = JSON.parse(textoDa(msg) || '{}');
   const dados = PagamentosExtraidos.parse(bruto);
@@ -88,7 +89,7 @@ export type AjusteIa = z.infer<typeof AjusteIa>;
 
 export async function interpretarAjuste(apiKey: string | null | undefined, d: {
   tipo: string; nomeCalculadora: string; parametros: any; esquema: any; mensagem: string;
-}): Promise<{ dados: AjusteIa; modelo: string }> {
+}, aoUsar?: AoUsar): Promise<{ dados: AjusteIa; modelo: string }> {
   const c = cliente(apiKey);
   const msg = await c.beta.messages.create({
     model: MODELO_CALCULOS,
@@ -109,6 +110,7 @@ export async function interpretarAjuste(apiKey: string | null | undefined, d: {
         `<parametros_atuais>\n${JSON.stringify(d.parametros).slice(0, 60000)}\n</parametros_atuais>\n\n<pedido_do_advogado>\n${d.mensagem.slice(0, 4000)}\n</pedido_do_advogado>`,
     }],
   } as any);
+  aoUsar?.(msg as any);
   conferirParada(msg);
   const dados = AjusteIa.parse(JSON.parse(textoDa(msg) || '{}'));
   return { dados, modelo: (msg as any).model };

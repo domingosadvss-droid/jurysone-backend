@@ -18,6 +18,36 @@ const POR_PAGINA = 50;
 const MAX_PAGINAS = 200;
 const TENTATIVAS_PAGINA = 2;
 
+// ── Limite de consultas do DJEN ──────────────────────────────────────────────
+// A API informa X-RateLimit-Limit (20) e X-RateLimit-Remaining por janela de tempo.
+// Controle compartilhado por todo o servidor (busca na tela, captura diária e sincronização):
+// quando as consultas restantes acabam, espera a janela liberar em vez de levar 429.
+const ESPERA_LIMITE_MS = 30_000;
+const TENTATIVAS_LIMITE = 3;
+const INTERVALO_MINIMO_MS = 150;
+let liberadoEm = 0;
+let fila: Promise<void> = Promise.resolve();
+
+function bloquearAte(instante: number) {
+  liberadoEm = Math.max(liberadoEm, instante);
+}
+
+function registrarLimite(headers: any) {
+  const restantes = Number(headers?.['x-ratelimit-remaining']);
+  if (Number.isFinite(restantes) && restantes <= 1) bloquearAte(Date.now() + ESPERA_LIMITE_MS);
+}
+
+/** Uma consulta por vez, respeitando o intervalo mínimo e eventuais bloqueios pelo limite */
+function aguardarVez(): Promise<void> {
+  const vez = fila.then(async () => {
+    const espera = Math.max(liberadoEm - Date.now(), 0);
+    if (espera) await new Promise((r) => setTimeout(r, espera));
+    liberadoEm = Date.now() + INTERVALO_MINIMO_MS;
+  });
+  fila = vez.catch(() => undefined);
+  return vez;
+}
+
 export interface ComunicacaoDjen {
   id: string;
   hash: string | null;
@@ -80,13 +110,25 @@ export class DjenCliente {
   }
 
   private async pagina(params: Record<string, string>, pagina: number): Promise<{ count: number; items: any[] }> {
-    try {
-      const { data } = await this.http.get('/api/v1/comunicacao', { params: { ...params, pagina, itensPorPagina: POR_PAGINA } });
-      return { count: Number(data?.count ?? 0), items: Array.isArray(data?.items) ? data.items : [] };
-    } catch (e: any) {
-      const status = e?.response?.status;
-      if (status === 403) throw new ErroDjen('DJEN recusou o acesso (403). A API só atende IPs do Brasil: hospede o servidor no Brasil ou configure DJEN_API_URL com um repasse no Brasil.', 403);
-      throw new ErroDjen(`Falha ao consultar o DJEN${status ? ` (HTTP ${status})` : ''}: ${e?.message ?? e}`, status);
+    for (let tentativa = 0; ; tentativa++) {
+      await aguardarVez();
+      try {
+        const resp = await this.http.get('/api/v1/comunicacao', { params: { ...params, pagina, itensPorPagina: POR_PAGINA } });
+        registrarLimite(resp.headers);
+        const data = resp.data;
+        return { count: Number(data?.count ?? 0), items: Array.isArray(data?.items) ? data.items : [] };
+      } catch (e: any) {
+        const status = e?.response?.status;
+        if (status === 429 && tentativa < TENTATIVAS_LIMITE) {
+          // Limite de consultas do DJEN: espera a janela liberar e repete a mesma página
+          const retry = Number(e?.response?.headers?.['retry-after']);
+          bloquearAte(Date.now() + (retry > 0 ? retry * 1000 : ESPERA_LIMITE_MS * (tentativa + 1)));
+          continue;
+        }
+        if (status === 403) throw new ErroDjen('DJEN recusou o acesso (403). A API só atende IPs do Brasil: hospede o servidor no Brasil ou configure DJEN_API_URL com um repasse no Brasil.', 403);
+        if (status === 429) throw new ErroDjen('O DJEN está limitando as consultas (muitas em sequência). Aguarde um minuto e tente de novo, ou diminua o período.', 429);
+        throw new ErroDjen(`Falha ao consultar o DJEN${status ? ` (HTTP ${status})` : ''}: ${e?.message ?? e}`, status);
+      }
     }
   }
 
@@ -167,7 +209,7 @@ export class DjenCliente {
       throw new ErroDjen('Informe o número do processo, a OAB (com UF), o nome da parte ou o nome do advogado.');
     }
     const fim = f.fim ?? new Date().toISOString().slice(0, 10);
-    let inicio = f.inicio ?? somarDias(fim, -90);
+    let inicio = f.inicio ?? somarDias(fim, -30);
     if (somarDias(inicio, MAX_DIAS_BUSCA) < fim) inicio = somarDias(fim, -MAX_DIAS_BUSCA);
     if (oab) {
       const r = await this.porOab(oab, String(f.ufOab), inicio, fim);
@@ -200,6 +242,20 @@ export interface BuscaDjen {
   fim?: string;    // AAAA-MM-DD
 }
 
+/** Texto legível de uma comunicação: algumas vêm como página HTML inteira */
+export function textoSemHtml(s: string): string {
+  return String(s ?? '')
+    .replace(/<(head|style|script)[^>]*>[\s\S]*?<\/\1>/gi, ' ')
+    .replace(/<!DOCTYPE[^>]*>/gi, ' ')
+    .replace(/<br\s*\/?>|<\/(p|div|tr|li|h\d)>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/gi, ' ').replace(/&amp;/gi, '&').replace(/&lt;/gi, '<').replace(/&gt;/gi, '>')
+    .replace(/&quot;/gi, '"').replace(/&#0?39;|&apos;/gi, "'")
+    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 /** Agrupa comunicações por processo, do mais recente para o mais antigo (formato da tela de consulta) */
 export function agruparPorProcesso(itens: ComunicacaoDjen[]) {
   const grupos = new Map<string, ComunicacaoDjen[]>();
@@ -227,7 +283,7 @@ export function agruparPorProcesso(itens: ComunicacaoDjen[]) {
       advogados: [...advogados.values()],
       comunicacoes: lista.map((c) => ({
         id: c.id, data: c.dataDisponibilizacao, tipo: c.tipoComunicacao, documento: c.tipoDocumento,
-        cancelada: !!c.motivoCancelamento, resumo: c.texto.replace(/\s+/g, ' ').slice(0, 400), link: c.link,
+        cancelada: !!c.motivoCancelamento, resumo: textoSemHtml(c.texto).slice(0, 400), link: c.link,
       })),
     };
   }).sort((a, b) => (a.ultimaPublicacao < b.ultimaPublicacao ? 1 : -1));

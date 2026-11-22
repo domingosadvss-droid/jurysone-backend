@@ -26,7 +26,8 @@ import { criarClienteIncompleto, procurarCliente } from '../publicacoes/clientes
 import { somarDias } from '../publicacoes/calendario';
 import { comarcaDoOrgao, ehPenal, extrairTelefone, mascararCnj, mencionaReuPreso, numeroCnj, textoPlano, tribunalDoNumero } from '../publicacoes/analise';
 import { varrerDocumento } from '../../common/varredura-documento';
-import { IaIndisponivel, rascunhoDePeca } from '../../common/ia-claude';
+import { IaIndisponivel, IaPausadaPeloLimite, rascunhoDePeca } from '../../common/ia-claude';
+import { IaUsoService } from '../ia-uso/ia-uso.service';
 
 const DIAS_ACEITE = Number(process.env.DATIVA_PRAZO_ACEITE_DIAS ?? 5);
 const CHAVE_TOKEN_AJG = 'ajg_email_token';
@@ -52,6 +53,7 @@ export class DativaService {
     private readonly chaves: ChavesService,
     @Inject(forwardRef(() => AgendaPrazosService)) private readonly agenda: AgendaPrazosService,
     @Inject(forwardRef(() => AvisosService)) private readonly avisos: AvisosService,
+    private readonly iaUso: IaUsoService,
   ) {}
 
   // ═══════════════════════ CRIAÇÃO DO CASO ════════════════════════════════
@@ -517,12 +519,14 @@ export class DativaService {
     const prazo = r.prazoId ? await this.prisma.prazo.findUnique({ where: { id: r.prazoId } }) : null;
     try {
       const pdf = await this.arquivos.conteudoInterno(r.escritorioId, r.documentoId);
-      const chave = await this.chaves.getChave(r.escritorioId, 'anthropic');
-      const { texto, modelo } = await rascunhoDePeca(chave, {
-        pdf, tipoPeca: r.tipoPeca, materia: caso?.materia ?? 'CIVEL',
-        numeroProcesso: processo?.numero ?? '', assistido: processo?.cliente?.nome ?? '', reuPreso: !!caso?.reuPreso,
-        prazo: prazo ? diaLocal(prazo.dataPrazo).split('-').reverse().join('/') : null, comarca: caso?.comarca ?? null,
-      });
+      const { texto, modelo } = await this.iaUso.executar(
+        { escritorioId: r.escritorioId, tarefa: 'rascunho_peca_dativa', categoria: 'PESADA', processoId: r.processoId },
+        (chave, aoUsar) => rascunhoDePeca(chave, {
+          pdf, tipoPeca: r.tipoPeca, materia: caso?.materia ?? 'CIVEL',
+          numeroProcesso: processo?.numero ?? '', assistido: processo?.cliente?.nome ?? '', reuPreso: !!caso?.reuPreso,
+          prazo: prazo ? diaLocal(prazo.dataPrazo).split('-').reverse().join('/') : null, comarca: caso?.comarca ?? null,
+        }, aoUsar),
+      );
       await this.prisma.rascunhoPeca.update({ where: { id: r.id }, data: { status: 'PRONTO', texto, modelo, geradoEm: new Date(), erro: null } });
       if (caso) {
         await this.avisos.sino(r.escritorioId, caso.advogadoId, 'RASCUNHO_PRONTO', 'Rascunho da peça pronto',
@@ -533,7 +537,8 @@ export class DativaService {
       await this.prisma.rascunhoPeca.update({ where: { id: r.id }, data: { status: semIa ? 'SEM_IA' : 'ERRO', erro: String(e?.message ?? e).slice(0, 500) } });
       if (caso) {
         await this.avisos.sino(r.escritorioId, caso.advogadoId, 'RASCUNHO_FALHOU', 'Rascunho da peça não foi gerado',
-          semIa ? 'A chave da Anthropic não está configurada. Configure-a para gerar rascunhos.' : `Erro: ${String(e?.message ?? e).slice(0, 300)}`, `/dativa/${caso.id}`);
+          e instanceof IaPausadaPeloLimite ? e.message
+            : semIa ? 'A chave da Anthropic não está configurada. Configure-a para gerar rascunhos.' : `Erro: ${String(e?.message ?? e).slice(0, 300)}`, `/dativa/${caso.id}`);
       }
     }
   }

@@ -491,6 +491,8 @@ model EventoResponsavel {
   usuario       Usuario @relation("EventosResponsavel", fields: [usuarioId], references: [id])
   // Etapa 4: cópia do evento no Google Agenda deste advogado
   googleEventId String?
+  // Controle de prazos (20/11/2026): alerta D-3 do prazo, como na planilha
+  googleEventIdD3 String?
 
   @@unique([eventoId, usuarioId])
   @@map("event_responsibles")
@@ -2014,4 +2016,119 @@ model WhatsappMensagemCaixa {
 
   @@index([conversaId, dataHora])
   @@map("whatsapp_mensagens_caixa")
+}
+
+// ─── Etapa A: uso e custo da IA (Claude) ─────────────────────────────────────
+/// Uma linha por chamada ao Claude (ou por bloqueio pelo limite mensal)
+model IaUso {
+  id                 String   @id @default(uuid())
+  escritorioId       String
+  /// nome da tarefa (ex.: conversa_whatsapp, rascunho_peca_dativa, resumo_cliente, calculo_pagamentos)
+  tarefa             String
+  /// CONVERSA (nunca para pelo limite) | PESADA (pausa quando o limite é atingido)
+  categoria          String
+  modelo             String
+  tokensEntrada      Int      @default(0)
+  tokensSaida        Int      @default(0)
+  tokensCacheLeitura Int      @default(0)
+  tokensCacheEscrita Int      @default(0)
+  custoUsd           Decimal  @default(0) @db.Decimal(14, 6)
+  /// cotação do dólar usada na conversão (PTAX/BCB ou valor de reserva)
+  cotacaoUsd         Decimal? @db.Decimal(10, 4)
+  custoBrl           Decimal  @default(0) @db.Decimal(14, 4)
+  /// OK | ERRO | BLOQUEADO
+  status             String   @default("OK")
+  erro               String?
+  processoId         String?
+  atendimentoId      String?
+  conversaId         String?
+  usuarioId          String?
+  createdAt          DateTime @default(now())
+
+  @@index([escritorioId, createdAt])
+  @@index([processoId])
+  @@map("ia_uso")
+}
+
+// ─── Etapa B: catálogo de serviços (o que a IA usa no atendimento) ───────────
+/// Um serviço que o escritório oferece: preço SUGERIDO (nunca vai ao cliente sem o advogado
+/// confirmar), documentos, perguntas da triagem, orientações e respostas frequentes
+model ServicoCatalogo {
+  id                String    @id @default(uuid())
+  escritorioId      String
+  codigo            String
+  nome              String
+  area              String
+  descricao         String?   @db.Text
+  /// modelo da linha de produção que o caso segue depois de contratado
+  modeloLinhaCodigo String?
+  responsavelId     String?
+  precoSugerido     Decimal?  @db.Decimal(12, 2)
+  /// FIXO | EXITO | FIXO_MAIS_EXITO | MENSAL | POR_ATO
+  tipoHonorario     String?
+  percentualExito   Decimal?  @db.Decimal(5, 2)
+  /// [{ texto, obrigatorio }]
+  documentos        Json      @default("[]")
+  /// [{ pergunta, obrigatoria }]
+  perguntas         Json      @default("[]")
+  orientacoes       String?   @db.Text
+  /// [{ pergunta, resposta }]
+  faq               Json      @default("[]")
+  palavrasChave     String[]  @default([])
+  /// ATIVO | INATIVO
+  status            String    @default("ATIVO")
+  /// PADRAO | MANUAL | IA
+  origem            String    @default("MANUAL")
+  versao            Int       @default(1)
+  aprovadoPorId     String?
+  aprovadoEm        DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  versoes           ServicoCatalogoVersao[]
+
+  @@unique([escritorioId, codigo])
+  @@index([escritorioId, status])
+  @@map("catalogo_servicos")
+}
+
+/// Histórico: cada alteração aprovada guarda a versão anterior inteira
+model ServicoCatalogoVersao {
+  id            String          @id @default(uuid())
+  servicoId     String
+  servico       ServicoCatalogo @relation(fields: [servicoId], references: [id], onDelete: Cascade)
+  versao        Int
+  dados         Json
+  alteradoPorId String?
+  motivo        String?
+  createdAt     DateTime        @default(now())
+
+  @@index([servicoId, versao])
+  @@map("catalogo_servicos_versoes")
+}
+
+/// Sugestão para o catálogo (da IA, ao aprender nas conversas, ou de um usuário):
+/// só passa a valer depois que um advogado de gestão aprova
+model SugestaoCatalogo {
+  id             String    @id @default(uuid())
+  escritorioId   String
+  /// NOVO_SERVICO | AJUSTE
+  tipo           String
+  servicoId      String?
+  /// NOVO_SERVICO: o serviço inteiro; AJUSTE: só os campos alterados
+  dados          Json
+  justificativa  String?   @db.Text
+  /// IA | USUARIO
+  origem         String    @default("IA")
+  conversaId     String?
+  atendimentoId  String?
+  criadoPorId    String?
+  /// PENDENTE | APROVADA | RECUSADA
+  status         String    @default("PENDENTE")
+  decididoPorId  String?
+  decididoEm     DateTime?
+  motivoDecisao  String?
+  createdAt      DateTime  @default(now())
+
+  @@index([escritorioId, status])
+  @@map("catalogo_sugestoes")
 }

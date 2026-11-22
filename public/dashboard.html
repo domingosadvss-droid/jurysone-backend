@@ -385,6 +385,8 @@
             <a class="nav-link" data-page="agenda" onclick="navigate('agenda')">📅 Agenda</a>
             <a class="nav-link" data-page="tarefas" onclick="navigate('tarefas')">✓ Tarefas</a>
             <a class="nav-link" data-page="intimacoes" onclick="navigate('intimacoes')">📢 Intimações <span class="nav-badge" id="intim-badge">2</span></a>
+            <a class="nav-link" data-page="controle-prazos" onclick="navigate('controle-prazos')">⏰ Controle de prazos</a>
+            <a class="nav-link" data-page="catalogo" onclick="navigate('catalogo')">🗂️ Catálogo de serviços</a>
             <a class="nav-link" data-page="parceiros" onclick="navigate('parceiros')">🤝 Parceiros</a>
             <a class="nav-link" data-page="modelos" onclick="navigate('modelos')">📚 Modelos</a>
             <div style="padding:14px 20px 4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,0.3)">Operacional</div>
@@ -787,15 +789,15 @@
                   <!-- Search -->
                   <div style="display:flex;align-items:center;gap:6px;background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:8px;padding:6px 11px;flex:1;min-width:200px;max-width:360px">
                     <span style="color:#94a3b8;font-size:13px">🔍</span>
-                    <input id="proc-search" type="text" placeholder="Buscar: cliente, número CNJ, tribunal, parte contrária..." style="border:none;background:transparent;font-size:13px;outline:none;width:100%;color:#374151" oninput="procOnSearch()">
+                    <input id="proc-search" type="text" placeholder="Buscar: cliente, número do processo, tribunal, parte contrária..." style="border:none;background:transparent;font-size:13px;outline:none;width:100%;color:#374151" oninput="procOnSearch()">
                     <button id="proc-search-clear" onclick="document.getElementById('proc-search').value='';renderProcessos()" style="display:none;background:none;border:none;cursor:pointer;color:#94a3b8;font-size:13px;padding:0;line-height:1">✕</button>
                   </div>
 
                   <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
                     <button onclick="ordenarProcessos()" style="display:flex;align-items:center;gap:5px;padding:7px 13px;border:1.5px solid #e2e8f0;border-radius:8px;background:#fff;font-size:13px;color:#374151;cursor:pointer;font-weight:500" title="Alternar ordem">⇅ Ordenar</button>
                     <button onclick="exportarProcessos()" style="display:flex;align-items:center;gap:5px;padding:7px 13px;border:1.5px solid #e2e8f0;border-radius:8px;background:#fff;font-size:13px;color:#374151;cursor:pointer;font-weight:500" title="Exportar CSV">↗ Exportar</button>
-                    <button id="btn-sincronizar-todos" onclick="datajudSincronizarTodos()" style="display:flex;align-items:center;gap:5px;padding:7px 13px;border:1.5px solid #0f2d5e;border-radius:8px;background:#f0f6ff;font-size:13px;color:#0f2d5e;cursor:pointer;font-weight:600" title="Buscar andamentos no DataJud">🏛️ Sincronizar</button>
-                    <button onclick="abrirBuscaDatajud()" style="display:flex;align-items:center;gap:5px;padding:7px 16px;border:none;border-radius:8px;background:#0f2d5e;font-size:13px;color:#fff;cursor:pointer;font-weight:600;box-shadow:0 2px 8px rgba(15,45,94,.2)">🔍 Busca CNJ</button>
+                    <button id="btn-sincronizar-todos" onclick="datajudSincronizarTodos()" style="display:flex;align-items:center;gap:5px;padding:7px 13px;border:1.5px solid #0f2d5e;border-radius:8px;background:#f0f6ff;font-size:13px;color:#0f2d5e;cursor:pointer;font-weight:600" title="Buscar a última publicação de cada processo no DJEN">📰 Sincronizar DJEN</button>
+                    <button onclick="abrirBuscaDjen()" style="display:flex;align-items:center;gap:5px;padding:7px 16px;border:none;border-radius:8px;background:#0f2d5e;font-size:13px;color:#fff;cursor:pointer;font-weight:600;box-shadow:0 2px 8px rgba(15,45,94,.2)">📰 Busca DJEN</button>
                   </div>
                 </div>
 
@@ -837,10 +839,10 @@
                 <div id="proc-empty" style="display:none;text-align:center;padding:64px 24px">
                   <div style="font-size:52px;margin-bottom:14px;opacity:.6">⚖️</div>
                   <div style="font-size:16px;font-weight:700;color:#374151;margin-bottom:6px">Nenhum processo encontrado</div>
-                  <div style="font-size:13px;color:#94a3b8;margin-bottom:22px">Adicione um processo manualmente ou importe direto do DataJud/CNJ</div>
+                  <div style="font-size:13px;color:#94a3b8;margin-bottom:22px">Adicione um processo manualmente ou importe direto do DJEN</div>
                   <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
                     <button class="btn-primary" onclick="openModalProcesso()">+ Novo Processo</button>
-                    <button class="btn-secondary" onclick="abrirBuscaDatajud()">🔍 Buscar no DataJud</button>
+                    <button class="btn-secondary" onclick="abrirBuscaDjen()">📰 Buscar no DJEN</button>
                     <button class="btn-secondary" onclick="document.getElementById('proc-filter-status').value='';document.getElementById('proc-filter-area').value='';document.getElementById('proc-search').value='';renderProcessos()">Limpar filtros</button>
                   </div>
                 </div>
@@ -891,7 +893,7 @@
                   </div>
                   <div style="display:flex;gap:8px;align-items:center">
                     <button onclick="recarregarEprocConsulta()" style="padding:7px 14px;background:#f0f6ff;border:1.5px solid #0f2d5e;border-radius:8px;font-size:12px;color:#0f2d5e;cursor:pointer;font-weight:600">🔄 Recarregar</button>
-                    <button onclick="abrirBuscaDatajud()" style="padding:7px 14px;background:#10b981;border:none;border-radius:8px;font-size:12px;color:#fff;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:5px">🏛️ Busca DataJud (todos os tribunais)</button>
+                    <button onclick="abrirBuscaDjen()" style="padding:7px 14px;background:#10b981;border:none;border-radius:8px;font-size:12px;color:#fff;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:5px">📰 Busca DJEN (todos os tribunais)</button>
                     <a href="https://eproc1g.tjsc.jus.br/eproc/controlador.php?acao=processo_consultar" target="_blank" style="padding:7px 14px;background:#0f2d5e;border:none;border-radius:8px;font-size:12px;color:#fff;cursor:pointer;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:5px">↗ Abrir em nova aba</a>
                   </div>
                 </div>
@@ -933,7 +935,7 @@
 
                 <!-- Ações rápidas -->
                 <div style="padding:10px 18px;border-bottom:1px solid #f1f5f9;display:flex;gap:7px;flex-shrink:0;background:#fafbff;flex-wrap:wrap">
-                  <button id="pn-sync-btn" onclick="syncProcessoAtual()" style="display:flex;align-items:center;gap:5px;padding:6px 13px;background:#0f2d5e;color:#fff;border:none;border-radius:7px;font-size:12px;cursor:pointer;font-weight:600">🏛️ Sincronizar DataJud</button>
+                  <button id="pn-sync-btn" onclick="syncProcessoAtual()" style="display:flex;align-items:center;gap:5px;padding:6px 13px;background:#0f2d5e;color:#fff;border:none;border-radius:7px;font-size:12px;cursor:pointer;font-weight:600">📰 Sincronizar DJEN</button>
                   <button onclick="editarProcessoAtual()" style="display:flex;align-items:center;gap:5px;padding:6px 12px;background:#fff;border:1.5px solid #e2e8f0;border-radius:7px;font-size:12px;cursor:pointer;color:#374151;font-weight:500">✏️ Editar</button>
                   <button onclick="copiarNumeroCNJ()" style="display:flex;align-items:center;gap:5px;padding:6px 12px;background:#fff;border:1.5px solid #e2e8f0;border-radius:7px;font-size:12px;cursor:pointer;color:#374151;font-weight:500" title="Copiar número CNJ">📋 Copiar</button>
                   <button onclick="excluirProcessoAtual()" style="margin-left:auto;padding:6px 10px;background:#fff;border:1.5px solid #fee2e2;border-radius:7px;font-size:12px;cursor:pointer;color:#ef4444;font-weight:500">🗑</button>
@@ -1051,6 +1053,76 @@
                         </tr></thead>
                         <tbody id="table-intimacoes"></tbody>
                     </table>
+                </div>
+            </div>
+
+            <!-- Controle de Prazos (formato da planilha do escritório) -->
+            <div id="page-controle-prazos" class="page">
+                <div class="card">
+                    <div class="card-header" style="flex-wrap:wrap;gap:10px">
+                        <div>
+                            <div class="card-title">⏰ Controle de Prazos</div>
+                            <div style="font-size:12px;color:#94a3b8;margin-top:2px;">Mesmo formato da planilha do escritório. Calculado pelo calendário do tribunal de cada processo.</div>
+                        </div>
+                        <div style="display:flex;gap:8px;flex-wrap:wrap">
+                            <label class="btn-primary btn-sm" style="cursor:pointer;margin:0">📥 Importar planilha (.xlsx)
+                                <input type="file" accept=".xlsx" style="display:none" onchange="cpImportar(this)">
+                            </label>
+                            <button class="btn-secondary btn-sm" onclick="cpCalendarioPadrao(this)">📅 Aplicar calendário padrão</button>
+                            <button class="btn-secondary btn-sm" onclick="cpRecalcular(this)">🔄 Recalcular prazos</button>
+                        </div>
+                    </div>
+                    <div id="cp-resumo" style="display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 12px"></div>
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
+                        <button class="btn-secondary btn-sm" id="cp-f-abertos" onclick="cpFiltrar('abertos')">Em aberto</button>
+                        <button class="btn-secondary btn-sm" id="cp-f-conferir" onclick="cpFiltrar('conferir')">⚠️ Conferir</button>
+                        <button class="btn-secondary btn-sm" id="cp-f-cumpridos" onclick="cpFiltrar('cumpridos')">✅ Cumpridos</button>
+                        <button class="btn-secondary btn-sm" id="cp-f-todos" onclick="cpFiltrar('todos')">Todos</button>
+                    </div>
+                    <div id="cp-relatorio" style="display:none;margin-bottom:12px"></div>
+                    <div style="overflow-x:auto">
+                    <table class="table" style="font-size:12.5px;min-width:1100px">
+                        <thead><tr>
+                            <th>Situação</th>
+                            <th>Processo</th>
+                            <th>Cliente</th>
+                            <th>O que fazer</th>
+                            <th>Prazo</th>
+                            <th>Publicação</th>
+                            <th>Início</th>
+                            <th style="color:#b91c1c">PRAZO FATAL</th>
+                            <th>D-5</th>
+                            <th>D-3</th>
+                            <th>D-1</th>
+                            <th>Responsável</th>
+                            <th>Ações</th>
+                        </tr></thead>
+                        <tbody id="table-controle-prazos"></tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catálogo de serviços (etapa B) -->
+            <div id="page-catalogo" class="page">
+                <div class="card">
+                    <div class="card-header" style="flex-wrap:wrap;gap:10px">
+                        <div>
+                            <div class="card-title">🗂️ Catálogo de serviços</div>
+                            <div style="font-size:12px;color:#94a3b8;margin-top:2px;">O que a IA usa no atendimento: documentos, perguntas da triagem e respostas. O preço é só sugestão — nunca vai ao cliente sem a sua confirmação.</div>
+                        </div>
+                        <div style="display:flex;gap:8px;flex-wrap:wrap">
+                            <button class="btn-primary btn-sm" onclick="catNovo()">＋ Novo serviço</button>
+                            <button class="btn-secondary btn-sm" id="cat-btn-carga" onclick="catCargaInicial(this)">📦 Criar os 8 serviços iniciais</button>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
+                        <button class="btn-secondary btn-sm" id="cat-aba-servicos" onclick="catAba('servicos')">Serviços</button>
+                        <button class="btn-secondary btn-sm" id="cat-aba-sugestoes" onclick="catAba('sugestoes')">Sugestões para aprovar <span id="cat-badge" style="background:#dc2626;color:#fff;border-radius:10px;padding:0 7px;font-size:11px;margin-left:4px;display:none"></span></button>
+                        <button class="btn-secondary btn-sm" id="cat-aba-inativos" onclick="catAba('inativos')">Inativos</button>
+                    </div>
+                    <div id="cat-editor" style="display:none;margin-bottom:16px"></div>
+                    <div id="cat-conteudo"></div>
                 </div>
             </div>
 
@@ -1179,7 +1251,8 @@
                 <!-- Lista de Conversas -->
                 <div style="width:320px;flex-shrink:0;border-right:1px solid #e2e8f0;display:flex;flex-direction:column;background:#fafafa">
                   <div style="padding:16px;border-bottom:1px solid #e2e8f0;background:#fff">
-                    <div style="font-size:15px;font-weight:700;color:#0f2d5e;margin-bottom:10px">💬 Conversas</div>
+                    <div style="font-size:15px;font-weight:700;color:#0f2d5e;margin-bottom:4px">💬 Conversas</div>
+                    <div id="wpp-modo" style="font-size:11px;color:#64748b;margin-bottom:10px;min-height:14px"></div>
                     <input id="wpp-search" type="text" placeholder="🔍 Buscar contato..." oninput="wppFiltrarConversas(this.value)"
                       style="width:100%;padding:8px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:13px;outline:none;box-sizing:border-box"
                       onfocus="this.style.borderColor='#25d366'" onblur="this.style.borderColor='#e2e8f0'">
@@ -1576,6 +1649,7 @@
                 <button onclick="configTab('perms')"   id="tab-perms"   style="padding:10px 18px;border:none;background:none;cursor:pointer;font-size:13px;font-weight:600;color:#64748b;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap">🔒 Permissões</button>
                 <button onclick="configTab('notif')"   id="tab-notif"   style="padding:10px 18px;border:none;background:none;cursor:pointer;font-size:13px;font-weight:600;color:#64748b;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap">🔔 Notificações</button>
                 <button onclick="configTab('apis')"    id="tab-apis"    style="padding:10px 18px;border:none;background:none;cursor:pointer;font-size:13px;font-weight:600;color:#64748b;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap">🔌 Integrações</button>
+                <button onclick="configTab('ia')"      id="tab-ia"      style="padding:10px 18px;border:none;background:none;cursor:pointer;font-size:13px;font-weight:600;color:#64748b;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap">🧠 IA</button>
                 <button onclick="configTab('auditoria')" id="tab-auditoria" style="padding:10px 18px;border:none;background:none;cursor:pointer;font-size:13px;font-weight:600;color:#64748b;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap">📋 Auditoria</button>
               </div>
 
@@ -1768,6 +1842,15 @@
                   <div id="apis-status-geral" style="font-size:12px;color:#64748b"></div>
                 </div>
                 <div id="api-cards-container"></div>
+              </div>
+
+              <!-- ── Tab: IA (etapa A) ── -->
+              <div id="cfg-ia" style="display:none">
+                <div style="margin-bottom:16px">
+                  <h3 style="font-size:16px;font-weight:700;color:#1e293b;margin:0">🧠 IA — gasto do mês e limite</h3>
+                  <p style="font-size:13px;color:#64748b;margin:4px 0 0">Quanto o Claude custou neste mês, por tarefa e por processo, e o limite mensal escolhido por você.</p>
+                </div>
+                <div id="ia-uso-container"></div>
               </div>
 
               <!-- ── Tab: Auditoria ── -->
@@ -1965,7 +2048,7 @@
     </form>
   </div>
 </div>
-    <div id="modal-cliente" class="modal"><div class="modal-content"><div class="modal-header"><h3 class="modal-title">Novo Cliente</h3></div><form onsubmit="saveCliente(event)"><div class="form-group"><label class="form-label">Nome</label><input type="text" class="form-input" id="form-cliente-nome" required></div><div class="form-group"><label class="form-label">CPF/CNPJ</label><input type="text" class="form-input" id="form-cliente-cpf" required></div><div class="form-group"><label class="form-label">Tipo</label><select class="form-select" id="form-cliente-tipo" required><option value="PF">Pessoa Física</option><option value="PJ">Pessoa Jurídica</option></select></div><div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" id="form-cliente-email" required></div><div class="form-group"><label class="form-label">Telefone</label><input type="tel" class="form-input" id="form-cliente-telefone"></div><div class="form-actions"><button type="button" class="btn-secondary" onclick="closeModalCliente()">Cancelar</button><button type="submit" class="btn-primary">Salvar</button></div></form></div></div>
+    <div id="modal-cliente" class="modal"><div class="modal-content"><div class="modal-header"><h3 class="modal-title">Novo Cliente</h3></div><form onsubmit="saveCliente(event)"><div class="form-group"><label class="form-label">Nome</label><input type="text" class="form-input" id="form-cliente-nome" required></div><input type="hidden" id="form-cliente-id"><div class="form-group"><label class="form-label">CPF/CNPJ</label><input type="text" class="form-input" id="form-cliente-cpf"></div><div class="form-group"><label class="form-label">Tipo</label><select class="form-select" id="form-cliente-tipo" required><option value="PF">Pessoa Física</option><option value="PJ">Pessoa Jurídica</option></select></div><div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" id="form-cliente-email"></div><div class="form-group"><label class="form-label">Telefone</label><input type="tel" class="form-input" id="form-cliente-telefone"></div><div class="form-actions"><button type="button" class="btn-secondary" onclick="closeModalCliente()">Cancelar</button><button type="submit" class="btn-primary">Salvar</button></div></form></div></div>
     <div id="modal-tarefa" class="modal"><div class="modal-content"><div class="modal-header"><h3 class="modal-title">Nova Tarefa</h3></div><form onsubmit="saveTarefa(event)"><div class="form-group"><label class="form-label">Título</label><input type="text" class="form-input" id="form-tarefa-titulo" required></div><div class="form-group"><label class="form-label">Processo</label><input type="text" class="form-input" id="form-tarefa-processo"></div><div class="form-group"><label class="form-label">Responsável</label><input type="text" class="form-input" id="form-tarefa-responsavel"></div><div class="form-group"><label class="form-label">Prioridade</label><select class="form-select" id="form-tarefa-prioridade" required><option value="alta">Alta</option><option value="media">Média</option><option value="baixa">Baixa</option></select></div><div class="form-group"><label class="form-label">Vencimento</label><input type="date" class="form-input" id="form-tarefa-vencimento" required></div><div class="form-actions"><button type="button" class="btn-secondary" onclick="closeModalTarefa()">Cancelar</button><button type="submit" class="btn-primary">Salvar</button></div></form></div></div>
     <div id="modal-documento" class="modal"><div class="modal-content"><div class="modal-header"><h3 class="modal-title">Novo Documento</h3></div><form onsubmit="saveDocumento(event)"><div class="form-group"><label class="form-label">Nome</label><input type="text" class="form-input" id="form-documento-nome" required></div><div class="form-group"><label class="form-label">Tipo</label><select class="form-select" id="form-documento-tipo" required><option value="Petição">Petição</option><option value="Contrato">Contrato</option><option value="Procuração">Procuração</option><option value="Parecer">Parecer</option><option value="Ata">Ata</option></select></div><div class="form-group"><label class="form-label">Processo</label><input type="text" class="form-input" id="form-documento-processo"></div><div class="form-group"><label class="form-label">Status</label><select class="form-select" id="form-documento-status" required><option value="rascunho">Rascunho</option><option value="final">Final</option><option value="assinado">Assinado</option></select></div><div class="form-actions"><button type="button" class="btn-secondary" onclick="closeModalDocumento()">Cancelar</button><button type="submit" class="btn-primary">Salvar</button></div></form></div></div>
     <!-- ═══════════════════════════════════════════════════════ -->
@@ -2917,111 +3000,63 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <!-- Modal DataJud — Busca Avançada CNJ                          -->
+    <!-- Modal DJEN — Busca de processos no Diário de Justiça Eletrônico Nacional -->
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <div id="modal-datajud-busca" class="modal">
-      <div class="modal-content" style="max-width:720px;width:95vw;padding:0;overflow:hidden">
+    <div id="modal-djen-busca" class="modal">
+      <div class="modal-content" style="max-width:760px;width:95vw;padding:0;overflow:hidden">
 
-        <!-- Header -->
         <div style="padding:20px 24px 16px;display:flex;align-items:flex-start;justify-content:space-between;background:linear-gradient(135deg,#0f2d5e 0%,#1a4080 100%);color:#fff">
           <div>
-            <div style="font-size:18px;font-weight:700;margin:0">🏛️ Busca CNJ — DataJud</div>
-            <div style="font-size:12px;opacity:.75;margin-top:4px">Consulte processos diretamente no banco nacional do CNJ (api-publica.datajud.cnj.jus.br)</div>
+            <div style="font-size:18px;font-weight:700;margin:0">📰 Busca DJEN</div>
+            <div style="font-size:12px;opacity:.75;margin-top:4px">Processos com publicações no Diário de Justiça Eletrônico Nacional (comunica.pje.jus.br)</div>
           </div>
-          <button onclick="fecharBuscaDatajud()" style="padding:6px 12px;border:1.5px solid rgba(255,255,255,.3);border-radius:8px;background:rgba(255,255,255,.1);cursor:pointer;font-size:13px;color:#fff;margin-top:2px">✕ Fechar</button>
+          <button onclick="fecharBuscaDjen()" style="padding:6px 12px;border:1.5px solid rgba(255,255,255,.3);border-radius:8px;background:rgba(255,255,255,.1);cursor:pointer;font-size:13px;color:#fff;margin-top:2px">✕ Fechar</button>
         </div>
 
-        <!-- Tabs -->
         <div style="display:flex;background:#f8fafc;border-bottom:1px solid #e2e8f0;overflow-x:auto;padding:0 24px">
-          <button id="dj-tab-numero"  onclick="datajudSelectTipo('numero')"  style="padding:11px 15px;border:none;border-bottom:2.5px solid #0f2d5e;background:transparent;font-size:12px;font-weight:700;color:#0f2d5e;cursor:pointer;white-space:nowrap">📋 Por Número CNJ</button>
-          <button id="dj-tab-oab"     onclick="datajudSelectTipo('oab')"     style="padding:11px 15px;border:none;border-bottom:2.5px solid transparent;background:transparent;font-size:12px;font-weight:500;color:#64748b;cursor:pointer;white-space:nowrap">👤 Por OAB</button>
-          <button id="dj-tab-cpf"     onclick="datajudSelectTipo('cpf')"     style="padding:11px 15px;border:none;border-bottom:2.5px solid transparent;background:transparent;font-size:12px;font-weight:500;color:#64748b;cursor:pointer;white-space:nowrap">🪪 Por CPF/CNPJ</button>
-          <button id="dj-tab-nome"    onclick="datajudSelectTipo('nome')"    style="padding:11px 15px;border:none;border-bottom:2.5px solid transparent;background:transparent;font-size:12px;font-weight:500;color:#64748b;cursor:pointer;white-space:nowrap">🔤 Por Nome da Parte</button>
-          <button id="dj-tab-classe"  onclick="datajudSelectTipo('classe')"  style="padding:11px 15px;border:none;border-bottom:2.5px solid transparent;background:transparent;font-size:12px;font-weight:500;color:#64748b;cursor:pointer;white-space:nowrap">⚖️ Por Classe</button>
-          <button id="dj-tab-assunto" onclick="datajudSelectTipo('assunto')" style="padding:11px 15px;border:none;border-bottom:2.5px solid transparent;background:transparent;font-size:12px;font-weight:500;color:#64748b;cursor:pointer;white-space:nowrap">📌 Por Assunto</button>
-          <button id="dj-tab-inteligente" onclick="datajudSelectTipo('inteligente')" style="padding:11px 15px;border:none;border-bottom:2.5px solid transparent;background:transparent;font-size:12px;font-weight:500;color:#7c3aed;cursor:pointer;white-space:nowrap">✨ Busca Inteligente</button>
+          <button id="djen-tab-processo" onclick="djenSelectTipo('processo')" class="djen-tab">📋 Nº do processo</button>
+          <button id="djen-tab-oab"      onclick="djenSelectTipo('oab')"      class="djen-tab">👤 OAB</button>
+          <button id="djen-tab-parte"    onclick="djenSelectTipo('parte')"    class="djen-tab">🔤 Nome da parte</button>
+          <button id="djen-tab-advogado" onclick="djenSelectTipo('advogado')" class="djen-tab">⚖️ Nome do advogado</button>
         </div>
 
-        <!-- Form + Results -->
         <div style="padding:20px 24px;max-height:70vh;overflow-y:auto">
+          <div id="djen-form-area"></div>
 
-          <!-- Área de formulário (muda conforme a aba) -->
-          <div id="dj-form-area">
-            <div class="form-group">
-              <label class="form-label">Número do Processo (formato CNJ)</label>
-              <input type="text" class="form-input" id="dj-input-numero"
-                placeholder="Ex: 1001234-56.2024.8.26.0100"
-                onkeydown="if(event.key==='Enter')executarBuscaDatajud()">
-              <small style="color:#94a3b8;font-size:11px;display:block;margin-top:4px">💡 O tribunal é detectado automaticamente pelo número CNJ</small>
+          <!-- Filtros opcionais (não se aplicam à busca por número) -->
+          <div id="djen-filtros" style="display:none;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px">
+            <div class="form-group" style="margin:0">
+              <label class="form-label">Tribunal <span style="color:#94a3b8;font-weight:400">(opcional)</span></label>
+              <input type="text" class="form-input" id="djen-input-tribunal" list="djen-tribunais" placeholder="Todos" style="text-transform:uppercase">
+              <datalist id="djen-tribunais">
+                <option value="TJSC"><option value="TRT12"><option value="TRF4"><option value="TJPR"><option value="TJRS"><option value="TJSP">
+                <option value="STJ"><option value="STF"><option value="TST">
+              </datalist>
+            </div>
+            <div class="form-group" style="margin:0">
+              <label class="form-label">De</label>
+              <input type="date" class="form-input" id="djen-input-inicio">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label class="form-label">Até</label>
+              <input type="date" class="form-input" id="djen-input-fim">
             </div>
           </div>
+          <small id="djen-dica-periodo" style="display:none;color:#94a3b8;font-size:11px;margin:-6px 0 14px">💡 Sem datas, busca os últimos 30 dias. O período máximo é de 1 ano. Períodos longos podem levar alguns minutos (o DJEN limita as consultas).</small>
 
-          <!-- Seletor de tribunal (visível para buscas por OAB, CPF, nome, classe e assunto) -->
-          <div id="dj-tribunal-row" style="display:none;margin-bottom:16px">
-            <label class="form-label">Tribunal <span style="color:#ef4444">*</span></label>
-            <select id="dj-select-tribunal" class="form-select">
-              <optgroup label="── Estaduais ──────────────────">
-                <option value="TJ-SC">TJ-SC — Santa Catarina</option>
-                <option value="TJ-SP">TJ-SP — São Paulo</option>
-                <option value="TJ-RJ">TJ-RJ — Rio de Janeiro</option>
-                <option value="TJ-MG">TJ-MG — Minas Gerais</option>
-                <option value="TJ-RS">TJ-RS — Rio Grande do Sul</option>
-                <option value="TJ-PR">TJ-PR — Paraná</option>
-                <option value="TJ-BA">TJ-BA — Bahia</option>
-                <option value="TJ-GO">TJ-GO — Goiás</option>
-                <option value="TJ-PE">TJ-PE — Pernambuco</option>
-                <option value="TJ-CE">TJ-CE — Ceará</option>
-                <option value="TJ-DF">TJ-DF — Distrito Federal</option>
-                <option value="TJ-PA">TJ-PA — Pará</option>
-                <option value="TJ-MA">TJ-MA — Maranhão</option>
-                <option value="TJ-ES">TJ-ES — Espírito Santo</option>
-                <option value="TJ-MT">TJ-MT — Mato Grosso</option>
-                <option value="TJ-MS">TJ-MS — Mato Grosso do Sul</option>
-                <option value="TJ-RO">TJ-RO — Rondônia</option>
-                <option value="TJ-AM">TJ-AM — Amazonas</option>
-                <option value="TJ-PI">TJ-PI — Piauí</option>
-                <option value="TJ-AL">TJ-AL — Alagoas</option>
-                <option value="TJ-SE">TJ-SE — Sergipe</option>
-                <option value="TJ-PB">TJ-PB — Paraíba</option>
-                <option value="TJ-RN">TJ-RN — Rio Grande do Norte</option>
-              </optgroup>
-              <optgroup label="── Trabalhistas ───────────────">
-                <option value="TRT-1">TRT-1 (Rio de Janeiro)</option>
-                <option value="TRT-2">TRT-2 (São Paulo capital)</option>
-                <option value="TRT-3">TRT-3 (Minas Gerais)</option>
-                <option value="TRT-4">TRT-4 (Rio Grande do Sul)</option>
-                <option value="TRT-5">TRT-5 (Bahia)</option>
-                <option value="TRT-8">TRT-8 (Pará)</option>
-                <option value="TRT-15">TRT-15 (Campinas / Interior SP)</option>
-              </optgroup>
-              <optgroup label="── Federais ────────────────────">
-                <option value="TRF-1">TRF-1 (Norte/Centro-Oeste/Leste)</option>
-                <option value="TRF-2">TRF-2 (RJ/ES)</option>
-                <option value="TRF-3">TRF-3 (SP/MS)</option>
-                <option value="TRF-4">TRF-4 (Sul)</option>
-                <option value="TRF-5">TRF-5 (Nordeste)</option>
-              </optgroup>
-              <optgroup label="── Superiores ──────────────────">
-                <option value="STJ">STJ — Superior Tribunal de Justiça</option>
-                <option value="STF">STF — Supremo Tribunal Federal</option>
-                <option value="TST">TST — Superior do Trabalho</option>
-                <option value="TSE">TSE — Superior Eleitoral</option>
-                <option value="STM">STM — Superior Militar</option>
-              </optgroup>
-            </select>
-          </div>
-
-          <!-- Botão de busca -->
-          <button id="dj-btn-buscar" onclick="executarBuscaDatajud()"
+          <button id="djen-btn-buscar" onclick="executarBuscaDjen()"
             style="width:100%;padding:11px;background:#0f2d5e;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;letter-spacing:.02em">
-            🔍 Buscar no DataJud
+            🔍 Buscar no DJEN
           </button>
 
-          <!-- Área de resultados -->
-          <div id="dj-resultados" style="margin-top:18px"></div>
+          <div id="djen-resultados" style="margin-top:18px"></div>
         </div>
       </div>
     </div>
+    <style>
+      .djen-tab{padding:11px 15px;border:none;border-bottom:2.5px solid transparent;background:transparent;font-size:12px;font-weight:500;color:#64748b;cursor:pointer;white-space:nowrap}
+      .djen-tab.ativa{border-bottom-color:#0f2d5e;font-weight:700;color:#0f2d5e}
+    </style>
 
     <script>
         // ══════════════════════════════════════════════════════════════════════
@@ -3262,7 +3297,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         let tarefas=[{id:1,titulo:'Elaborar parecer jurídico',processo:'#2024001',responsavel:'Dr. Silva',prioridade:'alta',status:'em_andamento',vencimento:'2024-03-20'},{id:2,titulo:'Revisar contrato de parceria',processo:'#2024003',responsavel:'Dra. Costa',prioridade:'alta',status:'pendente',vencimento:'2024-03-18'},{id:3,titulo:'Preparar memorando',processo:'#2024002',responsavel:'Dr. Oliveira',prioridade:'media',status:'pendente',vencimento:'2024-03-25'},{id:4,titulo:'Acompanhamento audiência',processo:'#2024001',responsavel:'Dr. Silva',prioridade:'alta',status:'pendente',vencimento:'2024-03-20'},{id:5,titulo:'Análise jurisprudência',processo:'#2024003',responsavel:'Dra. Costa',prioridade:'media',status:'concluida',vencimento:'2024-03-10'},{id:6,titulo:'Resposta a ofício',processo:'#2024002',responsavel:'Dr. Oliveira',prioridade:'baixa',status:'pendente',vencimento:'2024-04-01'}];
         let documentos=[{id:1,nome:'Petição Inicial',tipo:'Petição',processo:'#2024001',tamanho:'2.3 MB',data:'2024-03-10',status:'final'},{id:2,nome:'Contrato de Serviços',tipo:'Contrato',processo:'#2024002',tamanho:'1.8 MB',data:'2024-03-12',status:'assinado'},{id:3,nome:'Procuração',tipo:'Procuração',processo:'#2024001',tamanho:'0.5 MB',data:'2024-03-05',status:'assinado'},{id:4,nome:'Parecer Jurídico',tipo:'Parecer',processo:'#2024003',tamanho:'3.1 MB',data:'2024-03-14',status:'rascunho'},{id:5,nome:'Ata de Reunião',tipo:'Ata',processo:'#2024002',tamanho:'0.8 MB',data:'2024-03-08',status:'final'}];
         let financeiro=[{id:1,descricao:'Honorário processo #2024001',cliente:'ABC Ltda',valor:25000,tipo:'receita',status:'pago',data:'2024-03-01',categoria:'Honorários'},{id:2,descricao:'Despesa com perícia',cliente:'XYZ Corp',valor:5000,tipo:'despesa',status:'pago',data:'2024-03-05',categoria:'Despesas Processuais'},{id:3,descricao:'Honorário processo #2024003',cliente:'DEF SA',valor:75000,tipo:'receita',status:'pendente',data:'2024-03-14',categoria:'Honorários'},{id:4,descricao:'Aluguel escritório',cliente:'Próprio',valor:8000,tipo:'despesa',status:'pago',data:'2024-03-01',categoria:'Administrativo'},{id:5,descricao:'Custas processuais',cliente:'ABC Ltda',valor:3500,tipo:'despesa',status:'atrasado',data:'2024-02-20',categoria:'Despesas Processuais'}];
-        const TITLES={dashboard:'Dashboard',processos:'Processos Judiciais',clientes:'Clientes',agenda:'Agenda',tarefas:'Tarefas & Atividades',intimacoes:'Intimações Judiciais',parceiros:'Rede de Parceiros',modelos:'Biblioteca de Modelos',financeiro:'Financeiro',documentos:'Documentos',whatsapp:'WhatsApp — Mensagens',esign:'Assinatura Digital',timetracking:'Controle de Horas',analytics:'Analytics',automacoes:'Automações',relatorios:'Relatórios',configuracoes:'Configurações',atendimentos:'Atendimentos — CRM'};
+        const TITLES={dashboard:'Dashboard',processos:'Processos Judiciais',clientes:'Clientes',agenda:'Agenda',tarefas:'Tarefas & Atividades',intimacoes:'Intimações Judiciais','controle-prazos':'Controle de Prazos',catalogo:'Catálogo de Serviços',parceiros:'Rede de Parceiros',modelos:'Biblioteca de Modelos',financeiro:'Financeiro',documentos:'Documentos',whatsapp:'WhatsApp — Mensagens',esign:'Assinatura Digital',timetracking:'Controle de Horas',analytics:'Analytics',automacoes:'Automações',relatorios:'Relatórios',configuracoes:'Configurações',atendimentos:'Atendimentos — CRM'};
         let c1,c2,c3;
 
         // ════ BUSCA GLOBAL ════════════════════════════════════════════
@@ -3356,7 +3391,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           document.querySelector(`[data-page="${p}"]`).classList.add('active');
           document.getElementById('header-title').textContent=TITLES[p];
           if(p==='processos')renderProcessos();
-          if(p==='clientes')renderClientes();
+          if(p==='clientes'){renderClientes();carregarClientesDoBanco();}
           if(p==='tarefas')renderTarefas();
           if(p==='documentos')renderDocumentos();
           if(p==='whatsapp')wppInit();
@@ -3367,6 +3402,8 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           if(p==='relatorios')renderRelatorios();
           if(p==='dashboard'){renderDashboard();setTimeout(()=>{initCharts()},100);}
           if(p==='intimacoes'){carregarIntimacoes();}
+          if(p==='controle-prazos'){carregarControlePrazos();}
+          if(p==='catalogo'){carregarCatalogo();}
           if(p==='parceiros'){renderParceiros();}
           if(p==='modelos'){renderModelos();}
           if(p==='atendimentos'){renderCRM();}
@@ -3390,10 +3427,20 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         }
         // escapeHtml() aplicado nos campos de texto do usuário (XSS fix)
         function renderProcessos(){const t=document.getElementById('table-processos');if(!t)return;t.innerHTML=processos.map(p=>`<tr><td>${escapeHtml(p.numero)}</td><td>${escapeHtml(p.cliente)}</td><td>${escapeHtml(p.area)}</td><td>${escapeHtml(p.tribunal)}</td><td>${escapeHtml(p.fase)}</td><td><div style="width:60px;height:6px;background:#e2e8f0;border-radius:3px;display:inline-block;"><div style="width:${Number(p.risco)||0}%;height:100%;background:${p.risco>70?'#ef4444':p.risco>40?'#f59e0b':'#10b981'};border-radius:3px;"></div></div></td><td><span class="badge ${p.status==='ativo'?'badge-success':p.status==='encerrado'?'badge-danger':'badge-warning'}">${escapeHtml(p.status)}</span></td><td><button class="btn-sm btn-secondary" onclick="openModalEditProcesso(${p.id})">Editar</button> <button class="btn-sm btn-danger" onclick="processos=processos.filter(x=>x.id!==${p.id});renderProcessos();_salvarDadosLocais()">Del</button></td></tr>`).join('')}
-        function excluirCliente(id) {
-          const idx = clientes.findIndex(c => c.id === id);
+        async function excluirCliente(id) {
+          const idx = clientes.findIndex(c => String(c.id) === String(id));
           if (idx === -1) return;
           const backup = { ...clientes[idx] };
+          if (backup._banco) {
+            // Cliente do banco: exclui no servidor (sem desfazer pela tela)
+            if (!confirm(`Excluir o cliente "${backup.nome}"?`)) return;
+            const r = await fetch(`${_apiBase()}/clientes/${encodeURIComponent(backup.id)}`, { method: 'DELETE', headers: _authHeaders() });
+            if (!r.ok) { showToast('Não foi possível excluir o cliente.', 'error'); return; }
+            clientes.splice(idx, 1);
+            renderClientes();
+            showToast(`Cliente "${backup.nome}" excluído`, 'success');
+            return;
+          }
           clientes.splice(idx, 1);
           renderClientes();
           _salvarDadosLocais();
@@ -3404,7 +3451,46 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             showToast('↩ Exclusão desfeita!', 'success');
           });
         }
-        function renderClientes(){const t=document.getElementById('table-clientes');if(!t)return;t.innerHTML=clientes.map(c=>`<tr><td>${escapeHtml(c.nome)}</td><td>${escapeHtml(c.cpf)}</td><td><span class="badge badge-info">${escapeHtml(c.tipo)}</span></td><td>${escapeHtml(c.email)}</td><td>${escapeHtml(c.telefone)}</td><td>${c.processos}</td><td><span class="badge ${c.status==='ativo'?'badge-success':'badge-danger'}">${escapeHtml(c.status)}</span></td><td><button class="btn-sm btn-secondary" onclick="alert('Editar')">Editar</button> <button class="btn-sm btn-danger" onclick="excluirCliente(${c.id})">Del</button></td></tr>`).join('')}
+        function renderClientes(){const t=document.getElementById('table-clientes');if(!t)return;t.innerHTML=clientes.map(c=>`<tr><td>${escapeHtml(c.nome)}</td><td>${escapeHtml(c.cpf)}</td><td><span class="badge badge-info">${escapeHtml(c.tipo)}</span></td><td>${escapeHtml(c.email)}</td><td>${c.telefone?escapeHtml(c.telefone):(c._banco?`<span style="display:inline-flex;gap:4px;align-items:center"><input type="tel" data-cliente="${escapeHtml(String(c.id))}" placeholder="(47) 99999-9999" maxlength="15" oninput="this.value=_mascaraTel(this.value)" onkeydown="if(event.key==='Enter')salvarTelefoneInline(this)" style="width:130px;padding:4px 7px;border:1.5px solid #fbbf24;border-radius:6px;font-size:12px;background:#fffbeb" title="Digite o WhatsApp e tecle Enter"><button type="button" onclick="salvarTelefoneInline(this.previousElementSibling)" style="padding:3px 8px;border:none;border-radius:6px;background:#25d366;color:#fff;font-size:12px;cursor:pointer" title="Salvar telefone">✓</button></span>`:'')}</td><td>${c.processos}</td><td><span class="badge ${c.status==='ativo'?'badge-success':'badge-danger'}">${escapeHtml(c.status)}</span></td><td><button class="btn-sm btn-secondary" onclick="openModalEditCliente('${escapeHtml(String(c.id))}')">Editar</button> <button class="btn-sm btn-danger" onclick="excluirCliente('${escapeHtml(String(c.id))}')">Del</button></td></tr>`).join('')}
+        /** Clientes do banco do JurysOne (substitui a lista de exemplo da tela) */
+        async function carregarClientesDoBanco(){
+          try{
+            const r=await fetch(_apiBase()+'/clientes?limit=1000',{headers:_authHeaders()});
+            if(!r.ok)return;
+            const d=await r.json();
+            const lista=Array.isArray(d)?d:(d.data||d.items||[]);
+            if(!Array.isArray(lista))return;
+            clientes.splice(0,clientes.length,...lista.map(c=>({id:c.id,nome:c.nome,cpf:c.cpfCnpj||c.cpf||'',tipo:c.tipo||'PF',email:c.email||'',telefone:c.telefone||'',processos:c._count?.processos??(Array.isArray(c.processos)?c.processos.length:0),status:c.status||'ativo',incompleto:!!c.cadastroIncompleto,_banco:true})));
+            renderClientes();
+            if(typeof atualizarDashboard==='function')try{atualizarDashboard();}catch(e){}
+          }catch(e){console.warn('[clientes] banco indisponível:',e.message);}
+        }
+        window.addEventListener('load',()=>setTimeout(carregarClientesDoBanco,800));
+        function _mascaraTel(v){
+          let n=String(v||'').replace(/\D/g,'');
+          if(n.startsWith('55')&&n.length>11)n=n.slice(2);
+          n=n.slice(0,11);
+          if(n.length>10)return n.replace(/(\d{2})(\d{5})(\d{0,4})/,'($1) $2-$3');
+          if(n.length>6)return n.replace(/(\d{2})(\d{4})(\d{0,4})/,'($1) $2-$3');
+          if(n.length>2)return n.replace(/(\d{2})(\d{0,5})/,'($1) $2');
+          return n;
+        }
+        /** Telefone digitado direto na lista: só para quem ainda não tem; depois, só pelo Editar */
+        async function salvarTelefoneInline(input){
+          if(!input)return;
+          const id=input.dataset.cliente;
+          const n=input.value.replace(/\D/g,'');
+          if(n.length<10||n.length>11){showToast('Informe o telefone com DDD: (47) 99999-9999','warning');input.focus();return;}
+          const telefone=_mascaraTel(n);
+          input.disabled=true;
+          try{
+            const r=await fetch(`${_apiBase()}/clientes/${encodeURIComponent(id)}`,{method:'PATCH',headers:_authHeaders({'Content-Type':'application/json'}),body:JSON.stringify({telefone})});
+            if(!r.ok){const d=await r.json().catch(()=>({}));throw new Error(d.message||('Erro '+r.status));}
+            const c=clientes.find(x=>String(x.id)===String(id));if(c)c.telefone=telefone;
+            renderClientes();
+            showToast(`✅ Telefone salvo: ${telefone}`,'success');
+          }catch(err){input.disabled=false;showToast('Não foi possível salvar o telefone: '+err.message,'error');}
+        }
         let _tarefaFiltro = 'todas';
         function filtrarTarefas(f){_tarefaFiltro=f;renderTarefas();}
         function toggleTarefaFlag(id,flag){const t=tarefas.find(x=>x.id===id);if(!t)return;t[flag]=!t[flag];renderTarefas();}
@@ -3825,7 +3911,18 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
                 showToast('✅ Processo cadastrado com sucesso!', 'success');
             }
         }
-        function openModalCliente(){
+        function _preencherModalCliente(c){
+          const v=(id,val)=>{const el=document.getElementById(id);if(el)el.value=val??'';};
+          v('form-cliente-id',c?.id);v('form-cliente-nome',c?.nome);v('form-cliente-cpf',c?.cpf);
+          v('form-cliente-tipo',c?.tipo||'PF');v('form-cliente-email',c?.email);v('form-cliente-telefone',c?.telefone);
+          const t=document.querySelector('#modal-cliente .modal-title');if(t)t.textContent=c?'Editar Cliente':'Novo Cliente';
+        }
+        function openModalEditCliente(id){
+          const c=clientes.find(x=>String(x.id)===String(id));if(!c)return;
+          openModalCliente(c);
+        }
+        function openModalCliente(c){
+          _preencherModalCliente(c&&c.nome?c:null);
           document.getElementById('modal-cliente').classList.add('active');
           _setupValidacao('form-cliente', {
             'form-cliente-nome':      { required: true, minLen: 2 },
@@ -3835,7 +3932,23 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           });
         }
         function closeModalCliente(){document.getElementById('modal-cliente').classList.remove('active')}
-        function saveCliente(e){e.preventDefault();clientes.push({id:Math.max(...clientes.map(c=>c.id),0)+1,nome:document.getElementById('form-cliente-nome').value,cpf:document.getElementById('form-cliente-cpf').value,tipo:document.getElementById('form-cliente-tipo').value,email:document.getElementById('form-cliente-email').value,telefone:document.getElementById('form-cliente-telefone').value,processos:0,status:'ativo'});closeModalCliente();renderClientes();_salvarDadosLocais();}
+        /** Salva no banco do JurysOne: novo cliente (POST) ou edição (PATCH) */
+        async function saveCliente(e){
+          e.preventDefault();
+          const g=id=>(document.getElementById(id)?.value||'').trim();
+          const id=g('form-cliente-id');
+          const corpo={nome:g('form-cliente-nome'),cpfCnpj:g('form-cliente-cpf')||undefined,tipo:g('form-cliente-tipo')||'PF',email:g('form-cliente-email')||undefined,telefone:g('form-cliente-telefone')||undefined};
+          if(id&&!corpo.telefone)corpo.telefone=null; // edição: apagar o telefone é permitido
+          try{
+            const r=await fetch(`${_apiBase()}/clientes${id?'/'+encodeURIComponent(id):''}`,{method:id?'PATCH':'POST',headers:_authHeaders({'Content-Type':'application/json'}),body:JSON.stringify(corpo)});
+            const d=await r.json().catch(()=>({}));
+            if(!r.ok)throw new Error(Array.isArray(d.message)?d.message.join(' '):(d.message||('Erro '+r.status)));
+            closeModalCliente();
+            showToast(id?'✅ Cliente atualizado':'✅ Cliente cadastrado','success');
+            await carregarClientesDoBanco();
+          }catch(err){showToast('Não foi possível salvar: '+err.message,'error');}
+        }
+        function saveClienteLocalAntigo(e){e.preventDefault();clientes.push({id:Math.max(...clientes.map(c=>c.id),0)+1,nome:document.getElementById('form-cliente-nome').value,cpf:document.getElementById('form-cliente-cpf').value,tipo:document.getElementById('form-cliente-tipo').value,email:document.getElementById('form-cliente-email').value,telefone:document.getElementById('form-cliente-telefone').value,processos:0,status:'ativo'});closeModalCliente();renderClientes();_salvarDadosLocais();}
         function openModalTarefa(){document.getElementById('modal-tarefa').classList.add('active')}
         function closeModalTarefa(){document.getElementById('modal-tarefa').classList.remove('active')}
         function saveTarefa(e){e.preventDefault();tarefas.push({id:Math.max(...tarefas.map(t=>t.id),0)+1,titulo:document.getElementById('form-tarefa-titulo').value,processo:document.getElementById('form-tarefa-processo').value,responsavel:document.getElementById('form-tarefa-responsavel').value,prioridade:document.getElementById('form-tarefa-prioridade').value,status:'pendente',vencimento:document.getElementById('form-tarefa-vencimento').value});closeModalTarefa();renderTarefas();_salvarDadosLocais();}
@@ -6016,13 +6129,24 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         async function wppInit() {
           const lista = document.getElementById('wpp-conversas-list');
           wppCancelarArquivo();
+          const modo = document.getElementById('wpp-modo');
           try {
             const c = await wppGet('/whatsapp-oficial/conexao');
+            window._wppOrigem = c.conectado ? c.origem : null;
+            const webAgora = await wppGet('/whatsapp-oficial/web').catch(() => ({}));
+            if (webAgora.estado === 'aguardando_qr' || (webAgora.estado === 'iniciando' && c.origem !== 'WEB')) { modo.textContent = 'Conectando pelo WhatsApp Web…'; wppWebAcompanhar(); return; }
             if (!c.conectado) {
-              lista.innerHTML = `<div style="padding:32px 20px;text-align:center;color:#64748b;font-size:13px;line-height:1.5">
-                <div style="font-size:32px;margin-bottom:8px">📵</div><b>WhatsApp não conectado</b><br>
-                Conecte o número do escritório para ver as conversas aqui.</div>`;
+              modo.textContent = '';
+              wppTelaConectar(webAgora.erro);
               return;
+            }
+            if (c.origem === 'WEB') {
+              const web = await wppGet('/whatsapp-oficial/web').catch(() => ({}));
+              modo.innerHTML = `🟢 WhatsApp Web · ${escapeHtml(wppTelefone(c.numero))}${web.estado && web.estado !== 'conectado' ? ' <span style="color:#d97706">(reconectando…)</span>' : ''}
+                · <a href="#" onclick="wppWebDesconectar();return false;" style="color:#ef4444">desconectar</a>`;
+            } else {
+              modo.innerHTML = `API oficial da Meta · ${escapeHtml(wppTelefone(c.numero))}${c.origem === 'TESTE' ? ' (número de teste)' : ''}
+                · <a href="#" onclick="wppWebConectar();return false;" style="color:#16a34a;font-weight:600">trocar para WhatsApp Web</a>`;
             }
             document.getElementById('wpp-chat-tel').textContent = `Número do escritório: ${c.numero || ''}${c.origem === 'TESTE' ? ' (número de teste da Meta)' : ''}`;
           } catch (e) {
@@ -6036,6 +6160,63 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             wppCarregarConversas();
             if (window._wppAtiva) wppCarregarConversa(window._wppAtiva, true);
           }, 8000);
+        }
+
+        // ── WhatsApp Web (QR Code) — modo de testes ─────────────────────────
+        function wppTelaConectar(erro) {
+          const lista = document.getElementById('wpp-conversas-list');
+          lista.innerHTML = `<div style="padding:28px 18px;text-align:center;color:#64748b;font-size:13px;line-height:1.5">
+            <div style="font-size:32px;margin-bottom:8px">📵</div><b>WhatsApp não conectado</b><br>
+            Conecte o número do escritório para ver as conversas aqui.
+            ${erro ? `<div style="margin-top:10px;color:#b45309;font-size:12px">${escapeHtml(erro)}</div>` : ''}
+            <button onclick="wppWebConectar()" style="margin-top:14px;width:100%;padding:10px;border:none;border-radius:8px;background:#25d366;color:#fff;font-size:13px;font-weight:700;cursor:pointer">📱 Conectar pelo WhatsApp Web</button>
+            <div style="margin-top:10px;font-size:11px;color:#94a3b8;text-align:left">Modo de testes: o JurysOne entra como “aparelho conectado”, igual ao WhatsApp Web. É um meio não oficial e o WhatsApp pode bloquear o número — use, de preferência, um número secundário.</div>
+          </div>`;
+        }
+
+        async function wppWebConectar() {
+          try {
+            const r = await fetch(`${wppApi()}/whatsapp-oficial/web/conectar`, { method: 'POST', headers: wppHeaders() });
+            const d = await r.json().catch(() => ({}));
+            if (!r.ok) throw new Error(d.message || ('HTTP ' + r.status));
+            wppWebAcompanhar();
+          } catch (e) { showToast('Não foi possível iniciar: ' + e.message, 'error'); }
+        }
+
+        /** Mostra o QR Code e acompanha até conectar */
+        function wppWebAcompanhar() {
+          clearInterval(window._wppQrTimer);
+          clearInterval(window._wppAutoRefresh); // a atualização da lista cobriria o QR Code
+          const lista = document.getElementById('wpp-conversas-list');
+          let ultimoQr = null;
+          const passo = async () => {
+            if (!document.getElementById('page-whatsapp')?.classList.contains('active')) { clearInterval(window._wppQrTimer); return; }
+            let s;
+            try { s = await wppGet('/whatsapp-oficial/web'); } catch (e) { return; }
+            if (s.estado === 'conectado') { clearInterval(window._wppQrTimer); showToast('✅ WhatsApp conectado', 'success'); wppInit(); return; }
+            if (s.estado === 'desconectado') { clearInterval(window._wppQrTimer); wppTelaConectar(s.erro); return; }
+            if (s.qr && s.qr === ultimoQr) return;
+            ultimoQr = s.qr;
+            lista.innerHTML = `<div style="padding:20px 16px;text-align:center;font-size:12px;color:#334155;line-height:1.5">
+              ${s.qr ? `<img src="${s.qr}" alt="QR Code" style="width:230px;height:230px;border:1px solid #e2e8f0;border-radius:8px;background:#fff">`
+                     : '<div style="padding:60px 0;color:#94a3b8">⏳ Gerando o QR Code…</div>'}
+              <div style="text-align:left;margin-top:12px"><b>No celular do escritório:</b><br>
+              1. Abra o WhatsApp<br>2. Toque em ⋮ (ou Configurações) → <b>Aparelhos conectados</b><br>3. Toque em <b>Conectar um aparelho</b> e aponte para este código</div>
+              <div style="margin-top:10px;color:#94a3b8;font-size:11px">O código muda sozinho a cada ~20 segundos.</div>
+              <button onclick="clearInterval(window._wppQrTimer);wppWebDesconectar(true)" style="margin-top:10px;padding:6px 14px;border:1px solid #e2e8f0;border-radius:6px;background:#fff;color:#64748b;font-size:12px;cursor:pointer">Cancelar</button>
+            </div>`;
+          };
+          passo();
+          window._wppQrTimer = setInterval(passo, 2000);
+        }
+
+        async function wppWebDesconectar(semPerguntar) {
+          if (!semPerguntar && !confirm('Desconectar o WhatsApp Web? As conversas já gravadas continuam no JurysOne.')) return;
+          try {
+            await fetch(`${wppApi()}/whatsapp-oficial/web`, { method: 'DELETE', headers: wppHeaders() });
+            window._wppAtiva = null;
+            wppInit();
+          } catch (e) { showToast('Não foi possível desconectar: ' + e.message, 'error'); }
         }
 
         async function wppCarregarConversas() {
@@ -6075,7 +6256,9 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             const d = await wppGet(`/whatsapp-oficial/conversas/${encodeURIComponent(id)}/mensagens`);
             const c = d.conversa;
             document.getElementById('wpp-chat-nome').textContent = c.nomeContato || wppTelefone(c.telefone);
-            document.getElementById('wpp-chat-tel').innerHTML = `${escapeHtml(wppTelefone(c.telefone))} · ${c.janelaAberta
+            document.getElementById('wpp-chat-tel').innerHTML = `${escapeHtml(wppTelefone(c.telefone))} · ${c.modo === 'WEB'
+              ? '<span style="color:#16a34a">WhatsApp Web</span>'
+              : c.janelaAberta
               ? '<span style="color:#16a34a">pode responder (janela de 24 h aberta)</span>'
               : '<span style="color:#d97706">fora da janela de 24 h: só modelo aprovado</span>'}`;
             const caixa = document.getElementById('wpp-msgs');
@@ -6164,6 +6347,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         function wppVerCliente() { showToast('O vínculo da conversa com o cadastro do cliente entra na próxima etapa.', 'info'); }
 
         function wppNovaConversa() {
+          if (window._wppOrigem === 'WEB') { showToast('Por segurança do número, o JurysOne só responde a quem escreveu primeiro. Para iniciar uma conversa, use o celular.', 'info'); return; }
           showToast('Pela regra da Meta, só o cliente inicia a conversa, ou o escritório envia um modelo aprovado (próxima etapa).', 'info');
         }
 
@@ -6964,7 +7148,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
 
         /* ── Tab controller ── */
         function configTab(tab) {
-          ['geral','equipe','perms','notif','apis','auditoria'].forEach(t => {
+          ['geral','equipe','perms','notif','apis','ia','auditoria'].forEach(t => {
             const el = document.getElementById('cfg-'+t);
             if (el) el.style.display = t === tab ? 'block' : 'none';
             const btn = document.getElementById('tab-'+t);
@@ -6974,6 +7158,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             }
           });
           if (tab === 'apis')       initApiTab();
+          if (tab === 'ia')         initIaTab();
           if (tab === 'equipe')     renderEquipe();
           if (tab === 'perms')      renderPermissoes();
           if (tab === 'notif')      renderNotifPrefs();
@@ -7783,66 +7968,40 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           showToast('🗑 Log de auditoria limpo', 'info');
         }
 
-        // ─── API MANAGEMENT ───────────────────────────────────────
+        // ─── API MANAGEMENT (etapa A, 20/11/2026) ─────────────────
+        // As chaves ficam SÓ no servidor, cifradas. A tela recebe apenas a situação
+        // (configurada, origem e os 4 últimos caracteres) e nunca guarda chave no navegador.
         const API_DEFINITIONS = [
-          { id:'clicksign',       nome:'ClickSign (Assinatura Digital)',  icon:'✍️', desc:'Envio e coleta de assinaturas digitais em contratos de honorários e procurações. Já integrado ao fluxo de atendimento.', placeholder:'Access Token ClickSign (ex: 8714675c-...)', docsUrl:'https://app.clicksign.com/account/api_settings', testEndpoint:'clicksign' },
-          { id:'asaas',           nome:'Asaas (Cobranças)',               icon:'💰', desc:'Geração automática de boletos, PIX e cartão para honorários e parcelamentos. Já integrado ao financeiro.', placeholder:'$aact_... (Produção) ou $aasp_... (Sandbox)', docsUrl:'https://www.asaas.com/api/index', testEndpoint:'asaas' },
-          { id:'gemini',          nome:'Gemini (IA Jurídica)',            icon:'🤖', desc:'IA Copiloto Jurídico — análise de contratos, geração de peças e jurisprudência. Powered by Google Gemini 1.5 Flash.', placeholder:'AIza...', docsUrl:'https://aistudio.google.com/app/apikey', testEndpoint:'gemini' },
-          { id:'datajud',         nome:'DataJud / CNJ',                  icon:'⚖️', desc:'Consulta e monitoramento automático de processos nos tribunais brasileiros (todos os tribunais via API CNJ).', placeholder:'cDZHYz... (apenas a chave, sem "APIKey")', docsUrl:'https://datajud-wiki.cnj.jus.br', testEndpoint:'datajud' },
-          { id:'pje',             nome:'PJe / Peticionamento Eletrônico', icon:'📋', desc:'Integração com o PJe (Processo Judicial Eletrônico) para peticionamento e consulta de processos nos tribunais.', placeholder:'Chave de API PJe (PJE_API_KEY)', docsUrl:'https://pje.jus.br/wiki/index.php/API_PJe', testEndpoint:'pje' },
-          { id:'whatsapp',        nome:'WhatsApp Business API',          icon:'💬', desc:'Envio de mensagens e notificações automáticas para clientes via WhatsApp.', placeholder:'EAA...', docsUrl:'https://developers.facebook.com/docs/whatsapp', testEndpoint:'whatsapp' },
-          { id:'resend',          nome:'Resend (E-mail)',                 icon:'📧', desc:'Envio de e-mails transacionais: prazos, assinaturas, boletos e relatórios.', placeholder:'re_...', docsUrl:'https://resend.com/api-keys', testEndpoint:'resend' },
-          { id:'supabase',        nome:'Supabase (Armazenamento)',       icon:'🗄️', desc:'Armazenamento de documentos, contratos e arquivos do escritório. Usado pelo módulo de Documentos. Formato: URL:service_key', placeholder:'https://xxx.supabase.co:eyJhbGciOiJIUzI1NiJ9...', docsUrl:'https://supabase.com/dashboard/project/_/settings/api', testEndpoint:'supabase' },
-          { id:'google_calendar', nome:'Google Calendar',                icon:'📅', desc:'Sincronização de audiências, reuniões e prazos com o Google Calendar via OAuth 2.0. Formato: client_id:client_secret', placeholder:'client_id:client_secret (Google Cloud Console)', docsUrl:'https://console.cloud.google.com/apis/credentials', testEndpoint:'google_calendar' },
+          { id:'anthropic',       nome:'Claude (Anthropic) — IA do JurysOne', icon:'🧠', desc:'IA usada no atendimento pelo WhatsApp (Sonnet), nas peças, simulações e leitura de documentos (Opus) e nos resumos ao cliente (Haiku). O gasto aparece em Configurações → IA.', placeholder:'sk-ant-...', docsUrl:'https://console.anthropic.com/settings/keys', verificavel:true },
+          { id:'zapsign',         nome:'ZapSign (Assinatura Digital)',     icon:'✍️', desc:'Envio do contrato e da procuração para assinatura e retorno automático dos documentos assinados.', placeholder:'Token da API ZapSign', docsUrl:'https://app.zapsign.com.br/conta/configuracoes/api' },
+          { id:'asaas',           nome:'Asaas (Cobranças)',               icon:'💰', desc:'Geração automática de boletos, PIX e cartão para honorários e parcelamentos.', placeholder:'$aact_... (Produção) ou $aasp_... (Sandbox)', docsUrl:'https://www.asaas.com/api/index' },
+          { id:'clicksign',       nome:'ClickSign (Assinatura Digital — antigo)', icon:'✍️', desc:'Integração antiga de assinatura, substituída pela ZapSign.', placeholder:'Access Token ClickSign', docsUrl:'https://app.clicksign.com/account/api_settings' },
+          { id:'gemini',          nome:'Gemini (IA antiga)',              icon:'🤖', desc:'Usado só pelo copiloto antigo; o fluxo novo usa o Claude.', placeholder:'AIza...', docsUrl:'https://aistudio.google.com/app/apikey' },
+          { id:'pje',             nome:'PJe / Peticionamento Eletrônico', icon:'📋', desc:'Integração com o PJe para peticionamento (ainda não usada: o protocolo é feito pelo advogado).', placeholder:'Chave de API PJe', docsUrl:'https://pje.jus.br/wiki/index.php/API_PJe' },
+          { id:'whatsapp',        nome:'WhatsApp (API antiga)',           icon:'💬', desc:'Envio antigo de mensagens. A caixa oficial da Meta é configurada no módulo WhatsApp.', placeholder:'Token', docsUrl:'https://developers.facebook.com/docs/whatsapp' },
+          { id:'resend',          nome:'Resend (E-mail)',                 icon:'📧', desc:'Envio de e-mails transacionais.', placeholder:'re_...', docsUrl:'https://resend.com/api-keys' },
+          { id:'supabase',        nome:'Supabase (Armazenamento antigo)', icon:'🗄️', desc:'Formato: URL:service_key', placeholder:'https://xxx.supabase.co:eyJ...', docsUrl:'https://supabase.com/dashboard/project/_/settings/api' },
+          { id:'google_calendar', nome:'Google Calendar',                icon:'📅', desc:'Sincronização de audiências e prazos. Formato: client_id:client_secret', placeholder:'client_id:client_secret', docsUrl:'https://console.cloud.google.com/apis/credentials' },
         ];
 
-        // Load saved API keys from localStorage
-        function getApiKeys() {
-          try { return JSON.parse(localStorage.getItem('jurysone_apis') || '{}'); } catch(e) { return {}; }
-        }
-        function saveApiKey(id, key) {
-          const keys = getApiKeys(); keys[id] = key;
-          try { localStorage.setItem('jurysone_apis', JSON.stringify(keys)); } catch(e) {}
-        }
-        function getApiStatus(id) {
-          try { return JSON.parse(localStorage.getItem('jurysone_api_status') || '{}')[id] || null; } catch(e) { return null; }
-        }
-        function saveApiStatus(id, status) {
-          try {
-            const st = JSON.parse(localStorage.getItem('jurysone_api_status') || '{}');
-            st[id] = status; localStorage.setItem('jurysone_api_status', JSON.stringify(st));
-          } catch(e) {}
-        }
+        // Situação vinda do servidor: { id: { configurada, origem, final } }
+        let _situacaoChaves = {};
 
-        /** Carrega chaves do banco (funciona em qualquer navegador) e então renderiza */
+        // Limpa chaves que versões antigas da tela guardavam no navegador
+        try { localStorage.removeItem('jurysone_apis'); localStorage.removeItem('jurysone_api_status'); } catch(e) {}
+
+        // _apiBase() e _authHeaders(extra) estão definidas uma única vez, junto das Intimações.
+
         async function initApiTab() {
           try {
-            const apiBase = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
-            const token = localStorage.getItem('jurysone_token');
-            const resp = await fetch(`${apiBase}/chaves`, {
-              headers: token ? { 'Authorization': `Bearer ${token}` } : {},
-            });
+            const resp = await fetch(`${_apiBase()}/chaves`, { headers: _authHeaders() });
             if (resp.ok) {
               const data = await resp.json();
-              if (data && data.keys) {
-                // Mescla chaves do banco no localStorage para uso local
-                const localKeys = getApiKeys();
-                for (const [id, val] of Object.entries(data.keys)) {
-                  if (val && !localKeys[id]) {
-                    saveApiKey(id, val);
-                  } else if (val) {
-                    // Banco tem precedência (garante sincronismo entre navegadores)
-                    saveApiKey(id, val);
-                  }
-                }
-                // Marca como verificada toda chave que veio do banco
-                for (const [id, val] of Object.entries(data.keys)) {
-                  if (val) saveApiStatus(id, 'ok');
-                }
-              }
+              _situacaoChaves = {};
+              (data.chaves || []).forEach(c => { _situacaoChaves[c.id] = c; });
             }
           } catch(e) {
-            console.warn('[initApiTab] Não foi possível carregar chaves do servidor:', e.message);
+            console.warn('[initApiTab] Não foi possível carregar a situação das chaves:', e.message);
           }
           renderApiCards();
         }
@@ -7850,50 +8009,33 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         function renderApiCards() {
           const container = document.getElementById('api-cards-container');
           if (!container) return;
-          const savedKeys = getApiKeys();
           container.innerHTML = API_DEFINITIONS.map(api => {
-            const savedKey = savedKeys[api.id] || '';
-            const status = getApiStatus(api.id);
-            const statusBadge = status === 'ok'
-              ? '<span style="display:inline-flex;align-items:center;gap:4px;background:#d1fae5;color:#065f46;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">✅ Conectada</span>'
-              : status === 'error'
-              ? '<span style="display:inline-flex;align-items:center;gap:4px;background:#fee2e2;color:#991b1b;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">❌ Erro</span>'
-              : savedKey
-              ? '<span style="display:inline-flex;align-items:center;gap:4px;background:#fef3c7;color:#92400e;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">⚠️ Não verificada</span>'
+            const sit = _situacaoChaves[api.id] || {};
+            const statusBadge = sit.configurada
+              ? (sit.origem === 'SERVIDOR'
+                  ? '<span style="display:inline-flex;align-items:center;gap:4px;background:#e0e7ff;color:#3730a3;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">🖥️ Definida no servidor</span>'
+                  : '<span style="display:inline-flex;align-items:center;gap:4px;background:#d1fae5;color:#065f46;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">🔒 Salva (cifrada)</span>')
               : '<span style="display:inline-flex;align-items:center;gap:4px;background:#f1f5f9;color:#64748b;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">— Não configurada</span>';
+            const dica = sit.configurada ? `Chave salva terminando em ${escapeHtml(sit.final || '••••')}. Digite outra para trocar.` : api.placeholder;
             return `
-            <div id="api-card-${api.id}" style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px;margin-bottom:16px;transition:box-shadow .2s" onmouseenter="this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)'" onmouseleave="this.style.boxShadow='none'">
+            <div id="api-card-${api.id}" style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px;margin-bottom:16px">
               <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap">
                 <div style="width:44px;height:44px;border-radius:10px;background:#f8fafc;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">${api.icon}</div>
                 <div style="flex:1;min-width:200px">
                   <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px">
-                    <span style="font-size:15px;font-weight:700;color:#1e293b">${api.nome}</span>
+                    <span style="font-size:15px;font-weight:700;color:#1e293b">${escapeHtml(api.nome)}</span>
                     ${statusBadge}
                   </div>
-                  <p style="font-size:12.5px;color:#64748b;margin:0 0 12px">${api.desc} <a href="${api.docsUrl}" target="_blank" style="color:#0f2d5e;text-decoration:none;font-weight:600">Ver docs →</a></p>
+                  <p style="font-size:12.5px;color:#64748b;margin:0 0 12px">${escapeHtml(api.desc)} <a href="${api.docsUrl}" target="_blank" rel="noopener" style="color:#0f2d5e;text-decoration:none;font-weight:600">Onde obter →</a></p>
                   <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-                    <input
-                      type="password"
-                      id="api-input-${api.id}"
-                      placeholder="${api.placeholder}"
-                      value="${savedKey}"
-                      style="flex:1;min-width:220px;padding:9px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:13px;font-family:monospace;outline:none;transition:border-color .2s"
-                      onfocus="this.style.borderColor='#0f2d5e'"
-                      onblur="this.style.borderColor='#e2e8f0'"
-                    >
-                    <button onclick="toggleApiVisibility('${api.id}')" id="btn-eye-${api.id}"
-                      style="padding:9px 12px;border:1.5px solid #e2e8f0;border-radius:8px;background:#fff;cursor:pointer;font-size:14px"
-                      title="Mostrar/ocultar chave">👁</button>
-                    <button onclick="testApi('${api.id}')" id="btn-test-${api.id}"
-                      style="padding:9px 14px;border:1.5px solid #0f2d5e;border-radius:8px;background:#fff;color:#0f2d5e;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .15s"
-                      onmouseenter="this.style.background='#e8eef8'" onmouseleave="this.style.background='#fff'">
-                      🔍 Verificar
-                    </button>
+                    <input type="password" autocomplete="off" id="api-input-${api.id}" placeholder="${escapeHtml(dica)}"
+                      style="flex:1;min-width:220px;padding:9px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:13px;font-family:monospace;outline:none">
                     <button onclick="saveApi('${api.id}')"
-                      style="padding:9px 14px;border:none;border-radius:8px;background:#0f2d5e;color:#fff;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .15s"
-                      onmouseenter="this.style.background='#0a1f42'" onmouseleave="this.style.background='#0f2d5e'">
-                      💾 Salvar
-                    </button>
+                      style="padding:9px 14px;border:none;border-radius:8px;background:#0f2d5e;color:#fff;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap">💾 Salvar</button>
+                    ${api.verificavel && sit.configurada ? `<button onclick="testApi('${api.id}')" id="btn-test-${api.id}"
+                      style="padding:9px 14px;border:1.5px solid #0f2d5e;border-radius:8px;background:#fff;color:#0f2d5e;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap">🔍 Verificar</button>` : ''}
+                    ${sit.configurada && sit.origem === 'ESCRITORIO' ? `<button onclick="removeApi('${api.id}')"
+                      style="padding:9px 12px;border:1.5px solid #fecaca;border-radius:8px;background:#fff;color:#b91c1c;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap" title="Apagar a chave salva">🗑</button>` : ''}
                   </div>
                   <div id="api-msg-${api.id}" style="margin-top:8px;font-size:12px;display:none"></div>
                 </div>
@@ -7902,68 +8044,138 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           }).join('');
         }
 
-        function toggleApiVisibility(id) {
-          const input = document.getElementById('api-input-'+id);
-          input.type = input.type === 'password' ? 'text' : 'password';
+        function _apiMsg(id, cor, html) {
+          const msg = document.getElementById('api-msg-'+id);
+          if (!msg) return;
+          msg.style.display = 'block'; msg.style.color = cor; msg.innerHTML = html;
         }
 
         async function testApi(id) {
-          const key = document.getElementById('api-input-'+id).value.trim();
           const btn = document.getElementById('btn-test-'+id);
-          const msg = document.getElementById('api-msg-'+id);
-          if (!key) {
-            msg.style.display='block'; msg.style.color='#dc2626';
-            msg.textContent='⚠️ Insira a chave da API antes de verificar.'; return;
+          if (btn) { btn.textContent = '⏳ Verificando...'; btn.disabled = true; }
+          try {
+            const resp = await fetch(`${_apiBase()}/chaves/${encodeURIComponent(id)}/verificar`, { method: 'POST', headers: _authHeaders() });
+            const r = await resp.json().catch(() => ({}));
+            if (!resp.ok) _apiMsg(id, '#dc2626', '❌ ' + escapeHtml(r.message || 'Sem permissão para verificar.'));
+            else if (r.ok === true) _apiMsg(id, '#059669', '✅ ' + escapeHtml(r.mensagem));
+            else if (r.ok === null) _apiMsg(id, '#92400e', 'ℹ️ ' + escapeHtml(r.mensagem));
+            else _apiMsg(id, '#dc2626', '❌ ' + escapeHtml(r.mensagem || 'Falha na verificação.'));
+          } catch(e) {
+            _apiMsg(id, '#dc2626', '❌ Não foi possível falar com o servidor.');
           }
-          btn.textContent='⏳ Verificando...'; btn.disabled=true;
-          msg.style.display='none';
-          // Simulate API test (in production would call real endpoint)
-          await new Promise(r=>setTimeout(r, 1800 + Math.random()*800));
-          // Simulate: keys starting with valid prefixes pass
-          const validPrefixes = { datajud:[], gemini:['AIza'], clicksign:[], zapsign:[], asaas:['$aact','$aasp'], whatsapp:['EAA','eaa'], resend:['re_'], pje:[], supabase:['https://'], google_calendar:[] };
-          const prefixes = validPrefixes[id] || [];
-          const isValid = prefixes.length === 0 ? key.length > 8 : prefixes.some(p => key.startsWith(p));
-          if (isValid) {
-            saveApiStatus(id, 'ok');
-            msg.style.display='block'; msg.style.color='#059669';
-            msg.innerHTML='✅ <strong>Conexão bem-sucedida!</strong> API autenticada e funcionando corretamente.';
-          } else {
-            saveApiStatus(id, 'error');
-            msg.style.display='block'; msg.style.color='#dc2626';
-            msg.innerHTML='❌ <strong>Falha na verificação.</strong> Chave inválida ou sem permissão. Verifique o formato e tente novamente.';
-          }
-          btn.textContent='🔍 Verificar'; btn.disabled=false;
-          // Update badge without full re-render
-          renderApiCards();
+          if (btn) { btn.textContent = '🔍 Verificar'; btn.disabled = false; }
         }
 
         async function saveApi(id) {
-          const key = document.getElementById('api-input-'+id).value.trim();
-          const msg = document.getElementById('api-msg-'+id);
-          if (!key) {
-            msg.style.display='block'; msg.style.color='#dc2626';
-            msg.textContent='⚠️ Não é possível salvar uma chave vazia.'; return;
-          }
-          saveApiKey(id, key);
-
-          // Envia ao backend para uso server-side (ZapSign, Asaas, Gemini, etc.)
+          const input = document.getElementById('api-input-'+id);
+          const key = (input && input.value || '').trim();
+          if (!key) { _apiMsg(id, '#dc2626', '⚠️ Digite a chave antes de salvar.'); return; }
           try {
-            const apiBase = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
-            const token = localStorage.getItem('jurysone_token');
-            await fetch(`${apiBase}/chaves`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
-              },
-              body: JSON.stringify({ id, chave: key }),
+            const resp = await fetch(`${_apiBase()}/chaves`, {
+              method: 'POST', headers: _authHeaders({ 'Content-Type': 'application/json' }), body: JSON.stringify({ id, chave: key }),
             });
-          } catch(e) { console.warn('[saveApi] Falha ao enviar chave ao backend:', e.message); }
+            const r = await resp.json().catch(() => ({}));
+            if (!resp.ok) { _apiMsg(id, '#dc2626', '❌ ' + escapeHtml(r.message || 'Não foi possível salvar.')); return; }
+            if (r.situacao) _situacaoChaves[id] = r.situacao;
+            renderApiCards();
+            const api = API_DEFINITIONS.find(a => a.id === id) || {};
+            _apiMsg(id, '#059669', '🔒 <strong>Chave salva e cifrada.</strong>' + (api.verificavel ? ' Clique em "Verificar" para testar.' : ''));
+          } catch(e) {
+            _apiMsg(id, '#dc2626', '❌ Não foi possível falar com o servidor.');
+          }
+        }
 
-          const api = API_DEFINITIONS.find(a=>a.id===id);
-          msg.style.display='block'; msg.style.color='#059669';
-          msg.innerHTML='💾 <strong>Chave salva!</strong> A API "'+escapeHtml(api.nome||'')+'" foi configurada. Clique em "Verificar" para testar a conexão.';
-          setTimeout(()=>{ if(msg) msg.style.display='none'; }, 4000);
+        async function removeApi(id) {
+          if (!confirm('Apagar a chave salva desta integração?')) return;
+          try {
+            const resp = await fetch(`${_apiBase()}/chaves/${encodeURIComponent(id)}`, { method: 'DELETE', headers: _authHeaders() });
+            const r = await resp.json().catch(() => ({}));
+            if (!resp.ok) { _apiMsg(id, '#dc2626', '❌ ' + escapeHtml(r.message || 'Não foi possível apagar.')); return; }
+            if (r.situacao) _situacaoChaves[id] = r.situacao;
+            renderApiCards();
+            _apiMsg(id, '#64748b', 'Chave apagada.');
+          } catch(e) {
+            _apiMsg(id, '#dc2626', '❌ Não foi possível falar com o servidor.');
+          }
+        }
+
+        // ─── IA: gasto do mês e limite (etapa A) ───────────────────
+        function _brl(v) { return (Number(v) || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); }
+
+        async function initIaTab() {
+          const box = document.getElementById('ia-uso-container');
+          if (!box) return;
+          box.innerHTML = '<div style="color:#64748b;font-size:13px">Carregando…</div>';
+          try {
+            const [rs, rr] = await Promise.all([
+              fetch(`${_apiBase()}/ia/situacao`, { headers: _authHeaders() }),
+              fetch(`${_apiBase()}/ia/relatorio`, { headers: _authHeaders() }),
+            ]);
+            if (!rs.ok) { box.innerHTML = '<div style="color:#b91c1c;font-size:13px">Só advogados de gestão veem o gasto com a IA.</div>'; return; }
+            renderIaTab(await rs.json(), rr.ok ? await rr.json() : null);
+          } catch(e) {
+            box.innerHTML = '<div style="color:#b91c1c;font-size:13px">Não foi possível falar com o servidor.</div>';
+          }
+        }
+
+        function renderIaTab(s, rel) {
+          const box = document.getElementById('ia-uso-container');
+          const pct = s.percentual == null ? null : Math.min(100, s.percentual);
+          const corBarra = s.limiteAtingido ? '#dc2626' : (s.avisoPercentual && s.percentual >= s.avisoPercentual ? '#d97706' : '#059669');
+          const linhas = (rel && rel.porTarefa || []).map(t => `<tr><td style="padding:6px 8px">${escapeHtml(t.nome)}</td><td style="padding:6px 8px;text-align:right">${t.chamadas}</td><td style="padding:6px 8px;text-align:right">${_brl(t.custoBrl)}</td></tr>`).join('')
+            || '<tr><td colspan="3" style="padding:8px;color:#94a3b8">Nenhum uso da IA neste mês.</td></tr>';
+          const procs = (rel && rel.porProcesso || []).map(p => `<tr><td style="padding:6px 8px">${escapeHtml(p.numero || '—')}</td><td style="padding:6px 8px">${escapeHtml(p.cliente || '')}</td><td style="padding:6px 8px;text-align:right">${_brl(p.custoBrl)}</td></tr>`).join('');
+          box.innerHTML = `
+            ${!s.chaveConfigurada ? '<div style="background:#fef3c7;border:1px solid #fcd34d;color:#92400e;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px">⚠️ A chave do Claude ainda não foi salva. Salve em Configurações → Integrações.</div>' : ''}
+            ${s.lembrete ? `<div style="background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px">ℹ️ ${escapeHtml(s.lembrete)}</div>` : ''}
+            ${s.pesadasPausadas ? '<div style="background:#fee2e2;border:1px solid #fca5a5;color:#991b1b;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px">⛔ Limite atingido: peças, simulações e leituras de documentos estão <strong>pausadas</strong>. A conversa no WhatsApp continua. <button onclick="iaLiberar()" style="margin-left:8px;padding:5px 10px;border:none;border-radius:6px;background:#991b1b;color:#fff;font-weight:600;cursor:pointer">Liberar até o fim do mês</button></div>' : ''}
+            ${s.liberadoAteFimDoMes ? '<div style="background:#ecfdf5;border:1px solid #6ee7b7;color:#065f46;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px">✅ Tarefas pesadas liberadas até o fim do mês, mesmo acima do limite. <button onclick="iaCancelarLiberacao()" style="margin-left:8px;padding:5px 10px;border:1px solid #065f46;border-radius:6px;background:#fff;color:#065f46;font-weight:600;cursor:pointer">Cancelar liberação</button></div>' : ''}
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:18px">
+              <div class="card" style="padding:16px"><div style="font-size:12px;color:#64748b">Gasto em ${escapeHtml(s.mes)}</div><div style="font-size:24px;font-weight:800;color:#0f2d5e">${_brl(s.gastoBrl)}</div><div style="font-size:12px;color:#94a3b8">US$ ${(s.gastoUsd || 0).toFixed(4)} · ${s.chamadas} chamada(s)</div></div>
+              <div class="card" style="padding:16px"><div style="font-size:12px;color:#64748b">Limite mensal</div><div style="font-size:24px;font-weight:800;color:#0f2d5e">${s.limiteMensalBrl ? _brl(s.limiteMensalBrl) : 'Sem limite'}</div>
+                ${pct != null ? `<div style="height:8px;background:#f1f5f9;border-radius:6px;margin-top:8px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${corBarra}"></div></div><div style="font-size:12px;color:#64748b;margin-top:4px">${s.percentual}% usado</div>` : ''}</div>
+            </div>
+            <div class="card" style="padding:16px;margin-bottom:18px">
+              <div style="font-size:14px;font-weight:700;color:#1e293b;margin-bottom:10px">Limite e aviso</div>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end">
+                <div class="form-group" style="margin:0"><label class="form-label">Limite mensal (R$)</label><input type="number" min="1" step="1" class="form-input" id="ia-limite" value="${s.limiteMensalBrl ?? ''}" placeholder="vazio = sem limite" style="width:180px"></div>
+                <div class="form-group" style="margin:0"><label class="form-label">Avisar ao chegar em (%)</label><input type="number" min="1" max="99" step="1" class="form-input" id="ia-aviso" value="${s.avisoPercentual ?? ''}" placeholder="vazio = não avisar" style="width:180px"></div>
+                <button class="btn-primary" onclick="iaSalvarConfig()" style="font-size:13px;padding:9px 16px">💾 Salvar</button>
+              </div>
+              <p style="font-size:12px;color:#64748b;margin:10px 0 0">Ao atingir o limite, a conversa com clientes no WhatsApp continua e as tarefas pesadas (peças, simulações, leitura de documentos, ajustes de cálculo) ficam pausadas até um advogado liberar. Os avisos chegam no sino.</p>
+              <div id="ia-msg" style="margin-top:8px;font-size:12px;display:none"></div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px">
+              <div class="card" style="padding:16px"><div style="font-size:14px;font-weight:700;color:#1e293b;margin-bottom:8px">Por tarefa</div>
+                <table style="width:100%;font-size:13px;border-collapse:collapse"><thead><tr style="color:#64748b;text-align:left"><th style="padding:6px 8px">Tarefa</th><th style="padding:6px 8px;text-align:right">Chamadas</th><th style="padding:6px 8px;text-align:right">Custo</th></tr></thead><tbody>${linhas}</tbody></table></div>
+              ${procs ? `<div class="card" style="padding:16px"><div style="font-size:14px;font-weight:700;color:#1e293b;margin-bottom:8px">Processos que mais gastaram</div>
+                <table style="width:100%;font-size:13px;border-collapse:collapse"><thead><tr style="color:#64748b;text-align:left"><th style="padding:6px 8px">Processo</th><th style="padding:6px 8px">Cliente</th><th style="padding:6px 8px;text-align:right">Custo</th></tr></thead><tbody>${procs}</tbody></table></div>` : ''}
+            </div>`;
+        }
+
+        async function iaSalvarConfig() {
+          const msg = document.getElementById('ia-msg');
+          const corpo = { limiteMensalBrl: document.getElementById('ia-limite').value, avisoPercentual: document.getElementById('ia-aviso').value };
+          try {
+            const resp = await fetch(`${_apiBase()}/ia/config`, { method: 'PUT', headers: _authHeaders({ 'Content-Type': 'application/json' }), body: JSON.stringify(corpo) });
+            const r = await resp.json().catch(() => ({}));
+            if (!resp.ok) { msg.style.display = 'block'; msg.style.color = '#dc2626'; msg.textContent = '❌ ' + (r.message || 'Não foi possível salvar.'); return; }
+            initIaTab();
+            showToast('Limite da IA salvo', 'success');
+          } catch(e) {
+            msg.style.display = 'block'; msg.style.color = '#dc2626'; msg.textContent = '❌ Não foi possível falar com o servidor.';
+          }
+        }
+
+        async function iaLiberar() {
+          if (!confirm('Liberar peças, simulações e demais tarefas pesadas até o fim do mês, mesmo acima do limite?')) return;
+          await fetch(`${_apiBase()}/ia/liberar`, { method: 'POST', headers: _authHeaders() });
+          initIaTab();
+        }
+
+        async function iaCancelarLiberacao() {
+          await fetch(`${_apiBase()}/ia/liberar/cancelar`, { method: 'POST', headers: _authHeaders() });
+          initIaTab();
         }
 
         // ════════════════════════════════════════════════════════════
@@ -8721,50 +8933,90 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           return ProxyClient.checkStatus();
         }
 
-        // Sincronizar todos os processos com DataJud
-        async function datajudSincronizarTodos() {
-          const btn = event?.target;
-          if (btn) { btn.textContent = '⏳ Sincronizando...'; btn.disabled = true; }
-          showToast('🏛️ Sincronizando processos com DataJud/CNJ...', 'info');
-
-          let atualizados = 0;
-          for (const p of processos) {
-            if (!p.numero || p.numero.startsWith('#')) continue; // pular números de exemplo
-            const dados = await datajudBuscar(p.numero, p.tribunal);
-            if (dados.encontrado) {
-              p.ultimoAndamento    = dados.ultimoAndamento;
-              p.dataUltimoAndamento= dados.dataUltimoAndamento;
-              p.classeDatajud      = dados.classe;
-              p.orgaoJulgador      = dados.orgaoJulgador;
-              if (dados.tribunal) p.tribunal = dados.tribunal;
-              atualizados++;
+        // ═══ Sincronizar andamentos pelo DJEN (substitui o DataJud) ═══════════
+        //  Para cada processo, busca as publicações no DJEN e grava a mais recente
+        //  como "último andamento". Servidor: GET /api/publicacoes/djen/consulta
+        async function djenUltimaPublicacao(numero) {
+          const digitos = String(numero || '').replace(/\D/g, '');
+          if (digitos.length !== 20) return { encontrado: false, erro: 'número incompleto (precisa dos 20 dígitos)' };
+          for (let tentativa = 0; tentativa < 3; tentativa++) {
+            const r = await fetch(`${_apiBase()}/publicacoes/djen/consulta?processo=${digitos}`, { headers: _authHeaders() });
+            const d = await r.json().catch(() => ({}));
+            const msg = Array.isArray(d.message) ? d.message.join(' ') : (d.message || `Erro ${r.status}`);
+            if (!r.ok) {
+              if (/429/.test(msg) && tentativa < 2) { await new Promise(res => setTimeout(res, 4000 * (tentativa + 1))); continue; }
+              return { encontrado: false, erro: msg };
             }
+            const proc = (d.processos || [])[0];
+            if (!proc) return { encontrado: false };
+            const ult = (proc.comunicacoes || []).find(c => !c.cancelada) || proc.comunicacoes[0];
+            const resumo = (ult?.resumo || '').slice(0, 160);
+            return {
+              encontrado: true,
+              ultimoAndamento: `${ult?.tipo || 'Publicação'}${ult?.documento ? ' — ' + ult.documento : ''}${resumo ? ': ' + resumo : ''}`,
+              dataUltimoAndamento: ult?.data || '',
+              classe: proc.classe || '',
+              orgaoJulgador: proc.orgao || '',
+              tribunal: proc.tribunal || '',
+              total: (proc.comunicacoes || []).length,
+            };
           }
-
-          renderProcessos();
-          if (btn) { btn.textContent = '🏛️ Sincronizar DataJud'; btn.disabled = false; }
-          showToast(`✅ DataJud: ${atualizados} processo(s) atualizados`, 'success');
+          return { encontrado: false, erro: 'o DJEN recusou por excesso de consultas; tente de novo em instantes' };
         }
 
-        // Buscar andamento de um processo específico
+        function _djenAplicar(p, dados) {
+          p.ultimoAndamento     = dados.ultimoAndamento;
+          p.dataUltimoAndamento = dados.dataUltimoAndamento;
+          if (dados.classe) p.classeDatajud = dados.classe;
+          if (dados.orgaoJulgador) p.orgaoJulgador = dados.orgaoJulgador;
+          if (dados.tribunal) p.tribunal = dados.tribunal;
+          _dbAtualizar(p.id, { ultimoAndamento: p.ultimoAndamento, dataUltimoAndamento: p.dataUltimoAndamento,
+            classeDatajud: p.classeDatajud, orgaoJulgador: p.orgaoJulgador, tribunal: p.tribunal });
+        }
+
+        // Sincronizar todos os processos pelo DJEN (nome antigo mantido: é chamado pelo botão)
+        async function datajudSincronizarTodos() {
+          const btn = document.getElementById('btn-sincronizar-todos');
+          const lista = processos.filter(p => p.numero && !p.numero.startsWith('#'));
+          if (btn) btn.disabled = true;
+          showToast(`📰 Sincronizando ${lista.length} processo(s) pelo DJEN...`, 'info');
+          let atualizados = 0, semPublicacao = 0, falhas = 0;
+          for (let i = 0; i < lista.length; i++) {
+            const p = lista[i];
+            if (btn) btn.textContent = `⏳ ${i + 1}/${lista.length}`;
+            try {
+              const dados = await djenUltimaPublicacao(p.numero);
+              if (dados.encontrado) { _djenAplicar(p, dados); atualizados++; }
+              else if (dados.erro) { falhas++; console.warn('[DJEN]', p.numero, dados.erro); }
+              else semPublicacao++;
+            } catch (e) { falhas++; console.warn('[DJEN]', p.numero, e.message); }
+            await new Promise(res => setTimeout(res, 600)); // respeita o limite do DJEN
+          }
+          _lsGravar(processos);
+          renderProcessos();
+          if (btn) { btn.textContent = '📰 Sincronizar DJEN'; btn.disabled = false; }
+          showToast(`✅ DJEN: ${atualizados} atualizado(s), ${semPublicacao} sem publicação${falhas ? `, ${falhas} com falha` : ''}`, falhas ? 'info' : 'success');
+        }
+
+        // Buscar a última publicação de um processo específico no DJEN
         async function datajudBuscarProcesso(procId) {
           const p = processos.find(x => x.id == procId);
           if (!p) return;
           const cell = document.getElementById(`datajud-cell-${procId}`);
-          if (cell) cell.innerHTML = '<span style="color:#94a3b8;font-size:11px">⏳ buscando...</span>';
-
-          const dados = await datajudBuscar(p.numero, p.tribunal);
+          if (cell) cell.innerHTML = '<span style="color:#94a3b8;font-size:11px">⏳ buscando no DJEN...</span>';
+          let dados;
+          try { dados = await djenUltimaPublicacao(p.numero); }
+          catch (e) { dados = { encontrado: false, erro: e.message }; }
           if (dados.encontrado) {
-            p.ultimoAndamento     = dados.ultimoAndamento;
-            p.dataUltimoAndamento = dados.dataUltimoAndamento;
-            p.classeDatajud       = dados.classe;
-            renderProcessos();
-            showToast(`✅ ${p.numero}: ${dados.ultimoAndamento}`, 'success');
-          } else if (dados.corsBlocked) {
-            showToast('⚠️ DataJud: CORS bloqueado em localhost. Funciona em produção.', 'info');
+            _djenAplicar(p, dados);
+            _lsGravar(processos);
+            showToast(`✅ ${p.numero}: última publicação em ${_dataBr(dados.dataUltimoAndamento)}`, 'success');
+          } else if (dados.erro) {
+            showToast(`⚠️ ${p.numero}: ${dados.erro}`, 'info');
           } else {
-            showToast(`⚠️ Processo ${p.numero} não encontrado no DataJud`, 'info');
+            showToast(`ℹ️ Nenhuma publicação do processo ${p.numero} no DJEN`, 'info');
           }
+          renderProcessos();
         }
 
         // Variáveis de controle da lista
@@ -8788,9 +9040,8 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         }
 
         function abrirFiltrosProcesso() {
-          // Atalho: abre a busca CNJ com aba OAB pré-selecionada (busca por escritório)
-          abrirBuscaDatajud();
-          setTimeout(() => datajudSelectTipo('oab'), 80);
+          // Atalho: abre a busca DJEN com aba OAB pré-selecionada (busca por escritório)
+          abrirBuscaDjen('oab');
         }
 
         function ordenarProcessos() {
@@ -8892,16 +9143,242 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         }
         // ─────────────────────────────────────────────────────────────────────
 
-        function abrirBuscaDatajud() {
-          document.getElementById('modal-datajud-busca').classList.add('active');
-          // Sempre inicia na aba "número"
-          setTimeout(() => datajudSelectTipo('numero'), 50);
+        // ═══════════════════════════════════════════════════════════════
+        //  DJEN — Busca de processos (substitui a antiga Busca CNJ/DataJud)
+        //  Servidor: GET /api/publicacoes/djen/consulta
+        // ═══════════════════════════════════════════════════════════════
+        let _djenTipo = 'processo';
+        let _djenResultados = [];
+
+        function abrirBuscaDjen(tipo) {
+          document.getElementById('modal-djen-busca').classList.add('active');
+          djenSelectTipo(tipo || 'processo');
+        }
+        // Nome antigo mantido para os botões que ainda chamam a busca DataJud
+        function abrirBuscaDatajud() { abrirBuscaDjen(); }
+
+        function fecharBuscaDjen() {
+          document.getElementById('modal-djen-busca').classList.remove('active');
+          _djenResultados = [];
         }
 
-        function fecharBuscaDatajud() {
-          document.getElementById('modal-datajud-busca').classList.remove('active');
-          _datajudResultados = [];
+        function djenSelectTipo(tipo) {
+          _djenTipo = tipo;
+          ['processo','oab','parte','advogado'].forEach(t => {
+            document.getElementById('djen-tab-' + t)?.classList.toggle('ativa', t === tipo);
+          });
+          const enter = `onkeydown="if(event.key==='Enter')executarBuscaDjen()"`;
+          const oab = escapeHtml((typeof ADVOGADO !== 'undefined' && ADVOGADO.oab) || '');
+          const uf  = escapeHtml((typeof ADVOGADO !== 'undefined' && ADVOGADO.oabUF) || 'SC');
+          const forms = {
+            processo: `
+              <div class="form-group">
+                <label class="form-label">Número do processo</label>
+                <input type="text" class="form-input" id="djen-input-processo" placeholder="Ex: 5010538-70.2024.8.24.0033" style="font-family:monospace;letter-spacing:.03em" ${enter}>
+                <small style="color:#94a3b8;font-size:11px;display:block;margin-top:4px">💡 Traz todas as publicações do processo no DJEN, de qualquer data.</small>
+              </div>`,
+            oab: `
+              <div style="display:grid;grid-template-columns:1fr 90px;gap:12px;margin-bottom:14px">
+                <div class="form-group" style="margin:0">
+                  <label class="form-label">Número da OAB</label>
+                  <input type="text" class="form-input" id="djen-input-oab" value="${oab}" placeholder="Ex: 43348" ${enter}>
+                </div>
+                <div class="form-group" style="margin:0">
+                  <label class="form-label">UF</label>
+                  <input type="text" class="form-input" id="djen-input-uf" value="${uf}" maxlength="2" style="text-transform:uppercase;text-align:center;font-weight:700" ${enter}>
+                </div>
+              </div>`,
+            parte: `
+              <div class="form-group">
+                <label class="form-label">Nome da parte</label>
+                <input type="text" class="form-input" id="djen-input-parte" placeholder="Ex: João da Silva" ${enter}>
+              </div>`,
+            advogado: `
+              <div class="form-group">
+                <label class="form-label">Nome do advogado</label>
+                <input type="text" class="form-input" id="djen-input-advogado" placeholder="Ex: Maria Souza" ${enter}>
+              </div>`,
+          };
+          document.getElementById('djen-form-area').innerHTML = forms[tipo] || '';
+          const comFiltros = tipo !== 'processo';
+          document.getElementById('djen-filtros').style.display = comFiltros ? 'grid' : 'none';
+          document.getElementById('djen-dica-periodo').style.display = comFiltros ? 'block' : 'none';
+          document.getElementById('djen-resultados').innerHTML = '';
+          setTimeout(() => document.querySelector('#djen-form-area input')?.focus(), 30);
         }
+
+        async function executarBuscaDjen() {
+          const btn = document.getElementById('djen-btn-buscar');
+          const res = document.getElementById('djen-resultados');
+          const val = id => (document.getElementById(id)?.value || '').trim();
+          const q = new URLSearchParams();
+          try {
+            if (_djenTipo === 'processo') {
+              if (!val('djen-input-processo')) throw new Error('Informe o número do processo.');
+              q.set('processo', val('djen-input-processo'));
+            } else {
+              if (_djenTipo === 'oab') {
+                if (!val('djen-input-oab')) throw new Error('Informe o número da OAB.');
+                if (!val('djen-input-uf')) throw new Error('Informe a UF da OAB.');
+                q.set('numeroOab', val('djen-input-oab'));
+                q.set('ufOab', val('djen-input-uf').toUpperCase());
+              } else if (_djenTipo === 'parte') {
+                if (val('djen-input-parte').length < 3) throw new Error('Informe o nome da parte (ao menos 3 letras).');
+                q.set('nomeParte', val('djen-input-parte'));
+              } else {
+                if (val('djen-input-advogado').length < 3) throw new Error('Informe o nome do advogado (ao menos 3 letras).');
+                q.set('nomeAdvogado', val('djen-input-advogado'));
+              }
+              if (val('djen-input-tribunal')) q.set('siglaTribunal', val('djen-input-tribunal').toUpperCase().replace(/[^A-Z0-9]/g, ''));
+              if (val('djen-input-inicio')) q.set('inicio', val('djen-input-inicio'));
+              if (val('djen-input-fim')) q.set('fim', val('djen-input-fim'));
+            }
+          } catch (e) {
+            res.innerHTML = `<div style="padding:12px 14px;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;color:#b91c1c;font-size:13px">${escapeHtml(e.message)}</div>`;
+            return;
+          }
+
+          btn.disabled = true; btn.textContent = '⏳ Buscando...';
+          res.innerHTML = '<div style="text-align:center;padding:28px;color:#94a3b8"><div style="font-size:28px;margin-bottom:10px">⏳</div><div style="font-size:13px;font-weight:600">Consultando o DJEN...</div><div style="font-size:11px;margin-top:6px">Se o DJEN pedir pausa, o programa espera e continua sozinho — períodos longos podem levar alguns minutos</div></div>';
+          try {
+            const r = await fetch(`${_apiBase()}/publicacoes/djen/consulta?${q}`, { headers: _authHeaders() });
+            const d = await r.json().catch(() => ({}));
+            if (!r.ok) throw new Error(Array.isArray(d.message) ? d.message.join(' ') : (d.message || `Erro ${r.status}`));
+            _djenResultados = d.processos || [];
+            renderResultadosDjen(d);
+          } catch (e) {
+            res.innerHTML = `<div style="padding:12px 14px;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;color:#b91c1c;font-size:13px">❌ ${escapeHtml(e.message)}</div>`;
+          } finally {
+            btn.disabled = false; btn.textContent = '🔍 Buscar no DJEN';
+          }
+        }
+
+        function renderResultadosDjen(d) {
+          const res = document.getElementById('djen-resultados');
+          const lista = _djenResultados;
+          const periodo = d.periodo ? ` · publicações de ${_dataBr(d.periodo.inicio)} a ${_dataBr(d.periodo.fim)}` : '';
+          const aviso = d.completo === false
+            ? '<div style="margin-bottom:10px;padding:8px 12px;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;color:#92400e;font-size:12px">⚠️ O DJEN não devolveu tudo (limite da consulta). Diminua o período ou informe o tribunal.</div>' : '';
+          if (!lista.length) {
+            res.innerHTML = aviso + `<div style="text-align:center;padding:28px;color:#64748b"><div style="font-size:28px;margin-bottom:8px">🔎</div><div style="font-size:13px;font-weight:600">Nenhuma publicação encontrada no DJEN${periodo}.</div></div>`;
+            return;
+          }
+          const limpar = n => String(n || '').replace(/\D/g, '');
+          const cards = lista.map((p, i) => {
+            const jaTem = processos.some(x => limpar(x.numero) === limpar(p.numeroProcesso));
+            const ativos = p.partes.filter(x => x.polo === 'A').map(x => x.nome);
+            const passivos = p.partes.filter(x => x.polo === 'P').map(x => x.nome);
+            const outras = p.partes.filter(x => x.polo !== 'A' && x.polo !== 'P').map(x => x.nome);
+            const advs = p.advogados.map(a => `${a.nome} (OAB ${a.oab}/${a.uf})`);
+            const ult = p.comunicacoes[0];
+            const linhas = p.comunicacoes.slice(0, 5).map(c => `
+              <div style="padding:6px 0;border-top:1px dashed #e2e8f0;font-size:12px;color:#475569">
+                <b>${_dataBr(c.data)}</b> · ${escapeHtml(c.tipo || '')}${c.documento ? ' · ' + escapeHtml(c.documento) : ''}${c.cancelada ? ' <span style="color:#dc2626">(cancelada)</span>' : ''}
+                ${c.link ? ` · <a href="${escapeHtml(c.link)}" target="_blank" rel="noopener" style="color:#1d4ed8">abrir</a>` : ''}
+                <div style="color:#64748b;margin-top:2px">${escapeHtml((c.resumo || '').slice(0, 220))}${(c.resumo || '').length > 220 ? '…' : ''}</div>
+              </div>`).join('');
+            return `
+              <div style="border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;margin-bottom:10px;background:#fff">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
+                  <div>
+                    <div style="font-family:monospace;font-weight:700;color:#0f2d5e;font-size:14px">${escapeHtml(p.numeroProcesso)}</div>
+                    <div style="font-size:12px;color:#64748b;margin-top:2px">${escapeHtml(p.tribunal || '')}${p.classe ? ' · ' + escapeHtml(p.classe) : ''}${p.orgao ? ' · ' + escapeHtml(p.orgao) : ''}</div>
+                  </div>
+                  <div id="djen-acao-${i}" style="flex-shrink:0">
+                    ${jaTem ? '<span style="color:#10b981;font-size:12px;font-weight:600">✅ Já cadastrado</span>'
+                            : `<button onclick="djenImportar(${i})" style="padding:6px 12px;background:#0f2d5e;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">+ Cadastrar</button>`}
+                  </div>
+                </div>
+                <div style="font-size:12px;color:#374151;margin-top:8px;line-height:1.6">
+                  ${ativos.length ? `<div><b>Polo ativo:</b> ${escapeHtml(ativos.join('; '))}</div>` : ''}
+                  ${passivos.length ? `<div><b>Polo passivo:</b> ${escapeHtml(passivos.join('; '))}</div>` : ''}
+                  ${outras.length ? `<div><b>Partes:</b> ${escapeHtml(outras.join('; '))}</div>` : ''}
+                  ${advs.length ? `<div><b>Advogados:</b> ${escapeHtml(advs.join('; '))}</div>` : ''}
+                  <div><b>Última publicação:</b> ${_dataBr(ult?.data)} · ${p.comunicacoes.length} publicação(ões)</div>
+                </div>
+                <details style="margin-top:6px"><summary style="cursor:pointer;font-size:12px;color:#1d4ed8">Ver publicações</summary>${linhas}${p.comunicacoes.length > 5 ? `<div style="font-size:11px;color:#94a3b8;padding-top:6px">+ ${p.comunicacoes.length - 5} mais antigas</div>` : ''}</details>
+              </div>`;
+          }).join('');
+          const faltam = lista.filter(p => !_djenJaCadastrado(p)).length;
+          const btnTodos = faltam
+            ? `<button id="djen-btn-todos" onclick="djenImportarTodos()" style="padding:6px 14px;background:#10b981;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap">+ Cadastrar todos (${faltam})</button>`
+            : '<span style="color:#10b981;font-size:12px;font-weight:600">✅ Todos já cadastrados</span>';
+          res.innerHTML = aviso + `<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px"><div style="font-size:12px;color:#64748b"><b>${lista.length}</b> processo(s) encontrado(s)${periodo}</div>${btnTodos}</div>` + cards;
+        }
+
+        function _djenJaCadastrado(p) {
+          const limpar = n => String(n || '').replace(/\D/g, '');
+          return processos.some(x => limpar(x.numero) === limpar(p.numeroProcesso));
+        }
+
+        // Cadastra todos os processos da busca que ainda não estão no JurysOne
+        async function djenImportarTodos() {
+          const pendentes = _djenResultados.map((p, i) => i).filter(i => !_djenJaCadastrado(_djenResultados[i]));
+          if (!pendentes.length) { showToast('Todos os processos desta busca já estão cadastrados.', 'info'); return; }
+          if (!confirm(`Cadastrar ${pendentes.length} processo(s) encontrados no DJEN?`)) return;
+          const btn = document.getElementById('djen-btn-todos');
+          if (btn) btn.disabled = true;
+          let ok = 0, falhas = 0;
+          for (let k = 0; k < pendentes.length; k++) {
+            if (btn) btn.textContent = `⏳ ${k + 1}/${pendentes.length}`;
+            (await djenImportar(pendentes[k], true)) ? ok++ : falhas++;
+          }
+          if (btn) btn.outerHTML = falhas
+            ? `<button id="djen-btn-todos" onclick="djenImportarTodos()" style="padding:6px 14px;background:#f59e0b;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer">↻ Tentar os ${falhas} restantes</button>`
+            : '<span style="color:#10b981;font-size:12px;font-weight:600">✅ Todos cadastrados</span>';
+          if (document.getElementById('page-processos')?.classList.contains('active')) renderProcessos();
+          showToast(`✅ ${ok} processo(s) cadastrado(s)${falhas ? ` · ${falhas} com falha` : ''}`, falhas ? 'info' : 'success');
+        }
+
+        async function djenImportar(i, emLote) {
+          const p = _djenResultados[i];
+          if (!p) return false;
+          const cel = document.getElementById(`djen-acao-${i}`);
+          if (_djenJaCadastrado(p)) {
+            if (cel) cel.innerHTML = '<span style="color:#10b981;font-size:12px;font-weight:600">✅ Já cadastrado</span>';
+            return true;
+          }
+          const ativo = p.partes.find(x => x.polo === 'A');
+          const passivo = p.partes.find(x => x.polo === 'P');
+          const ult = p.comunicacoes[0];
+          const novo = {
+            numero: p.numeroProcesso,
+            cliente: ativo?.nome || p.partes[0]?.nome || 'Importado DJEN',
+            parteContraria: passivo?.nome || '—',
+            area: p.classe || 'Importado DJEN',
+            tribunal: p.tribunal,
+            fase: '1ª Instância',
+            risco: 50, status: 'ativo', valor: 0,
+            data: new Date().toISOString().split('T')[0],
+            orgaoJulgador: p.orgao || '',
+            ultimoAndamento: ult ? `${ult.tipo || 'Publicação'} no DJEN` : '',
+            dataUltimoAndamento: ult?.data || '',
+            partes: p.partes.map(x => ({ nome: x.nome, tipoParte: x.polo === 'A' ? 'ativo' : x.polo === 'P' ? 'passivo' : '' })),
+          };
+          try {
+            if (cel) cel.innerHTML = '<span style="font-size:12px;color:#94a3b8">⏳</span>';
+            const salvo = await _dbSalvar(novo);
+            salvo.id = salvo.id || (Math.max(...processos.map(x => x.id), 0) + 1);
+            processos.push(salvo);
+            _lsGravar(processos);
+            if (cel) cel.innerHTML = '<span style="color:#10b981;font-size:12px;font-weight:600">✅ Cadastrado</span>';
+            if (!emLote) {
+              showToast(`✅ Processo cadastrado: ${p.numeroProcesso}`, 'success');
+              if (document.getElementById('page-processos')?.classList.contains('active')) renderProcessos();
+              const btnTodos = document.getElementById('djen-btn-todos');
+              const faltam = _djenResultados.filter(x => !_djenJaCadastrado(x)).length;
+              if (btnTodos) btnTodos.outerHTML = faltam
+                ? `<button id="djen-btn-todos" onclick="djenImportarTodos()" style="padding:6px 14px;background:#10b981;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap">+ Cadastrar todos (${faltam})</button>`
+                : '<span style="color:#10b981;font-size:12px;font-weight:600">✅ Todos já cadastrados</span>';
+            }
+            return true;
+          } catch (e) {
+            if (cel) cel.innerHTML = `<button onclick="djenImportar(${i})" style="padding:6px 12px;background:#0f2d5e;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">+ Cadastrar</button>`;
+            if (!emLote) showToast('Não foi possível cadastrar: ' + e.message, 'error');
+            return false;
+          }
+        }
+
 
         // ── Troca de aba e montagem dinâmica do formulário ────────────
         function datajudSelectTipo(tipo) {
@@ -9773,7 +10250,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
                      <div style="font-size:10px;color:#94a3b8;margin-top:2px">${p.dataUltimoAndamento||''}</div>`
                   : `<button onclick="event.stopPropagation();datajudBuscarProcesso(${p.id})"
                        style="font-size:11px;color:#0f2d5e;background:#f0f6ff;border:1px solid #bfdbfe;border-radius:6px;padding:3px 10px;cursor:pointer;white-space:nowrap;font-weight:600">
-                       🏛️ Buscar no DataJud
+                       📰 Buscar no DJEN
                      </button>`
                 }
               </td>
@@ -9800,8 +10277,8 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
                 <div style="display:flex;gap:5px;align-items:center;justify-content:center">
                   <button title="Ver detalhes" onclick="abrirDetalheProcesso(${p.id})"
                     style="padding:4px 8px;background:#f0f6ff;border:1px solid #bfdbfe;border-radius:6px;font-size:12px;cursor:pointer;color:#0f2d5e">👁</button>
-                  <button title="Sincronizar DataJud" onclick="datajudBuscarProcesso(${p.id})"
-                    style="padding:4px 8px;background:#fff;border:1px solid #e2e8f0;border-radius:6px;font-size:12px;cursor:pointer;color:#475569">🏛️</button>
+                  <button title="Sincronizar DJEN" onclick="datajudBuscarProcesso(${p.id})"
+                    style="padding:4px 8px;background:#fff;border:1px solid #e2e8f0;border-radius:6px;font-size:12px;cursor:pointer;color:#475569">📰</button>
                   ${p.status==='aguardando_assinatura'||p.status==='atendendo'
                     ? `<button title="Assinar" onclick="simularAssinatura(${p.id},'${(p.cliente||'').replace(/'/g,"\\'")}');event.stopPropagation()"
                         style="padding:4px 8px;background:#dbeafe;border:1px solid #bfdbfe;border-radius:6px;font-size:12px;cursor:pointer;color:#1d4ed8">✍️</button>` : ''}
@@ -10026,7 +10503,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
                 </div>
                 <div style="text-align:center;padding:20px 0">
                   <div style="font-size:13px;color:#94a3b8;margin-bottom:12px">Sincronize para ver histórico completo</div>
-                  <button onclick="syncProcessoAtual()" style="padding:8px 20px;background:#0f2d5e;color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-weight:600">🏛️ Sincronizar DataJud</button>
+                  <button onclick="syncProcessoAtual()" style="padding:8px 20px;background:#0f2d5e;color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-weight:600">📰 Sincronizar DJEN</button>
                 </div>`;
             } else {
               tabMovs.innerHTML = `
@@ -10111,16 +10588,15 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           });
         }
 
-        function syncProcessoAtual() {
+        async function syncProcessoAtual() {
           if (_procDetalheId == null) return;
+          const id = _procDetalheId;
           const btn = document.getElementById('pn-sync-btn');
           if (btn) { btn.textContent = '⏳ Sincronizando…'; btn.disabled = true; }
-          datajudBuscarProcesso(_procDetalheId);
-          setTimeout(() => {
-            if (btn) { btn.textContent = '🏛️ Sincronizar DataJud'; btn.disabled = false; }
-            // Reabre o painel com dados frescos
-            if (_procDetalheId != null) abrirDetalheProcesso(_procDetalheId);
-          }, 3500);
+          await datajudBuscarProcesso(id);
+          if (btn) { btn.textContent = '📰 Sincronizar DJEN'; btn.disabled = false; }
+          // Reabre o painel com dados frescos
+          if (_procDetalheId === id) abrirDetalheProcesso(id);
         }
 
         function editarProcessoAtual() {
@@ -10329,9 +10805,423 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         let intimacoesData = [];
         let _intimFiltro = 'todas';
         function _apiBase(){ return (window.JURYSONE_CONFIG || {}).API_URL || '/api'; }
-        function _authHeaders(){ const t = localStorage.getItem('jurysone_token'); return t ? { 'Authorization': 'Bearer ' + t } : {}; }
+        function _authHeaders(extra){ const t = localStorage.getItem('jurysone_token'); return Object.assign({}, extra || {}, t ? { 'Authorization': 'Bearer ' + t } : {}); }
         function _dataBr(iso){ if(!iso) return '—'; const d = String(iso).slice(0,10).split('-'); return d.length===3 ? `${d[2]}/${d[1]}/${d[0]}` : iso; }
         function _somarDiasIso(iso, n){ const d = new Date(iso + 'T12:00:00'); d.setDate(d.getDate() + n); return d.toISOString().slice(0,10); }
+        // ═══ Catálogo de serviços (etapa B) ═════════════════════════════════
+        const CAT_AREAS = { IMOBILIARIO:'Imobiliário', EMPRESARIAL:'Empresarial', TRABALHISTA:'Trabalhista', PREVIDENCIARIO:'Previdenciário', FAMILIA:'Família', CIVEL:'Cível', CONSUMIDOR:'Consumidor', CRIMINAL:'Criminal', TRIBUTARIO:'Tributário', OUTRA:'Outra' };
+        const CAT_HONORARIOS = { FIXO:'Fixo', EXITO:'Só êxito', FIXO_MAIS_EXITO:'Fixo + êxito', MENSAL:'Mensalidade', POR_ATO:'Por ato' };
+        let catAbaAtual = 'servicos';
+        let catServicos = [];
+        let catSugestoes = [];
+        let catEquipe = [];
+
+        function catAba(a) { catAbaAtual = a; catFecharEditor(); carregarCatalogo(); }
+
+        async function catGet(caminho) {
+          const r = await fetch(`${_apiBase()}${caminho}`, { headers: _authHeaders() });
+          if (r.status === 401) { window.location.href = '/login.html'; throw new Error('sessão'); }
+          const d = await r.json().catch(() => ({}));
+          if (!r.ok) throw new Error(d.message || ('HTTP ' + r.status));
+          return d;
+        }
+        async function catEnviar(metodo, caminho, corpo) {
+          const r = await fetch(`${_apiBase()}${caminho}`, { method: metodo, headers: _authHeaders({ 'Content-Type': 'application/json' }), body: JSON.stringify(corpo || {}) });
+          const d = await r.json().catch(() => ({}));
+          if (!r.ok) throw new Error(Array.isArray(d.message) ? d.message.join('; ') : (d.message || ('HTTP ' + r.status)));
+          return d;
+        }
+
+        async function carregarCatalogo() {
+          ['servicos','sugestoes','inativos'].forEach(a => {
+            const b = document.getElementById('cat-aba-' + a);
+            if (b) { b.style.background = a === catAbaAtual ? '#0f2d5e' : ''; b.style.color = a === catAbaAtual ? '#fff' : ''; }
+          });
+          const box = document.getElementById('cat-conteudo');
+          box.innerHTML = '<div style="color:#94a3b8;padding:20px;text-align:center">Carregando…</div>';
+          try {
+            if (!catEquipe.length) { try { const eq = await catGet('/equipe'); catEquipe = (Array.isArray(eq) ? eq : (eq.data || [])).filter(u => u.ativo !== false); } catch(e) {} }
+            if (catAbaAtual === 'sugestoes') {
+              catSugestoes = await catGet('/catalogo/sugestoes');
+              catRenderSugestoes();
+              const d = await catGet('/catalogo');
+              catBadge(d.sugestoesPendentes);
+              return;
+            }
+            const d = await catGet('/catalogo' + (catAbaAtual === 'inativos' ? '?status=INATIVO' : ''));
+            catServicos = d.servicos || [];
+            catBadge(d.sugestoesPendentes);
+            catRenderServicos();
+          } catch (e) {
+            box.innerHTML = `<div style="color:#b91c1c;padding:20px">Não foi possível carregar o catálogo (${escapeHtml(e.message)}).</div>`;
+          }
+        }
+
+        function catBadge(n) {
+          const b = document.getElementById('cat-badge');
+          if (!b) return;
+          b.style.display = n ? 'inline-block' : 'none';
+          b.textContent = n || '';
+        }
+
+        function catRenderServicos() {
+          const box = document.getElementById('cat-conteudo');
+          const carga = document.getElementById('cat-btn-carga');
+          if (carga) carga.style.display = catAbaAtual === 'servicos' && !catServicos.length ? '' : 'none';
+          if (!catServicos.length) {
+            box.innerHTML = catAbaAtual === 'inativos'
+              ? '<div style="color:#94a3b8;padding:20px;text-align:center">Nenhum serviço inativo.</div>'
+              : '<div style="color:#64748b;padding:20px;text-align:center">O catálogo está vazio. Clique em <strong>📦 Criar os 8 serviços iniciais</strong> (sem preço) ou em <strong>＋ Novo serviço</strong>.</div>';
+            return;
+          }
+          const semPreco = catServicos.filter(s => s.semPreco).length;
+          box.innerHTML = (semPreco && catAbaAtual === 'servicos' ? `<div style="background:#fef3c7;border:1px solid #fcd34d;color:#92400e;padding:9px 13px;border-radius:8px;font-size:12.5px;margin-bottom:12px">⚠️ ${semPreco} serviço(s) sem preço sugerido. Mesmo com preço, a IA nunca informa valor ao cliente sem a sua confirmação.</div>` : '') +
+            '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px">' +
+            catServicos.map((s, i) => `
+              <div style="border:1px solid #e2e8f0;border-radius:12px;padding:14px;background:#fff;display:flex;flex-direction:column;gap:6px">
+                <div style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase">${escapeHtml(CAT_AREAS[s.area] || s.area)}${s.origem === 'IA' ? ' · 🤖 sugerido pela IA' : ''}</div>
+                <div style="font-weight:700;color:#1e293b">${escapeHtml(s.nome)}</div>
+                <div style="font-size:12.5px;color:#475569">${escapeHtml((s.descricao || '').slice(0, 160))}</div>
+                <div style="font-size:12.5px">${s.semPreco ? '<span style="color:#b45309;font-weight:700">Sem preço</span>' : `<strong>${_brl(s.precoSugerido)}</strong> (sugestão)`} · ${escapeHtml(CAT_HONORARIOS[s.tipoHonorario] || '—')}${s.percentualExito != null ? ` ${s.percentualExito}%` : ''}</div>
+                <div style="font-size:12px;color:#64748b">📄 ${(s.documentos || []).length} documento(s) · ❓ ${(s.perguntas || []).length} pergunta(s) · 💬 ${(s.faq || []).length} resposta(s)</div>
+                <div style="font-size:12px;color:#64748b">Responsável: ${escapeHtml(s.responsavelNome || 'definir')} · versão ${s.versao}</div>
+                <div style="display:flex;gap:6px;margin-top:4px">
+                  <button class="btn-secondary btn-sm" onclick="catEditar(${i})">✎ Editar</button>
+                  ${s.status === 'ATIVO' ? `<button class="btn-secondary btn-sm" onclick="catStatus(${i},'desativar')">Desativar</button>` : `<button class="btn-secondary btn-sm" onclick="catStatus(${i},'reativar')">Reativar</button>`}
+                </div>
+              </div>`).join('') + '</div>';
+        }
+
+        // ── editor (texto simples: uma linha por item) ──
+        function catLinhas(lista, campo, flag) {
+          return (lista || []).map(x => (x[flag] === false ? '(opcional) ' : '') + x[campo]).join('\n');
+        }
+        function catDeLinhas(txt, campo, flag) {
+          return String(txt || '').split('\n').map(l => l.trim()).filter(Boolean).map(l => {
+            const opc = /^\(opcional\)\s*/i.test(l);
+            return { [campo]: l.replace(/^\(opcional\)\s*/i, ''), [flag]: !opc };
+          });
+        }
+        function catFaqTexto(faq) { return (faq || []).map(f => `P: ${f.pergunta}\nR: ${f.resposta}`).join('\n\n'); }
+        function catFaqDeTexto(txt) {
+          return String(txt || '').split(/\n\s*\n/).map(b => {
+            const p = /P:\s*([\s\S]*?)\n\s*R:\s*([\s\S]*)/i.exec(b.trim());
+            return p ? { pergunta: p[1].trim(), resposta: p[2].trim() } : null;
+          }).filter(Boolean);
+        }
+
+        function catFecharEditor() { const e = document.getElementById('cat-editor'); if (e) { e.style.display = 'none'; e.innerHTML = ''; } }
+
+        function catAbrirEditor(s, titulo, aoSalvar) {
+          const e = document.getElementById('cat-editor');
+          const opcArea = Object.entries(CAT_AREAS).map(([k, v]) => `<option value="${k}" ${s.area === k ? 'selected' : ''}>${v}</option>`).join('');
+          const opcHon = '<option value="">—</option>' + Object.entries(CAT_HONORARIOS).map(([k, v]) => `<option value="${k}" ${s.tipoHonorario === k ? 'selected' : ''}>${v}</option>`).join('');
+          const opcResp = '<option value="">definir</option>' + catEquipe.map(u => `<option value="${u.id}" ${s.responsavelId === u.id ? 'selected' : ''}>${escapeHtml(u.nome)}</option>`).join('');
+          const ta = (id, v, h) => `<textarea id="${id}" class="form-input" style="width:100%;min-height:${h}px;font-size:12.5px">${escapeHtml(v || '')}</textarea>`;
+          e.style.display = 'block';
+          e.innerHTML = `<div style="border:2px solid #0f2d5e;border-radius:12px;padding:16px;background:#f8fafc">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div style="font-weight:800;color:#0f2d5e">${escapeHtml(titulo)}</div><button class="btn-secondary btn-sm" onclick="catFecharEditor()">✕ Fechar</button></div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px">
+              <div class="form-group" style="grid-column:1/-1"><label class="form-label">Nome do serviço</label><input id="cat-f-nome" class="form-input" value="${escapeHtml(s.nome || '')}"></div>
+              <div class="form-group"><label class="form-label">Área</label><select id="cat-f-area" class="form-select">${opcArea}</select></div>
+              <div class="form-group"><label class="form-label">Advogado responsável</label><select id="cat-f-resp" class="form-select">${opcResp}</select></div>
+              <div class="form-group"><label class="form-label">Preço sugerido (R$)</label><input id="cat-f-preco" class="form-input" type="number" min="0" step="0.01" value="${s.precoSugerido ?? ''}" placeholder="vazio = sem preço"></div>
+              <div class="form-group"><label class="form-label">Honorários</label><select id="cat-f-hon" class="form-select">${opcHon}</select></div>
+              <div class="form-group"><label class="form-label">% de êxito</label><input id="cat-f-exito" class="form-input" type="number" min="0" max="100" step="0.5" value="${s.percentualExito ?? ''}"></div>
+              <div class="form-group" style="grid-column:1/-1"><label class="form-label">Descrição (o que é o serviço)</label>${ta('cat-f-desc', s.descricao, 60)}</div>
+              <div class="form-group"><label class="form-label">Documentos que o cliente manda (um por linha; "(opcional)" no começo)</label>${ta('cat-f-docs', catLinhas(s.documentos, 'texto', 'obrigatorio'), 150)}</div>
+              <div class="form-group"><label class="form-label">Perguntas da triagem (uma por linha; "(opcional)" no começo)</label>${ta('cat-f-perg', catLinhas(s.perguntas, 'pergunta', 'obrigatoria'), 150)}</div>
+              <div class="form-group" style="grid-column:1/-1"><label class="form-label">Respostas frequentes (blocos "P: … / R: …" separados por uma linha em branco)</label>${ta('cat-f-faq', catFaqTexto(s.faq), 140)}</div>
+              <div class="form-group" style="grid-column:1/-1"><label class="form-label">Orientações internas (a IA segue, o cliente não vê)</label>${ta('cat-f-ori', s.orientacoes, 60)}</div>
+              <div class="form-group" style="grid-column:1/-1"><label class="form-label">Palavras-chave (separadas por vírgula)</label><input id="cat-f-chaves" class="form-input" value="${escapeHtml((s.palavrasChave || []).join(', '))}"></div>
+            </div>
+            <div id="cat-f-msg" style="color:#b91c1c;font-size:12.5px;margin:6px 0;display:none"></div>
+            <button class="btn-primary" onclick="catSalvarEditor()">💾 Salvar</button>
+            ${s.versoes && s.versoes.length ? `<div style="margin-top:12px;font-size:12px;color:#64748b"><strong>Histórico:</strong> ${s.versoes.map(v => `v${v.versao} (${_dataBr(v.createdAt)}${v.motivo ? ' — ' + escapeHtml(v.motivo) : ''})`).join(' · ')}</div>` : ''}
+          </div>`;
+          window._catAoSalvar = aoSalvar;
+          e.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function catLerEditor() {
+          const v = id => document.getElementById(id).value;
+          return {
+            nome: v('cat-f-nome'), area: v('cat-f-area'), responsavelId: v('cat-f-resp') || null,
+            precoSugerido: v('cat-f-preco') === '' ? null : v('cat-f-preco'), tipoHonorario: v('cat-f-hon') || null,
+            percentualExito: v('cat-f-exito') === '' ? null : v('cat-f-exito'), descricao: v('cat-f-desc'),
+            documentos: catDeLinhas(v('cat-f-docs'), 'texto', 'obrigatorio'), perguntas: catDeLinhas(v('cat-f-perg'), 'pergunta', 'obrigatoria'),
+            faq: catFaqDeTexto(v('cat-f-faq')), orientacoes: v('cat-f-ori'), palavrasChave: v('cat-f-chaves'),
+          };
+        }
+
+        async function catSalvarEditor() {
+          const msg = document.getElementById('cat-f-msg');
+          try {
+            await window._catAoSalvar(catLerEditor());
+            catFecharEditor();
+            showToast('Catálogo atualizado', 'success');
+            carregarCatalogo();
+          } catch (e) { msg.style.display = 'block'; msg.textContent = '❌ ' + e.message; }
+        }
+
+        function catNovo() {
+          catAbrirEditor({ area: 'IMOBILIARIO', documentos: [], perguntas: [], faq: [] }, 'Novo serviço', d => catEnviar('POST', '/catalogo', d));
+        }
+
+        async function catEditar(i) {
+          const s = await catGet('/catalogo/' + catServicos[i].id);
+          catAbrirEditor(s, 'Editar: ' + s.nome, d => catEnviar('PATCH', '/catalogo/' + s.id, d));
+        }
+
+        async function catStatus(i, acao) {
+          const s = catServicos[i];
+          if (acao === 'desativar' && !confirm(`Desativar "${s.nome}"? A IA deixa de oferecer este serviço.`)) return;
+          try { await catEnviar('POST', `/catalogo/${s.id}/${acao}`); carregarCatalogo(); } catch (e) { alert(e.message); }
+        }
+
+        async function catCargaInicial(btn) {
+          if (!confirm('Criar os 8 serviços da linha de produção (sem preço)? Documentos, perguntas e respostas vêm numa primeira versão para você revisar.')) return;
+          btn.disabled = true;
+          try { const r = await catEnviar('POST', '/catalogo/carga-inicial'); showToast(`${r.novos} serviço(s) criado(s)`, 'success'); carregarCatalogo(); }
+          catch (e) { alert(e.message); }
+          btn.disabled = false;
+        }
+
+        // ── sugestões ──
+        const CAT_ROTULOS = { nome:'Nome', area:'Área', descricao:'Descrição', modeloLinhaCodigo:'Linha de produção', responsavelId:'Responsável', precoSugerido:'Preço sugerido',
+          tipoHonorario:'Honorários', percentualExito:'% de êxito', documentos:'Documentos', perguntas:'Perguntas da triagem', orientacoes:'Orientações', faq:'Respostas frequentes', palavrasChave:'Palavras-chave' };
+        function catValor(k, v) {
+          if (v === null || v === undefined || v === '') return '<em style="color:#94a3b8">vazio</em>';
+          if (k === 'documentos') return v.map(x => escapeHtml(x.texto) + (x.obrigatorio === false ? ' <em>(opcional)</em>' : '')).join('<br>');
+          if (k === 'perguntas') return v.map(x => escapeHtml(x.pergunta) + (x.obrigatoria === false ? ' <em>(opcional)</em>' : '')).join('<br>');
+          if (k === 'faq') return v.map(x => `<strong>${escapeHtml(x.pergunta)}</strong><br>${escapeHtml(x.resposta)}`).join('<br><br>');
+          if (k === 'palavrasChave') return escapeHtml(v.join(', '));
+          if (k === 'precoSugerido') return _brl(v);
+          if (k === 'area') return escapeHtml(CAT_AREAS[v] || v);
+          if (k === 'tipoHonorario') return escapeHtml(CAT_HONORARIOS[v] || v);
+          if (k === 'responsavelId') { const u = catEquipe.find(x => x.id === v); return escapeHtml(u ? u.nome : v); }
+          return escapeHtml(String(v));
+        }
+
+        function catRenderSugestoes() {
+          const box = document.getElementById('cat-conteudo');
+          const carga = document.getElementById('cat-btn-carga'); if (carga) carga.style.display = 'none';
+          if (!catSugestoes.length) { box.innerHTML = '<div style="color:#94a3b8;padding:20px;text-align:center">Nenhuma sugestão aguardando aprovação.</div>'; return; }
+          box.innerHTML = catSugestoes.map((s, i) => {
+            const campos = Object.keys(s.dados || {});
+            const linhas = campos.map(k => `<tr><td style="padding:6px;font-weight:600;color:#475569;vertical-align:top;white-space:nowrap">${CAT_ROTULOS[k] || k}</td>
+              ${s.tipo === 'AJUSTE' ? `<td style="padding:6px;vertical-align:top;color:#94a3b8">${catValor(k, s.antes ? s.antes[k] : null)}</td>` : ''}
+              <td style="padding:6px;vertical-align:top">${catValor(k, s.dados[k])}</td></tr>`).join('');
+            return `<div style="border:1px solid #e2e8f0;border-radius:12px;padding:14px;margin-bottom:12px;background:#fff">
+              <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px">
+                <div><strong>${s.tipo === 'NOVO_SERVICO' ? '🆕 Novo serviço' : '✎ Ajuste em: ' + escapeHtml(s.servicoNome || '')}</strong>
+                  <span style="font-size:12px;color:#64748b"> · ${s.origem === 'IA' ? '🤖 sugerido pela IA' : 'sugerido pela equipe'} em ${_dataBr(s.createdAt)}</span></div>
+              </div>
+              ${s.justificativa ? `<div style="font-size:12.5px;color:#475569;margin:6px 0">Motivo: ${escapeHtml(s.justificativa)}</div>` : ''}
+              <table style="width:100%;font-size:12.5px;border-collapse:collapse;margin:6px 0"><thead><tr style="color:#64748b;text-align:left"><th style="padding:6px">Campo</th>${s.tipo === 'AJUSTE' ? '<th style="padding:6px">Antes</th>' : ''}<th style="padding:6px">${s.tipo === 'AJUSTE' ? 'Depois' : 'Valor'}</th></tr></thead><tbody>${linhas}</tbody></table>
+              <div style="display:flex;gap:6px;flex-wrap:wrap">
+                <button class="btn-primary btn-sm" onclick="catAprovar(${i})">✓ Aprovar</button>
+                <button class="btn-secondary btn-sm" onclick="catEditarSugestao(${i})">✎ Editar e aprovar</button>
+                <button class="btn-secondary btn-sm" onclick="catRecusar(${i})">✕ Recusar</button>
+              </div>
+            </div>`;
+          }).join('');
+        }
+
+        async function catAprovar(i) {
+          try { await catEnviar('POST', `/catalogo/sugestoes/${catSugestoes[i].id}/aprovar`); showToast('Sugestão aprovada', 'success'); carregarCatalogo(); }
+          catch (e) { alert(e.message); }
+        }
+
+        async function catEditarSugestao(i) {
+          const s = catSugestoes[i];
+          let base = s.dados;
+          if (s.tipo === 'AJUSTE' && s.servicoId) { const atual = await catGet('/catalogo/' + s.servicoId); base = Object.assign({}, atual, s.dados); }
+          catAbrirEditor(base, 'Editar a sugestão antes de aprovar', d => catEnviar('POST', `/catalogo/sugestoes/${s.id}/aprovar`, { dados: d }));
+        }
+
+        async function catRecusar(i) {
+          const motivo = prompt('Motivo da recusa (opcional):');
+          if (motivo === null) return;
+          try { await catEnviar('POST', `/catalogo/sugestoes/${catSugestoes[i].id}/recusar`, { motivo }); carregarCatalogo(); }
+          catch (e) { alert(e.message); }
+        }
+
+        // ═══ Controle de Prazos (formato da planilha) ═══════════════════════
+        let cpFiltroAtual = 'abertos';
+        let cpDados = [];
+
+        function cpFiltrar(f) { cpFiltroAtual = f; carregarControlePrazos(); }
+
+        async function carregarControlePrazos() {
+          const t = document.getElementById('table-controle-prazos');
+          if (t) t.innerHTML = '<tr><td colspan="13" style="text-align:center;color:#94a3b8;padding:24px">Carregando prazos…</td></tr>';
+          ['abertos','conferir','cumpridos','todos'].forEach(f => {
+            const b = document.getElementById('cp-f-' + f);
+            if (b) { b.style.background = f === cpFiltroAtual ? '#0f2d5e' : ''; b.style.color = f === cpFiltroAtual ? '#fff' : ''; }
+          });
+          try {
+            const r = await fetch(`${_apiBase()}/controle-prazos?filtro=${encodeURIComponent(cpFiltroAtual)}`, { headers: _authHeaders() });
+            if (r.status === 401) { window.location.href = '/login.html'; return; }
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            const d = await r.json();
+            cpDados = d.prazos || [];
+            cpRenderResumo(d.resumo || {});
+            cpRenderTabela();
+          } catch (e) {
+            if (t) t.innerHTML = `<tr><td colspan="13" style="text-align:center;color:#b91c1c;padding:24px">Não foi possível carregar os prazos (${escapeHtml(e.message)}).</td></tr>`;
+          }
+        }
+
+        function cpRenderResumo(r) {
+          const box = document.getElementById('cp-resumo');
+          if (!box) return;
+          const chip = (txt, n, cor, fundo) => `<span style="display:inline-flex;gap:6px;align-items:center;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;background:${fundo};color:${cor}">${txt} <span>${n || 0}</span></span>`;
+          box.innerHTML = [
+            chip('⚫ Vencidos', r.VENCIDO, '#1e293b', '#e2e8f0'),
+            chip('🔴 Vence hoje', r.VENCE_HOJE, '#991b1b', '#fee2e2'),
+            chip('🔴 Urgentes', r.URGENTE, '#991b1b', '#fee2e2'),
+            chip('🟡 Atenção', r.ATENCAO, '#92400e', '#fef3c7'),
+            chip('🟢 No prazo', r.NO_PRAZO, '#065f46', '#d1fae5'),
+            chip('⚠️ Conferir', r.CONFERIR, '#9a3412', '#ffedd5'),
+          ].join('');
+        }
+
+        function cpRenderTabela() {
+          const t = document.getElementById('table-controle-prazos');
+          if (!t) return;
+          if (!cpDados.length) {
+            t.innerHTML = '<tr><td colspan="13" style="text-align:center;color:#94a3b8;padding:24px">Nenhum prazo neste filtro.</td></tr>';
+            return;
+          }
+          const cor = { VENCIDO:'#1e293b', VENCE_HOJE:'#b91c1c', URGENTE:'#b91c1c', ATENCAO:'#b45309', NO_PRAZO:'#047857', CUMPRIDO:'#64748b' };
+          t.innerHTML = cpDados.map((p, i) => `
+            <tr style="${p.situacaoCodigo === 'CUMPRIDO' ? 'opacity:.6' : ''}">
+              <td style="white-space:nowrap;font-weight:700;color:${cor[p.situacaoCodigo] || '#334155'}">${escapeHtml(p.situacao)}${p.diasRestantes != null && p.situacaoCodigo !== 'VENCE_HOJE' ? `<div style="font-size:11px;font-weight:500;color:#64748b">${p.diasRestantes} dia(s) úteis</div>` : ''}${p.conferir ? '<div style="font-size:11px;color:#c2410c;font-weight:700">⚠️ CONFERIR</div>' : ''}</td>
+              <td style="white-space:nowrap">${escapeHtml(p.processo || '—')}<div style="font-size:11px;color:#94a3b8">${escapeHtml(p.tribunal || '')}${p.orgao ? ' · ' + escapeHtml(String(p.orgao).slice(0, 40)) : ''}</div></td>
+              <td>${escapeHtml(p.cliente || '—')}</td>
+              <td style="max-width:280px">${escapeHtml(p.oQueFazer || '')}</td>
+              <td style="white-space:nowrap">${p.dias ?? '—'} ${escapeHtml(p.contagem || '')}</td>
+              <td style="white-space:nowrap">${_dataBr(p.publicacao)}</td>
+              <td style="white-space:nowrap">${_dataBr(p.inicio)}</td>
+              <td style="white-space:nowrap;font-weight:800;color:#b91c1c">${_dataBr(p.fatal)}</td>
+              <td style="white-space:nowrap;color:#64748b">${_dataBr(p.alertaD5)}</td>
+              <td style="white-space:nowrap;color:#b45309;font-weight:600">${_dataBr(p.alertaD3)}</td>
+              <td style="white-space:nowrap;color:#64748b">${_dataBr(p.alertaD1)}</td>
+              <td>${escapeHtml((p.responsaveis || []).join(' e '))}${p.cumpridoEm ? `<div style="font-size:11px;color:#64748b">cumprido ${_dataBr(p.cumpridoEm)}${p.cumpridoPor ? ' por ' + escapeHtml(p.cumpridoPor) : ''}</div>` : ''}</td>
+              <td style="white-space:nowrap">
+                ${p.situacaoCodigo !== 'CUMPRIDO' ? `<button class="btn-secondary btn-sm" title="Marcar como cumprido" onclick="cpCumprir(${i})">✓</button>
+                <button class="btn-secondary btn-sm" title="Ajustar o vencimento" onclick="cpAjustar(${i})">✎</button>
+                ${p.conferir ? `<button class="btn-secondary btn-sm" title="Marcar como conferido" onclick="cpConferido(${i})">👁✓</button>` : ''}` : ''}
+                <button class="btn-secondary btn-sm" title="Memória de cálculo" onclick="cpMemoria(${i})">📄</button>
+                ${p.link ? `<a class="btn-secondary btn-sm" href="${escapeHtml(p.link)}" target="_blank" rel="noopener" title="Abrir a publicação">↗</a>` : ''}
+              </td>
+            </tr>`).join('');
+        }
+
+        async function cpPost(caminho, corpo) {
+          const r = await fetch(`${_apiBase()}${caminho}`, { method: 'POST', headers: _authHeaders({ 'Content-Type': 'application/json' }), body: JSON.stringify(corpo || {}) });
+          const d = await r.json().catch(() => ({}));
+          if (!r.ok) throw new Error(d.message || ('HTTP ' + r.status));
+          return d;
+        }
+
+        async function cpCumprir(i) {
+          const p = cpDados[i];
+          if (!confirm(`Marcar como cumprido?\n\n${p.processo} — ${p.oQueFazer}`)) return;
+          try { await cpPost(`/prazos/${p.id}/cumprir`, {}); showToast('Prazo cumprido', 'success'); carregarControlePrazos(); }
+          catch (e) { alert('Não foi possível: ' + e.message); }
+        }
+
+        async function cpAjustar(i) {
+          const p = cpDados[i];
+          const atual = _dataBr(p.fatal);
+          const novo = prompt(`Novo vencimento para ${p.processo} (dd/mm/aaaa):`, atual);
+          if (!novo || novo === atual) return;
+          const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(novo.trim());
+          if (!m) { alert('Use o formato dd/mm/aaaa.'); return; }
+          try { await cpPost(`/prazos/${p.id}/ajustar`, { vencimento: `${m[3]}-${m[2]}-${m[1]}` }); showToast('Vencimento ajustado', 'success'); carregarControlePrazos(); }
+          catch (e) { alert('Não foi possível: ' + e.message); }
+        }
+
+        async function cpConferido(i) {
+          const p = cpDados[i];
+          if (!confirm(`Confirma que conferiu o prazo nos autos?\n\n${p.processo} — vence ${_dataBr(p.fatal)}`)) return;
+          try { await cpPost(`/prazos/${p.id}/ajustar`, {}); carregarControlePrazos(); }
+          catch (e) { alert('Não foi possível: ' + e.message); }
+        }
+
+        function cpMemoria(i) {
+          const p = cpDados[i];
+          alert(`Memória de cálculo — ${p.processo}\n\n` + (p.memoria || []).join('\n'));
+        }
+
+        function cpMostrarRelatorio(html) {
+          const box = document.getElementById('cp-relatorio');
+          box.style.display = 'block';
+          box.innerHTML = `<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px 14px;font-size:12.5px;position:relative">
+            <button onclick="this.parentElement.parentElement.style.display='none'" style="position:absolute;right:8px;top:6px;border:none;background:none;cursor:pointer;font-size:14px">✕</button>${html}</div>`;
+        }
+
+        function cpTextoRecalculo(rc) {
+          if (!rc) return '';
+          if (!rc.alterados || !rc.alterados.length) return `<div>🔄 Recálculo: ${rc.analisados} prazo(s) em aberto conferido(s), nenhuma data mudou.</div>`;
+          return `<div>🔄 Recálculo: <strong>${rc.alterados.length} prazo(s) mudaram de data</strong>:</div><ul style="margin:4px 0 0 18px">` +
+            rc.alterados.map(a => `<li>${escapeHtml(a.processo || '')}: ${_dataBr(a.antes)} → <strong>${_dataBr(a.depois)}</strong></li>`).join('') + '</ul>';
+        }
+
+        async function cpImportar(input) {
+          const arq = input.files && input.files[0];
+          input.value = '';
+          if (!arq) return;
+          const fd = new FormData();
+          fd.append('arquivo', arq);
+          cpMostrarRelatorio('⏳ Importando a planilha…');
+          try {
+            const r = await fetch(`${_apiBase()}/controle-prazos/importar-planilha`, { method: 'POST', headers: _authHeaders(), body: fd });
+            const d = await r.json().catch(() => ({}));
+            if (!r.ok) { cpMostrarRelatorio('❌ ' + escapeHtml(d.message || 'Falha na importação.')); return; }
+            const p = d.prazos || {};
+            let html = `<div style="font-weight:700;margin-bottom:6px">📥 Planilha importada</div>
+              <div>📅 Calendário: ${d.feriados.novos} dia(s) novo(s), ${d.feriados.existentes} já existia(m).</div>
+              <div>⏰ Prazos: <strong>${p.novos} novo(s)</strong>, ${p.jaExistiam} já existia(m), ${p.cumpridos} marcado(s) como cumprido(s).</div>
+              <div>👥 Audiências: ${d.audiencias.novas} nova(s), ${d.audiencias.jaExistiam} já existia(m).</div>
+              <div>📁 ${d.processosCriados} processo(s) e ${d.clientesCriados} cliente(s) criado(s) (cadastro incompleto).</div>`;
+            if (p.divergencias && p.divergencias.length) {
+              html += `<div style="margin-top:8px;color:#9a3412;font-weight:700">⚠️ ${p.divergencias.length} data(s) diferente(s) entre a planilha e o JurysOne — conferir:</div><ul style="margin:4px 0 0 18px">` +
+                p.divergencias.map(x => `<li>Linha ${x.linha} · ${escapeHtml(x.processo)}: planilha ${_dataBr(x.planilha)}, JurysOne ${_dataBr(x.jurysone)} — ${escapeHtml(x.acao)}</li>`).join('') + '</ul>';
+            }
+            if (p.ignorados && p.ignorados.length) {
+              html += `<div style="margin-top:8px;color:#64748b">Linhas não importadas:</div><ul style="margin:4px 0 0 18px;color:#64748b">` +
+                p.ignorados.map(x => `<li>Linha ${x.linha} · ${escapeHtml(x.processo || '')}: ${escapeHtml(x.motivo)}</li>`).join('') + '</ul>';
+            }
+            (d.avisos || []).forEach(a => { html += `<div style="color:#9a3412">⚠️ ${escapeHtml(a)}</div>`; });
+            html += cpTextoRecalculo(d.recalculo);
+            cpMostrarRelatorio(html);
+            carregarControlePrazos();
+          } catch (e) {
+            cpMostrarRelatorio('❌ Não foi possível falar com o servidor.');
+          }
+        }
+
+        async function cpCalendarioPadrao(btn) {
+          if (!confirm('Aplicar o calendário padrão por tribunal (TJSC, TRT12, TRF4 e nacionais, 2026–2027) e recalcular os prazos em aberto?')) return;
+          btn.disabled = true;
+          try {
+            const d = await cpPost('/controle-prazos/calendario-padrao', {});
+            cpMostrarRelatorio(`<div>📅 Calendário: ${d.feriados.novos} dia(s) novo(s), ${d.feriados.existentes} já existia(m).</div>` + cpTextoRecalculo(d.recalculo));
+            carregarControlePrazos();
+          } catch (e) { alert('Não foi possível: ' + e.message); }
+          btn.disabled = false;
+        }
+
+        async function cpRecalcular(btn) {
+          btn.disabled = true;
+          try { cpMostrarRelatorio(cpTextoRecalculo(await cpPost('/controle-prazos/recalcular', {}))); carregarControlePrazos(); }
+          catch (e) { alert('Não foi possível: ' + e.message); }
+          btn.disabled = false;
+        }
+
         async function carregarIntimacoes(){
           const t = document.getElementById('table-intimacoes');
           if (t) t.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#94a3b8;padding:24px">Carregando publicações do DJEN…</td></tr>';

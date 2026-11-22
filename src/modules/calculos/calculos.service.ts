@@ -10,6 +10,7 @@ import { PrismaService } from '../../database/prisma.service';
 import { PERFIS, perfisDo } from '../../common/perfis';
 import { varrerDocumento } from '../../common/varredura-documento';
 import { IaIndisponivel } from '../../common/ia-claude';
+import { IaUsoService } from '../ia-uso/ia-uso.service';
 import { ArquivosService } from '../arquivos/arquivos.service';
 import { ChavesService } from '../chaves/chaves.service';
 import { AvisosService } from '../publicacoes/avisos.service';
@@ -38,6 +39,7 @@ export class CalculosService {
     private readonly arquivos: ArquivosService,
     private readonly chaves: ChavesService,
     private readonly avisos: AvisosService,
+    private readonly iaUso: IaUsoService,
   ) {}
 
   // ═══════════════════════ CATÁLOGO E CÁLCULO ═════════════════════════════
@@ -223,10 +225,13 @@ export class CalculosService {
     const calc = this.calc(c.tipo);
     let ia;
     try {
-      ia = await interpretarAjuste(await this.chaves.getChave(c.escritorioId, 'anthropic'), {
-        tipo: calc.tipo, nomeCalculadora: calc.nome, parametros: atual.parametros, mensagem,
-        esquema: z.toJSONSchema(calc.schema, { io: 'input', unrepresentable: 'any' }),
-      });
+      ia = await this.iaUso.executar(
+        { escritorioId: c.escritorioId, tarefa: 'calculo_ajuste', categoria: 'PESADA', processoId: (c as any).processoId ?? null, usuarioId: user.id },
+        (chave, aoUsar) => interpretarAjuste(chave, {
+          tipo: calc.tipo, nomeCalculadora: calc.nome, parametros: atual.parametros, mensagem,
+          esquema: z.toJSONSchema(calc.schema, { io: 'input', unrepresentable: 'any' }),
+        }, aoUsar),
+      );
     } catch (e: any) {
       if (e instanceof IaIndisponivel) throw new BadRequestException(e.message);
       throw new BadRequestException(`Não foi possível interpretar o ajuste: ${e?.message ?? e}`);
@@ -371,8 +376,10 @@ export class CalculosService {
     const ex = await this.prisma.extracaoPagamentos.findUnique({ where: { id } });
     if (!ex?.arquivo) return;
     try {
-      const chave = await this.chaves.getChave(ex.escritorioId, 'anthropic');
-      const { dados, modelo } = await extrairPagamentos(chave, Buffer.from(ex.arquivo), finalidade || 'cálculo de restituição de valores pagos');
+      const { dados, modelo } = await this.iaUso.executar(
+        { escritorioId: ex.escritorioId, tarefa: 'calculo_pagamentos', categoria: 'PESADA', processoId: (ex as any).processoId ?? null, usuarioId: ex.usuarioId },
+        (chave, aoUsar) => extrairPagamentos(chave, Buffer.from(ex.arquivo!), finalidade || 'cálculo de restituição de valores pagos', aoUsar),
+      );
       await this.prisma.extracaoPagamentos.update({
         where: { id }, data: { status: 'AGUARDANDO_CONFERENCIA', pagamentos: dados.pagamentos as any, observacoes: [ex.observacoes, dados.observacoes].filter(Boolean).join('\n'), modelo },
       });

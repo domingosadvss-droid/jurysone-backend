@@ -2,6 +2,7 @@
  * JURYSONE — Chamadas ao Claude (API da Anthropic)
  *
  *   • resumoParaCliente → Claude Haiku 5.5 (modelo barato, como decidido para mensagens ao cliente)
+ *   • MODELO_CONVERSA   → Claude Sonnet 5.5 (conversa com o cliente no WhatsApp, decidido em 20/11/2026)
  *   • rascunhoDePeca    → Claude Opus 5.5 lendo o PDF dos autos
  *
  * A chave vem da configuração do escritório (chave "anthropic") ou de ANTHROPIC_API_KEY.
@@ -12,8 +13,15 @@ import Anthropic from '@anthropic-ai/sdk';
 
 export const MODELO_PECAS = 'claude-opus-5-5';
 export const MODELO_MENSAGENS = 'claude-haiku-5-5';
+export const MODELO_CONVERSA = 'claude-sonnet-5-5';
 
 export class IaIndisponivel extends Error {}
+
+/** Limite mensal de gasto atingido: tarefas pesadas ficam pausadas até o advogado liberar */
+export class IaPausadaPeloLimite extends IaIndisponivel {}
+
+/** Recebe cada resposta do Claude logo que ela chega, para registrar uso e custo (etapa A) */
+export type AoUsar = (msg: { model: string; usage: any }) => void;
 
 function cliente(apiKey: string | null | undefined) {
   const chave = apiKey || process.env.ANTHROPIC_API_KEY;
@@ -30,7 +38,7 @@ function textoDa(msg: Anthropic.Message | Anthropic.Beta.BetaMessage): string {
 /** Resumo de 2 a 4 frases, em linguagem simples, de um marco do processo (para o WhatsApp do cliente) */
 export async function resumoParaCliente(apiKey: string | null | undefined, dados: {
   marco: string; numeroProcesso: string; nomeCliente: string; textoPublicacao: string;
-}): Promise<string> {
+}, aoUsar?: AoUsar): Promise<string> {
   const c = cliente(apiKey);
   const resp = await c.messages.create({
     model: MODELO_MENSAGENS,
@@ -49,6 +57,7 @@ export async function resumoParaCliente(apiKey: string | null | undefined, dados
         `<publicacao>\n${dados.textoPublicacao.slice(0, 12000)}\n</publicacao>`,
     }],
   });
+  aoUsar?.(resp as any);
   if (resp.stop_reason === 'refusal') throw new Error('A IA recusou o pedido.');
   const texto = textoDa(resp);
   if (!texto) throw new Error('A IA não devolveu texto.');
@@ -59,7 +68,7 @@ export async function resumoParaCliente(apiKey: string | null | undefined, dados
 export async function rascunhoDePeca(apiKey: string | null | undefined, dados: {
   pdf: Buffer; tipoPeca: string; materia: string; numeroProcesso: string; assistido: string;
   reuPreso: boolean; prazo: string | null; comarca: string | null;
-}): Promise<{ texto: string; modelo: string }> {
+}, aoUsar?: AoUsar): Promise<{ texto: string; modelo: string }> {
   const c = cliente(apiKey);
   const stream = c.beta.messages.stream({
     model: MODELO_PECAS,
@@ -94,6 +103,7 @@ export async function rascunhoDePeca(apiKey: string | null | undefined, dados: {
     }],
   });
   const msg = await stream.finalMessage();
+  aoUsar?.(msg as any);
   if (msg.stop_reason === 'refusal') throw new Error('A IA recusou o pedido (refusal) mesmo com o modelo de reserva.');
   const texto = textoDa(msg);
   if (!texto) throw new Error('A IA não devolveu texto.');
@@ -101,4 +111,16 @@ export async function rascunhoDePeca(apiKey: string | null | undefined, dados: {
     return { texto: texto + '\n\n[RASCUNHO INCOMPLETO: a resposta atingiu o limite de tamanho. CONFERIR.]', modelo: msg.model };
   }
   return { texto, modelo: msg.model };
+}
+
+/** Chamada mínima, só para testes do controle de uso (rota bloqueada em produção) */
+export async function chamadaDeTeste(apiKey: string | null | undefined, modelo: string, aoUsar?: AoUsar): Promise<string> {
+  const c = cliente(apiKey);
+  const resp = await c.messages.create({
+    model: modelo,
+    max_tokens: 200,
+    messages: [{ role: 'user', content: 'Responda apenas: OK' }],
+  });
+  aoUsar?.(resp as any);
+  return textoDa(resp);
 }

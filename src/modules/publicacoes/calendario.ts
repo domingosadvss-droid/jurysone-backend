@@ -11,8 +11,10 @@
  *   • CPC, art. 220; CLT, art. 775-A; CPP, art. 798-A: prazos suspensos de 20/12 a 20/01
  *     (no penal, a suspensão não corre em processo com réu preso).
  *   • Recesso forense de 20/12 a 06/01: sem expediente.
- *   • Feriados nacionais (Leis 662/1949, 6.802/1980, 10.607/2002 e 14.759/2023), Carnaval,
- *     Sexta-feira Santa e Corpus Christi (sem expediente forense).
+ *   • Feriados nacionais (Leis 662/1949, 6.802/1980, 10.607/2002 e 14.759/2023), Carnaval e
+ *     Sexta-feira Santa (sem expediente forense).
+ *   • Corpus Christi NÃO é nacional: entra pelo calendário de cada tribunal (TJSC, TRT12...).
+ *     Regra do escritório (20/11/2026): na dúvida o prazo calculado nunca pode ficar mais longo que o real.
  *   • TRF (Lei 5.010/1966, art. 62): quarta e quinta da Semana Santa, 11/08, 01/11 e 08/12.
  *   • Feriados estaduais e municipais e suspensões de expediente de cada tribunal são
  *     cadastrados pelo escritório (FeriadoCalendario).
@@ -85,7 +87,6 @@ export function diasNacionais(ano: number): DiaSemExpediente[] {
     um(somarDias(p, -2), 'Sexta-feira Santa'),
     um(`${ano}-04-21`, 'Tiradentes'),
     um(`${ano}-05-01`, 'Dia do Trabalho'),
-    um(somarDias(p, 60), 'Corpus Christi', 'FORENSE'),
     um(`${ano}-09-07`, 'Independência do Brasil'),
     um(`${ano}-10-12`, 'Nossa Senhora Aparecida'),
     um(`${ano}-11-02`, 'Finados'),

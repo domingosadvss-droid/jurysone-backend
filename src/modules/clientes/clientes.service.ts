@@ -101,14 +101,17 @@ export class ClientesService {
   }
 
   async create(dto: any): Promise<any> {
-    // Check CPF/CNPJ uniqueness within escritorio
-    const existing = await this.prisma.cliente.findFirst({
-      where: {
-        cpfCnpj: dto.cpfCnpj,
-        escritorioId: dto.escritorioId,
-        deletedAt: null,
-      },
-    });
+    // Check CPF/CNPJ uniqueness within escritorio (só quando informado: sem CPF, o filtro
+    // vazio casaria com qualquer cliente e bloquearia todo cadastro sem documento)
+    const existing = dto.cpfCnpj
+      ? await this.prisma.cliente.findFirst({
+          where: {
+            cpfCnpj: dto.cpfCnpj,
+            escritorioId: dto.escritorioId,
+            deletedAt: null,
+          },
+        })
+      : null;
 
     if (existing) {
       throw new BadRequestException(

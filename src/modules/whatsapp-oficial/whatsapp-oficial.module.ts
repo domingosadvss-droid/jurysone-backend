@@ -7,12 +7,16 @@ import { ConexoesWhatsappService } from './conexoes.service';
 import { MidiaWhatsappService } from './midia.service';
 import { RegistroMensagensService } from './registro-mensagens.service';
 import { WebhookWhatsappService } from './webhook-whatsapp.service';
+import { WhatsappWebService } from './whatsapp-web.service';
 
-/** WhatsApp pela API oficial da Meta (Cloud API, com coexistência): conexão, webhook, anexos e caixa */
+/**
+ * WhatsApp pela API oficial da Meta (Cloud API, com coexistência): conexão, webhook, anexos e caixa.
+ * Para testes, também conecta pelo WhatsApp Web (QR Code) e usa a mesma caixa.
+ */
 @Module({
   imports: [ArquivosModule],
   controllers: [CaixaWhatsappController, WebhookWhatsappController],
-  providers: [CaixaWhatsappService, ConexoesWhatsappService, MidiaWhatsappService, RegistroMensagensService, WebhookWhatsappService],
-  exports: [ConexoesWhatsappService, CaixaWhatsappService],
+  providers: [CaixaWhatsappService, ConexoesWhatsappService, MidiaWhatsappService, RegistroMensagensService, WebhookWhatsappService, WhatsappWebService],
+  exports: [ConexoesWhatsappService, CaixaWhatsappService, WhatsappWebService],
 })
 export class WhatsappOficialModule {}

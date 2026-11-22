@@ -49,6 +49,8 @@ import { ContratacaoModule } from './modules/contratacao/contratacao.module';
 import { PublicacoesModule } from './modules/publicacoes/publicacoes.module';
 import { DativaModule } from './modules/dativa/dativa.module';
 import { CalculosModule } from './modules/calculos/calculos.module';
+import { IaUsoModule } from './modules/ia-uso/ia-uso.module';
+import { CatalogoModule } from './modules/catalogo/catalogo.module';
 
 @Module({
   controllers: [AppController],
@@ -69,6 +71,8 @@ import { CalculosModule } from './modules/calculos/calculos.module';
     // ── Infraestrutura / Auth ─────────────────────────────────────────────
     PrismaModule, // global: uma só conexão/pool do Prisma para todo o app
     WhatsappOficialModule,
+    IaUsoModule, // etapa A: uso, custo e limite da IA (global)
+    CatalogoModule, // etapa B: catálogo de serviços
     AuthModule,
     NotificationsModule,
     SseModule,

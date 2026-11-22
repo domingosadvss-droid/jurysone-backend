@@ -15,6 +15,8 @@ export interface ProvedorArmazenamento {
   criarPasta(nome: string, paiId?: string | null): Promise<string>;
   enviarArquivo(pastaId: string, nome: string, mimeType: string, conteudo: Buffer): Promise<ArquivoSalvo>;
   baixarArquivo(id: string): Promise<Buffer>;
+  /** Remove um arquivo ou pasta (no Drive vai para a lixeira, recuperável por 30 dias) */
+  apagar(id: string): Promise<void>;
 }
 
 /** Nome seguro para pasta/arquivo (sem barras nem caracteres de controle) */
@@ -60,6 +62,11 @@ export class ArmazenamentoLocal implements ProvedorArmazenamento {
 
   async baixarArquivo(id: string) {
     return fs.readFileSync(this.resolver(id));
+  }
+
+  async apagar(id: string) {
+    if (!id || path.resolve(this.raiz, id) === path.resolve(this.raiz)) throw new Error('Caminho inválido.');
+    fs.rmSync(this.resolver(id), { recursive: true, force: true });
   }
 }
 
@@ -112,5 +119,9 @@ export class ArmazenamentoGoogleDrive implements ProvedorArmazenamento {
   async baixarArquivo(id: string) {
     const r = await this.drive.files.get({ fileId: id, alt: 'media', supportsAllDrives: true }, { responseType: 'arraybuffer' });
     return Buffer.from(r.data as ArrayBuffer);
+  }
+
+  async apagar(id: string) {
+    await this.drive.files.update({ fileId: id, requestBody: { trashed: true }, supportsAllDrives: true });
   }
 }
