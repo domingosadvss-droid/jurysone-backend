@@ -2,7 +2,9 @@
  * JURYSONE — Chamadas ao Claude (API da Anthropic)
  *
  *   • resumoParaCliente → Claude Haiku 5.5 (modelo barato, como decidido para mensagens ao cliente)
- *   • MODELO_CONVERSA   → Claude Sonnet 5.5 (conversa com o cliente no WhatsApp, decidido em 20/11/2026)
+ *   • MODELO_CONVERSA   → Claude Haiku 5.5 (conversa com o cliente no WhatsApp; trocado do Sonnet 5.5 em
+ *                         22/11/2026 por custo — cerca de 18x mais barato). IA_MODELO_CONVERSA no ambiente
+ *                         escolhe outro (ex.: claude-sonnet-5-5) sem mexer no código.
  *   • rascunhoDePeca    → Claude Opus 5.5 lendo o PDF dos autos
  *
  * A chave vem da configuração do escritório (chave "anthropic") ou de ANTHROPIC_API_KEY.
@@ -13,7 +15,7 @@ import Anthropic from '@anthropic-ai/sdk';
 
 export const MODELO_PECAS = 'claude-opus-5-5';
 export const MODELO_MENSAGENS = 'claude-haiku-5-5';
-export const MODELO_CONVERSA = 'claude-sonnet-5-5';
+export const MODELO_CONVERSA = process.env.IA_MODELO_CONVERSA || 'claude-haiku-5-5';
 
 export class IaIndisponivel extends Error {}
 
