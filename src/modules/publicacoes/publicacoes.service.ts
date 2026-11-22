@@ -318,7 +318,11 @@ export class PublicacoesService {
     }
 
     const reuPreso = !!casoDativa?.reuPreso || mencionaReuPreso(texto);
-    const responsaveis = intimadosIds.length ? intimadosIds : [processo?.responsavelId ?? ctx.adminId].filter(Boolean) as string[];
+    // Quem cuida do prazo: o advogado responsável definido no cadastro do processo; sem ele, os
+    // advogados cuja OAB foi intimada; sem eles, o administrador do escritório.
+    const responsaveis = processo?.responsavelId
+      ? [processo.responsavelId]
+      : intimadosIds.length ? intimadosIds : [ctx.adminId].filter(Boolean) as string[];
 
     // ── Prazo (97/98/116) ──
     const prazo = await this.agenda.lancarPrazoDaPublicacao({

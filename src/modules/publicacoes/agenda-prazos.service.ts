@@ -8,6 +8,7 @@
  *   • Cada advogado pode ligar o próprio Google Agenda; prazos e audiências vão para lá.
  */
 import { BadRequestException, ForbiddenException, Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { Cron } from '@nestjs/schedule';
 import { createHmac, timingSafeEqual } from 'crypto';
 import { PrismaService } from '../../database/prisma.service';
 import { cifrar, criptografiaConfigurada, decifrar } from '../../common/cripto';
@@ -345,6 +346,84 @@ export class AgendaPrazosService {
     await this.enviarAoGoogle(eventoId).catch((e) => this.logger.warn(`Google Agenda: ${e?.message ?? e}`));
   }
 
+  /**
+   * Troca o responsável do prazo: sai da agenda (interna e Google) de quem estava e entra na de
+   * quem foi indicado. `aplicarAoProcesso` também grava esse advogado como responsável do
+   * processo, para as próximas intimações já chegarem com ele.
+   */
+  async trocarResponsavel(escritorioId: string, prazoId: string, novoId: string, opcoes: { aplicarAoProcesso?: boolean } = {}) {
+    const prazo = await this.prisma.prazo.findFirst({ where: { id: prazoId, escritorioId, deletedAt: null } });
+    if (!prazo) throw new NotFoundException('Prazo não encontrado');
+    const novo = await this.prisma.usuario.findFirst({ where: { id: novoId, escritorioId, ativo: true }, select: { id: true, nome: true } });
+    if (!novo) throw new BadRequestException('Responsável não encontrado ou inativo neste escritório.');
+
+    await this.prisma.prazo.update({ where: { id: prazo.id }, data: { responsaveisIds: [novo.id] } });
+
+    if (prazo.eventoId) {
+      // Quem deixa de ser responsável: apaga as cópias no Google dele e sai do evento
+      const saem = await this.prisma.eventoResponsavel.findMany({
+        where: { eventoId: prazo.eventoId, usuarioId: { not: novo.id } },
+        include: { usuario: { select: { googleAgendaToken: true, googleAgendaId: true } } },
+      });
+      await this.apagarCopiasGoogle(saem);
+      await this.prisma.eventoResponsavel.deleteMany({ where: { eventoId: prazo.eventoId, usuarioId: { not: novo.id } } });
+      await this.prisma.eventoResponsavel.upsert({
+        where: { eventoId_usuarioId: { eventoId: prazo.eventoId, usuarioId: novo.id } },
+        create: { eventoId: prazo.eventoId, usuarioId: novo.id },
+        update: {},
+      });
+      await this.enviarAoGoogle(prazo.eventoId).catch((e) => this.logger.warn(`Google Agenda: ${e?.message ?? e}`));
+    } else {
+      await this.sincronizarPrazo(prazo.id, novo.id);
+    }
+
+    if (opcoes.aplicarAoProcesso && prazo.processoId) {
+      await this.prisma.processo.updateMany({ where: { id: prazo.processoId, escritorioId }, data: { responsavelId: novo.id } });
+    }
+    return { prazoId: prazo.id, responsavel: novo, processoAtualizado: !!(opcoes.aplicarAoProcesso && prazo.processoId) };
+  }
+
+  /** Apaga do Google Agenda as cópias (prazo fatal e D-3) destes responsáveis */
+  private async apagarCopiasGoogle(resps: Array<{ id: string; usuarioId: string; googleEventId: string | null; googleEventIdD3: string | null; usuario: { googleAgendaToken: string | null; googleAgendaId: string | null } }>) {
+    if (AgendaPrazosService.agendaGoogleDesligada() || !process.env.GOOGLE_CLIENT_ID) return;
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { google } = require('googleapis');
+    for (const r of resps) {
+      if (!r.usuario.googleAgendaToken || (!r.googleEventId && !r.googleEventIdD3)) continue;
+      try {
+        const auth = this.clienteOAuth();
+        auth.setCredentials({ refresh_token: decifrar(r.usuario.googleAgendaToken) });
+        const cal = google.calendar({ version: 'v3', auth });
+        const calendarId = r.usuario.googleAgendaId ?? 'primary';
+        for (const eventId of [r.googleEventId, r.googleEventIdD3]) {
+          if (eventId) await cal.events.delete({ calendarId, eventId }).catch(() => undefined);
+        }
+      } catch (e: any) {
+        this.logger.warn(`Google Agenda do usuário ${r.usuarioId}: ${e?.message ?? e}`);
+      }
+    }
+  }
+
+  /**
+   * Rotina diária (6h30): põe na agenda os prazos pendentes que ainda não estavam lá e reenvia ao
+   * Google os compromissos futuros de quem ligou a agenda (corrige o que tiver mudado ou sumido).
+   */
+  @Cron('30 6 * * *', { name: 'agenda-sincronizacao-diaria', timeZone: 'America/Sao_Paulo' })
+  async sincronizacaoDiaria() {
+    if (process.env.AGENDA_SINCRONIZACAO_DESLIGADA === 'true') return;
+    const inicio = Date.now();
+    const semEvento = await this.prisma.prazo.findMany({
+      where: { deletedAt: null, status: 'pendente', eventoId: null },
+      select: { id: true, escritorioId: true },
+    });
+    for (const p of semEvento) await this.sincronizarPrazo(p.id).catch((e) => this.logger.warn(`Prazo ${p.id}: ${e?.message ?? e}`));
+    const conectados = await this.prisma.usuario.findMany({ where: { ativo: true, googleAgendaToken: { not: null } }, select: { id: true } });
+    let enviados = 0;
+    for (const u of conectados) enviados += await this.enviarPendentesDoUsuario(u.id).catch(() => 0);
+    this.logger.log(`Sincronização diária da agenda: ${semEvento.length} prazo(s) colocados, ${enviados} compromisso(s) reenviados ao Google de ${conectados.length} usuário(s) em ${Math.round((Date.now() - inicio) / 1000)}s`);
+    return { colocadosNaAgenda: semEvento.length, enviadosAoGoogle: enviados, usuarios: conectados.length };
+  }
+
   /** Prazo excluído: cancela o evento interno e apaga as cópias no Google Agenda */
   async removerPrazoDaAgenda(prazoId: string): Promise<void> {
     const prazo = await this.prisma.prazo.findUnique({ where: { id: prazoId }, select: { eventoId: true } });
@@ -426,7 +505,13 @@ export class AgendaPrazosService {
       include: { processo: { select: { numero: true, tribunal: true, camposCustom: true, cliente: { select: { nome: true } } } } },
     });
     if (!p) return null;
-    const i = p.intimacaoId ? await this.prisma.intimacao.findUnique({ where: { id: p.intimacaoId }, select: { tribunal: true, orgao: true } }) : null;
+    const i = p.intimacaoId ? await this.prisma.intimacao.findUnique({
+      where: { id: p.intimacaoId },
+      select: {
+        tribunal: true, orgao: true, dataPublicacao: true, tipoDocumento: true, tipoComunicacao: true, classe: true,
+        conteudoResumo: true, conteudo: true, urlOrigem: true,
+      },
+    }) : null;
     const tribunal = i?.tribunal && !/^DJEN/i.test(i.tribunal) ? i.tribunal : p.processo?.tribunal ?? null;
     const vencimento = diaLocal(p.dataPrazo);
     const ano = Number(vencimento.slice(0, 4));
@@ -438,6 +523,13 @@ export class AgendaPrazosService {
       prazoId: p.id, dias: p.diasPrazo, vencimento, alertaD3: d3, oQueFazer: p.descricao, processo: p.processo?.numero ?? null,
       tribunal, orgao: i?.orgao ?? (p.processo?.camposCustom as any)?.orgao ?? null, cliente: p.processo?.cliente?.nome ?? null,
       responsaveis: nomes.map((n) => n.nome.split(/\s+/)[0]), conferir: p.conferir, cumprido: p.status === 'cumprido',
+      publicacao: i?.dataPublicacao ? diaLocal(i.dataPublicacao) : null,
+      inicio: p.dataInicio ? diaLocal(p.dataInicio) : null,
+      contagem: p.contagem ?? null,
+      tipoDocumento: i?.tipoDocumento ?? i?.tipoComunicacao ?? null,
+      classe: i?.classe ?? null,
+      teor: i ? (i.conteudoResumo || i.conteudo || null) : null,
+      link: i?.urlOrigem ?? null,
     };
   }
 

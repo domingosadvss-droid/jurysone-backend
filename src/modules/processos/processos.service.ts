@@ -133,9 +133,19 @@ export class ProcessosService {
         fase:      dto.fase,
         valor:     dto.valor,
         dataPrazo: dto.dataPrazo ? new Date(dto.dataPrazo) : undefined,
+        // Advogado responsável: as próximas intimações do processo vão para a agenda dele
+        responsavelId: await this.responsavelValido(dto.responsavelId, officeId),
       },
       include: { cliente: true },
     });
+  }
+
+  /** undefined = não mexe; id de usuário ativo do escritório = troca; outro valor = erro */
+  private async responsavelValido(id: any, officeId: string): Promise<string | undefined> {
+    if (id === undefined || id === null || id === '') return undefined;
+    const u = await this.prisma.usuario.findFirst({ where: { id: String(id), escritorioId: officeId, ativo: true }, select: { id: true } });
+    if (!u) throw new BadRequestException('Responsável não encontrado ou inativo neste escritório.');
+    return u.id;
   }
 
   async remove(id: string, officeId: string): Promise<any> {

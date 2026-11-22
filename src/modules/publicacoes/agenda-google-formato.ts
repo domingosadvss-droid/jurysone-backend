@@ -39,15 +39,32 @@ export interface DadosPrazoAgenda {
   responsaveis: string[];
   conferir: boolean;
   cumprido: boolean;
+  // Dados da intimação (opcionais: prazos manuais não têm)
+  publicacao?: string | null;   // AAAA-MM-DD
+  inicio?: string | null;       // AAAA-MM-DD
+  contagem?: string | null;     // UTEIS | CORRIDOS
+  tipoDocumento?: string | null;
+  classe?: string | null;
+  teor?: string | null;
+  link?: string | null;
 }
 
 export function descricaoPrazo(p: DadosPrazoAgenda) {
+  const prazoTxt = p.dias != null ? `${p.dias} dia(s) ${p.contagem === 'CORRIDOS' ? 'corridos' : 'úteis'}` : null;
   return [
     `Processo ${p.processo ?? '—'}${p.tribunal ? ` – ${p.tribunal}` : ''}${p.orgao ? ` – ${p.orgao}` : ''}`,
+    ...(p.classe ? [`Classe: ${p.classe}`] : []),
     `Cliente: ${p.cliente ?? '—'}`,
     `O que fazer: ${p.oQueFazer}`,
     `Responsável: ${p.responsaveis.join(' e ') || '—'}`,
+    '',
+    ...(p.publicacao ? [`Publicação: ${br(p.publicacao)}${p.tipoDocumento ? ` (${p.tipoDocumento})` : ''}`] : []),
+    ...(prazoTxt ? [`Prazo: ${prazoTxt}${p.inicio ? ` – início ${br(p.inicio)}` : ''}`] : []),
+    `PRAZO FATAL: ${br(p.vencimento)}${p.alertaD3 ? ` (alerta D-3: ${br(p.alertaD3)})` : ''}`,
     ...(p.conferir ? ['⚠️ CONFERIR: prazo deduzido ou provisório; confirmar nos autos.'] : []),
+    ...(p.teor ? ['', 'Teor da intimação:', curto(p.teor, 1500)] : []),
+    ...(p.link ? ['', `Publicação completa: ${p.link}`] : []),
+    '',
     '(JurysOne)',
   ].join('\n');
 }

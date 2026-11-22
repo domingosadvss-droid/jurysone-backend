@@ -11120,6 +11120,37 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         // ═══ Controle de Prazos (formato da planilha) ═══════════════════════
         let cpFiltroAtual = 'abertos';
         let cpDados = [];
+        let cpEquipe = [];   // advogados ativos que podem ser responsáveis
+
+        async function cpCarregarEquipe() {
+          if (cpEquipe.length) return;
+          try {
+            const r = await fetch(`${_apiBase()}/equipe`, { headers: _authHeaders() });
+            if (!r.ok) return; // sem permissão de ver a equipe: a coluna fica só leitura
+            const lista = await r.json();
+            cpEquipe = (Array.isArray(lista) ? lista : (lista.data || []))
+              .filter(u => u.ativo && !/PARCEIRO|ESTAGIARIO/i.test(String(u.roles || '')));
+          } catch (e) {}
+        }
+
+        async function cpTrocarResp(i, sel) {
+          const p = cpDados[i];
+          const novo = cpEquipe.find(u => u.id === sel.value);
+          const atual = (p.responsaveisIds || [])[0] || '';
+          if (!novo) { sel.value = atual; return; }
+          const doProcesso = p.processoId
+            ? confirm(`Prazo de ${p.processo} passa para ${novo.nome}.\n\nOK = também tornar ${novo.nome} responsável pelo PROCESSO (as próximas intimações já vão para a agenda dela/dele).\nCancelar = trocar só este prazo.`)
+            : false;
+          sel.disabled = true;
+          try {
+            await cpPost(`/prazos/${p.id}/responsavel`, { responsavelId: novo.id, aplicarAoProcesso: doProcesso });
+            showToast(`Prazo enviado para a agenda de ${novo.nome}${doProcesso ? ' (e o processo também)' : ''}`, 'success');
+            carregarControlePrazos();
+          } catch (e) {
+            alert('Não foi possível trocar o responsável: ' + e.message);
+            sel.value = atual; sel.disabled = false;
+          }
+        }
 
         function cpFiltrar(f) { cpFiltroAtual = f; carregarControlePrazos(); }
 
@@ -11131,6 +11162,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             if (b) { b.style.background = f === cpFiltroAtual ? '#0f2d5e' : ''; b.style.color = f === cpFiltroAtual ? '#fff' : ''; }
           });
           try {
+            await cpCarregarEquipe();
             const r = await fetch(`${_apiBase()}/controle-prazos?filtro=${encodeURIComponent(cpFiltroAtual)}`, { headers: _authHeaders() });
             if (r.status === 401) { window.location.href = '/login.html'; return; }
             if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -11178,7 +11210,12 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
               <td style="white-space:nowrap;color:#64748b">${_dataBr(p.alertaD5)}</td>
               <td style="white-space:nowrap;color:#b45309;font-weight:600">${_dataBr(p.alertaD3)}</td>
               <td style="white-space:nowrap;color:#64748b">${_dataBr(p.alertaD1)}</td>
-              <td>${escapeHtml((p.responsaveis || []).join(' e '))}${p.cumpridoEm ? `<div style="font-size:11px;color:#64748b">cumprido ${_dataBr(p.cumpridoEm)}${p.cumpridoPor ? ' por ' + escapeHtml(p.cumpridoPor) : ''}</div>` : ''}</td>
+              <td>${p.situacaoCodigo !== 'CUMPRIDO' && cpEquipe.length
+                  ? `<select class="form-select" style="font-size:12px;padding:4px 6px;min-width:130px" title="Trocar o responsável: o prazo vai para a agenda de quem você escolher" onchange="cpTrocarResp(${i}, this)">
+                      ${cpEquipe.map(u => `<option value="${escapeHtml(u.id)}" ${(p.responsaveisIds || [])[0] === u.id ? 'selected' : ''}>${escapeHtml(u.nome)}</option>`).join('')}
+                      ${(p.responsaveisIds || []).length ? '' : '<option value="" selected>—</option>'}
+                    </select>${(p.responsaveisIds || []).length > 1 ? `<div style="font-size:11px;color:#64748b">${escapeHtml((p.responsaveis || []).join(' e '))}</div>` : ''}`
+                  : escapeHtml((p.responsaveis || []).join(' e '))}${p.cumpridoEm ? `<div style="font-size:11px;color:#64748b">cumprido ${_dataBr(p.cumpridoEm)}${p.cumpridoPor ? ' por ' + escapeHtml(p.cumpridoPor) : ''}</div>` : ''}</td>
               <td style="white-space:nowrap">
                 ${p.situacaoCodigo !== 'CUMPRIDO' ? `<button class="btn-secondary btn-sm" title="Marcar como cumprido" onclick="cpCumprir(${i})">✓</button>
                 <button class="btn-secondary btn-sm" title="Ajustar o vencimento" onclick="cpAjustar(${i})">✎</button>

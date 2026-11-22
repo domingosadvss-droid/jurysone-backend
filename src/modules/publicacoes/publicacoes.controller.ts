@@ -161,6 +161,18 @@ export class PrazosDjenController {
     await this.permitido(user, id);
     return this.agenda.ajustar(user.officeId, id, body, user);
   }
+
+  /** Troca o responsável: o prazo muda de agenda (interna e Google). { responsavelId, aplicarAoProcesso? } */
+  @Post(':id/responsavel')
+  @HttpCode(200)
+  @ApiOperation({ summary: 'Troca o advogado responsável pelo prazo (e, opcionalmente, pelo processo)' })
+  async trocarResponsavel(@Param('id') id: string, @Body() body: any, @CurrentUser() user: any) {
+    if (!perfisDo(user).some((x) => (PERFIS_GESTAO as string[]).includes(x))) {
+      throw new ForbiddenException('Só administrador, sócio ou advogado podem trocar o responsável.');
+    }
+    if (!body?.responsavelId) throw new BadRequestException('Informe responsavelId.');
+    return this.agenda.trocarResponsavel(user.officeId, id, String(body.responsavelId), { aplicarAoProcesso: body.aplicarAoProcesso === true });
+  }
 }
 
 @ApiTags('📅 Calendário forense')

@@ -284,6 +284,7 @@ export class ControlePrazosService {
         situacaoCodigo: sit.codigo,
         diasRestantes: sit.diasRestantes,
         responsaveis: p.responsaveisIds.map((u) => nomeDe.get(u) ?? '—'),
+        responsaveisIds: p.responsaveisIds,
         conferir: p.conferir,
         cumpridoEm: p.cumpridoEm ? diaLocal(p.cumpridoEm) : null,
         cumpridoPor: p.cumpridoPorId ? nomeDe.get(p.cumpridoPorId) ?? null : null,
