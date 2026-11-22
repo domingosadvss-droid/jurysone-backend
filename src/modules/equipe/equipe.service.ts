@@ -9,7 +9,7 @@ import { PERFIS, PERFIS_VALIDOS, perfisDo } from '../../common/perfis';
 
 const CAMPOS_PUBLICOS = {
   id: true, nome: true, email: true, roles: true, oabNumero: true, oabEstado: true,
-  telefone: true, ativo: true, parceiroId: true, termoAceitoEm: true,
+  cpf: true, telefone: true, ativo: true, parceiroId: true, termoAceitoEm: true,
   termoDocumentoUrl: true, createdAt: true,
 } as const;
 
@@ -31,6 +31,14 @@ export class EquipeService {
       throw new BadRequestException(`Perfil inválido. Use: ${PERFIS_VALIDOS.join(', ')}`);
     }
     return p;
+  }
+
+  /** CPF só com dígitos (11) ou null; recusa formato errado */
+  private cpfOuNulo(valor: any): string | null {
+    if (valor === null || valor === undefined || String(valor).trim() === '') return null;
+    const d = String(valor).replace(/\D/g, '');
+    if (d.length !== 11) throw new BadRequestException('CPF inválido: informe os 11 dígitos.');
+    return d;
   }
 
   private async validarParceiro(parceiroId: string | undefined, perfil: string, escritorioId: string) {
@@ -63,6 +71,7 @@ export class EquipeService {
         roles: perfil,
         oabNumero: dto.oabNumero,
         oabEstado: dto.oabEstado,
+        cpf: this.cpfOuNulo(dto.cpf),
         telefone: dto.telefone,
         parceiroId,
         escritorioId,
@@ -81,6 +90,7 @@ export class EquipeService {
     if (dto.telefone !== undefined) data.telefone = dto.telefone;
     if (dto.oabNumero !== undefined) data.oabNumero = dto.oabNumero;
     if (dto.oabEstado !== undefined) data.oabEstado = dto.oabEstado;
+    if (dto.cpf !== undefined) data.cpf = this.cpfOuNulo(dto.cpf);
     if (dto.ativo !== undefined) data.ativo = Boolean(dto.ativo);
 
     const novoPerfil = dto.perfil ?? dto.roles;

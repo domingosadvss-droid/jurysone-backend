@@ -11,7 +11,15 @@
 import { randomUUID } from 'crypto';
 
 export interface DocParaAssinar { nome: string; pdf: Buffer }
-export interface Signatario { nome: string; email?: string | null; telefone?: string | null; cpf?: string | null }
+export interface Signatario {
+  nome: string; email?: string | null; telefone?: string | null; cpf?: string | null;
+  /** ELETRONICA (padrão: grafia + evidências) ou DIGITAL (certificado ICP-Brasil A1/A3) */
+  tipo?: 'ELETRONICA' | 'DIGITAL';
+  /** Ordem de assinatura (1 = primeiro). Padrão 1. */
+  etapa?: number;
+  /** Rótulo exibido na plataforma (ex.: Contratante, Advogado) */
+  papel?: string;
+}
 export interface EnvelopeCriado { externoId: string; signatarios: Array<Signatario & { url: string | null; links?: string[] }> }
 export interface EventoWebhook {
   externoId: string;
@@ -152,14 +160,20 @@ export class AssinaturaCertisign implements ProvedorAssinatura {
       const nomeArquivo = `${doc.nome}.pdf`.replace(/(\.pdf)+$/i, '.pdf');
       const up = await this.chamar('POST', '/document/upload', { fileName: nomeArquivo, bytes: Array.from(doc.pdf) });
       if (!up.uploadId) throw new Error('Certisign não devolveu o uploadId.');
+      // Eletrônico = grafia (cliente); DIGITAL = certificado ICP-Brasil (advogado com token A3).
+      // "step" define a ordem: quem está na etapa 2 só recebe o link depois da etapa 1.
+      const participante = (s: Signatario) => ({
+        step: s.etapa ?? 1, title: s.papel ?? 'Contratante', name: s.nome, email: s.email,
+        individualIdentificationCode: String(s.cpf).replace(/\D/g, ''),
+      });
+      const digitais = signatarios.filter((s) => s.tipo === 'DIGITAL').map(participante);
+      const eletronicos = signatarios.filter((s) => s.tipo !== 'DIGITAL').map(participante);
       const criado = await this.chamar('POST', '/document/create', {
         typeId: 1,
         document: { name: `${titulo} - ${doc.nome}`.slice(0, 200), upload: { id: up.uploadId, name: nomeArquivo } },
         callback: true,
-        electronicSigners: signatarios.map((s) => ({
-          step: 1, title: 'Contratante', name: s.nome, email: s.email,
-          individualIdentificationCode: String(s.cpf).replace(/\D/g, ''),
-        })),
+        ...(eletronicos.length ? { electronicSigners: eletronicos } : {}),
+        ...(digitais.length ? { signers: digitais } : {}),
       });
       const url: string | null = criado.signUrl ?? null;
       const chave = (url && /[?&]chave=([^&]+)/i.exec(url)?.[1]) || String(criado.id);

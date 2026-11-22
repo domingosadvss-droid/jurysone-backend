@@ -15,7 +15,7 @@ import { PrismaService } from '../../database/prisma.service';
 import { ChavesService } from '../chaves/chaves.service';
 import { EsignService } from '../esign/esign.service';
 import { ArquivosService } from '../arquivos/arquivos.service';
-import { AssinaturaCertisign, AssinaturaSimulada, AssinaturaZapSign, ProvedorAssinatura, simuladoPermitido } from './provedores-assinatura';
+import { AssinaturaCertisign, AssinaturaSimulada, AssinaturaZapSign, ProvedorAssinatura, Signatario, simuladoPermitido } from './provedores-assinatura';
 import { gerarTermoEntrevista } from './termo-entrevista';
 
 export const TIPOS_DOCUMENTO = ['contrato', 'procuracao', 'termo_entrevista', 'hipossuficiencia'] as const;
@@ -173,7 +173,10 @@ export class ContratacaoService {
     const pacote = await this.prisma.pacoteAssinatura.findFirst({ where: { id: pacoteId, escritorioId } });
     if (!pacote) throw new NotFoundException('Pacote não encontrado');
     if (pacote.status !== 'RASCUNHO') throw new BadRequestException('Só pacotes em rascunho podem ser enviados.');
-    const processo = await this.prisma.processo.findUnique({ where: { id: pacote.processoId }, include: { cliente: true } });
+    const processo = await this.prisma.processo.findUnique({
+      where: { id: pacote.processoId },
+      include: { cliente: true, responsavel: { select: { nome: true, email: true, cpf: true, ativo: true } } },
+    });
     const cli = processo!.cliente;
     const signatario = {
       nome: dto?.nome ?? cli.nome,
@@ -188,15 +191,33 @@ export class ContratacaoService {
 
     const docs = await this.carregarOriginais(escritorioId, pacote.documentos as any[]);
     const prov = await this.provedorDo(escritorioId, pacote.provedor);
-    const envelope = await prov.criarEnvelope(`Contratação - ${cli.nome}`, docs, [signatario], pacote.id);
 
-    return this.prisma.pacoteAssinatura.update({
+    // Certisign: o cliente assina eletronicamente (etapa 1) e, depois, o advogado assina com o
+    // certificado digital ICP-Brasil (token A3, etapa 2). advogadoAssina:false envia só ao cliente.
+    const signatarios: Signatario[] = [{ ...signatario, tipo: 'ELETRONICA', etapa: 1, papel: 'Contratante' }];
+    let aviso: string | null = null;
+    if (prov.nome === 'CERTISIGN' && dto?.advogadoAssina !== false) {
+      const responsavel = processo!.responsavel?.ativo ? processo!.responsavel : null;
+      const advogado = responsavel ?? await this.prisma.usuario.findFirst({
+        where: { escritorioId, ativo: true, roles: { contains: 'ADMIN' } },
+        select: { nome: true, email: true, cpf: true }, orderBy: { createdAt: 'asc' },
+      });
+      if (advogado?.cpf && advogado.email) {
+        signatarios.push({ nome: advogado.nome, email: advogado.email, cpf: advogado.cpf, tipo: 'DIGITAL', etapa: 2, papel: 'Advogado' });
+      } else {
+        aviso = `Enviado só ao cliente: ${advogado?.nome ?? 'o advogado responsável'} não tem CPF cadastrado na Equipe para assinar com certificado digital.`;
+      }
+    }
+    const envelope = await prov.criarEnvelope(`Contratação - ${cli.nome}`, docs, signatarios, pacote.id);
+
+    const atualizado = await this.prisma.pacoteAssinatura.update({
       where: { id: pacote.id },
       data: {
         status: 'ENVIADO', externoId: envelope.externoId, enviadoEm: new Date(),
         signatarios: envelope.signatarios as any, linkAssinatura: envelope.signatarios[0]?.url ?? null,
       },
     });
+    return aviso ? { ...atualizado, aviso } : atualizado;
   }
 
   private async carregarOriginais(escritorioId: string, documentos: any[]) {

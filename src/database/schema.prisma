@@ -18,6 +18,8 @@ model Usuario {
   senha            String
   oabNumero        String?
   oabEstado        String?
+  // CPF do advogado: exigido para assinar com certificado digital (Certisign)
+  cpf              String?
   telefone         String?
   avatarUrl        String?
   emailVerifiedAt  DateTime?
