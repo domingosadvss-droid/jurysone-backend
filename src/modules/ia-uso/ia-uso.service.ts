@@ -50,6 +50,8 @@ const COTACAO_RESERVA = 5.5;
 
 const TAREFAS: Record<string, string> = {
   conversa_whatsapp: 'Conversa com cliente no WhatsApp',
+  lembrete_whatsapp: 'Lembrete ao cliente no WhatsApp',
+  aprendizado_catalogo: 'Aprendizado: sugestões para o catálogo',
   resumo_cliente: 'Resumo de andamento para o cliente',
   rascunho_peca_dativa: 'Rascunho de peça (dativa)',
   calculo_pagamentos: 'Leitura de pagamentos (cálculos)',

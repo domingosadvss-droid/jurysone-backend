@@ -1997,6 +1997,11 @@ model WhatsappConversa {
   // PAUSADA = advogado assumiu | ENCAMINHADA = a IA passou para o advogado e parou de responder
   iaStatus         String?
   iaMotivo         String?
+  // Lembretes ao cliente que parou de responder (zerados quando o cliente escreve)
+  lembretesEnviados Int      @default(0)
+  ultimoLembreteEm DateTime?
+  // Quando a IA já analisou o atendimento para sugerir melhorias no catálogo
+  aprendizadoEm    DateTime?
   createdAt        DateTime  @default(now())
 
   mensagens WhatsappMensagemCaixa[]
@@ -2033,6 +2038,30 @@ model WhatsappMensagemCaixa {
 
   @@index([conversaId, dataHora])
   @@map("whatsapp_mensagens_caixa")
+}
+
+/// Aprendizado do atendimento: quando o advogado responde numa conversa que a IA atendia,
+/// o par "mensagem do cliente → resposta do advogado" vira exemplo. Só os APROVADOS entram
+/// nas regras da IA (o advogado revisa, pode editar e descartar).
+model AtendimentoExemplo {
+  id                  String    @id @default(uuid())
+  escritorioId        String
+  conversaId          String?
+  /// mensagem do advogado que originou o exemplo (evita duplicar)
+  mensagemAdvogadoId  String?   @unique
+  perguntaCliente     String    @db.Text
+  respostaAdvogado    String    @db.Text
+  /// o que a IA tinha respondido antes, quando houver (para comparar)
+  respostaIa          String?   @db.Text
+  /// PENDENTE | APROVADO | DESCARTADO
+  status              String    @default("PENDENTE")
+  criadoPorId         String?
+  decididoPorId       String?
+  decididoEm          DateTime?
+  createdAt           DateTime  @default(now())
+
+  @@index([escritorioId, status])
+  @@map("atendimento_exemplos")
 }
 
 // ─── Etapa A: uso e custo da IA (Claude) ─────────────────────────────────────

@@ -16,6 +16,8 @@ export interface DadosRegras {
   clienteCadastrado: string | null;
   nomeContato: string | null;
   catalogo: unknown[];
+  /** Respostas que o advogado deu e aprovou como exemplo (aprendizado) */
+  exemplos?: { pergunta: string; resposta: string }[];
 }
 
 export function regrasAtendimento(d: DadosRegras): string {
@@ -40,6 +42,7 @@ export function regrasAtendimento(d: DadosRegras): string {
     '4. SEM DOCUMENTO: se o cliente disser que não tem algum documento, tranquilize (o advogado avalia outras provas), peça o que ele tiver e siga em frente.',
     '5. URGÊNCIA SEM DOCUMENTOS: se o cliente não tem os documentos (ou vai demorar para juntar) E o caso parece urgente (prazo ou audiência próximos, demissão ou fato muito recente, ordem judicial a cumprir, risco de perder um direito), PERGUNTE se ele quer ser atendido por um advogado agora, mesmo sem os documentos. Se ele disser que sim, encaminhe. Se disser que prefere juntar os documentos, continue acompanhando.',
     '6. CONCLUIR: quando chegarem os documentos obrigatórios — ou o cliente disser que já mandou tudo o que tem —, agradeça, diga que o caso vai para o advogado analisar e encaminhe.',
+    '7. LEMBRETE: se a última mensagem for um "[AVISO AUTOMÁTICO DO SISTEMA DO ESCRITÓRIO]" dizendo que o cliente parou de responder, escreva um lembrete curto e gentil: cumprimente pelo nome, lembre o que ainda falta (informação ou documentos) e diga que é só mandar por aqui. Não repita a lista inteira se faltar pouco. Se não falta nada, devolva "resposta" vazia. Não encaminhe por causa do lembrete, a menos que o aviso peça.',
     '',
     'NUNCA:',
     '- Dar parecer, opinião jurídica, chance de ganhar, prazo de processo ou orientação do tipo "você tem direito a".',
@@ -65,5 +68,10 @@ export function regrasAtendimento(d: DadosRegras): string {
     '',
     'CATÁLOGO DE SERVIÇOS DO ESCRITÓRIO (sem preços; use para saber quais documentos pedir e o que perguntar):',
     d.catalogo.length ? JSON.stringify(d.catalogo) : '(catálogo vazio: acolha, colete nome, cidade e o que aconteceu, e encaminhe)',
+    ...(d.exemplos?.length ? [
+      '',
+      'EXEMPLOS APROVADOS PELO ESCRITÓRIO (respostas que o advogado deu em atendimentos reais; siga o conteúdo e o tom quando a situação for parecida, sem copiar dados pessoais):',
+      ...d.exemplos.map((e, i) => `${i + 1}. Cliente: ${e.pergunta}\n   Resposta do escritório: ${e.resposta}`),
+    ] : []),
   ].join('\n');
 }

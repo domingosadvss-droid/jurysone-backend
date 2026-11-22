@@ -6296,6 +6296,54 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           }).join('');
         }
 
+        /** 🧠 O que a IA aprendeu: números do atendimento e respostas do advogado para aprovar como exemplo */
+        async function wppAprendizado() {
+          let painel, exemplos;
+          try {
+            [painel, exemplos] = await Promise.all([wppGet('/atendimento-ia/painel'), wppGet('/atendimento-ia/exemplos?status=PENDENTE')]);
+          } catch (e) { showToast('Não foi possível abrir: ' + e.message, 'error'); return; }
+          document.getElementById('wpp-aprendizado-modal')?.remove();
+          const fundo = document.createElement('div');
+          fundo.id = 'wpp-aprendizado-modal';
+          fundo.style.cssText = 'position:fixed;inset:0;background:rgba(15,23,42,.45);display:flex;align-items:center;justify-content:center;z-index:9999;padding:16px';
+          fundo.onclick = (ev) => { if (ev.target === fundo) fundo.remove(); };
+          const num = (n, t, cor) => `<div style="flex:1;min-width:90px;background:#f8fafc;border-radius:10px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:${cor || '#0f2d5e'}">${n}</div><div style="font-size:11px;color:#64748b">${t}</div></div>`;
+          const cartao = (e) => `<div data-id="${escapeHtml(e.id)}" style="border:1px solid #e2e8f0;border-radius:10px;padding:12px;margin-bottom:10px">
+              <div style="font-size:11px;color:#64748b;margin-bottom:4px">Cliente escreveu:</div>
+              <textarea data-campo="perguntaCliente" rows="2" style="width:100%;box-sizing:border-box;font-size:13px;border:1px solid #e2e8f0;border-radius:6px;padding:6px">${escapeHtml(e.perguntaCliente)}</textarea>
+              ${e.respostaIa ? `<div style="font-size:11px;color:#94a3b8;margin:6px 0 2px">A IA tinha dito antes: ${escapeHtml(e.respostaIa.slice(0, 220))}${e.respostaIa.length > 220 ? '…' : ''}</div>` : ''}
+              <div style="font-size:11px;color:#64748b;margin:6px 0 4px">Resposta do advogado (a IA vai seguir este exemplo):</div>
+              <textarea data-campo="respostaAdvogado" rows="3" style="width:100%;box-sizing:border-box;font-size:13px;border:1px solid #e2e8f0;border-radius:6px;padding:6px">${escapeHtml(e.respostaAdvogado)}</textarea>
+              <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+                <button onclick="wppDecidirExemplo('${escapeHtml(e.id)}','DESCARTADO')" style="padding:6px 12px;border:1px solid #e2e8f0;border-radius:6px;background:#fff;color:#64748b;cursor:pointer;font-size:12px">Descartar</button>
+                <button onclick="wppDecidirExemplo('${escapeHtml(e.id)}','APROVADO')" style="padding:6px 12px;border:none;border-radius:6px;background:#16a34a;color:#fff;font-weight:700;cursor:pointer;font-size:12px">Aprovar como exemplo</button>
+              </div></div>`;
+          fundo.innerHTML = `<div style="background:#fff;border-radius:14px;max-width:640px;width:100%;max-height:88vh;overflow:auto;padding:20px;box-shadow:0 10px 40px rgba(0,0,0,.2)">
+            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:16px;font-weight:700;color:#0f2d5e">🧠 O que a IA está aprendendo</div>
+              <button onclick="document.getElementById('wpp-aprendizado-modal').remove()" style="border:none;background:none;font-size:20px;cursor:pointer;color:#64748b">×</button></div>
+            <div style="font-size:12.5px;color:#64748b;margin:6px 0 12px;line-height:1.5">Quando você responde uma conversa que a IA atendia, a sua resposta aparece aqui. Ao aprovar, ela vira exemplo e a IA passa a responder parecido. Ao fim de cada atendimento, a IA também sugere melhorias no <a href="#" onclick="document.getElementById('wpp-aprendizado-modal').remove();navigate('catalogo');return false;">Catálogo de serviços</a> — nada muda sem a sua aprovação.</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+              ${num(painel.atendidas, 'atendimentos da IA (' + painel.dias + ' dias)')}${num(painel.encaminhadas, 'encaminhados ao advogado', '#b45309')}${num(painel.comLembrete, 'com lembrete', '#7c3aed')}${num(painel.exemplosAprovados, 'exemplos aprovados', '#16a34a')}${num(painel.sugestoesPendentes, 'sugestões no catálogo', '#0369a1')}
+            </div>
+            <div style="font-size:14px;font-weight:700;color:#0f172a;margin-bottom:8px">Respostas para revisar (${exemplos.length})</div>
+            ${exemplos.length ? exemplos.map(cartao).join('') : '<div style="color:#94a3b8;font-size:13px;padding:14px 0">Nenhuma resposta nova para revisar. Elas aparecem quando você ou outro advogado responde uma conversa atendida pela IA.</div>'}
+          </div>`;
+          document.body.appendChild(fundo);
+        }
+
+        async function wppDecidirExemplo(id, status) {
+          const cartao = document.querySelector(`#wpp-aprendizado-modal [data-id="${id}"]`);
+          const corpo = { status };
+          if (cartao) cartao.querySelectorAll('textarea').forEach(t => { corpo[t.dataset.campo] = t.value; });
+          try {
+            const r = await fetch(`${wppApi()}/atendimento-ia/exemplos/${encodeURIComponent(id)}`, { method: 'PATCH', headers: wppHeaders(true), body: JSON.stringify(corpo) });
+            const d = await r.json().catch(() => ({}));
+            if (!r.ok) throw new Error(d.message || ('HTTP ' + r.status));
+            showToast(status === 'APROVADO' ? 'Exemplo aprovado: a IA vai seguir esta resposta' : 'Exemplo descartado', 'success');
+            wppAprendizado();
+          } catch (e) { showToast('Não foi possível: ' + e.message, 'error'); }
+        }
+
         /** Nome de quem é o número de uma conversa compartilhada */
         function wppDonoDoNumero(numero) {
           const o = (window._wppCompartilhadas || []).find(x => x.numero === numero);
@@ -6407,7 +6455,8 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             if (!cfg.temNumero) { el.innerHTML = ''; return; }
             el.innerHTML = `🤖 IA no meu número: <b style="color:${cfg.ativo ? '#16a34a' : '#64748b'}">${cfg.ativo ? 'LIGADA' : 'desligada'}</b>`
               + `${cfg.ativo && cfg.apenasNovosContatos ? ' · só contatos novos' : ''}${cfg.simulado ? ' · <span style="color:#b45309">modo simulação</span>' : ''}`
-              + ` · <a href="#" onclick="wppIaAlternarGeral();return false;" style="color:#7c3aed;font-weight:600">${cfg.ativo ? 'desligar' : 'ligar'}</a>`;
+              + ` · <a href="#" onclick="wppIaAlternarGeral();return false;" style="color:#7c3aed;font-weight:600">${cfg.ativo ? 'desligar' : 'ligar'}</a>`
+              + ` · <a href="#" onclick="wppAprendizado();return false;" style="color:#0f2d5e;font-weight:600">🧠 aprendizado</a>`;
           } catch (e) { el.innerHTML = ''; }
         }
         async function wppIaAlternarGeral() {

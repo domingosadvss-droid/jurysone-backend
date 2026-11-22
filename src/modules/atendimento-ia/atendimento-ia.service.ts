@@ -16,8 +16,13 @@
  *     como dado (ignora instruções escritas nas mensagens).
  * O gasto passa pelo IaUsoService (tarefa conversa_whatsapp, categoria CONVERSA: nunca é
  * bloqueada pelo limite mensal).
+ *   • Lembretes: cliente que parou de responder recebe um lembrete do que falta depois de 48 h e
+ *     outro depois de mais 72 h; 48 h depois do segundo, a conversa vai para o advogado.
+ *   • Aprendizado (aprendizado.service): respostas aprovadas do advogado entram nas regras e, ao
+ *     encerrar, a IA sugere melhorias no catálogo.
  */
 import { BadRequestException, ForbiddenException, Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { Cron } from '@nestjs/schedule';
 import { PrismaService } from '../../database/prisma.service';
 import { IaUsoService } from '../ia-uso/ia-uso.service';
 import { CatalogoService } from '../catalogo/catalogo.service';
@@ -26,6 +31,13 @@ import { RegistroMensagensService } from '../whatsapp-oficial/registro-mensagens
 import { IaIndisponivel, MensagemConversa, RespostaAtendimento, respostaAtendimento } from '../../common/ia-claude';
 import { PERFIS_GESTAO, temPerfil } from '../../common/perfis';
 import { regrasAtendimento } from './regras-atendimento';
+import { AprendizadoAtendimentoService } from './aprendizado.service';
+import { textoDaMensagem } from './texto-mensagem';
+
+/** Lembretes ao cliente que parou de responder: horas de silêncio antes de cada passo */
+const LEMBRETE_1_HORAS = 48;
+const LEMBRETE_2_HORAS = 72;
+const AVISAR_ADVOGADO_HORAS = 48;
 
 const CHAVE_CONFIG = 'ia_whatsapp';
 
@@ -45,11 +57,6 @@ const PADRAO: ConfigAtendimentoIa = {
 /** Testes: responde com texto fixo e não envia nada ao WhatsApp (só grava na caixa como "simulada") */
 const simulado = () => process.env.IA_ATENDIMENTO_SIMULADO === 'true';
 
-const TIPOS_MIDIA: Record<string, string> = {
-  image: '[foto]', video: '[vídeo]', audio: '[áudio — a IA não ouve áudios]', sticker: '[figurinha]',
-  location: '[localização]', contacts: '[contato compartilhado]', reaction: '[reação]',
-};
-
 function hojeBrasilia() {
   return new Intl.DateTimeFormat('pt-BR', { timeZone: 'America/Sao_Paulo', dateStyle: 'full' }).format(new Date());
 }
@@ -67,11 +74,16 @@ export class AtendimentoIaService implements OnModuleInit {
     private readonly caixa: CaixaWhatsappService,
     private readonly catalogo: CatalogoService,
     private readonly iaUso: IaUsoService,
+    private readonly aprendizado: AprendizadoAtendimentoService,
   ) {}
 
   onModuleInit() {
     this.registro.aoRegistrar((m) => {
-      if (m.direcao === 'ENTRADA' && m.origem === 'CLIENTE') this.agendar(m.escritorioId, m.conversaId);
+      if (m.direcao === 'ENTRADA' && m.origem === 'CLIENTE') {
+        // O cliente voltou a falar: a contagem de lembretes recomeça
+        void this.prisma.whatsappConversa.updateMany({ where: { id: m.conversaId, lembretesEnviados: { gt: 0 } }, data: { lembretesEnviados: 0 } }).catch(() => undefined);
+        this.agendar(m.escritorioId, m.conversaId);
+      }
     });
   }
 
@@ -246,10 +258,89 @@ export class AtendimentoIaService implements OnModuleInit {
   }
 
   private textoDa(m: { tipo: string; texto: string | null; midiaNome: string | null }) {
-    const base = (m.texto ?? '').trim();
-    if (m.tipo === 'text' || m.tipo === 'button' || m.tipo === 'interactive') return base;
-    const rotulo = m.tipo === 'document' ? `[documento${m.midiaNome ? `: ${m.midiaNome}` : ''}]` : TIPOS_MIDIA[m.tipo] ?? `[${m.tipo}]`;
-    return base ? `${rotulo} ${base}` : rotulo;
+    return textoDaMensagem(m);
+  }
+
+  // ─────────────────────────── lembretes ───────────────────────────
+
+  /**
+   * Cliente que parou de responder no meio do atendimento (última mensagem é da IA):
+   * 48 h → lembrete 1; mais 72 h → lembrete 2; mais 48 h → passa ao advogado.
+   * Só em números com a IA ligada, das 8h às 20h, de segunda a sábado.
+   */
+  @Cron('15 * * * *', { name: 'atendimento-lembretes', timeZone: 'America/Sao_Paulo' })
+  async lembretesAgendados() {
+    if (process.env.LEMBRETES_DESLIGADOS === 'true') return;
+    const agora = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
+    if (agora.getDay() === 0 || agora.getHours() < 8 || agora.getHours() >= 20) return;
+    await this.processarLembretes().catch((e) => this.logger.error(`Lembretes: ${e?.message ?? e}`));
+  }
+
+  /** `simular`: gera os lembretes e grava na caixa como "simulada", sem enviar ao WhatsApp */
+  async processarLembretes(opcoes: { escritorioId?: string; simular?: boolean; agora?: Date } = {}) {
+    const agora = opcoes.agora ?? new Date();
+    const horas = (h: number) => new Date(agora.getTime() - h * 3600_000);
+    const candidatas = await this.prisma.whatsappConversa.findMany({
+      where: {
+        ...(opcoes.escritorioId ? { escritorioId: opcoes.escritorioId } : {}),
+        conexao: { iaAtivo: true, ativo: true },
+        OR: [{ iaStatus: null }, { iaStatus: 'AUTO' }],
+        lembretesEnviados: { lt: 3 },
+        ultimaMensagemEm: { lt: horas(Math.min(LEMBRETE_1_HORAS, AVISAR_ADVOGADO_HORAS)) },
+      },
+      include: { conexao: true }, take: 50,
+    });
+    const feitos: { conversaId: string; acao: string }[] = [];
+    for (const c of candidatas) {
+      if (!/^\d{10,15}$/.test(String(c.telefone))) continue;
+      const cfg = await this.config(c.escritorioId);
+      if (c.iaStatus !== 'AUTO' && cfg.apenasNovosContatos && (!c.conexao.iaAtivadoEm || c.createdAt < c.conexao.iaAtivadoEm)) continue;
+      const ultima = await this.prisma.whatsappMensagemCaixa.findFirst({ where: { conversaId: c.id }, orderBy: { dataHora: 'desc' } });
+      if (!ultima || ultima.direcao !== 'SAIDA' || ultima.origem !== 'IA') continue; // só quando a IA falou por último
+      const silencio = (agora.getTime() - ultima.dataHora.getTime()) / 3600_000;
+
+      if (c.lembretesEnviados >= 2) {
+        if (silencio < AVISAR_ADVOGADO_HORAS) continue;
+        await this.encaminhar({ ...c }, { resposta: '', encaminhar: true, motivo: 'O cliente parou de responder depois de dois lembretes.', resumoCaso: '' });
+        await this.prisma.whatsappConversa.update({ where: { id: c.id }, data: { lembretesEnviados: 3 } });
+        feitos.push({ conversaId: c.id, acao: 'encaminhada ao advogado' });
+        continue;
+      }
+      const precisa = c.lembretesEnviados === 0 ? LEMBRETE_1_HORAS : LEMBRETE_2_HORAS;
+      if (silencio < precisa) continue;
+
+      const numero = c.lembretesEnviados + 1;
+      const r = await this.gerarResposta(c, `O cliente não responde há ${Math.round(silencio / 24)} dia(s). Este é o lembrete ${numero} de 2.`);
+      if (!r) continue;
+      if (!r.resposta.trim()) {
+        // Não falta nada: não insiste mais
+        await this.prisma.whatsappConversa.update({ where: { id: c.id }, data: { lembretesEnviados: 3 } });
+        feitos.push({ conversaId: c.id, acao: 'nada a lembrar' });
+        continue;
+      }
+      await this.caixa.enviarTextoSistema(c.id, r.resposta.trim().slice(0, 4000), { simular: opcoes.simular || simulado() });
+      await this.prisma.whatsappConversa.update({ where: { id: c.id }, data: { lembretesEnviados: numero, ultimoLembreteEm: agora } });
+      feitos.push({ conversaId: c.id, acao: `lembrete ${numero}` });
+    }
+    return { analisadas: candidatas.length, feitos };
+  }
+
+  /** Chama a IA com o histórico da conversa (e um aviso do sistema, quando houver) */
+  private async gerarResposta(conversa: any, notaSistema?: string): Promise<RespostaAtendimento | null> {
+    const mensagens = await this.prisma.whatsappMensagemCaixa.findMany({ where: { conversaId: conversa.id }, orderBy: { dataHora: 'desc' }, take: 60 });
+    mensagens.reverse();
+    const conversaIa: MensagemConversa[] = mensagens.filter((m) => m.status !== 'falhou')
+      .map((m) => ({ deCliente: m.direcao === 'ENTRADA', texto: this.textoDa(m) }));
+    const sistema = await this.montarSistema(conversa.escritorioId, conversa.telefone, conversa.nomeContato, conversa.conexao?.usuarioId ?? null);
+    try {
+      return await this.iaUso.executar(
+        { escritorioId: conversa.escritorioId, tarefa: notaSistema ? 'lembrete_whatsapp' : 'conversa_whatsapp', categoria: 'CONVERSA', conversaId: conversa.id } as any,
+        (chave, aoUsar) => respostaAtendimento(chave, { sistema, conversa: conversaIa, notaSistema }, aoUsar),
+      );
+    } catch (e: any) {
+      if (e instanceof IaIndisponivel) { this.logger.warn(`IA indisponível: ${e.message}`); return null; }
+      throw e;
+    }
   }
 
   /** Regras + dados do escritório + catálogo (sem preços). As mensagens do cliente vão à parte. */
@@ -268,9 +359,10 @@ export class AtendimentoIaService implements OnModuleInit {
       perguntas: s.perguntas, orientacoes: s.orientacoes, faq: s.faq,
     }));
 
+    const exemplos = await this.aprendizado.exemplosAprovados(escritorioId);
     return regrasAtendimento({
       escritorio: escritorio?.nome ?? null, dono: dono?.nome ?? null, hoje: hojeBrasilia(),
-      clienteCadastrado: cadastrado?.nome ?? null, nomeContato, catalogo,
+      clienteCadastrado: cadastrado?.nome ?? null, nomeContato, catalogo, exemplos,
     });
   }
 
@@ -279,6 +371,10 @@ export class AtendimentoIaService implements OnModuleInit {
       where: { id: conversa.id },
       data: { iaStatus: 'ENCAMINHADA', iaMotivo: (r.motivo || 'Encaminhada pela IA').slice(0, 500) },
     });
+    // Atendimento encerrado: a IA sugere o que faltou no catálogo (vai para aprovação)
+    if (!simulado() && process.env.APRENDIZADO_DESLIGADO !== 'true') {
+      void this.aprendizado.sugerirParaCatalogo(conversa.id).catch((e) => this.logger.warn(`Aprendizado: ${e?.message ?? e}`));
+    }
     // Avisa só quem vê este número: o dono e quem ele liberou (cada login tem o próprio WhatsApp)
     const ids = [conversa.conexao?.usuarioId, ...(conversa.conexao?.acessoIds ?? [])].filter(Boolean) as string[];
     const alvo = await this.prisma.usuario.findMany({ where: { id: { in: ids }, escritorioId: conversa.escritorioId, ativo: true }, select: { id: true } });
