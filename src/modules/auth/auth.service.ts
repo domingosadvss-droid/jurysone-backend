@@ -5,7 +5,17 @@ import * as argon2 from 'argon2';
 import { createHash, createHmac, randomBytes, timingSafeEqual } from 'crypto';
 import { enviarEmail } from '../../common/email';
 import { cifrar, criptografiaConfigurada } from '../../common/cripto';
-import { AuditoriaService, ContextoRequisicao } from '../auditoria/auditoria.service';
+import { AuditoriaService, ContextoRequisicao, contextoDa } from '../auditoria/auditoria.service';
+import { betterAuthInstancia, definirAuditoriaLogin, headersDaRequisicao } from './better-auth';
+
+/** Contexto (IP, navegador) a partir do Request do Better Auth (Fetch API) */
+function contextoDaRequest(r: any): ContextoRequisicao | undefined {
+  try {
+    const h = r?.headers;
+    if (!h?.get) return undefined;
+    return contextoDa({ headers: Object.fromEntries(h.entries()), ip: (h.get('x-forwarded-for') ?? '').split(',')[0].trim() || undefined, socket: {} } as any);
+  } catch { return undefined; }
+}
 
 /** Entrar com Google: identifica a pessoa e, na mesma autorização, libera o Google Agenda */
 const ESCOPO_AGENDA = 'https://www.googleapis.com/auth/calendar.events';
@@ -50,6 +60,65 @@ export class AuthService {
     private jwtService: JwtService,
     private auditoria: AuditoriaService,
   ) {}
+
+  onModuleInit() {
+    // Eventos do Better Auth (pedido de nova senha, senha redefinida, login recusado) vão para a auditoria
+    definirAuditoriaLogin(async (e) => {
+      try {
+        const u = e.usuarioId ? await this.prisma.usuario.findUnique({ where: { id: e.usuarioId }, select: { escritorioId: true } }) : null;
+        const porEmail = !u && e.detalhes?.email
+          ? await this.prisma.usuario.findFirst({ where: { email: { equals: e.detalhes.email, mode: 'insensitive' } }, select: { id: true, escritorioId: true } })
+          : null;
+        const escritorioId = u?.escritorioId ?? porEmail?.escritorioId;
+        if (!escritorioId) return; // e-mail que não existe: não há escritório para registrar
+        await this.auditoria.registrar({
+          escritorioId, usuarioId: e.usuarioId || porEmail?.id || null, acao: e.acao as any, tipoEntidade: 'auth',
+          ctx: e.request ? contextoDaRequest(e.request) : undefined, detalhes: e.detalhes,
+        });
+      } catch (err: any) { this.logger.warn(`Auditoria do login: ${err?.message ?? err}`); }
+    });
+  }
+
+  /**
+   * Ponte Better Auth → JurysOne. Depois que o Better Auth confirmou a pessoa (senha ou Google,
+   * e o 2º fator quando ligado), troca a sessão dele pelo token interno do JurysOne, que todas as
+   * telas e permissões já usam. Também guarda a permissão do Google Agenda, se veio no login.
+   */
+  async sessaoDoBetterAuth(req: any, ctx?: ContextoRequisicao) {
+    const auth = betterAuthInstancia();
+    const s = await auth.api.getSession({ headers: headersDaRequisicao(req) });
+    if (!s?.user?.id) throw new UnauthorizedException('Sessão expirada. Entre de novo.');
+    const user = await this.prisma.usuario.findUnique({ where: { id: s.user.id } });
+    if (!user || !user.ativo) {
+      await auth.api.signOut({ headers: headersDaRequisicao(req) }).catch(() => undefined);
+      throw new ForbiddenException('Este usuário está desativado. Fale com o administrador do escritório.');
+    }
+    // Google: o Better Auth guardou o token; a agenda usa o refresh token cifrado em users
+    const google = await this.prisma.baConta.findFirst({ where: { userId: user.id, providerId: 'google' }, orderBy: { updatedAt: 'desc' } });
+    let agendaConectada = !!user.googleAgendaToken;
+    if (google?.refreshToken && String(google.scope ?? '').includes('calendar') && criptografiaConfigurada()) {
+      await this.prisma.usuario.update({
+        where: { id: user.id },
+        data: { googleAgendaToken: cifrar(google.refreshToken), googleAgendaId: user.googleAgendaId ?? 'primary', googleAgendaConectadoEm: new Date() },
+      });
+      agendaConectada = true;
+    }
+    const metodo = google && Date.now() - new Date(google.updatedAt).getTime() < 5 * 60_000 ? 'google' : 'senha';
+    const sessao = await this.emitirSessao(user);
+    await this.auditoria.registrar({
+      escritorioId: user.escritorioId, usuarioId: user.id, acao: metodo === 'google' ? 'LOGIN_GOOGLE' : 'LOGIN', tipoEntidade: 'auth', ctx,
+      detalhes: { metodo, email: user.email, doisFatores: !!user.twoFactorEnabled, agendaConectada },
+    });
+    return { ...sessao, agendaConectada, doisFatores: !!user.twoFactorEnabled };
+  }
+
+  /** QR Code do app autenticador, gerado no próprio servidor (o endereço tem o segredo: não vai a terceiros) */
+  async qrDoisFatores(uri: string) {
+    if (!/^otpauth:\/\/totp\//.test(String(uri ?? ''))) throw new BadRequestException('Endereço inválido.');
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const QRCode = require('qrcode');
+    return { imagem: await QRCode.toDataURL(uri, { margin: 1, width: 240 }) };
+  }
 
   async login(dto: LoginDto, ctx?: ContextoRequisicao): Promise<TokenResponse & { user: any }> {
     const user = await this.prisma.usuario.findUnique({

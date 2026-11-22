@@ -1,5 +1,5 @@
 import { RegisterDto } from './dto/register.dto';
-import { Controller, Post, Get, Body, UseGuards, Query, Req, Res, HttpException, Logger } from '@nestjs/common';
+import { Controller, Post, Get, Body, UseGuards, Req, Res, GoneException } from '@nestjs/common';
 import type { Response } from 'express';
 import { Throttle } from '@nestjs/throttler';
 import { AuthService } from './auth.service';
@@ -16,11 +16,28 @@ import { PermiteParceiro, PermiteSemTermo } from '../../common/decorators/perfis
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  /**
+   * Login pelo Better Auth (desde 22/11/2026): a tela entra por /api/ba/* (senha, Google, 2FA) e
+   * depois chama esta rota, que troca a sessão do Better Auth pelo token interno do JurysOne.
+   */
+  @Post('sessao')
+  @Public()
+  @Throttle({ default: { limit: 20, ttl: 60000 } })
+  sessao(@Req() req: any): Promise<any> {
+    return this.authService.sessaoDoBetterAuth(req, contextoDa(req));
+  }
+
+  /** QR Code para cadastrar o JurysOne no app autenticador (gerado aqui, sem serviço externo) */
+  @Post('dois-fatores/qr')
+  qrDoisFatores(@Body() body: { uri: string }) {
+    return this.authService.qrDoisFatores(body?.uri);
+  }
+
+  /** Rota antiga de login: desligada para não existir entrada sem a verificação em duas etapas */
   @Post('login')
   @Public()
-  @Throttle({ default: { limit: 5, ttl: 60000 } })
-  async login(@Body() body: { email: string; password: string }, @Req() req: any): Promise<any> {
-    return this.authService.login(body, contextoDa(req));
+  loginAntigo(): never {
+    throw new GoneException('O login mudou: atualize a página (Ctrl+F5) e entre de novo.');
   }
 
   @Post('register')
@@ -45,61 +62,35 @@ export class AuthController {
     return { disponivel: AuthService.googleConfigurado() };
   }
 
-  /** Botão "Entrar com Google": leva à tela de escolha de conta do Google */
+  /** Login com Google, "esqueci a senha" e redefinição agora são do Better Auth (/api/ba/*) */
   @Get('google')
   @Public()
-  @Throttle({ default: { limit: 10, ttl: 60000 } })
-  entrarComGoogle(@Res() res: Response) {
-    try {
-      return res.redirect(this.authService.urlLoginGoogle());
-    } catch (e: any) {
-      return res.redirect(`/login.html?erro=${encodeURIComponent(e?.response?.message ?? e?.message ?? 'Erro')}`);
-    }
+  googleAntigo(@Res() res: Response) {
+    return res.redirect('/login.html');
   }
 
-  /** Volta do Google (este endereço é cadastrado no Google Cloud Console) */
   @Get('google/callback')
   @Public()
-  @Throttle({ default: { limit: 10, ttl: 60000 } })
-  async callbackGoogle(
-    @Query('code') code: string,
-    @Query('state') state: string,
-    @Query('error') erro: string,
-    @Res() res: Response,
-  ) {
-    if (erro) return res.redirect(`/login.html?erro=${encodeURIComponent('Login com Google cancelado.')}`);
-    try {
-      const { redirecionar } = await this.authService.concluirLoginGoogle(code, state);
-      return res.redirect(redirecionar);
-    } catch (e: any) {
-      const msg = e instanceof HttpException
-        ? String((e.getResponse() as any)?.message ?? e.message)
-        : 'Não foi possível entrar com o Google. Tente de novo.';
-      if (!(e instanceof HttpException)) new Logger('AuthController').warn(`Login Google: ${e?.message ?? e}`);
-      return res.redirect(`/login.html?erro=${encodeURIComponent(msg)}`);
-    }
+  googleCallbackAntigo(@Res() res: Response) {
+    return res.redirect(`/login.html?erro=${encodeURIComponent('O login com Google mudou: tente de novo.')}`);
   }
 
-  /** A tela de login troca o código de uso único (vale 2 min) pela sessão */
   @Post('google/trocar')
   @Public()
-  @Throttle({ default: { limit: 10, ttl: 60000 } })
-  trocarCodigoGoogle(@Body() body: { codigo: string }, @Req() req: any) {
-    return this.authService.trocarCodigoGoogle(body?.codigo, contextoDa(req));
+  googleTrocarAntigo(): never {
+    throw new GoneException('O login mudou: atualize a página e entre de novo.');
   }
 
   @Post('esqueci-senha')
   @Public()
-  @Throttle({ default: { limit: 3, ttl: 60000 } })
-  async esqueciSenha(@Body() body: { email: string }, @Req() req: any): Promise<{ message: string }> {
-    return this.authService.solicitarRedefinicaoSenha(body?.email, contextoDa(req));
+  esqueciSenhaAntigo(): never {
+    throw new GoneException('Atualize a página (Ctrl+F5) e use "Esqueceu a senha?" de novo.');
   }
 
   @Post('redefinir-senha')
   @Public()
-  @Throttle({ default: { limit: 5, ttl: 60000 } })
-  async redefinirSenha(@Body() body: { token: string; novaSenha: string }, @Req() req: any): Promise<{ message: string }> {
-    return this.authService.redefinirSenha(body?.token, body?.novaSenha, contextoDa(req));
+  redefinirSenhaAntigo(): never {
+    throw new GoneException('Este link é do sistema antigo. Peça um novo em "Esqueceu a senha?".');
   }
 
   @Post('logout')

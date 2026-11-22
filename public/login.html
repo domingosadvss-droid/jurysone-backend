@@ -266,7 +266,7 @@ html,body{height:100%;overflow:hidden}
 
       <div class="divider"><hr/><span>ou</span><hr/></div>
 
-      <a href="/api/auth/google" class="btn-google" id="btn-google" style="display:none">
+      <a href="#" onclick="entrarComGoogle(event)" class="btn-google" id="btn-google" style="display:none">
         <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
         <span>Entrar com Google</span>
       </a>
@@ -306,6 +306,34 @@ html,body{height:100%;overflow:hidden}
       <a href="#" class="portal" onclick="showLogin(event)">← Voltar para o login</a>
      </div>
 
+     <!-- Verificação em duas etapas: código do app autenticador (ou código de reserva) -->
+     <div id="twofa-view" style="display:none">
+      <h1 class="form-title">Verificação em duas etapas 🔐</h1>
+      <p class="form-sub" id="twofa-sub">Abra o app autenticador no celular (Google Authenticator, Microsoft Authenticator ou Authy) e digite o código de 6 dígitos do JurysOne.</p>
+
+      <div id="twofa-error" class="error-box">
+        <span>⚠️</span>
+        <span id="twofa-error-text"></span>
+      </div>
+
+      <form id="twofa-form" onsubmit="handleTwoFa(event)">
+        <div class="field">
+          <label class="lbl" for="twofa-code" id="twofa-label">Código de 6 dígitos</label>
+          <input id="twofa-code" class="input" inputmode="numeric" autocomplete="one-time-code"
+                 placeholder="000000" required maxlength="20" style="letter-spacing:4px;font-size:18px;text-align:center" />
+        </div>
+        <label style="display:flex;gap:8px;align-items:center;font-size:13px;color:#475569;margin:-4px 0 14px;cursor:pointer">
+          <input type="checkbox" id="twofa-trust" /> Confiar neste computador por 30 dias
+        </label>
+        <button type="submit" class="btn" id="twofa-submit">
+          <span id="twofa-btn-text">Confirmar</span>
+        </button>
+      </form>
+
+      <a href="#" class="forgot" id="twofa-switch" onclick="alternarReserva(event)" style="display:block;margin-top:14px">Perdi o celular — usar um código de reserva</a>
+      <a href="#" class="portal" onclick="showLogin(event)">← Voltar para o login</a>
+     </div>
+
     </div>
   </div>
 
@@ -321,7 +349,43 @@ function togglePass(){
   else{p.type='password';e.textContent='👁';}
 }
 
-/* ── Login ── */
+/* ── Login pelo Better Auth (/api/ba) + ponte para o token do JurysOne (/api/auth/sessao) ── */
+const API=(window.JURYSONE_CONFIG&&window.JURYSONE_CONFIG.API_URL)||'/api';
+const BA=API.replace(/\/api\/?$/,'')+'/api/ba';
+
+/** Mensagens do Better Auth em português */
+function msgErro(status,d,padrao){
+  const c=(d&&(d.code||d.error))||'';
+  if(status===429||c==='ACCOUNT_TEMPORARILY_LOCKED')return 'Muitas tentativas. Aguarde alguns minutos e tente de novo.';
+  if(c==='INVALID_EMAIL_OR_PASSWORD')return 'E-mail ou senha incorretos.';
+  if(c==='INVALID_CODE'||c==='INVALID_TWO_FACTOR_CODE'||c==='INVALID_BACKUP_CODE')return 'Código incorreto. Confira o app autenticador (o código muda a cada 30 segundos).';
+  if(c==='TWO_FACTOR_NOT_ENABLED'||c==='INVALID_TWO_FACTOR_COOKIE')return 'A verificação expirou. Volte e entre de novo.';
+  if(c==='PASSWORD_TOO_SHORT')return 'A senha precisa ter pelo menos 8 caracteres.';
+  return (d&&d.message)||padrao;
+}
+async function postBA(caminho,corpo){
+  const r=await fetch(BA+caminho,{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:JSON.stringify(corpo||{})});
+  const d=await r.json().catch(()=>({}));
+  return {ok:r.ok,status:r.status,d};
+}
+function mostrarErroLogin(msg){
+  document.getElementById('error-text').textContent=msg;
+  document.getElementById('error-box').style.display='flex';
+}
+
+/** Better Auth já confirmou a pessoa: troca pela sessão do JurysOne e abre o painel */
+async function concluirSessao(){
+  const r=await fetch(API+'/auth/sessao',{method:'POST',credentials:'include'});
+  const d=await r.json().catch(()=>({}));
+  if(!r.ok||!d.access_token)throw new Error(d.message||'Não foi possível abrir a sessão.');
+  localStorage.setItem('jurysone_token',d.access_token);
+  localStorage.setItem('jurysone_user',JSON.stringify(d.user||{}));
+  if(d.agendaConectada){
+    fetch(API+'/agenda-google/sincronizar',{method:'POST',keepalive:true,headers:{Authorization:'Bearer '+d.access_token}}).catch(()=>{});
+  }
+  window.location.href='/dashboard.html';
+}
+
 async function handleLogin(ev){
   ev.preventDefault();
   const btn=document.getElementById('btn-submit');
@@ -335,26 +399,67 @@ async function handleLogin(ev){
   txt.innerHTML='<span class="spin"></span>Entrando…';
 
   try{
-    const base=(window.JURYSONE_CONFIG&&window.JURYSONE_CONFIG.API_URL)||'/api';
-    const res=await fetch(base+'/auth/login',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({email,password})
-    });
-    const data=await res.json();
-    if((res.ok||res.status===201)&&data.access_token){
-      localStorage.setItem('jurysone_token',data.access_token);
-      localStorage.setItem('jurysone_user',JSON.stringify(data.user||{}));
-      window.location.href='/dashboard.html';
-    }else{
-      throw new Error(data.message||'E-mail ou senha incorretos.');
-    }
+    const {ok,status,d}=await postBA('/sign-in/email',{email,password,rememberMe:true});
+    if(!ok)throw new Error(msgErro(status,d,'E-mail ou senha incorretos.'));
+    if(d.twoFactorRedirect){ mostrarDoisFatores('senha'); return; }
+    await concluirSessao();
   }catch(ex){
-    document.getElementById('error-text').textContent=ex.message||'Erro ao conectar.';
-    err.style.display='flex';
+    mostrarErroLogin(ex.message||'Erro ao conectar.');
+  }finally{
     btn.disabled=false;
     txt.textContent='Entrar';
   }
+}
+
+/* ── Verificação em duas etapas ── */
+let usandoReserva=false;
+function mostrarDoisFatores(origem){
+  document.getElementById('login-view').style.display='none';
+  document.getElementById('forgot-view').style.display='none';
+  document.getElementById('twofa-view').style.display='block';
+  document.getElementById('twofa-error').style.display='none';
+  if(origem==='google')document.getElementById('twofa-sub').textContent='Você entrou com o Google. Como a verificação em duas etapas está ligada, digite também o código de 6 dígitos do app autenticador.';
+  setTimeout(()=>document.getElementById('twofa-code').focus(),50);
+}
+function alternarReserva(ev){
+  if(ev)ev.preventDefault();
+  usandoReserva=!usandoReserva;
+  document.getElementById('twofa-label').textContent=usandoReserva?'Código de reserva':'Código de 6 dígitos';
+  document.getElementById('twofa-code').placeholder=usandoReserva?'xxxxx-xxxxx':'000000';
+  document.getElementById('twofa-switch').textContent=usandoReserva?'Usar o código do app autenticador':'Perdi o celular — usar um código de reserva';
+  document.getElementById('twofa-code').value='';
+}
+async function handleTwoFa(ev){
+  ev.preventDefault();
+  const btn=document.getElementById('twofa-submit');
+  const txt=document.getElementById('twofa-btn-text');
+  const err=document.getElementById('twofa-error');
+  const code=document.getElementById('twofa-code').value.trim().replace(/\s/g,'');
+  const trustDevice=document.getElementById('twofa-trust').checked;
+  err.style.display='none';
+  btn.disabled=true;
+  txt.innerHTML='<span class="spin"></span>Conferindo…';
+  try{
+    const {ok,status,d}=await postBA(usandoReserva?'/two-factor/verify-backup-code':'/two-factor/verify-totp',{code,trustDevice});
+    if(!ok)throw new Error(msgErro(status,d,'Código incorreto.'));
+    await concluirSessao();
+  }catch(ex){
+    document.getElementById('twofa-error-text').textContent=ex.message||'Erro ao conectar.';
+    err.style.display='flex';
+  }finally{
+    btn.disabled=false;
+    txt.textContent='Confirmar';
+  }
+}
+
+/* ── Entrar com Google (Better Auth) ── */
+async function entrarComGoogle(ev){
+  if(ev)ev.preventDefault();
+  try{
+    const {ok,status,d}=await postBA('/sign-in/social',{provider:'google',callbackURL:'/login.html?google=ok',errorCallbackURL:'/login.html?erro-google=1'});
+    if(!ok||!d.url)throw new Error(msgErro(status,d,'Não foi possível abrir o login do Google.'));
+    window.location.href=d.url;
+  }catch(ex){ mostrarErroLogin(ex.message); }
 }
 
 /* ── Cadastro inline (modal simples) ── */
@@ -387,40 +492,31 @@ function showRegister(){
   .catch(()=>alert('Erro ao conectar ao servidor.'));
 }
 
-/* ── Entrar com Google ── */
+/* ── Volta do Google e outros avisos na URL ── */
 (function(){
-  const base=(window.JURYSONE_CONFIG&&window.JURYSONE_CONFIG.API_URL)||'/api';
   const q=new URLSearchParams(location.search);
-  const codigo=q.get('google'), erro=q.get('erro');
-  if(codigo||erro)history.replaceState(null,'',location.pathname);
+  const voltaGoogle=q.get('google'), doisFatores=q.get('dois-fatores'), erro=q.get('erro'), erroGoogle=q.get('erro-google')||q.get('error');
+  if(voltaGoogle||doisFatores||erro||erroGoogle)history.replaceState(null,'',location.pathname);
 
   // Só mostra o botão se o servidor tiver a credencial do Google
-  fetch(base+'/auth/google/disponivel').then(r=>r.json()).then(d=>{
+  fetch(API+'/auth/google/disponivel').then(r=>r.json()).then(d=>{
     if(d&&d.disponivel)document.getElementById('btn-google').style.display='flex';
   }).catch(()=>{});
 
-  function mostrarErro(msg){
-    document.getElementById('error-text').textContent=msg;
-    document.getElementById('error-box').style.display='flex';
+  if(erro)mostrarErroLogin(erro);
+  if(erroGoogle){
+    const e=String(erroGoogle).toLowerCase();
+    mostrarErroLogin(e.includes('signup')||e.includes('not_found')||e.includes('user')
+      ? 'Este e-mail do Google não está cadastrado no JurysOne. Peça acesso ao administrador do escritório.'
+      : 'Não foi possível entrar com o Google. Tente de novo.');
   }
-  if(erro)mostrarErro(erro);
-  if(codigo){
+  if(doisFatores){ mostrarDoisFatores(doisFatores); return; }
+  if(voltaGoogle){
     const txt=document.getElementById('btn-text');
     document.getElementById('btn-submit').disabled=true;
     txt.innerHTML='<span class="spin"></span>Entrando com Google…';
-    fetch(base+'/auth/google/trocar',{
-      method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({codigo})
-    }).then(r=>r.json().then(d=>({ok:r.ok,d}))).then(({ok,d})=>{
-      if(!ok||!d.access_token)throw new Error(d.message||'Não foi possível entrar com o Google.');
-      localStorage.setItem('jurysone_token',d.access_token);
-      localStorage.setItem('jurysone_user',JSON.stringify(d.user||{}));
-      // Agenda ligada: manda os prazos ao Google em segundo plano (continua mesmo trocando de página)
-      if(d.agendaConectada){
-        fetch(base+'/agenda-google/sincronizar',{method:'POST',keepalive:true,headers:{Authorization:'Bearer '+d.access_token}}).catch(()=>{});
-      }
-      window.location.href='/dashboard.html';
-    }).catch(ex=>{
-      mostrarErro(ex.message||'Erro ao conectar.');
+    concluirSessao().catch(ex=>{
+      mostrarErroLogin(ex.message||'Erro ao conectar.');
       document.getElementById('btn-submit').disabled=false;
       txt.textContent='Entrar';
     });
@@ -443,6 +539,7 @@ function showForgot(ev){
 function showLogin(ev){
   if(ev)ev.preventDefault();
   document.getElementById('forgot-view').style.display='none';
+  document.getElementById('twofa-view').style.display='none';
   document.getElementById('login-view').style.display='block';
 }
 async function handleForgot(ev){
@@ -456,16 +553,9 @@ async function handleForgot(ev){
   btn.disabled=true;
   txt.innerHTML='<span class="spin"></span>Enviando…';
   try{
-    const base=(window.JURYSONE_CONFIG&&window.JURYSONE_CONFIG.API_URL)||'/api';
-    const res=await fetch(base+'/auth/esqueci-senha',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({email})
-    });
-    const data=await res.json().catch(()=>({}));
-    if(res.status===429)throw new Error('Muitas tentativas. Aguarde 1 minuto e tente de novo.');
-    if(!res.ok)throw new Error(data.message||'Não foi possível enviar agora.');
-    document.getElementById('forgot-ok-text').textContent=(data.message||'Link enviado.')+' Confira também a caixa de spam.';
+    const {ok:certo,status,d}=await postBA('/request-password-reset',{email,redirectTo:location.origin+'/redefinir-senha.html'});
+    if(!certo)throw new Error(msgErro(status,d,'Não foi possível enviar agora.'));
+    document.getElementById('forgot-ok-text').textContent='Se este e-mail estiver cadastrado, você vai receber um link para criar uma nova senha (vale 30 minutos). Confira também a caixa de spam.';
     ok.style.display='flex';
     document.getElementById('forgot-form').style.display='none';
   }catch(ex){

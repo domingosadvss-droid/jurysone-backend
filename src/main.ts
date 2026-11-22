@@ -13,9 +13,23 @@ import helmet from 'helmet';
 import * as express from 'express';
 import * as path from 'path';
 import { AppModule } from './app.module';
+import { BASE_PATH_BETTER_AUTH, handlerBetterAuth } from './modules/auth/better-auth';
+
+/** Montado na raiz (o Better Auth precisa da URL completa): só atende /api/ba/* */
+function handlerBetterAuthNaRaiz() {
+  const h = handlerBetterAuth();
+  return (req: any, res: any, next: any) => (
+    req.url === BASE_PATH_BETTER_AUTH || req.url.startsWith(`${BASE_PATH_BETTER_AUTH}/`) || req.url.startsWith(`${BASE_PATH_BETTER_AUTH}?`)
+      ? h(req, res) : next()
+  );
+}
 
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
+  // Um erro solto numa promessa (ex.: biblioteca externa) não pode derrubar o servidor inteiro
+  process.on('unhandledRejection', (motivo: any) => {
+    logger.error(`Erro não tratado: ${motivo?.message ?? motivo}`, motivo?.stack);
+  });
   // rawBody: true — necessário para validação HMAC-SHA256 do webhook Meta/WhatsApp
   const app = await NestFactory.create(AppModule, { rawBody: true });
 
@@ -27,6 +41,11 @@ async function bootstrap() {
   // CSP desabilitado: os HTMLs usam scripts inline e CDNs (Tailwind, Chart.js, etc.)
   // Os demais headers do Helmet (X-Frame, HSTS, etc.) permanecem ativos.
   app.use(helmet({ contentSecurityPolicy: false }));
+
+  // ── Login pelo Better Auth (/api/ba/*) ───────────────────────────────────
+  // Precisa vir ANTES do express.json: o Better Auth lê o corpo da requisição sozinho.
+  if (!process.env.BETTER_AUTH_SECRET) logger.error('BETTER_AUTH_SECRET não configurado: o login não vai funcionar.');
+  app.use(handlerBetterAuthNaRaiz());
 
   // Aumenta limite do body para 10mb (payload do dashboard pode ser grande)
   app.use(express.json({ limit: '10mb' }));

@@ -31,6 +31,9 @@ model Usuario {
   // "Esqueceu a senha?": hash SHA-256 do código enviado por e-mail (o código em si nunca é salvo)
   resetSenhaHash     String?   @unique
   resetSenhaExpiraEm DateTime?
+  /// Better Auth (login desde 22/11/2026): e-mail verificado e verificação em duas etapas ligada
+  emailVerified      Boolean   @default(true)
+  twoFactorEnabled   Boolean   @default(false)
 
   // Perfil externo (PARCEIRO) vinculado ao cadastro de parceiro
   parceiroId        String?
@@ -2044,6 +2047,72 @@ model WhatsappMensagemCaixa {
 
   @@index([conversaId, dataHora])
   @@map("whatsapp_mensagens_caixa")
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BETTER AUTH — tabelas do login (escritas pelo Better Auth via pg/Kysely;
+// declaradas aqui só para o Prisma conhecer). O usuário é a tabela "users".
+// A senha fica em ba_contas (providerId "credential"); um gatilho do banco
+// copia para lá toda senha gravada em users.senha.
+// ═══════════════════════════════════════════════════════════════════════════
+
+model BaSessao {
+  id        String   @id
+  userId    String
+  token     String   @unique
+  expiresAt DateTime @db.Timestamptz(3)
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @default(now()) @db.Timestamptz(3)
+
+  @@index([userId])
+  @@map("ba_sessoes")
+}
+
+model BaConta {
+  id                    String    @id
+  userId                String
+  accountId             String
+  providerId            String
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime? @db.Timestamptz(3)
+  refreshTokenExpiresAt DateTime? @db.Timestamptz(3)
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now()) @db.Timestamptz(3)
+  updatedAt             DateTime  @default(now()) @db.Timestamptz(3)
+
+  @@unique([providerId, accountId], map: "ba_contas_provider_conta_key")
+  @@index([userId])
+  @@map("ba_contas")
+}
+
+model BaVerificacao {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime @db.Timestamptz(3)
+  createdAt  DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt  DateTime @default(now()) @db.Timestamptz(3)
+
+  @@index([identifier])
+  @@map("ba_verificacoes")
+}
+
+model BaDoisFatores {
+  id                      String    @id
+  userId                  String
+  secret                  String
+  backupCodes             String
+  verified                Boolean   @default(true)
+  failedVerificationCount Int       @default(0)
+  lockedUntil             DateTime? @db.Timestamptz(3)
+
+  @@index([userId])
+  @@map("ba_dois_fatores")
 }
 
 /// Base de conhecimento do escritório (etapa 3): modelos de peça, peças, FAQ, orientações.

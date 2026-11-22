@@ -75,9 +75,12 @@ body{
 
 <script src="config.js"></script>
 <script>
-// O código vem no link do e-mail; tira-o da barra de endereço para não ficar no histórico
-var token = new URLSearchParams(location.search).get('token') || '';
-if (token) history.replaceState(null, '', location.pathname);
+// O código vem no link do e-mail (o Better Auth confere e manda para cá com ?token=);
+// tira-o da barra de endereço para não ficar no histórico
+var q = new URLSearchParams(location.search);
+var token = q.get('token') || '';
+var tokenInvalido = q.get('error') === 'INVALID_TOKEN';
+if (token || tokenInvalido) history.replaceState(null, '', location.pathname);
 
 function erro(msg){
   document.getElementById('err-text').textContent = msg;
@@ -89,7 +92,9 @@ function mostrar(id, b){
 }
 if (!token) {
   document.getElementById('form').style.display = 'none';
-  erro('Link incompleto. Abra o link do e-mail de novo ou peça outro em "Esqueceu a senha?".');
+  erro(tokenInvalido
+    ? 'Este link expirou ou já foi usado. Peça outro em "Esqueceu a senha?".'
+    : 'Link incompleto. Abra o link do e-mail de novo ou peça outro em "Esqueceu a senha?".');
 }
 
 async function salvar(ev){
@@ -103,17 +108,19 @@ async function salvar(ev){
   btn.disabled = true; txt.innerHTML = '<span class="spin"></span>Salvando…';
   try {
     var base = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
-    var res = await fetch(base + '/auth/redefinir-senha', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token: token, novaSenha: s1 })
+    var ba = base.replace(/\/api\/?$/, '') + '/api/ba';
+    var res = await fetch(ba + '/reset-password', {
+      method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: token, newPassword: s1 })
     });
     var data = await res.json().catch(function(){ return {}; });
     if (res.status === 429) throw new Error('Muitas tentativas. Aguarde 1 minuto e tente de novo.');
-    if (!res.ok) throw new Error(Array.isArray(data.message) ? data.message.join(' ') : (data.message || 'Não foi possível salvar.'));
+    if (data && data.code === 'INVALID_TOKEN') throw new Error('Este link expirou ou já foi usado. Peça outro em "Esqueceu a senha?".');
+    if (!res.ok) throw new Error(data.message || 'Não foi possível salvar.');
     localStorage.removeItem('jurysone_token');
     localStorage.removeItem('jurysone_user');
     document.getElementById('form').style.display = 'none';
-    document.getElementById('ok-text').textContent = (data.message || 'Senha alterada.') + ' Levando você para o login…';
+    document.getElementById('ok-text').textContent = 'Senha alterada. Por segurança, as outras sessões abertas foram encerradas. Levando você para o login…';
     document.getElementById('ok').style.display = 'flex';
     setTimeout(function(){ location.href = '/login.html'; }, 2500);
   } catch (e) {
