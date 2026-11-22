@@ -15,7 +15,7 @@ import { PrismaService } from '../../database/prisma.service';
 import { ChavesService } from '../chaves/chaves.service';
 import { EsignService } from '../esign/esign.service';
 import { ArquivosService } from '../arquivos/arquivos.service';
-import { AssinaturaSimulada, AssinaturaZapSign, ProvedorAssinatura, simuladoPermitido } from './provedores-assinatura';
+import { AssinaturaCertisign, AssinaturaSimulada, AssinaturaZapSign, ProvedorAssinatura, simuladoPermitido } from './provedores-assinatura';
 import { gerarTermoEntrevista } from './termo-entrevista';
 
 export const TIPOS_DOCUMENTO = ['contrato', 'procuracao', 'termo_entrevista', 'hipossuficiencia'] as const;
@@ -65,10 +65,16 @@ export class ContratacaoService {
       if (!simuladoPermitido()) throw new BadRequestException('Assinatura simulada não é permitida em produção.');
       return new AssinaturaSimulada();
     }
+    const tokenCertisign = await this.chaves.getChave(escritorioId, 'certisign');
+    if (preferido === 'CERTISIGN') {
+      if (!tokenCertisign) throw new BadRequestException('Configure o token da Certisign (Configurações → APIs) antes de enviar documentos.');
+      return new AssinaturaCertisign(tokenCertisign);
+    }
     const token = await this.chaves.getChave(escritorioId, 'zapsign');
-    if (token) return new AssinaturaZapSign(token);
+    if (token && preferido !== 'CERTISIGN') return new AssinaturaZapSign(token);
+    if (tokenCertisign) return new AssinaturaCertisign(tokenCertisign);
     if (simuladoPermitido() && preferido !== 'ZAPSIGN') return new AssinaturaSimulada();
-    throw new BadRequestException('Configure a plataforma de assinatura (token da ZapSign) antes de enviar documentos.');
+    throw new BadRequestException('Configure a plataforma de assinatura (token da ZapSign ou da Certisign) antes de enviar documentos.');
   }
 
   // ── Gerar pacote ──
@@ -173,6 +179,8 @@ export class ContratacaoService {
       nome: dto?.nome ?? cli.nome,
       email: dto?.email ?? cli.email,
       telefone: dto?.telefone ?? cli.telefone,
+      // Certisign exige o CPF de quem assina
+      cpf: dto?.cpf ?? cli.cpf ?? cli.cpfCnpj ?? null,
     };
     if (!signatario.email && !signatario.telefone) {
       throw new BadRequestException('O cliente precisa de e-mail ou telefone para receber o link de assinatura.');
@@ -205,8 +213,10 @@ export class ContratacaoService {
     const nome = String(provedorNome ?? '').toUpperCase();
     if (nome === 'SIMULADO') {
       if (!simuladoPermitido()) throw new ForbiddenException('Webhook simulado desativado em produção.');
-    } else if (nome === 'ZAPSIGN') {
-      const esperado = process.env.ZAPSIGN_WEBHOOK_TOKEN ?? '';
+    } else if (nome === 'ZAPSIGN' || nome === 'CERTISIGN') {
+      // O token combinado vai num cabeçalho que a plataforma envia em todo aviso
+      // (ZapSign: configuração do webhook; Certisign: "Request Headers" do callback)
+      const esperado = (nome === 'ZAPSIGN' ? process.env.ZAPSIGN_WEBHOOK_TOKEN : process.env.CERTISIGN_WEBHOOK_TOKEN) ?? '';
       const ok = !!esperado && !!tokenRecebido && esperado.length === tokenRecebido.length &&
         timingSafeEqual(Buffer.from(esperado), Buffer.from(tokenRecebido));
       if (!ok) throw new ForbiddenException('Token do webhook inválido.');
@@ -214,13 +224,34 @@ export class ContratacaoService {
       throw new BadRequestException('Provedor desconhecido.');
     }
 
-    const prov = nome === 'SIMULADO' ? new AssinaturaSimulada() : null;
-    const evento = (prov ?? new AssinaturaZapSign('webhook')).interpretarWebhook(corpo);
+    const interprete = nome === 'SIMULADO' ? new AssinaturaSimulada()
+      : nome === 'CERTISIGN' ? new AssinaturaCertisign('webhook') : new AssinaturaZapSign('webhook');
+    const evento = interprete.interpretarWebhook(corpo);
     if (!evento) return { ignorado: true };
 
-    const pacote = await this.prisma.pacoteAssinatura.findFirst({ where: { externoId: evento.externoId, provedor: nome } });
+    // Certisign: o aviso chega por documento (um por PDF); o pacote guarda ",id:chave,…"
+    const pacote = await this.prisma.pacoteAssinatura.findFirst({
+      where: nome === 'CERTISIGN'
+        ? { externoId: { contains: `,${evento.documentoExterno}:` }, provedor: nome }
+        : { externoId: evento.externoId, provedor: nome },
+    });
     if (!pacote) return { ignorado: true, motivo: 'pacote não encontrado' };
     if (pacote.status === 'ASSINADO') return { jaProcessado: true };
+    if (nome === 'CERTISIGN') evento.externoId = pacote.externoId!;
+
+    if (nome === 'CERTISIGN' && evento.evento === 'ASSINADO') {
+      // Só arquiva quando TODOS os PDFs do pacote tiverem o fluxo concluído
+      const pares = AssinaturaCertisign.pares(pacote.externoId!);
+      const docsPacote = pacote.documentos as any[];
+      const idx = pares.findIndex((p) => p.id === evento.documentoExterno);
+      if (idx >= 0 && docsPacote[idx]) docsPacote[idx].externoConcluido = true;
+      const faltam = docsPacote.filter((d, i) => i < pares.length && !d.externoConcluido).length;
+      if (faltam > 0) {
+        await this.prisma.pacoteAssinatura.update({ where: { id: pacote.id }, data: { documentos: docsPacote } });
+        return { status: 'PARCIAL', faltam };
+      }
+      pacote.documentos = docsPacote as any;
+    }
 
     if (evento.evento === 'RECUSADO') {
       await this.prisma.pacoteAssinatura.update({ where: { id: pacote.id }, data: { status: 'RECUSADO' } });

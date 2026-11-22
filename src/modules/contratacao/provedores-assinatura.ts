@@ -1,20 +1,27 @@
 /**
  * JURYSONE — Provedores de assinatura eletrônica
  *
- *   ZAPSIGN  → API REST da ZapSign (https://docs.zapsign.com.br). Os nomes de campos seguem a
- *              documentação pública; CONFIRMAR NO SANDBOX antes de ligar em produção.
- *   SIMULADO → só desenvolvimento e testes: não envia nada para fora; a "assinatura" é
- *              disparada pela rota de webhook simulada e carimba os PDFs.
+ *   ZAPSIGN   → API REST da ZapSign (https://docs.zapsign.com.br). Os nomes de campos seguem a
+ *               documentação pública; CONFIRMAR NO SANDBOX antes de ligar em produção.
+ *   CERTISIGN → API do Portal de Assinaturas Certisign (a mesma plataforma do portal da OAB).
+ *               Documentação: https://desenvolvedor.portaldeassinaturas.com.br (API Doc / Callback).
+ *   SIMULADO  → só desenvolvimento e testes: não envia nada para fora; a "assinatura" é
+ *               disparada pela rota de webhook simulada e carimba os PDFs.
  */
 import { randomUUID } from 'crypto';
 
 export interface DocParaAssinar { nome: string; pdf: Buffer }
-export interface Signatario { nome: string; email?: string | null; telefone?: string | null }
-export interface EnvelopeCriado { externoId: string; signatarios: Array<Signatario & { url: string | null }> }
-export interface EventoWebhook { externoId: string; evento: 'ASSINADO' | 'RECUSADO' | 'OUTRO' }
+export interface Signatario { nome: string; email?: string | null; telefone?: string | null; cpf?: string | null }
+export interface EnvelopeCriado { externoId: string; signatarios: Array<Signatario & { url: string | null; links?: string[] }> }
+export interface EventoWebhook {
+  externoId: string;
+  evento: 'ASSINADO' | 'RECUSADO' | 'OUTRO';
+  /** Certisign: cada PDF é um documento lá; o aviso chega por documento */
+  documentoExterno?: string;
+}
 
 export interface ProvedorAssinatura {
-  readonly nome: 'ZAPSIGN' | 'SIMULADO';
+  readonly nome: 'ZAPSIGN' | 'CERTISIGN' | 'SIMULADO';
   criarEnvelope(titulo: string, docs: DocParaAssinar[], signatarios: Signatario[], externalId: string): Promise<EnvelopeCriado>;
   /** Devolve os PDFs assinados na mesma ordem dos originais */
   obterAssinados(externoId: string, originais: DocParaAssinar[]): Promise<DocParaAssinar[]>;
@@ -91,6 +98,101 @@ export class AssinaturaZapSign implements ProvedorAssinatura {
     const tipo = String(corpo?.event_type ?? '').toLowerCase();
     const evento = tipo === 'doc_signed' || corpo?.status === 'signed' ? 'ASSINADO' : tipo === 'doc_refused' ? 'RECUSADO' : 'OUTRO';
     return { externoId, evento };
+  }
+}
+
+// ── CERTISIGN ────────────────────────────────────────────────────────────────
+
+/**
+ * Portal de Assinaturas Certisign (API v2).
+ *   1. POST /document/upload  { fileName, bytes[] }            → { uploadId }
+ *   2. POST /document/create  { document, electronicSigners… } → { id, signUrl }  (um por PDF)
+ *   3. Callback POST (configurado no portal) { documentID, action: FLOW | SIGNATURE-NOK | … }
+ *   4. GET  /document/package?key=… → PDF assinado (PAdES) em { bytes[], name, mimeType }
+ * O token vai no cabeçalho CERTISIGN_TOKEN_HEADER (padrão "token"); sandbox e produção têm
+ * tokens e URLs diferentes (CERTISIGN_API_URL). A Certisign exige o CPF de cada signatário.
+ *
+ * externoId guarda ",id:chave,id:chave," — um par por PDF, na ordem dos originais.
+ */
+export class AssinaturaCertisign implements ProvedorAssinatura {
+  readonly nome = 'CERTISIGN' as const;
+  constructor(
+    private readonly token: string,
+    private readonly base = (process.env.CERTISIGN_API_URL || 'https://api-sbx.portaldeassinaturas.com.br/api/v2').replace(/\/+$/, ''),
+    private readonly cabecalho = process.env.CERTISIGN_TOKEN_HEADER || 'token',
+  ) {}
+
+  private async chamar(metodo: string, caminho: string, corpo?: any) {
+    const r = await fetch(`${this.base}${caminho}`, {
+      method: metodo,
+      headers: { [this.cabecalho]: this.token, 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: corpo ? JSON.stringify(corpo) : undefined,
+    });
+    const texto = await r.text();
+    if (!r.ok) throw new Error(`Certisign ${metodo} ${caminho.split('?')[0]} → ${r.status}: ${texto.slice(0, 300)}`);
+    return texto ? JSON.parse(texto) : {};
+  }
+
+  /** Pares id:chave na ordem dos documentos */
+  static pares(externoId: string): Array<{ id: string; chave: string }> {
+    return String(externoId ?? '').split(',').filter(Boolean).map((p) => {
+      const [id, chave] = p.split(':');
+      return { id, chave: chave || id };
+    });
+  }
+
+  async criarEnvelope(titulo: string, docs: DocParaAssinar[], signatarios: Signatario[], _externalId: string) {
+    const semCpf = signatarios.find((s) => String(s.cpf ?? '').replace(/\D/g, '').length !== 11);
+    if (semCpf) throw new Error(`A Certisign exige o CPF de cada signatário (falta ou é inválido o de ${semCpf.nome}).`);
+    const semEmail = signatarios.find((s) => !s.email);
+    if (semEmail) throw new Error(`A Certisign envia o link por e-mail: falta o e-mail de ${semEmail.nome}.`);
+
+    const pares: Array<{ id: string; chave: string; url: string | null }> = [];
+    for (const doc of docs) {
+      const nomeArquivo = `${doc.nome}.pdf`.replace(/(\.pdf)+$/i, '.pdf');
+      const up = await this.chamar('POST', '/document/upload', { fileName: nomeArquivo, bytes: Array.from(doc.pdf) });
+      if (!up.uploadId) throw new Error('Certisign não devolveu o uploadId.');
+      const criado = await this.chamar('POST', '/document/create', {
+        typeId: 1,
+        document: { name: `${titulo} - ${doc.nome}`.slice(0, 200), upload: { id: up.uploadId, name: nomeArquivo } },
+        callback: true,
+        electronicSigners: signatarios.map((s) => ({
+          step: 1, title: 'Contratante', name: s.nome, email: s.email,
+          individualIdentificationCode: String(s.cpf).replace(/\D/g, ''),
+        })),
+      });
+      const url: string | null = criado.signUrl ?? null;
+      const chave = (url && /[?&]chave=([^&]+)/i.exec(url)?.[1]) || String(criado.id);
+      pares.push({ id: String(criado.id), chave, url });
+    }
+    return {
+      externoId: `,${pares.map((p) => `${p.id}:${p.chave}`).join(',')},`,
+      signatarios: signatarios.map((s) => ({ ...s, url: pares[0]?.url ?? null, links: pares.map((p) => p.url).filter((u): u is string => !!u) })),
+    };
+  }
+
+  async obterAssinados(externoId: string, originais: DocParaAssinar[]) {
+    const pares = AssinaturaCertisign.pares(externoId);
+    const saida: DocParaAssinar[] = [];
+    for (let i = 0; i < originais.length; i++) {
+      const par = pares[i];
+      if (!par) throw new Error(`Certisign: falta o documento correspondente a "${originais[i].nome}".`);
+      const pkg = await this.chamar('GET', `/document/package?key=${encodeURIComponent(par.chave)}&includeOriginal=false&includeManifest=false&zipped=false`);
+      const bytes: number[] | undefined = Array.isArray(pkg?.bytes) ? pkg.bytes : Array.isArray(pkg?.[0]?.bytes) ? pkg[0].bytes : undefined;
+      if (!bytes?.length) throw new Error(`Certisign ainda não disponibilizou o PDF assinado de "${originais[i].nome}".`);
+      const mime = String(pkg?.mimeType ?? pkg?.[0]?.mimeType ?? 'application/pdf');
+      if (!/pdf/i.test(mime)) throw new Error(`Certisign devolveu "${mime}" em vez de PDF (o formato de assinatura precisa ser PAdES).`);
+      saida.push({ nome: originais[i].nome, pdf: Buffer.from(bytes) });
+    }
+    return saida;
+  }
+
+  interpretarWebhook(corpo: any): EventoWebhook | null {
+    const id = corpo?.documentID ?? corpo?.documentId ?? corpo?.DocumentID;
+    if (id === undefined || id === null || id === '') return null;
+    const acao = String(corpo?.action ?? '').toUpperCase();
+    const evento = acao === 'FLOW' ? 'ASSINADO' : acao === 'SIGNATURE-NOK' ? 'RECUSADO' : 'OUTRO';
+    return { externoId: String(id), documentoExterno: String(id), evento };
   }
 }
 

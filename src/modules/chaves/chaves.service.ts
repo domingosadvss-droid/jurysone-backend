@@ -9,6 +9,7 @@ const CHAVE_DB = 'api_keys';
 export const CHAVES_CONHECIDAS: Record<string, string> = {
   anthropic: 'Claude (Anthropic)',
   zapsign: 'ZapSign',
+  certisign: 'Certisign (Portal de Assinaturas)',
   asaas: 'Asaas',
   clicksign: 'ClickSign',
   gemini: 'Gemini',
@@ -46,6 +47,7 @@ export class ChavesService {
     const envMap: Record<string, string | undefined> = {
       clicksign:       process.env.CLICKSIGN_API_TOKEN,
       zapsign:         process.env.ZAPSIGN_API_TOKEN,
+      certisign:       process.env.CERTISIGN_API_TOKEN,
       asaas:           process.env.ASAAS_API_KEY,
       gemini:          process.env.GEMINI_API_KEY,
       anthropic:       process.env.ANTHROPIC_API_KEY,
