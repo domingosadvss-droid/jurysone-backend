@@ -28,7 +28,7 @@ import { IaUsoService } from '../ia-uso/ia-uso.service';
 import { CatalogoService } from '../catalogo/catalogo.service';
 import { CaixaWhatsappService } from '../whatsapp-oficial/caixa.service';
 import { RegistroMensagensService } from '../whatsapp-oficial/registro-mensagens.service';
-import { IaIndisponivel, MensagemConversa, RespostaAtendimento, respostaAtendimento } from '../../common/ia-claude';
+import { IaIndisponivel, MensagemConversa, RespostaAtendimento, respostaAtendimento, resumirConversa } from '../../common/ia-claude';
 import { PERFIS_GESTAO, temPerfil } from '../../common/perfis';
 import { regrasAtendimento } from './regras-atendimento';
 import { AprendizadoAtendimentoService } from './aprendizado.service';
@@ -38,6 +38,9 @@ import { textoDaMensagem } from './texto-mensagem';
 const LEMBRETE_1_HORAS = 48;
 const LEMBRETE_2_HORAS = 72;
 const AVISAR_ADVOGADO_HORAS = 48;
+/** Conversa longa: acima disto (desde o último resumo) o começo vira resumo; ficam as mais novas */
+const HISTORICO_MAXIMO = 40;
+const HISTORICO_RECENTE = 20;
 
 const CHAVE_CONFIG = 'ia_whatsapp';
 
@@ -183,13 +186,7 @@ export class AtendimentoIaService implements OnModuleInit {
       const motivo = await this.motivoParaNaoResponder(conversa, cfg);
       if (motivo) return { respondeu: false, motivo };
 
-      const mensagens = await this.prisma.whatsappMensagemCaixa.findMany({
-        where: { conversaId }, orderBy: { dataHora: 'desc' }, take: 60,
-      });
-      mensagens.reverse();
-      const conversaIa: MensagemConversa[] = mensagens
-        .filter((m) => m.status !== 'falhou')
-        .map((m) => ({ deCliente: m.direcao === 'ENTRADA', texto: this.textoDa(m) }));
+      const { mensagens, conversaIa, resumo } = await this.historico(conversa);
 
       const sistema = await this.montarSistema(conversa.escritorioId, conversa.telefone, conversa.nomeContato, conversa.conexao.usuarioId);
       let r: RespostaAtendimento;
@@ -207,7 +204,7 @@ export class AtendimentoIaService implements OnModuleInit {
         try {
           r = await this.iaUso.executar(
             { escritorioId: conversa.escritorioId, tarefa: 'conversa_whatsapp', categoria: 'CONVERSA', conversaId },
-            (chave, aoUsar) => respostaAtendimento(chave, { sistema, conversa: conversaIa }, aoUsar),
+            (chave, aoUsar) => respostaAtendimento(chave, { sistema, conversa: conversaIa, resumo }, aoUsar),
           );
         } catch (e: any) {
           if (e instanceof IaIndisponivel) {
@@ -325,17 +322,52 @@ export class AtendimentoIaService implements OnModuleInit {
     return { analisadas: candidatas.length, feitos };
   }
 
+  /**
+   * Histórico para a IA. Conversa longa (mais de HISTORICO_MAXIMO mensagens desde o último resumo):
+   * o começo vira um resumo guardado na conversa e a IA relê só o resumo + as HISTORICO_RECENTE
+   * mais novas — o custo por resposta deixa de crescer com o tamanho do atendimento.
+   */
+  private async historico(conversa: any) {
+    const todas = await this.prisma.whatsappMensagemCaixa.findMany({
+      where: { conversaId: conversa.id, status: { not: 'falhou' }, ...(conversa.resumoAte ? { dataHora: { gt: conversa.resumoAte } } : {}) },
+      orderBy: { dataHora: 'asc' },
+    });
+    let resumo: string | null = conversa.resumoIa ?? null;
+    let mensagens = todas;
+    if (todas.length > HISTORICO_MAXIMO) {
+      // Corta de modo que as recentes comecem por uma mensagem do cliente
+      let corte = todas.length - HISTORICO_RECENTE;
+      while (corte > 0 && todas[corte].direcao !== 'ENTRADA') corte--;
+      if (corte > 0) {
+        const antigas = todas.slice(0, corte);
+        try {
+          resumo = await this.iaUso.executar(
+            { escritorioId: conversa.escritorioId, tarefa: 'resumo_conversa', categoria: 'CONVERSA', conversaId: conversa.id },
+            (chave, aoUsar) => resumirConversa(chave, {
+              resumoAnterior: resumo, conversa: antigas.map((m) => ({ deCliente: m.direcao === 'ENTRADA', texto: this.textoDa(m) })),
+            }, aoUsar),
+          );
+          await this.prisma.whatsappConversa.update({ where: { id: conversa.id }, data: { resumoIa: resumo, resumoAte: antigas[antigas.length - 1].dataHora } });
+          mensagens = todas.slice(corte);
+        } catch (e: any) {
+          // Sem resumo, segue com as últimas mensagens (comportamento antigo)
+          this.logger.warn(`Resumo da conversa ${conversa.id}: ${e?.message ?? e}`);
+          mensagens = todas.slice(-60);
+        }
+      }
+    }
+    const conversaIa: MensagemConversa[] = mensagens.map((m) => ({ deCliente: m.direcao === 'ENTRADA', texto: this.textoDa(m) }));
+    return { mensagens, conversaIa, resumo };
+  }
+
   /** Chama a IA com o histórico da conversa (e um aviso do sistema, quando houver) */
   private async gerarResposta(conversa: any, notaSistema?: string): Promise<RespostaAtendimento | null> {
-    const mensagens = await this.prisma.whatsappMensagemCaixa.findMany({ where: { conversaId: conversa.id }, orderBy: { dataHora: 'desc' }, take: 60 });
-    mensagens.reverse();
-    const conversaIa: MensagemConversa[] = mensagens.filter((m) => m.status !== 'falhou')
-      .map((m) => ({ deCliente: m.direcao === 'ENTRADA', texto: this.textoDa(m) }));
+    const { conversaIa, resumo } = await this.historico(conversa);
     const sistema = await this.montarSistema(conversa.escritorioId, conversa.telefone, conversa.nomeContato, conversa.conexao?.usuarioId ?? null);
     try {
       return await this.iaUso.executar(
         { escritorioId: conversa.escritorioId, tarefa: notaSistema ? 'lembrete_whatsapp' : 'conversa_whatsapp', categoria: 'CONVERSA', conversaId: conversa.id } as any,
-        (chave, aoUsar) => respostaAtendimento(chave, { sistema, conversa: conversaIa, notaSistema }, aoUsar),
+        (chave, aoUsar) => respostaAtendimento(chave, { sistema, conversa: conversaIa, notaSistema, resumo }, aoUsar),
       );
     } catch (e: any) {
       if (e instanceof IaIndisponivel) { this.logger.warn(`IA indisponível: ${e.message}`); return null; }

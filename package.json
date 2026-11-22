@@ -6,6 +6,7 @@
     "schema": "src/database/schema.prisma"
   },
   "scripts": {
+    "teste:ia": "node scripts/testes-ia/bateria.js",
     "postinstall": "prisma generate --schema src/database/schema.prisma",
     "dev": "prisma generate --schema src/database/schema.prisma && nest start --watch",
     "setup": "prisma generate --schema src/database/schema.prisma && prisma migrate dev --name init --schema src/database/schema.prisma && nest start --watch",

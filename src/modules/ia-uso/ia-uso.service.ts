@@ -29,6 +29,8 @@ export interface ContextoIa {
   atendimentoId?: string | null;
   conversaId?: string | null;
   usuarioId?: string | null;
+  /** chamada feita pelo lote da Anthropic (Batch API): metade do preço */
+  lote?: boolean;
 }
 
 export interface ConfigIa {
@@ -51,6 +53,7 @@ const COTACAO_RESERVA = 5.5;
 const TAREFAS: Record<string, string> = {
   conversa_whatsapp: 'Conversa com cliente no WhatsApp',
   lembrete_whatsapp: 'Lembrete ao cliente no WhatsApp',
+  resumo_conversa: 'Resumo de conversa longa do WhatsApp',
   aprendizado_catalogo: 'Aprendizado: sugestões para o catálogo',
   resumo_cliente: 'Resumo de andamento para o cliente',
   rascunho_peca_dativa: 'Rascunho de peça (dativa)',
@@ -266,10 +269,18 @@ export class IaUsoService {
     return resultado;
   }
 
+  /** Registra o custo de uma resposta que chegou depois, pelo lote (o limite foi conferido no envio) */
+  async registrarUsoDeLote(ctx: ContextoIa, msg: { model: string; usage: any } | null, erro?: string) {
+    await this.registrarLinha({ ...ctx, lote: true }, msg
+      ? { modelo: msg.model, tokens: msg.usage, status: erro ? 'ERRO' : 'OK', erro }
+      : { modelo: '-', tokens: null, status: 'ERRO', erro: erro ?? 'Lote sem resposta' });
+    await this.conferirAvisos(ctx.escritorioId);
+  }
+
   private async registrarLinha(ctx: ContextoIa, d: { modelo: string; tokens: any; status: string; erro?: string }) {
     try {
       const t = tokensDe(d.tokens);
-      const usd = d.tokens ? custoUsd(d.modelo, t) : 0;
+      const usd = d.tokens ? custoUsd(d.modelo, t) * (ctx.lote ? 0.5 : 1) : 0;
       if (d.tokens && !precoDe(d.modelo, t).conhecido) this.logger.warn(`Modelo "${d.modelo}" sem preço na tabela: custo calculado pelo preço mais alto.`);
       const cot = usd > 0 ? await this.cotacaoDolar() : null;
       await this.prisma.iaUso.create({

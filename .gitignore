@@ -69,3 +69,5 @@ src/**/*.d.ts
 
 # Arquivos sensíveis do escritório (só no disco local e no servidor; nunca no git)
 privado/
+
+scripts/testes-ia/resultados/

@@ -1824,6 +1824,9 @@ model RascunhoPeca {
   prazoId      String?
   criadoPorId  String?
   geradoEm     DateTime?
+  /// Lote da API da Anthropic (metade do preço) quando o prazo permite esperar; status segue GERANDO
+  loteId       String?
+  loteEnviadoEm DateTime?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
 
@@ -2002,6 +2005,9 @@ model WhatsappConversa {
   ultimoLembreteEm DateTime?
   // Quando a IA já analisou o atendimento para sugerir melhorias no catálogo
   aprendizadoEm    DateTime?
+  // Conversa longa: resumo das mensagens até `resumoAte`; a IA relê só o resumo + as mais novas
+  resumoIa         String?   @db.Text
+  resumoAte        DateTime?
   createdAt        DateTime  @default(now())
 
   mensagens WhatsappMensagemCaixa[]

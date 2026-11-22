@@ -26,7 +26,12 @@ import { criarClienteIncompleto, procurarCliente } from '../publicacoes/clientes
 import { somarDias } from '../publicacoes/calendario';
 import { comarcaDoOrgao, ehPenal, extrairTelefone, mascararCnj, mencionaReuPreso, numeroCnj, textoPlano, tribunalDoNumero } from '../publicacoes/analise';
 import { varrerDocumento } from '../../common/varredura-documento';
-import { IaIndisponivel, IaPausadaPeloLimite, rascunhoDePeca } from '../../common/ia-claude';
+import { IaIndisponivel, IaPausadaPeloLimite, enviarRascunhoEmLote, rascunhoDePeca, resultadoDoLote } from '../../common/ia-claude';
+
+/** Rascunho vai pelo lote (metade do preço) só se o prazo estiver a pelo menos isto de dias */
+const DIAS_MINIMOS_PARA_LOTE = 4;
+/** Lote que não voltou neste tempo: gera na hora */
+const LOTE_ESPERA_MAXIMA_H = 12;
 import { IaUsoService } from '../ia-uso/ia-uso.service';
 
 const DIAS_ACEITE = Number(process.env.DATIVA_PRAZO_ACEITE_DIAS ?? 5);
@@ -511,34 +516,92 @@ export class DativaService {
     setImmediate(() => this.gerar(rascunhoId).catch((e) => this.logger.error(`Rascunho ${rascunhoId}: ${e?.message ?? e}`)));
   }
 
-  async gerar(rascunhoId: string) {
+  /**
+   * Gera o rascunho. Sem urgência (prazo a 4 dias ou mais e réu solto) vai pelo LOTE da Anthropic,
+   * pela metade do preço; o resultado é recolhido pela rotina `recolherLotes`. Urgente, ou
+   * `agora = true`, sai na hora.
+   */
+  async gerar(rascunhoId: string, agora = false) {
     const r = await this.prisma.rascunhoPeca.findUnique({ where: { id: rascunhoId } });
-    if (!r || r.status !== 'GERANDO') return;
+    if (!r || r.status !== 'GERANDO' || (r.loteId && !agora)) return;
     const caso = await this.prisma.casoDativa.findUnique({ where: { processoId: r.processoId } });
     const processo = await this.prisma.processo.findUnique({ where: { id: r.processoId }, include: { cliente: { select: { nome: true } } } });
     const prazo = r.prazoId ? await this.prisma.prazo.findUnique({ where: { id: r.prazoId } }) : null;
+    const ctx = { escritorioId: r.escritorioId, tarefa: 'rascunho_peca_dativa', categoria: 'PESADA' as const, processoId: r.processoId };
     try {
       const pdf = await this.arquivos.conteudoInterno(r.escritorioId, r.documentoId);
-      const { texto, modelo } = await this.iaUso.executar(
-        { escritorioId: r.escritorioId, tarefa: 'rascunho_peca_dativa', categoria: 'PESADA', processoId: r.processoId },
-        (chave, aoUsar) => rascunhoDePeca(chave, {
-          pdf, tipoPeca: r.tipoPeca, materia: caso?.materia ?? 'CIVEL',
-          numeroProcesso: processo?.numero ?? '', assistido: processo?.cliente?.nome ?? '', reuPreso: !!caso?.reuPreso,
-          prazo: prazo ? diaLocal(prazo.dataPrazo).split('-').reverse().join('/') : null, comarca: caso?.comarca ?? null,
-        }, aoUsar),
-      );
-      await this.prisma.rascunhoPeca.update({ where: { id: r.id }, data: { status: 'PRONTO', texto, modelo, geradoEm: new Date(), erro: null } });
-      if (caso) {
-        await this.avisos.sino(r.escritorioId, caso.advogadoId, 'RASCUNHO_PRONTO', 'Rascunho da peça pronto',
-          `${r.tipoPeca} — processo ${processo?.numero}. Revise os pontos marcados [CONFERIR] antes de protocolar.`, `/dativa/${caso.id}`, 'alta');
+      const dados = {
+        pdf, tipoPeca: r.tipoPeca, materia: caso?.materia ?? 'CIVEL',
+        numeroProcesso: processo?.numero ?? '', assistido: processo?.cliente?.nome ?? '', reuPreso: !!caso?.reuPreso,
+        prazo: prazo ? diaLocal(prazo.dataPrazo).split('-').reverse().join('/') : null, comarca: caso?.comarca ?? null,
+      };
+      const diasAtePrazo = prazo ? (prazo.dataPrazo.getTime() - Date.now()) / 86400_000 : 0;
+      const podeEsperar = !agora && process.env.IA_LOTE_DESLIGADO !== 'true' && !caso?.reuPreso && diasAtePrazo >= DIAS_MINIMOS_PARA_LOTE;
+      if (podeEsperar) {
+        // O limite mensal é conferido aqui, no envio; o custo é registrado quando o lote volta
+        const loteId = await this.iaUso.executar(ctx, (chave) => enviarRascunhoEmLote(chave, r.id, dados));
+        await this.prisma.rascunhoPeca.update({ where: { id: r.id }, data: { loteId, loteEnviadoEm: new Date(), erro: null } });
+        this.logger.log(`Rascunho ${r.id} enviado ao lote ${loteId} (metade do preço).`);
+        return;
       }
+      if (agora && r.loteId) await this.prisma.rascunhoPeca.update({ where: { id: r.id }, data: { loteId: null } });
+      const { texto, modelo } = await this.iaUso.executar(ctx, (chave, aoUsar) => rascunhoDePeca(chave, dados, aoUsar));
+      await this.concluirRascunho(r, caso, processo, texto, modelo);
     } catch (e: any) {
-      const semIa = e instanceof IaIndisponivel;
-      await this.prisma.rascunhoPeca.update({ where: { id: r.id }, data: { status: semIa ? 'SEM_IA' : 'ERRO', erro: String(e?.message ?? e).slice(0, 500) } });
-      if (caso) {
-        await this.avisos.sino(r.escritorioId, caso.advogadoId, 'RASCUNHO_FALHOU', 'Rascunho da peça não foi gerado',
-          e instanceof IaPausadaPeloLimite ? e.message
-            : semIa ? 'A chave da Anthropic não está configurada. Configure-a para gerar rascunhos.' : `Erro: ${String(e?.message ?? e).slice(0, 300)}`, `/dativa/${caso.id}`);
+      await this.falhaRascunho(r, caso, e);
+    }
+  }
+
+  private async concluirRascunho(r: any, caso: any, processo: any, texto: string, modelo: string) {
+    await this.prisma.rascunhoPeca.update({ where: { id: r.id }, data: { status: 'PRONTO', texto, modelo, geradoEm: new Date(), erro: null } });
+    if (caso) {
+      await this.avisos.sino(r.escritorioId, caso.advogadoId, 'RASCUNHO_PRONTO', 'Rascunho da peça pronto',
+        `${r.tipoPeca} — processo ${processo?.numero}. Revise os pontos marcados [CONFERIR] antes de protocolar.`, `/dativa/${caso.id}`, 'alta');
+    }
+  }
+
+  private async falhaRascunho(r: any, caso: any, e: any) {
+    const semIa = e instanceof IaIndisponivel;
+    await this.prisma.rascunhoPeca.update({ where: { id: r.id }, data: { status: semIa ? 'SEM_IA' : 'ERRO', erro: String(e?.message ?? e).slice(0, 500) } });
+    if (caso) {
+      await this.avisos.sino(r.escritorioId, caso.advogadoId, 'RASCUNHO_FALHOU', 'Rascunho da peça não foi gerado',
+        e instanceof IaPausadaPeloLimite ? e.message
+          : semIa ? 'A chave da Anthropic não está configurada. Configure-a para gerar rascunhos.' : `Erro: ${String(e?.message ?? e).slice(0, 300)}`, `/dativa/${caso.id}`);
+    }
+  }
+
+  /**
+   * Recolhe os rascunhos que foram pelo lote. Pronto → grava; erro, ou mais de 12 h esperando →
+   * gera na hora (o prazo do cliente vem antes da economia).
+   */
+  @Cron('*/10 * * * *', { name: 'dativa-recolher-lotes' })
+  async recolherLotes() {
+    const pendentes = await this.prisma.rascunhoPeca.findMany({ where: { status: 'GERANDO', loteId: { not: null } }, take: 50 });
+    for (const r of pendentes) {
+      try {
+        const caso = await this.prisma.casoDativa.findUnique({ where: { processoId: r.processoId } });
+        const processo = await this.prisma.processo.findUnique({ where: { id: r.processoId }, include: { cliente: { select: { nome: true } } } });
+        const ctx = { escritorioId: r.escritorioId, tarefa: 'rascunho_peca_dativa', categoria: 'PESADA' as const, processoId: r.processoId };
+        const chave = await this.chaves.getChave(r.escritorioId, 'anthropic');
+        const res = await resultadoDoLote(chave, r.loteId!);
+        if (!res) {
+          if (r.loteEnviadoEm && Date.now() - r.loteEnviadoEm.getTime() > LOTE_ESPERA_MAXIMA_H * 3600_000) {
+            this.logger.warn(`Lote do rascunho ${r.id} passou de ${LOTE_ESPERA_MAXIMA_H} h: gerando na hora.`);
+            await this.gerar(r.id, true);
+          }
+          continue;
+        }
+        if (res.ok === true) {
+          await this.iaUso.registrarUsoDeLote(ctx, res.msg);
+          await this.concluirRascunho(r, caso, processo, res.texto, res.modelo);
+        } else {
+          const erro = (res as { erro: string }).erro;
+          await this.iaUso.registrarUsoDeLote(ctx, res.msg, erro);
+          this.logger.warn(`Lote do rascunho ${r.id} falhou (${erro}): gerando na hora.`);
+          await this.gerar(r.id, true);
+        }
+      } catch (e: any) {
+        this.logger.error(`Recolher lote do rascunho ${r.id}: ${e?.message ?? e}`);
       }
     }
   }
