@@ -127,6 +127,13 @@ html,body{height:100%;overflow:hidden}
   padding:10px 14px;font-size:13px;margin-bottom:16px;
 }
 
+.ok-box{
+  display:none;align-items:flex-start;gap:8px;
+  background:#f0fdf4;border:1.5px solid #bbf7d0;
+  color:#166534;border-radius:10px;
+  padding:10px 14px;font-size:13px;margin-bottom:16px;line-height:1.45;
+}
+
 .btn{
   width:100%;padding:12px;border:none;border-radius:12px;cursor:pointer;
   background:linear-gradient(135deg,#0f2d5e 0%,#1a4a8a 100%);
@@ -166,6 +173,7 @@ html,body{height:100%;overflow:hidden}
   .feat{font-size:13px;padding:9px 13px}
   .features{gap:7px}
   .form-side{padding:28px 20px 40px;overflow:visible}
+  .brand-footer{position:relative;bottom:auto;margin-top:18px;z-index:1}
 }
 </style>
 </head>
@@ -208,6 +216,7 @@ html,body{height:100%;overflow:hidden}
   <div class="form-side">
     <div class="form-box">
 
+     <div id="login-view">
       <h1 class="form-title">Bem-vindo de volta 👋</h1>
       <p class="form-sub">Entre na sua conta para continuar</p>
 
@@ -228,7 +237,7 @@ html,body{height:100%;overflow:hidden}
         <div class="field">
           <div class="pw-row">
             <label class="lbl" for="password" style="margin:0">Senha</label>
-            <a href="#" class="forgot" tabindex="-1">Esqueceu a senha?</a>
+            <a href="#" class="forgot" onclick="showForgot(event)">Esqueceu a senha?</a>
           </div>
           <div class="pw-wrap">
             <input id="password" type="password" class="input"
@@ -252,6 +261,36 @@ html,body{height:100%;overflow:hidden}
         Ainda não tem conta? Peça um convite ao administrador do escritório.
       </p>
       <a href="#" class="portal">Acesso ao Portal do Cliente →</a>
+     </div>
+
+     <!-- "Esqueceu a senha?": pede o e-mail e envia o link de nova senha -->
+     <div id="forgot-view" style="display:none">
+      <h1 class="form-title">Esqueceu a senha? 🔑</h1>
+      <p class="form-sub">Informe seu e-mail. Enviaremos um link para você criar uma nova senha.</p>
+
+      <div id="forgot-error" class="error-box">
+        <span>⚠️</span>
+        <span id="forgot-error-text"></span>
+      </div>
+      <div id="forgot-ok" class="ok-box">
+        <span>✅</span>
+        <span id="forgot-ok-text"></span>
+      </div>
+
+      <form id="forgot-form" onsubmit="handleForgot(event)">
+        <div class="field">
+          <label class="lbl" for="forgot-email">E-mail</label>
+          <input id="forgot-email" type="email" class="input"
+                 placeholder="seu@escritorio.com.br"
+                 required autocomplete="email" />
+        </div>
+        <button type="submit" class="btn" id="forgot-submit">
+          <span id="forgot-btn-text">Enviar link</span>
+        </button>
+      </form>
+
+      <a href="#" class="portal" onclick="showLogin(event)">← Voltar para o login</a>
+     </div>
 
     </div>
   </div>
@@ -334,10 +373,60 @@ function showRegister(){
   .catch(()=>alert('Erro ao conectar ao servidor.'));
 }
 
+/* ── Esqueceu a senha ── */
+function showForgot(ev){
+  if(ev)ev.preventDefault();
+  document.getElementById('login-view').style.display='none';
+  document.getElementById('forgot-view').style.display='block';
+  document.getElementById('forgot-error').style.display='none';
+  document.getElementById('forgot-ok').style.display='none';
+  document.getElementById('forgot-form').style.display='block';
+  const em=document.getElementById('email').value.trim();
+  const fe=document.getElementById('forgot-email');
+  if(em&&!fe.value)fe.value=em;
+  fe.focus();
+}
+function showLogin(ev){
+  if(ev)ev.preventDefault();
+  document.getElementById('forgot-view').style.display='none';
+  document.getElementById('login-view').style.display='block';
+}
+async function handleForgot(ev){
+  ev.preventDefault();
+  const btn=document.getElementById('forgot-submit');
+  const txt=document.getElementById('forgot-btn-text');
+  const err=document.getElementById('forgot-error');
+  const ok=document.getElementById('forgot-ok');
+  const email=document.getElementById('forgot-email').value.trim();
+  err.style.display='none';ok.style.display='none';
+  btn.disabled=true;
+  txt.innerHTML='<span class="spin"></span>Enviando…';
+  try{
+    const base=(window.JURYSONE_CONFIG&&window.JURYSONE_CONFIG.API_URL)||'/api';
+    const res=await fetch(base+'/auth/esqueci-senha',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email})
+    });
+    const data=await res.json().catch(()=>({}));
+    if(res.status===429)throw new Error('Muitas tentativas. Aguarde 1 minuto e tente de novo.');
+    if(!res.ok)throw new Error(data.message||'Não foi possível enviar agora.');
+    document.getElementById('forgot-ok-text').textContent=(data.message||'Link enviado.')+' Confira também a caixa de spam.';
+    ok.style.display='flex';
+    document.getElementById('forgot-form').style.display='none';
+  }catch(ex){
+    document.getElementById('forgot-error-text').textContent=ex.message||'Erro ao conectar.';
+    err.style.display='flex';
+  }finally{
+    btn.disabled=false;
+    txt.textContent='Enviar link';
+  }
+}
+
 document.addEventListener('keydown',e=>{
-  if(e.key==='Enter'&&document.activeElement.id!=='btn-submit'){
-    const f=document.querySelector('form');
-    if(f)f.requestSubmit();
+  if(e.key==='Enter'&&document.activeElement.id!=='btn-submit'&&document.activeElement.id!=='forgot-submit'){
+    const f=document.activeElement.closest&&document.activeElement.closest('form');
+    if(f){e.preventDefault();f.requestSubmit();}
   }
 });
 </script>

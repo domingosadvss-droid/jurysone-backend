@@ -26,6 +26,10 @@ model Usuario {
   ativo            Boolean   @default(true)
   refreshTokenHash String?
 
+  // "Esqueceu a senha?": hash SHA-256 do código enviado por e-mail (o código em si nunca é salvo)
+  resetSenhaHash     String?   @unique
+  resetSenhaExpiraEm DateTime?
+
   // Perfil externo (PARCEIRO) vinculado ao cadastro de parceiro
   parceiroId        String?
   // Termo de ciência e responsabilidade (associados e parceiros)

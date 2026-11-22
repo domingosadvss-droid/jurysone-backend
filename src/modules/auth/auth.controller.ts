@@ -35,6 +35,20 @@ export class AuthController {
     return this.authService.refreshToken(body.token);
   }
 
+  @Post('esqueci-senha')
+  @Public()
+  @Throttle({ default: { limit: 3, ttl: 60000 } })
+  async esqueciSenha(@Body() body: { email: string }): Promise<{ message: string }> {
+    return this.authService.solicitarRedefinicaoSenha(body?.email);
+  }
+
+  @Post('redefinir-senha')
+  @Public()
+  @Throttle({ default: { limit: 5, ttl: 60000 } })
+  async redefinirSenha(@Body() body: { token: string; novaSenha: string }): Promise<{ message: string }> {
+    return this.authService.redefinirSenha(body?.token, body?.novaSenha);
+  }
+
   @Post('logout')
   async logout(@CurrentUser() user: any) {
     await this.authService.logout(user.sub);

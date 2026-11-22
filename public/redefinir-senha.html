@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<meta name="referrer" content="no-referrer" />
+<title>Jurysone — Nova senha</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif}
+body{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse at 30% 40%,#0f1f4a 0%,#020818 100%);
+  padding:24px 16px;
+}
+.card{width:100%;max-width:380px;background:#f8fafc;border-radius:18px;padding:32px 28px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.logo{display:block;width:84px;height:84px;object-fit:contain;margin:0 auto 14px}
+.title{font-size:22px;font-weight:800;color:#0f172a;margin-bottom:4px;text-align:center}
+.sub{font-size:14px;color:#64748b;margin-bottom:24px;text-align:center;line-height:1.45}
+.lbl{display:block;font-size:13px;font-weight:600;color:#374151;margin-bottom:6px}
+.field{margin-bottom:16px}
+.pw-wrap{position:relative}
+.input{
+  width:100%;padding:11px 42px 11px 14px;border:1.5px solid #e2e8f0;border-radius:12px;
+  font-size:14px;color:#0f172a;background:#fff;outline:none;transition:border-color .2s,box-shadow .2s;
+}
+.input:focus{border-color:#0f2d5e;box-shadow:0 0 0 3px rgba(15,45,94,.10)}
+.pw-toggle{position:absolute;right:11px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:16px;color:#94a3b8;padding:4px}
+.hint{font-size:12px;color:#64748b;margin:-8px 0 16px}
+.box{display:none;align-items:flex-start;gap:8px;border-radius:10px;padding:10px 14px;font-size:13px;margin-bottom:16px;line-height:1.45}
+.box.err{background:#fef2f2;border:1.5px solid #fecaca;color:#dc2626}
+.box.ok{background:#f0fdf4;border:1.5px solid #bbf7d0;color:#166534}
+.btn{
+  width:100%;padding:12px;border:none;border-radius:12px;cursor:pointer;
+  background:linear-gradient(135deg,#0f2d5e 0%,#1a4a8a 100%);color:#fff;font-size:15px;font-weight:700;
+  box-shadow:0 6px 20px rgba(15,45,94,.38);transition:opacity .2s;
+}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.link{display:block;text-align:center;margin-top:16px;font-size:13px;color:#0f2d5e;font-weight:600;text-decoration:none}
+.link:hover{text-decoration:underline}
+.spin{display:inline-block;width:15px;height:15px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;vertical-align:middle;margin-right:7px}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="card">
+  <img src="logo-jurysone.png" alt="Jurysone" class="logo" />
+  <h1 class="title">Criar nova senha</h1>
+  <p class="sub">Escolha uma senha com pelo menos 8 caracteres, com letras e números.</p>
+
+  <div id="err" class="box err"><span>⚠️</span><span id="err-text"></span></div>
+  <div id="ok" class="box ok"><span>✅</span><span id="ok-text"></span></div>
+
+  <form id="form" onsubmit="salvar(event)">
+    <div class="field">
+      <label class="lbl" for="senha">Nova senha</label>
+      <div class="pw-wrap">
+        <input id="senha" type="password" class="input" required minlength="8" autocomplete="new-password" />
+        <button type="button" class="pw-toggle" onclick="mostrar('senha',this)">👁</button>
+      </div>
+    </div>
+    <div class="field">
+      <label class="lbl" for="senha2">Repita a nova senha</label>
+      <div class="pw-wrap">
+        <input id="senha2" type="password" class="input" required minlength="8" autocomplete="new-password" />
+        <button type="button" class="pw-toggle" onclick="mostrar('senha2',this)">👁</button>
+      </div>
+    </div>
+    <button type="submit" class="btn" id="btn"><span id="btn-text">Salvar nova senha</span></button>
+  </form>
+
+  <a href="/login.html" class="link" id="voltar">← Voltar para o login</a>
+</div>
+
+<script src="config.js"></script>
+<script>
+// O código vem no link do e-mail; tira-o da barra de endereço para não ficar no histórico
+var token = new URLSearchParams(location.search).get('token') || '';
+if (token) history.replaceState(null, '', location.pathname);
+
+function erro(msg){
+  document.getElementById('err-text').textContent = msg;
+  document.getElementById('err').style.display = 'flex';
+}
+function mostrar(id, b){
+  var i = document.getElementById(id);
+  if (i.type === 'password') { i.type = 'text'; b.textContent = '🙈'; } else { i.type = 'password'; b.textContent = '👁'; }
+}
+if (!token) {
+  document.getElementById('form').style.display = 'none';
+  erro('Link incompleto. Abra o link do e-mail de novo ou peça outro em "Esqueceu a senha?".');
+}
+
+async function salvar(ev){
+  ev.preventDefault();
+  document.getElementById('err').style.display = 'none';
+  var s1 = document.getElementById('senha').value, s2 = document.getElementById('senha2').value;
+  if (s1 !== s2) return erro('As duas senhas não são iguais.');
+  if (s1.length < 8 || !/[A-Za-z]/.test(s1) || !/[0-9]/.test(s1)) return erro('A senha precisa ter pelo menos 8 caracteres, com letras e números.');
+
+  var btn = document.getElementById('btn'), txt = document.getElementById('btn-text');
+  btn.disabled = true; txt.innerHTML = '<span class="spin"></span>Salvando…';
+  try {
+    var base = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
+    var res = await fetch(base + '/auth/redefinir-senha', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: token, novaSenha: s1 })
+    });
+    var data = await res.json().catch(function(){ return {}; });
+    if (res.status === 429) throw new Error('Muitas tentativas. Aguarde 1 minuto e tente de novo.');
+    if (!res.ok) throw new Error(Array.isArray(data.message) ? data.message.join(' ') : (data.message || 'Não foi possível salvar.'));
+    localStorage.removeItem('jurysone_token');
+    localStorage.removeItem('jurysone_user');
+    document.getElementById('form').style.display = 'none';
+    document.getElementById('ok-text').textContent = (data.message || 'Senha alterada.') + ' Levando você para o login…';
+    document.getElementById('ok').style.display = 'flex';
+    setTimeout(function(){ location.href = '/login.html'; }, 2500);
+  } catch (e) {
+    erro(e.message || 'Erro ao conectar.');
+    btn.disabled = false; txt.textContent = 'Salvar nova senha';
+  }
+}
+</script>
+</body>
+</html>
