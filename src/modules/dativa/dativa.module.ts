@@ -1,3 +1,4 @@
+import { ConhecimentoModule } from '../conhecimento/conhecimento.module';
 import { Module, forwardRef } from '@nestjs/common';
 import { ConflitosModule } from '../conflitos/conflitos.module';
 import { LinhaProducaoModule } from '../linha-producao/linha-producao.module';
@@ -8,7 +9,7 @@ import { DativaController, DativaEmailController } from './dativa.controller';
 import { DativaService } from './dativa.service';
 
 @Module({
-  imports: [ConflitosModule, LinhaProducaoModule, ArquivosModule, ChavesModule, forwardRef(() => PublicacoesModule)],
+  imports: [ConflitosModule, LinhaProducaoModule, ArquivosModule, ChavesModule, ConhecimentoModule, forwardRef(() => PublicacoesModule)],
   controllers: [DativaController, DativaEmailController],
   providers: [DativaService],
   exports: [DativaService],

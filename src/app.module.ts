@@ -33,6 +33,7 @@ import { PortalModule } from './modules/portal/portal.module';
 import { PrazosModule } from './modules/prazos/prazos.module';
 import { AuditoriaModule } from './modules/auditoria/auditoria.module';
 import { AtendimentoIaModule } from './modules/atendimento-ia/atendimento-ia.module';
+import { ConhecimentoModule } from './modules/conhecimento/conhecimento.module';
 import { ProcessosModule } from './modules/processos/processos.module';
 import { StatusFlowModule } from './modules/status-flow/status-flow.module';
 import { TarefasModule } from './modules/tarefas/tarefas.module';
@@ -99,6 +100,7 @@ import { CatalogoModule } from './modules/catalogo/catalogo.module';
     PrazosModule,
     AuditoriaModule,
     AtendimentoIaModule, // atendimento automático do WhatsApp (IA)
+    ConhecimentoModule, // base de conhecimento do escritório (busca em português)
     ProcessosModule,
     StatusFlowModule,
     TarefasModule,

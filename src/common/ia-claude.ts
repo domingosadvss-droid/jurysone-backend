@@ -72,6 +72,8 @@ export async function resumoParaCliente(apiKey: string | null | undefined, dados
 export interface DadosRascunho {
   pdf: Buffer; tipoPeca: string; materia: string; numeroProcesso: string; assistido: string;
   reuPreso: boolean; prazo: string | null; comarca: string | null;
+  /** Trechos de modelos e peças do próprio escritório (base de conhecimento), como referência */
+  modelosEscritorio?: { titulo: string; texto: string }[];
 }
 
 /** Parâmetros do rascunho (iguais na chamada direta e no lote) */
@@ -101,7 +103,13 @@ function paramsRascunho(dados: DadosRascunho) {
             `Peça a redigir: ${dados.tipoPeca}\nMatéria: ${dados.materia}\nProcesso: ${dados.numeroProcesso}` +
             `${dados.comarca ? `\nComarca: ${dados.comarca}` : ''}\nAssistido: ${dados.assistido}` +
             `${dados.reuPreso ? '\nATENÇÃO: réu preso — avalie pedido de revogação/relaxamento da prisão.' : ''}` +
-            `${dados.prazo ? `\nPrazo final: ${dados.prazo}` : ''}\n\nRedija o rascunho completo.`,
+            `${dados.prazo ? `\nPrazo final: ${dados.prazo}` : ''}` +
+            (dados.modelosEscritorio?.length
+              ? '\n\nMODELOS E PEÇAS DO PRÓPRIO ESCRITÓRIO (referência de estrutura, estilo e teses já usadas; NÃO copie fatos, nomes, ' +
+                'números ou datas de outros casos; cite lei ou julgado deles só se tiver certeza de que se aplica, senão marque [CONFERIR]):\n' +
+                dados.modelosEscritorio.map((m, i) => `<modelo n="${i + 1}" titulo="${m.titulo.replace(/"/g, "'")}">\n${m.texto}\n</modelo>`).join('\n')
+              : '') +
+            '\n\nRedija o rascunho completo.',
         },
       ],
     }] as Anthropic.MessageParam[],
@@ -213,6 +221,8 @@ export async function respostaAtendimento(apiKey: string | null | undefined, dad
   notaSistema?: string;
   /** Resumo das mensagens antigas de uma conversa longa (as recentes vão em `conversa`) */
   resumo?: string | null;
+  /** Trechos da base de conhecimento do escritório sobre a dúvida do cliente */
+  conhecimento?: { titulo: string; texto: string }[];
 }, aoUsar?: AoUsar): Promise<RespostaAtendimento> {
   const c = cliente(apiKey);
   // A API exige começar por "user": descarta saídas do escritório antes da 1ª fala do cliente
@@ -238,6 +248,11 @@ export async function respostaAtendimento(apiKey: string | null | undefined, dad
     system: [
       { type: 'text', text: dados.sistema, cache_control: { type: 'ephemeral' } },
       ...(dados.resumo ? [{ type: 'text' as const, text: `RESUMO DO COMEÇO DESTE ATENDIMENTO (as mensagens mais antigas não aparecem abaixo):\n${dados.resumo}` }] : []),
+      ...(dados.conhecimento?.length ? [{
+        type: 'text' as const,
+        text: 'TRECHOS DA BASE DE CONHECIMENTO DO ESCRITÓRIO (podem ajudar a responder a dúvida do cliente; use só se responderem de fato, com suas palavras e sem citar a fonte; as regras continuam valendo — sem parecer, sem preço):\n'
+          + dados.conhecimento.map((c, i) => `[${i + 1}] ${c.titulo}\n${c.texto}`).join('\n\n'),
+      }] : []),
     ],
     messages: mensagens,
   });

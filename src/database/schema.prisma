@@ -2046,6 +2046,51 @@ model WhatsappMensagemCaixa {
   @@map("whatsapp_mensagens_caixa")
 }
 
+/// Base de conhecimento do escritório (etapa 3): modelos de peça, peças, FAQ, orientações.
+/// O texto é dividido em trechos com busca em português (tsvector do Postgres, sem custo).
+model ConhecimentoDocumento {
+  id             String    @id @default(uuid())
+  escritorioId   String
+  titulo         String
+  /// FAQ | ORIENTACAO | MODELO_PECA | PECA | LEGISLACAO | OUTRO
+  tipo           String
+  area           String?
+  /// TEXTO (colado) | ARQUIVO (PDF/DOCX/TXT)
+  origem         String    @default("TEXTO")
+  nomeArquivo    String?
+  texto          String    @db.Text
+  /// a IA do WhatsApp pode usar (só conteúdo genérico, sem dados de clientes)
+  usoAtendimento Boolean   @default(false)
+  /// resultado da varredura de prompt injection: LIMPO | ACHADOS | INCONCLUSIVO | TEXTO
+  varredura      String    @default("TEXTO")
+  /// com achados na varredura: guardado, mas a IA não usa
+  bloqueado      Boolean   @default(false)
+  ativo          Boolean   @default(true)
+  criadoPorId    String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  trechos ConhecimentoTrecho[]
+
+  @@index([escritorioId, tipo])
+  @@map("conhecimento_documentos")
+}
+
+model ConhecimentoTrecho {
+  id           String   @id @default(uuid())
+  escritorioId String
+  documentoId  String
+  documento    ConhecimentoDocumento @relation(fields: [documentoId], references: [id], onDelete: Cascade)
+  ordem        Int
+  texto        String   @db.Text
+  /// coluna gerada pelo banco: to_tsvector('portuguese', texto) — ver a migration
+  busca        Unsupported("tsvector")?
+
+  @@index([escritorioId])
+  @@index([documentoId])
+  @@map("conhecimento_trechos")
+}
+
 /// Aprendizado do atendimento: quando o advogado responde numa conversa que a IA atendia,
 /// o par "mensagem do cliente → resposta do advogado" vira exemplo. Só os APROVADOS entram
 /// nas regras da IA (o advogado revisa, pode editar e descartar).

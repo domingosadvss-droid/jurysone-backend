@@ -33,6 +33,7 @@ import { PERFIS_GESTAO, temPerfil } from '../../common/perfis';
 import { regrasAtendimento } from './regras-atendimento';
 import { AprendizadoAtendimentoService } from './aprendizado.service';
 import { textoDaMensagem } from './texto-mensagem';
+import { ConhecimentoService } from '../conhecimento/conhecimento.service';
 
 /** Lembretes ao cliente que parou de responder: horas de silêncio antes de cada passo */
 const LEMBRETE_1_HORAS = 48;
@@ -78,6 +79,7 @@ export class AtendimentoIaService implements OnModuleInit {
     private readonly catalogo: CatalogoService,
     private readonly iaUso: IaUsoService,
     private readonly aprendizado: AprendizadoAtendimentoService,
+    private readonly conhecimento: ConhecimentoService,
   ) {}
 
   onModuleInit() {
@@ -187,6 +189,7 @@ export class AtendimentoIaService implements OnModuleInit {
       if (motivo) return { respondeu: false, motivo };
 
       const { mensagens, conversaIa, resumo } = await this.historico(conversa);
+      const conhecimento = await this.conhecimentoPara(conversa.escritorioId, conversaIa);
 
       const sistema = await this.montarSistema(conversa.escritorioId, conversa.telefone, conversa.nomeContato, conversa.conexao.usuarioId);
       let r: RespostaAtendimento;
@@ -204,7 +207,7 @@ export class AtendimentoIaService implements OnModuleInit {
         try {
           r = await this.iaUso.executar(
             { escritorioId: conversa.escritorioId, tarefa: 'conversa_whatsapp', categoria: 'CONVERSA', conversaId },
-            (chave, aoUsar) => respostaAtendimento(chave, { sistema, conversa: conversaIa, resumo }, aoUsar),
+            (chave, aoUsar) => respostaAtendimento(chave, { sistema, conversa: conversaIa, resumo, conhecimento }, aoUsar),
           );
         } catch (e: any) {
           if (e instanceof IaIndisponivel) {
@@ -360,14 +363,27 @@ export class AtendimentoIaService implements OnModuleInit {
     return { mensagens, conversaIa, resumo };
   }
 
+  /** Trechos da base de conhecimento sobre o que o cliente escreveu por último (busca sem custo) */
+  private async conhecimentoPara(escritorioId: string, conversa: MensagemConversa[]) {
+    const ultimas = conversa.filter((m) => m.deCliente).slice(-2).map((m) => m.texto).join(' ');
+    try {
+      const achados = await this.conhecimento.paraAtendimento(escritorioId, ultimas);
+      return achados.map((a) => ({ titulo: a.titulo, texto: a.texto }));
+    } catch (e: any) {
+      this.logger.warn(`Busca na base de conhecimento: ${e?.message ?? e}`);
+      return [];
+    }
+  }
+
   /** Chama a IA com o histórico da conversa (e um aviso do sistema, quando houver) */
   private async gerarResposta(conversa: any, notaSistema?: string): Promise<RespostaAtendimento | null> {
     const { conversaIa, resumo } = await this.historico(conversa);
+    const conhecimento = notaSistema ? [] : await this.conhecimentoPara(conversa.escritorioId, conversaIa);
     const sistema = await this.montarSistema(conversa.escritorioId, conversa.telefone, conversa.nomeContato, conversa.conexao?.usuarioId ?? null);
     try {
       return await this.iaUso.executar(
         { escritorioId: conversa.escritorioId, tarefa: notaSistema ? 'lembrete_whatsapp' : 'conversa_whatsapp', categoria: 'CONVERSA', conversaId: conversa.id } as any,
-        (chave, aoUsar) => respostaAtendimento(chave, { sistema, conversa: conversaIa, notaSistema, resumo }, aoUsar),
+        (chave, aoUsar) => respostaAtendimento(chave, { sistema, conversa: conversaIa, notaSistema, resumo, conhecimento }, aoUsar),
       );
     } catch (e: any) {
       if (e instanceof IaIndisponivel) { this.logger.warn(`IA indisponível: ${e.message}`); return null; }

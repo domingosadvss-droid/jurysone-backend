@@ -20,6 +20,7 @@ import { ConflitosService } from '../conflitos/conflitos.service';
 import { LinhaProducaoService } from '../linha-producao/linha-producao.service';
 import { ArquivosService } from '../arquivos/arquivos.service';
 import { ChavesService } from '../chaves/chaves.service';
+import { ConhecimentoService } from '../conhecimento/conhecimento.service';
 import { AgendaPrazosService, diaLocal } from '../publicacoes/agenda-prazos.service';
 import { AvisosService } from '../publicacoes/avisos.service';
 import { criarClienteIncompleto, procurarCliente } from '../publicacoes/clientes-vinculo';
@@ -56,6 +57,7 @@ export class DativaService {
     private readonly linhas: LinhaProducaoService,
     private readonly arquivos: ArquivosService,
     private readonly chaves: ChavesService,
+    private readonly conhecimento: ConhecimentoService,
     @Inject(forwardRef(() => AgendaPrazosService)) private readonly agenda: AgendaPrazosService,
     @Inject(forwardRef(() => AvisosService)) private readonly avisos: AvisosService,
     private readonly iaUso: IaUsoService,
@@ -534,6 +536,9 @@ export class DativaService {
         pdf, tipoPeca: r.tipoPeca, materia: caso?.materia ?? 'CIVEL',
         numeroProcesso: processo?.numero ?? '', assistido: processo?.cliente?.nome ?? '', reuPreso: !!caso?.reuPreso,
         prazo: prazo ? diaLocal(prazo.dataPrazo).split('-').reverse().join('/') : null, comarca: caso?.comarca ?? null,
+        // Base de conhecimento: modelos e peças do escritório parecidos (busca sem custo)
+        modelosEscritorio: (await this.conhecimento.paraRascunho(r.escritorioId, `${r.tipoPeca} ${caso?.materia ?? ''}`).catch(() => []))
+          .map((t) => ({ titulo: t.titulo, texto: t.texto })),
       };
       const diasAtePrazo = prazo ? (prazo.dataPrazo.getTime() - Date.now()) / 86400_000 : 0;
       const podeEsperar = !agora && process.env.IA_LOTE_DESLIGADO !== 'true' && !caso?.reuPreso && diasAtePrazo >= DIAS_MINIMOS_PARA_LOTE;
