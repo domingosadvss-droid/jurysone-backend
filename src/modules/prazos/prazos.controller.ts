@@ -79,13 +79,13 @@ export class PrazosController {
   @HttpCode(201)
   @ApiOperation({ summary: 'Cria prazo processual' })
   create(@Body() body: any, @CurrentUser() user: any) {
-    return this.svc.create({ ...body, escritorioId: user.officeId });
+    return this.svc.create({ ...body, escritorioId: user.officeId, usuarioId: user.id });
   }
 
   /** PATCH /api/prazos/:id — atualiza prazo */
   @Patch(':id')
   update(@Param('id') id: string, @Body() body: any, @CurrentUser() user: any) {
-    return this.svc.update(id, body, user.officeId);
+    return this.svc.update(id, body, user.officeId, user.id);
   }
 
   /** PATCH /api/prazos/:id/status — atualiza status (cumprido / suspenso / etc.) */
@@ -96,7 +96,7 @@ export class PrazosController {
     @Body('status') status: string,
     @CurrentUser() user: any,
   ) {
-    return this.svc.update(id, { status }, user.officeId);
+    return this.svc.update(id, { status }, user.officeId, user.id);
   }
 
   /** DELETE /api/prazos/:id — remove prazo (soft delete) */

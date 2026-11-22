@@ -1,7 +1,14 @@
 import { Prisma } from '@prisma/client';
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { calcularVencimento } from '../../utils/calculadora-prazos';
+import { AgendaPrazosService, fimDoDia } from '../publicacoes/agenda-prazos.service';
+
+/** "AAAA-MM-DD" vira o fim do dia em Brasília (senão o vencimento cairia no dia anterior); o resto, Date normal */
+function dataDoPrazo(valor: any): Date {
+  const s = String(valor ?? '');
+  return /^\d{4}-\d{2}-\d{2}$/.test(s) ? fimDoDia(s) : new Date(s);
+}
 
 interface FindAllFilters {
   escritorioId: string;
@@ -19,7 +26,17 @@ interface PaginatedResponse<T> {
 
 @Injectable()
 export class PrazosService {
-  constructor(private prisma: PrismaService) {}
+  private readonly logger = new Logger(PrazosService.name);
+
+  constructor(
+    private prisma: PrismaService,
+    private agenda: AgendaPrazosService,
+  ) {}
+
+  /** Todo prazo vai para a agenda interna (e ao Google de quem ligou); falha aqui não desfaz o prazo */
+  private async refletirNaAgenda(prazoId: string, usuarioId?: string | null) {
+    await this.agenda.sincronizarPrazo(prazoId, usuarioId).catch((e) => this.logger.warn(`Agenda do prazo ${prazoId}: ${e?.message ?? e}`));
+  }
 
   async findAll(filters: FindAllFilters): Promise<PaginatedResponse<any>> {
     const { escritorioId, page = 1, limit = 20, processoId } = filters;
@@ -62,39 +79,60 @@ export class PrazosService {
       });
       if (!processo) throw new BadRequestException('Processo não pertence a este escritório');
     }
-    return this.prisma.prazo.create({
+    const dataPrazo = dataDoPrazo(dto.dataPrazo);
+    if (isNaN(dataPrazo.getTime())) throw new BadRequestException('dataPrazo inválida (use AAAA-MM-DD)');
+    const responsaveisIds = Array.isArray(dto.responsaveisIds)
+      ? (dto.responsaveisIds as any[]).filter((x) => typeof x === 'string' && x)
+      : [];
+    if (responsaveisIds.length) {
+      const doEscritorio = await this.prisma.usuario.count({ where: { id: { in: responsaveisIds }, escritorioId: dto.escritorioId } });
+      if (doEscritorio !== new Set(responsaveisIds).size) throw new BadRequestException('Responsável não pertence a este escritório');
+    }
+    const prazo = await this.prisma.prazo.create({
       data: {
         descricao:    dto.descricao,
-        dataPrazo:    new Date(dto.dataPrazo),
+        dataPrazo,
         tipo:         dto.tipo ?? 'judicial',
         status:       dto.status ?? 'pendente',
         processoId:   dto.processoId ?? null,
         escritorioId: dto.escritorioId,
+        origem:       'MANUAL',
+        responsaveisIds,
       },
-      include: { processo: true },
     });
+    await this.refletirNaAgenda(prazo.id, dto.usuarioId);
+    return this.findById(prazo.id, dto.escritorioId);
   }
 
-  async update(id: string, dto: any, escritorioId: string): Promise<any> {
-    await this.findById(id, escritorioId);
-    return this.prisma.prazo.update({
+  async update(id: string, dto: any, escritorioId: string, usuarioId?: string): Promise<any> {
+    const atual = await this.findById(id, escritorioId);
+    const dataPrazo = dto.dataPrazo ? dataDoPrazo(dto.dataPrazo) : undefined;
+    if (dataPrazo && isNaN(dataPrazo.getTime())) throw new BadRequestException('dataPrazo inválida (use AAAA-MM-DD)');
+    const virouCumprido = dto.status === 'cumprido' && atual.status !== 'cumprido';
+    const voltouPendente = dto.status && dto.status !== 'cumprido' && atual.status === 'cumprido';
+    await this.prisma.prazo.update({
       where: { id },
       data: {
         descricao:  dto.descricao,
-        dataPrazo:  dto.dataPrazo ? new Date(dto.dataPrazo) : undefined,
+        dataPrazo,
         tipo:       dto.tipo,
         status:     dto.status,
+        ...(virouCumprido ? { cumpridoEm: new Date(), cumpridoPorId: usuarioId ?? null, conferir: false } : {}),
+        ...(voltouPendente ? { cumpridoEm: null, cumpridoPorId: null } : {}),
       },
-      include: { processo: true },
     });
+    await this.refletirNaAgenda(id, usuarioId);
+    return this.findById(id, escritorioId);
   }
 
   async remove(id: string, escritorioId: string): Promise<any> {
     await this.findById(id, escritorioId);
-    return this.prisma.prazo.update({
+    const removido = await this.prisma.prazo.update({
       where: { id },
       data: { deletedAt: new Date() },
     });
+    await this.agenda.removerPrazoDaAgenda(id).catch((e) => this.logger.warn(`Agenda do prazo ${id}: ${e?.message ?? e}`));
+    return removido;
   }
 
   async findHoje(escritorioId: string): Promise<any[]> {

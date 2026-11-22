@@ -965,6 +965,23 @@
 
             <!-- Agenda Page -->
             <div id="page-agenda" class="page">
+              <!-- Google Agenda do usuário: prazos e audiências em que ele é responsável vão para lá -->
+              <div class="card" id="gagenda-card" style="margin-bottom:16px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+                  <div style="display:flex;align-items:center;gap:12px;min-width:0;">
+                    <div style="font-size:26px;line-height:1;">📆</div>
+                    <div style="min-width:0;">
+                      <div class="card-title" style="margin:0;">Google Agenda</div>
+                      <div id="gagenda-status" style="font-size:12.5px;color:#64748b;margin-top:3px;">Verificando…</div>
+                    </div>
+                  </div>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <button class="btn-primary btn-sm" id="gagenda-conectar" style="display:none" onclick="gagendaConectar()">Conectar Google Agenda</button>
+                    <button class="btn-secondary btn-sm" id="gagenda-enviar" style="display:none" onclick="gagendaSincronizar()">⟳ Enviar prazos ao Google</button>
+                    <button class="btn-secondary btn-sm" id="gagenda-desconectar" style="display:none" onclick="gagendaDesconectar()">Desconectar</button>
+                  </div>
+                </div>
+              </div>
               <div class="card">
                 <div class="card-header" style="flex-wrap:wrap;gap:10px;">
                   <div>
@@ -16073,6 +16090,84 @@ Nestes termos, pede deferimento.
       setTimeout(function () {
         if (!_open) document.getElementById('ai-fab-badge').style.display = 'flex';
       }, 4000);
+    })();
+    </script>
+
+    <script>
+    /* ── Google Agenda do usuário (quadro no topo da Agenda) ── */
+    (function(){
+      const base = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
+      const cab = (json) => Object.assign({ Authorization: 'Bearer ' + (localStorage.getItem('jurysone_token') || '') }, json ? { 'Content-Type': 'application/json' } : {});
+      const el = (id) => document.getElementById(id);
+      const toast = (m, t) => (typeof showToast === 'function' ? showToast(m, t || 'success') : alert(m));
+      let vigia = null;
+
+      async function carregar(){
+        if (!el('gagenda-status')) return;
+        try {
+          const r = await fetch(base + '/agenda-google/status', { headers: cab() });
+          if (!r.ok) throw new Error();
+          const s = await r.json();
+          const quando = s.conectadaEm ? new Date(s.conectadaEm).toLocaleDateString('pt-BR') : '';
+          let txt;
+          if (!s.googleConfigurado) txt = 'O servidor ainda não tem a credencial do Google (Google Cloud). Peça ao administrador.';
+          else if (s.conectada) txt = '✅ Conectado' + (quando ? ' desde ' + quando : '') + '. Seus prazos e audiências vão para a sua agenda do Google' + (s.envioDesligado ? ' — mas o envio está DESLIGADO no servidor (AGENDA_GOOGLE_DESLIGADA).' : ', com alerta 3 dias úteis antes.');
+          else txt = 'Não conectado. Conecte para receber seus prazos e audiências na sua agenda do Google.';
+          el('gagenda-status').textContent = txt;
+          el('gagenda-conectar').style.display = s.googleConfigurado && !s.conectada ? '' : 'none';
+          el('gagenda-enviar').style.display = s.conectada ? '' : 'none';
+          el('gagenda-desconectar').style.display = s.conectada ? '' : 'none';
+          return s;
+        } catch (e) {
+          el('gagenda-status').textContent = 'Não foi possível verificar a conexão com o Google Agenda.';
+        }
+      }
+
+      window.gagendaConectar = async function(){
+        // Abre a janela antes do fetch para o navegador não bloquear o pop-up
+        const jan = window.open('', 'gagenda', 'width=520,height=680');
+        try {
+          const r = await fetch(base + '/agenda-google/conectar', { headers: cab() });
+          const d = await r.json().catch(() => ({}));
+          if (!r.ok || !d.url) throw new Error(d.message || 'Não foi possível iniciar a conexão.');
+          if (jan) jan.location = d.url; else window.location.href = d.url;
+          clearInterval(vigia);
+          vigia = setInterval(async () => {
+            const s = await carregar();
+            if ((s && s.conectada) || !jan || jan.closed) {
+              clearInterval(vigia);
+              if (s && s.conectada) toast('Google Agenda conectado. Seus prazos estão sendo enviados.');
+            }
+          }, 3000);
+        } catch (e) {
+          if (jan) jan.close();
+          toast(e.message, 'error');
+        }
+      };
+
+      window.gagendaSincronizar = async function(){
+        const b = el('gagenda-enviar'); b.disabled = true; const t = b.textContent; b.textContent = 'Enviando…';
+        try {
+          const r = await fetch(base + '/agenda-google/sincronizar', { method: 'POST', headers: cab() });
+          const d = await r.json().catch(() => ({}));
+          if (r.status === 429) throw new Error('Aguarde 1 minuto antes de enviar de novo.');
+          if (!r.ok) throw new Error(d.message || 'Falha ao enviar.');
+          toast(d.envioDesligado
+            ? 'Prazos colocados na agenda interna (' + d.colocadosNaAgenda + '). O envio ao Google está desligado no servidor.'
+            : 'Pronto: ' + d.colocadosNaAgenda + ' prazo(s) entraram na agenda e ' + d.enviadosAoGoogle + ' compromisso(s) foram enviados ao Google.');
+          if (typeof carregarAgenda === 'function') carregarAgenda();
+        } catch (e) { toast(e.message, 'error'); }
+        finally { b.disabled = false; b.textContent = t; }
+      };
+
+      window.gagendaDesconectar = async function(){
+        if (!confirm('Desconectar o Google Agenda? Os eventos já criados lá continuam na sua agenda do Google.')) return;
+        await fetch(base + '/agenda-google', { method: 'DELETE', headers: cab() }).catch(() => {});
+        toast('Google Agenda desconectado.');
+        carregar();
+      };
+
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', carregar); else carregar();
     })();
     </script>
 

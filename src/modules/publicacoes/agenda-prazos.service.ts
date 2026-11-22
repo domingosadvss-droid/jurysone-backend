@@ -241,15 +241,21 @@ export class AgendaPrazosService {
     return createHmac('sha256', segredo).update(`agenda.${usuarioId}.${ts}`).digest('hex');
   }
 
+  /** Endereço de retorno do Google: GOOGLE_AGENDA_REDIRECT_URI ou, sem ele, o do próprio sistema */
+  static redirectAgenda(): string {
+    const base = (process.env.APP_URL || process.env.FRONTEND_URL || 'http://localhost:3001').replace(/\/+$/, '');
+    return process.env.GOOGLE_AGENDA_REDIRECT_URI || `${base}/api/agenda-google/callback`;
+  }
+
   private clienteOAuth() {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { google } = require('googleapis');
-    return new google.auth.OAuth2(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET, process.env.GOOGLE_AGENDA_REDIRECT_URI);
+    return new google.auth.OAuth2(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET, AgendaPrazosService.redirectAgenda());
   }
 
   urlConexaoAgenda(user: any) {
-    if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET || !process.env.GOOGLE_AGENDA_REDIRECT_URI) {
-      throw new BadRequestException('Configure GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET e GOOGLE_AGENDA_REDIRECT_URI no servidor.');
+    if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+      throw new BadRequestException('Configure GOOGLE_CLIENT_ID e GOOGLE_CLIENT_SECRET no servidor.');
     }
     if (!criptografiaConfigurada()) throw new BadRequestException('Configure CHAVE_CRIPTOGRAFIA no servidor antes de conectar a agenda.');
     const ts = Date.now();
@@ -274,12 +280,133 @@ export class AgendaPrazosService {
       where: { id: usuarioId },
       data: { googleAgendaToken: cifrar(tokens.refresh_token), googleAgendaId: 'primary', googleAgendaConectadoEm: new Date() },
     });
+    // Leva para a agenda recém-ligada os prazos e audiências que já existiam
+    this.enviarPendentesDoUsuario(usuarioId).catch((e) => this.logger.warn(`Google Agenda: ${e?.message ?? e}`));
     return { conectado: true };
   }
 
   async statusAgenda(user: any) {
     const u = await this.prisma.usuario.findUnique({ where: { id: user.id }, select: { googleAgendaConectadoEm: true } });
-    return { conectada: !!u?.googleAgendaConectadoEm, conectadaEm: u?.googleAgendaConectadoEm ?? null };
+    return {
+      conectada: !!u?.googleAgendaConectadoEm,
+      conectadaEm: u?.googleAgendaConectadoEm ?? null,
+      // Servidor sem credencial do Google ou com o envio desligado: a tela avisa em vez de oferecer o botão à toa
+      googleConfigurado: !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET),
+      envioDesligado: AgendaPrazosService.agendaGoogleDesligada(),
+    };
+  }
+
+  // ═══════════════════════ PRAZOS MANUAIS NA AGENDA ═══════════════════════
+
+  /**
+   * Coloca na agenda interna (e no Google de quem ligou a agenda) um prazo lançado fora das
+   * publicações — tela de Prazos, importação etc. Se já tem evento, atualiza data, título e status.
+   * Responsáveis: os do prazo; senão o responsável do processo; senão quem lançou.
+   */
+  async sincronizarPrazo(prazoId: string, usuarioId?: string | null): Promise<void> {
+    const prazo = await this.prisma.prazo.findUnique({
+      where: { id: prazoId },
+      include: { processo: { select: { clienteId: true, responsavelId: true } } },
+    });
+    if (!prazo) return;
+    if (prazo.deletedAt) return this.removerPrazoDaAgenda(prazoId);
+
+    const cumprido = prazo.status === 'cumprido';
+    const titulo = `${prazo.conferir ? '[CONFERIR] ' : ''}Prazo: ${prazo.descricao}`.slice(0, 250);
+    const situacao = {
+      status: cumprido ? ('CONCLUIDO' as const) : ('PENDENTE' as const),
+      concluidoEm: cumprido ? prazo.cumpridoEm ?? new Date() : null,
+    };
+    let eventoId = prazo.eventoId;
+
+    if (!eventoId) {
+      const doPrazo = (prazo.responsaveisIds ?? []).filter(Boolean);
+      const responsaveis = doPrazo.length
+        ? [...new Set(doPrazo)]
+        : [prazo.processo?.responsavelId, usuarioId].filter((x): x is string => !!x).slice(0, 1);
+      const criadoPorId = usuarioId ?? responsaveis[0];
+      if (!criadoPorId) return; // sem ninguém a quem atribuir: fica só na lista de prazos
+      const ev = await this.prisma.evento.create({
+        data: {
+          escritorioId: prazo.escritorioId, processoId: prazo.processoId, clienteId: prazo.processo?.clienteId ?? null,
+          criadoPorId, titulo, descricao: 'Prazo lançado no JurysOne.', data: prazo.dataPrazo,
+          tipo: 'PRAZO', diaInteiro: true, ...situacao,
+          responsaveis: { create: responsaveis.map((id) => ({ usuarioId: id })) },
+        },
+      });
+      await this.prisma.prazo.update({
+        where: { id: prazo.id },
+        data: { eventoId: ev.id, responsaveisIds: responsaveis, origem: prazo.origem ?? 'MANUAL' },
+      });
+      eventoId = ev.id;
+    } else {
+      await this.prisma.evento.updateMany({ where: { id: eventoId }, data: { titulo, data: prazo.dataPrazo, ...situacao } });
+    }
+    await this.enviarAoGoogle(eventoId).catch((e) => this.logger.warn(`Google Agenda: ${e?.message ?? e}`));
+  }
+
+  /** Prazo excluído: cancela o evento interno e apaga as cópias no Google Agenda */
+  async removerPrazoDaAgenda(prazoId: string): Promise<void> {
+    const prazo = await this.prisma.prazo.findUnique({ where: { id: prazoId }, select: { eventoId: true } });
+    if (!prazo?.eventoId) return;
+    await this.prisma.evento.updateMany({ where: { id: prazo.eventoId }, data: { status: 'CANCELADO' } });
+    if (AgendaPrazosService.agendaGoogleDesligada() || !process.env.GOOGLE_CLIENT_ID) return;
+    const resps = await this.prisma.eventoResponsavel.findMany({
+      where: { eventoId: prazo.eventoId, OR: [{ googleEventId: { not: null } }, { googleEventIdD3: { not: null } }] },
+      include: { usuario: { select: { googleAgendaToken: true, googleAgendaId: true } } },
+    });
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { google } = require('googleapis');
+    for (const r of resps) {
+      if (!r.usuario.googleAgendaToken) continue;
+      try {
+        const auth = this.clienteOAuth();
+        auth.setCredentials({ refresh_token: decifrar(r.usuario.googleAgendaToken) });
+        const cal = google.calendar({ version: 'v3', auth });
+        const calendarId = r.usuario.googleAgendaId ?? 'primary';
+        for (const eventId of [r.googleEventId, r.googleEventIdD3]) {
+          if (eventId) await cal.events.delete({ calendarId, eventId }).catch(() => undefined);
+        }
+        await this.prisma.eventoResponsavel.update({ where: { id: r.id }, data: { googleEventId: null, googleEventIdD3: null } });
+      } catch (e: any) {
+        this.logger.warn(`Google Agenda do usuário ${r.usuarioId}: ${e?.message ?? e}`);
+      }
+    }
+  }
+
+  /**
+   * Botão "Enviar prazos ao Google": põe na agenda interna os prazos pendentes que ainda não
+   * estavam lá e manda ao Google os prazos e audiências futuros em que o usuário é responsável.
+   */
+  async sincronizarTudo(escritorioId: string, usuarioId: string) {
+    const semEvento = await this.prisma.prazo.findMany({
+      where: { escritorioId, deletedAt: null, status: 'pendente', eventoId: null },
+      select: { id: true },
+    });
+    for (const p of semEvento) await this.sincronizarPrazo(p.id, usuarioId);
+    const enviados = await this.enviarPendentesDoUsuario(usuarioId);
+    return {
+      colocadosNaAgenda: semEvento.length,
+      enviadosAoGoogle: enviados,
+      envioDesligado: AgendaPrazosService.agendaGoogleDesligada(),
+    };
+  }
+
+  /** Manda ao Google do usuário os eventos futuros (prazos e audiências) em que ele é responsável */
+  async enviarPendentesDoUsuario(usuarioId: string): Promise<number> {
+    if (AgendaPrazosService.agendaGoogleDesligada()) return 0;
+    const hoje = new Date(Date.now() - 24 * 3600 * 1000);
+    const eventos = await this.prisma.evento.findMany({
+      where: {
+        tipo: { in: ['PRAZO', 'AUDIENCIA'] }, data: { gte: hoje }, status: { in: ['PENDENTE', 'CONFIRMADO'] },
+        responsaveis: { some: { usuarioId } },
+      },
+      select: { id: true },
+      orderBy: { data: 'asc' },
+      take: 500,
+    });
+    for (const e of eventos) await this.enviarAoGoogle(e.id).catch((err) => this.logger.warn(`Google Agenda: ${err?.message ?? err}`));
+    return eventos.length;
   }
 
   async desconectarAgenda(user: any) {

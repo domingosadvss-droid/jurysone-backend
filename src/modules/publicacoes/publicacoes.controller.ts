@@ -2,6 +2,7 @@ import {
   BadRequestException, Body, Controller, Delete, ForbiddenException, Get, Header, HttpCode, NotFoundException, Param, Post, Query, UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Throttle } from '@nestjs/throttler';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { Perfis, PermiteParceiro } from '../../common/decorators/perfis.decorator';
@@ -220,6 +221,14 @@ export class AgendaGoogleController {
   desconectar(@CurrentUser() user: any) {
     return this.agenda.desconectarAgenda(user);
   }
+
+  /** Põe na agenda os prazos que faltavam e manda ao Google os futuros deste usuário */
+  @Post('sincronizar')
+  @PermiteParceiro()
+  @Throttle({ default: { limit: 3, ttl: 60000 } })
+  sincronizar(@CurrentUser() user: any) {
+    return this.agenda.sincronizarTudo(user.officeId, user.id);
+  }
 }
 
 @ApiTags('📅 Google Agenda do advogado')
@@ -232,7 +241,8 @@ export class AgendaGoogleCallbackController {
   async callback(@Query('code') code: string, @Query('state') state: string) {
     try {
       await this.agenda.callbackAgenda(code, state);
-      return '<h2>Google Agenda conectado ao JurysOne.</h2><p>Seus prazos e audiências passam a aparecer na sua agenda. Você já pode fechar esta janela.</p>';
+      return '<h2>Google Agenda conectado ao JurysOne.</h2><p>Seus prazos e audiências passam a aparecer na sua agenda. Esta janela fecha sozinha.</p>' +
+        '<script>setTimeout(function(){ window.close(); }, 2500);</script>';
     } catch (e: any) {
       const msg = String(e?.response?.message ?? e?.message ?? 'Erro').replace(/[<>&]/g, '');
       return `<h2>Não foi possível conectar o Google Agenda.</h2><p>${msg}</p>`;

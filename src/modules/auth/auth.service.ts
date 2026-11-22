@@ -2,8 +2,15 @@ import { Injectable, BadRequestException, UnauthorizedException, ForbiddenExcept
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '../../database/prisma.service';
 import * as argon2 from 'argon2';
-import { createHash, randomBytes } from 'crypto';
+import { createHash, createHmac, randomBytes, timingSafeEqual } from 'crypto';
 import { enviarEmail } from '../../common/email';
+import { cifrar, criptografiaConfigurada } from '../../common/cripto';
+
+/** Entrar com Google: identifica a pessoa e, na mesma autorização, libera o Google Agenda */
+const ESCOPO_AGENDA = 'https://www.googleapis.com/auth/calendar.events';
+const ESCOPOS_LOGIN_GOOGLE = ['openid', 'email', 'profile', ESCOPO_AGENDA];
+/** Código de uso único entregue à tela de login depois do Google */
+const CODIGO_GOOGLE_VALIDADE_MS = 2 * 60_000;
 
 /** Validade do link de "Esqueceu a senha?" */
 const RESET_VALIDADE_MIN = 30;
@@ -34,6 +41,8 @@ interface TokenResponse {
 @Injectable()
 export class AuthService {
   private readonly logger = new Logger(AuthService.name);
+  /** Códigos de uso único do login Google → usuário (só em memória, valem 2 minutos) */
+  private readonly codigosGoogle = new Map<string, { userId: string; expira: number }>();
 
   constructor(
     private prisma: PrismaService,
@@ -55,6 +64,13 @@ export class AuthService {
       throw new UnauthorizedException('Email ou senha inválidos');
     }
 
+    return this.emitirSessao(user);
+  }
+
+  /** Gera os tokens da sessão (mesma resposta do login por senha) */
+  private async emitirSessao(user: {
+    id: string; email: string; nome: string; roles: any; escritorioId: string;
+  }): Promise<TokenResponse & { user: any }> {
     const tokens = this.generateTokens(user.id, user.email, user.roles as any);
 
     // Store refresh token hash in DB
@@ -182,6 +198,105 @@ export class AuthService {
     } catch (error) {
       throw new UnauthorizedException('Token de refresh inválido');
     }
+  }
+
+  // ═══════════════════════ ENTRAR COM GOOGLE ═══════════════════════════════
+
+  static googleConfigurado(): boolean {
+    return !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET);
+  }
+
+  /** Endereço de retorno: GOOGLE_LOGIN_REDIRECT_URI ou, sem ele, o do próprio sistema */
+  static redirectLoginGoogle(): string {
+    const base = (process.env.APP_URL || process.env.FRONTEND_URL || 'http://localhost:3001').replace(/\/+$/, '');
+    return process.env.GOOGLE_LOGIN_REDIRECT_URI || `${base}/api/auth/google/callback`;
+  }
+
+  private clienteGoogle() {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { google } = require('googleapis');
+    return new google.auth.OAuth2(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET, AuthService.redirectLoginGoogle());
+  }
+
+  private assinarEstadoGoogle(conteudo: string): string {
+    const segredo = process.env.JWT_SECRET ?? '';
+    if (!segredo) throw new BadRequestException('JWT_SECRET não configurado.');
+    return createHmac('sha256', segredo).update(`login-google.${conteudo}`).digest('hex');
+  }
+
+  /**
+   * URL da tela do Google. `consentir` força a tela de permissões: é o único jeito de o Google
+   * devolver o token contínuo da agenda para quem já tinha autorizado antes.
+   */
+  urlLoginGoogle(opcoes: { consentir?: boolean; email?: string } = {}): string {
+    if (!AuthService.googleConfigurado()) throw new BadRequestException('Login com Google ainda não configurado no servidor.');
+    const conteudo = `${randomBytes(12).toString('hex')}.${Date.now()}.${opcoes.consentir ? 1 : 0}`;
+    return this.clienteGoogle().generateAuthUrl({
+      access_type: 'offline',
+      include_granted_scopes: true,
+      scope: ESCOPOS_LOGIN_GOOGLE,
+      prompt: opcoes.consentir ? 'consent' : 'select_account',
+      ...(opcoes.email ? { login_hint: opcoes.email } : {}),
+      state: `${conteudo}.${this.assinarEstadoGoogle(conteudo)}`,
+    });
+  }
+
+  /**
+   * Volta do Google: confere o "state", identifica o e-mail e só deixa entrar quem já é usuário
+   * ativo. Se veio permissão da agenda, guarda o token (cifrado). Devolve para onde redirecionar.
+   */
+  async concluirLoginGoogle(code: string, state: string): Promise<{ redirecionar: string }> {
+    const partes = String(state ?? '').split('.');
+    const assinatura = partes.pop() ?? '';
+    const conteudo = partes.join('.');
+    const [, tsStr, consentiu] = partes;
+    const esperado = conteudo ? this.assinarEstadoGoogle(conteudo) : '';
+    const valido = esperado.length === assinatura.length && assinatura.length > 0 &&
+      timingSafeEqual(Buffer.from(esperado), Buffer.from(assinatura)) && Date.now() - Number(tsStr) < 15 * 60_000;
+    if (!valido) throw new ForbiddenException('Link do Google inválido ou expirado. Tente entrar de novo.');
+    if (!code) throw new BadRequestException('O Google não devolveu a autorização.');
+
+    const cliente = this.clienteGoogle();
+    const { tokens } = await cliente.getToken(code);
+    const ticket = await cliente.verifyIdToken({ idToken: tokens.id_token, audience: process.env.GOOGLE_CLIENT_ID });
+    const perfil = ticket.getPayload() ?? {};
+    if (!perfil.email || !perfil.email_verified) throw new ForbiddenException('A conta Google não tem e-mail verificado.');
+
+    const user = await this.prisma.usuario.findFirst({
+      where: { email: { equals: perfil.email, mode: 'insensitive' }, ativo: true },
+      select: { id: true, googleAgendaToken: true },
+    });
+    if (!user) {
+      throw new ForbiddenException(`O e-mail ${perfil.email} não está cadastrado no JurysOne. Peça acesso ao administrador do escritório.`);
+    }
+
+    const liberouAgenda = String(tokens.scope ?? '').split(' ').includes(ESCOPO_AGENDA);
+    if (tokens.refresh_token && liberouAgenda && criptografiaConfigurada()) {
+      await this.prisma.usuario.update({
+        where: { id: user.id },
+        data: { googleAgendaToken: cifrar(tokens.refresh_token), googleAgendaId: 'primary', googleAgendaConectadoEm: new Date() },
+      });
+    } else if (!user.googleAgendaToken && liberouAgenda && consentiu !== '1' && criptografiaConfigurada()) {
+      // Já tinha autorizado antes e o Google não reenviou o token da agenda: pede a permissão de novo, uma vez
+      return { redirecionar: this.urlLoginGoogle({ consentir: true, email: perfil.email }) };
+    }
+
+    const agora = Date.now();
+    for (const [c, v] of this.codigosGoogle) if (v.expira < agora) this.codigosGoogle.delete(c);
+    const codigo = randomBytes(24).toString('base64url');
+    this.codigosGoogle.set(codigo, { userId: user.id, expira: agora + CODIGO_GOOGLE_VALIDADE_MS });
+    return { redirecionar: `/login.html?google=${codigo}` };
+  }
+
+  /** A tela de login troca o código de uso único pela sessão */
+  async trocarCodigoGoogle(codigo: string): Promise<TokenResponse & { user: any; agendaConectada: boolean }> {
+    const item = this.codigosGoogle.get(String(codigo ?? ''));
+    this.codigosGoogle.delete(String(codigo ?? ''));
+    if (!item || item.expira < Date.now()) throw new UnauthorizedException('Login com Google expirou. Tente de novo.');
+    const user = await this.prisma.usuario.findUnique({ where: { id: item.userId } });
+    if (!user || !user.ativo) throw new UnauthorizedException('Conta de usuário inativa');
+    const sessao = await this.emitirSessao(user);
+    return { ...sessao, agendaConectada: !!user.googleAgendaToken };
   }
 
   /**
