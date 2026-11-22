@@ -1884,21 +1884,32 @@
                     <div style="display:flex;align-items:center;gap:10px">
                       <div class="card-title">📋 Log de Atividades</div>
                       <select id="aud-filtro-modulo" onchange="renderAuditoria()" style="border:1.5px solid #e2e8f0;border-radius:7px;padding:5px 10px;font-size:12px">
-                        <option value="">Todos os módulos</option>
-                        <option value="Sistema">Sistema</option>
-                        <option value="Financeiro">Financeiro</option>
-                        <option value="Processos">Processos</option>
-                        <option value="Equipe">Equipe</option>
-                        <option value="Configurações">Configurações</option>
+                        <option value="">Todas as ações</option>
+                        <option value="LOGIN">Login</option>
+                        <option value="LOGIN_GOOGLE">Login com Google</option>
+                        <option value="LOGIN_FALHOU">Login recusado</option>
+                        <option value="LOGOUT">Logout</option>
+                        <option value="INCLUSAO">Inclusão</option>
+                        <option value="ALTERACAO">Alteração</option>
+                        <option value="EXCLUSAO">Exclusão</option>
+                        <option value="ACAO">Ação (cumprir, enviar…)</option>
+                        <option value="VISUALIZACAO">Abriu registro</option>
+                        <option value="PEDIDO_NOVA_SENHA">Pediu nova senha</option>
+                        <option value="SENHA_REDEFINIDA">Trocou a senha</option>
                       </select>
                       <select id="aud-filtro-usuario" onchange="renderAuditoria()" style="border:1.5px solid #e2e8f0;border-radius:7px;padding:5px 10px;font-size:12px">
                         <option value="">Todos os usuários</option>
                       </select>
+                      <input type="date" id="aud-filtro-de" onchange="renderAuditoria()" title="De" style="border:1.5px solid #e2e8f0;border-radius:7px;padding:4px 8px;font-size:12px">
+                      <input type="date" id="aud-filtro-ate" onchange="renderAuditoria()" title="Até" style="border:1.5px solid #e2e8f0;border-radius:7px;padding:4px 8px;font-size:12px">
                     </div>
                     <div style="display:flex;gap:6px">
+                      <button onclick="renderAuditoria()" style="padding:6px 14px;border:1.5px solid #e2e8f0;border-radius:7px;background:white;color:#475569;font-size:12px;font-weight:600;cursor:pointer">⟳ Atualizar</button>
                       <button onclick="cfgExportarAuditoria()" style="padding:6px 14px;border:1.5px solid #e2e8f0;border-radius:7px;background:white;color:#475569;font-size:12px;font-weight:600;cursor:pointer">📊 Exportar</button>
-                      <button onclick="cfgLimparAuditoria()" style="padding:6px 14px;border:1.5px solid #fca5a5;border-radius:7px;background:#fff5f5;color:#ef4444;font-size:12px;font-weight:600;cursor:pointer">🗑 Limpar</button>
                     </div>
+                  </div>
+                  <div style="padding:8px 16px;font-size:11.5px;color:#64748b;background:#f8fafc;border-bottom:1px solid #eef2f7">
+                    🔒 Registro permanente feito pelo servidor: data e horário (Brasília), usuário, IP da máquina e navegador/sistema. Ninguém pode apagar pela tela. Visível só para o administrador.
                   </div>
                   <div id="auditoria-lista" style="max-height:500px;overflow-y:auto"></div>
                 </div>
@@ -7197,6 +7208,12 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
 
         // ─── Logout: limpa sessão e redireciona para login ──────────────────
         function fazerLogout() {
+          // Avisa o servidor (encerra a sessão e registra o LOGOUT na auditoria); keepalive conclui mesmo saindo da página
+          const _t = localStorage.getItem('jurysone_token');
+          if (_t) {
+            const _b = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
+            try { fetch(_b + '/auth/logout', { method: 'POST', keepalive: true, headers: { Authorization: 'Bearer ' + _t } }).catch(() => {}); } catch (e) {}
+          }
           localStorage.removeItem('jurysone_token');
           localStorage.removeItem('jurysone_user');
           window.location.replace('/login.html');
@@ -7848,46 +7865,75 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           showToast('📌 Alerta específico adicionado!', 'success');
         }
 
-        /* ── AUDITORIA ── */
-        function renderAuditoria() {
-          const filtroMod  = document.getElementById('aud-filtro-modulo')?.value  || '';
-          const filtroUser = document.getElementById('aud-filtro-usuario')?.value || '';
-          const lista = cfgAuditLog.filter(e =>
-            (!filtroMod  || e.modulo   === filtroMod) &&
-            (!filtroUser || e.usuario  === filtroUser)
-          );
-          const hoje = '2026-03-14';
-          _setTxt('aud-stat-hoje',    cfgAuditLog.filter(e=>e.ts.startsWith(hoje)).length);
-          _setTxt('aud-stat-logins',  cfgAuditLog.filter(e=>e.acao==='Login').length);
-          _setTxt('aud-stat-edicoes', cfgAuditLog.filter(e=>e.tipo==='edicao').length);
-          _setTxt('aud-stat-alertas', cfgAuditLog.filter(e=>e.tipo==='alerta').length);
-          const TIPO_COR  = {info:'#3b82f6',edicao:'#f59e0b',alerta:'#ef4444',equipe:'#10b981',relatorio:'#8b5cf6',config:'#0f2d5e',auto:'#06b6d4',lgpd:'#7c3aed'};
-          const TIPO_ICON = {info:'ℹ️',edicao:'✏️',alerta:'⚠️',equipe:'👥',relatorio:'📊',config:'⚙️',auto:'🤖',lgpd:'⚖️'};
+        /* ── AUDITORIA (registros reais do servidor; só leitura) ── */
+        const AUD_ACOES = {
+          LOGIN:{l:'Entrou (senha)',i:'🔑',c:'#10b981'}, LOGIN_GOOGLE:{l:'Entrou (Google)',i:'🔑',c:'#10b981'},
+          LOGIN_FALHOU:{l:'Login recusado — senha errada',i:'⚠️',c:'#ef4444'}, LOGOUT:{l:'Saiu',i:'🚪',c:'#64748b'},
+          INCLUSAO:{l:'Incluiu',i:'➕',c:'#3b82f6'}, ALTERACAO:{l:'Alterou',i:'✏️',c:'#f59e0b'},
+          EXCLUSAO:{l:'Excluiu',i:'🗑',c:'#ef4444'}, ACAO:{l:'Executou ação',i:'⚡',c:'#8b5cf6'},
+          VISUALIZACAO:{l:'Abriu',i:'👁',c:'#06b6d4'}, PEDIDO_NOVA_SENHA:{l:'Pediu nova senha',i:'📧',c:'#f59e0b'},
+          SENHA_REDEFINIDA:{l:'Trocou a senha',i:'🔒',c:'#f59e0b'},
+        };
+        let _audDados = [];
+        function _audEsc(s){ return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+        function _audAparelho(ua){
+          ua = String(ua || ''); if (!ua) return '—';
+          const nav = /Edg\//.test(ua) ? 'Edge' : /OPR\//.test(ua) ? 'Opera' : /Chrome\//.test(ua) ? 'Chrome' : /Firefox\//.test(ua) ? 'Firefox' : /Safari\//.test(ua) ? 'Safari' : /curl|PowerShell|node/i.test(ua) ? 'Script/API' : 'Outro';
+          const so = /Windows/.test(ua) ? 'Windows' : /Android/.test(ua) ? 'Android' : /iPhone|iPad/.test(ua) ? 'iPhone/iPad' : /Mac OS/.test(ua) ? 'Mac' : /Linux/.test(ua) ? 'Linux' : '';
+          return nav + (so ? ' · ' + so : '');
+        }
+        async function renderAuditoria() {
           const el = document.getElementById('auditoria-lista');
           if (!el) return;
-          if (lista.length === 0) {
-            el.innerHTML = '<div style="text-align:center;padding:40px;color:#94a3b8;font-size:13px">Nenhum evento encontrado com os filtros aplicados</div>';
-            return;
-          }
-          el.innerHTML = lista.map(e => {
-            const cor  = TIPO_COR[e.tipo]  || '#64748b';
-            const icon = TIPO_ICON[e.tipo] || '📋';
-            const p    = CFG_PERFIS[e.perfil] || {icon:'⚙️',label:e.perfil};
-            return `
-              <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 16px;border-bottom:1px solid #f8fafc"
-                   onmouseenter="this.style.background='#fafafa'" onmouseleave="this.style.background='transparent'">
-                <div style="width:28px;height:28px;border-radius:50%;background:${cor+'15'};display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;margin-top:2px">${icon}</div>
-                <div style="flex:1;min-width:0">
-                  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-                    <span style="font-size:12px;font-weight:700;color:#1e293b">${e.usuario}</span>
-                    <span style="font-size:10px;background:${cor+'15'};color:${cor};padding:1px 6px;border-radius:4px;font-weight:800">${e.modulo}</span>
-                    <span style="font-size:12px;color:#475569">${e.acao}</span>
+          const base = (window.JURYSONE_CONFIG && window.JURYSONE_CONFIG.API_URL) || '/api';
+          const h = { Authorization: 'Bearer ' + (localStorage.getItem('jurysone_token') || '') };
+          const q = new URLSearchParams({ limit: '300' });
+          const acao = document.getElementById('aud-filtro-modulo')?.value || '';
+          const usuario = document.getElementById('aud-filtro-usuario')?.value || '';
+          const de = document.getElementById('aud-filtro-de')?.value || '';
+          const ate = document.getElementById('aud-filtro-ate')?.value || '';
+          if (acao) q.set('acao', acao); if (usuario) q.set('usuarioId', usuario); if (de) q.set('de', de); if (ate) q.set('ate', ate);
+          el.innerHTML = '<div style="text-align:center;padding:30px;color:#94a3b8;font-size:13px">Carregando…</div>';
+          try {
+            const [rl, rr] = await Promise.all([fetch(base + '/auditoria?' + q, { headers: h }), fetch(base + '/auditoria/resumo', { headers: h })]);
+            if (rl.status === 403) { el.innerHTML = '<div style="text-align:center;padding:40px;color:#94a3b8;font-size:13px">🔒 A auditoria é visível só para o administrador.</div>'; return; }
+            if (!rl.ok) throw new Error('HTTP ' + rl.status);
+            const r = await rl.json(); _audDados = r.data || [];
+            if (rr.ok) { const s = await rr.json(); _setTxt('aud-stat-hoje', s.eventosHoje); _setTxt('aud-stat-logins', s.loginsHoje); _setTxt('aud-stat-edicoes', s.alteracoesHoje); _setTxt('aud-stat-alertas', s.alertasHoje); }
+            // Filtro de usuários a partir dos registros (mantém a escolha atual)
+            const sel = document.getElementById('aud-filtro-usuario');
+            if (sel && !usuario) {
+              const vistos = new Map(); _audDados.forEach(e => e.usuario && vistos.set(e.usuario.id, e.usuario.nome + ' (' + e.usuario.email + ')'));
+              sel.innerHTML = '<option value="">Todos os usuários</option>' + [...vistos].map(([id, n]) => `<option value="${_audEsc(id)}">${_audEsc(n)}</option>`).join('');
+            }
+            if (!_audDados.length) { el.innerHTML = '<div style="text-align:center;padding:40px;color:#94a3b8;font-size:13px">Nenhum registro com esses filtros</div>'; return; }
+            el.innerHTML = _audDados.map((e, idx) => {
+              const a = AUD_ACOES[e.acao] || { l: e.acao, i: '📋', c: '#64748b' };
+              const quando = new Date(e.createdAt).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+              const p = e.payload || {};
+              const falhou = p.sucesso === false;
+              const alvo = [e.tipoEntidade, e.idEntidade ? '#' + String(e.idEntidade).slice(0, 8) : ''].filter(Boolean).join(' ');
+              return `
+              <div style="padding:9px 16px;border-bottom:1px solid #f1f5f9;cursor:pointer" onclick="const d=document.getElementById('aud-det-${idx}');d.style.display=d.style.display==='none'?'block':'none'">
+                <div style="display:flex;align-items:flex-start;gap:12px">
+                  <div style="width:28px;height:28px;border-radius:50%;background:${a.c}18;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">${a.i}</div>
+                  <div style="flex:1;min-width:0">
+                    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                      <span style="font-size:12px;font-weight:700;color:#1e293b">${_audEsc(e.usuario?.nome || 'Sistema')}</span>
+                      <span style="font-size:10px;background:${a.c}18;color:${a.c};padding:1px 6px;border-radius:4px;font-weight:800">${_audEsc(a.l)}</span>
+                      ${alvo ? `<span style="font-size:12px;color:#475569">${_audEsc(alvo)}</span>` : ''}
+                      ${falhou ? `<span style="font-size:10px;background:#fee2e2;color:#b91c1c;padding:1px 6px;border-radius:4px;font-weight:800">NÃO CONCLUÍDO</span>` : ''}
+                    </div>
+                    <div style="font-size:11px;color:#94a3b8;margin-top:2px">🌐 IP ${_audEsc(e.ipAddress || '—')}${/^(::1|127\.0\.0\.1)$/.test(e.ipAddress || '') ? ' (este computador)' : ''} · 💻 ${_audEsc(_audAparelho(e.userAgent))}${p.rota ? ' · ' + _audEsc(p.rota) : ''}</div>
                   </div>
-                  <div style="font-size:11px;color:#94a3b8;margin-top:2px">${e.detalhe}</div>
+                  <div style="font-size:10.5px;color:#64748b;white-space:nowrap;flex-shrink:0">${_audEsc(quando)}</div>
                 </div>
-                <div style="font-size:10px;color:#94a3b8;white-space:nowrap;flex-shrink:0">${e.ts}</div>
+                <pre id="aud-det-${idx}" style="display:none;margin:8px 0 0 40px;padding:8px 10px;background:#f8fafc;border-radius:6px;font-size:11px;color:#334155;white-space:pre-wrap;word-break:break-word">${_audEsc(JSON.stringify({ usuario: e.usuario?.email, ip: e.ipAddress, navegador: e.userAgent, ...p }, null, 2))}</pre>
               </div>`;
-          }).join('');
+            }).join('');
+          } catch (err) {
+            el.innerHTML = '<div style="text-align:center;padding:40px;color:#ef4444;font-size:13px">Não foi possível carregar a auditoria (' + _audEsc(err.message) + ')</div>';
+          }
         }
 
         // ─── Registra tentativas de acesso inválido / ações suspeitas ───────
@@ -7965,24 +8011,30 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
 
         function cfgExportarAuditoria() {
           try {
+            if (!_audDados.length) { showToast('Nada para exportar com esses filtros', 'info'); return; }
             const ts = new Date().toISOString().replace(/[:.]/g,'-').slice(0,19);
             const csv = _arrayToCsv(
-              ['Data/Hora','Usuário','Perfil','Módulo','Ação','Detalhe','Tipo'],
-              cfgAuditLog.map(e=>[e.ts,e.usuario,e.perfil,e.modulo,e.acao,e.detalhe,e.tipo])
+              ['Data/Hora (Brasília)','Usuário','E-mail','Ação','Módulo','Registro','Rota','Concluído','IP','Navegador/Sistema','Detalhes'],
+              _audDados.map(e => {
+                const p = e.payload || {};
+                return [
+                  new Date(e.createdAt).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
+                  e.usuario?.nome || 'Sistema', e.usuario?.email || '', (AUD_ACOES[e.acao]?.l || e.acao),
+                  e.tipoEntidade || '', e.idEntidade || '', p.rota || '', p.sucesso === false ? 'não' : 'sim',
+                  e.ipAddress || '', e.userAgent || '', JSON.stringify(p),
+                ];
+              })
             );
             _downloadBlob(csv, `auditoria_jurysone_${ts}.csv`, 'text/csv');
-            showToast('📊 Log de auditoria exportado em CSV!', 'success');
+            showToast('📊 Auditoria exportada em CSV!', 'success');
           } catch(e) {
             showToast('❌ Erro ao exportar auditoria: '+e.message, 'danger');
           }
         }
 
+        // Auditoria é permanente: não há mais "Limpar" (os registros ficam só no servidor)
         async function cfgLimparAuditoria() {
-          if (!(await confirmar('Limpar todo o log de auditoria? Esta ação não pode ser desfeita.', 'Limpar Auditoria', '#f59e0b', 'Limpar Tudo'))) return;
-          cfgAuditLog = [];
-          _salvarDadosLocais();
-          renderAuditoria();
-          showToast('🗑 Log de auditoria limpo', 'info');
+          showToast('🔒 A auditoria é permanente e não pode ser apagada.', 'info');
         }
 
         // ─── API MANAGEMENT (etapa A, 20/11/2026) ─────────────────

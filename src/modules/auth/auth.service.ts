@@ -5,6 +5,7 @@ import * as argon2 from 'argon2';
 import { createHash, createHmac, randomBytes, timingSafeEqual } from 'crypto';
 import { enviarEmail } from '../../common/email';
 import { cifrar, criptografiaConfigurada } from '../../common/cripto';
+import { AuditoriaService, ContextoRequisicao } from '../auditoria/auditoria.service';
 
 /** Entrar com Google: identifica a pessoa e, na mesma autorização, libera o Google Agenda */
 const ESCOPO_AGENDA = 'https://www.googleapis.com/auth/calendar.events';
@@ -47,9 +48,10 @@ export class AuthService {
   constructor(
     private prisma: PrismaService,
     private jwtService: JwtService,
+    private auditoria: AuditoriaService,
   ) {}
 
-  async login(dto: LoginDto): Promise<TokenResponse & { user: any }> {
+  async login(dto: LoginDto, ctx?: ContextoRequisicao): Promise<TokenResponse & { user: any }> {
     const user = await this.prisma.usuario.findUnique({
       where: { email: dto.email },
     });
@@ -61,10 +63,20 @@ export class AuthService {
     const passwordMatch = await argon2.verify(user.senha, dto.password);
 
     if (!passwordMatch) {
+      // Senha errada para uma conta existente: fica na auditoria do escritório
+      await this.auditoria.registrar({
+        escritorioId: user.escritorioId, usuarioId: user.id, acao: 'LOGIN_FALHOU', tipoEntidade: 'auth', ctx,
+        detalhes: { motivo: 'senha incorreta', email: user.email },
+      });
       throw new UnauthorizedException('Email ou senha inválidos');
     }
 
-    return this.emitirSessao(user);
+    const sessao = await this.emitirSessao(user);
+    await this.auditoria.registrar({
+      escritorioId: user.escritorioId, usuarioId: user.id, acao: 'LOGIN', tipoEntidade: 'auth', ctx,
+      detalhes: { metodo: 'senha', email: user.email },
+    });
+    return sessao;
   }
 
   /** Gera os tokens da sessão (mesma resposta do login por senha) */
@@ -289,13 +301,17 @@ export class AuthService {
   }
 
   /** A tela de login troca o código de uso único pela sessão */
-  async trocarCodigoGoogle(codigo: string): Promise<TokenResponse & { user: any; agendaConectada: boolean }> {
+  async trocarCodigoGoogle(codigo: string, ctx?: ContextoRequisicao): Promise<TokenResponse & { user: any; agendaConectada: boolean }> {
     const item = this.codigosGoogle.get(String(codigo ?? ''));
     this.codigosGoogle.delete(String(codigo ?? ''));
     if (!item || item.expira < Date.now()) throw new UnauthorizedException('Login com Google expirou. Tente de novo.');
     const user = await this.prisma.usuario.findUnique({ where: { id: item.userId } });
     if (!user || !user.ativo) throw new UnauthorizedException('Conta de usuário inativa');
     const sessao = await this.emitirSessao(user);
+    await this.auditoria.registrar({
+      escritorioId: user.escritorioId, usuarioId: user.id, acao: 'LOGIN_GOOGLE', tipoEntidade: 'auth', ctx,
+      detalhes: { metodo: 'google', email: user.email, agendaConectada: !!user.googleAgendaToken },
+    });
     return { ...sessao, agendaConectada: !!user.googleAgendaToken };
   }
 
@@ -303,15 +319,19 @@ export class AuthService {
    * "Esqueceu a senha?": gera um código de uso único, guarda só o hash e envia o link por e-mail.
    * Responde sempre a mesma mensagem e não espera o envio, para não revelar quais e-mails existem.
    */
-  async solicitarRedefinicaoSenha(emailInformado: string): Promise<{ message: string }> {
+  async solicitarRedefinicaoSenha(emailInformado: string, ctx?: ContextoRequisicao): Promise<{ message: string }> {
     const email = String(emailInformado ?? '').trim();
     if (!email) throw new BadRequestException('Informe o e-mail');
 
     const user = await this.prisma.usuario.findFirst({
       where: { email: { equals: email, mode: 'insensitive' }, ativo: true },
-      select: { id: true, nome: true, email: true },
+      select: { id: true, nome: true, email: true, escritorioId: true },
     });
     if (!user) return { message: RESET_MENSAGEM };
+    await this.auditoria.registrar({
+      escritorioId: user.escritorioId, usuarioId: user.id, acao: 'PEDIDO_NOVA_SENHA', tipoEntidade: 'auth', ctx,
+      detalhes: { email: user.email },
+    });
 
     const codigo = randomBytes(32).toString('base64url');
     await this.prisma.usuario.update({
@@ -346,7 +366,7 @@ export class AuthService {
   }
 
   /** Troca a senha a partir do código do e-mail; invalida o código e desconecta as sessões abertas. */
-  async redefinirSenha(codigo: string, novaSenha: string): Promise<{ message: string }> {
+  async redefinirSenha(codigo: string, novaSenha: string, ctx?: ContextoRequisicao): Promise<{ message: string }> {
     const senha = String(novaSenha ?? '');
     if (senha.length < 8 || !/[A-Za-z]/.test(senha) || !/[0-9]/.test(senha)) {
       throw new BadRequestException('A nova senha precisa ter pelo menos 8 caracteres, com letras e números.');
@@ -356,7 +376,7 @@ export class AuthService {
 
     const user = await this.prisma.usuario.findUnique({
       where: { resetSenhaHash: hashCodigo(String(codigo)) },
-      select: { id: true, ativo: true, resetSenhaExpiraEm: true },
+      select: { id: true, ativo: true, resetSenhaExpiraEm: true, escritorioId: true },
     });
     if (!user || !user.ativo || !user.resetSenhaExpiraEm || user.resetSenhaExpiraEm < new Date()) {
       throw invalido;
@@ -371,14 +391,23 @@ export class AuthService {
         refreshTokenHash: null,
       },
     });
+    await this.auditoria.registrar({
+      escritorioId: user.escritorioId, usuarioId: user.id, acao: 'SENHA_REDEFINIDA', tipoEntidade: 'auth', ctx,
+      detalhes: { via: 'link do e-mail' },
+    });
     return { message: 'Senha alterada. Entre com a nova senha.' };
   }
 
-  async logout(userId: string): Promise<void> {
+  async logout(userId: string, ctx?: ContextoRequisicao): Promise<void> {
     // Invalidate refresh token by clearing it
-    await this.prisma.usuario.update({
+    const user = await this.prisma.usuario.update({
       where: { id: userId },
       data: { refreshTokenHash: null },
+      select: { id: true, escritorioId: true, email: true },
+    });
+    await this.auditoria.registrar({
+      escritorioId: user.escritorioId, usuarioId: user.id, acao: 'LOGOUT', tipoEntidade: 'auth', ctx,
+      detalhes: { email: user.email },
     });
   }
 

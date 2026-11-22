@@ -31,6 +31,7 @@ import { NotificationsModule } from './modules/notifications/notifications.modul
 import { ParceirosModule } from './modules/parceiros/parceiros.module';
 import { PortalModule } from './modules/portal/portal.module';
 import { PrazosModule } from './modules/prazos/prazos.module';
+import { AuditoriaModule } from './modules/auditoria/auditoria.module';
 import { ProcessosModule } from './modules/processos/processos.module';
 import { StatusFlowModule } from './modules/status-flow/status-flow.module';
 import { TarefasModule } from './modules/tarefas/tarefas.module';
@@ -95,6 +96,7 @@ import { CatalogoModule } from './modules/catalogo/catalogo.module';
     ParceirosModule,
     PortalModule,
     PrazosModule,
+    AuditoriaModule,
     ProcessosModule,
     StatusFlowModule,
     TarefasModule,
