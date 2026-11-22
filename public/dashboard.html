@@ -6162,24 +6162,41 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           const modo = document.getElementById('wpp-modo');
           wppIaCarregarGeral();
           try {
+            // Cada login tem o próprio WhatsApp; os números que o dono liberou aparecem junto
             const c = await wppGet('/whatsapp-oficial/conexao');
             window._wppOrigem = c.conectado ? c.origem : null;
+            window._wppMinha = c.conectado ? c : null;
+            window._wppCompartilhadas = c.compartilhadas || [];
             const webAgora = await wppGet('/whatsapp-oficial/web').catch(() => ({}));
-            if (webAgora.estado === 'aguardando_qr' || (webAgora.estado === 'iniciando' && c.origem !== 'WEB')) { modo.textContent = 'Conectando pelo WhatsApp Web…'; wppWebAcompanhar(); return; }
-            if (!c.conectado) {
+            if (webAgora.estado === 'aguardando_qr' || (webAgora.estado === 'iniciando' && c.origem !== 'WEB')) { modo.textContent = 'Conectando o seu WhatsApp…'; wppWebAcompanhar(); return; }
+            if (!c.conectado && !window._wppCompartilhadas.length) {
               modo.textContent = '';
               wppTelaConectar(webAgora.erro);
               return;
             }
-            if (c.origem === 'WEB') {
-              const web = await wppGet('/whatsapp-oficial/web').catch(() => ({}));
-              modo.innerHTML = `🟢 WhatsApp Web · ${escapeHtml(wppTelefone(c.numero))}${web.estado && web.estado !== 'conectado' ? ' <span style="color:#d97706">(reconectando…)</span>' : ''}
-                · <a href="#" onclick="wppWebDesconectar();return false;" style="color:#ef4444">desconectar</a>`;
+            const linhas = [];
+            if (!c.conectado) {
+              linhas.push(`📵 Você ainda não conectou o seu WhatsApp · <a href="#" onclick="wppWebConectar();return false;" style="color:#16a34a;font-weight:600">conectar o meu</a>${webAgora.erro ? ` <span style="color:#b45309">(${escapeHtml(webAgora.erro)})</span>` : ''}`);
+            } else if (c.origem === 'WEB') {
+              linhas.push(`🟢 Meu WhatsApp · ${escapeHtml(wppTelefone(c.numero))}${webAgora.estado && webAgora.estado !== 'conectado' ? ' <span style="color:#d97706">(reconectando…)</span>' : ''}
+                · <a href="#" onclick="wppWebDesconectar();return false;" style="color:#ef4444">desconectar</a>`);
             } else {
-              modo.innerHTML = `API oficial da Meta · ${escapeHtml(wppTelefone(c.numero))}${c.origem === 'TESTE' ? ' (número de teste)' : ''}
-                · <a href="#" onclick="wppWebConectar();return false;" style="color:#16a34a;font-weight:600">trocar para WhatsApp Web</a>`;
+              linhas.push(`Meu número (API oficial da Meta) · ${escapeHtml(wppTelefone(c.numero))}${c.origem === 'TESTE' ? ' (número de teste)' : ''}
+                · <a href="#" onclick="wppWebConectar();return false;" style="color:#16a34a;font-weight:600">trocar para WhatsApp Web</a>`);
             }
-            document.getElementById('wpp-chat-tel').textContent = `Número do escritório: ${c.numero || ''}${c.origem === 'TESTE' ? ' (número de teste da Meta)' : ''}`;
+            if (c.conectado) {
+              const n = (c.acessoIds || []).length;
+              linhas.push(`👥 ${n ? `Também veem esta caixa: ${n} pessoa(s)` : 'Só você vê as conversas deste número'} · <a href="#" onclick="wppAcessos();return false;" style="color:#0f2d5e;font-weight:600">quem pode ver</a>`);
+            }
+            if (window._wppCompartilhadas.length) {
+              const atual = window._wppFiltroNumero || '';
+              const ops = [`<option value="">Todos os números</option>`]
+                .concat(c.conectado ? [`<option value="${escapeHtml(c.id)}"${atual === c.id ? ' selected' : ''}>Meu número</option>`] : [])
+                .concat(window._wppCompartilhadas.map(o => `<option value="${escapeHtml(o.id)}"${atual === o.id ? ' selected' : ''}>${escapeHtml((o.dono ? 'De ' + o.dono : 'Número') + ' · ' + wppTelefone(o.numero))}</option>`));
+              linhas.push(`<select id="wpp-filtro-num" onchange="window._wppFiltroNumero=this.value;wppCarregarConversas()" style="margin-top:4px;width:100%;padding:5px 8px;border:1.5px solid #e2e8f0;border-radius:6px;font-size:12px">${ops.join('')}</select>`);
+            }
+            modo.innerHTML = linhas.join('<br>');
+            document.getElementById('wpp-chat-tel').textContent = c.conectado ? `Meu número: ${c.numero || ''}${c.origem === 'TESTE' ? ' (número de teste da Meta)' : ''}` : '';
           } catch (e) {
             lista.innerHTML = `<div style="padding:32px 20px;text-align:center;color:#ef4444;font-size:13px">Não foi possível ler a conexão: ${escapeHtml(e.message)}</div>`;
             return;
@@ -6197,8 +6214,8 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         function wppTelaConectar(erro) {
           const lista = document.getElementById('wpp-conversas-list');
           lista.innerHTML = `<div style="padding:28px 18px;text-align:center;color:#64748b;font-size:13px;line-height:1.5">
-            <div style="font-size:32px;margin-bottom:8px">📵</div><b>WhatsApp não conectado</b><br>
-            Conecte o número do escritório para ver as conversas aqui.
+            <div style="font-size:32px;margin-bottom:8px">📵</div><b>O seu WhatsApp não está conectado</b><br>
+            Cada login conecta o próprio número. As conversas dele aparecem só para você e para quem você liberar.
             ${erro ? `<div style="margin-top:10px;color:#b45309;font-size:12px">${escapeHtml(erro)}</div>` : ''}
             <button onclick="wppWebConectar()" style="margin-top:14px;width:100%;padding:10px;border:none;border-radius:8px;background:#25d366;color:#fff;font-size:13px;font-weight:700;cursor:pointer">📱 Conectar pelo WhatsApp Web</button>
             <div style="margin-top:10px;font-size:11px;color:#94a3b8;text-align:left">Modo de testes: o JurysOne entra como “aparelho conectado”, igual ao WhatsApp Web. É um meio não oficial e o WhatsApp pode bloquear o número — use, de preferência, um número secundário.</div>
@@ -6231,7 +6248,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             lista.innerHTML = `<div style="padding:20px 16px;text-align:center;font-size:12px;color:#334155;line-height:1.5">
               ${s.qr ? `<img src="${s.qr}" alt="QR Code" style="width:230px;height:230px;border:1px solid #e2e8f0;border-radius:8px;background:#fff">`
                      : '<div style="padding:60px 0;color:#94a3b8">⏳ Gerando o QR Code…</div>'}
-              <div style="text-align:left;margin-top:12px"><b>No celular do escritório:</b><br>
+              <div style="text-align:left;margin-top:12px"><b>No SEU celular (o número que vai ficar neste login):</b><br>
               1. Abra o WhatsApp<br>2. Toque em ⋮ (ou Configurações) → <b>Aparelhos conectados</b><br>3. Toque em <b>Conectar um aparelho</b> e aponte para este código</div>
               <div style="margin-top:10px;color:#94a3b8;font-size:11px">O código muda sozinho a cada ~20 segundos.</div>
               <button onclick="clearInterval(window._wppQrTimer);wppWebDesconectar(true)" style="margin-top:10px;padding:6px 14px;border:1px solid #e2e8f0;border-radius:6px;background:#fff;color:#64748b;font-size:12px;cursor:pointer">Cancelar</button>
@@ -6242,7 +6259,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         }
 
         async function wppWebDesconectar(semPerguntar) {
-          if (!semPerguntar && !confirm('Desconectar o WhatsApp Web? As conversas já gravadas continuam no JurysOne.')) return;
+          if (!semPerguntar && !confirm('Desconectar o seu WhatsApp deste login? As conversas já gravadas continuam no JurysOne.')) return;
           try {
             await fetch(`${wppApi()}/whatsapp-oficial/web`, { method: 'DELETE', headers: wppHeaders() });
             window._wppAtiva = null;
@@ -6253,7 +6270,10 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         async function wppCarregarConversas() {
           try {
             const busca = document.getElementById('wpp-search')?.value || '';
-            window._wppConversas = await wppGet('/whatsapp-oficial/conversas' + (busca ? '?busca=' + encodeURIComponent(busca) : ''));
+            const q = new URLSearchParams();
+            if (busca) q.set('busca', busca);
+            if (window._wppFiltroNumero) q.set('conexaoId', window._wppFiltroNumero);
+            window._wppConversas = await wppGet('/whatsapp-oficial/conversas' + (q.toString() ? '?' + q.toString() : ''));
             wppRenderConversas(window._wppConversas);
           } catch (e) { /* mantém a lista anterior em falha passageira */ }
         }
@@ -6270,9 +6290,50 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
               <div style="flex:1;min-width:0">
                 <div style="display:flex;justify-content:space-between;gap:6px"><span style="font-size:14px;font-weight:600;color:#0f172a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(nome)}</span><span style="font-size:11px;color:#94a3b8;flex-shrink:0">${wppHora(c.ultimaMensagemEm)}</span></div>
                 <div style="display:flex;justify-content:space-between;gap:6px;margin-top:2px"><span style="font-size:12px;color:#64748b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(wppResumo(c.ultima))}</span>${c.naoLidas ? `<span style="background:#25d366;color:#fff;border-radius:10px;font-size:11px;font-weight:700;padding:1px 7px;flex-shrink:0">${c.naoLidas}</span>` : ''}</div>
+                ${!c.minha ? `<div style="margin-top:3px"><span style="background:#e0f2fe;color:#075985;border-radius:6px;font-size:10.5px;font-weight:700;padding:1px 6px">📱 ${escapeHtml(wppDonoDoNumero(c.numeroConexao))}</span></div>` : ''}
                 ${c.iaStatus === 'ENCAMINHADA' ? `<div style="margin-top:3px"><span style="background:#fef3c7;color:#92400e;border-radius:6px;font-size:10.5px;font-weight:700;padding:1px 6px" title="${escapeHtml(c.iaMotivo || '')}">🤖 precisa de advogado</span></div>` : c.iaStatus === 'AUTO' ? '<div style="margin-top:3px"><span style="background:#ede9fe;color:#6d28d9;border-radius:6px;font-size:10.5px;font-weight:700;padding:1px 6px">🤖 IA atendendo</span></div>' : ''}
               </div></div>`;
           }).join('');
+        }
+
+        /** Nome de quem é o número de uma conversa compartilhada */
+        function wppDonoDoNumero(numero) {
+          const o = (window._wppCompartilhadas || []).find(x => x.numero === numero);
+          return o && o.dono ? 'De ' + o.dono : wppTelefone(numero);
+        }
+
+        /** Quem pode ver (e responder) a caixa do meu número */
+        async function wppAcessos() {
+          let d;
+          try { d = await wppGet('/whatsapp-oficial/acessos'); } catch (e) { showToast('Não foi possível ler os acessos: ' + e.message, 'error'); return; }
+          document.getElementById('wpp-acessos-modal')?.remove();
+          const fundo = document.createElement('div');
+          fundo.id = 'wpp-acessos-modal';
+          fundo.style.cssText = 'position:fixed;inset:0;background:rgba(15,23,42,.45);display:flex;align-items:center;justify-content:center;z-index:9999;padding:16px';
+          fundo.onclick = (ev) => { if (ev.target === fundo) fundo.remove(); };
+          const marcados = new Set(d.acessoIds || []);
+          fundo.innerHTML = `<div style="background:#fff;border-radius:14px;max-width:420px;width:100%;padding:20px;box-shadow:0 10px 40px rgba(0,0,0,.2)">
+            <div style="font-size:16px;font-weight:700;color:#0f2d5e">👥 Quem pode ver o meu WhatsApp</div>
+            <div style="font-size:12.5px;color:#64748b;margin:6px 0 14px;line-height:1.5">Número ${escapeHtml(wppTelefone(d.numero))}. As pessoas marcadas veem as conversas deste número, abrem os anexos e <b>podem responder por ele</b>. Tudo fica na auditoria. Quem não estiver marcado não vê nada.</div>
+            ${(d.equipe || []).map(u => `<label style="display:flex;gap:10px;align-items:center;padding:9px 4px;border-bottom:1px solid #f1f5f9;cursor:pointer;font-size:13.5px">
+              <input type="checkbox" value="${escapeHtml(u.id)}" ${marcados.has(u.id) ? 'checked' : ''} style="width:16px;height:16px">
+              <span><b>${escapeHtml(u.nome || '')}</b><br><span style="color:#94a3b8;font-size:12px">${escapeHtml(u.email || '')}</span></span></label>`).join('') || '<div style="color:#94a3b8;font-size:13px">Não há outros usuários no escritório.</div>'}
+            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px">
+              <button onclick="document.getElementById('wpp-acessos-modal').remove()" style="padding:8px 14px;border:1px solid #e2e8f0;border-radius:8px;background:#fff;color:#64748b;cursor:pointer">Cancelar</button>
+              <button id="wpp-acessos-salvar" style="padding:8px 16px;border:none;border-radius:8px;background:#0f2d5e;color:#fff;font-weight:700;cursor:pointer">Salvar</button>
+            </div></div>`;
+          document.body.appendChild(fundo);
+          document.getElementById('wpp-acessos-salvar').onclick = async () => {
+            const usuarioIds = [...fundo.querySelectorAll('input[type=checkbox]:checked')].map(i => i.value);
+            try {
+              const r = await fetch(`${wppApi()}/whatsapp-oficial/acessos`, { method: 'PUT', headers: wppHeaders(true), body: JSON.stringify({ usuarioIds }) });
+              const x = await r.json().catch(() => ({}));
+              if (!r.ok) throw new Error(x.message || ('HTTP ' + r.status));
+              fundo.remove();
+              showToast(usuarioIds.length ? `Acesso liberado para ${usuarioIds.length} pessoa(s)` : 'Só você vê o seu WhatsApp', 'success');
+              wppInit();
+            } catch (e) { showToast('Não foi possível salvar: ' + e.message, 'error'); }
+          };
         }
 
         function wppFiltrarConversas(q) {
@@ -6325,8 +6386,8 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
           const c = window._wppConversaAtual;
           if (!c) return;
           const novo = c.iaStatus === 'AUTO' ? 'PAUSADA' : 'AUTO';
-          if (novo === 'AUTO' && !(window._wppIaCfg && window._wppIaCfg.ativo)) {
-            if (!confirm('O atendimento automático está DESLIGADO no geral. Ligar a IA só nesta conversa mesmo assim? (ela só responde quando o geral também estiver ligado)')) return;
+          if (novo === 'AUTO' && c.minha !== false && !(window._wppIaCfg && window._wppIaCfg.ativo)) {
+            if (!confirm('O atendimento automático está DESLIGADO no seu número. Ligar a IA só nesta conversa mesmo assim? (ela só responde quando o interruptor do número também estiver ligado)')) return;
           }
           try {
             const r = await fetch(wppApi() + `/atendimento-ia/conversas/${encodeURIComponent(c.id)}`, { method: 'POST', headers: wppHeaders(true), body: JSON.stringify({ status: novo }) });
@@ -6343,7 +6404,8 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
             const r = await fetch(wppApi() + '/atendimento-ia/config', { headers: wppHeaders() });
             if (!r.ok) { el.innerHTML = ''; return; }
             const cfg = await r.json(); window._wppIaCfg = cfg;
-            el.innerHTML = `🤖 Atendimento automático (IA): <b style="color:${cfg.ativo ? '#16a34a' : '#64748b'}">${cfg.ativo ? 'LIGADO' : 'desligado'}</b>`
+            if (!cfg.temNumero) { el.innerHTML = ''; return; }
+            el.innerHTML = `🤖 IA no meu número: <b style="color:${cfg.ativo ? '#16a34a' : '#64748b'}">${cfg.ativo ? 'LIGADA' : 'desligada'}</b>`
               + `${cfg.ativo && cfg.apenasNovosContatos ? ' · só contatos novos' : ''}${cfg.simulado ? ' · <span style="color:#b45309">modo simulação</span>' : ''}`
               + ` · <a href="#" onclick="wppIaAlternarGeral();return false;" style="color:#7c3aed;font-weight:600">${cfg.ativo ? 'desligar' : 'ligar'}</a>`;
           } catch (e) { el.innerHTML = ''; }
@@ -6351,7 +6413,7 @@ EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO...
         async function wppIaAlternarGeral() {
           const cfg = window._wppIaCfg || {};
           const ligar = !cfg.ativo;
-          if (ligar && !confirm('Ligar o atendimento automático?\n\nA IA (Claude Haiku) vai responder SÓ contatos NOVOS — quem escrever pela primeira vez a partir de agora. Família, amigos e clientes antigos não recebem resposta automática.\n\nEla nunca dá parecer jurídico nem informa preço, e passa a conversa para um advogado quando precisar (aviso no sino).')) return;
+          if (ligar && !confirm('Ligar o atendimento automático no SEU número?\n\nA IA (Claude Haiku) vai responder SÓ contatos NOVOS — quem escrever pela primeira vez a partir de agora. Família, amigos e clientes antigos não recebem resposta automática.\n\nEla nunca dá parecer jurídico nem informa preço, e passa a conversa para um advogado quando precisar (aviso no sino).')) return;
           try {
             const r = await fetch(wppApi() + '/atendimento-ia/config', { method: 'PATCH', headers: wppHeaders(true), body: JSON.stringify({ ativo: ligar }) });
             const d = await r.json().catch(() => ({}));

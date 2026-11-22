@@ -2,6 +2,7 @@
  * JURYSONE — Caixa de conversas do WhatsApp (o que a tela mostra e o que o advogado envia).
  * Regra da Meta: texto livre só até 24 h depois da última mensagem do contato;
  * fora disso, só modelo aprovado (fica para a etapa de modelos).
+ * Cada login só vê as conversas do próprio número e dos números que o dono liberou para ele.
  */
 import { BadGatewayException, BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
@@ -27,23 +28,37 @@ export class CaixaWhatsappService {
 
   async conversas(user: any, q: any = {}) {
     const busca = String(q?.busca ?? '').trim();
-    const web = (await this.conexoes.doEscritorio(user.officeId))?.origem === ORIGEM_WEB;
+    const conexaoId = q?.conexaoId ? String(q.conexaoId) : null;
     const lista = await this.prisma.whatsappConversa.findMany({
       where: {
         escritorioId: user.officeId,
+        conexao: this.conexoes.filtroVisiveis(user),
+        ...(conexaoId ? { conexaoId } : {}),
         ...(busca ? { OR: [{ nomeContato: { contains: busca, mode: 'insensitive' } }, { telefone: { contains: busca.replace(/\D/g, '') || busca } }] } : {}),
       },
       orderBy: { ultimaMensagemEm: { sort: 'desc', nulls: 'last' } },
       take: 200,
-      include: { mensagens: { orderBy: { dataHora: 'desc' }, take: 1, select: { texto: true, tipo: true, direcao: true, dataHora: true } } },
+      include: {
+        mensagens: { orderBy: { dataHora: 'desc' }, take: 1, select: { texto: true, tipo: true, direcao: true, dataHora: true } },
+        conexao: { select: { origem: true, usuarioId: true, numeroExibicao: true } },
+      },
     });
-    return lista.map(({ mensagens, ...c }) => ({ ...c, ultima: mensagens[0] ?? null, janelaAberta: web || this.janelaAberta(c.ultimaEntradaEm) }));
+    return lista.map(({ mensagens, conexao, ...c }) => ({
+      ...c, ultima: mensagens[0] ?? null,
+      janelaAberta: conexao.origem === ORIGEM_WEB || this.janelaAberta(c.ultimaEntradaEm),
+      numeroConexao: conexao.numeroExibicao, minha: conexao.usuarioId === user.id,
+    }));
   }
 
-  private async conversaDoEscritorio(user: any, id: string) {
+  /** Conversa que o usuário pode ver (do número dele ou de um número liberado para ele) */
+  async conversaVisivel(user: any, id: string) {
     const c = await this.prisma.whatsappConversa.findFirst({ where: { id, escritorioId: user.officeId }, include: { conexao: true } });
-    if (!c) throw new NotFoundException('Conversa não encontrada.');
+    if (!c || !this.conexoes.podeVer(user, c.conexao)) throw new NotFoundException('Conversa não encontrada.');
     return c;
+  }
+
+  private conversaDoEscritorio(user: any, id: string) {
+    return this.conversaVisivel(user, id);
   }
 
   /** Mensagens da conversa (mais antigas primeiro) e zera o contador de não lidas */
@@ -88,11 +103,12 @@ export class CaixaWhatsappService {
     const texto = String(textoBruto ?? '').trim();
     if (!texto) throw new BadRequestException('Escreva a mensagem.');
     if (texto.length > 4096) throw new BadRequestException('Mensagem acima de 4.096 caracteres (limite do WhatsApp).');
-    if (!c.conexao.ativo) throw new BadRequestException('O WhatsApp deste escritório está desconectado.');
+    if (!c.conexao.ativo) throw new BadRequestException('Este WhatsApp está desconectado.');
     if (c.conexao.origem === ORIGEM_WEB) {
-      // WhatsApp Web (testes): sem janela de 24 h; envia pelo aparelho conectado
+      // WhatsApp Web (testes): sem janela de 24 h; envia pelo aparelho do login dono do número
+      if (!c.conexao.usuarioId) throw new BadRequestException('Este número não tem dono: conecte-o de novo pelo QR Code.');
       let id: string;
-      try { id = await this.web.enviarTexto(c.escritorioId, c.telefone, texto); }
+      try { id = await this.web.enviarTexto({ escritorioId: c.escritorioId, usuarioId: c.conexao.usuarioId }, c.telefone, texto); }
       catch (e: any) {
         if (e instanceof BadRequestException) throw e;
         throw new BadGatewayException(`O WhatsApp recusou o envio. ${e?.message ?? e}`);

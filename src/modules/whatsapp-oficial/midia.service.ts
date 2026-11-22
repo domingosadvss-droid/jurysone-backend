@@ -60,7 +60,9 @@ export class MidiaWhatsappService {
     const prov = await this.arquivos.provedor(m.escritorioId);
     let raizId = conexao.pastaRaizId;
     if (!raizId) {
-      raizId = await prov.criarPasta('WhatsApp');
+      // Uma pasta por número: "WhatsApp - <dono>" (cada login conecta o próprio WhatsApp)
+      const dono = conexao.usuarioId ? await this.prisma.usuario.findUnique({ where: { id: conexao.usuarioId }, select: { nome: true } }) : null;
+      raizId = await prov.criarPasta(dono?.nome ? `WhatsApp - ${dono.nome}` : 'WhatsApp');
       await this.prisma.whatsappConexao.update({ where: { id: conexao.id }, data: { pastaRaizId: raizId } });
     }
     let pastaId = m.conversa.pastaArquivosId;
@@ -79,11 +81,13 @@ export class MidiaWhatsappService {
     return this.arquivos.provedor(escritorioId);
   }
 
-  /** Conteúdo do anexo já guardado, para a tela abrir ou baixar */
-  async conteudo(escritorioId: string, mensagemId: string) {
-    const m = await this.prisma.whatsappMensagemCaixa.findFirst({ where: { id: mensagemId, escritorioId } });
-    if (!m?.arquivoId) throw new NotFoundException('Anexo não disponível.');
-    const prov = await this.arquivos.provedor(escritorioId);
+  /** Conteúdo do anexo já guardado, para a tela abrir ou baixar (só de número que o usuário pode ver) */
+  async conteudo(user: { id: string; officeId: string }, mensagemId: string) {
+    const m = await this.prisma.whatsappMensagemCaixa.findFirst({
+      where: { id: mensagemId, escritorioId: user.officeId }, include: { conversa: { include: { conexao: true } } },
+    });
+    if (!m?.arquivoId || !this.conexoes.podeVer(user, m.conversa.conexao)) throw new NotFoundException('Anexo não disponível.');
+    const prov = await this.arquivos.provedor(user.officeId);
     return { buffer: await prov.baixarArquivo(m.arquivoId), mime: m.midiaMime ?? 'application/octet-stream', nome: this.nomeArquivo(m) };
   }
 }

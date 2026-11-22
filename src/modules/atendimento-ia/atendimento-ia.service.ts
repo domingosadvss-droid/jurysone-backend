@@ -2,7 +2,8 @@
  * JURYSONE — Atendimento automático do WhatsApp (IA, Claude Haiku por padrão)
  *
  * Quando o cliente escreve, a IA responde no lugar do escritório, dentro destas regras:
- *   • Liga e desliga em Configurações (começa DESLIGADO).
+ *   • Liga e desliga em CADA NÚMERO (cada login conecta o próprio WhatsApp; começa DESLIGADO).
+ *     Os ajustes (espera, silêncio, só contatos novos) valem para o escritório todo.
  *   • Por padrão só atende CONTATOS NOVOS (conversa criada depois de ligar): o número conectado
  *     costuma ser o celular do advogado, e a IA não pode responder família, amigos e clientes antigos.
  *     Em cada conversa o advogado pode ligar (AUTO) ou pausar (PAUSADA) a IA.
@@ -15,21 +16,19 @@
  * O gasto passa pelo IaUsoService (tarefa conversa_whatsapp, categoria CONVERSA: nunca é
  * bloqueada pelo limite mensal).
  */
-import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { IaUsoService } from '../ia-uso/ia-uso.service';
 import { CatalogoService } from '../catalogo/catalogo.service';
 import { CaixaWhatsappService } from '../whatsapp-oficial/caixa.service';
 import { RegistroMensagensService } from '../whatsapp-oficial/registro-mensagens.service';
 import { IaIndisponivel, MensagemConversa, RespostaAtendimento, respostaAtendimento } from '../../common/ia-claude';
-import { PERFIS_GESTAO } from '../../common/perfis';
+import { PERFIS_GESTAO, temPerfil } from '../../common/perfis';
 
 const CHAVE_CONFIG = 'ia_whatsapp';
 
+/** Ajustes do escritório. Ligar/desligar fica em cada número (whatsapp_conexoes.iaAtivo). */
 export interface ConfigAtendimentoIa {
-  ativo: boolean;
-  /** quando foi ligado (ISO): com apenasNovosContatos, só conversas criadas depois disso */
-  ativadoEm: string | null;
   apenasNovosContatos: boolean;
   /** espera antes de responder, para juntar mensagens seguidas */
   esperaSegundos: number;
@@ -38,7 +37,7 @@ export interface ConfigAtendimentoIa {
 }
 
 const PADRAO: ConfigAtendimentoIa = {
-  ativo: false, ativadoEm: null, apenasNovosContatos: true, esperaSegundos: 8, silencioAposHumanoHoras: 12,
+  apenasNovosContatos: true, esperaSegundos: 8, silencioAposHumanoHoras: 12,
 };
 
 /** Testes: responde com texto fixo e não envia nada ao WhatsApp (só grava na caixa como "simulada") */
@@ -78,45 +77,79 @@ export class AtendimentoIaService implements OnModuleInit {
 
   async config(escritorioId: string): Promise<ConfigAtendimentoIa> {
     const row = await this.prisma.configuracao.findFirst({ where: { escritorioId, chave: CHAVE_CONFIG } });
-    return { ...PADRAO, ...((row?.valor as any) ?? {}) };
+    const v: any = row?.valor ?? {};
+    return {
+      apenasNovosContatos: v.apenasNovosContatos ?? PADRAO.apenasNovosContatos,
+      esperaSegundos: v.esperaSegundos ?? PADRAO.esperaSegundos,
+      silencioAposHumanoHoras: v.silencioAposHumanoHoras ?? PADRAO.silencioAposHumanoHoras,
+    };
   }
 
-  async salvarConfig(escritorioId: string, dto: any) {
-    const atual = await this.config(escritorioId);
-    const novo: ConfigAtendimentoIa = { ...atual };
-    if (dto?.ativo !== undefined) {
-      novo.ativo = dto.ativo === true;
-      // Ligar de novo reinicia o marco: "contatos novos" passam a contar a partir de agora
-      if (novo.ativo && !atual.ativo) novo.ativadoEm = new Date().toISOString();
+  /** Para a tela: ajustes do escritório + se a IA está ligada no número do MEU login */
+  async configDoUsuario(user: { id: string; officeId: string }) {
+    const cfg = await this.config(user.officeId);
+    const minha = await this.prisma.whatsappConexao.findFirst({ where: { escritorioId: user.officeId, usuarioId: user.id, ativo: true } });
+    return { ...cfg, temNumero: !!minha, ativo: !!minha?.iaAtivo, ativadoEm: minha?.iaAtivadoEm ?? null, simulado: simulado() };
+  }
+
+  /**
+   * { ativo } liga/desliga a IA no número do meu login (qualquer advogado, no próprio número).
+   * { apenasNovosContatos, esperaSegundos, silencioAposHumanoHoras } valem para o escritório (gestão).
+   */
+  async salvarConfig(user: any, dto: any) {
+    const escritorioId = user.officeId;
+    const ajustes = ['apenasNovosContatos', 'esperaSegundos', 'silencioAposHumanoHoras'].some((k) => dto?.[k] !== undefined);
+    if (ajustes) {
+      if (!temPerfil(user, PERFIS_GESTAO)) throw new ForbiddenException('Só advogados de gestão mudam os ajustes do atendimento.');
+      const novo = await this.config(escritorioId);
+      if (dto?.apenasNovosContatos !== undefined) novo.apenasNovosContatos = dto.apenasNovosContatos !== false;
+      if (dto?.esperaSegundos !== undefined) novo.esperaSegundos = Math.min(120, Math.max(0, Number(dto.esperaSegundos) || 0));
+      if (dto?.silencioAposHumanoHoras !== undefined) novo.silencioAposHumanoHoras = Math.min(720, Math.max(0, Number(dto.silencioAposHumanoHoras) || 0));
+      await this.prisma.configuracao.upsert({
+        where: { escritorioId_chave: { escritorioId, chave: CHAVE_CONFIG } },
+        create: { id: `${escritorioId}_${CHAVE_CONFIG}`, escritorioId, chave: CHAVE_CONFIG, valor: novo as any, tipo: 'ia' },
+        update: { valor: novo as any },
+      });
     }
-    if (dto?.apenasNovosContatos !== undefined) novo.apenasNovosContatos = dto.apenasNovosContatos !== false;
-    if (dto?.esperaSegundos !== undefined) novo.esperaSegundos = Math.min(120, Math.max(0, Number(dto.esperaSegundos) || 0));
-    if (dto?.silencioAposHumanoHoras !== undefined) novo.silencioAposHumanoHoras = Math.min(720, Math.max(0, Number(dto.silencioAposHumanoHoras) || 0));
-    await this.prisma.configuracao.upsert({
-      where: { escritorioId_chave: { escritorioId, chave: CHAVE_CONFIG } },
-      create: { id: `${escritorioId}_${CHAVE_CONFIG}`, escritorioId, chave: CHAVE_CONFIG, valor: novo as any, tipo: 'ia' },
-      update: { valor: novo as any },
-    });
-    return { ...novo, simulado: simulado() };
+    if (dto?.ativo !== undefined) {
+      const minha = await this.prisma.whatsappConexao.findFirst({ where: { escritorioId, usuarioId: user.id, ativo: true } });
+      if (!minha) throw new BadRequestException('Conecte o seu WhatsApp antes de ligar o atendimento automático.');
+      const ligar = dto.ativo === true;
+      await this.prisma.whatsappConexao.update({
+        where: { id: minha.id },
+        // Ligar de novo reinicia o marco: "contatos novos" passam a contar a partir de agora
+        data: { iaAtivo: ligar, ...(ligar && !minha.iaAtivo ? { iaAtivadoEm: new Date() } : {}) },
+      });
+    }
+    return this.configDoUsuario(user);
   }
 
-  /** Liga (AUTO), pausa (PAUSADA) ou devolve à regra geral (null) a IA numa conversa */
-  async definirNaConversa(escritorioId: string, conversaId: string, status: string | null) {
+  /** Liga (AUTO), pausa (PAUSADA) ou devolve à regra geral (null) a IA numa conversa que o usuário vê */
+  async definirNaConversa(user: any, conversaId: string, status: string | null) {
     const valido = status === null || status === 'AUTO' || status === 'PAUSADA';
     if (!valido) throw new Error('Status inválido: use AUTO, PAUSADA ou null.');
-    const r = await this.prisma.whatsappConversa.updateMany({
-      where: { id: conversaId, escritorioId },
+    await this.caixa.conversaVisivel(user, conversaId);
+    await this.prisma.whatsappConversa.update({
+      where: { id: conversaId },
       data: { iaStatus: status, ...(status !== null ? { iaMotivo: null } : {}) },
     });
-    if (!r.count) throw new Error('Conversa não encontrada.');
     return { conversaId, iaStatus: status };
+  }
+
+  /** Testes: processa agora uma conversa que o usuário vê */
+  async responderAgora(user: any, conversaId: string) {
+    await this.caixa.conversaVisivel(user, conversaId);
+    return this.processar(conversaId);
   }
 
   // ─────────────────────────── disparo ───────────────────────────
 
   private agendar(escritorioId: string, conversaId: string) {
-    void this.config(escritorioId).then((cfg) => {
-      if (!cfg.ativo) return;
+    void Promise.all([
+      this.config(escritorioId),
+      this.prisma.whatsappConversa.findUnique({ where: { id: conversaId }, select: { conexao: { select: { iaAtivo: true } } } }),
+    ]).then(([cfg, c]) => {
+      if (!c?.conexao.iaAtivo) return;
       clearTimeout(this.timers.get(conversaId));
       this.timers.set(conversaId, setTimeout(() => {
         this.timers.delete(conversaId);
@@ -130,7 +163,7 @@ export class AtendimentoIaService implements OnModuleInit {
     if (this.emAndamento.has(conversaId)) return { respondeu: false, motivo: 'já em andamento' };
     this.emAndamento.add(conversaId);
     try {
-      const conversa = await this.prisma.whatsappConversa.findUnique({ where: { id: conversaId } });
+      const conversa = await this.prisma.whatsappConversa.findUnique({ where: { id: conversaId }, include: { conexao: true } });
       if (!conversa) return { respondeu: false, motivo: 'conversa não existe' };
       const cfg = await this.config(conversa.escritorioId);
       const motivo = await this.motivoParaNaoResponder(conversa, cfg);
@@ -144,7 +177,7 @@ export class AtendimentoIaService implements OnModuleInit {
         .filter((m) => m.status !== 'falhou')
         .map((m) => ({ deCliente: m.direcao === 'ENTRADA', texto: this.textoDa(m) }));
 
-      const sistema = await this.montarSistema(conversa.escritorioId, conversa.telefone, conversa.nomeContato);
+      const sistema = await this.montarSistema(conversa.escritorioId, conversa.telefone, conversa.nomeContato, conversa.conexao.usuarioId);
       let r: RespostaAtendimento;
       if (simulado()) {
         const ultima = conversaIa[conversaIa.length - 1]?.texto ?? '';
@@ -189,12 +222,12 @@ export class AtendimentoIaService implements OnModuleInit {
   }
 
   private async motivoParaNaoResponder(conversa: any, cfg: ConfigAtendimentoIa): Promise<string | null> {
-    if (!cfg.ativo) return 'atendimento automático desligado';
+    if (!conversa.conexao?.iaAtivo) return 'atendimento automático desligado neste número';
     if (!/^\d{10,15}$/.test(String(conversa.telefone))) return 'não é um número de pessoa (grupo ou lista)';
     if (conversa.iaStatus === 'PAUSADA') return 'pausada nesta conversa (advogado assumiu)';
     if (conversa.iaStatus === 'ENCAMINHADA') return 'já encaminhada ao advogado';
     if (conversa.iaStatus !== 'AUTO' && cfg.apenasNovosContatos) {
-      const marco = cfg.ativadoEm ? new Date(cfg.ativadoEm) : null;
+      const marco = conversa.conexao.iaAtivadoEm ? new Date(conversa.conexao.iaAtivadoEm) : null;
       if (!marco || conversa.createdAt < marco) return 'contato antigo (a IA só atende contatos novos)';
     }
     const ultima = await this.prisma.whatsappMensagemCaixa.findFirst({ where: { conversaId: conversa.id }, orderBy: { dataHora: 'desc' } });
@@ -218,8 +251,9 @@ export class AtendimentoIaService implements OnModuleInit {
   }
 
   /** Regras + dados do escritório + catálogo (sem preços). As mensagens do cliente vão à parte. */
-  private async montarSistema(escritorioId: string, telefone: string, nomeContato: string | null) {
+  private async montarSistema(escritorioId: string, telefone: string, nomeContato: string | null, donoId: string | null = null) {
     const escritorio = await this.prisma.escritorio.findUnique({ where: { id: escritorioId }, select: { nome: true } });
+    const dono = donoId ? await this.prisma.usuario.findUnique({ where: { id: donoId }, select: { nome: true } }) : null;
     const servicos = await this.catalogo.paraAtendimento(escritorioId);
     const fim = String(telefone).slice(-8);
     const clientes = await this.prisma.cliente.findMany({
@@ -234,6 +268,7 @@ export class AtendimentoIaService implements OnModuleInit {
 
     return [
       `Você é a assistente virtual do escritório de advocacia "${escritorio?.nome ?? 'do escritório'}" no WhatsApp. Hoje é ${hojeBrasilia()}.`,
+      ...(dono?.nome ? [`Este número de WhatsApp é atendido por ${dono.nome}, do escritório. Quando falar em "o advogado", é a pessoa deste número que continua o atendimento.`] : []),
       '',
       'SEU PAPEL: fazer o primeiro atendimento. Acolher, entender o caso, coletar os dados e documentos e passar para um advogado. Você não é advogada e não substitui o advogado.',
       '',
@@ -277,8 +312,9 @@ export class AtendimentoIaService implements OnModuleInit {
       where: { id: conversa.id },
       data: { iaStatus: 'ENCAMINHADA', iaMotivo: (r.motivo || 'Encaminhada pela IA').slice(0, 500) },
     });
-    const gestores = await this.prisma.usuario.findMany({ where: { escritorioId: conversa.escritorioId, ativo: true }, select: { id: true, roles: true } });
-    const alvo = gestores.filter((u) => String(u.roles ?? '').split(',').map((x) => x.trim().toUpperCase()).some((x) => (PERFIS_GESTAO as string[]).includes(x)));
+    // Avisa só quem vê este número: o dono e quem ele liberou (cada login tem o próprio WhatsApp)
+    const ids = [conversa.conexao?.usuarioId, ...(conversa.conexao?.acessoIds ?? [])].filter(Boolean) as string[];
+    const alvo = await this.prisma.usuario.findMany({ where: { id: { in: ids }, escritorioId: conversa.escritorioId, ativo: true }, select: { id: true } });
     const quem = conversa.nomeContato || `+${conversa.telefone}`;
     for (const u of alvo) {
       await this.prisma.notificacao.create({

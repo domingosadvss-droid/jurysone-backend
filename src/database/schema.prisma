@@ -1964,6 +1964,12 @@ model WhatsappConexao {
   coexistencia         Boolean   @default(false)
   historicoImportadoEm DateTime?
   pastaRaizId          String? // pasta "WhatsApp" no armazenamento do escritório (evita duplicar no Drive)
+  // Cada login conecta o PRÓPRIO número (22/11/2026): só o dono e quem ele liberar veem a caixa
+  usuarioId            String?
+  acessoIds            String[]  @default([])
+  // Atendimento automático (IA) ligado neste número; ativadoEm marca o que conta como "contato novo"
+  iaAtivo              Boolean   @default(false)
+  iaAtivadoEm          DateTime?
   ativo                Boolean   @default(true)
   createdAt            DateTime  @default(now())
   updatedAt            DateTime  @updatedAt
@@ -1971,6 +1977,7 @@ model WhatsappConexao {
   conversas WhatsappConversa[]
 
   @@index([escritorioId])
+  @@index([usuarioId])
   @@map("whatsapp_conexoes")
 }
 

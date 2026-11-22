@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Query, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, Query, Res, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
@@ -8,7 +8,10 @@ import { PERFIS, PERFIS_INTERNOS } from '../../common/perfis';
 import { CaixaWhatsappService } from './caixa.service';
 import { ConexoesWhatsappService } from './conexoes.service';
 import { MidiaWhatsappService } from './midia.service';
-import { WhatsappWebService } from './whatsapp-web.service';
+import { Dono, WhatsappWebService } from './whatsapp-web.service';
+
+/** O login que faz o pedido é o dono do número (cada login conecta o próprio WhatsApp) */
+const dono = (user: any): Dono => ({ escritorioId: user.officeId, usuarioId: user.id });
 
 @ApiTags('💬 WhatsApp oficial — caixa de conversas')
 @UseGuards(JwtAuthGuard)
@@ -24,68 +27,86 @@ export class CaixaWhatsappController {
 
   @Get('conexao')
   @Perfis(...PERFIS_INTERNOS)
-  @ApiOperation({ summary: 'Situação da conexão do WhatsApp do escritório' })
+  @ApiOperation({ summary: 'O WhatsApp do meu login e os números liberados para mim' })
   status(@CurrentUser() user: any) {
-    return this.conexoes.status(user.officeId);
+    return this.conexoes.status(user);
   }
 
   @Post('conexao')
   @HttpCode(200)
   @Perfis(PERFIS.ADMIN)
-  @ApiOperation({ summary: 'Conecta um número informado à mão (número de teste da Meta ou token de usuário do sistema): phoneNumberId, wabaId, token, origem' })
+  @ApiOperation({ summary: 'Conecta no meu login um número da API oficial informado à mão: phoneNumberId, wabaId, token, origem' })
   conectar(@Body() body: any, @CurrentUser() user: any) {
-    return this.conexoes.salvarManual(user.officeId, body);
+    return this.conexoes.salvarManual(user, body);
   }
 
   @Delete('conexao')
-  @Perfis(PERFIS.ADMIN)
-  @ApiOperation({ summary: 'Desconecta o WhatsApp do escritório (as conversas ficam guardadas)' })
+  @Perfis(...PERFIS_INTERNOS)
+  @ApiOperation({ summary: 'Desconecta o WhatsApp do meu login (as conversas ficam guardadas)' })
   desconectar(@CurrentUser() user: any) {
-    return this.conexoes.desconectar(user.officeId);
+    return this.conexoes.desconectar(user);
   }
 
-  // ── WhatsApp Web (QR Code) — modo de testes ─────────────────────────────────
+  // ── Quem mais pode ver a caixa do meu número ────────────────────────────────
+
+  @Get('acessos')
+  @Perfis(...PERFIS_INTERNOS)
+  @ApiOperation({ summary: 'Quem pode ver a caixa do meu número, e a equipe para escolher' })
+  acessos(@CurrentUser() user: any) {
+    return this.conexoes.acessos(user);
+  }
+
+  @Put('acessos')
+  @Perfis(...PERFIS_INTERNOS)
+  @ApiOperation({ summary: 'Define quem pode ver e responder a caixa do meu número: { usuarioIds: [] }' })
+  definirAcessos(@Body() body: any, @CurrentUser() user: any) {
+    return this.conexoes.definirAcessos(user, body);
+  }
+
+  // ── WhatsApp Web (QR Code) — modo de testes, um por login ───────────────────
 
   @Get('web')
   @Perfis(...PERFIS_INTERNOS)
-  @ApiOperation({ summary: 'WhatsApp Web: situação da conexão e QR Code (quando aguardando leitura)' })
+  @ApiOperation({ summary: 'WhatsApp Web do meu login: situação e QR Code (quando aguardando leitura)' })
   webSituacao(@CurrentUser() user: any) {
-    return this.web.situacao(user.officeId);
+    return this.web.situacao(dono(user));
   }
 
   @Post('web/conectar')
   @HttpCode(200)
-  @Perfis(PERFIS.ADMIN)
-  @ApiOperation({ summary: 'WhatsApp Web: inicia a conexão e gera o QR Code para ler no celular' })
+  @Perfis(...PERFIS_INTERNOS)
+  @ApiOperation({ summary: 'WhatsApp Web: conecta o MEU número (gera o QR Code para ler no meu celular)' })
   webConectar(@CurrentUser() user: any) {
-    return this.web.iniciar(user.officeId);
+    return this.web.iniciar(dono(user));
   }
 
   @Get('web/pessoais')
-  @Perfis(PERFIS.ADMIN)
-  @ApiOperation({ summary: 'WhatsApp Web: conversas gravadas de contatos da agenda que não são clientes (prévia da limpeza)' })
+  @Perfis(...PERFIS_INTERNOS)
+  @ApiOperation({ summary: 'WhatsApp Web: conversas gravadas do meu número com contatos da agenda que não são clientes (prévia da limpeza)' })
   webPessoais(@CurrentUser() user: any) {
-    return this.web.previaLimpeza(user.officeId);
+    return this.web.previaLimpeza(dono(user));
   }
 
   @Post('web/pessoais/apagar')
   @HttpCode(200)
-  @Perfis(PERFIS.ADMIN)
-  @ApiOperation({ summary: 'WhatsApp Web: apaga do JurysOne as conversas pessoais já gravadas (mensagens e anexos)' })
+  @Perfis(...PERFIS_INTERNOS)
+  @ApiOperation({ summary: 'WhatsApp Web: apaga do JurysOne as conversas pessoais já gravadas do meu número' })
   webApagarPessoais(@CurrentUser() user: any) {
-    return this.web.limparPessoais(user.officeId);
+    return this.web.limparPessoais(dono(user));
   }
 
   @Delete('web')
-  @Perfis(PERFIS.ADMIN)
-  @ApiOperation({ summary: 'WhatsApp Web: desconecta e apaga a sessão (as conversas ficam guardadas)' })
+  @Perfis(...PERFIS_INTERNOS)
+  @ApiOperation({ summary: 'WhatsApp Web: desconecta o meu número e apaga a sessão (as conversas ficam guardadas)' })
   webDesconectar(@CurrentUser() user: any) {
-    return this.web.desconectar(user.officeId);
+    return this.web.desconectar(dono(user));
   }
+
+  // ── Caixa ───────────────────────────────────────────────────────────────────
 
   @Get('conversas')
   @Perfis(...PERFIS_INTERNOS)
-  @ApiOperation({ summary: 'Conversas do escritório, da mais recente para a mais antiga (filtro: busca)' })
+  @ApiOperation({ summary: 'Conversas dos números que posso ver, da mais recente para a mais antiga (filtros: busca, conexaoId)' })
   conversas(@Query() q: any, @CurrentUser() user: any) {
     return this.caixa.conversas(user, q);
   }
@@ -109,7 +130,7 @@ export class CaixaWhatsappController {
   @Perfis(...PERFIS_INTERNOS)
   @ApiOperation({ summary: 'Abre o anexo guardado de uma mensagem' })
   async anexo(@Param('id') id: string, @CurrentUser() user: any, @Res() res: Response) {
-    const a = await this.midia.conteudo(user.officeId, id);
+    const a = await this.midia.conteudo(user, id);
     res.setHeader('Content-Type', a.mime);
     res.setHeader('Content-Disposition', `inline; filename*=UTF-8''${encodeURIComponent(a.nome)}`);
     res.send(a.buffer);
